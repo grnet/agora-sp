@@ -10,7 +10,7 @@ class ServiceOwner(models.Model):
     last_name = models.CharField(max_length=255, default=None)
     email = models.EmailField(default=None)
     phone = models.CharField(max_length=255, default=None)
-    id_service_owner = models.ForeignKey('owner.Institution')
+    id_service_owner = models.ForeignKey(Institution)
 
 class Institution(models.Model):
 
@@ -31,8 +31,8 @@ class ContactInformation(models.Model):
 
 class Internal(models.Model):
 
-    id_contact_info = models.ForeignKey('owner.ContactInformation')
+    id_contact_info = models.ForeignKey(ContactInformation)
 
 class External(models.Model):
 
-    id_contact_info = models.ForeignKey('owner.ContactInformation')
+    id_contact_info = models.ForeignKey(ContactInformation)

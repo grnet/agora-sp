@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 import uuid
+from owner.models import ServiceOwner, ContactInformation
 
 class Service(models.Model):
 
@@ -17,13 +18,13 @@ class Service(models.Model):
     value_to_customer = models.CharField(max_length=255, default=None)
     risks = models.CharField(max_length=255, default=None)
     competitors = models.CharField(max_length=255, default=None)
-    id_service_owner = models.ForeignKey('owner.ServiceOwner')
-    id_contact_information = models.ForeignKey('owner.ContactInformation')
-
+    id_service_owner = models.ForeignKey(ServiceOwner)
+    id_contact_information = models.ForeignKey(ContactInformation)
+1
 class ServiceDetails(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    id_service = models.ForeignKey('service.Service')
+    id_service = models.ForeignKey(Service)
     version = models.CharField(max_length=255, default=None)
     status = models.CharField(max_length=255, default=None)
     features_current = models.CharField(max_length=255, default=None)
@@ -58,13 +59,13 @@ class Service_DependsOn_Service(models.Model):
     class Meta:
           unique_together = (('id_service_one', 'id_service_two'),)
 
-    id_service_one = models.ForeignKey('service.Service')
-    id_service_two = models.ForeignKey('service.Service')
+    id_service_one = models.ForeignKey(Service, related_name='%(class)_one')
+    id_service_two = models.ForeignKey(Service, related_name='%(class)_two')
 
 class Service_ExternalService(models.Model):
 
     class Meta:
           unique_together = (('id_service', 'id_external_service'),)
 
-    id_service = models.ForeignKey('service.Service')
-    id_external_service = models.ForeignKey('service.ExternalService')
+    id_service = models.ForeignKey(Service)
+    id_external_service = models.ForeignKey(ExternalService)
