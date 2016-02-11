@@ -3,6 +3,14 @@ from __future__ import unicode_literals
 from django.db import models
 import uuid
 
+class Institution(models.Model):
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, default=None)
+    address = models.CharField(max_length=255, default=None)
+    country = models.CharField(max_length=255, default=None)
+    department = models.CharField(max_length=255, default=None)
+
 class ServiceOwner(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -11,14 +19,6 @@ class ServiceOwner(models.Model):
     email = models.EmailField(default=None)
     phone = models.CharField(max_length=255, default=None)
     id_service_owner = models.ForeignKey(Institution)
-
-class Institution(models.Model):
-
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255, default=None)
-    address = models.CharField(max_length=255, default=None)
-    country = models.CharField(max_length=255, default=None)
-    department = models.CharField(max_length=255, default=None)
 
 class ContactInformation(models.Model):
 
