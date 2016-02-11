@@ -59,8 +59,8 @@ class Service_DependsOn_Service(models.Model):
     class Meta:
           unique_together = (('id_service_one', 'id_service_two'),)
 
-    id_service_one = models.ForeignKey(Service, related_name='%(class)_one')
-    id_service_two = models.ForeignKey(Service, related_name='%(class)_two')
+    id_service_one = models.ForeignKey(Service, related_name='service_one')
+    id_service_two = models.ForeignKey(Service, related_name='service_two')
 
 class Service_ExternalService(models.Model):
 
