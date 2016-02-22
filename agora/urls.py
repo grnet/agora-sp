@@ -17,5 +17,6 @@ from django.conf.urls import url, include
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'admin/', admin.site.urls)
+    url(r'admin/', admin.site.urls),
+    url(r'(portfolio|catalogue)/services', include('service.urls')),
 ]
