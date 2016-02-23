@@ -6,6 +6,7 @@ from owner.models import ServiceOwner, ContactInformation
 
 class Service(models.Model):
 
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None)
     description_external = models.TextField(default=None)
@@ -20,7 +21,10 @@ class Service(models.Model):
     competitors = models.CharField(max_length=255, default=None)
     id_service_owner = models.ForeignKey(ServiceOwner)
     id_contact_information = models.ForeignKey(ContactInformation)
-1
+
+    def __unicode__(self):
+         return str(self.name)
+
 class ServiceDetails(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -46,6 +50,13 @@ class ServiceDetails(models.Model):
     cost_to_run = models.CharField(max_length=255, default=None)
     cost_to_build = models.CharField(max_length=255, default=None)
 
+    def __unicode__(self):
+
+        primary_key = self.id_service.pk
+        srv = Service.objects.get(pk=primary_key)
+
+        return str(srv.name) + " " +str(self.version)
+
 class ExternalService(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -53,6 +64,9 @@ class ExternalService(models.Model):
     description = models.TextField(default=None)
     service = models.CharField(max_length=255, default=None)
     details = models.CharField(max_length=255, default=None)
+
+    def __unicode__(self):
+        return str(self.name)
 
 class Service_DependsOn_Service(models.Model):
 
@@ -62,6 +76,18 @@ class Service_DependsOn_Service(models.Model):
     id_service_one = models.ForeignKey(Service, related_name='service_one')
     id_service_two = models.ForeignKey(Service, related_name='service_two')
 
+
+    def __unicode__(self):
+
+        primary_key_one = self.id_service_one.pk
+        primary_key_two = self.id_service_two.pk
+
+        srv1 = Service.objects.get(pk=primary_key_one)
+        srv2 = Service.objects.get(pk=primary_key_two)
+
+        return str(srv1.name) + " " +str(srv2.name)
+
+
 class Service_ExternalService(models.Model):
 
     class Meta:
@@ -69,3 +95,14 @@ class Service_ExternalService(models.Model):
 
     id_service = models.ForeignKey(Service)
     id_external_service = models.ForeignKey(ExternalService)
+
+    def __unicode__(self):
+
+        primary_key_one = self.id_service.pk
+
+        external_primary_key_one = self.id_external_service.pk
+
+        srv1 = Service.objects.get(pk=primary_key_one)
+        srv2 = ExternalService.objects.get(pk=external_primary_key_one)
+
+        return str(srv1.name) + " " +str(srv2.name)
