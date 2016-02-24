@@ -68,28 +68,24 @@ serviceListApp.controller('DetailsController', function($scope, $http, $location
         success(function (response, status, headers, config) {
             console.log(response);
                 $scope.current_service = response['data'][0];
-                 $scope.owner_link = $scope.current_service.id_service_owner;
+                $scope.owner_link = $scope.current_service.id_service_owner;
 
+                $scope.contact_info_link = $scope.current_service.id_contact_information;
+
+                $scope.service_details_link =  "<a href='/service_details/"+ $scope.current_service.service_details['uuid']+"?view=short' target='_blank' >"+ $scope.current_service.service_details['uuid']+"</a>";
+
+                debugger;
 
              if ($scope.detail_level == 'portfolio' && $scope.view_param=='complete')
                 {
 
-                    $scope.owner_link = "<a href=/owner/"+$scope.current_service.service_owner['uuid']+" target='_blank' >"+$scope.current_service.service_owner['uuid']+"</a>";
+                    $scope.owner_link = "<a href='/owner/"+$scope.current_service.service_owner['uuid']+"' target='_blank' >"+$scope.current_service.service_owner['uuid']+"</a>";
 
-                    $http.get('/owner/'+$scope.current_service.service_owner['uuid']).
-                        success(function (response, status, headers, config) {
-                            console.log(response);
-                        }).
-                        error(function (data, status, headers, config) {
-                        });
+                    $scope.contact_info_link = "<a href='/contact_info/"+ $scope.current_service.contact_information['uuid']+"' target='_blank' >"+ $scope.current_service.contact_information['uuid']+"</a>";
+
+                    $scope.service_details_link =  "<a href='/service_details/"+ $scope.current_service.service_details['uuid']+"?view=complete' target='_blank' >"+ $scope.current_service.service_details['uuid']+"</a>";
+
                 }
-
-
-
-
-
-
-
         }).
         error(function (data, status, headers, config) {
         });

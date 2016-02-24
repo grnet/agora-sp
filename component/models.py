@@ -13,6 +13,14 @@ class ServiceComponent(models.Model):
     def __unicode__(self):
          return str(self.name)
 
+    def as_json(self):
+        return {
+            "uuid": self.id,
+            "name": self.name,
+            "description": self.description
+        }
+
+
 
 class ServiceComponentImplementation(models.Model):
 
@@ -23,6 +31,13 @@ class ServiceComponentImplementation(models.Model):
 
     def __unicode__(self):
          return str(self.name)
+
+    def as_json(self):
+        return {
+            "uuid": self.id,
+            "name": self.name,
+            "description": self.description
+        }
 
 
 class ServiceComponentImplementationDetail(models.Model):
@@ -35,6 +50,13 @@ class ServiceComponentImplementationDetail(models.Model):
 
     def __unicode__(self):
          return str(self.name)
+
+    def as_json(self):
+        return {
+            "uuid": self.id,
+            "name": self.name,
+            "description": self.description
+        }
 
 
 class ServiceDetailsComponent(models.Model):
@@ -54,7 +76,9 @@ class ServiceDetailsComponent(models.Model):
 
 
         srv  = Service.objects.get(pk=srv_id)
+
         srv_det = ServiceDetails.objects.get(pk=srv_det_id)
+
         srv_cmp = ServiceComponent.objects.get(pk=srv_cmp_id)
 
 

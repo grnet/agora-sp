@@ -15,12 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from service import views
-
+from service import views as service_views
+from owner import views as owner_views
 
 urlpatterns = [
     url(r'admin/', admin.site.urls),
-    url(r'^services/$', views.show_service_list_view),
+    url(r'^services/$', service_views.show_service_list_view),
     url(r'^(portfolio|catalogue)/services', include('service.urls')),
-    url(r'^owner', include('owner.urls'))
+    url(r'^owner', include('owner.urls')),
+    url(r'^contact_info/(?P<uuid>[0-9a-zA-Z\-]+)', owner_views.get_contact_info),
+    url(r'^service_details/(?P<uuid>[0-9a-zA-Z\-]+)', service_views.get_service_details)
 ]

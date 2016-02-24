@@ -47,7 +47,7 @@
              </tr>
              <tr>
                  <td> Contact Info Id </td>
-                 <td> { current_service.id_contact_information                         } </td>
+                 <td ng-bind-html="contact_info_link"></td>
              </tr>
              <tr>
                  <td> Service Funders </td>
@@ -56,6 +56,11 @@
              <tr>
                  <td> Customer Value </td>
                  <td> { current_service.value_to_customer } </td>
+             </tr>
+
+             <tr>
+                 <td> Service Details </td>
+                  <td ng-bind-html="service_details_link"></td>
              </tr>
 
          </table>

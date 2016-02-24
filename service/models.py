@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 import uuid
 from owner.models import ServiceOwner, ContactInformation
+
 from django.core import serializers
 import json
 
@@ -47,7 +48,7 @@ class Service(models.Model):
             "value_to_customer": self.value_to_customer,
             "risks": self.risks,
             "competitors": self.competitors,
-            "service_details": ServiceDetails.objects.filter(id_service=self.pk)[0].as_json(),
+            "service_details": ServiceDetails.objects.filter(id_service=self.pk)[0].as_complete(),
             "service_owner": ServiceOwner.objects.get(id=self.id_service_owner.pk).as_json(),
             "dependencies": {
                 "count": len(service_dependencies),
@@ -70,6 +71,7 @@ class Service(models.Model):
             "funders_for_service": self.funders_for_service,
             "value_to_customer": self.value_to_customer,
             "risks": self.risks,
+            "service_details": ServiceDetails.objects.filter(id_service=self.pk)[0].as_short(),
             "competitors": self.competitors,
             "id_service_owner": self.id_service_owner.pk,
             "id_contact_information": self.id_contact_information.pk
@@ -117,10 +119,46 @@ class ServiceDetails(models.Model):
         primary_key = self.id_service.pk
         srv = Service.objects.get(pk=primary_key)
 
+        return str(srv.name)+" "+str(self.version)
+
+    def as_short(self):
+            return {
+                "uuid": self.id,
+                "version": self.version,
+                "service_status": self.status,
+                "features_current": self.features_current,
+                "features_future": self.features_future
+            }
+
+    def as_complete(self):
+        return {
+            "uuid": self.id,
+            "version": self.version,
+            "service_status": self.status,
+            "features_current": self.features_current,
+            "features_future": self.features_future,
+            "usage_policy_has": self.usage_policy_has,
+            "usage_policy_url": self.usage_policy_url,
+            "user_documentation_has": self.user_documentation_has,
+            "user_documentation_url": self.user_documentation_url,
+            "monitoring_has": self.monitoring_has,
+            "monitoring_url": self.monitoring_url,
+            "accounting_has": self.accounting_has,
+            "accounting_url": self.accounting_url,
+            "business_continuity_plan_has": self.business_continuity_plan_has,
+            "business_continuity_plan_url": self.business_continuity_plan_url,
+            "disaster_recovery_plan_has": self.disaster_recovery_plan_has,
+            "disaster_recovery_plan_url": self.disaster_recovery_plan_url,
+            "decommissioning_procedure_has": self.decommissioning_procedure_has,
+            "decommissioning_procedure_url": self.decommissioning_procedure_url,
+            "cost_to_run": self.cost_to_run,
+            "cost_to_build": self.cost_to_build,
+        }
 
 
     def as_json(self):
         return {
+            "uuid" : self.id,
             "version": self.version,
             "service_status": self.status,
             "features_current": self.features_current,

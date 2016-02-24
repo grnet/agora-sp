@@ -1,6 +1,7 @@
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, get_object_or_404
 from service import models
+from component.models import ServiceComponent, ServiceDetailsComponent
 
 # Returns JSON response containing all services
 def list_services(request, type):
@@ -16,7 +17,7 @@ def list_services(request, type):
         if detail_level is None or detail_level == "short":
             services = [s.as_portfolio() for s in serv_models]
         elif detail_level == "complete":
-            services = [s.as_complete_portfolio() for s in serv_models]
+            services = [merge_service_components(s.as_complete_portfolio()) for s in serv_models]
         else:
             response["status"] = "404 Not Found"
             response["errors"] = {
@@ -93,7 +94,7 @@ def get_service(request, uuid):
             if detail_level is None or detail_level == "short":
                 service = serv.as_portfolio()
             elif detail_level == "complete":
-                service = serv.as_complete_portfolio()
+                service = merge_service_components(serv.as_complete_portfolio())
             else:
                 response["status"] = "404 Not Found"
                 response["errors"] = {
@@ -115,3 +116,30 @@ def get_service(request, uuid):
         response["info"] = "service information"
 
     return JsonResponse(response)
+
+def get_service_details(request, uuid):
+
+   params = request.GET.copy()
+   detail_level = params.get('view')
+
+   detail = models.ServiceDetails.objects.get(id=uuid)
+
+
+   if detail_level == 'short':
+        return JsonResponse({'detail' : detail.as_short()})
+   else:
+        return JsonResponse({'detail' : detail.as_complete()})
+
+
+def merge_service_components(response):
+
+        serv_components = ServiceDetailsComponent.objects.filter(service_id=response['uuid'])
+
+        components = []
+
+        for s in serv_components:
+            components.append(ServiceComponent.objects.get(id=s.service_component_id).as_json())
+
+        response["components"] = components
+
+        return response
