@@ -3,9 +3,11 @@ from __future__ import unicode_literals
 from django.db import models
 import uuid
 from owner.models import ServiceOwner, ContactInformation
+from django.core import serializers
+import json
+
 
 class Service(models.Model):
-
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None)
@@ -25,6 +27,66 @@ class Service(models.Model):
     def __unicode__(self):
          return str(self.name)
 
+
+    def as_complete_portfolio(self):
+        dependencies = Service_DependsOn_Service.objects.filter(id_service_one=self.pk)
+        service_dependencies = []
+        for d in dependencies:
+            service_dependencies.append({
+                "uuid": Service.objects.get(pk=d.id_service_two.pk).id
+            })
+
+        return {
+            "uuid": self.id,
+            "name": self.name,
+            "description_external": self.description_external,
+            "description_internal": self.description_internal,
+            "service_area": self.service_area,
+            "request_procedures": self.request_procedures,
+            "funders_for_service": self.funders_for_service,
+            "value_to_customer": self.value_to_customer,
+            "risks": self.risks,
+            "competitors": self.competitors,
+            "service_details": ServiceDetails.objects.filter(id_service=self.pk)[0].as_json(),
+            "service_owner": ServiceOwner.objects.get(id=self.id_service_owner.pk).as_json(),
+            "dependencies": {
+                "count": len(service_dependencies),
+                "services": service_dependencies
+            },
+            "contact_information": ContactInformation.objects.get(id=self.id_contact_information.pk).as_json()
+        }
+
+
+    def as_portfolio(self):
+        # return json.loads(serializers.serialize("json", [self, ]))[0]
+
+        return {
+            "uuid": self.id,
+            "name": self.name,
+            "description_external": self.description_external,
+            "description_internal": self.description_internal,
+            "service_area": self.service_area,
+            "request_procedures": self.request_procedures,
+            "funders_for_service": self.funders_for_service,
+            "value_to_customer": self.value_to_customer,
+            "risks": self.risks,
+            "competitors": self.competitors,
+            "id_service_owner": self.id_service_owner.pk,
+            "id_contact_information": self.id_contact_information.pk
+        }
+
+
+    def as_catalogue(self):
+
+        return {
+            "uuid": self.id,
+            "name": self.name,
+            "description_external": self.description_external,
+            "description_internal": self.description_internal,
+            "service_area": self.service_area,
+            "value_to_customer": self.value_to_customer,
+        }
+1
 class ServiceDetails(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -55,7 +117,15 @@ class ServiceDetails(models.Model):
         primary_key = self.id_service.pk
         srv = Service.objects.get(pk=primary_key)
 
-        return str(srv.name) + " " +str(self.version)
+
+
+    def as_json(self):
+        return {
+            "version": self.version,
+            "service_status": self.status,
+            "features_current": self.features_current,
+            "features_future": self.features_future
+        }
 
 class ExternalService(models.Model):
 
@@ -86,7 +156,6 @@ class Service_DependsOn_Service(models.Model):
         srv2 = Service.objects.get(pk=primary_key_two)
 
         return str(srv1.name) + " " +str(srv2.name)
-
 
 class Service_ExternalService(models.Model):
 

@@ -15,8 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from service import views
+
 
 urlpatterns = [
     url(r'admin/', admin.site.urls),
-    url(r'(portfolio|catalogue)/services', include('service.urls')),
+    url(r'^services/$', views.show_service_list_view),
+    url(r'^(portfolio|catalogue)/services', include('service.urls')),
+    url(r'^owner', include('owner.urls'))
 ]

@@ -6,11 +6,7 @@ from service import views
 
 urlpatterns = [
 
-
-
-    url(r'(?P<uuid>[0-9a-zA-Z\-]+)/service_details', views.get_service_details),
+    url(r'(?P<uuid>[0-9a-zA-Z\-]+)/service_details', views.show_service_details),
     url(r'(?P<uuid>[0-9a-zA-Z\-]+)', views.get_service),
-    url(r'$', views.list_services),
-
-
+    url('', views.list_services),
 ]

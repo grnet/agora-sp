@@ -126,9 +126,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
 
-#ADMIN_MEDIA_PREFIX = '/static/admin/'
+#ADMIN_MEDIA_PREFIX = '/service/admin/'
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'service')
 
 
 
@@ -138,7 +138,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 STATICFILES_DIRS = (
    os.path.join(BASE_DIR, "static"),
-   os.path.join(BASE_DIR, "static", "admin")
+   os.path.join(BASE_DIR, "static", "admin"),
 )
 
 TEMPLATE_DIRS = (
@@ -151,5 +151,5 @@ TEMPLATE_DIRS = (
 #   'django.contrib.staticfiles.finders.DefaultStorageFinder',
 #)
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+#STATIC_ROOT = os.path.join(BASE_DIR, 'service')
 

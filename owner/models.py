@@ -26,6 +26,16 @@ class ServiceOwner(models.Model):
     def __unicode__(self):
         return str(self.first_name) + " " + str(self.last_name)
 
+
+    def as_json(self):
+        return {
+            "uuid": self.id,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "email": self.email,
+            "phone": self.phone
+        }
+
 class ContactInformation(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -37,6 +47,16 @@ class ContactInformation(models.Model):
 
     def __unicode__(self):
         return str(self.first_name) + " " + str(self.last_name)
+
+
+    def as_json(self):
+        return {
+            "uuid": self.id,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "email": self.email,
+            "phone": self.phone
+        }
 
 class Internal(models.Model):
 

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    {% load staticfiles %}
+    <meta charset="UTF-8">
+    <title>{% block title %}Read API Demo{% endblock %}</title>
+
+    <link type="text/css" href="{% static "base/css/base.css" %}" rel="stylesheet" />
+
+    <script type="text/javascript" src="{% static "base/js/angular.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "base/js/angular-route.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "base/js/angular-sanitize.js" %}"></script>
+    <script type="text/javascript" src="{% static "base/js/jquery-1.12.1.min.js" %}"></script>
+
+    {% block styles %}
+    {% endblock %}
+</head>
+<body>
+    <div id="header">
+        {% block header %}{% endblock %}
+    </div>
+
+    <div id="content" >
+        {% block content %}{% endblock %}
+    </div>
+
+    <div id="footer">
+        {% block footer %}{% endblock %}
+    </div>
+
+    {% block scripts %}
+    {% endblock %}
+</body>
+</html>

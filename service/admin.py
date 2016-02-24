@@ -5,12 +5,11 @@ from service.models import *
 
 class ServiceAdmin(admin.ModelAdmin):
     list_display = ['id', 'name', ]
-    pass
 
 
 class ServiceDetailsAdmin(admin.ModelAdmin):
     list_display = ['id', 'id_service', 'version' ]
-    pass
+
 
 
 class ExternalServiceAdmin(admin.ModelAdmin):

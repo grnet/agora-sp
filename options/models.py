@@ -15,6 +15,7 @@ class ServiceOption(models.Model):
         return str(self.name)
 
 
+
 class SLA(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -23,6 +24,8 @@ class SLA(models.Model):
 
     def __unicode__(self):
         return str(self.name)
+
+
 
 class Parameter(models.Model):
 
@@ -33,6 +36,8 @@ class Parameter(models.Model):
 
     def __unicode__(self):
         return str(self.name)
+
+
 
 class SLAParameter(models.Model):
     class Meta:
@@ -48,6 +53,8 @@ class SLAParameter(models.Model):
         service = ServiceOption.objects.get(pk=self.service_option_id.pk)
         return str(param) + " " + str(sla) + " " + str(service)
 
+
+
 class ServiceDetailsOption(models.Model):
     class Meta:
         unique_together = (('service_id', 'service_details_id', 'service_options_id'),)
@@ -61,3 +68,4 @@ class ServiceDetailsOption(models.Model):
         service_details = ServiceDetails.objects.get(pk=self.service_details_id.pk)
         service_options = ServiceOption.objects.get(pk=self.service_options_id.pk)
         return str(service) + " " + str(service_details) + " " + str(service_options)
+

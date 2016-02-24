@@ -13,6 +13,7 @@ class ServiceComponent(models.Model):
     def __unicode__(self):
          return str(self.name)
 
+
 class ServiceComponentImplementation(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -37,6 +38,7 @@ class ServiceComponentImplementationDetail(models.Model):
 
 
 class ServiceDetailsComponent(models.Model):
+
     class Meta:
         unique_together = (('service_id', 'service_details_id', 'service_component_id'),)
 
