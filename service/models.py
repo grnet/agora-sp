@@ -38,7 +38,7 @@ class Service(models.Model):
             })
 
         return {
-            "uuid": self.id,
+            "uuid": str(self.pk),
             "name": self.name,
             "description_external": self.description_external,
             "description_internal": self.description_internal,

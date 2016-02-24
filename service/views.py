@@ -138,7 +138,7 @@ def merge_service_components(response):
         components = []
 
         for s in serv_components:
-            components.append(ServiceComponent.objects.get(id=s.service_component_id).as_json())
+            components.append(ServiceComponent.objects.get(id=s.service_component_id.pk).as_json())
 
         response["components"] = components
 
