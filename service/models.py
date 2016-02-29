@@ -101,6 +101,8 @@ class ServiceDetails(models.Model):
     usage_policy_url = models.CharField(max_length=255, default=None)
     user_documentation_has = models.BooleanField(default=False)
     user_documentation_url = models.CharField(max_length=255, default=None)
+    operations_documentation_has = models.BooleanField(default=False)
+    operations_documentation_url = models.CharField(max_length=255, default=None)
     monitoring_has = models.BooleanField(default=False)
     monitoring_url = models.CharField(max_length=255, default=None)
     accounting_has = models.BooleanField(default=False)
@@ -141,6 +143,8 @@ class ServiceDetails(models.Model):
             "usage_policy_url": self.usage_policy_url,
             "user_documentation_has": self.user_documentation_has,
             "user_documentation_url": self.user_documentation_url,
+            "operations_documentation_has": self.operations_documentation_has,
+            "operations_documentation_url": self.operations_documentation_url,
             "monitoring_has": self.monitoring_has,
             "monitoring_url": self.monitoring_url,
             "accounting_has": self.accounting_has,
