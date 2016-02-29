@@ -85,7 +85,7 @@ def get_service(request, uuid):
         if str(v) == "badly formed hexadecimal UUID string":
             response["status"] = "404 Not Found"
             response["errors"] = {
-                "detail": "Not a valid UUID was supplied"
+                "detail": "An invalid UUID was supplied"
             }
         return JsonResponse(response)
 
@@ -143,3 +143,5 @@ def merge_service_components(response):
         response["components"] = components
 
         return response
+
+

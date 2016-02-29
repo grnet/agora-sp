@@ -24,5 +24,9 @@ urlpatterns = [
     url(r'^(portfolio|catalogue)/services', include('service.urls')),
     url(r'^owner', include('owner.urls')),
     url(r'^contact_info/(?P<uuid>[0-9a-zA-Z\-]+)', owner_views.get_contact_info),
-    url(r'^service_details/(?P<uuid>[0-9a-zA-Z\-]+)', service_views.get_service_details)
+    url(r'^service_details/(?P<uuid>[0-9a-zA-Z\-]+)$', service_views.get_service_details)
 ]
+
+handler404 = "agora.views.error404"
+handler400 = "agora.views.error400"
+handler500 = "agora.views.error500"
