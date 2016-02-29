@@ -24,8 +24,12 @@ class Service_ExternalServiceAdmin(admin.ModelAdmin):
     pass
 
 
+class UserCustomerAdmin(admin.ModelAdmin):
+    pass
+
 admin.site.register(Service, ServiceAdmin)
 admin.site.register(ServiceDetails, ServiceDetailsAdmin)
 admin.site.register(ExternalService, ExternalServiceAdmin)
 admin.site.register(Service_DependsOn_Service, Service_DependsOn_ServiceAdmin)
 admin.site.register(Service_ExternalService, Service_ExternalServiceAdmin)
+admin.site.register(UserCustomer, UserCustomerAdmin)

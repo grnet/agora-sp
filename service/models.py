@@ -15,7 +15,6 @@ class Service(models.Model):
     description_external = models.TextField(default=None)
     description_internal = models.TextField(default=None)
     service_area = models.CharField(max_length=255, default=None)
-    users_customers = models.CharField(max_length=255, default=None)
     service_type = models.CharField(max_length=255, default=None)
     request_procedures = models.CharField(max_length=255, default=None)
     funders_for_service = models.CharField(max_length=255, default=None)
@@ -40,6 +39,11 @@ class Service(models.Model):
 
         return services
 
+
+    def get_user_customers(self):
+        return [c.as_json() for c in UserCustomer.objects.filter(service_id=self.pk)]
+
+
     def as_complete_portfolio(self):
         dependencies = Service_DependsOn_Service.objects.filter(id_service_one=self.pk)
         service_dependencies = []
@@ -59,6 +63,7 @@ class Service(models.Model):
             "value_to_customer": self.value_to_customer,
             "risks": self.risks,
             "competitors": self.competitors,
+            "user_customers": self.get_user_customers(),
             "service_details": self.get_service_details(complete=True),
             "service_owner": ServiceOwner.objects.get(id=self.id_service_owner.pk).as_json(),
             "dependencies": {
@@ -84,6 +89,7 @@ class Service(models.Model):
             "risks": self.risks,
             "service_details": self.get_service_details(),
             "competitors": self.competitors,
+            "user_customers": self.get_user_customers(),
             "id_service_owner": self.id_service_owner.pk,
             "id_contact_information": self.id_contact_information.pk
         }
@@ -228,3 +234,28 @@ class Service_ExternalService(models.Model):
         srv2 = ExternalService.objects.get(pk=external_primary_key_one)
 
         return str(srv1.name) + " " +str(srv2.name)
+
+
+class UserCustomer(models.Model):
+    USER_TYPES = (
+        ("Individual Researchers", "Individual Researchers"),
+        ("Community manager", "Community manager"),
+        ("Service provider", "Service provider"),
+        ("Data Project Principle Investigator (PI)", "Data Project Principle Investigator (PI)")
+    )
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, default=None, choices=USER_TYPES)
+    role = models.CharField(max_length=255, default=None)
+    service_id = models.ForeignKey(Service)
+
+    def __unicode__(self):
+        return str(self.name) + " as " + str(self.role) + " for " + str(self.service_id)
+
+
+    def as_json(self):
+        return {
+            "id": self.pk,
+            "name": self.name,
+            "role": self.role
+        }
