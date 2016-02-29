@@ -29,6 +29,17 @@ class Service(models.Model):
          return str(self.name)
 
 
+    def get_service_details(self, complete=False):
+        services = []
+        servs = ServiceDetails.objects.filter(id_service=self.pk)
+        for s in servs:
+            if complete:
+                services.append(s.as_complete())
+            else:
+                services.append(s.as_short())
+
+        return services
+
     def as_complete_portfolio(self):
         dependencies = Service_DependsOn_Service.objects.filter(id_service_one=self.pk)
         service_dependencies = []
@@ -48,7 +59,7 @@ class Service(models.Model):
             "value_to_customer": self.value_to_customer,
             "risks": self.risks,
             "competitors": self.competitors,
-            "service_details": ServiceDetails.objects.filter(id_service=self.pk)[0].as_complete(),
+            "service_details": self.get_service_details(complete=True),
             "service_owner": ServiceOwner.objects.get(id=self.id_service_owner.pk).as_json(),
             "dependencies": {
                 "count": len(service_dependencies),
@@ -71,7 +82,7 @@ class Service(models.Model):
             "funders_for_service": self.funders_for_service,
             "value_to_customer": self.value_to_customer,
             "risks": self.risks,
-            "service_details": ServiceDetails.objects.filter(id_service=self.pk)[0].as_short(),
+            "service_details": self.get_service_details(),
             "competitors": self.competitors,
             "id_service_owner": self.id_service_owner.pk,
             "id_contact_information": self.id_contact_information.pk
