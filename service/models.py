@@ -54,6 +54,7 @@ class Service(models.Model):
 
         return {
             "uuid": str(self.pk),
+            "url": "/portfolio/services/" + str(self.pk),
             "name": self.name,
             "description_external": self.description_external,
             "description_internal": self.description_internal,
@@ -79,6 +80,7 @@ class Service(models.Model):
 
         return {
             "uuid": self.id,
+            "url": "/portfolio/services/" + str(self.pk),
             "name": self.name,
             "description_external": self.description_external,
             "description_internal": self.description_internal,
@@ -99,6 +101,7 @@ class Service(models.Model):
 
         return {
             "uuid": self.id,
+            "url": "/catalogue/services/" + str(self.pk),
             "name": self.name,
             "description_external": self.description_external,
             "description_internal": self.description_internal,
@@ -143,6 +146,7 @@ class ServiceDetails(models.Model):
     def as_short(self):
             return {
                 "uuid": self.id,
+                "url": "/catalogue/services/" + str(self.id_service.pk) + "/" + str(self.pk),
                 "version": self.version,
                 "service_status": self.status,
                 "features_current": self.features_current,
@@ -152,6 +156,7 @@ class ServiceDetails(models.Model):
     def as_complete(self):
         return {
             "uuid": self.id,
+            "url": "/portfolio/services/" + str(self.id_service.pk) + "/" + str(self.pk),
             "version": self.version,
             "service_status": self.status,
             "features_current": self.features_current,
