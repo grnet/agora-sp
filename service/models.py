@@ -2,25 +2,26 @@ from __future__ import unicode_literals
 
 from django.db import models
 import uuid
-from owner.models import ServiceOwner, ContactInformation
 
-from django.core import serializers
-import json
+from samba.dcerpc.idmap import id_map
+
+from owner.models import ServiceOwner, ContactInformation, Institution
 
 
 class Service(models.Model):
 
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255, default=None)
-    description_external = models.TextField(default=None)
-    description_internal = models.TextField(default=None)
-    service_area = models.CharField(max_length=255, default=None)
-    service_type = models.CharField(max_length=255, default=None)
-    request_procedures = models.CharField(max_length=255, default=None)
-    funders_for_service = models.CharField(max_length=255, default=None)
-    value_to_customer = models.CharField(max_length=255, default=None)
-    risks = models.CharField(max_length=255, default=None)
-    competitors = models.CharField(max_length=255, default=None)
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
+    name = models.CharField(max_length=255, default=None, blank=True)
+    description_external = models.TextField(default=None, blank=True)
+    description_internal = models.TextField(default=None, blank=True)
+    service_area = models.CharField(max_length=255, default=None, blank=True)
+    service_type = models.CharField(max_length=255, default=None, blank=True)
+    request_procedures = models.CharField(max_length=255, default=None, blank=True)
+    funders_for_service = models.CharField(max_length=255, default=None, blank=True)
+    value_to_customer = models.CharField(max_length=255, default=None, blank=True)
+    risks = models.CharField(max_length=255, default=None, blank=True)
+    competitors = models.CharField(max_length=255, default=None, blank=True)
     id_service_owner = models.ForeignKey(ServiceOwner)
     id_contact_information = models.ForeignKey(ContactInformation)
 
@@ -30,7 +31,7 @@ class Service(models.Model):
 
     def get_service_details(self, complete=False):
         services = []
-        servs = ServiceDetails.objects.filter(id_service=self.pk)
+        servs = ServiceDetails.objects.filter(id_service =self.pk)
         for s in servs:
             if complete:
                 services.append(s.as_complete())
@@ -42,6 +43,14 @@ class Service(models.Model):
 
     def get_user_customers(self):
         return [c.as_json() for c in UserCustomer.objects.filter(service_id=self.pk)]
+
+
+    def get_service_owners(self):
+        return ServiceOwner.objects.get(id=self.id_service_owner.pk).as_json()
+
+
+    def get_service_institution(self):
+        return Institution.objects.get(pk=ServiceOwner.objects.get(id=self.id_service_owner.pk).id_service_owner.pk).as_json()
 
 
     def as_complete_portfolio(self):
@@ -109,32 +118,33 @@ class Service(models.Model):
             "value_to_customer": self.value_to_customer,
         }
 1
+
 class ServiceDetails(models.Model):
 
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
     id_service = models.ForeignKey(Service)
-    version = models.CharField(max_length=255, default=None)
-    status = models.CharField(max_length=255, default=None)
-    features_current = models.CharField(max_length=255, default=None)
-    features_future = models.CharField(max_length=255, default=None)
-    usage_policy_has = models.BooleanField(default=False)
-    usage_policy_url = models.CharField(max_length=255, default=None)
-    user_documentation_has = models.BooleanField(default=False)
-    user_documentation_url = models.CharField(max_length=255, default=None)
-    operations_documentation_has = models.BooleanField(default=False)
-    operations_documentation_url = models.CharField(max_length=255, default=None)
-    monitoring_has = models.BooleanField(default=False)
-    monitoring_url = models.CharField(max_length=255, default=None)
-    accounting_has = models.BooleanField(default=False)
-    accounting_url = models.CharField(max_length=255, default=None)
-    business_continuity_plan_has = models.BooleanField(default=False)
-    business_continuity_plan_url = models.CharField(max_length=255, default=None)
-    disaster_recovery_plan_has = models.BooleanField(default=False)
-    disaster_recovery_plan_url = models.CharField(max_length=255, default=None)
-    decommissioning_procedure_has = models.BooleanField(default=False)
-    decommissioning_procedure_url = models.CharField(max_length=255, default=None)
-    cost_to_run = models.CharField(max_length=255, default=None)
-    cost_to_build = models.CharField(max_length=255, default=None)
+    version = models.CharField(max_length=255, default=None, blank=True)
+    status = models.CharField(max_length=255, default=None, blank=True)
+    features_current = models.CharField(max_length=255, default=None, blank=True)
+    features_future = models.CharField(max_length=255, default=None, blank=True)
+    usage_policy_has = models.BooleanField(default=False, blank=True)
+    usage_policy_url = models.CharField(max_length=255, default=None, blank=True)
+    user_documentation_has = models.BooleanField(default=False, blank=True)
+    user_documentation_url = models.CharField(max_length=255, default=None, blank=True)
+    operations_documentation_has = models.BooleanField(default=False, blank=True)
+    operations_documentation_url = models.CharField(max_length=255, default=None, blank=True)
+    monitoring_has = models.BooleanField(default=False, blank=True)
+    monitoring_url = models.CharField(max_length=255, default=None, blank=True)
+    accounting_has = models.BooleanField(default=False, blank=True)
+    accounting_url = models.CharField(max_length=255, default=None, blank=True)
+    business_continuity_plan_has = models.BooleanField(default=False, blank=True)
+    business_continuity_plan_url = models.CharField(max_length=255, default=None, blank=True)
+    disaster_recovery_plan_has = models.BooleanField(default=False, blank=True)
+    disaster_recovery_plan_url = models.CharField(max_length=255, default=None, blank=True)
+    decommissioning_procedure_has = models.BooleanField(default=False, blank=True)
+    decommissioning_procedure_url = models.CharField(max_length=255, default=None, blank=True)
+    cost_to_run = models.CharField(max_length=255, default=None, blank=True)
+    cost_to_build = models.CharField(max_length=255, default=None, blank=True)
 
     def __unicode__(self):
 
@@ -146,7 +156,7 @@ class ServiceDetails(models.Model):
     def as_short(self):
             return {
                 "uuid": self.id,
-                "url": "/catalogue/services/" + str(self.id_service.pk) + "/" + str(self.pk),
+                "url": "/catalogue/services/" + str(self.id_service.pk) + "/service_details/" + str(self.version),
                 "version": self.version,
                 "service_status": self.status,
                 "features_current": self.features_current,
@@ -156,7 +166,7 @@ class ServiceDetails(models.Model):
     def as_complete(self):
         return {
             "uuid": self.id,
-            "url": "/portfolio/services/" + str(self.id_service.pk) + "/" + str(self.pk),
+            "url": "/portfolio/services/" + str(self.id_service.pk) + "/service_details/" + str(self.version),
             "version": self.version,
             "service_status": self.status,
             "features_current": self.features_current,
@@ -191,13 +201,14 @@ class ServiceDetails(models.Model):
             "features_future": self.features_future
         }
 
+
 class ExternalService(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255, default=None)
-    description = models.TextField(default=None)
-    service = models.CharField(max_length=255, default=None)
-    details = models.CharField(max_length=255, default=None)
+    name = models.CharField(max_length=255, default=None, blank=True)
+    description = models.TextField(default=None, blank=True)
+    service = models.CharField(max_length=255, default=None, blank=True)
+    details = models.CharField(max_length=255, default=None, blank=True)
 
     def __unicode__(self):
         return str(self.name)
@@ -250,8 +261,8 @@ class UserCustomer(models.Model):
     )
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255, default=None, choices=USER_TYPES)
-    role = models.CharField(max_length=255, default=None)
+    name = models.CharField(max_length=255, default=None, choices=USER_TYPES, blank=True)
+    role = models.CharField(max_length=255, default=None, blank=True)
     service_id = models.ForeignKey(Service)
 
     def __unicode__(self):

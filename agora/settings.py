@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'secret-key'
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework_swagger',
+    'rest_framework',
     'component',
     'options',
     'owner',
@@ -121,36 +123,50 @@ USE_L10N = True
 
 USE_TZ = True
 
-
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
-
-
-#ADMIN_MEDIA_PREFIX = '/service/admin/'
-
-#STATIC_ROOT = os.path.join(BASE_DIR, 'service')
-
-
 
 STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, "static/")
 
 STATICFILES_DIRS = (
-   os.path.join(BASE_DIR, "static"),
    os.path.join(BASE_DIR, "static", "admin"),
+   os.path.join(BASE_DIR, "static", "rest_framework_swagger"),
 )
 
 TEMPLATE_DIRS = (
     os.path.join(BASE_DIR,  'templates'),
 )
 
-#STATICFILES_FINDERS = ( 
-#    'django.contrib.staticfiles.finders.FileSystemFinder',
-#    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-#   'django.contrib.staticfiles.finders.DefaultStorageFinder',
-#)
+SWAGGER_SETTINGS = {
+    'exclude_namespaces': [],
+    'api_version': '1.0',
+    'api_path': '',
+    'enabled_methods': [
+        'get',
+        'post',
+        'put',
+        'patch',
+        'delete'
+    ],
+     'info': {
+        'contact': 'admin@agora.com',
+        'description': 'This is a demonstration of the API documentation engine. '
+                       'The full Git repository is availible at <a href="https://code.vi-seem.eu/stdario/agora">'
+                       'Agora Git</a> where the current development version is availible in the DEV branch.'
+                       'The current stable version is availible at the MASTER branch.',
+        'license': 'Apache 2.0',
+        'licenseUrl': 'http://www.apache.org/licenses/LICENSE-2.0.html',
+        'termsOfServiceUrl': '/',
+        'title': 'Agora API v1.0',
+    },
+    'api_key': '',
+    'is_authenticated': False,
+    'is_superuser': False,
+    'permission_denied_handler': None,
+    'resource_access_handler': None,
+    'base_path':'localhost/docs',
+    'doc_expansion': 'full',
 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'service')
-
+}

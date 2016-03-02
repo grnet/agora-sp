@@ -7,9 +7,9 @@ from service.models import Service, ServiceDetails
 class ServiceOption(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255, default=None)
-    description = models.TextField(default=None)
-    pricing = models.CharField(max_length=255, default=None)
+    name = models.CharField(max_length=255, default=None, blank=True)
+    description = models.TextField(default=None, blank=True)
+    pricing = models.CharField(max_length=255, default=None, blank=True)
 
     def __unicode__(self):
         return str(self.name)
@@ -20,7 +20,7 @@ class SLA(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     service_option_id = models.ForeignKey(ServiceOption)
-    name = models.CharField(max_length=255, default=None)
+    name = models.CharField(max_length=255, default=None, blank=True)
 
     def __unicode__(self):
         return str(self.name)
@@ -30,9 +30,9 @@ class SLA(models.Model):
 class Parameter(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255, default=None)
-    type = models.CharField(max_length=255, default=None)
-    expression = models.CharField(max_length=255, default=None)
+    name = models.CharField(max_length=255, default=None, blank=True)
+    type = models.CharField(max_length=255, default=None, blank=True)
+    expression = models.CharField(max_length=255, default=None, blank=True)
 
     def __unicode__(self):
         return str(self.name)

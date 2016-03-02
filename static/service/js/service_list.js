@@ -32,7 +32,7 @@ serviceListApp.controller('ListController', function($scope, $http) {
 
     $scope.getServiceList = function() {
 
-        $http.get('/portfolio/services/').
+        $http.get('/portfolio/services/listing/').
         success(function (response, status, headers, config) {
             console.log(response);
 
@@ -72,18 +72,26 @@ serviceListApp.controller('DetailsController', function($scope, $http, $location
 
                 $scope.contact_info_link = $scope.current_service.id_contact_information;
 
-                $scope.service_details_link =  "<a href='/service_details/"+ $scope.current_service.service_details['uuid']+"?view=short' target='_blank' >"+ $scope.current_service.service_details['uuid']+"</a>";
+                $scope.service_details_link =  "<a href='/"+ $scope.current_service.service_details[0].url+"?view=short' target='_blank' >"+ $scope.current_service.service_details[0].url+"</a>"
 
-                debugger;
+
 
              if ($scope.detail_level == 'portfolio' && $scope.view_param=='complete')
                 {
+                    //
+                    //$scope.owner_link = "<a href='/owner/"+$scope.current_service.service_owner['uuid']+"' target='_blank' >"+$scope.current_service.service_owner['uuid']+"</a>";
+                    //
+                    //$scope.contact_info_link = "<a href='/contact_info/"+ $scope.current_service.contact_information['uuid']+"' target='_blank' >"+ $scope.current_service.contact_information['uuid']+"</a>";
+                    //
+                    //$scope.service_details_link =  "<a href='/service_details/"+ $scope.current_service.service_details['uuid']+"?view=complete' target='_blank' >"+ $scope.current_service.service_details['uuid']+"</a>";
 
                     $scope.owner_link = "<a href='/owner/"+$scope.current_service.service_owner['uuid']+"' target='_blank' >"+$scope.current_service.service_owner['uuid']+"</a>";
 
                     $scope.contact_info_link = "<a href='/contact_info/"+ $scope.current_service.contact_information['uuid']+"' target='_blank' >"+ $scope.current_service.contact_information['uuid']+"</a>";
 
-                    $scope.service_details_link =  "<a href='/service_details/"+ $scope.current_service.service_details['uuid']+"?view=complete' target='_blank' >"+ $scope.current_service.service_details['uuid']+"</a>";
+                    $scope.service_details_link =  "<a href='/"+ $scope.current_service.service_details[0].url+"?view=complete' target='_blank' >"+ $scope.current_service.service_details[0].url+"</a>"
+
+            debugger;
 
                 }
         }).

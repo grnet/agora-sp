@@ -7,8 +7,8 @@ from service.models import Service, ServiceDetails
 class ServiceComponent(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255, default=None)
-    description = models.TextField(default=None)
+    name = models.CharField(max_length=255, default=None, blank=True)
+    description = models.TextField(default=None, blank=True)
 
     def __unicode__(self):
          return str(self.name)
@@ -26,8 +26,8 @@ class ServiceComponentImplementation(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     component_id = models.ForeignKey(ServiceComponent)
-    name = models.CharField(max_length=255, default=None)
-    description = models.TextField(default=None)
+    name = models.CharField(max_length=255, default=None, blank=True)
+    description = models.TextField(default=None, blank=True)
 
     def __unicode__(self):
          return str(self.name)
@@ -45,8 +45,8 @@ class ServiceComponentImplementationDetail(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     component_id = models.ForeignKey(ServiceComponent)
     component_implementation_id = models.ForeignKey(ServiceComponentImplementation, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255, default=None)
-    description = models.TextField(default=None)
+    name = models.CharField(max_length=255, default=None, blank=True)
+    description = models.TextField(default=None, blank=True)
 
     def __unicode__(self):
          return str(self.name)
