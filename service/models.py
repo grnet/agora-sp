@@ -53,6 +53,7 @@ class Service(models.Model):
     def as_complete_portfolio(self):
         dependencies = Service_DependsOn_Service.objects.filter(id_service_one=self.pk)
         service_dependencies = []
+
         for d in dependencies:
             service_dependencies.append({
                 "uuid": Service.objects.get(pk=d.id_service_two.pk).id
