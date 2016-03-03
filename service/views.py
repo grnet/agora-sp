@@ -78,7 +78,7 @@ def list_service_objects(request):
 
 # Returns the required information about the service chosen by uuid
 def get_service(request, search_type):
-    type = request.get_full_path().split("/")[1]
+    type = request.get_full_path().split("/")[2]
     params = request.GET.copy()
     detail_level = params.get('view')
 
