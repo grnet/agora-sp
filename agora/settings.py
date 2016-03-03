@@ -166,7 +166,7 @@ SWAGGER_SETTINGS = {
     'is_superuser': False,
     'permission_denied_handler': None,
     'resource_access_handler': None,
-    'base_path':'localhost/docs',
+    'base_path':'agora-dev.vi-seem.eu/docs',
     'doc_expansion': 'full',
 
 }
