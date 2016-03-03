@@ -2,9 +2,6 @@ from __future__ import unicode_literals
 
 from django.db import models
 import uuid
-
-from samba.dcerpc.idmap import id_map
-
 from owner.models import ServiceOwner, ContactInformation, Institution
 
 
