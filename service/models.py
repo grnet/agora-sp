@@ -143,6 +143,7 @@ class ServiceDetails(models.Model):
     decommissioning_procedure_url = models.CharField(max_length=255, default=None, blank=True)
     cost_to_run = models.CharField(max_length=255, default=None, blank=True)
     cost_to_build = models.CharField(max_length=255, default=None, blank=True)
+    use_cases = models.CharField(max_length=255, default=None, blank=True)
 
     def __unicode__(self):
 
@@ -187,6 +188,7 @@ class ServiceDetails(models.Model):
             "decommissioning_procedure_url": self.decommissioning_procedure_url,
             "cost_to_run": self.cost_to_run,
             "cost_to_build": self.cost_to_build,
+            "use_cases": self.use_cases
         }
 
 

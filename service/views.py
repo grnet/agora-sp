@@ -149,7 +149,7 @@ def get_service(request, search_type):
 
     if service is not None:
         response["status"] = "200 OK"
-        response["data"] = service,
+        response["data"] = service
         response["info"] = "service information"
 
     return JsonResponse(response)
@@ -190,7 +190,7 @@ def get_service_details(request, search_type, version):
 
     if detail is not None:
         response["status"] = "200 OK"
-        response["data"] = detail,
+        response["data"] = detail
         response["info"] = "service detail information"
 
         if detail_level == 'short':
@@ -262,7 +262,7 @@ def get_service_owners(request, search_type):
 
     if serv is not None:
             response["status"] = "200 OK"
-            response["data"] = serv.get_service_owners(),
+            response["data"] = serv.get_service_owners()
             response["info"] = "service owner information"
 
     return JsonResponse(response)
@@ -322,7 +322,7 @@ def get_all_service_details(request, search_type):
         return JsonResponse(response)
 
     response["status"] = "200 OK"
-    response["data"] = detail,
+    response["data"] = detail
     response["info"] = "service detail information"
     return JsonResponse(response)
 
@@ -368,7 +368,7 @@ def get_service_institution(request, search_type):
 
     if serv is not None:
             response["status"] = "200 OK"
-            response["data"] = serv.get_service_institution(),
+            response["data"] = serv.get_service_institution()
             response["info"] = "service institution information"
 
     return JsonResponse(response)
