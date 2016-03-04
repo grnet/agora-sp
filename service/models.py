@@ -111,7 +111,6 @@ class Service(models.Model):
             "url": "/catalogue/services/" + str(self.pk),
             "name": self.name,
             "description_external": self.description_external,
-            "description_internal": self.description_internal,
             "service_area": self.service_area,
             "value_to_customer": self.value_to_customer,
         }
