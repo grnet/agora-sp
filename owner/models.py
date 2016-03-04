@@ -35,6 +35,9 @@ class ServiceOwner(models.Model):
     def __unicode__(self):
         return str(self.first_name) + " " + str(self.last_name)
 
+    def get_institution(self):
+        return Institution.objects.get(id=self.id_service_owner.pk).as_json()
+
 
     def as_json(self):
         return {
