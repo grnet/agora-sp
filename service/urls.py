@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'(?P<search_type>[0-9a-zA-Z\-\_]+)/service_owner/(?P<service_owner>[0-9a-zA-Z\-\_]+)/institution/?$', views.get_service_owner_institution),
     url(r'(?P<search_type>[0-9a-zA-Z\-\_]+)/service_owner', views.get_service_owners),
     url(r'(?P<search_type>[0-9a-zA-Z\-\_]+)/institution', views.get_service_institution),
+    url(r'(?P<search_type>[0-9a-zA-Z\-\_]+)/service_dependencies/?$', views.get_service_dependencies),
     url(r'(?P<search_type>[0-9a-zA-Z\-\_]+)/?$', views.get_service),
     url(r'^$', views.list_services),
 

@@ -50,6 +50,13 @@ class Service(models.Model):
         return Institution.objects.get(pk=ServiceOwner.objects.get(id=self.id_service_owner.pk).id_service_owner.pk).as_json()
 
 
+    def get_service_dependencies(self):
+
+        dependencies = [dependency.id_service_two_id for dependency in Service_DependsOn_Service.objects.filter(id_service_one=self.id)]
+
+        return dependencies
+
+
     def as_complete_portfolio(self):
         dependencies = Service_DependsOn_Service.objects.filter(id_service_one=self.pk)
         service_dependencies = []
@@ -115,7 +122,7 @@ class Service(models.Model):
             "service_area": self.service_area,
             "value_to_customer": self.value_to_customer,
         }
-1
+
 
 class ServiceDetails(models.Model):
 

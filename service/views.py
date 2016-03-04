@@ -158,6 +158,7 @@ def get_service(request, search_type):
 def get_service_details(request, search_type, version):
 
     params = request.GET.copy()
+
     detail_level = params.get('view')
 
     response = {}
@@ -451,6 +452,59 @@ def get_service_owner_institution(request, search_type, service_owner):
 
     return JsonResponse({ "Pero": "Vlado"})
 
+
+def get_service_dependencies(request, search_type):
+
+    type = request.get_full_path().split("/")[1]
+    params = request.GET.copy()
+    detail_level = params.get('view')
+
+    response = {}
+    service = None
+
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+
+    result = prog.match(search_type)
+
+    if result is None:
+        parsed_name = search_type.replace("_", " ")
+        parsed_name.strip()
+    else:
+        uuid = search_type
+
+    try:
+        if result is None:
+            serv = models.Service.objects.get(name=parsed_name)
+        else:
+            serv = models.Service.objects.get(id=uuid)
+
+    except models.Service.DoesNotExist:
+        serv = None
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The requested service was not found"
+        }
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response["status"] = "404 Not Found"
+            response["errors"] = {
+                "detail": "An invalid UUID was supplied"
+            }
+        return JsonResponse(response)
+
+    if serv is not None:
+
+            dependencies = serv.get_service_dependencies()
+
+            response["status"] = "200 OK"
+            response["data"] ={
+                "count": len(dependencies),
+                "dependencies": dependencies
+            }
+
+            response["info"] = "service dependencies information"
+
+    return JsonResponse(response)
 
 # Generates swagger docs
 def generate_swagger_code(request):
