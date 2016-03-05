@@ -20,8 +20,6 @@ from service import views as service_views
 urlpatterns = [
     url(r'^admin/?', admin.site.urls),
     url(r'^docs/?', include('rest_framework_swagger.urls')),
-    url(r'^api-docs/?', include('rest_framework_swagger.urls')),
-    #url(r'^services/$', service_views.show_service_list_view),
     url(r'^v[0-9]+/(portfolio|catalogue)/services/', include('service.urls')),
 ]
 
