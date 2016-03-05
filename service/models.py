@@ -3,7 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 import uuid
 from owner.models import ServiceOwner, ContactInformation, Institution
-
+#from options.models import *
 
 class Service(models.Model):
 
@@ -27,6 +27,7 @@ class Service(models.Model):
 
 
     def get_service_details(self, complete=False):
+
         services = []
         servs = ServiceDetails.objects.filter(id_service =self.pk)
         for s in servs:
@@ -36,6 +37,11 @@ class Service(models.Model):
                 services.append(s.as_short())
 
         return services
+
+
+    def get_service_details_by_version(self, version):
+
+        return ServiceDetails.objects.get(id_service =self.pk, version=version)
 
 
     def get_user_customers(self):
@@ -52,9 +58,20 @@ class Service(models.Model):
 
     def get_service_dependencies(self):
 
-        dependencies = [dependency.id_service_two_id for dependency in Service_DependsOn_Service.objects.filter(id_service_one=self.id)]
+        dependencies = [Service.objects.get(id=dependency.id_service_two_id).as_catalogue() for dependency in Service_DependsOn_Service.objects.filter(id_service_one=self.id)]
 
         return dependencies
+
+
+    def get_service_external_dependencies(self):
+
+        ext_dependencies = [dependency.id_service_two_id for dependency in Service_ExternalService.objects.filter(id_service=self.id)]
+
+        return ext_dependencies
+
+
+    def get_service_contact_information(self):
+        return ContactInformation.objects.get(id=self.id_contact_information.pk).as_json()
 
 
     def as_complete_portfolio(self):
@@ -156,7 +173,6 @@ class ServiceDetails(models.Model):
 
         primary_key = self.id_service.pk
         srv = Service.objects.get(pk=primary_key)
-
         return str(srv.name)+" "+str(self.version)
 
     def as_short(self):
@@ -168,6 +184,7 @@ class ServiceDetails(models.Model):
                 "features_current": self.features_current,
                 "features_future": self.features_future
             }
+
 
     def as_complete(self):
         return {
@@ -220,6 +237,7 @@ class ExternalService(models.Model):
     def __unicode__(self):
         return str(self.name)
 
+
 class Service_DependsOn_Service(models.Model):
 
     class Meta:
@@ -238,6 +256,7 @@ class Service_DependsOn_Service(models.Model):
         srv2 = Service.objects.get(pk=primary_key_two)
 
         return str(srv1.name) + " " +str(srv2.name)
+
 
 class Service_ExternalService(models.Model):
 

@@ -2,7 +2,7 @@ from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, get_object_or_404
 from service import models
 from component.models import ServiceComponent, ServiceDetailsComponent
-
+from options.models import ServiceDetailsOption
 import re
 
 # Returns JSON response containing all services
@@ -452,8 +452,53 @@ def get_service_owner_institution(request, search_type, service_owner):
 
     return JsonResponse({ "Pero": "Vlado"})
 
-
+# Returns the selected services dependencies
 def get_service_dependencies(request, search_type):
+
+    response = {}
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    result = prog.match(search_type)
+
+    if result is None:
+        parsed_name = search_type.replace("_", " ")
+        parsed_name.strip()
+    else:
+        uuid = search_type
+
+    try:
+        if result is None:
+            serv = models.Service.objects.get(name=parsed_name)
+        else:
+            serv = models.Service.objects.get(id=uuid)
+
+    except models.Service.DoesNotExist:
+        serv = None
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The requested service was not found"
+        }
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response["status"] = "404 Not Found"
+            response["errors"] = {
+                "detail": "An invalid UUID was supplied"
+            }
+        return JsonResponse(response)
+
+    if serv is not None:
+
+            dependencies = serv.get_service_dependencies()
+            response["status"] = "200 OK"
+            response["data"] ={
+                "count": len(dependencies),
+                "dependencies": dependencies
+            }
+            response["info"] = "service dependencies information"
+
+    return JsonResponse(response)
+
+# Returns the selected services external dependencies
+def get_service_external_dependencies(request, search_type):
 
     type = request.get_full_path().split("/")[1]
     params = request.GET.copy()
@@ -494,7 +539,7 @@ def get_service_dependencies(request, search_type):
 
     if serv is not None:
 
-            dependencies = serv.get_service_dependencies()
+            dependencies = serv.get_service_external_dependencies()
 
             response["status"] = "200 OK"
             response["data"] ={
@@ -502,8 +547,115 @@ def get_service_dependencies(request, search_type):
                 "dependencies": dependencies
             }
 
-            response["info"] = "service dependencies information"
+            response["info"] = "service external dependencies information"
 
+    return JsonResponse(response)
+
+# Return the selected service contact information
+def get_service_contact_information(request, search_type):
+
+    params = request.GET.copy()
+
+    response = {}
+
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+
+    result = prog.match(search_type)
+
+    if result is None:
+        parsed_name = search_type.replace("_", " ")
+        parsed_name.strip()
+    else:
+        uuid = search_type
+
+    try:
+        if result is None:
+            serv = models.Service.objects.get(name=parsed_name)
+        else:
+            serv = models.Service.objects.get(id=uuid)
+
+    except models.Service.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The requested service was not found"
+        }
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response["status"] = "404 Not Found"
+            response["errors"] = {
+                "detail": "An invalid UUID was supplied"
+            }
+        return JsonResponse(response)
+
+
+    response["status"] = "200 OK"
+    response["data"] = serv.get_service_contact_information()
+    response["info"] = "service contact information"
+
+    return JsonResponse(response)
+
+# Returns the selected service details options information
+def get_service_options(request, search_type, version):
+
+    params = request.GET.copy()
+
+    response = {}
+
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+
+    result = prog.match(search_type)
+
+    if result is None:
+        parsed_name = search_type.replace("_", " ")
+        parsed_name.strip()
+    else:
+        uuid = search_type
+
+    try:
+        if result is None:
+            service = models.Service.objects.get(name=parsed_name)
+        else:
+            service = models.Service.objects.get(id=uuid)
+
+        detail = service.get_service_details_by_version(version=version)
+        options = ServiceDetailsOption.objects.get(service_details_id=detail.id, service_id=detail.id_service.pk).as_json()
+
+    except models.ServiceDetails.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+                "detail": "Service details with that version not found"
+            }
+
+        return JsonResponse(response)
+
+    except ServiceDetailsOption.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+                "detail": "This service has no service options for the current version"
+            }
+
+        return JsonResponse(response)
+
+    except models.Service.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+                "detail": "Service does not exist"
+            }
+        return JsonResponse(response)
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response["status"] = "404 Not Found"
+            response["errors"] = {
+                "detail": "An invalid UUID was supplied"
+            }
+        return JsonResponse(response)
+
+
+    response["status"] = "200 OK"
+    response["data"] = options
+    response["info"] = "options for service detail information"
     return JsonResponse(response)
 
 # Generates swagger docs
