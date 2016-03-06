@@ -18,7 +18,6 @@ def list_services(request, type):
 
     response = {}
     services = []
-
     if type == "portfolio":
         if detail_level is None or detail_level == "short":
             services = [s.as_portfolio() for s in serv_models]

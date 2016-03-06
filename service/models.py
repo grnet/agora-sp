@@ -113,6 +113,7 @@ class Service(models.Model):
             "description_external": self.description_external,
             "service_area": self.service_area,
             "value_to_customer": self.value_to_customer,
+            "service_details": self.get_service_details()
         }
 1
 
