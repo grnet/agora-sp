@@ -168,6 +168,6 @@ SWAGGER_SETTINGS = {
     'permission_denied_handler': None,
     'resource_access_handler': None,
     'base_path':'localhost/docs',
-    'doc_expansion': 'full',
+    'doc_expansion': 'list',
 
 }

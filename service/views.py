@@ -8,6 +8,10 @@ import re
 
 @api_view(['GET'])
 def list_services(request,  type):
+    """
+    Retrieves a JSON list of all services in the system
+
+    """
     serv_models = models.Service.objects.all()
     params = request.GET.copy()
     detail_level = params.get('view')
@@ -53,15 +57,10 @@ def show_service_details(request, uuid):
 # Returns all service object
 @api_view(['GET'])
 def list_service_objects(request, api_version):
-    '''
-    Lorem ipsum `dolor` sit amet, consectetur adipiscing elit. Etiam sodales lacus at _nulla_ fringilla fringilla.
+    """
+    Retrieves a list of objects of all services in the system
 
-    ### Consectetur adipiscing:
-
-       * __dummy_var__: Nunc ut erat justo. Duis turpis augue, posuere a ornare sed,
-       * another: Vestibulum suscipit congue neque sed faucibus.
-       * `code`: Cras sit amet ullamcorper ipsum.
-    '''
+    """
 
     serv_models =  models.Service.objects.all()
     services = [s.as_portfolio() for s in serv_models]
@@ -87,6 +86,10 @@ def list_service_objects(request, api_version):
 # Returns the required information about the service chosen by uuid
 @api_view(['GET'])
 def get_service(request,  service_name_or_uuid):
+    """
+    Retrieves a specific service by name or uuid
+
+    """
     type = request.get_full_path().split("/")[2]
     params = request.GET.copy()
     detail_level = params.get('view')
@@ -236,23 +239,13 @@ def get_service_details(request, service_name_or_uuid, version):
 
     return JsonResponse(response)
 
-# Creates a list of all service components belonging to a service
-def merge_service_components(response):
-
-        serv_components = ServiceDetailsComponent.objects.filter(service_id=response['uuid'])
-
-        components = []
-
-        for s in serv_components:
-            components.append(ServiceComponent.objects.get(id=s.service_component_id.pk).as_json())
-
-        response["components"] = components
-
-        return response
-
 # Returns a list of the service owners
 @api_view(['GET'])
-def get_service_owners(request, service_name_or_uuid):
+def get_service_owner(request, service_name_or_uuid):
+    """
+    Retrieves a the service owner
+
+    """
 
     type = request.get_full_path().split("/")[1]
     params = request.GET.copy()
@@ -302,7 +295,10 @@ def get_service_owners(request, service_name_or_uuid):
 # Returns the list of service details for the selected service
 @api_view(['GET'])
 def get_all_service_details(request, service_name_or_uuid):
+    """
+    Retrieves the service details of a service
 
+    """
     params = request.GET.copy()
     detail_level = params.get('view')
 
@@ -362,7 +358,10 @@ def get_all_service_details(request, service_name_or_uuid):
 # Returns the service institution
 @api_view(['GET'])
 def get_service_institution(request, service_name_or_uuid):
+    """
+    Retrieves a the service institution
 
+    """
     type = request.get_full_path().split("/")[1]
     params = request.GET.copy()
     detail_level = params.get('view')
@@ -410,7 +409,10 @@ def get_service_institution(request, service_name_or_uuid):
 # Returns the institution of the service owner by both name and uuid
 @api_view(['GET'])
 def get_service_owner_institution(request, service_name_or_uuid, service_owner):
+    """
+    Retrieves the institution of the owner
 
+    """
 
     type = request.get_full_path().split("/")[1]
     params = request.GET.copy()
@@ -481,7 +483,10 @@ def get_service_owner_institution(request, service_name_or_uuid, service_owner):
 # Returns the selected services dependencies
 @api_view(['GET'])
 def get_service_dependencies(request,  service_name_or_uuid):
+    """
+    Retrieves the service dependencies
 
+    """
     response = {}
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     result = prog.match(service_name_or_uuid)
@@ -527,7 +532,10 @@ def get_service_dependencies(request,  service_name_or_uuid):
 # Returns the selected services external dependencies
 @api_view(['GET'])
 def get_service_external_dependencies(request,  service_name_or_uuid):
+    """
+    Retrieves the external service dependencies
 
+    """
     type = request.get_full_path().split("/")[1]
     params = request.GET.copy()
     detail_level = params.get('view')
@@ -582,7 +590,10 @@ def get_service_external_dependencies(request,  service_name_or_uuid):
 # Return the selected service contact information
 @api_view(['GET'])
 def get_service_contact_information(request, service_name_or_uuid):
+    """
+    Retrieves the contact information for a specific service
 
+    """
     params = request.GET.copy()
 
     response = {}
@@ -627,7 +638,10 @@ def get_service_contact_information(request, service_name_or_uuid):
 # Returns the selected service details options information
 @api_view(['GET'])
 def get_service_options(request, service_name_or_uuid, version):
+    """
+    Retrieves the service options
 
+    """
     params = request.GET.copy()
 
     response = {}
@@ -688,3 +702,20 @@ def get_service_options(request, service_name_or_uuid, version):
     response["info"] = "options for service detail information"
     return JsonResponse(response)
 
+# Retrieve a service object by UUID or Name
+def get_service_object():
+    pass
+
+# Creates a list of all service components belonging to a service
+def merge_service_components(response):
+
+        serv_components = ServiceDetailsComponent.objects.filter(service_id=response['uuid'])
+
+        components = []
+
+        for s in serv_components:
+            components.append(ServiceComponent.objects.get(id=s.service_component_id.pk).as_json())
+
+        response["components"] = components
+
+        return response
