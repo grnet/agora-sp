@@ -166,7 +166,27 @@ def get_service(request,  service_name_or_uuid):
 # Returns the service details about the service chosen by uuid
 @api_view(['GET'])
 def get_service_details(request, service_name_or_uuid, version):
+    """
+    Retrieves the service details of a specific service version
 
+    ---
+
+    type:
+        service_name_or_uuid:
+            required: true
+            type: string
+        version:
+            required: true
+            type: string
+
+    responseMessages:
+    - code: 404
+    message: An invalid UUID was supplied
+    consumes:
+    - application/json
+    produces:
+    - application/json
+    """
     params = request.GET.copy()
 
     detail_level = params.get('view')
