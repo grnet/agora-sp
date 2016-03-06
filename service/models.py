@@ -178,7 +178,7 @@ class ServiceDetails(models.Model):
     def as_short(self):
             return {
                 "uuid": self.id,
-                "url": "/catalogue/services/" + str(self.id_service.pk) + "/service_details/" + str(self.version),
+                "url": "/portfolio/services/" + str(self.id_service.pk) + "/service_details/" + str(self.version),
                 "version": self.version,
                 "service_status": self.status,
                 "features_current": self.features_current,
