@@ -26,6 +26,13 @@ class SLA(models.Model):
         return str(self.name)
 
 
+    def as_json(self):
+        return {
+            "id": self.id,
+            "name": self.name
+        }
+
+
 
 class Parameter(models.Model):
 
@@ -36,6 +43,15 @@ class Parameter(models.Model):
 
     def __unicode__(self):
         return str(self.name)
+
+
+    def as_json(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "type": self.type,
+            "expression": self.expression
+        }
 
 
 

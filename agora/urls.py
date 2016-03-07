@@ -23,7 +23,7 @@ urlpatterns = [
     #url(r'^services/$', service_views.show_service_list_view),
 
     url(r'^v[0-9]+/(portfolio|catalogue)/services/(?P<search_type>[0-9a-zA-Z\-\_]+)/service_details/(?P<version>[0-9a-zA-Z\.]+)/service_components/?', include('component.urls')),
-    url(r'^v[0-9]+/(portfolio|catalogue)/services/(?P<search_type>[0-9a-zA-Z\-\_]+)/service_details/(?P<version>[0-9.]+)/service_options/sla/(?P<sla_search_type>[0-9a-fA-F\-]+)/?$', include('component.urls')),
+    url(r'^v[0-9]+/(portfolio|catalogue)/services/(?P<search_type>[0-9a-zA-Z\-\_]+)/service_details/(?P<version>[0-9a-zA-Z\.]+)/service_options/?', include('options.urls')),
     url(r'^v[0-9]+/(portfolio|catalogue)/services/', include('service.urls')),
 ]
 
