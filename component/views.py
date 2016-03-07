@@ -1,3 +1,336 @@
-from django.shortcuts import render
-
+from django.http import JsonResponse
+import re
+from service import models as service_models
+from component import models as component_models
 # Create your views here.
+
+
+def get_service_components(request, search_type, version):
+
+
+    # type = request.get_full_path().split("/")[2]
+    # params = request.GET.copy()
+    # detail_level = params.get('view')
+    response = {}
+
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+
+    result = prog.match(search_type)
+
+    if result is None:
+        parsed_name = search_type.replace("_", " ")
+        parsed_name.strip()
+    else:
+        uuid = search_type
+
+    try:
+        if result is None:
+            serv = service_models.Service.objects.get(name=parsed_name)
+        else:
+            serv = service_models.Service.objects.get(id=uuid)
+
+        serv_details = service_models.ServiceDetails.objects.get(id_service=serv.pk, version=version)
+        serv_det_comp = component_models.ServiceDetailsComponent.objects.filter(service_id=serv.pk, service_details_id=serv_details.pk)
+        service_components = []
+        for sdc in serv_det_comp:
+            service_components.extend(component_models.ServiceComponent.objects.filter(id=sdc.service_component_id.pk))
+
+        response["status"] = "200 OK"
+        response["data"] = [sc.as_json() for sc in service_components]
+        response["info"] = "service components information"
+
+    except service_models.Service.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The requested service was not found"
+        }
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response["status"] = "404 Not Found"
+            response["errors"] = {
+                "detail": "An invalid UUID was supplied"
+            }
+        return JsonResponse(response)
+
+    except:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The requested service was not found"
+        }
+
+
+    return JsonResponse(response)
+
+
+def get_service_component(request, search_type, version, comp_uuid):
+    response = {}
+
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+
+    result = prog.match(search_type)
+    result_comp = prog.match(comp_uuid)
+
+    if result_comp is None:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "An invalid service component UUID was supplied"
+        }
+        return JsonResponse(response)
+
+    if result is None:
+        parsed_name = search_type.replace("_", " ")
+        parsed_name.strip()
+    else:
+        uuid = search_type
+
+
+    try:
+        if result is None:
+            serv = service_models.Service.objects.get(name=parsed_name)
+        else:
+            serv = service_models.Service.objects.get(id=uuid)
+
+        serv_details = service_models.ServiceDetails.objects.get(id_service=serv.pk, version=version)
+        serv_det_comp = component_models.ServiceDetailsComponent.objects.get(service_id=serv.pk,
+                                                                             service_details_id=serv_details.pk,
+                                                                             service_component_id=comp_uuid)
+
+        service_component = component_models.ServiceComponent.objects.get(id=comp_uuid)
+
+        response["status"] = "200 OK"
+        response["data"] = service_component.as_json()
+        response["info"] = "service component information"
+
+    except service_models.Service.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The requested service was not found"
+        }
+
+    except service_models.ServiceDetails.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The specified service details do not exist"
+        }
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response["status"] = "404 Not Found"
+            response["errors"] = {
+                "detail": "An invalid UUID was supplied"
+            }
+
+    except component_models.ServiceComponent.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The requested service component was not found"
+        }
+
+    except component_models.ServiceDetailsComponent.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "A service component matching the specified service version does not exists"
+        }
+
+    # except:
+    #     response["status"] = "404 Not Found"
+    #     response["errors"] = {
+    #         "detail": "The requested service was not found"
+    #     }
+
+
+    return JsonResponse(response)
+
+
+def get_service_component_implementations(request, search_type, version, comp_uuid):
+    response = {}
+
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+
+    result = prog.match(search_type)
+    result_comp = prog.match(comp_uuid)
+
+    if result_comp is None:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "An invalid service component UUID was supplied"
+        }
+        return JsonResponse(response)
+
+    if result is None:
+        parsed_name = search_type.replace("_", " ")
+        parsed_name.strip()
+    else:
+        uuid = search_type
+
+
+    try:
+        if result is None:
+            serv = service_models.Service.objects.get(name=parsed_name)
+        else:
+            serv = service_models.Service.objects.get(id=uuid)
+
+        serv_details = service_models.ServiceDetails.objects.get(id_service=serv.pk, version=version)
+        serv_det_comp = component_models.ServiceDetailsComponent.objects.get(service_id=serv.pk,
+                                                                             service_details_id=serv_details.pk,
+                                                                             service_component_id=comp_uuid)
+
+        service_component = component_models.ServiceComponent.objects.get(id=comp_uuid)
+        service_component_impl = component_models.ServiceComponentImplementation.objects.filter(component_id=comp_uuid)
+
+        response["status"] = "200 OK"
+        response["data"] = [sci.as_json() for sci in service_component_impl]
+        response["info"] = "service component implementation information"
+
+    except service_models.Service.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The requested service was not found"
+        }
+
+    except service_models.ServiceDetails.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The specified service details do not exist"
+        }
+
+    except component_models.ServiceComponentImplementation.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "There are no implementations of the specified service component"
+        }
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response["status"] = "404 Not Found"
+            response["errors"] = {
+                "detail": "An invalid UUID was supplied"
+            }
+
+    except component_models.ServiceComponent.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The requested service component was not found"
+        }
+
+    except component_models.ServiceDetailsComponent.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "A service component matching the specified service version does not exists"
+        }
+
+    # except:
+    #     response["status"] = "404 Not Found"
+    #     response["errors"] = {
+    #         "detail": "The requested service was not found"
+    #     }
+
+
+    return JsonResponse(response)
+
+
+def get_service_component_implementation_detail(request, search_type, version, comp_uuid, imp_uuid):
+    response = {}
+
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+
+    result = prog.match(search_type)
+    result_comp = prog.match(comp_uuid)
+
+    if result_comp is None:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "An invalid service component UUID was supplied"
+        }
+        return JsonResponse(response)
+
+    result_comp = prog.match(imp_uuid)
+    if result_comp is None:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "An invalid service component implementation UUID was supplied"
+        }
+        return JsonResponse(response)
+
+
+    if result is None:
+        parsed_name = search_type.replace("_", " ")
+        parsed_name.strip()
+    else:
+        uuid = search_type
+
+
+    try:
+        if result is None:
+            serv = service_models.Service.objects.get(name=parsed_name)
+        else:
+            serv = service_models.Service.objects.get(id=uuid)
+
+        serv_details = service_models.ServiceDetails.objects.get(id_service=serv.pk, version=version)
+        serv_det_comp = component_models.ServiceDetailsComponent.objects.get(service_id=serv.pk,
+                                                                             service_details_id=serv_details.pk,
+                                                                             service_component_id=comp_uuid)
+
+        service_component = component_models.ServiceComponent.objects.get(id=comp_uuid)
+
+
+        # service_component_impl = component_models.ServiceComponentImplementation.objects.filter(component_id=comp_uuid)
+        service_component_impl_detail = component_models.ServiceComponentImplementationDetail\
+            .objects.filter(component_id=comp_uuid, component_implementation_id=imp_uuid)
+
+        response["status"] = "200 OK"
+        response["data"] = [scid.as_json() for scid in service_component_impl_detail]
+        response["info"] = "service component implementation detail"
+
+    except service_models.Service.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The requested service was not found"
+        }
+
+    except service_models.ServiceDetails.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The specified service details do not exist"
+        }
+
+    except component_models.ServiceComponentImplementation.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "There are no implementations of the specified service component"
+        }
+
+    except component_models.ServiceComponentImplementationDetail:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The requested service component implementation details do not exist"
+        }
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response["status"] = "404 Not Found"
+            response["errors"] = {
+                "detail": "An invalid UUID was supplied"
+            }
+
+    except component_models.ServiceComponent.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The requested service component was not found"
+        }
+
+    except component_models.ServiceDetailsComponent.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "A service component matching the specified service version does not exists"
+        }
+
+    # except:
+    #     response["status"] = "404 Not Found"
+    #     response["errors"] = {
+    #         "detail": "The requested service was not found"
+    #     }
+
+
+    return JsonResponse(response)
