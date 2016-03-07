@@ -2,4 +2,3 @@
 *.pyc
 agora/*.pyc
 */migrations/*
-test.json
