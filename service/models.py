@@ -65,7 +65,7 @@ class Service(models.Model):
 
     def get_service_external_dependencies(self):
 
-        ext_dependencies = [dependency.id_service_two_id for dependency in Service_ExternalService.objects.filter(id_service=self.id)]
+        ext_dependencies = [ExternalService.objects.get(id=dependency.id_external_service.pk).as_json() for dependency in Service_ExternalService.objects.filter(id_service=self.id)]
 
         return ext_dependencies
 
@@ -237,6 +237,15 @@ class ExternalService(models.Model):
     def __unicode__(self):
         return str(self.name)
 
+
+    def as_json(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "description": self.description,
+            "service": self.service,
+            "details": self.details
+        }
 
 class Service_DependsOn_Service(models.Model):
 
