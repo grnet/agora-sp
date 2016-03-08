@@ -1,8 +1,6 @@
 from django.test import TestCase, Client
 from django.test.client import RequestFactory
-from models import *
-from views import *
-from django.core.urlresolvers import reverse
+
 import json
 
 # Create your tests here.
