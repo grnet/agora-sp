@@ -2,16 +2,16 @@ from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, get_object_or_404
 from service import models
 from component.models import ServiceComponent, ServiceDetailsComponent
-
+from options.models import ServiceDetailsOption
+from rest_framework.decorators import *
 import re
 
-# Returns JSON response containing all services
-def list_services(request, type):
+@api_view(['GET'])
+def list_services(request,  type):
     """
-    This text is the description for this API
-        mykey -- My Key parameter
-    """
+    Retrieves a JSON list of all services in the system
 
+    """
     serv_models = models.Service.objects.all()
     params = request.GET.copy()
     detail_level = params.get('view')
@@ -44,15 +44,22 @@ def list_services(request, type):
     return JsonResponse(response)
 
 # Renders the list service view
+@api_view(['GET'])
 def show_service_list_view(request):
     return render(request, 'service/service_list.html')
 
 # Renders the details view for the selected service
+@api_view(['GET'])
 def show_service_details(request, uuid):
     return render(request, 'service/service_portfolio_view.html', { "uuid": uuid })
 
-# Returns all service objects
-def list_service_objects(request):
+# Returns all service object
+@api_view(['GET'])
+def list_service_objects(request, api_version):
+    """
+    Retrieves a list of objects of all services in the system
+
+    """
 
     serv_models =  models.Service.objects.all()
     services = [s.as_portfolio() for s in serv_models]
@@ -76,7 +83,12 @@ def list_service_objects(request):
     return JsonResponse(response)
 
 # Returns the required information about the service chosen by uuid
-def get_service(request, search_type):
+@api_view(['GET'])
+def get_service(request,  service_name_or_uuid):
+    """
+    Retrieves a specific service by name or uuid
+
+    """
     type = request.get_full_path().split("/")[2]
     params = request.GET.copy()
     detail_level = params.get('view')
@@ -87,13 +99,13 @@ def get_service(request, search_type):
 
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
-    result = prog.match(search_type)
+    result = prog.match(service_name_or_uuid)
 
     if result is None:
-        parsed_name = search_type.replace("_", " ")
+        parsed_name = service_name_or_uuid.replace("_", " ")
         parsed_name.strip()
     else:
-        uuid = search_type
+        uuid = service_name_or_uuid
 
     try:
         if result is None:
@@ -154,22 +166,44 @@ def get_service(request, search_type):
     return JsonResponse(response)
 
 # Returns the service details about the service chosen by uuid
-def get_service_details(request, search_type, version):
+@api_view(['GET'])
+def get_service_details(request, service_name_or_uuid, version):
+    """
+    Retrieves the service details of a specific service version
 
+    ---
+
+    type:
+        service_name_or_uuid:
+            required: true
+            type: string
+        version:
+            required: true
+            type: string
+
+    responseMessages:
+    - code: 404
+    message: An invalid UUID was supplied
+    consumes:
+    - application/json
+    produces:
+    - application/json
+    """
     params = request.GET.copy()
+
     detail_level = params.get('view')
 
     response = {}
 
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
-    result = prog.match(search_type)
+    result = prog.match(service_name_or_uuid)
 
     if result is None:
-        parsed_name = search_type.replace("_", " ")
+        parsed_name = service_name_or_uuid.replace("_", " ")
         parsed_name.strip()
     else:
-        uuid = search_type
+        uuid = service_name_or_uuid
 
     try:
         if result is None:
@@ -204,22 +238,13 @@ def get_service_details(request, search_type, version):
 
     return JsonResponse(response)
 
-# Creates a list of all service components belonging to a service
-def merge_service_components(response):
-
-        serv_components = ServiceDetailsComponent.objects.filter(service_id=response['uuid'])
-
-        components = []
-
-        for s in serv_components:
-            components.append(ServiceComponent.objects.get(id=s.service_component_id.pk).as_json())
-
-        response["components"] = components
-
-        return response
-
 # Returns a list of the service owners
-def get_service_owners(request, search_type):
+@api_view(['GET'])
+def get_service_owner(request, service_name_or_uuid):
+    """
+    Retrieves a the service owner
+
+    """
 
     type = request.get_full_path().split("/")[1]
     params = request.GET.copy()
@@ -230,13 +255,13 @@ def get_service_owners(request, search_type):
 
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
-    result = prog.match(search_type)
+    result = prog.match(service_name_or_uuid)
 
     if result is None:
-        parsed_name = search_type.replace("_", " ")
+        parsed_name = service_name_or_uuid.replace("_", " ")
         parsed_name.strip()
     else:
-        uuid = search_type
+        uuid = service_name_or_uuid
 
     try:
         if result is None:
@@ -267,8 +292,12 @@ def get_service_owners(request, search_type):
     return JsonResponse(response)
 
 # Returns the list of service details for the selected service
-def get_all_service_details(request, search_type):
+@api_view(['GET'])
+def get_all_service_details(request, service_name_or_uuid):
+    """
+    Retrieves the service details of a service
 
+    """
     params = request.GET.copy()
     detail_level = params.get('view')
 
@@ -281,13 +310,13 @@ def get_all_service_details(request, search_type):
 
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
-    result = prog.match(search_type)
+    result = prog.match(service_name_or_uuid)
 
     if result is None:
-        parsed_name = search_type.replace("_", " ")
+        parsed_name = service_name_or_uuid.replace("_", " ")
         parsed_name.strip()
     else:
-        uuid = search_type
+        uuid = service_name_or_uuid
 
     try:
         if result is None:
@@ -326,8 +355,12 @@ def get_all_service_details(request, search_type):
     return JsonResponse(response)
 
 # Returns the service institution
-def get_service_institution(request, search_type):
+@api_view(['GET'])
+def get_service_institution(request, service_name_or_uuid):
+    """
+    Retrieves a the service institution
 
+    """
     type = request.get_full_path().split("/")[1]
     params = request.GET.copy()
     detail_level = params.get('view')
@@ -337,13 +370,13 @@ def get_service_institution(request, search_type):
 
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
-    result = prog.match(search_type)
+    result = prog.match(service_name_or_uuid)
 
     if result is None:
-        parsed_name = search_type.replace("_", " ")
+        parsed_name = service_name_or_uuid.replace("_", " ")
         parsed_name.strip()
     else:
-        uuid = search_type
+        uuid = service_name_or_uuid
 
     try:
         if result is None:
@@ -372,6 +405,316 @@ def get_service_institution(request, search_type):
 
     return JsonResponse(response)
 
-# Generates swagger docs
-def generate_swagger_code(request):
+# Returns the institution of the service owner by both name and uuid
+@api_view(['GET'])
+def get_service_owner_institution(request, service_name_or_uuid, service_owner):
+    """
+    Retrieves the institution of the owner
+
+    """
+
+    type = request.get_full_path().split("/")[1]
+    params = request.GET.copy()
+    detail_level = params.get('view')
+
+    response = {}
+    service = None
+
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+
+    result = prog.match(service_name_or_uuid)
+
+    owner_match = prog.match(service_owner)
+
+    if result is None:
+        parsed_name = service_name_or_uuid.replace("_", " ")
+        parsed_name.strip()
+    else:
+        uuid = service_name_or_uuid
+
+    if owner_match is None:
+        owner_name = service_owner.split("_")
+    else:
+        owner_uuid = service_owner
+
+    try:
+        if result is None:
+            serv = models.Service.objects.get(name=parsed_name)
+        else:
+            serv = models.Service.objects.get(id=uuid)
+
+        if owner_match is None:
+            owner = models.ServiceOwner.objects.get(first_name=owner_name[0], last_name=owner_name[1])
+        else:
+            owner = models.ServiceOwner.objects.get(id=owner_uuid)
+
+    except models.ServiceOwner.DoesNotExist:
+        owner = None
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The requested service owner was not found"
+        }
+        return JsonResponse(response)
+
+    except models.Service.DoesNotExist:
+        serv = None
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The requested service was not found"
+        }
+        return JsonResponse(response)
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response["status"] = "404 Not Found"
+            response["errors"] = {
+                "detail": "An invalid UUID was supplied"
+            }
+        return JsonResponse(response)
+
+    if serv is not None:
+            response["status"] = "200 OK"
+            response["data"] = owner.get_institution()
+            response["info"] = "service owner institution information"
+
+    return JsonResponse(response)
+
+# Returns the selected services dependencies
+@api_view(['GET'])
+def get_service_dependencies(request,  service_name_or_uuid):
+    """
+    Retrieves the service dependencies
+
+    """
+    response = {}
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    result = prog.match(service_name_or_uuid)
+
+    if result is None:
+        parsed_name = service_name_or_uuid.replace("_", " ")
+        parsed_name.strip()
+    else:
+        uuid = service_name_or_uuid
+
+    try:
+        if result is None:
+            serv = models.Service.objects.get(name=parsed_name)
+        else:
+            serv = models.Service.objects.get(id=uuid)
+
+    except models.Service.DoesNotExist:
+        serv = None
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The requested service was not found"
+        }
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response["status"] = "404 Not Found"
+            response["errors"] = {
+                "detail": "An invalid UUID was supplied"
+            }
+        return JsonResponse(response)
+
+    if serv is not None:
+
+            dependencies = serv.get_service_dependencies()
+            response["status"] = "200 OK"
+            response["data"] ={
+                "count": len(dependencies),
+                "dependencies": dependencies
+            }
+            response["info"] = "service dependencies information"
+
+    return JsonResponse(response)
+
+# Returns the selected services external dependencies
+@api_view(['GET'])
+def get_service_external_dependencies(request,  service_name_or_uuid):
+    """
+    Retrieves the external service dependencies
+
+    """
+    type = request.get_full_path().split("/")[1]
+    params = request.GET.copy()
+    detail_level = params.get('view')
+
+    response = {}
+    service = None
+
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+
+    result = prog.match(service_name_or_uuid)
+
+    if result is None:
+        parsed_name = service_name_or_uuid.replace("_", " ")
+        parsed_name.strip()
+    else:
+        uuid = service_name_or_uuid
+
+    try:
+        if result is None:
+            serv = models.Service.objects.get(name=parsed_name)
+        else:
+            serv = models.Service.objects.get(id=uuid)
+
+    except models.Service.DoesNotExist:
+        serv = None
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The requested service was not found"
+        }
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response["status"] = "404 Not Found"
+            response["errors"] = {
+                "detail": "An invalid UUID was supplied"
+            }
+        return JsonResponse(response)
+
+    if serv is not None:
+
+            dependencies = serv.get_service_external_dependencies()
+
+            response["status"] = "200 OK"
+            response["data"] ={
+                "count": len(dependencies),
+                "dependencies": dependencies
+            }
+
+            response["info"] = "service external dependencies information"
+
+    return JsonResponse(response)
+
+# Return the selected service contact information
+@api_view(['GET'])
+def get_service_contact_information(request, service_name_or_uuid):
+    """
+    Retrieves the contact information for a specific service
+
+    """
+    params = request.GET.copy()
+
+    response = {}
+
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+
+    result = prog.match(service_name_or_uuid)
+
+    if result is None:
+        parsed_name = service_name_or_uuid.replace("_", " ")
+        parsed_name.strip()
+    else:
+        uuid = service_name_or_uuid
+
+    try:
+        if result is None:
+            serv = models.Service.objects.get(name=parsed_name)
+        else:
+            serv = models.Service.objects.get(id=uuid)
+
+    except models.Service.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The requested service was not found"
+        }
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response["status"] = "404 Not Found"
+            response["errors"] = {
+                "detail": "An invalid UUID was supplied"
+            }
+        return JsonResponse(response)
+
+
+    response["status"] = "200 OK"
+    response["data"] = serv.get_service_contact_information()
+    response["info"] = "service contact information"
+
+    return JsonResponse(response)
+
+# Returns the selected service details options information
+@api_view(['GET'])
+def get_service_options(request, service_name_or_uuid, version):
+    """
+    Retrieves the service options
+
+    """
+    params = request.GET.copy()
+
+    response = {}
+
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+
+    result = prog.match(service_name_or_uuid)
+
+    if result is None:
+        parsed_name = service_name_or_uuid.replace("_", " ")
+        parsed_name.strip()
+    else:
+        uuid = service_name_or_uuid
+
+    try:
+        if result is None:
+            service = models.Service.objects.get(name=parsed_name)
+        else:
+            service = models.Service.objects.get(id=uuid)
+
+        detail = service.get_service_details_by_version(version=version)
+        options = ServiceDetailsOption.objects.get(service_details_id=detail.id, service_id=detail.id_service.pk).as_json()
+
+    except models.ServiceDetails.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+                "detail": "Service details with that version not found"
+            }
+
+        return JsonResponse(response)
+
+    except ServiceDetailsOption.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+                "detail": "This service has no service options for the current version"
+            }
+
+        return JsonResponse(response)
+
+    except models.Service.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+                "detail": "Service does not exist"
+            }
+        return JsonResponse(response)
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response["status"] = "404 Not Found"
+            response["errors"] = {
+                "detail": "An invalid UUID was supplied"
+            }
+        return JsonResponse(response)
+
+
+    response["status"] = "200 OK"
+    response["data"] = options
+    response["info"] = "options for service detail information"
+    return JsonResponse(response)
+
+# Retrieve a service object by UUID or Name
+def get_service_object():
     pass
+
+# Creates a list of all service components belonging to a service
+def merge_service_components(response):
+
+        serv_components = ServiceDetailsComponent.objects.filter(service_id=response['uuid'])
+
+        components = []
+
+        for s in serv_components:
+            components.append(ServiceComponent.objects.get(id=s.service_component_id.pk).as_json())
+
+        response["components"] = components
+
+        return response

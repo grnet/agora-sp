@@ -85,3 +85,22 @@ class ServiceDetailsOption(models.Model):
         service_options = ServiceOption.objects.get(pk=self.service_options_id.pk)
         return str(service) + " " + str(service_details) + " " + str(service_options)
 
+    def as_json(self):
+        service = Service.objects.get(pk=self.service_id.pk)
+        service_details = ServiceDetails.objects.get(pk=self.service_details_id.pk)
+        service_options = ServiceOption.objects.get(pk=self.service_options_id.pk)
+
+
+        return {
+            "service_id" : service.id,
+            "service_name": service.name,
+            "service_details_id": service_details.id,
+            "version": service_details.version,
+            "service_option_id": service_options.id,
+            "service_option_name": service_options.name,
+            "service_option_description": service_options.description,
+            "service_option_pricing": service_options.pricing,
+
+        }
+
+
