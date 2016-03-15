@@ -155,7 +155,7 @@ def get_service(request,  service_name_or_uuid):
     else:
         response["status"] = "404 Not Found"
         response["errors"] = {
-            "detail": "The requested service was not found"
+            "detail": "The requested service was not found neli"
         }
 
     if service is not None:

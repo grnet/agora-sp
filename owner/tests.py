@@ -54,3 +54,18 @@ class OwnerTestCase(TestCase):
 
         self.assertJSONEqual(json.dumps(expected_response), response_name.content)
         self.assertJSONEqual(json.dumps(expected_response), response_uuid.content)
+
+
+    def test_service_invlaid_owner_institution(self):
+
+        response_name = self.client_stub.get('/v1/portfolio/services/B2SAFE/service_owner/Claudia_Cacciari/institution')
+        response_uuid = self.client_stub.get('/v1/portfolio/services/88b35b0d-adc2-4a2e-b5fc-cae2d6f5456a/service_owner/a9976cd2-14e4-47b7-9363-7e9faba2f200/institution')
+
+
+        expected_response = {
+            "status": "404 Not Found",
+            "errors": {"detail": "The requested service owner was not found"}
+        }
+
+        self.assertJSONEqual(json.dumps(expected_response), response_name.content)
+        self.assertJSONEqual(json.dumps(expected_response), response_uuid.content)

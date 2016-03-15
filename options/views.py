@@ -1,12 +1,19 @@
-from django.shortcuts import render
 from django.http import JsonResponse
-import re
 from service import models as service_models
 from options import models as options_models
-# Create your views here.
+from models import  ServiceDetailsOption, ServiceDetails, Service
+from rest_framework.decorators import *
+import re
 
 
+# Returns the selected service details options information
+@api_view(['GET'])
 def get_service_sla(request, search_type, version, sla_uuid):
+    """
+    Retrieves the service sla
+
+    """
+
     response = {}
 
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
@@ -42,8 +49,6 @@ def get_service_sla(request, search_type, version, sla_uuid):
         serv_det_options = options_models.ServiceDetailsOption.objects.get(service_id=serv.pk,
                                                                            service_details_id=serv_details.pk,
                                                                            service_options_id=sla.service_option_id.pk)
-
-
 
         response["status"] = "200 OK"
         response["data"] = sla.as_json()
@@ -83,8 +88,13 @@ def get_service_sla(request, search_type, version, sla_uuid):
 
     return JsonResponse(response)
 
-
+# Returns the selected service details options information
+@api_view(['GET'])
 def get_service_sla_parameter(request, search_type, version, sla_uuid, sla_param_uuid):
+    """
+    Retrieves the service sla parameter
+
+    """
     response = {}
 
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
@@ -124,6 +134,7 @@ def get_service_sla_parameter(request, search_type, version, sla_uuid, sla_param
         serv_details = service_models.ServiceDetails.objects.get(id_service=serv.pk, version=version)
 
         sla = options_models.SLA.objects.get(id=sla_uuid)
+
         serv_det_options = options_models.ServiceDetailsOption.objects.get(service_id=serv.pk,
                                                                            service_details_id=serv_details.pk,
                                                                            service_options_id=sla.service_option_id.pk)
@@ -176,4 +187,71 @@ def get_service_sla_parameter(request, search_type, version, sla_uuid, sla_param
             }
 
 
+    return JsonResponse(response)
+
+# Returns the selected service details options information
+@api_view(['GET'])
+def get_service_options(request, search_type, version):
+    """
+    Retrieves the service options
+
+    """
+    params = request.GET.copy()
+
+    response = {}
+
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+
+    result = prog.match(search_type)
+
+    if result is None:
+        parsed_name = search_type.replace("_", " ")
+        parsed_name.strip()
+    else:
+        uuid = search_type
+
+    try:
+        if result is None:
+            service = service_models.Service.objects.get(name=parsed_name)
+        else:
+            service = service_models.Service.objects.get(id=uuid)
+
+        detail = service.get_service_details_by_version(version=str(version))
+        options = ServiceDetailsOption.objects.get(service_details_id=detail.id, service_id=detail.id_service.pk).as_json()
+
+    except ServiceDetails.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+                "detail": "Service details with that version not found"
+            }
+
+        return JsonResponse(response)
+
+    except ServiceDetailsOption.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+                "detail": "This service has no service options for the current version"
+            }
+
+        return JsonResponse(response)
+
+    except Service.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+                "detail": "Service does not exist"
+            }
+        return JsonResponse(response)
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response["status"] = "404 Not Found"
+            response["errors"] = {
+                "detail": "An invalid UUID was supplied"
+            }
+        return JsonResponse(response)
+
+
+    response["status"] = "200 OK"
+    response["data"] = options
+    response["info"] = "options for service detail information"
     return JsonResponse(response)
