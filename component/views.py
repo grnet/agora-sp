@@ -176,7 +176,6 @@ def get_service_component_implementations(request, search_type, version, comp_uu
                                                                              service_details_id=serv_details.pk,
                                                                              service_component_id=comp_uuid)
 
-        service_component = component_models.ServiceComponent.objects.get(id=comp_uuid)
         service_component_impl = component_models.ServiceComponentImplementation.objects.filter(component_id=comp_uuid)
 
         response["status"] = "200 OK"
@@ -198,7 +197,7 @@ def get_service_component_implementations(request, search_type, version, comp_uu
     except component_models.ServiceComponentImplementation.DoesNotExist:
         response["status"] = "404 Not Found"
         response["errors"] = {
-            "detail": "There are no implementations of the specified service component"
+            "detail": "There are no implementations for the specified service component"
         }
 
     except ValueError as v:
@@ -219,13 +218,6 @@ def get_service_component_implementations(request, search_type, version, comp_uu
         response["errors"] = {
             "detail": "A service component matching the specified service version does not exists"
         }
-
-    # except:
-    #     response["status"] = "404 Not Found"
-    #     response["errors"] = {
-    #         "detail": "The requested service was not found"
-    #     }
-
 
     return JsonResponse(response)
 

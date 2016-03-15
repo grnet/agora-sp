@@ -207,21 +207,11 @@ def get_service_details(request, service_name_or_uuid, version):
 
     try:
         if result is None:
-            uuid = models.Service.objects.get(name=parsed_name).pk
+            service = models.Service.objects.get(name=parsed_name)
+        else:
+            service = models.Service.objects.get(id=uuid)
 
-        detail = models.ServiceDetails.objects.get(id_service=uuid, version=version)
-
-    except models.ServiceDetails.DoesNotExist:
-        detail = None
-    except ValueError as v:
-        if str(v) == "badly formed hexadecimal UUID string":
-            response["status"] = "404 Not Found"
-            response["errors"] = {
-                "detail": "An invalid UUID was supplied"
-            }
-        return JsonResponse(response)
-
-    if detail is not None:
+        detail = models.ServiceDetails.objects.get(id_service=service.pk, version=version)
         response["status"] = "200 OK"
         response["data"] = detail
         response["info"] = "service detail information"
@@ -230,11 +220,27 @@ def get_service_details(request, service_name_or_uuid, version):
             response["data"] = detail.as_short()
         else:
             response["data"] = detail.as_complete()
-    else:
+
+    except models.Service.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "Service not found"
+        }
+    except models.ServiceDetails.DoesNotExist:
         response["status"] = "404 Not Found"
         response["errors"] = {
                 "detail": "Service details not found"
             }
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response["status"] = "404 Not Found"
+            response["errors"] = {
+                "detail": "An invalid UUID was supplied"
+            }
+        return JsonResponse(response)
+
+
+
 
     return JsonResponse(response)
 
