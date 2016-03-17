@@ -11,7 +11,12 @@ def import_csv(table, csv):
     cursor = db.cursor()
 
     csv = dir + "/" + csv
-    fields = get_table_columns(table)
+
+    for line in open(csv):
+        fields = [field[1:-1] if field[0] == '"' and field[-1] == '"' else field for field in line.strip().split(',')]
+        break
+
+    # fields = get_table_columns(table)
     sql = "LOAD DATA INFILE '{0}' INTO TABLE {1} FIELDS TERMINATED BY ',' OPTIONALLY ENCLOSED BY '\"' LINES TERMINATED BY '\n' IGNORE 1 LINES  ({2})  ;".format(csv, table, ','.join(fields))
 
 
@@ -30,7 +35,7 @@ def import_csv(table, csv):
 
 def get_database():
     database = settings.DATABASES["default"]
-    return MySQLdb.connect(host=database["HOST"], user=database["USER"], passwd=database["PASSWORD"], db='agora_test')
+    return MySQLdb.connect(host=database["HOST"], user=database["USER"], passwd=database["PASSWORD"], db=database["NAME"])
 
 
 def get_table_columns(table):
