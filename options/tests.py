@@ -20,20 +20,7 @@ class OptionsTestCase(TestCase):
         response_uuid = self.client_stub.get('/v1/portfolio/services/88b35b0d-adc2-4a2e-b5fc-cae2d6f5456a/service_details/3.0/service_options/')
 
 
-        expected_response ={
-            "status": "200 OK",
-            "info": "options for service detail information",
-            "data": {
-                "service_option_description": "If we consider the DPM as part of the B2SAFE, then it would be "
-                                              "more clear to define an explicit option which include it",
-                "version": "3.0",
-                "service_option_name": "With Data Policy Manager",
-                "service_option_pricing": "Not specified yet",
-                "service_name": "B2SAFE",
-                "service_option_id": "0eb16991-f687-438e-9476-9ae45708d385",
-                "service_id": "88b35b0d-adc2-4a2e-b5fc-cae2d6f5456a",
-                "service_details_id": "aa37cd70-c3e3-4334-a719-d467c22aed81"
-            }}
+        expected_response = {"status": "200 OK", "info": "options for service detail information", "data": {"count": 2, "services": [{"service_option_description": "If we consider the DPM as part of the B2SAFE, then it would be more clear to define an explicit option which include it", "version": "3.0", "service_option_name": "With Data Policy Manager", "service_option_pricing": "Not specified yet", "service_name": "B2SAFE", "service_option_id": "0eb16991-f687-438e-9476-9ae45708d385", "service_id": "88b35b0d-adc2-4a2e-b5fc-cae2d6f5456a", "service_details_id": "aa37cd70-c3e3-4334-a719-d467c22aed81"}, {"service_option_description": "Standard options", "version": "3.0", "service_option_name": "Standard", "service_option_pricing": "Not specified yet", "service_name": "B2SAFE", "service_option_id": "61c31958-412f-43cf-be19-1f59ea89d0ee", "service_id": "88b35b0d-adc2-4a2e-b5fc-cae2d6f5456a", "service_details_id": "aa37cd70-c3e3-4334-a719-d467c22aed81"}]}}
 
         self.assertJSONEqual(json.dumps(expected_response), response_name.content)
         self.assertJSONEqual(json.dumps(expected_response), response_uuid.content)
@@ -64,15 +51,10 @@ class OptionsTestCase(TestCase):
 
 
     def test_get_service_options_sla(self):
-        response_name = self.client_stub.get('/v1/portfolio/services/B2SAFE/service_details/3.0/service_options/sla/ad0f70f4-4285-4072-a95c-57053f2ac084/')
-        response_uuid = self.client_stub.get('/v1/portfolio/services/88b35b0d-adc2-4a2e-b5fc-cae2d6f5456a/service_details/3.0/service_options/sla/ad0f70f4-4285-4072-a95c-57053f2ac084/')
+        response_name = self.client_stub.get('/v1/portfolio/services/B2SAFE/service_details/3.0/service_options/sla/2ad2b14a-0874-44af-94be-e00093fc3e3c/')
+        response_uuid = self.client_stub.get('/v1/portfolio/services/88b35b0d-adc2-4a2e-b5fc-cae2d6f5456a/service_details/3.0/service_options/sla/2ad2b14a-0874-44af-94be-e00093fc3e3c/')
 
-        expected_response = {"status": "200 OK",
-                             "info": "service SLA information",
-                             "data": {
-                                 "id": "ad0f70f4-4285-4072-a95c-57053f2ac084",
-                                 "name": "Test SLA"
-                             }}
+        expected_response = {"status": "200 OK", "info": "service SLA information", "data": {"id": "2ad2b14a-0874-44af-94be-e00093fc3e3c", "name": "Test SLA"}}
 
         self.assertJSONEqual(json.dumps(expected_response), response_name.content)
         self.assertJSONEqual(json.dumps(expected_response), response_uuid.content)
@@ -105,8 +87,8 @@ class OptionsTestCase(TestCase):
 
 
     def test_get_service_options_sla_parameter(self):
-        response_name = self.client_stub.get('/v1/portfolio/services/B2SAFE/service_details/3.0/service_options/sla/ad0f70f4-4285-4072-a95c-57053f2ac084/sla_parameter/ce9da07f-4b48-4d64-9dcc-2aeb41cec177/parameter')
-        response_uuid = self.client_stub.get('/v1/portfolio/services/88b35b0d-adc2-4a2e-b5fc-cae2d6f5456a/service_details/3.0/service_options/sla/ad0f70f4-4285-4072-a95c-57053f2ac084/sla_parameter/ce9da07f-4b48-4d64-9dcc-2aeb41cec177/parameter')
+        response_name = self.client_stub.get('/v1/portfolio/services/B2SAFE/service_details/3.0/service_options/sla/2ad2b14a-0874-44af-94be-e00093fc3e3c/sla_parameter/ce9da07f-4b48-4d64-9dcc-2aeb41cec177/parameter')
+        response_uuid = self.client_stub.get('/v1/portfolio/services/88b35b0d-adc2-4a2e-b5fc-cae2d6f5456a/service_details/3.0/service_options/sla/2ad2b14a-0874-44af-94be-e00093fc3e3c/sla_parameter/ce9da07f-4b48-4d64-9dcc-2aeb41cec177/parameter')
 
         expected_response = {"status": "200 OK",
                              "info": "service SLA paramter information",
@@ -121,8 +103,8 @@ class OptionsTestCase(TestCase):
 
 
     def test_get_service_options_sla_parameter_not_exists(self):
-        response_name = self.client_stub.get('/v1/portfolio/services/B2SAFE/service_details/3.0/service_options/sla/ad0f70f4-4285-4072-a95c-57053f2ac084/sla_parameter/ce9da07f-4b48-4d64-9dcc-2aeb41cec277/parameter')
-        response_uuid = self.client_stub.get('/v1/portfolio/services/88b35b0d-adc2-4a2e-b5fc-cae2d6f5456a/service_details/3.0/service_options/sla/ad0f70f4-4285-4072-a95c-57053f2ac084/sla_parameter/ce9da07f-4b48-4d64-9dcc-2aeb41cec277/parameter')
+        response_name = self.client_stub.get('/v1/portfolio/services/B2SAFE/service_details/3.0/service_options/sla/2ad2b14a-0874-44af-94be-e00093fc3e3c/sla_parameter/ce9da07f-4b48-4d64-9dcc-2aeb41cec277/parameter')
+        response_uuid = self.client_stub.get('/v1/portfolio/services/88b35b0d-adc2-4a2e-b5fc-cae2d6f5456a/service_details/3.0/service_options/sla/2ad2b14a-0874-44af-94be-e00093fc3e3c/sla_parameter/ce9da07f-4b48-4d64-9dcc-2aeb41cec277/parameter')
 
         expected_response = {"status": "404 Not Found",
                              "errors": {
