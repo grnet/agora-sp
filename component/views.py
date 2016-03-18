@@ -2,11 +2,16 @@ from django.http import JsonResponse
 import re
 from service import models as service_models
 from component import models as component_models
+from rest_framework.decorators import *
 # Create your views here.
 
-
+# Returns the selected service components
+@api_view(['GET'])
 def get_service_components(request, search_type, version):
+    """
+    Retrieves the list of components for the selected service.
 
+    """
 
     # type = request.get_full_path().split("/")[2]
     # params = request.GET.copy()
@@ -63,7 +68,14 @@ def get_service_components(request, search_type, version):
     return JsonResponse(response)
 
 
+# Returns the selected service component
+@api_view(['GET'])
 def get_service_component(request, search_type, version, comp_uuid):
+    """
+    Retrieves the specified component for the selected service.
+
+    """
+
     response = {}
 
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
@@ -142,8 +154,14 @@ def get_service_component(request, search_type, version, comp_uuid):
 
     return JsonResponse(response)
 
-
+# Returns the selected service component implementations
+@api_view(['GET'])
 def get_service_component_implementations(request, search_type, version, comp_uuid):
+    """
+    Retrieves the list of component implementations for the selected service component.
+
+    """
+
     response = {}
 
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
@@ -221,8 +239,14 @@ def get_service_component_implementations(request, search_type, version, comp_uu
 
     return JsonResponse(response)
 
-
+# Returns the selected service component implementation details
+@api_view(['GET'])
 def get_service_component_implementation_detail(request, search_type, version, comp_uuid, imp_uuid):
+    """
+    Retrieves the list of component implementation details for the selected service component implementation.
+
+    """
+
     response = {}
 
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
