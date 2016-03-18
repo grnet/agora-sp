@@ -53,10 +53,15 @@ def get_service_components(request, search_type, version):
             }
         return JsonResponse(response)
 
+    except service_models.ServiceDetails.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The requested service details were not found"
+        }
     except:
         response["status"] = "404 Not Found"
         response["errors"] = {
-            "detail": "The requested service was not found"
+	    "detail": "The requested service was not found"
         }
 
 

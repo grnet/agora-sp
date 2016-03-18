@@ -217,7 +217,7 @@ def get_service_options(request, search_type, version):
             service = service_models.Service.objects.get(id=uuid)
 
         detail = service.get_service_details_by_version(version=str(version))
-        options = ServiceDetailsOption.objects.get(service_details_id=detail.id, service_id=detail.id_service.pk).as_json()
+        options = ServiceDetailsOption.objects.filter(service_details_id=detail.id, service_id=detail.id_service.pk)
 
     except ServiceDetails.DoesNotExist:
         response["status"] = "404 Not Found"
@@ -252,6 +252,11 @@ def get_service_options(request, search_type, version):
 
 
     response["status"] = "200 OK"
-    response["data"] = options
+   # response["data"] = options
+
+
+
+    response["data"] ={"count": len(options), "services": [ option.as_json() for option in options ] }
+ 
     response["info"] = "options for service detail information"
     return JsonResponse(response)
