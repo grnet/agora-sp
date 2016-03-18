@@ -23,13 +23,13 @@ class ComponentTestCase(TestCase):
 
     def test_get_service_components(self):
         response = self.client_stub.get('/v1/portfolio/services/B2HANDLE/service_details/0.1/service_components')
-        expected_response = {"status": "200 OK", "info": "service components information", "data": [{"component_implementations": [{"description": "Some sample description", "component_implementation_details": [{"description": "Another boring description", "uuid": "edbab031-04de-4ac4-a03a-b899d683c9a9", "name": "Apps framework"}], "uuid": "5e27aa64-4668-464c-96c7-fbe5b4871219", "name": "App framework"}], "description": "Python/Django", "uuid": "3fa0bece-3e12-40ca-8345-1af82bf5f471", "name": "Application framework"}]}
+        expected_response = {"status": "200 OK", "info": "service components information", "data": [{"component_implementations": [{"description": "Some sample description", "component_implementation_details": [{"configuration_parameters": "Another boring description", "uuid": "edbab031-04de-4ac4-a03a-b899d683c9a9", "version": "Apps framework"}], "uuid": "5e27aa64-4668-464c-96c7-fbe5b4871219", "name": "App framework"}], "description": "Python/Django", "uuid": "3fa0bece-3e12-40ca-8345-1af82bf5f471", "name": "Application framework"}]}
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
 
     def test_get_service_component_implementations(self):
         response = self.client_stub.get('/v1/portfolio/services/B2HANDLE/service_details/0.1/service_components/3fa0bece-3e12-40ca-8345-1af82bf5f471/service_component_implementations')
-        expected_response = {"status": "200 OK", "info": "service component implementation information", "data": [{"description": "Some sample description", "component_implementation_details": [{"description": "Another boring description", "uuid": "edbab031-04de-4ac4-a03a-b899d683c9a9", "name": "Apps framework"}], "uuid": "5e27aa64-4668-464c-96c7-fbe5b4871219", "name": "App framework"}]}
+        expected_response = {"status": "200 OK", "info": "service component implementation information", "data": [{"description": "Some sample description", "component_implementation_details": [{"configuration_parameters": "Another boring description", "uuid": "edbab031-04de-4ac4-a03a-b899d683c9a9", "version": "Apps framework"}], "uuid": "5e27aa64-4668-464c-96c7-fbe5b4871219", "name": "App framework"}]}
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
 
@@ -47,7 +47,7 @@ class ComponentTestCase(TestCase):
 
     def test_get_service_component_implementations_detail(self):
         response = self.client_stub.get('/v1/portfolio/services/B2HANDLE/service_details/0.1/service_components/3fa0bece-3e12-40ca-8345-1af82bf5f471/service_component_implementations/5e27aa64-4668-464c-96c7-fbe5b4871219/service_component_implementation_detail')
-        expected_response = {"status": "200 OK", "info": "service component implementation detail", "data": [{"description": "Another boring description", "uuid": "edbab031-04de-4ac4-a03a-b899d683c9a9", "name": "Apps framework"}]}
+        expected_response = {"status": "200 OK", "info": "service component implementation detail", "data": [{"configuration_parameters": "Another boring description", "uuid": "edbab031-04de-4ac4-a03a-b899d683c9a9", "version": "Apps framework"}]}
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
 

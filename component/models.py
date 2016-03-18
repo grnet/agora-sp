@@ -51,8 +51,8 @@ class ServiceComponentImplementationDetail(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     component_id = models.ForeignKey(ServiceComponent)
     component_implementation_id = models.ForeignKey(ServiceComponentImplementation, on_delete=models.CASCADE)
-    name = models.CharField(max_length=255, default=None, blank=True)
-    description = models.TextField(default=None, blank=True)
+    version = models.CharField(max_length=255, default=None, blank=True)
+    configuration_parameters = models.TextField(default=None, blank=True)
 
     def __unicode__(self):
          return str(self.name)
@@ -60,8 +60,8 @@ class ServiceComponentImplementationDetail(models.Model):
     def as_json(self):
         return {
             "uuid": self.id,
-            "name": self.name,
-            "description": self.description
+            "version": self.version,
+            "configuration_parameters": self.configuration_parameters
         }
 
 
