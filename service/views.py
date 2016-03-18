@@ -22,7 +22,7 @@ def list_services(request,  type):
         if detail_level is None or detail_level == "short":
             services = [s.as_portfolio() for s in serv_models]
         elif detail_level == "complete":
-            services = [merge_service_components(s.as_complete_portfolio()) for s in serv_models]
+            services = [s.as_complete_portfolio() for s in serv_models]
         else:
             response["status"] = "404 Not Found"
             response["errors"] = {
@@ -142,7 +142,7 @@ def get_service(request,  service_name_or_uuid):
             if detail_level is None or detail_level == "short":
                 service = serv.as_portfolio()
             elif detail_level == "complete":
-                service = merge_service_components(serv.as_complete_portfolio())
+                service = serv.as_complete_portfolio()
             else:
                 response["status"] = "404 Not Found"
                 response["errors"] = {
@@ -219,7 +219,7 @@ def get_service_details(request, service_name_or_uuid, version):
         if detail_level == 'short':
             response["data"] = detail.as_short()
         else:
-            response["data"] = detail.as_complete()
+            response["data"] = merge_service_components(detail)
 
     except models.Service.DoesNotExist:
         response["status"] = "404 Not Found"
@@ -238,9 +238,6 @@ def get_service_details(request, service_name_or_uuid, version):
                 "detail": "An invalid UUID was supplied"
             }
         return JsonResponse(response)
-
-
-
 
     return JsonResponse(response)
 
@@ -585,15 +582,16 @@ def get_service_object():
     pass
 
 # Creates a list of all service components belonging to a service
-def merge_service_components(response):
+def merge_service_components(service_details):
 
-        serv_components = ServiceDetailsComponent.objects.filter(service_id=response['uuid'])
-
+        serv_components = ServiceDetailsComponent.objects.filter(service_id=service_details.id_service.pk,
+                                                                 service_details_id=service_details.pk)
         components = []
 
         for s in serv_components:
             components.append(ServiceComponent.objects.get(id=s.service_component_id.pk).as_json())
 
-        response["components"] = components
+        data = service_details.as_complete()
+        data["components"] = components
 
-        return response
+        return data

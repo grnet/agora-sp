@@ -10,16 +10,18 @@ class ServiceComponent(models.Model):
     name = models.CharField(max_length=255, default=None, blank=True)
     description = models.TextField(default=None, blank=True)
 
+
     def __unicode__(self):
          return str(self.name)
+
 
     def as_json(self):
         return {
             "uuid": self.id,
             "name": self.name,
-            "description": self.description
+            "description": self.description,
+            "component_implementations": [sci.as_json() for sci in ServiceComponentImplementation.objects.filter(component_id=self.pk)]
         }
-
 
 
 class ServiceComponentImplementation(models.Model):
@@ -29,14 +31,18 @@ class ServiceComponentImplementation(models.Model):
     name = models.CharField(max_length=255, default=None, blank=True)
     description = models.TextField(default=None, blank=True)
 
+
     def __unicode__(self):
          return str(self.name)
+
 
     def as_json(self):
         return {
             "uuid": self.id,
             "name": self.name,
-            "description": self.description
+            "description": self.description,
+            "component_implementation_details": [scid.as_json() for scid in ServiceComponentImplementationDetail.objects.
+                                filter(component_id=self.component_id.pk, component_implementation_id=self.pk)]
         }
 
 

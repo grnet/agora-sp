@@ -63,11 +63,6 @@ def get_service_components(request, search_type, version):
         response["errors"] = {
             "detail": "The requested service details were not found"
         }
-    except:
-        response["status"] = "404 Not Found"
-        response["errors"] = {
-	    "detail": "The requested service was not found"
-        }
 
 
     return JsonResponse(response)
