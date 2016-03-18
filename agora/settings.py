@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'secret-key'
 
 # SECURITY WARNING don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'agora-dev.vi-seem.eu']
 
@@ -142,7 +142,7 @@ TEMPLATE_DIRS = (
 SWAGGER_SETTINGS = {
     'exclude_namespaces': [],
     'api_version': '1.0',
-    'api_path': 'localhost',
+    'api_path': 'agora-dev.vi-seem.eu',
     'enabled_methods': [
         'get',
         'post',
@@ -167,7 +167,7 @@ SWAGGER_SETTINGS = {
     'is_superuser': False,
     'permission_denied_handler': None,
     'resource_access_handler': None,
-    'base_path':'localhost/docs',
+    'base_path':'agora-dev.vi-seem.eu/docs',
     'doc_expansion': 'list',
 
 }
