@@ -55,7 +55,7 @@ class ServiceComponentImplementationDetail(models.Model):
     configuration_parameters = models.TextField(default=None, blank=True)
 
     def __unicode__(self):
-         return str(self.name)
+         return str(self.component_implementation_id.name) + " " +  str(self.version)
 
     def as_json(self):
         return {
