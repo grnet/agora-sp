@@ -613,12 +613,24 @@ def merge_service_components(service_details):
             components.append(scid.component_id.as_short(service_details.id_service.pk, service_details.version))
 
         data = service_details.as_complete()
-        data["components"] = {
-            "count": len(components),
-            "service_components_url": current_site_url()+"/v1/portfolio/services/" + str(service_details.id_service.pk) + "/service_details"
-                                     + service_details.version + "/service_components",
-            "data": components
-        }
+
+        if (len(components)>0):
+            data["components"] = {
+                "count": len(components),
+                "service_components_links":{
+                    "related": {
+                        "href":  current_site_url()+"/v1/portfolio/services/" + str(service_details.id_service.pk) + "/service_details/"
+                                         + service_details.version + "/service_components",
+                        "meta": {
+                            "desc": "Link to the services components."
+                        }
+                    }},
+                "data": components
+            }
+        else:
+               data["components"] = {
+                "components": "This service has no service components."
+            }
 
         return data
 
