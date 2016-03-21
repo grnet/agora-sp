@@ -1,7 +1,7 @@
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, get_object_or_404
 from service import models
-from component.models import ServiceComponent, ServiceDetailsComponent
+from component.models import ServiceComponent, ServiceDetailsComponent, ServiceComponentImplementationDetail
 from options.models import ServiceDetailsOption
 from rest_framework.decorators import *
 import re
@@ -584,12 +584,13 @@ def get_service_object():
 # Creates a list of all service components belonging to a service
 def merge_service_components(service_details):
 
-        serv_components = ServiceDetailsComponent.objects.filter(service_id=service_details.id_service.pk,
+        serv_components_imp_det = ServiceDetailsComponent.objects.filter(service_id=service_details.id_service.pk,
                                                                  service_details_id=service_details.pk)
         components = []
 
-        for s in serv_components:
-            components.append(ServiceComponent.objects.get(id=s.service_component_id.pk).as_json())
+        for s in serv_components_imp_det:
+            scid = ServiceComponentImplementationDetail.objects.get(id=s.service_component_implementation_detail_id.pk)
+            components.append(scid.component_id.as_json())
 
         data = service_details.as_complete()
         data["components"] = components

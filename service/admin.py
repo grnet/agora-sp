@@ -8,8 +8,7 @@ class ServiceAdmin(admin.ModelAdmin):
 
 
 class ServiceDetailsAdmin(admin.ModelAdmin):
-    list_display = ['id', 'id_service', 'version' ]
-
+    list_display = ['id', 'id_service', 'version']
 
 
 class ExternalServiceAdmin(admin.ModelAdmin):
