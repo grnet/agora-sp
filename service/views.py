@@ -609,9 +609,14 @@ def merge_service_components(service_details):
         serv_components_imp_det = ServiceDetailsComponent.objects.filter(service_id=service_details.id_service.pk,
                                                                  service_details_id=service_details.pk)
         components = []
+        seen = set()
 
         for s in serv_components_imp_det:
             scid = ServiceComponentImplementationDetail.objects.get(id=s.service_component_implementation_detail_id.pk)
+            if scid.component_id.pk in seen:
+                continue
+
+            seen.add(scid.component_id.pk)
             components.append(scid.component_id.as_short(service_details.id_service.pk, service_details.version))
 
         data = service_details.as_complete()
@@ -633,6 +638,26 @@ def merge_service_components(service_details):
                data["components"] = {
                 "components": "This service has no service components."
             }
+
+
+        serv_options = ServiceDetailsOption.objects.filter(service_id=service_details.id_service.pk,
+                                                           service_details_id=service_details.pk)
+
+        options = [so.as_json() for so in serv_options]
+        data["options"] = {
+            "count": len(options),
+            "service_options_links": {
+                "related": {
+                    "href": current_site_url() + "/v1/portfolio/services/" + str(service_details.id_service.pk)
+                            + "/service_details/" + service_details.version + "/service_options",
+                    "meta": {
+                        "desc": "Link to the service options"
+                    }
+                }
+            },
+            "data": options
+        }
+
 
         return data
 

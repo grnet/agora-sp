@@ -103,12 +103,10 @@ class Parameter(models.Model):
             "expression": self.expression,
             "SLA_parameter_link": {
                 "related": {
-                    "href": self.current_site_url()+"/v1/portfolio/services" + str(service_id) + "/service_details/" + service_details_version
+                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(service_id) + "/service_details/" + service_details_version
                    + "/service_options/sla/" + str(sla_id) + "/sla_parameter/" + str(self.pk) + "/parameter",
                     "meta": {
                             "desc": "A link to the SLA parameters."
-
-
                 }}
         }}
 

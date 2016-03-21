@@ -156,7 +156,7 @@ class Service(models.Model):
 
                 "external_services": external_services
             },
-            "contact_informaion_link": {
+            "contact_information_link": {
                 "related": {
                     "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.pk) + "/contact_information",
                     "meta": {
@@ -195,7 +195,7 @@ class Service(models.Model):
                     }
                 }
             },
-            "contact_informaion_link": {
+            "contact_information_link": {
                 "related": {
                     "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.pk) + "/contact_information",
                     "meta": {
