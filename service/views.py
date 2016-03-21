@@ -1,10 +1,13 @@
+from django.core.serializers import json
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render, get_object_or_404
 from service import models
 from component.models import ServiceComponent, ServiceDetailsComponent, ServiceComponentImplementationDetail
 from options.models import ServiceDetailsOption
 from rest_framework.decorators import *
+from agora_utils import *
 import re
+
 
 @api_view(['GET'])
 def list_services(request,  type):
@@ -95,6 +98,8 @@ def get_service(request,  service_name_or_uuid):
 
     response = {}
 
+    host = str(generete_full_url(request))
+
     service = None
 
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
@@ -159,8 +164,10 @@ def get_service(request,  service_name_or_uuid):
         }
 
     if service is not None:
+
         response["status"] = "200 OK"
         response["data"] = service
+        response["data"]["links"]["related"]["href"] = host+ response["data"]["links"]["related"]["href"]
         response["info"] = "service information"
 
     return JsonResponse(response)
@@ -195,6 +202,8 @@ def get_service_details(request, service_name_or_uuid, version):
 
     response = {}
 
+    host = generete_full_url(request)
+
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
     result = prog.match(service_name_or_uuid)
@@ -213,7 +222,12 @@ def get_service_details(request, service_name_or_uuid, version):
 
         detail = models.ServiceDetails.objects.get(id_service=service.pk, version=version)
         response["status"] = "200 OK"
+
+
         response["data"] = detail
+
+        # response["data"]["links"]["related"]["href"] = host +  response["data"]["links"]["related"]["href"]
+
         response["info"] = "service detail information"
 
         if detail_level == 'short':
@@ -254,6 +268,9 @@ def get_all_service_details(request, service_name_or_uuid):
     response = {}
 
     complete = False
+
+    host = generete_full_url(request)
+
 
     if detail_level == "complete":
         complete = True
@@ -300,6 +317,10 @@ def get_all_service_details(request, service_name_or_uuid):
         return JsonResponse(response)
 
     response["status"] = "200 OK"
+
+    for det in detail:
+        det["links"]["related"]["href"] = host +  det["links"]["related"]["href"]
+
     response["data"] = detail
     response["info"] = "service detail information"
     return JsonResponse(response)
@@ -596,3 +617,5 @@ def merge_service_components(service_details):
         data["components"] = components
 
         return data
+
+

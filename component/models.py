@@ -64,19 +64,6 @@ class ServiceComponentImplementationDetail(models.Model):
             "configuration_parameters": self.configuration_parameters
         }
 
-
-# class ServiceDetailsComponent(models.Model):
-#
-#     class Meta:
-#         unique_together = (('service_id', 'service_details_id'),)
-#
-#     service_id = models.ForeignKey(Service)
-#     service_details_id = models.ForeignKey(ServiceDetails)
-#
-#     def __unicode__(self):
-#
-#         return str(self.service_id.name) + " "  + str(self.service_details_id.version)
-
 class ServiceDetailsComponent(models.Model):
 
     class Meta:
