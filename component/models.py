@@ -23,6 +23,16 @@ class ServiceComponent(models.Model):
             "component_implementations": [sci.as_json() for sci in ServiceComponentImplementation.objects.filter(component_id=self.pk)]
         }
 
+    def as_short(self, service_id, service_details_version):
+        return {
+            "uuid": self.id,
+            "name": self.name,
+            "description": self.description,
+            "component_implementation_url": "v1/portfolio/services/" + str(service_id) +"/service_details/"
+                                    + str(service_details_version) + "/service_components/" + str(self.pk)
+                                            + "/service_component_implementations"
+        }
+
 
 class ServiceComponentImplementation(models.Model):
 
@@ -43,6 +53,17 @@ class ServiceComponentImplementation(models.Model):
             "description": self.description,
             "component_implementation_details": [scid.as_json() for scid in ServiceComponentImplementationDetail.objects.
                                 filter(component_id=self.component_id.pk, component_implementation_id=self.pk)]
+        }
+
+    def as_short(self, service_id, service_details_version):
+        return {
+            "uuid": self.id,
+            "name": self.name,
+            "description": self.description,
+            "component_implementation_details_url": "v1/portfolio/services/" + str(service_id) +"/service_details/"
+                                    + str(service_details_version) + "/service_components/" + str(self.component_id.pk)
+                                            + "/service_component_implementations/" + str(self.pk)
+                                                    + "/service_component_implementation_detail"
         }
 
 

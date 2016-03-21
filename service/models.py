@@ -65,8 +65,10 @@ class Service(models.Model):
         service_dependencies = []
 
         for d in dependencies:
+            service = Service.objects.get(id=d.id_service_two.pk)
             service_dependencies.append({
-                "uuid": Service.objects.get(pk=d.id_service_two.pk).id,
+                "uuid": service.id,
+                "name": service.name,
                 "url": "v1/portfolio/services/" + str(Service.objects.get(pk=d.id_service_two.pk).id)
             })
 
@@ -75,8 +77,8 @@ class Service(models.Model):
 
         for e in external:
             external_services.append({
-                "uuid": e.pk,
-                "url": "v1/portfolio/services/" + str(e.pk) + "service_external_dependencies"
+                "uuid": e.id_external_service.pk,
+                "name": e.id_external_service.name
             })
 
         return {

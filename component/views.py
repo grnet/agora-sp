@@ -36,12 +36,21 @@ def get_service_components(request, search_type, version):
 
         serv_details = service_models.ServiceDetails.objects.get(id_service=serv.pk, version=version)
         serv_det_comp = component_models.ServiceDetailsComponent.objects.filter(service_id=serv.pk, service_details_id=serv_details.pk)
+        seen = set()
         service_components_implementation_detail = []
         for sdc in serv_det_comp:
-            service_components_implementation_detail.extend(component_models.ServiceComponentImplementationDetail.objects.filter(id=sdc.service_component_implementation_detail_id.pk))
+            service_components_implementation_detail.append(component_models.ServiceComponentImplementationDetail.objects.get(id=sdc.service_component_implementation_detail_id.pk))
+
+        service_components = []
+
+        for sc in service_components_implementation_detail:
+            if sc.component_id.pk in seen:
+                continue
+            service_components.append(sc.component_id.as_short(serv.pk, version))
+            seen.add(sc.component_id.pk)
 
         response["status"] = "200 OK"
-        response["data"] = [sc.component_id.as_json() for sc in service_components_implementation_detail]
+        response["data"] = service_components,
         response["info"] = "service components information"
 
     except service_models.Service.DoesNotExist:
@@ -208,6 +217,7 @@ def get_service_component_implementations(request, search_type, version, comp_uu
         serv_comp_impl_det = component_models.ServiceComponentImplementationDetail.objects.filter(component_id=comp_uuid)
 
         exists = False
+        scids = []
 
         for s in serv_comp_impl_det:
             serv_det_comp = component_models.ServiceDetailsComponent.objects.filter(service_id=serv.pk,
@@ -216,17 +226,17 @@ def get_service_component_implementations(request, search_type, version, comp_uu
 
             if serv_det_comp > 0:
                 exists = True
-                break
+                scids.append(s)
 
         if not exists:
             raise component_models.ServiceDetailsComponent.DoesNotExist
 
-        
 
-        service_component_impl = component_models.ServiceComponentImplementation.objects.filter(component_id=comp_uuid)
+        service_component_impl = [component_models.ServiceComponentImplementation.objects.get(id=s.component_implementation_id.pk) for s in scids]
+        # service_component_impl = component_models.ServiceComponentImplementation.objects.filter(component_id=comp_uuid)
 
         response["status"] = "200 OK"
-        response["data"] = [sci.as_json() for sci in service_component_impl]
+        response["data"] = [sci.as_short(serv.pk, version) for sci in service_component_impl]
         response["info"] = "service component implementation information"
 
     except service_models.Service.DoesNotExist:
