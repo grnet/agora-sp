@@ -101,7 +101,7 @@ class Service(models.Model):
 
         return {
             "uuid": str(self.pk),
-            "portfolio_view_link": {
+            "service_link": {
                 "related": {
                     "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.pk),
                     "meta":
@@ -121,7 +121,14 @@ class Service(models.Model):
             "competitors": self.competitors,
             "user_customers": self.get_user_customers(),
             "service_details": self.get_service_details(complete=True),
-            "service_owner": self.current_site_url() + "/v1/portfolio/services/" + str(self.pk) + "/service_owner",
+            "service_owner_link": {
+                "related": {
+                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.pk) + "/service_owner",
+                    "meta": {
+                        "desc": "Service owner link"
+                    }
+                }
+            },
             "dependencies": {
                 "count": len(service_dependencies),
                 "service_dependencies_links": {
@@ -138,10 +145,10 @@ class Service(models.Model):
             },
             "external": {
                 "count": len(external_services),
-                "external_services_links": {
+               "external_services_links": {
                     "related": {
                         "href": self.current_site_url() + "/v1/portfolio/services/" + str(
-                            self.pk) + "service_external_dependencies",
+                            self.pk) + "/service_external_dependencies",
                         "meta": {
                             "desc": "Links to external services that this service uses."
                         }}
@@ -162,7 +169,7 @@ class Service(models.Model):
 
         return {
             "uuid": self.id,
-            "portfolio_link": {
+            "service_link": {
                 "related": {
                     "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.pk),
                     "meta": {
@@ -180,17 +187,30 @@ class Service(models.Model):
             "service_details": self.get_service_details(),
             "competitors": self.competitors,
             "user_customers": self.get_user_customers(),
-            "id_service_owner": self.id_service_owner.pk,
-            "id_contact_information": self.id_contact_information.pk
+            "service_owner_link": {
+                "related": {
+                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.pk) + "/service_owner",
+                    "meta": {
+                        "desc": "Service owner link"
+                    }
+                }
+            },
+            "contact_informaion_link": {
+                "related": {
+                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.pk) + "/contact_information",
+                    "meta": {
+                        "desc": "Link contact information about this service"
+                    }
+                }}
         }
 
     def as_catalogue(self):
 
         return {
             "uuid": self.id,
-            "catalogue_link": {
+            "service_link": {
                 "related": {
-                    "href": self.current_site_url() + "/catalogue/services/" + str(self.pk),
+                    "href": self.current_site_url() + "/v1/catalogue/services/" + str(self.pk),
                     "meta": {
                         "desc": "Catalogue level details about this service."
                     }
@@ -265,16 +285,6 @@ class ServiceDetails(models.Model):
     def as_complete(self):
         return {
             "uuid": self.id,
-            "service_details_link": {
-                "related": {
-                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(
-                        self.id_service.pk) + "/service_details/" + str(self.version),
-                    "meta": {
-                        "desc": "Service details access url."
-                    }
-
-                }
-            },
             "version": self.version,
             "service_status": self.status,
             "features_current": self.features_current,

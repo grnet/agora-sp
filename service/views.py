@@ -616,7 +616,7 @@ def merge_service_components(service_details):
 
         data = service_details.as_complete()
 
-        if (len(components)>0):
+        if len(components) > 0:
             data["components"] = {
                 "count": len(components),
                 "service_components_links":{
