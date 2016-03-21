@@ -7,3 +7,5 @@ def generete_full_url(request):
     host_protocol = str(absolute_uri).replace(str(full_path),"")
 
     return str(host_protocol)
+
+

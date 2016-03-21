@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 import uuid
 from django.db import models
 from service.models import Service, ServiceDetails
+from django.contrib.sites.models import Site
 
 class ServiceOption(models.Model):
 
@@ -17,7 +18,7 @@ class ServiceOption(models.Model):
     def as_json(self, service_id, service_details_version):
         sla = SLA.objects.filter(service_option_id=self.pk)
         if len(sla) == 1:
-            sla_url = "v1/portfolio/services/" + str(service_id) + "/service_details/" + service_details_version \
+            sla_url = self.current_site_url()+"/v1/portfolio/services/" + str(service_id) + "/service_details/" + service_details_version \
                       + "/service_options/sla/" + str(sla[0].pk)
         else:
             sla_url = ""
@@ -68,7 +69,7 @@ class Parameter(models.Model):
             "name": self.name,
             "type": self.type,
             "expression": self.expression,
-            "url": "/v1/portfolio/services" + str(service_id) + "/service_details/" + service_details_version
+            "url": self.current_site_url()+"/v1/portfolio/services" + str(service_id) + "/service_details/" + service_details_version
                    + "/service_options/sla/" + str(sla_id) + "/sla_parameter/" + str(self.pk) + "/parameter"
         }
 

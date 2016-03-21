@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'rest_framework_swagger',
     'rest_framework',
     'component',
@@ -44,6 +45,9 @@ INSTALLED_APPS = [
     'owner',
     'service',
 ]
+
+
+SITE_ID = 3
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',

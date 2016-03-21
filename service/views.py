@@ -7,7 +7,7 @@ from options.models import ServiceDetailsOption
 from rest_framework.decorators import *
 from agora_utils import *
 import re
-
+from django.contrib.sites.models import Site
 
 @api_view(['GET'])
 def list_services(request,  type):
@@ -98,7 +98,7 @@ def get_service(request,  service_name_or_uuid):
 
     response = {}
 
-    host = str(generete_full_url(request))
+    # host = str(generete_full_url(request))
 
     service = None
 
@@ -167,7 +167,6 @@ def get_service(request,  service_name_or_uuid):
 
         response["status"] = "200 OK"
         response["data"] = service
-        response["data"]["links"]["related"]["href"] = host+ response["data"]["links"]["related"]["href"]
         response["info"] = "service information"
 
     return JsonResponse(response)
@@ -269,7 +268,7 @@ def get_all_service_details(request, service_name_or_uuid):
 
     complete = False
 
-    host = generete_full_url(request)
+    # host = generete_full_url(request)
 
 
     if detail_level == "complete":
@@ -318,8 +317,8 @@ def get_all_service_details(request, service_name_or_uuid):
 
     response["status"] = "200 OK"
 
-    for det in detail:
-        det["links"]["related"]["href"] = host +  det["links"]["related"]["href"]
+    # for det in detail:
+    #     det["links"]["related"]["href"] = host +  det["links"]["related"]["href"]
 
     response["data"] = detail
     response["info"] = "service detail information"
@@ -616,11 +615,17 @@ def merge_service_components(service_details):
         data = service_details.as_complete()
         data["components"] = {
             "count": len(components),
-            "service_components_url": "/v1/portfolio/services/" + str(service_details.id_service.pk) + "/service_details"
+            "service_components_url": current_site_url()+"/v1/portfolio/services/" + str(service_details.id_service.pk) + "/service_details"
                                      + service_details.version + "/service_components",
             "data": components
         }
 
         return data
 
+def current_site_url():
+        """Returns fully qualified URL (no trailing slash) for the current site."""
 
+        current_site = Site.objects.get_current()
+        url = 'http://%s' % (current_site.domain)
+
+        return url

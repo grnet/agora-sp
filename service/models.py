@@ -3,6 +3,8 @@ from __future__ import unicode_literals
 from django.db import models
 import uuid
 from owner.models import ServiceOwner, ContactInformation, Institution
+from django.contrib.sites.models import Site
+
 
 class Service(models.Model):
 
@@ -22,6 +24,14 @@ class Service(models.Model):
 
     def __unicode__(self):
         return str(self.name)
+
+    def current_site_url(self):
+        """Returns fully qualified URL (no trailing slash) for the current site."""
+
+        current_site = Site.objects.get_current()
+        url = 'http://%s' % (current_site.domain)
+
+        return url
 
     def get_service_details(self,complete=False):
 
@@ -68,7 +78,7 @@ class Service(models.Model):
             service_dependencies.append({
                 "uuid": service.id,
                 "name": service.name,
-                "url": "v1/portfolio/services/" + str(Service.objects.get(pk=d.id_service_two.pk).id)
+                "url": self.current_site_url()+"/v1/portfolio/services/" + str(Service.objects.get(pk=d.id_service_two.pk).id)
             })
 
         external = Service_ExternalService.objects.filter(id_service=self.pk)
@@ -83,7 +93,7 @@ class Service(models.Model):
 
         return {
             "uuid": str(self.pk),
-            "url": "/v1/portfolio/services/" + str(self.pk),
+            "url": self.current_site_url()+"/v1/portfolio/services/" + str(self.pk),
             "name": self.name,
             "description_external": self.description_external,
             "description_internal": self.description_internal,
@@ -95,12 +105,12 @@ class Service(models.Model):
             "competitors": self.competitors,
             "user_customers": self.get_user_customers(),
             "service_details": self.get_service_details(complete=True),
-            "service_owner": "/v1/portfolio/services/" + str(self.pk) + "/service_owner",
+            "service_owner": self.current_site_url()+"/v1/portfolio/services/" + str(self.pk) + "/service_owner",
             "dependencies": {
                 "count": len(service_dependencies),
                 "links": {
                     "related": {
-                        "href": "/v1/portfolio/services/" + str(self.pk) + "/service_dependencies",
+                        "href": self.current_site_url()+"/v1/portfolio/services/" + str(self.pk) + "/service_dependencies",
                         "meta": {
                                   "description": "A list of links to the service dependencies"
                          }
@@ -111,10 +121,10 @@ class Service(models.Model):
             },
             "external": {
                 "count": len(external_services),
-                "url": "/v1/portfolio/services/" + str(self.pk) + "service_external_dependencies",
+                "url": self.current_site_url()+"/v1/portfolio/services/" + str(self.pk) + "service_external_dependencies",
                 "external_services": external_services
             },
-            "contact_information": "/v1/portfolio/services/" + str(self.pk) + "/contact_information"
+            "contact_information": self.current_site_url()+"/v1/portfolio/services/" + str(self.pk) + "/contact_information"
         }
 
     def as_portfolio(self):
@@ -123,7 +133,7 @@ class Service(models.Model):
             "uuid": self.id,
             "links": {
                 "related": {
-                    "href": "/v1/portfolio/services/" + str(self.pk),
+                    "href": self.current_site_url()+"/v1/portfolio/services/" + str(self.pk),
                        "meta": {
                                   "desc": "Portfolio level details about this service."
                          }
@@ -149,7 +159,7 @@ class Service(models.Model):
             "uuid": self.id,
            "links": {
                 "related": {
-                    "href": "/catalogue/services/" + str(self.pk),
+                    "href": self.current_site_url()+"/catalogue/services/" + str(self.pk),
                        "meta": {
                                   "desc": "Catalogue level details about this service."
                          }
@@ -196,12 +206,20 @@ class ServiceDetails(models.Model):
         srv = Service.objects.get(pk=primary_key)
         return str(srv.name)+" "+str(self.version)
 
+    def current_site_url(self):
+        """Returns fully qualified URL (no trailing slash) for the current site."""
+
+        current_site = Site.objects.get_current()
+        url = 'http://%s' % (current_site.domain)
+
+        return url
+
     def as_short(self):
             return {
                 "uuid": self.id,
                  "links": {
                 "related": {
-                    "href": "/v1/portfolio/services/" + str(self.id_service.pk) + "/service_details/" + str(self.version),
+                    "href": self.current_site_url()+"/v1/portfolio/services/" + str(self.id_service.pk) + "/service_details/" + str(self.version),
                     "meta": {
                                   "desc": "Service details access url."
                          }
@@ -219,7 +237,7 @@ class ServiceDetails(models.Model):
             "uuid": self.id,
             "links": {
                 "related": {
-                    "href": "/v1/portfolio/services/" + str(self.id_service.pk) + "/service_details/" + str(self.version),
+                    "href": self.current_site_url()+"/v1/portfolio/services/" + str(self.id_service.pk) + "/service_details/" + str(self.version),
                     "meta": {
                                   "desc": "Service details access url."
                          }
