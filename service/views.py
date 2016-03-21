@@ -626,7 +626,7 @@ def merge_service_components(service_details):
                 "count": len(components),
                 "service_components_links":{
                     "related": {
-                        "href":  current_site_url()+"/v1/portfolio/services/" + str(service_details.id_service.pk) + "/service_details/"
+                        "href":  current_site_url()+"/v1/portfolio/services/" + str(service_details.id_service.name) + "/service_details/"
                                          + service_details.version + "/service_components",
                         "meta": {
                             "desc": "Link to the services components."

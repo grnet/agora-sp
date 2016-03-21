@@ -33,13 +33,16 @@ class ServiceComponent(models.Model):
         }
 
     def as_short(self, service_id, service_details_version):
+
+        service = Service.objects.get(id=service_id)
+
         return {
             "uuid": self.id,
             "name": self.name,
             "description": self.description,
             "component_implementation_links": {
                 "related": {
-                    "href": self.current_site_url()+"/v1/portfolio/services/" + str(service_id) +"/service_details/"
+                    "href": self.current_site_url()+"/v1/portfolio/services/" + str(service.name).replace(" ", "_")  +"/service_details/"
                                     + str(service_details_version) + "/service_components/" + str(self.pk)
                                             + "/service_component_implementations",
                     "meta": {
@@ -79,13 +82,16 @@ class ServiceComponentImplementation(models.Model):
         }
 
     def as_short(self, service_id, service_details_version):
+
+        service = Service.objects.get(id=service_id)
+
         return {
             "uuid": self.id,
             "name": self.name,
             "description": self.description,
             "component_implementation_details_links": {
                 "related": {
-                    "href":self.current_site_url()+"/v1/portfolio/services/" + str(service_id) +"/service_details/"
+                    "href":self.current_site_url()+"/v1/portfolio/services/" + str(service.name).replace(" ", "_") +"/service_details/"
                                     + str(service_details_version) + "/service_components/" + str(self.component_id.pk)
                                             + "/service_component_implementations/" + str(self.pk)
                                                     + "/service_component_implementation_detail",

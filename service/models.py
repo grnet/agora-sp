@@ -103,7 +103,7 @@ class Service(models.Model):
             "uuid": str(self.pk),
             "service_link": {
                 "related": {
-                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.pk),
+                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_"),
                     "meta":
                         {
                             "desc": "Portfolio level detail view"
@@ -123,7 +123,8 @@ class Service(models.Model):
             "service_details": self.get_service_details(complete=True),
             "service_owner_link": {
                 "related": {
-                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.pk) + "/service_owner",
+                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
+                            + "/service_owner",
                     "meta": {
                         "desc": "Service owner link"
                     }
@@ -133,8 +134,8 @@ class Service(models.Model):
                 "count": len(service_dependencies),
                 "service_dependencies_links": {
                     "related": {
-                        "href": self.current_site_url() + "/v1/portfolio/services/" + str(
-                            self.pk) + "/service_dependencies",
+                        "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
+                                + "/service_dependencies",
                         "meta": {
                             "desc": "A list of links to the service dependencies"
                         }
@@ -147,8 +148,7 @@ class Service(models.Model):
                 "count": len(external_services),
                "external_services_links": {
                     "related": {
-                        "href": self.current_site_url() + "/v1/portfolio/services/" + str(
-                            self.pk) + "/service_external_dependencies",
+                        "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/service_external_dependencies",
                         "meta": {
                             "desc": "Links to external services that this service uses."
                         }}
@@ -158,7 +158,7 @@ class Service(models.Model):
             },
             "contact_information_link": {
                 "related": {
-                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.pk) + "/contact_information",
+                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/contact_information",
                     "meta": {
                         "desc": "Link contact information about this service"
                     }
@@ -171,7 +171,7 @@ class Service(models.Model):
             "uuid": self.id,
             "service_link": {
                 "related": {
-                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.pk),
+                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_"),
                     "meta": {
                         "desc": "Portfolio level details about this service."
                     }
@@ -189,7 +189,7 @@ class Service(models.Model):
             "user_customers": self.get_user_customers(),
             "service_owner_link": {
                 "related": {
-                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.pk) + "/service_owner",
+                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/service_owner",
                     "meta": {
                         "desc": "Service owner link"
                     }
@@ -197,7 +197,7 @@ class Service(models.Model):
             },
             "contact_information_link": {
                 "related": {
-                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.pk) + "/contact_information",
+                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/contact_information",
                     "meta": {
                         "desc": "Link contact information about this service"
                     }
@@ -210,7 +210,7 @@ class Service(models.Model):
             "uuid": self.id,
             "service_link": {
                 "related": {
-                    "href": self.current_site_url() + "/v1/catalogue/services/" + str(self.pk),
+                    "href": self.current_site_url() + "/v1/catalogue/services/" + str(self.name).replace(" ", "_"),
                     "meta": {
                         "desc": "Catalogue level details about this service."
                     }
@@ -269,7 +269,7 @@ class ServiceDetails(models.Model):
             "service_details_link": {
                 "related": {
                     "href": self.current_site_url() + "/v1/portfolio/services/" + str(
-                        self.id_service.pk) + "/service_details/" + str(self.version),
+                        self.id_service.name).replace(" ", "_") + "/service_details/" + str(self.version),
                     "meta": {
                         "desc": "Service details access url."
                     }
