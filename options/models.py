@@ -25,10 +25,10 @@ class ServiceOption(models.Model):
         return url
 
 
-    def as_json(self, service_id, service_details_version):
+    def as_json(self, service_name, service_details_version):
         sla = SLA.objects.filter(service_option_id=self.pk)
         if len(sla) == 1:
-            sla_url = self.current_site_url()+"/v1/portfolio/services/" + str(service_id) + "/service_details/" + service_details_version \
+            sla_url = self.current_site_url()+"/v1/portfolio/services/" + service_name.replace(" ", "_") + "/service_details/" + service_details_version \
                       + "/service_options/sla/" + str(sla[0].pk)
         else:
             sla_url = ""
@@ -66,11 +66,11 @@ class SLA(models.Model):
         return url
 
 
-    def as_json(self, service_id, service_details_version):
+    def as_json(self, service_name, service_details_version):
         return {
             "id": self.id,
             "name": self.name,
-            "parameters": [sp.parameter_id.as_json(service_id, service_details_version, self.pk) for sp in SLAParameter.objects.
+            "parameters": [sp.parameter_id.as_json(service_name.replace(" ", "_"), service_details_version, self.pk) for sp in SLAParameter.objects.
                 filter(sla_id=self.pk, service_option_id=self.service_option_id.pk)]
         }
 
@@ -95,7 +95,7 @@ class Parameter(models.Model):
         return url
 
 
-    def as_json(self, service_id, service_details_version, sla_id):
+    def as_json(self, service_name, service_details_version, sla_id):
         return {
             "id": self.id,
             "name": self.name,
@@ -103,7 +103,7 @@ class Parameter(models.Model):
             "expression": self.expression,
             "SLA_parameter_link": {
                 "related": {
-                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(service_id) + "/service_details/" + service_details_version
+                    "href": self.current_site_url() + "/v1/portfolio/services/" + service_name.replace(" ", "_") + "/service_details/" + service_details_version
                    + "/service_options/sla/" + str(sla_id) + "/sla_parameter/" + str(self.pk) + "/parameter",
                     "meta": {
                             "desc": "A link to the SLA parameters."
@@ -144,6 +144,6 @@ class ServiceDetailsOption(models.Model):
         return str(self.service_id) + " " + str(self.service_details_id) + " " + str(self.service_options_id)
 
     def as_json(self):
-        return self.service_options_id.as_json(self.service_id.pk, self.service_details_id.version)
+        return self.service_options_id.as_json(self.service_id.name, self.service_details_id.version)
 
 

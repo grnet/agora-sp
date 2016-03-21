@@ -51,7 +51,7 @@ def get_service_sla(request, search_type, version, sla_uuid):
                                                                            service_options_id=sla.service_option_id.pk)
 
         response["status"] = "200 OK"
-        response["data"] = sla.as_json(serv.pk, version)
+        response["data"] = sla.as_json(serv.name, version)
         response["info"] = "service SLA information"
 
     except service_models.Service.DoesNotExist:
