@@ -142,7 +142,7 @@ TEMPLATE_DIRS = (
 SWAGGER_SETTINGS = {
     'exclude_namespaces': [],
     'api_version': '1.0',
-    'api_path': 'agora-dev.vi-seem.eu',
+    'api_path': 'localhost',
     'enabled_methods': [
         'get',
         'post',
@@ -167,7 +167,7 @@ SWAGGER_SETTINGS = {
     'is_superuser': False,
     'permission_denied_handler': None,
     'resource_access_handler': None,
-    'base_path':'agora-dev.vi-seem.eu/docs',
+    'base_path':'localhost/docs',
     'doc_expansion': 'list',
 
 }
