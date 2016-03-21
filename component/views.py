@@ -104,10 +104,24 @@ def get_service_component(request, search_type, version, comp_uuid):
             serv = service_models.Service.objects.get(id=uuid)
 
         serv_details = service_models.ServiceDetails.objects.get(id_service=serv.pk, version=version)
-        serv_comp_impl_det = component_models.ServiceComponentImplementationDetail.objects.get(component_id=comp_uuid)
-        serv_det_comp = component_models.ServiceDetailsComponent.objects.get(service_id=serv.pk,
-                                                                             service_details_id=serv_details.pk,
-                                                                             service_component_implementation_detail_id=serv_comp_impl_det.pk)
+        serv_comp_impl_det = component_models.ServiceComponentImplementationDetail.objects.filter(component_id=comp_uuid)
+
+        exists = False
+
+        for s in serv_comp_impl_det:
+            serv_det_comp = component_models.ServiceDetailsComponent.objects.filter(service_id=serv.pk,
+                                                        service_details_id=serv_details.pk,
+                                                            service_component_implementation_detail_id=s.pk).count()
+
+            if serv_det_comp > 0:
+                exists = True
+                break
+
+        if not exists:
+            raise component_models.ServiceDetailsComponent.DoesNotExist
+
+        # if len(serv_det_comp) <= 0:
+        #     raise component_models.ServiceDetailsComponent.DoesNotExist
 
         service_component = component_models.ServiceComponent.objects.get(id=comp_uuid)
 
@@ -191,10 +205,23 @@ def get_service_component_implementations(request, search_type, version, comp_uu
             serv = service_models.Service.objects.get(id=uuid)
 
         serv_details = service_models.ServiceDetails.objects.get(id_service=serv.pk, version=version)
-        serv_comp_impl_det = component_models.ServiceComponentImplementationDetail.objects.get(component_id=comp_uuid)
-        serv_det_comp = component_models.ServiceDetailsComponent.objects.get(service_id=serv.pk,
-                                                                             service_details_id=serv_details.pk,
-                                                                             service_component_implementation_detail_id=serv_comp_impl_det.pk)
+        serv_comp_impl_det = component_models.ServiceComponentImplementationDetail.objects.filter(component_id=comp_uuid)
+
+        exists = False
+
+        for s in serv_comp_impl_det:
+            serv_det_comp = component_models.ServiceDetailsComponent.objects.filter(service_id=serv.pk,
+                                                        service_details_id=serv_details.pk,
+                                                            service_component_implementation_detail_id=s.pk).count()
+
+            if serv_det_comp > 0:
+                exists = True
+                break
+
+        if not exists:
+            raise component_models.ServiceDetailsComponent.DoesNotExist
+
+        
 
         service_component_impl = component_models.ServiceComponentImplementation.objects.filter(component_id=comp_uuid)
 
