@@ -37,9 +37,15 @@ class ServiceComponent(models.Model):
             "uuid": self.id,
             "name": self.name,
             "description": self.description,
-            "component_implementation_url": self.current_site_url()+"/v1/portfolio/services/" + str(service_id) +"/service_details/"
+            "component_implementation_links": {
+                "related": {
+                    "href": self.current_site_url()+"/v1/portfolio/services/" + str(service_id) +"/service_details/"
                                     + str(service_details_version) + "/service_components/" + str(self.pk)
-                                            + "/service_component_implementations"
+                                            + "/service_component_implementations",
+                    "meta": {
+                        "desc": "Link to the concrete service component implementations."
+                    }
+                }}
         }
 
 
@@ -77,10 +83,15 @@ class ServiceComponentImplementation(models.Model):
             "uuid": self.id,
             "name": self.name,
             "description": self.description,
-            "component_implementation_details_url": self.current_site_url()+"/v1/portfolio/services/" + str(service_id) +"/service_details/"
+            "component_implementation_details_links": {
+                "related": {
+                    "href":self.current_site_url()+"/v1/portfolio/services/" + str(service_id) +"/service_details/"
                                     + str(service_details_version) + "/service_components/" + str(self.component_id.pk)
                                             + "/service_component_implementations/" + str(self.pk)
-                                                    + "/service_component_implementation_detail"
+                                                    + "/service_component_implementation_detail",
+                    "meta": {
+                        "desc": "Link to the concrete service component implementation details."
+                    }}}
         }
 
 

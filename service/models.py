@@ -149,11 +149,11 @@ class Service(models.Model):
 
                 "external_services": external_services
             },
-            "contact_informaion_links": {
+            "contact_informaion_link": {
                 "related": {
                     "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.pk) + "/contact_information",
                     "meta": {
-                        "desc": "Links contact information about this service"
+                        "desc": "Link contact information about this service"
                     }
                 }}
         }
@@ -162,7 +162,7 @@ class Service(models.Model):
 
         return {
             "uuid": self.id,
-            "links": {
+            "portfolio_link": {
                 "related": {
                     "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.pk),
                     "meta": {
@@ -188,7 +188,7 @@ class Service(models.Model):
 
         return {
             "uuid": self.id,
-            "links": {
+            "catalogue_link": {
                 "related": {
                     "href": self.current_site_url() + "/catalogue/services/" + str(self.pk),
                     "meta": {
@@ -246,7 +246,7 @@ class ServiceDetails(models.Model):
     def as_short(self):
         return {
             "uuid": self.id,
-            "links": {
+            "service_details_link": {
                 "related": {
                     "href": self.current_site_url() + "/v1/portfolio/services/" + str(
                         self.id_service.pk) + "/service_details/" + str(self.version),
@@ -265,7 +265,7 @@ class ServiceDetails(models.Model):
     def as_complete(self):
         return {
             "uuid": self.id,
-            "links": {
+            "service_details_link": {
                 "related": {
                     "href": self.current_site_url() + "/v1/portfolio/services/" + str(
                         self.id_service.pk) + "/service_details/" + str(self.version),
@@ -280,21 +280,69 @@ class ServiceDetails(models.Model):
             "features_current": self.features_current,
             "features_future": self.features_future,
             "usage_policy_has": self.usage_policy_has,
-            "usage_policy_url": self.usage_policy_url,
+            "usage_policy_link": {
+                "related": {
+                    "href":self.usage_policy_url,
+                    "meta": {
+                        "desc": "A link to the usage policy for this service."
+                    }
+                }},
             "user_documentation_has": self.user_documentation_has,
-            "user_documentation_url": self.user_documentation_url,
+            "user_documentation_link":  {
+                "related": {
+                    "href":self.user_documentation_url,
+                    "meta": {
+                        "desc": "A link to the user documentation for this service."
+                    }
+                }},
             "operations_documentation_has": self.operations_documentation_has,
-            "operations_documentation_url": self.operations_documentation_url,
+            "operations_documentation_link": {
+                "related": {
+                    "href":self.operations_documentation_url,
+                    "meta": {
+                        "desc": "A link to the operations documentation for this service."
+                    }
+                }},
             "monitoring_has": self.monitoring_has,
-            "monitoring_url": self.monitoring_url,
+            "monitoring_link": {
+                "related": {
+                    "href":self.monitoring_url,
+                    "meta": {
+                        "desc": "A link to the monitoring system for this service."
+                    }
+                }},
             "accounting_has": self.accounting_has,
-            "accounting_url": self.accounting_url,
+            "accounting_link":  {
+                "related": {
+                    "href":self.accounting_url,
+                    "meta": {
+                        "desc": "A link to the accounting system for this service."
+                    }
+                }},
             "business_continuity_plan_has": self.business_continuity_plan_has,
-            "business_continuity_plan_url": self.business_continuity_plan_url,
+            "business_continuity_plan_link": {
+                "related": {
+                    "href": self.business_continuity_plan_url,
+                    "meta": {
+                        "desc": "A link to the business continuity plan for this service."
+                    }
+                }},
             "disaster_recovery_plan_has": self.disaster_recovery_plan_has,
-            "disaster_recovery_plan_url": self.disaster_recovery_plan_url,
+            "disaster_recovery_plan_url": {
+                "related": {
+                    "href": self.disaster_recovery_plan_url,
+                    "meta": {
+                        "desc": "A link to the disaster recovery plan for this service."
+                    }
+                }},
             "decommissioning_procedure_has": self.decommissioning_procedure_has,
-            "decommissioning_procedure_url": self.decommissioning_procedure_url,
+            "decommissioning_procedure_url":  {
+                "related": {
+                    "href": self.decommissioning_procedure_url,
+                    "meta": {
+                        "desc": "A link to the decommissioning procedure for this service."
+                    }
+                }},
             "cost_to_run": self.cost_to_run,
             "cost_to_build": self.cost_to_build,
             "use_cases": self.use_cases
