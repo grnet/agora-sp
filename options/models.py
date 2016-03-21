@@ -15,6 +15,16 @@ class ServiceOption(models.Model):
     def __unicode__(self):
         return str(self.name)
 
+
+    def current_site_url(self):
+        """Returns fully qualified URL (no trailing slash) for the current site."""
+
+        current_site = Site.objects.get_current()
+        url = 'http://%s' % (current_site.domain+"/api")
+
+        return url
+
+
     def as_json(self, service_id, service_details_version):
         sla = SLA.objects.filter(service_option_id=self.pk)
         if len(sla) == 1:
@@ -47,6 +57,14 @@ class SLA(models.Model):
     def __unicode__(self):
         return str(self.name)
 
+    def current_site_url(self):
+        """Returns fully qualified URL (no trailing slash) for the current site."""
+
+        current_site = Site.objects.get_current()
+        url = 'http://%s' % (current_site.domain+"/api")
+
+        return url
+
 
     def as_json(self, service_id, service_details_version):
         return {
@@ -67,6 +85,14 @@ class Parameter(models.Model):
 
     def __unicode__(self):
         return str(self.name)
+
+    def current_site_url(self):
+        """Returns fully qualified URL (no trailing slash) for the current site."""
+
+        current_site = Site.objects.get_current()
+        url = 'http://%s' % (current_site.domain+"/api")
+
+        return url
 
 
     def as_json(self, service_id, service_details_version, sla_id):

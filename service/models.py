@@ -28,7 +28,7 @@ class Service(models.Model):
         """Returns fully qualified URL (no trailing slash) for the current site."""
 
         current_site = Site.objects.get_current()
-        url = 'http://%s' % (current_site.domain)
+        url = 'http://%s' % (current_site.domain+"/api")
 
         return url
 
@@ -239,7 +239,7 @@ class ServiceDetails(models.Model):
         """Returns fully qualified URL (no trailing slash) for the current site."""
 
         current_site = Site.objects.get_current()
-        url = 'http://%s' % (current_site.domain)
+        url = 'http://%s' % (current_site.domain+"/api")
 
         return url
 

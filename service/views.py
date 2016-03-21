@@ -92,13 +92,11 @@ def get_service(request,  service_name_or_uuid):
     Retrieves a specific service by name or uuid
 
     """
-    type = request.get_full_path().split("/")[2]
+    type = request.get_full_path().split("/")[3]
     params = request.GET.copy()
     detail_level = params.get('view')
 
     response = {}
-
-    # host = str(generete_full_url(request))
 
     service = None
 
@@ -117,6 +115,7 @@ def get_service(request,  service_name_or_uuid):
             serv = models.Service.objects.get(name=parsed_name)
         else:
             serv = models.Service.objects.get(id=uuid)
+
 
 
     except models.Service.DoesNotExist:
@@ -157,6 +156,9 @@ def get_service(request,  service_name_or_uuid):
             service = serv.as_catalogue()
         else:
             response["status"] = "404 Not Found"
+            response["errors"] = {
+            "detail": "No such detail level."
+        }
     else:
         response["status"] = "404 Not Found"
         response["errors"] = {
@@ -638,6 +640,6 @@ def current_site_url():
         """Returns fully qualified URL (no trailing slash) for the current site."""
 
         current_site = Site.objects.get_current()
-        url = 'http://%s' % (current_site.domain)
+        url = 'http://%s' % (current_site.domain+"/api")
 
         return url

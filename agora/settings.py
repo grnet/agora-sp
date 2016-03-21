@@ -146,7 +146,7 @@ TEMPLATE_DIRS = (
 SWAGGER_SETTINGS = {
     'exclude_namespaces': [],
     'api_version': '1.0',
-    'api_path': 'localhost',
+    'api_path': 'localhost/api',
     'enabled_methods': [
         'get',
         'post',
@@ -171,7 +171,7 @@ SWAGGER_SETTINGS = {
     'is_superuser': False,
     'permission_denied_handler': None,
     'resource_access_handler': None,
-    'base_path':'localhost/docs',
+    'base_path':'localhost/api/docs',
     'doc_expansion': 'list',
 
 }
