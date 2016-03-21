@@ -611,10 +611,15 @@ def merge_service_components(service_details):
 
         for s in serv_components_imp_det:
             scid = ServiceComponentImplementationDetail.objects.get(id=s.service_component_implementation_detail_id.pk)
-            components.append(scid.component_id.as_json())
+            components.append(scid.component_id.as_short(service_details.id_service.pk, service_details.version))
 
         data = service_details.as_complete()
-        data["components"] = components
+        data["components"] = {
+            "count": len(components),
+            "service_components_url": "/v1/portfolio/services/" + str(service_details.id_service.pk) + "/service_details"
+                                     + service_details.version + "/service_components",
+            "data": components
+        }
 
         return data
 

@@ -14,6 +14,21 @@ class ServiceOption(models.Model):
     def __unicode__(self):
         return str(self.name)
 
+    def as_json(self, service_id, service_details_version):
+        sla = SLA.objects.filter(service_option_id=self.pk)
+        if len(sla) == 1:
+            sla_url = "v1/portfolio/services/" + str(service_id) + "/service_details/" + service_details_version \
+                      + "/service_options/sla/" + str(sla[0].pk)
+        else:
+            sla_url = ""
+
+        return {
+            "uuid": self.id,
+            "name": self.name,
+            "description": self.description,
+            "pricing": self.pricing,
+            "sla_url": sla_url
+        }
 
 
 class SLA(models.Model):
@@ -26,10 +41,12 @@ class SLA(models.Model):
         return str(self.name)
 
 
-    def as_json(self):
+    def as_json(self, service_id, service_details_version):
         return {
             "id": self.id,
-            "name": self.name
+            "name": self.name,
+            "parameters": [sp.parameter_id.as_json(service_id, service_details_version, self.pk) for sp in SLAParameter.objects.
+                filter(sla_id=self.pk, service_option_id=self.service_option_id.pk)]
         }
 
 
@@ -45,7 +62,17 @@ class Parameter(models.Model):
         return str(self.name)
 
 
-    def as_json(self):
+    def as_json(self, service_id, service_details_version, sla_id):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "type": self.type,
+            "expression": self.expression,
+            "url": "/v1/portfolio/services" + str(service_id) + "/service_details/" + service_details_version
+                   + "/service_options/sla/" + str(sla_id) + "/sla_parameter/" + str(self.pk) + "/parameter"
+        }
+
+    def as_short(self):
         return {
             "id": self.id,
             "name": self.name,
@@ -64,11 +91,7 @@ class SLAParameter(models.Model):
     service_option_id = models.ForeignKey(ServiceOption)
 
     def __unicode__(self):
-        param = Parameter.objects.get(pk=self.parameter_id.pk)
-        sla = SLA.objects.get(pk=self.sla_id.pk)
-        service = ServiceOption.objects.get(pk=self.service_option_id.pk)
-        return str(param) + " " + str(sla) + " " + str(service)
-
+        return str(self.parameter_id) + " " + str(self.sla_id) + " " + str(self.service_option_id)
 
 
 class ServiceDetailsOption(models.Model):
@@ -80,27 +103,9 @@ class ServiceDetailsOption(models.Model):
     service_options_id = models.ForeignKey(ServiceOption)
 
     def __unicode__(self):
-        service = Service.objects.get(pk=self.service_id.pk)
-        service_details = ServiceDetails.objects.get(pk=self.service_details_id.pk)
-        service_options = ServiceOption.objects.get(pk=self.service_options_id.pk)
-        return str(service) + " " + str(service_details) + " " + str(service_options)
+        return str(self.service_id) + " " + str(self.service_details_id) + " " + str(self.service_options_id)
 
     def as_json(self):
-        service = Service.objects.get(pk=self.service_id.pk)
-        service_details = ServiceDetails.objects.get(pk=self.service_details_id.pk)
-        service_options = ServiceOption.objects.get(pk=self.service_options_id.pk)
-
-
-        return {
-            "service_id" : service.id,
-            "service_name": service.name,
-            "service_details_id": service_details.id,
-            "version": service_details.version,
-            "service_option_id": service_options.id,
-            "service_option_name": service_options.name,
-            "service_option_description": service_options.description,
-            "service_option_pricing": service_options.pricing,
-
-        }
+        return self.service_options_id.as_json(self.service_id.pk, self.service_details_id.version)
 
 
