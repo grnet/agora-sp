@@ -104,9 +104,10 @@ def get_service_component(request, search_type, version, comp_uuid):
             serv = service_models.Service.objects.get(id=uuid)
 
         serv_details = service_models.ServiceDetails.objects.get(id_service=serv.pk, version=version)
+        serv_comp_impl_det = component_models.ServiceComponentImplementationDetail.objects.get(component_id=comp_uuid)
         serv_det_comp = component_models.ServiceDetailsComponent.objects.get(service_id=serv.pk,
                                                                              service_details_id=serv_details.pk,
-                                                                             service_component_id=comp_uuid)
+                                                                             service_component_implementation_detail_id=serv_comp_impl_det.pk)
 
         service_component = component_models.ServiceComponent.objects.get(id=comp_uuid)
 
@@ -190,9 +191,10 @@ def get_service_component_implementations(request, search_type, version, comp_uu
             serv = service_models.Service.objects.get(id=uuid)
 
         serv_details = service_models.ServiceDetails.objects.get(id_service=serv.pk, version=version)
+        serv_comp_impl_det = component_models.ServiceComponentImplementationDetail.objects.get(component_id=comp_uuid)
         serv_det_comp = component_models.ServiceDetailsComponent.objects.get(service_id=serv.pk,
                                                                              service_details_id=serv_details.pk,
-                                                                             service_component_id=comp_uuid)
+                                                                             service_component_implementation_detail_id=serv_comp_impl_det.pk)
 
         service_component_impl = component_models.ServiceComponentImplementation.objects.filter(component_id=comp_uuid)
 
@@ -224,6 +226,12 @@ def get_service_component_implementations(request, search_type, version, comp_uu
             response["errors"] = {
                 "detail": "An invalid UUID was supplied"
             }
+
+    except component_models.ServiceComponentImplementationDetail.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "There requested service component for this service was not found"
+        }
 
     except component_models.ServiceComponent.DoesNotExist:
         response["status"] = "404 Not Found"
@@ -284,11 +292,13 @@ def get_service_component_implementation_detail(request, search_type, version, c
             serv = service_models.Service.objects.get(id=uuid)
 
         serv_details = service_models.ServiceDetails.objects.get(id_service=serv.pk, version=version)
-        serv_det_comp = component_models.ServiceDetailsComponent.objects.get(service_id=serv.pk,
-                                                                             service_details_id=serv_details.pk,
-                                                                             service_component_id=comp_uuid)
-
-        service_component = component_models.ServiceComponent.objects.get(id=comp_uuid)
+        # serv_comp_impl_det = component_models.ServiceComponentImplementationDetail.objects.get(component_id=comp_uuid,
+        #                                                                                        component_implementation_id=imp_uuid)
+        # serv_det_comp = component_models.ServiceDetailsComponent.objects.get(service_id=serv.pk,
+        #                                                                      service_details_id=serv_details.pk,
+        #                                                                      service_component_id=serv_comp_impl_det.pk)
+        #
+        # service_component = component_models.ServiceComponent.objects.get(id=comp_uuid)
 
 
         # service_component_impl = component_models.ServiceComponentImplementation.objects.filter(component_id=comp_uuid)
@@ -317,7 +327,7 @@ def get_service_component_implementation_detail(request, search_type, version, c
             "detail": "There are no implementations of the specified service component"
         }
 
-    except component_models.ServiceComponentImplementationDetail:
+    except component_models.ServiceComponentImplementationDetail.DoesNotExist:
         response["status"] = "404 Not Found"
         response["errors"] = {
             "detail": "The requested service component implementation details do not exist"

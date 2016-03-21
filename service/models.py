@@ -3,10 +3,9 @@ from __future__ import unicode_literals
 from django.db import models
 import uuid
 from owner.models import ServiceOwner, ContactInformation, Institution
-#from options.models import *
+# from options.models import *
 
 class Service(models.Model):
-
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
     name = models.CharField(max_length=255, default=None, blank=True)
@@ -23,8 +22,7 @@ class Service(models.Model):
     id_contact_information = models.ForeignKey(ContactInformation)
 
     def __unicode__(self):
-         return str(self.name)
-
+        return str(self.name)
 
     def get_service_details(self, complete=False):
 
@@ -38,41 +36,29 @@ class Service(models.Model):
 
         return services
 
-
     def get_service_details_by_version(self, version):
-
         return ServiceDetails.objects.get(id_service =self.pk, version=version)
-
 
     def get_user_customers(self):
         return [c.as_json() for c in UserCustomer.objects.filter(service_id=self.pk)]
 
-
     def get_service_owners(self):
         return ServiceOwner.objects.get(id=self.id_service_owner.pk).as_json()
 
-
     def get_service_institution(self):
-        return Institution.objects.get(pk=ServiceOwner.objects.get(id=self.id_service_owner.pk).id_service_owner.pk).as_json()
-
+        return Institution.objects.get(pk=ServiceOwner.objects.
+                            get(id=self.id_service_owner.pk).id_service_owner.pk).as_json()
 
     def get_service_dependencies(self):
-
-        dependencies = [Service.objects.get(id=dependency.id_service_two_id).as_catalogue() for dependency in Service_DependsOn_Service.objects.filter(id_service_one=self.id)]
-
-        return dependencies
-
+        return [Service.objects.get(id=dependency.id_service_two_id).as_catalogue()
+                for dependency in Service_DependsOn_Service.objects.filter(id_service_one=self.id)]
 
     def get_service_external_dependencies(self):
-
-        ext_dependencies = [ExternalService.objects.get(id=dependency.id_external_service.pk).as_json() for dependency in Service_ExternalService.objects.filter(id_service=self.id)]
-
-        return ext_dependencies
-
+        return [ExternalService.objects.get(id=dependency.id_external_service.pk).as_json()
+                for dependency in Service_ExternalService.objects.filter(id_service=self.id)]
 
     def get_service_contact_information(self):
         return ContactInformation.objects.get(id=self.id_contact_information.pk).as_json()
-
 
     def as_complete_portfolio(self):
         dependencies = Service_DependsOn_Service.objects.filter(id_service_one=self.pk)
@@ -80,7 +66,17 @@ class Service(models.Model):
 
         for d in dependencies:
             service_dependencies.append({
-                "uuid": Service.objects.get(pk=d.id_service_two.pk).id
+                "uuid": Service.objects.get(pk=d.id_service_two.pk).id,
+                "url": "v1/portfolio/services/" + str(Service.objects.get(pk=d.id_service_two.pk).id)
+            })
+
+        external = Service_ExternalService.objects.filter(id_service=self.pk)
+        external_services = []
+
+        for e in external:
+            external_services.append({
+                "uuid": e.pk,
+                "url": "v1/portfolio/services/" + str(e.pk) + "service_external_dependencies"
             })
 
         return {
@@ -97,17 +93,21 @@ class Service(models.Model):
             "competitors": self.competitors,
             "user_customers": self.get_user_customers(),
             "service_details": self.get_service_details(complete=True),
-            "service_owner": ServiceOwner.objects.get(id=self.id_service_owner.pk).as_json(),
+            "service_owner": "v1/portfolio/services/" + str(self.pk) + "/service_owner",
             "dependencies": {
                 "count": len(service_dependencies),
+                "url": "v1/portfolio/services/" + str(self.pk) + "/service_dependencies",
                 "services": service_dependencies
             },
-            "contact_information": ContactInformation.objects.get(id=self.id_contact_information.pk).as_json()
+            "external": {
+                "count": len(external_services),
+                "url": "v1/portfolio/services/" + str(self.pk) + "service_external_dependencies",
+                "external_services": external_services
+            },
+            "contact_information": "v1/portfolio/services/" + str(self.pk) + "/contact_information"
         }
 
-
     def as_portfolio(self):
-        # return json.loads(serializers.serialize("json", [self, ]))[0]
 
         return {
             "uuid": self.id,
@@ -126,7 +126,6 @@ class Service(models.Model):
             "id_service_owner": self.id_service_owner.pk,
             "id_contact_information": self.id_contact_information.pk
         }
-
 
     def as_catalogue(self):
 
@@ -185,7 +184,6 @@ class ServiceDetails(models.Model):
                 "features_future": self.features_future
             }
 
-
     def as_complete(self):
         return {
             "uuid": self.id,
@@ -215,10 +213,9 @@ class ServiceDetails(models.Model):
             "use_cases": self.use_cases
         }
 
-
     def as_json(self):
         return {
-            "uuid" : self.id,
+            "uuid": self.id,
             "version": self.version,
             "service_status": self.status,
             "features_current": self.features_current,
@@ -237,7 +234,6 @@ class ExternalService(models.Model):
     def __unicode__(self):
         return str(self.name)
 
-
     def as_json(self):
         return {
             "id": self.id,
@@ -254,7 +250,6 @@ class Service_DependsOn_Service(models.Model):
 
     id_service_one = models.ForeignKey(Service, related_name='service_one')
     id_service_two = models.ForeignKey(Service, related_name='service_two')
-
 
     def __unicode__(self):
 
@@ -285,6 +280,12 @@ class Service_ExternalService(models.Model):
         srv2 = ExternalService.objects.get(pk=external_primary_key_one)
 
         return str(srv1.name) + " " +str(srv2.name)
+
+    def as_json(self):
+        return {
+            "service": self.id_service.pk,
+            "external_service": self.id_external_service.pk
+        }
 
 
 class UserCustomer(models.Model):
