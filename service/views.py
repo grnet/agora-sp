@@ -582,7 +582,7 @@ def merge_service_components(service_details):
             "count": len(options),
             "service_options_links": {
                 "related": {
-                    "href": current_site_url() + "/v1/portfolio/services/" + str(service_details.id_service.pk)
+                    "href": current_site_url() + "/v1/portfolio/services/" + str(service_details.id_service.name)
                             + "/service_details/" + service_details.version + "/service_options",
                     "meta": {
                         "desc": "Link to the service options"
