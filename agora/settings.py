@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'secret-key'
 
 # SECURITY WARNING don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'agora-dev.vi-seem.eu', 'argo-dev.aris.grnet.gr' ]
 
@@ -47,7 +47,7 @@ INSTALLED_APPS = [
 ]
 
 
-SITE_ID = 1
+SITE_ID = 2
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -146,7 +146,7 @@ TEMPLATE_DIRS = (
 SWAGGER_SETTINGS = {
     'exclude_namespaces': [],
     'api_version': '1.0',
-    'api_path': 'localhost/api',
+    'api_path': str(ALLOWED_HOSTS[SITE_ID])+'/api',
     'enabled_methods': [
         'get',
         'post',
@@ -154,7 +154,7 @@ SWAGGER_SETTINGS = {
         'patch',
         'delete'
     ],
-    'host': 'localhost',
+    'host': 'str(ALLOWED_HOSTS[SITE_ID])',
      'info': {
         'contact': 'admin@agora.com',
         'description': 'This is a demonstration of the API documentation engine. '
@@ -171,7 +171,7 @@ SWAGGER_SETTINGS = {
     'is_superuser': False,
     'permission_denied_handler': None,
     'resource_access_handler': None,
-    'base_path':'localhost/api/docs',
+    'base_path':str(ALLOWED_HOSTS[SITE_ID])+'/api/docs',
     'doc_expansion': 'list',
 
 }
