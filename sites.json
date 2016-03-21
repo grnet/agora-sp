@@ -1,0 +1,1 @@
+[{"model": "sites.site", "pk": 1, "fields": {"domain": "localhost", "name": "Local development url"}}, {"model": "sites.site", "pk": 2, "fields": {"domain": "agora-dev.vi-seem.eu", "name": "vi-seem domain"}}, {"model": "sites.site", "pk": 3, "fields": {"domain": "argo-dev.aris.grnet.gr", "name": "grnet domain"}}]
