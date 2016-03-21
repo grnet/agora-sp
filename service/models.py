@@ -7,7 +7,6 @@ from django.contrib.sites.models import Site
 
 
 class Service(models.Model):
-
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
     name = models.CharField(max_length=255, default=None, blank=True)
     description_external = models.TextField(default=None, blank=True)
@@ -33,10 +32,10 @@ class Service(models.Model):
 
         return url
 
-    def get_service_details(self,complete=False):
+    def get_service_details(self, complete=False):
 
         services = []
-        servs = ServiceDetails.objects.filter(id_service =self.pk)
+        servs = ServiceDetails.objects.filter(id_service=self.pk)
         for s in servs:
             if complete:
                 services.append(s.as_complete())
@@ -46,7 +45,7 @@ class Service(models.Model):
         return services
 
     def get_service_details_by_version(self, version):
-        return ServiceDetails.objects.get(id_service =self.pk, version=version)
+        return ServiceDetails.objects.get(id_service=self.pk, version=version)
 
     def get_user_customers(self):
         return [c.as_json() for c in UserCustomer.objects.filter(service_id=self.pk)]
@@ -56,7 +55,7 @@ class Service(models.Model):
 
     def get_service_institution(self):
         return Institution.objects.get(pk=ServiceOwner.objects.
-                            get(id=self.id_service_owner.pk).id_service_owner.pk).as_json()
+                                       get(id=self.id_service_owner.pk).id_service_owner.pk).as_json()
 
     def get_service_dependencies(self):
         return [Service.objects.get(id=dependency.id_service_two_id).as_catalogue()
@@ -78,7 +77,16 @@ class Service(models.Model):
             service_dependencies.append({
                 "uuid": service.id,
                 "name": service.name,
-                "url": self.current_site_url()+"/v1/portfolio/services/" + str(Service.objects.get(pk=d.id_service_two.pk).id)
+                "service_dependencies_links": {
+                    "related": {
+                        "href": self.current_site_url() + "/v1/portfolio/services/" + str(
+                            Service.objects.get(pk=d.id_service_two.pk).id)
+                    },
+                    "meta": {
+                        "desc": "A list of service dependencies"
+                    }
+
+                }
             })
 
         external = Service_ExternalService.objects.filter(id_service=self.pk)
@@ -93,7 +101,15 @@ class Service(models.Model):
 
         return {
             "uuid": str(self.pk),
-            "url": self.current_site_url()+"/v1/portfolio/services/" + str(self.pk),
+            "portfolio_view_link": {
+                "related": {
+                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.pk),
+                    "meta":
+                        {
+                            "desc": "Portfolio level detail view"
+                        }
+                }
+            },
             "name": self.name,
             "description_external": self.description_external,
             "description_internal": self.description_internal,
@@ -105,15 +121,16 @@ class Service(models.Model):
             "competitors": self.competitors,
             "user_customers": self.get_user_customers(),
             "service_details": self.get_service_details(complete=True),
-            "service_owner": self.current_site_url()+"/v1/portfolio/services/" + str(self.pk) + "/service_owner",
+            "service_owner": self.current_site_url() + "/v1/portfolio/services/" + str(self.pk) + "/service_owner",
             "dependencies": {
                 "count": len(service_dependencies),
-                "links": {
+                "service_dependencies_links": {
                     "related": {
-                        "href": self.current_site_url()+"/v1/portfolio/services/" + str(self.pk) + "/service_dependencies",
+                        "href": self.current_site_url() + "/v1/portfolio/services/" + str(
+                            self.pk) + "/service_dependencies",
                         "meta": {
-                                  "description": "A list of links to the service dependencies"
-                         }
+                            "desc": "A list of links to the service dependencies"
+                        }
                     }
 
                 },
@@ -121,10 +138,24 @@ class Service(models.Model):
             },
             "external": {
                 "count": len(external_services),
-                "url": self.current_site_url()+"/v1/portfolio/services/" + str(self.pk) + "service_external_dependencies",
+                "external_services_links": {
+                    "related": {
+                        "href": self.current_site_url() + "/v1/portfolio/services/" + str(
+                            self.pk) + "service_external_dependencies",
+                        "meta": {
+                            "desc": "Links to external services that this service uses."
+                        }}
+                },
+
                 "external_services": external_services
             },
-            "contact_information": self.current_site_url()+"/v1/portfolio/services/" + str(self.pk) + "/contact_information"
+            "contact_informaion_links": {
+                "related": {
+                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.pk) + "/contact_information",
+                    "meta": {
+                        "desc": "Links contact information about this service"
+                    }
+                }}
         }
 
     def as_portfolio(self):
@@ -133,11 +164,11 @@ class Service(models.Model):
             "uuid": self.id,
             "links": {
                 "related": {
-                    "href": self.current_site_url()+"/v1/portfolio/services/" + str(self.pk),
-                       "meta": {
-                                  "desc": "Portfolio level details about this service."
-                         }
-                       }},
+                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.pk),
+                    "meta": {
+                        "desc": "Portfolio level details about this service."
+                    }
+                }},
             "name": self.name,
             "description_external": self.description_external,
             "description_internal": self.description_internal,
@@ -157,13 +188,13 @@ class Service(models.Model):
 
         return {
             "uuid": self.id,
-           "links": {
+            "links": {
                 "related": {
-                    "href": self.current_site_url()+"/catalogue/services/" + str(self.pk),
-                       "meta": {
-                                  "desc": "Catalogue level details about this service."
-                         }
-                       }},
+                    "href": self.current_site_url() + "/catalogue/services/" + str(self.pk),
+                    "meta": {
+                        "desc": "Catalogue level details about this service."
+                    }
+                }},
             "name": self.name,
             "description_external": self.description_external,
             "service_area": self.service_area,
@@ -173,7 +204,6 @@ class Service(models.Model):
 
 
 class ServiceDetails(models.Model):
-
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
     id_service = models.ForeignKey(Service)
     version = models.CharField(max_length=255, default=None, blank=True)
@@ -201,10 +231,9 @@ class ServiceDetails(models.Model):
     use_cases = models.CharField(max_length=255, default=None, blank=True)
 
     def __unicode__(self):
-
         primary_key = self.id_service.pk
         srv = Service.objects.get(pk=primary_key)
-        return str(srv.name)+" "+str(self.version)
+        return str(srv.name) + " " + str(self.version)
 
     def current_site_url(self):
         """Returns fully qualified URL (no trailing slash) for the current site."""
@@ -215,35 +244,37 @@ class ServiceDetails(models.Model):
         return url
 
     def as_short(self):
-            return {
-                "uuid": self.id,
-                 "links": {
+        return {
+            "uuid": self.id,
+            "links": {
                 "related": {
-                    "href": self.current_site_url()+"/v1/portfolio/services/" + str(self.id_service.pk) + "/service_details/" + str(self.version),
+                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(
+                        self.id_service.pk) + "/service_details/" + str(self.version),
                     "meta": {
-                                  "desc": "Service details access url."
-                         }
-
+                        "desc": "Service details access url."
                     }
-                 },
-                "version": self.version,
-                "service_status": self.status,
-                "features_current": self.features_current,
-                "features_future": self.features_future
-            }
+
+                }
+            },
+            "version": self.version,
+            "service_status": self.status,
+            "features_current": self.features_current,
+            "features_future": self.features_future
+        }
 
     def as_complete(self):
         return {
             "uuid": self.id,
             "links": {
                 "related": {
-                    "href": self.current_site_url()+"/v1/portfolio/services/" + str(self.id_service.pk) + "/service_details/" + str(self.version),
+                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(
+                        self.id_service.pk) + "/service_details/" + str(self.version),
                     "meta": {
-                                  "desc": "Service details access url."
-                         }
-
+                        "desc": "Service details access url."
                     }
-                 },
+
+                }
+            },
             "version": self.version,
             "service_status": self.status,
             "features_current": self.features_current,
@@ -280,7 +311,6 @@ class ServiceDetails(models.Model):
 
 
 class ExternalService(models.Model):
-
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, blank=True)
     description = models.TextField(default=None, blank=True)
@@ -301,34 +331,30 @@ class ExternalService(models.Model):
 
 
 class Service_DependsOn_Service(models.Model):
-
     class Meta:
-          unique_together = (('id_service_one', 'id_service_two'),)
+        unique_together = (('id_service_one', 'id_service_two'),)
 
     id_service_one = models.ForeignKey(Service, related_name='service_one')
     id_service_two = models.ForeignKey(Service, related_name='service_two')
 
     def __unicode__(self):
-
         primary_key_one = self.id_service_one.pk
         primary_key_two = self.id_service_two.pk
 
         srv1 = Service.objects.get(pk=primary_key_one)
         srv2 = Service.objects.get(pk=primary_key_two)
 
-        return str(srv1.name) + " " +str(srv2.name)
+        return str(srv1.name) + " " + str(srv2.name)
 
 
 class Service_ExternalService(models.Model):
-
     class Meta:
-          unique_together = (('id_service', 'id_external_service'),)
+        unique_together = (('id_service', 'id_external_service'),)
 
     id_service = models.ForeignKey(Service)
     id_external_service = models.ForeignKey(ExternalService)
 
     def __unicode__(self):
-
         primary_key_one = self.id_service.pk
 
         external_primary_key_one = self.id_external_service.pk
@@ -336,7 +362,7 @@ class Service_ExternalService(models.Model):
         srv1 = Service.objects.get(pk=primary_key_one)
         srv2 = ExternalService.objects.get(pk=external_primary_key_one)
 
-        return str(srv1.name) + " " +str(srv2.name)
+        return str(srv1.name) + " " + str(srv2.name)
 
     def as_json(self):
         return {
@@ -360,7 +386,6 @@ class UserCustomer(models.Model):
 
     def __unicode__(self):
         return str(self.name) + " as " + str(self.role) + " for " + str(self.service_id)
-
 
     def as_json(self):
         return {
