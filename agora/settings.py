@@ -25,7 +25,7 @@ SECRET_KEY = 'secret-key'
 # SECURITY WARNING don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'agora-dev.vi-seem.eu', 'argo-dev.aris.grnet.gr' ]
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'agora-dev.vi-seem.eu', 'agora-dev.aris.grnet.gr' ]
 
 
 # Application definition
@@ -47,7 +47,7 @@ INSTALLED_APPS = [
 ]
 
 
-SITE_ID = 2
+SITE_ID = 3
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
