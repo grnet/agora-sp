@@ -25,11 +25,17 @@ class ServiceComponent(models.Model):
 
 
     def as_json(self):
+        component_implementations = [sci.as_json() for sci in ServiceComponentImplementation.objects.
+            filter(component_id=self.pk)]
+
         return {
             "uuid": self.id,
             "name": self.name,
             "description": self.description,
-            "component_implementations": [sci.as_json() for sci in ServiceComponentImplementation.objects.filter(component_id=self.pk)]
+            "component_implementations": {
+                "count": len(component_implementations),
+                "component_implementations_list": component_implementations
+            }
         }
 
     def as_short(self, service_id, service_details_version):
@@ -40,7 +46,7 @@ class ServiceComponent(models.Model):
             "uuid": self.id,
             "name": self.name,
             "description": self.description,
-            "component_implementation_links": {
+            "component_implementation_link": {
                 "related": {
                     "href": self.current_site_url()+"/v1/portfolio/services/" + str(service.name).replace(" ", "_")  +"/service_details/"
                                     + str(service_details_version) + "/service_components/" + str(self.pk)
@@ -73,12 +79,17 @@ class ServiceComponentImplementation(models.Model):
 
 
     def as_json(self):
+        component_implementation_details = [scid.as_json() for scid in ServiceComponentImplementationDetail.objects.
+                                filter(component_id=self.component_id.pk, component_implementation_id=self.pk)]
+
         return {
             "uuid": self.id,
             "name": self.name,
             "description": self.description,
-            "component_implementation_details": [scid.as_json() for scid in ServiceComponentImplementationDetail.objects.
-                                filter(component_id=self.component_id.pk, component_implementation_id=self.pk)]
+            "component_implementation_details": {
+                "count": len(component_implementation_details),
+                "component_implementation_details_list": component_implementation_details
+            }
         }
 
     def as_short(self, service_id, service_details_version):
@@ -89,7 +100,7 @@ class ServiceComponentImplementation(models.Model):
             "uuid": self.id,
             "name": self.name,
             "description": self.description,
-            "component_implementation_details_links": {
+            "component_implementation_details_link": {
                 "related": {
                     "href":self.current_site_url()+"/v1/portfolio/services/" + str(service.name).replace(" ", "_") +"/service_details/"
                                     + str(service_details_version) + "/service_components/" + str(self.component_id.pk)

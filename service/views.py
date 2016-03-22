@@ -322,7 +322,10 @@ def get_all_service_details(request, service_name_or_uuid):
     # for det in detail:
     #     det["links"]["related"]["href"] = host +  det["links"]["related"]["href"]
 
-    response["data"] = detail
+    response["data"] = {
+        "count": len(detail),
+        "service_details": detail
+    }
     response["info"] = "service detail information"
     return JsonResponse(response)
 
@@ -556,9 +559,9 @@ def merge_service_components(service_details):
         data = service_details.as_complete()
 
         if len(components) > 0:
-            data["components"] = {
+            data["service_components"] = {
                 "count": len(components),
-                "service_components_links":{
+                "service_components_link":{
                     "related": {
                         "href":  current_site_url()+"/v1/portfolio/services/" + str(service_details.id_service.name) + "/service_details/"
                                          + service_details.version + "/service_components",
@@ -566,7 +569,7 @@ def merge_service_components(service_details):
                             "desc": "Link to the services components."
                         }
                     }},
-                "data": components
+                "service_components_list": components
             }
         else:
                data["components"] = {
@@ -578,9 +581,9 @@ def merge_service_components(service_details):
                                                            service_details_id=service_details.pk)
 
         options = [so.as_json() for so in serv_options]
-        data["options"] = {
+        data["service_options"] = {
             "count": len(options),
-            "service_options_links": {
+            "service_options_link": {
                 "related": {
                     "href": current_site_url() + "/v1/portfolio/services/" + service_details.id_service.name.replace(" ", "_")
                             + "/service_details/" + service_details.version + "/service_options",
@@ -589,7 +592,7 @@ def merge_service_components(service_details):
                     }
                 }
             },
-            "data": options
+            "service_options_list": options
         }
 
 

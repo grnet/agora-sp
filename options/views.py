@@ -252,7 +252,7 @@ def get_service_options(request, search_type, version):
 
 
     response["status"] = "200 OK"
-    response["data"] ={"count": len(options), "services": [ option.as_json() for option in options ] }
+    response["data"] = {"count": len(options), "service_options": [ option.as_json() for option in options ] }
  
     response["info"] = "options for service detail information"
     return JsonResponse(response)

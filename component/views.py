@@ -50,7 +50,10 @@ def get_service_components(request, search_type, version):
             seen.add(sc.component_id.pk)
 
         response["status"] = "200 OK"
-        response["data"] = service_components,
+        response["data"] = {
+            "count": len(service_components),
+            "service_components": service_components
+        }
         response["info"] = "service components information"
 
     except service_models.Service.DoesNotExist:
@@ -235,8 +238,13 @@ def get_service_component_implementations(request, search_type, version, comp_uu
         service_component_impl = [component_models.ServiceComponentImplementation.objects.get(id=s.component_implementation_id.pk) for s in scids]
         # service_component_impl = component_models.ServiceComponentImplementation.objects.filter(component_id=comp_uuid)
 
+        service_comp_impl_list = [sci.as_short(serv.pk, version) for sci in service_component_impl]
+
         response["status"] = "200 OK"
-        response["data"] = [sci.as_short(serv.pk, version) for sci in service_component_impl]
+        response["data"] = {
+            "count": len(service_comp_impl_list),
+            "service_component_implementations": service_comp_impl_list
+        }
         response["info"] = "service component implementation information"
 
     except service_models.Service.DoesNotExist:
@@ -342,9 +350,14 @@ def get_service_component_implementation_detail(request, search_type, version, c
         service_component_impl_detail = component_models.ServiceComponentImplementationDetail\
             .objects.filter(component_id=comp_uuid, component_implementation_id=imp_uuid)
 
+        service_component_impl_detail_list = [scid.as_json() for scid in service_component_impl_detail]
+
         response["status"] = "200 OK"
-        response["data"] = [scid.as_json() for scid in service_component_impl_detail]
-        response["info"] = "service component implementation detail"
+        response["data"] = {
+            "count": len(service_component_impl_detail_list),
+            "service_component_implementation_details": service_component_impl_detail_list
+        }
+        response["info"] = "service component implementation details"
 
     except service_models.Service.DoesNotExist:
         response["status"] = "404 Not Found"

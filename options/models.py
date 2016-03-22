@@ -67,11 +67,15 @@ class SLA(models.Model):
 
 
     def as_json(self, service_name, service_details_version):
+        parameters = [sp.parameter_id.as_json(service_name.replace(" ", "_"), service_details_version, self.pk) for sp in SLAParameter.objects.
+                filter(sla_id=self.pk, service_option_id=self.service_option_id.pk)]
         return {
             "id": self.id,
             "name": self.name,
-            "parameters": [sp.parameter_id.as_json(service_name.replace(" ", "_"), service_details_version, self.pk) for sp in SLAParameter.objects.
-                filter(sla_id=self.pk, service_option_id=self.service_option_id.pk)]
+            "parameters": {
+                "count": len(parameters),
+                "parameters_list": parameters
+            }
         }
 
 

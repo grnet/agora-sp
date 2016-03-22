@@ -57,9 +57,9 @@ class Service(models.Model):
         return Institution.objects.get(pk=ServiceOwner.objects.
                                        get(id=self.id_service_owner.pk).id_service_owner.pk).as_json()
 
-    def get_service_dependencies(self):
-        return [Service.objects.get(id=dependency.id_service_two_id).as_catalogue()
-                for dependency in Service_DependsOn_Service.objects.filter(id_service_one=self.id)]
+    # def get_service_dependencies(self):
+        # return [Service.objects.get(id=dependency.id_service_two_id).as_catalogue()
+        #         for dependency in Service_DependsOn_Service.objects.filter(id_service_one=self.id)]
 
     def get_service_external_dependencies(self):
         return [ExternalService.objects.get(id=dependency.id_external_service.pk).as_json()
@@ -68,7 +68,7 @@ class Service(models.Model):
     def get_service_contact_information(self):
         return ContactInformation.objects.get(id=self.id_contact_information.pk).as_json()
 
-    def as_complete_portfolio(self):
+    def get_service_dependencies(self):
         dependencies = Service_DependsOn_Service.objects.filter(id_service_one=self.pk)
         service_dependencies = []
 
@@ -77,7 +77,7 @@ class Service(models.Model):
             service_dependencies.append({
                 "uuid": service.id,
                 "name": service.name,
-                "service_dependencies_links": {
+                "service_dependencies_link": {
                     "related": {
                         "href": self.current_site_url() + "/v1/portfolio/services/" + str(
                             Service.objects.get(pk=d.id_service_two.pk).id)
@@ -89,6 +89,11 @@ class Service(models.Model):
                 }
             })
 
+        return service_dependencies
+
+    def as_complete_portfolio(self):
+        service_dependencies = self.get_service_dependencies()
+
         external = Service_ExternalService.objects.filter(id_service=self.pk)
         external_services = []
 
@@ -98,6 +103,9 @@ class Service(models.Model):
                 "name": e.id_external_service.name
 
             })
+
+        users_customers = self.get_user_customers()
+        service_details = self.get_service_details(complete=True)
 
         return {
             "uuid": str(self.pk),
@@ -119,8 +127,14 @@ class Service(models.Model):
             "value_to_customer": self.value_to_customer,
             "risks": self.risks,
             "competitors": self.competitors,
-            "user_customers": self.get_user_customers(),
-            "service_details": self.get_service_details(complete=True),
+            "user_customers": {
+                "count": len(users_customers),
+                "user_customers_list": users_customers
+            },
+            "service_details": {
+                "count": len(service_details),
+                "service_details_list": service_details
+            },
             "service_owner_link": {
                 "related": {
                     "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
@@ -132,7 +146,7 @@ class Service(models.Model):
             },
             "dependencies": {
                 "count": len(service_dependencies),
-                "service_dependencies_links": {
+                "service_dependencies_link": {
                     "related": {
                         "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
                                 + "/service_dependencies",
@@ -146,7 +160,7 @@ class Service(models.Model):
             },
             "external": {
                 "count": len(external_services),
-               "external_services_links": {
+               "external_services_link": {
                     "related": {
                         "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/service_external_dependencies",
                         "meta": {
@@ -167,6 +181,9 @@ class Service(models.Model):
 
     def as_portfolio(self):
 
+        users_customers = self.get_user_customers()
+        service_details = self.get_service_details(complete=True)
+
         return {
             "uuid": self.id,
             "service_link": {
@@ -184,9 +201,15 @@ class Service(models.Model):
             "funders_for_service": self.funders_for_service,
             "value_to_customer": self.value_to_customer,
             "risks": self.risks,
-            "service_details": self.get_service_details(),
+            "service_details": {
+                "count": len(service_details),
+                "service_details_list": service_details
+            },
             "competitors": self.competitors,
-            "user_customers": self.get_user_customers(),
+            "user_customers": {
+                "count": len(users_customers),
+                "user_customers_list": users_customers
+            },
             "service_owner_link": {
                 "related": {
                     "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/service_owner",
@@ -206,6 +229,8 @@ class Service(models.Model):
 
     def as_catalogue(self):
 
+        service_details = self.get_service_details(complete=True)
+
         return {
             "uuid": self.id,
             "service_link": {
@@ -219,7 +244,10 @@ class Service(models.Model):
             "description_external": self.description_external,
             "service_area": self.service_area,
             "value_to_customer": self.value_to_customer,
-            "service_details": self.get_service_details()
+            "service_details": {
+                "count": len(service_details),
+                "service_details_list": service_details
+            },
         }
 
 
@@ -283,6 +311,9 @@ class ServiceDetails(models.Model):
         }
 
     def as_complete(self):
+
+        service_dependencies = self.id_service.get_service_dependencies()
+
         return {
             "uuid": self.id,
             "version": self.version,
@@ -353,6 +384,20 @@ class ServiceDetails(models.Model):
                         "desc": "A link to the decommissioning procedure for this service."
                     }
                 }},
+            "dependencies": {
+                "count": len(service_dependencies),
+                "service_dependencies_link": {
+                    "related": {
+                        "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name).replace(" ", "_")
+                                + "/service_dependencies",
+                        "meta": {
+                            "desc": "A list of links to the service dependencies"
+                        }
+                    }
+
+                },
+                "services": service_dependencies
+            },
             "cost_to_run": self.cost_to_run,
             "cost_to_build": self.cost_to_build,
             "use_cases": self.use_cases
