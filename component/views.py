@@ -51,8 +51,10 @@ def get_service_components(request, search_type, version):
 
         response["status"] = "200 OK"
         response["data"] = {
-            "count": len(service_components),
-            "service_components": service_components
+            "service_components_list" : {
+                "count": len(service_components),
+                "service_components": service_components
+            }
         }
         response["info"] = "service components information"
 
@@ -242,8 +244,10 @@ def get_service_component_implementations(request, search_type, version, comp_uu
 
         response["status"] = "200 OK"
         response["data"] = {
-            "count": len(service_comp_impl_list),
-            "service_component_implementations": service_comp_impl_list
+            "service_component_implementations_list" : {
+                "count": len(service_comp_impl_list),
+                "service_component_implementations": service_comp_impl_list
+            }
         }
         response["info"] = "service component implementation information"
 
@@ -354,8 +358,10 @@ def get_service_component_implementation_detail(request, search_type, version, c
 
         response["status"] = "200 OK"
         response["data"] = {
-            "count": len(service_component_impl_detail_list),
-            "service_component_implementation_details": service_component_impl_detail_list
+            "service_component_implementation_details_list": {
+                "count": len(service_component_impl_detail_list),
+                "service_component_implementation_details": service_component_impl_detail_list
+            }
         }
         response["info"] = "service component implementation details"
 

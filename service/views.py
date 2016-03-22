@@ -5,9 +5,9 @@ from service import models
 from component.models import ServiceComponent, ServiceDetailsComponent, ServiceComponentImplementationDetail
 from options.models import ServiceDetailsOption
 from rest_framework.decorators import *
+from django.contrib.sites.models import Site
 from agora_utils import *
 import re
-from django.contrib.sites.models import Site
 
 @api_view(['GET'])
 def list_services(request,  type):
@@ -559,7 +559,7 @@ def merge_service_components(service_details):
         data = service_details.as_complete()
 
         if len(components) > 0:
-            data["service_components"] = {
+            data["service_components_list"] = {
                 "count": len(components),
                 "service_components_link":{
                     "related": {
@@ -569,7 +569,7 @@ def merge_service_components(service_details):
                             "desc": "Link to the services components."
                         }
                     }},
-                "service_components_list": components
+                "service_components": components
             }
         else:
                data["components"] = {
@@ -581,7 +581,7 @@ def merge_service_components(service_details):
                                                            service_details_id=service_details.pk)
 
         options = [so.as_json() for so in serv_options]
-        data["service_options"] = {
+        data["service_options_list"] = {
             "count": len(options),
             "service_options_link": {
                 "related": {
@@ -592,12 +592,13 @@ def merge_service_components(service_details):
                     }
                 }
             },
-            "service_options_list": options
+            "service_options": options
         }
 
 
         return data
 
+# Construct the url of the current deployment
 def current_site_url():
         """Returns fully qualified URL (no trailing slash) for the current site."""
 

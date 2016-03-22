@@ -57,10 +57,6 @@ class Service(models.Model):
         return Institution.objects.get(pk=ServiceOwner.objects.
                                        get(id=self.id_service_owner.pk).id_service_owner.pk).as_json()
 
-    # def get_service_dependencies(self):
-        # return [Service.objects.get(id=dependency.id_service_two_id).as_catalogue()
-        #         for dependency in Service_DependsOn_Service.objects.filter(id_service_one=self.id)]
-
     def get_service_external_dependencies(self):
         return [ExternalService.objects.get(id=dependency.id_external_service.pk).as_json()
                 for dependency in Service_ExternalService.objects.filter(id_service=self.id)]
@@ -80,7 +76,7 @@ class Service(models.Model):
                 "service_link": {
                     "related": {
                         "href": self.current_site_url() + "/v1/portfolio/services/" + str(
-                            Service.objects.get(pk=d.id_service_two.pk).id)
+                            Service.objects.get(pk=d.id_service_two.pk).name)
                     },
                     "meta": {
                         "desc": "A list of service dependencies"
@@ -118,13 +114,13 @@ class Service(models.Model):
             "value_to_customer": self.value_to_customer,
             "risks": self.risks,
             "competitors": self.competitors,
-            "user_customers": {
+            "user_customers_list": {
                 "count": len(users_customers),
-                "user_customers_list": users_customers
+                "user_customers": users_customers
             },
-            "service_details": {
+            "service_details_list": {
                 "count": len(service_details),
-                "service_details_list": service_details
+                "service_details": service_details
             },
             "service_owner_link": {
                 "related": {
@@ -193,14 +189,14 @@ class Service(models.Model):
             "funders_for_service": self.funders_for_service,
             "value_to_customer": self.value_to_customer,
             "risks": self.risks,
-            "service_details": {
+            "service_details_list": {
                 "count": len(service_details),
-                "service_details_list": service_details
+                "service_details": service_details
             },
             "competitors": self.competitors,
-            "user_customers": {
+            "user_customers_list": {
                 "count": len(users_customers),
-                "user_customers_list": users_customers
+                "user_customers": users_customers
             },
             "service_owner_link": {
                 "related": {
@@ -236,9 +232,9 @@ class Service(models.Model):
             "description_external": self.description_external,
             "service_area": self.service_area,
             "value_to_customer": self.value_to_customer,
-            "service_details": {
+            "service_details_list": {
                 "count": len(service_details),
-                "service_details_list": service_details
+                "service_details": service_details
             },
         }
 

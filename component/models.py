@@ -32,9 +32,9 @@ class ServiceComponent(models.Model):
             "uuid": self.id,
             "name": self.name,
             "description": self.description,
-            "component_implementations": {
+            "component_implementations_list": {
                 "count": len(component_implementations),
-                "component_implementations_list": component_implementations
+                "component_implementations": component_implementations
             }
         }
 
@@ -86,9 +86,9 @@ class ServiceComponentImplementation(models.Model):
             "uuid": self.id,
             "name": self.name,
             "description": self.description,
-            "component_implementation_details": {
+            "component_implementation_details_list": {
                 "count": len(component_implementation_details),
-                "component_implementation_details_list": component_implementation_details
+                "component_implementation_details": component_implementation_details
             }
         }
 

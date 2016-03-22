@@ -72,9 +72,9 @@ class SLA(models.Model):
         return {
             "id": self.id,
             "name": self.name,
-            "parameters": {
+            "parameters_list": {
                 "count": len(parameters),
-                "parameters_list": parameters
+                "parameters": parameters
             }
         }
 
