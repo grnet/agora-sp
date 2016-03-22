@@ -109,15 +109,6 @@ class Service(models.Model):
 
         return {
             "uuid": str(self.pk),
-            "service_link": {
-                "related": {
-                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_"),
-                    "meta":
-                        {
-                            "desc": "Portfolio level detail view"
-                        }
-                }
-            },
             "name": self.name,
             "description_external": self.description_external,
             "description_internal": self.description_internal,
@@ -186,9 +177,10 @@ class Service(models.Model):
 
         return {
             "uuid": self.id,
-            "service_link": {
+            "service_complete_link": {
                 "related": {
-                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_"),
+                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
+                            + "?view=complete",
                     "meta": {
                         "desc": "Portfolio level details about this service."
                     }
