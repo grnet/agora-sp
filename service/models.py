@@ -77,7 +77,7 @@ class Service(models.Model):
             service_dependencies.append({
                 "uuid": service.id,
                 "name": service.name,
-                "service_dependencies_link": {
+                "service_link": {
                     "related": {
                         "href": self.current_site_url() + "/v1/portfolio/services/" + str(
                             Service.objects.get(pk=d.id_service_two.pk).id)
