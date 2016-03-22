@@ -32,13 +32,13 @@ class Service(models.Model):
 
         return url
 
-    def get_service_details(self, complete=False):
+    def get_service_details(self, complete=False, url=False):
 
         services = []
         servs = ServiceDetails.objects.filter(id_service=self.pk)
         for s in servs:
             if complete:
-                services.append(s.as_complete())
+                services.append(s.as_complete(url=url))
             else:
                 services.append(s.as_short())
 
@@ -105,7 +105,7 @@ class Service(models.Model):
             })
 
         users_customers = self.get_user_customers()
-        service_details = self.get_service_details(complete=True)
+        service_details = self.get_service_details(complete=True, url=True)
 
         return {
             "uuid": str(self.pk),
@@ -173,7 +173,7 @@ class Service(models.Model):
     def as_portfolio(self):
 
         users_customers = self.get_user_customers()
-        service_details = self.get_service_details(complete=True)
+        service_details = self.get_service_details(complete=True, url=True)
 
         return {
             "uuid": self.id,
@@ -221,7 +221,7 @@ class Service(models.Model):
 
     def as_catalogue(self):
 
-        service_details = self.get_service_details(complete=True)
+        service_details = self.get_service_details(complete=True, url=True)
 
         return {
             "uuid": self.id,
@@ -302,11 +302,11 @@ class ServiceDetails(models.Model):
             "features_future": self.features_future
         }
 
-    def as_complete(self):
+    def as_complete(self, url=False):
 
         service_dependencies = self.id_service.get_service_dependencies()
 
-        return {
+        details = {
             "uuid": self.id,
             "version": self.version,
             "service_status": self.status,
@@ -394,6 +394,19 @@ class ServiceDetails(models.Model):
             "cost_to_build": self.cost_to_build,
             "use_cases": self.use_cases
         }
+
+        if url:
+            details["service_details_link"] = {
+                "related": {
+                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name).
+                        replace(" ", "_") + "/service_details/" + self.version,
+                    "meta": {
+                        "desc": "Service details link"
+                    }
+                }
+            }
+
+        return details
 
     def as_json(self):
         return {
