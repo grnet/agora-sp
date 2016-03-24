@@ -10,8 +10,8 @@ class ServiceOption(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, blank=True)
-    description = models.TextField(default=None, blank=True)
-    pricing = models.CharField(max_length=255, default=None, blank=True)
+    description = models.TextField(default=None, blank=True, null=True)
+    pricing = models.CharField(max_length=255, default=None, blank=True, null=True)
 
     def __unicode__(self):
         return str(self.name)
@@ -67,7 +67,7 @@ class Parameter(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, blank=True)
     type = models.CharField(max_length=255, default=None, blank=True)
-    expression = models.CharField(max_length=255, default=None, blank=True)
+    expression = models.CharField(max_length=255, default=None, blank=True, null=True)
 
     def __unicode__(self):
         return str(self.name)

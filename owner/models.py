@@ -7,9 +7,9 @@ class Institution(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, blank=True)
-    address = models.CharField(max_length=255, default=None, blank=True)
-    country = models.CharField(max_length=255, default=None, blank=True)
-    department = models.CharField(max_length=255, default=None, blank=True)
+    address = models.CharField(max_length=255, default=None, blank=True, null=True)
+    country = models.CharField(max_length=255, default=None, blank=True, null=True)
+    department = models.CharField(max_length=255, default=None, blank=True, null=True)
 
     def __unicode__(self):
         return str(self.name)
@@ -29,7 +29,7 @@ class ServiceOwner(models.Model):
     first_name = models.CharField(max_length=255, default=None, blank=True)
     last_name = models.CharField(max_length=255, default=None, blank=True)
     email = models.EmailField(default=None, blank=True)
-    phone = models.CharField(max_length=255, default=None, blank=True)
+    phone = models.CharField(max_length=255, default=None, blank=True, null=True)
     id_service_owner = models.ForeignKey(Institution)
 
     def __unicode__(self):
@@ -55,8 +55,8 @@ class ContactInformation(models.Model):
     first_name = models.CharField(max_length=255, default=None, blank=True)
     last_name = models.CharField(max_length=255, default=None, blank=True)
     email = models.EmailField(default=None, blank=True)
-    phone = models.CharField(max_length=255, default=None, blank=True)
-    url = models.CharField(max_length=255, default=None, blank=True)
+    phone = models.CharField(max_length=255, default=None, blank=True, null=True)
+    url = models.CharField(max_length=255, default=None, blank=True, null=True)
 
     def __unicode__(self):
         return str(self.first_name) + " " + str(self.last_name)
