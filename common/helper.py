@@ -32,3 +32,11 @@ def build_list_object(name, objects):
             name: objects
         }
     }
+
+def page_not_found():
+    return {
+        "status": "404 Page not found",
+        "errors": {
+            "detail": "The requested page was not found"
+        }
+    }
