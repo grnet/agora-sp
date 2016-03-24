@@ -3,10 +3,11 @@ from __future__ import unicode_literals
 from django.db import models
 import uuid
 from owner.models import ServiceOwner, ContactInformation, Institution
-from django.contrib.sites.models import Site
+from common import helper
 
 
 class Service(models.Model):
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
     name = models.CharField(max_length=255, default=None, blank=True)
     description_external = models.TextField(default=None, blank=True)
@@ -23,14 +24,6 @@ class Service(models.Model):
 
     def __unicode__(self):
         return str(self.name)
-
-    def current_site_url(self):
-        """Returns fully qualified URL (no trailing slash) for the current site."""
-
-        current_site = Site.objects.get_current()
-        url = 'http://%s' % (current_site.domain+"/api")
-
-        return url
 
     def get_service_details(self, complete=False, url=False):
 
@@ -75,7 +68,7 @@ class Service(models.Model):
                 "name": service.name,
                 "service_link": {
                     "related": {
-                        "href": self.current_site_url() + "/v1/portfolio/services/" + str(
+                        "href": helper.current_site_url() + "/v1/portfolio/services/" + str(
                             Service.objects.get(pk=d.id_service_two.pk).name)
                     },
                     "meta": {
@@ -124,7 +117,7 @@ class Service(models.Model):
             },
             "service_owner_link": {
                 "related": {
-                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
+                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
                             + "/service_owner",
                     "meta": {
                         "desc": "Service owner link"
@@ -135,7 +128,7 @@ class Service(models.Model):
                 "count": len(service_dependencies),
                 "service_dependencies_link": {
                     "related": {
-                        "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
+                        "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
                                 + "/service_dependencies",
                         "meta": {
                             "desc": "A list of links to the service dependencies"
@@ -149,7 +142,7 @@ class Service(models.Model):
                 "count": len(external_services),
                "external_services_link": {
                     "related": {
-                        "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/service_external_dependencies",
+                        "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/service_external_dependencies",
                         "meta": {
                             "desc": "Links to external services that this service uses."
                         }}
@@ -159,7 +152,7 @@ class Service(models.Model):
             },
             "contact_information_link": {
                 "related": {
-                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/contact_information",
+                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/contact_information",
                     "meta": {
                         "desc": "Link contact information about this service"
                     }
@@ -175,7 +168,7 @@ class Service(models.Model):
             "uuid": self.id,
             "service_complete_link": {
                 "related": {
-                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
+                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
                             + "?view=complete",
                     "meta": {
                         "desc": "Portfolio level details about this service."
@@ -200,7 +193,7 @@ class Service(models.Model):
             },
             "service_owner_link": {
                 "related": {
-                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/service_owner",
+                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/service_owner",
                     "meta": {
                         "desc": "Service owner link"
                     }
@@ -208,7 +201,7 @@ class Service(models.Model):
             },
             "contact_information_link": {
                 "related": {
-                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/contact_information",
+                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/contact_information",
                     "meta": {
                         "desc": "Link contact information about this service"
                     }
@@ -223,7 +216,7 @@ class Service(models.Model):
             "uuid": self.id,
             "service_link": {
                 "related": {
-                    "href": self.current_site_url() + "/v1/catalogue/services/" + str(self.name).replace(" ", "_"),
+                    "href": helper.current_site_url() + "/v1/catalogue/services/" + str(self.name).replace(" ", "_"),
                     "meta": {
                         "desc": "Catalogue level details about this service."
                     }
@@ -240,6 +233,7 @@ class Service(models.Model):
 
 
 class ServiceDetails(models.Model):
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
     id_service = models.ForeignKey(Service)
     version = models.CharField(max_length=255, default=None, blank=True)
@@ -271,20 +265,12 @@ class ServiceDetails(models.Model):
         srv = Service.objects.get(pk=primary_key)
         return str(srv.name) + " " + str(self.version)
 
-    def current_site_url(self):
-        """Returns fully qualified URL (no trailing slash) for the current site."""
-
-        current_site = Site.objects.get_current()
-        url = 'http://%s' % (current_site.domain+"/api")
-
-        return url
-
     def as_short(self):
         return {
             "uuid": self.id,
             "service_details_link": {
                 "related": {
-                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(
+                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(
                         self.id_service.name).replace(" ", "_") + "/service_details/" + str(self.version),
                     "meta": {
                         "desc": "Service details access url."
@@ -311,7 +297,7 @@ class ServiceDetails(models.Model):
             "usage_policy_has": self.usage_policy_has,
             "usage_policy_link": {
                 "related": {
-                    "href":self.usage_policy_url,
+                    "href": self.usage_policy_url,
                     "meta": {
                         "desc": "A link to the usage policy for this service."
                     }
@@ -319,7 +305,7 @@ class ServiceDetails(models.Model):
             "user_documentation_has": self.user_documentation_has,
             "user_documentation_link":  {
                 "related": {
-                    "href":self.user_documentation_url,
+                    "href": self.user_documentation_url,
                     "meta": {
                         "desc": "A link to the user documentation for this service."
                     }
@@ -327,7 +313,7 @@ class ServiceDetails(models.Model):
             "operations_documentation_has": self.operations_documentation_has,
             "operations_documentation_link": {
                 "related": {
-                    "href":self.operations_documentation_url,
+                    "href": self.operations_documentation_url,
                     "meta": {
                         "desc": "A link to the operations documentation for this service."
                     }
@@ -335,7 +321,7 @@ class ServiceDetails(models.Model):
             "monitoring_has": self.monitoring_has,
             "monitoring_link": {
                 "related": {
-                    "href":self.monitoring_url,
+                    "href": self.monitoring_url,
                     "meta": {
                         "desc": "A link to the monitoring system for this service."
                     }
@@ -343,7 +329,7 @@ class ServiceDetails(models.Model):
             "accounting_has": self.accounting_has,
             "accounting_link":  {
                 "related": {
-                    "href":self.accounting_url,
+                    "href": self.accounting_url,
                     "meta": {
                         "desc": "A link to the accounting system for this service."
                     }
@@ -376,7 +362,7 @@ class ServiceDetails(models.Model):
                 "count": len(service_dependencies),
                 "service_dependencies_link": {
                     "related": {
-                        "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name).replace(" ", "_")
+                        "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name).replace(" ", "_")
                                 + "/service_dependencies",
                         "meta": {
                             "desc": "A list of links to the service dependencies"
@@ -394,7 +380,7 @@ class ServiceDetails(models.Model):
         if url:
             details["service_details_link"] = {
                 "related": {
-                    "href": self.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name).
+                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name).
                         replace(" ", "_") + "/service_details/" + self.version,
                     "meta": {
                         "desc": "Service details link"

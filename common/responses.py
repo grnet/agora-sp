@@ -22,7 +22,8 @@ ERROR_MESSAGES = {
     SLA_PARAMETER_INVALID_UUID: "An invalid service sla parameter UUID was supplied",
     SLA_PARAMETER_NOT_FOUND: "The requested SLA parameter does not belong to the specified service",
     SERVICE_DETAILS_OPTIONS_NOT_FOUND: "This service has no service options for the current version",
-    PAGE_NOT_FOUND: "The requested page was not found"
+    PAGE_NOT_FOUND: "The requested page was not found",
+    INVALID_QUERY_PARAMETER: "The query parameter is invalid"
 }
 
 
@@ -34,5 +35,10 @@ INFO_MESSAGES = {
     SERVICE_COMPONENT_IMPLEMENTATION_DETAILS: "service component implementation detail",
     SLA_INFORMATION: "service SLA information",
     SLA_PARAMETER_INFORMATION: "service SLA parameter information",
-    SERVICE_OPTIONS: "options for service detail information"
+    SERVICE_OPTIONS: "options for service detail information",
+    SERVICE_LIST: "list of services",
+    SERVICE_INFORMATION: "service information",
+    SERVICE_DETAIL_INFORMATION: "service details information",
+    SERVICE_DEPENDENCIES_INFORMATION: "service dependencies information",
+    SERVICE_EXTERNAL_DEPENDENCIES_INFORMATION: "service external dependencies information"
 }

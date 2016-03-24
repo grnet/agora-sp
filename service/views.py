@@ -1,13 +1,13 @@
-from django.core.serializers import json
-from django.http import JsonResponse, HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse
+from django.shortcuts import render
 from service import models
-from component.models import ServiceComponent, ServiceDetailsComponent, ServiceComponentImplementationDetail
+from component.models import ServiceDetailsComponent, ServiceComponentImplementationDetail
 from options.models import ServiceDetailsOption
 from rest_framework.decorators import *
 from django.contrib.sites.models import Site
-from agora_utils import *
+from common import helper, strings
 import re
+
 
 @api_view(['GET'])
 def list_services(request,  type):
@@ -21,28 +21,25 @@ def list_services(request,  type):
 
     response = {}
     services = []
+
     if type == "portfolio":
+
         if detail_level is None or detail_level == "short":
             services = [s.as_portfolio() for s in serv_models]
         elif detail_level == "complete":
             services = [s.as_complete_portfolio() for s in serv_models]
         else:
-            response["status"] = "404 Not Found"
-            response["errors"] = {
-                "detail": "The query parameter is invalid"
-            }
+            response = helper.get_error_response(strings.INVALID_QUERY_PARAMETER)
+
     elif type == "catalogue":
         services = [s.as_catalogue() for s in serv_models]
-    else:
-        response["status"] = "404 Not Found"
 
     if len(services) > 0:
-        response["status"] = "200 OK"
-        response["data"] = {
+        data = {
             "count": len(services),
             "services": services
         }
-        response["info"] = "list of services"
+        response = helper.get_response_info(strings.SERVICE_LIST, data)
 
     return JsonResponse(response)
 
@@ -96,80 +93,46 @@ def get_service(request,  service_name_or_uuid):
     params = request.GET.copy()
     detail_level = params.get('view')
 
-    response = {}
+    if detail_level is not None and detail_level != "short" and detail_level != "complete":
+        response = helper.get_error_response(strings.INVALID_QUERY_PARAMETER)
+        return JsonResponse(response)
 
-    service = None
+    response = {}
+    service, parsed_name, uuid = None, None, None
 
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
-
     result = prog.match(service_name_or_uuid)
 
     if result is None:
-        parsed_name = service_name_or_uuid.replace("_", " ")
-        parsed_name.strip()
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
     else:
         uuid = service_name_or_uuid
 
     try:
         if result is None:
-            serv = models.Service.objects.get(name=parsed_name)
+            service = models.Service.objects.get(name=parsed_name)
         else:
-            serv = models.Service.objects.get(id=uuid)
-
-
+            service = models.Service.objects.get(id=uuid)
 
     except models.Service.DoesNotExist:
-
-        serv = None
-
-        response["status"] = "404 Not Found"
-        response["errors"] = {
-            "detail": "The requested service was not found"
-        }
+        service = None
+        response = helper.get_error_response(strings.SERVICE_NOT_FOUND)
 
     except ValueError as v:
         if str(v) == "badly formed hexadecimal UUID string":
-            response["status"] = "404 Not Found"
-            response["errors"] = {
-                "detail": "An invalid UUID was supplied"
-            }
-        return JsonResponse(response)
-
-    except Exception as e:
-        response["status"] = "404 Not Found"
-        response["errors"] = {
-            "detail": "The requested service was not found"
-        }
-
-    if serv is not None:
-        if type == "portfolio":
-            if detail_level is None or detail_level == "short":
-                service = serv.as_portfolio()
-            elif detail_level == "complete":
-                service = serv.as_complete_portfolio()
-            else:
-                response["status"] = "404 Not Found"
-                response["errors"] = {
-                    "detail": "The query parameter is invalid"
-                }
-        elif type == "catalogue":
-            service = serv.as_catalogue()
-        else:
-            response["status"] = "404 Not Found"
-            response["errors"] = {
-            "detail": "No such detail level."
-        }
-    else:
-        response["status"] = "404 Not Found"
-        response["errors"] = {
-            "detail": "The requested service was not found"
-        }
+            response = helper.get_error_response(strings.INVALID_UUID)
 
     if service is not None:
+        if type == "portfolio":
+            if detail_level is None or detail_level == "short":
+                service = service.as_portfolio()
+            elif detail_level == "complete":
+                service = service.as_complete_portfolio()
 
-        response["status"] = "200 OK"
-        response["data"] = service
-        response["info"] = "service information"
+        elif type == "catalogue":
+            service = service.as_catalogue()
+
+        response = helper.get_response_info(strings.SERVICE_INFORMATION, service)
 
     return JsonResponse(response)
 
@@ -198,20 +161,15 @@ def get_service_details(request, service_name_or_uuid, version):
     - application/json
     """
     params = request.GET.copy()
-
     detail_level = params.get('view')
+    parsed_name, uuid = None, None
 
     response = {}
-
-    host = generete_full_url(request)
-
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
-
     result = prog.match(service_name_or_uuid)
 
     if result is None:
-        parsed_name = service_name_or_uuid.replace("_", " ")
-        parsed_name.strip()
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
     else:
         uuid = service_name_or_uuid
 
@@ -222,37 +180,23 @@ def get_service_details(request, service_name_or_uuid, version):
             service = models.Service.objects.get(id=uuid)
 
         detail = models.ServiceDetails.objects.get(id_service=service.pk, version=version)
-        response["status"] = "200 OK"
-
-
-        response["data"] = detail
-
-        # response["data"]["links"]["related"]["href"] = host +  response["data"]["links"]["related"]["href"]
-
-        response["info"] = "service detail information"
 
         if detail_level == 'short':
-            response["data"] = detail.as_short()
+            data = detail.as_short()
         else:
-            response["data"] = merge_service_components(detail)
+            data = merge_service_components(detail)
+
+        response = helper.get_response_info(strings.SERVICE_DETAIL_INFORMATION, data)
 
     except models.Service.DoesNotExist:
-        response["status"] = "404 Not Found"
-        response["errors"] = {
-            "detail": "Service not found"
-        }
+        response = helper.get_error_response(strings.SERVICE_NOT_FOUND)
+
     except models.ServiceDetails.DoesNotExist:
-        response["status"] = "404 Not Found"
-        response["errors"] = {
-                "detail": "Service details not found"
-            }
+        response = helper.get_error_response(strings.SERVICE_DETAILS_NOT_FOUND)
+
     except ValueError as v:
         if str(v) == "badly formed hexadecimal UUID string":
-            response["status"] = "404 Not Found"
-            response["errors"] = {
-                "detail": "An invalid UUID was supplied"
-            }
-        return JsonResponse(response)
+            response = helper.get_error_response(strings.INVALID_UUID)
 
     return JsonResponse(response)
 
@@ -267,22 +211,17 @@ def get_all_service_details(request, service_name_or_uuid):
     detail_level = params.get('view')
 
     response = {}
-
     complete = False
-
-    # host = generete_full_url(request)
-
+    parsed_name, uuid = None, None
 
     if detail_level == "complete":
         complete = True
 
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
-
     result = prog.match(service_name_or_uuid)
 
     if result is None:
-        parsed_name = service_name_or_uuid.replace("_", " ")
-        parsed_name.strip()
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
     else:
         uuid = service_name_or_uuid
 
@@ -293,40 +232,22 @@ def get_all_service_details(request, service_name_or_uuid):
             service = models.Service.objects.get(id=uuid)
 
         detail = service.get_service_details(complete)
+        data = {
+            "count": len(detail),
+            "service_details": detail
+        }
+        response = helper.get_response_info(strings.SERVICE_DETAIL_INFORMATION, data)
 
     except models.ServiceDetails.DoesNotExist:
-        response["status"] = "404 Not Found"
-        response["errors"] = {
-                "detail": "Service details not found"
-            }
-
-        return JsonResponse(response)
+        response = helper.get_error_response(strings.SERVICE_DETAILS_NOT_FOUND)
 
     except models.Service.DoesNotExist:
-        response["status"] = "404 Not Found"
-        response["errors"] = {
-                "detail": "Service does not exist"
-            }
-        return JsonResponse(response)
+        response = helper.get_error_response(strings.SERVICE_NOT_FOUND)
 
     except ValueError as v:
         if str(v) == "badly formed hexadecimal UUID string":
-            response["status"] = "404 Not Found"
-            response["errors"] = {
-                "detail": "An invalid UUID was supplied"
-            }
-        return JsonResponse(response)
+            response = helper.get_error_response(strings.INVALID_UUID)
 
-    response["status"] = "200 OK"
-
-    # for det in detail:
-    #     det["links"]["related"]["href"] = host +  det["links"]["related"]["href"]
-
-    response["data"] = {
-        "count": len(detail),
-        "service_details": detail
-    }
-    response["info"] = "service detail information"
     return JsonResponse(response)
 
 # Returns the service institution
@@ -390,42 +311,32 @@ def get_service_dependencies(request,  service_name_or_uuid):
     response = {}
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     result = prog.match(service_name_or_uuid)
+    parsed_name, uuid = None, None
 
     if result is None:
-        parsed_name = service_name_or_uuid.replace("_", " ")
-        parsed_name.strip()
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
     else:
         uuid = service_name_or_uuid
 
     try:
         if result is None:
-            serv = models.Service.objects.get(name=parsed_name)
+            service = models.Service.objects.get(name=parsed_name)
         else:
-            serv = models.Service.objects.get(id=uuid)
+            service = models.Service.objects.get(id=uuid)
+
+        dependencies = service.get_service_dependencies()
+        data = {
+            "count": len(dependencies),
+            "dependencies": dependencies
+        }
+        response = helper.get_response_info(strings.SERVICE_DEPENDENCIES_INFORMATION, data)
 
     except models.Service.DoesNotExist:
-        serv = None
-        response["status"] = "404 Not Found"
-        response["errors"] = {
-            "detail": "The requested service was not found"
-        }
+        response = helper.get_error_response(strings.SERVICE_NOT_FOUND)
+
     except ValueError as v:
         if str(v) == "badly formed hexadecimal UUID string":
-            response["status"] = "404 Not Found"
-            response["errors"] = {
-                "detail": "An invalid UUID was supplied"
-            }
-        return JsonResponse(response)
-
-    if serv is not None:
-
-            dependencies = serv.get_service_dependencies()
-            response["status"] = "200 OK"
-            response["data"] ={
-                "count": len(dependencies),
-                "dependencies": dependencies
-            }
-            response["info"] = "service dependencies information"
+            response = helper.get_error_response(strings.INVALID_UUID)
 
     return JsonResponse(response)
 
@@ -436,54 +347,37 @@ def get_service_external_dependencies(request,  service_name_or_uuid):
     Retrieves the external service dependencies
 
     """
-    type = request.get_full_path().split("/")[1]
-    params = request.GET.copy()
-    detail_level = params.get('view')
 
     response = {}
-    service = None
+    service, parsed_name, uuid = None, None, None
 
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
-
     result = prog.match(service_name_or_uuid)
 
     if result is None:
-        parsed_name = service_name_or_uuid.replace("_", " ")
-        parsed_name.strip()
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
     else:
         uuid = service_name_or_uuid
 
     try:
         if result is None:
-            serv = models.Service.objects.get(name=parsed_name)
+            service = models.Service.objects.get(name=parsed_name)
         else:
-            serv = models.Service.objects.get(id=uuid)
+            service = models.Service.objects.get(id=uuid)
+
+        dependencies = service.get_service_external_dependencies()
+        data = {
+            "count": len(dependencies),
+            "dependencies": dependencies
+        }
+        response = helper.get_response_info(strings.SERVICE_EXTERNAL_DEPENDENCIES_INFORMATION, data)
 
     except models.Service.DoesNotExist:
-        serv = None
-        response["status"] = "404 Not Found"
-        response["errors"] = {
-            "detail": "The requested service was not found"
-        }
+        response = helper.get_error_response(strings.SERVICE_NOT_FOUND)
+
     except ValueError as v:
         if str(v) == "badly formed hexadecimal UUID string":
-            response["status"] = "404 Not Found"
-            response["errors"] = {
-                "detail": "An invalid UUID was supplied"
-            }
-        return JsonResponse(response)
-
-    if serv is not None:
-
-            dependencies = serv.get_service_external_dependencies()
-
-            response["status"] = "200 OK"
-            response["data"] ={
-                "count": len(dependencies),
-                "dependencies": dependencies
-            }
-
-            response["info"] = "service external dependencies information"
+            response = helper.get_error_response(strings.INVALID_UUID)
 
     return JsonResponse(response)
 
@@ -563,7 +457,7 @@ def merge_service_components(service_details):
                 "count": len(components),
                 "service_components_link":{
                     "related": {
-                        "href":  current_site_url()+"/v1/portfolio/services/" + str(service_details.id_service.name) + "/service_details/"
+                        "href":  helper.current_site_url()+"/v1/portfolio/services/" + str(service_details.id_service.name) + "/service_details/"
                                          + service_details.version + "/service_components",
                         "meta": {
                             "desc": "Link to the services components."
@@ -585,7 +479,7 @@ def merge_service_components(service_details):
             "count": len(options),
             "service_options_link": {
                 "related": {
-                    "href": current_site_url() + "/v1/portfolio/services/" + service_details.id_service.name.replace(" ", "_")
+                    "href": helper.current_site_url() + "/v1/portfolio/services/" + service_details.id_service.name.replace(" ", "_")
                             + "/service_details/" + service_details.version + "/service_options",
                     "meta": {
                         "desc": "Link to the service options"
@@ -597,12 +491,3 @@ def merge_service_components(service_details):
 
 
         return data
-
-# Construct the url of the current deployment
-def current_site_url():
-        """Returns fully qualified URL (no trailing slash) for the current site."""
-
-        current_site = Site.objects.get_current()
-        url = 'http://%s' % (current_site.domain+"/api")
-
-        return url
