@@ -4,31 +4,22 @@ import uuid
 from django.db import models
 from service.models import Service, ServiceDetails
 from django.contrib.sites.models import Site
+from common import helper
 
 class ServiceOption(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, blank=True)
-    description = models.TextField(default=None, blank=True)
-    pricing = models.CharField(max_length=255, default=None, blank=True)
+    description = models.TextField(default=None, blank=True, null=True)
+    pricing = models.CharField(max_length=255, default=None, blank=True, null=True)
 
     def __unicode__(self):
         return str(self.name)
 
-
-    def current_site_url(self):
-        """Returns fully qualified URL (no trailing slash) for the current site."""
-
-        current_site = Site.objects.get_current()
-        url = 'http://%s' % (current_site.domain+"/api")
-
-        return url
-
-
     def as_json(self, service_name, service_details_version):
         sla = SLA.objects.filter(service_option_id=self.pk)
         if len(sla) == 1:
-            sla_url = self.current_site_url()+"/v1/portfolio/services/" + service_name.replace(" ", "_") + "/service_details/" + service_details_version \
+            sla_url = helper.current_site_url()+"/v1/portfolio/services/" + service_name.replace(" ", "_") + "/service_details/" + service_details_version \
                       + "/service_options/sla/" + str(sla[0].pk)
         else:
             sla_url = ""
@@ -57,15 +48,6 @@ class SLA(models.Model):
     def __unicode__(self):
         return str(self.name)
 
-    def current_site_url(self):
-        """Returns fully qualified URL (no trailing slash) for the current site."""
-
-        current_site = Site.objects.get_current()
-        url = 'http://%s' % (current_site.domain+"/api")
-
-        return url
-
-
     def as_json(self, service_name, service_details_version):
         parameters = [sp.parameter_id.as_json(service_name.replace(" ", "_"), service_details_version, self.pk) for sp in SLAParameter.objects.
                 filter(sla_id=self.pk, service_option_id=self.service_option_id.pk)]
@@ -85,19 +67,10 @@ class Parameter(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, blank=True)
     type = models.CharField(max_length=255, default=None, blank=True)
-    expression = models.CharField(max_length=255, default=None, blank=True)
+    expression = models.CharField(max_length=255, default=None, blank=True, null=True)
 
     def __unicode__(self):
         return str(self.name)
-
-    def current_site_url(self):
-        """Returns fully qualified URL (no trailing slash) for the current site."""
-
-        current_site = Site.objects.get_current()
-        url = 'http://%s' % (current_site.domain+"/api")
-
-        return url
-
 
     def as_json(self, service_name, service_details_version, sla_id):
         return {
@@ -107,7 +80,7 @@ class Parameter(models.Model):
             "expression": self.expression,
             "SLA_parameter_link": {
                 "related": {
-                    "href": self.current_site_url() + "/v1/portfolio/services/" + service_name.replace(" ", "_") + "/service_details/" + service_details_version
+                    "href": helper.current_site_url() + "/v1/portfolio/services/" + service_name.replace(" ", "_") + "/service_details/" + service_details_version
                    + "/service_options/sla/" + str(sla_id) + "/sla_parameter/" + str(self.pk) + "/parameter",
                     "meta": {
                             "desc": "A link to the SLA parameters."
