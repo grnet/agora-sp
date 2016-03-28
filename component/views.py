@@ -534,3 +534,67 @@ def get_service_component_implementation_detail(request, search_type, version, c
         response = helper.get_error_response(strings.SERVICE_COMPONENTS_IMPLEMENTATION_NONMATCHING_UUID)
 
     return JsonResponse(response)
+
+# Inserts the provided service component implementation details and service details relationship
+@api_view(['POST'])
+def insert_service_details_component_implementation_details(request, search_type, version):
+    """
+
+    Inserts the provided service component implementation details and service details relationship
+
+    :return: response message
+    """
+
+    comp = request.POST.copy()
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    uuid, parsed_name = None, None
+
+    if "component_implementation_details_uuid" not in comp:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UUID_NOT_PROVIDED,
+                            status=strings.REJECTED_405))
+
+    comp_imp_det_uuid = comp.get('component_implementation_details_uuid')
+    result = prog.match(comp_imp_det_uuid)
+
+    if result is None:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_INVALID_UUID,
+                            status=strings.REJECTED_405))
+
+    result = prog.match(search_type)
+
+    if result is None:
+        parsed_name = search_type.replace("_", " ").strip()
+    else:
+        uuid = search_type
+
+    try:
+        if result is None:
+            service = service_models.Service.objects.get(name=parsed_name)
+        else:
+            service = service_models.Service.objects.get(id=uuid)
+
+        service_details = service_models.ServiceDetails.objects.get(id_service=service.pk, version=version)
+
+        get_service_component_implementation_detail = component_models.ServiceComponentImplementationDetail.objects\
+                                                                        .get(id=comp_imp_det_uuid)
+
+
+        obj, created = component_models.ServiceDetailsComponent.objects.get_or_create(service_id=service,
+                            service_details_id=service_details,
+                            service_component_implementation_detail_id=get_service_component_implementation_detail)
+
+        if not created:
+            response = helper.get_error_response(strings.SERVICE_DETAILS_COMPONENT_EXISTS, status=strings.REJECTED_405)
+        else:
+            response = helper.get_response_info(strings.SERVICE_DETAILS_COMPONENT_INSERTED, {}, status=strings.OK_200)
+
+    except service_models.Service.DoesNotExist:
+        response = helper.get_error_response(strings.SERVICE_NOT_FOUND)
+
+    except service_models.ServiceDetails.DoesNotExist:
+        response = helper.get_error_response(strings.SERVICE_DETAILS_NOT_FOUND)
+
+    except component_models.ServiceComponentImplementationDetail.DoesNotExist:
+        response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_NOT_FOUND)
+
+    return JsonResponse(response)

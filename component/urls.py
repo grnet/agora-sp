@@ -12,6 +12,7 @@ urlpatterns = [
         r'/insert_service_component_implementation_detail/?$', views.insert_service_component_implementation_details),
     url(r'^(?P<comp_uuid>[0-9a-zA-Z\-]+)/?$', views.get_service_component),
     url(r'^insert_component/?$', views.insert_service_component),
+    url(r'^insert_service_details_component_implementation_details/?$', views.insert_service_details_component_implementation_details),
     url(r'^$', views.get_service_components),
 
 ]

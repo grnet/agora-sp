@@ -37,7 +37,9 @@ ERROR_MESSAGES = {
     SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_VERSION_EMPTY: "The provided service component implementation detail version is empty",
     SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_INVALID_UUID: "An invalid service component implementation details UUID was supplied",
     SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UUID_EXISTS: "A service component implementation details object with the provided UUID already exists",
-    SERVICE_COMPONENT_IMPLEMENTATION_NOT_FOUND: "The requested service component implementation was not found"
+    SERVICE_COMPONENT_IMPLEMENTATION_NOT_FOUND: "The requested service component implementation was not found",
+    SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UUID_NOT_PROVIDED: "Service component implementation details UUID not provided",
+    SERVICE_DETAILS_COMPONENT_EXISTS: "The provided service component implementation details already is associated with the provided service details"
 }
 
 
@@ -57,7 +59,8 @@ INFO_MESSAGES = {
     SERVICE_EXTERNAL_DEPENDENCIES_INFORMATION: "service external dependencies information",
     SERVICE_COMPONENT_INSERTED: "service component inserted",
     SERVICE_COMPONENT_IMPLEMENTATION_INSERTED: "service component implementation inserted",
-    SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_INSERTED: "service component implementation details inserted"
+    SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_INSERTED: "service component implementation details inserted",
+    SERVICE_DETAILS_COMPONENT_INSERTED: "relationship between the provided service component implementation details and service details inserted"
 }
 
 STATUS_CODES = {

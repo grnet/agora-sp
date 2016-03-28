@@ -190,16 +190,6 @@ class ComponentTestCase(TestCase):
         expected_response = helper.get_response_info(strings.SERVICE_COMPONENT_IMPLEMENTATION_INSERTED, {}, status=strings.CREATED_201)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
-
-
-
-
-
-
-
-
-
-
     def test_insert_service_component_implementation_details_no_version(self):
         post_data = {}
         response = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/service_details/3.0/service_components/af2f812b-eda6-497a-9d22-534f885b7034/service_component_implementations/d01dcee5-eb04-4147-9bb0-54ed81567494/insert_service_component_implementation_detail", post_data)
@@ -291,10 +281,43 @@ class ComponentTestCase(TestCase):
         expected_response = helper.get_response_info(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_INSERTED, {}, status=strings.CREATED_201)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
+    def test_insert_service_details_component_no_uuid(self):
+        post_data = {}
+        response = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/service_details/3.0/service_components/insert_service_details_component_implementation_details", post_data)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UUID_NOT_PROVIDED, status=strings.REJECTED_405)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
 
+    def test_insert_service_details_component_invalid_uuid(self):
+        post_data = {
+            "component_implementation_details_uuid": "af2f812b-eda6-497a-9d22-534f885b703G"
+        }
+        response = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/service_details/3.0/service_components/insert_service_details_component_implementation_details", post_data)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_INVALID_UUID, status=strings.REJECTED_405)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
 
+    def test_insert_service_details_component_non_existing_comp_imp_det(self):
+        post_data = {
+            "component_implementation_details_uuid": "af2f812b-eda6-497a-9d22-534f885b7032"
+        }
+        response = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/service_details/3.0/service_components/insert_service_details_component_implementation_details", post_data)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_NOT_FOUND, strings.NOT_FOUND_404)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
 
+    def test_insert_service_details_component_existing_record(self):
+        post_data = {
+            "component_implementation_details_uuid": "a1b4569c-b7eb-4881-9f93-2e37ee662c28"
+        }
+        response = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/service_details/3.0/service_components/insert_service_details_component_implementation_details", post_data)
+        expected_response = helper.get_error_response(strings.SERVICE_DETAILS_COMPONENT_EXISTS, strings.REJECTED_405)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
 
+    def test_insert_service_details_component(self):
+        post_data = {
+            "component_implementation_details_uuid": "309ffba9-dc3f-45c5-8a2e-150cd2e62c92"
+        }
+        response = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/service_details/3.0/service_components/insert_service_details_component_implementation_details", post_data)
+        expected_response = helper.get_response_info(strings.SERVICE_DETAILS_COMPONENT_INSERTED, {}, status=strings.OK_200)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
 
 
 
