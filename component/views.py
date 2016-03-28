@@ -64,6 +64,62 @@ def get_service_components(request, search_type, version):
 
     return JsonResponse(response)
 
+# Inserts the provided service component
+@api_view(['POST'])
+def insert_service_component(request, search_type, version):
+    """
+
+    Inserts the provided service component.
+
+    :return: response message and service component URL
+    """
+
+    comp = request.POST.copy()
+
+    uuid = None
+
+    if "name" not in comp:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_NAME_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
+    if "description" not in comp:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_DESCRIPTION_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
+
+    name = comp.get('name')
+    description = comp.get('description')
+
+    if name is None or len(name) == 0:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_NAME_EMPTY, status=strings.REJECTED_405))
+
+    if "uuid" in comp:
+        uuid = comp.get("uuid")
+
+        prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+        result = prog.match(uuid)
+
+        if result is None:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_INVALID_UUID,
+                                                          status=strings.REJECTED_405))
+
+        try:
+            component_models.ServiceComponent.objects.get(id=uuid)
+            return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_INVALID_UUID,
+                                                          status=strings.CONFLICT_409))
+        except component_models.ServiceComponent.DoesNotExist:
+            pass
+
+
+    service_component = component_models.ServiceComponent()
+    service_component.name = name
+    service_component.description = description
+    if uuid is not None:
+        service_component.id = uuid
+    service_component.save()
+
+    data = {}
+    response = helper.get_response_info(strings.SERVICE_COMPONENT_INSERTED, data, status=strings.CREATED_201)
+    return JsonResponse(response)
+
 
 # Returns the selected service component
 @api_view(['GET'])
@@ -166,6 +222,76 @@ def get_service_component(request, search_type, version, comp_uuid):
 
     return JsonResponse(response)
 
+# Inserts the provided service component implementation
+@api_view(['POST'])
+def insert_service_component_implementation(request, search_type, version, comp_uuid):
+    """
+
+    Inserts the provided service component implementation.
+
+    :return: response message and service component implementation URL
+    """
+
+    comp = request.POST.copy()
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    uuid = None
+
+    result = prog.match(comp_uuid)
+
+    if result is None:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_INVALID_UUID, status=strings.REJECTED_405))
+
+    if "name" not in comp:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_NAME_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
+    if "description" not in comp:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DESCRIPTION_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
+
+    name = comp.get('name')
+    description = comp.get('description')
+
+    if name is None or len(name) == 0:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_NAME_EMPTY,
+                                                      status=strings.REJECTED_405))
+
+
+    if "uuid" in comp:
+        uuid = comp.get("uuid")
+
+        result = prog.match(uuid)
+
+        if result is None:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_INVALID_UUID,
+                                                          status=strings.REJECTED_405))
+
+        try:
+            component_models.ServiceComponentImplementation.objects.get(id=uuid)
+            return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_UUID_EXISTS,
+                                                          status=strings.CONFLICT_409))
+        except component_models.ServiceComponentImplementation.DoesNotExist:
+            pass
+
+
+    try:
+        service_component = component_models.ServiceComponent.objects.get(id=comp_uuid)
+    except component_models.ServiceComponent.DoesNotExist:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_NOT_FOUND))
+
+
+    service_component_implementation = component_models.ServiceComponentImplementation()
+    service_component_implementation.name = name
+    service_component_implementation.description = description
+    service_component_implementation.component_id = service_component
+    if uuid is not None:
+        service_component_implementation.id = uuid
+    service_component_implementation.save()
+
+    data = {}
+    response = helper.get_response_info(strings.SERVICE_COMPONENT_IMPLEMENTATION_INSERTED, data,
+                                        status=strings.CREATED_201)
+    return JsonResponse(response)
+
 # Returns the selected service component implementations
 @api_view(['GET'])
 def get_service_component_implementations(request, search_type, version, comp_uuid):
@@ -242,6 +368,87 @@ def get_service_component_implementations(request, search_type, version, comp_uu
     except component_models.ServiceDetailsComponent.DoesNotExist:
         response = helper.get_error_response(strings.SERVICE_COMPONENTS_IMPLEMENTATION_NONMATCHING_UUID)
 
+    return JsonResponse(response)
+
+# Inserts the provided service component implementation details
+@api_view(['POST'])
+def insert_service_component_implementation_details(request, search_type, version, comp_uuid, imp_uuid):
+    """
+
+    Inserts the provided service component implementation details.
+
+    :return: response message and service component implementation details URL
+    """
+
+    comp = request.POST.copy()
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    uuid = None
+
+    result = prog.match(comp_uuid)
+
+    if result is None:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_INVALID_UUID,
+                                                      status=strings.REJECTED_405))
+
+    result = prog.match(imp_uuid)
+
+    if result is None:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_INVALID_UUID,
+                                                      status=strings.REJECTED_405))
+
+    if "version" not in comp:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_VERSION_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
+    if "configuration_parameters" not in comp:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_CONFIGURATION_PARAMETERS_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
+
+    version = comp.get('version')
+    configuration_parameters = comp.get('configuration_parameters')
+
+    if version is None or len(version) == 0:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_VERSION_EMPTY,
+                                                      status=strings.REJECTED_405))
+
+
+    if "uuid" in comp:
+        uuid = comp.get("uuid")
+
+        result = prog.match(uuid)
+
+        if result is None:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_INVALID_UUID,
+                                                          status=strings.REJECTED_405))
+
+        try:
+            component_models.ServiceComponentImplementationDetail.objects.get(id=uuid)
+            return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UUID_EXISTS,
+                                                          status=strings.CONFLICT_409))
+        except component_models.ServiceComponentImplementationDetail.DoesNotExist:
+            pass
+
+
+    try:
+        service_component = component_models.ServiceComponent.objects.get(id=comp_uuid)
+        service_component_implementation = component_models.ServiceComponentImplementation.objects.get(id=imp_uuid)
+    except component_models.ServiceComponent.DoesNotExist:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_NOT_FOUND))
+    except component_models.ServiceComponentImplementation.DoesNotExist:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_NOT_FOUND))
+
+
+    service_component_implementation_details = component_models.ServiceComponentImplementationDetail()
+    service_component_implementation_details.version = version
+    service_component_implementation_details.configuration_parameters = configuration_parameters
+    service_component_implementation_details.component_id = service_component
+    service_component_implementation_details.component_implementation_id = service_component_implementation
+    if uuid is not None:
+        service_component_implementation_details.id = uuid
+    service_component_implementation_details.save()
+
+    data = {}
+    response = helper.get_response_info(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_INSERTED, data,
+                                        status=strings.CREATED_201)
     return JsonResponse(response)
 
 # Returns the selected service component implementation details
