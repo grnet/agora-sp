@@ -103,7 +103,7 @@ def insert_service_component(request, search_type, version):
 
         try:
             component_models.ServiceComponent.objects.get(id=uuid)
-            return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_INVALID_UUID,
+            return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_UUID_EXISTS,
                                                           status=strings.CONFLICT_409))
         except component_models.ServiceComponent.DoesNotExist:
             pass
@@ -262,7 +262,7 @@ def insert_service_component_implementation(request, search_type, version, comp_
         result = prog.match(uuid)
 
         if result is None:
-            return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_INVALID_UUID,
+            return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_INVALID_UUID,
                                                           status=strings.REJECTED_405))
 
         try:
