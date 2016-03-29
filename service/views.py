@@ -526,7 +526,7 @@ def insert_service_dependency(request, service_name_or_uuid):
     obj, created = models.Service_DependsOn_Service.objects.get_or_create(id_service_one=service,
                                                                           id_service_two=service_dependency)
     if not created:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_DEPENDENCY_EXISTS, status=strings.REJECTED_405))
+        return JsonResponse(helper.get_error_response(strings.SERVICE_DEPENDENCY_EXISTS, status=strings.CONFLICT_409))
 
     data = {}
     response = helper.get_response_info(strings.SERVICE_DEPENDENCY_INSERTED, data, status=strings.CREATED_201)
@@ -575,7 +575,7 @@ def insert_external_service_dependency(request, service_name_or_uuid):
     obj, created = models.Service_ExternalService.objects.get_or_create(id_service=service,
                                                                           id_external_service=external_service_dependency)
     if not created:
-        return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_EXISTS, status=strings.REJECTED_405))
+        return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_EXISTS, status=strings.CONFLICT_409))
 
     data = {}
     response = helper.get_response_info(strings.EXTERNAL_SERVICE_DEPENDENCY_INSERTED, data, status=strings.CREATED_201)
