@@ -404,8 +404,8 @@ class ExternalService(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, blank=True)
     description = models.TextField(default=None, blank=True, null=True)
-    service = models.CharField(max_length=255, default=None, blank=True)
-    details = models.CharField(max_length=255, default=None, blank=True)
+    service = models.CharField(max_length=255, default=None, blank=True, null=True)
+    details = models.CharField(max_length=255, default=None, blank=True, null=True)
 
     def __unicode__(self):
         return str(self.name)
