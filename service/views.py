@@ -5,7 +5,6 @@ from component.models import ServiceDetailsComponent, ServiceComponentImplementa
 from options.models import ServiceDetailsOption
 from owner.models import ServiceOwner, ContactInformation
 from rest_framework.decorators import *
-from django.contrib.sites.models import Site
 from common import helper, strings
 import re
 
@@ -741,7 +740,6 @@ def get_service_contact_information(request, service_name_or_uuid):
     response["info"] = "service contact information"
 
     return JsonResponse(response)
-
 
 # Retrieve a service object by UUID or Name
 def get_service_object():

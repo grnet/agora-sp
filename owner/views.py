@@ -96,3 +96,14 @@ def get_service_owner_institution(request, service_name_or_uuid, service_owner):
         response = helper.get_response_info(strings.SERVICE_OWNER_INSTITUTION, owner.get_institution())
 
     return JsonResponse(response)
+
+
+@api_view(['POST'])
+def insert_institution(request):
+
+
+
+
+
+
+    return JsonResponse({"write": "segment"})
