@@ -1,18 +1,18 @@
 import responses
 from django.contrib.sites.models import Site
 
-def get_error_response(code):
+def get_error_response(code, status=1):
     return {
-        "status": "404 Not Found",
+        "status": responses.STATUS_CODES[status],
         "errors": {
             "detail": responses.ERROR_MESSAGES[code]
         }
     }
 
 
-def get_response_info(code, data):
+def get_response_info(code, data, status=0):
     return {
-        "status": "200 OK",
+        "status": responses.STATUS_CODES[status],
         "info": responses.INFO_MESSAGES[code],
         "data": data
     }
