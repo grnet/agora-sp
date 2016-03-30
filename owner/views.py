@@ -156,6 +156,7 @@ def insert_institution(request):
 
     return JsonResponse(response)
 
+
 # Inserts an Contact Information object
 @api_view(['POST'])
 def insert_contact_information(request):
@@ -167,12 +168,11 @@ def insert_contact_information(request):
         return JsonResponse(helper.get_error_response(strings.INSTITUTION_NAME_NOT_PROVIDED,
                                                       status=strings.REJECTED_405))
 
-    first_name = params.get('first_name') if "first_name" in params else None
-    last_name = params.get('last_name') if "last_name" in params else None
-    email = params.get('department') if 'department' in params else None
-    phone = params.get('phone') if 'phone' in params else None
-    url = params.get('url') if 'url' in params else None
-
+    first_name = params.get('first_name')
+    last_name = params.get('last_name')
+    email = params.get('department')
+    phone = params.get('phone')
+    url = params.get('url')
 
     if first_name is None or len(first_name) == 0:
         return JsonResponse(helper.get_error_response(strings.OWNER_FIRST_NAME_EMPTY, status=strings.REJECTED_405))
@@ -214,8 +214,6 @@ def insert_contact_information(request):
     contact_information.phone = phone
     contact_information.url = url
 
-    contact_information.save()
-
     if uuid is not None:
         contact_information.id = uuid
 
@@ -224,5 +222,88 @@ def insert_contact_information(request):
     data = {}
 
     response = helper.get_response_info(strings.CONTACT_INFORMATION_INSERTED, data, status=strings.CREATED_201)
+
+    return JsonResponse(response)
+
+
+# Inserts an Service Owner object
+@api_view(['POST'])
+def insert_service_owner(request):
+
+    params = request.POST.copy()
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+
+    if "institution_uuid" not in params:
+        return JsonResponse(helper.get_error_response(strings.INSTITUTION_UUID_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
+
+    institution_uuid = None
+    uuid = None
+
+    first_name = params.get('first_name')
+    last_name = params.get('last_name')
+    email = params.get('email')
+    phone = params.get('phone')
+    institution_uuid = params.get('institution_uuid')
+
+
+    if first_name is None or len(first_name) == 0:
+        return JsonResponse(helper.get_error_response(strings.OWNER_FIRST_NAME_EMPTY, status=strings.REJECTED_405))
+
+    if last_name is None or len(last_name) == 0:
+        return JsonResponse(helper.get_error_response(strings.OWNER_LAST_NAME_EMPTY, status=strings.REJECTED_405))
+
+    if email is None or len(email) == 0:
+        return JsonResponse(helper.get_error_response(strings.OWNER_EMAIL_EMPTY, status=strings.REJECTED_405))
+
+    if phone is None or len(phone) == 0:
+        return JsonResponse(helper.get_error_response(strings.OWNER_PHONE_EMPTY, status=strings.REJECTED_405))
+
+
+    result = prog.match(institution_uuid)
+
+    if result is None:
+        return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
+                                                      status=strings.REJECTED_405))
+
+    try:
+        institution = models.Institution.objects.get(id=institution_uuid)
+
+    except models.Institution.DoesNotExist:
+        return JsonResponse(helper.get_error_response(strings.INSTITUTION_NOT_FOUND, status=strings.NOT_FOUND_404))
+
+
+    if "uuid" in params:
+
+        uuid = params.get("uuid")
+        result = prog.match(uuid)
+
+        if result is None:
+            return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
+                                                          status=strings.REJECTED_405))
+
+        try:
+            models.ServiceOwner.objects.get(id=uuid)
+            return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_UUID_EXISTS,
+                                                          status=strings.CONFLICT_409))
+        except models.Institution.DoesNotExist:
+            pass
+
+
+    service_owner = models.ServiceOwner()
+    service_owner.first_name = first_name
+    service_owner.last_name = last_name
+    service_owner.email = email
+    service_owner.phone = phone
+    service_owner.id_service_owner = institution
+
+    if uuid is not None:
+        service_owner.id = uuid
+
+    service_owner.save()
+
+    data = {}
+
+    response = helper.get_response_info(strings.SERVICE_OWNER_INSERTED, data, status=strings.CREATED_201)
 
     return JsonResponse(response)

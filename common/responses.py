@@ -1,10 +1,5 @@
 from strings import *
 
-
-
-
-
-
 ERROR_MESSAGES = {
     OWNER_NOT_FOUND: "The requested service owner was not found",
     SERVICE_NOT_FOUND: "The requested service was not found",
@@ -74,7 +69,10 @@ ERROR_MESSAGES = {
     OWNER_EMAIL_EMPTY:  "The provided email is empty",
     OWNER_PHONE_EMPTY:  "The provided phone number is empty",
     OWNER_URL_EMPTY:  "The provided url is empty",
-    CONTACT_INFORMATION_UUID_EXISTS: "A contact information object with the provided UUID already exists"
+    CONTACT_INFORMATION_UUID_EXISTS: "A contact information object with the provided UUID already exists",
+    SERVICE_OWNER_UUID_EXISTS: "A service owner with the provided UUID already exists",
+    INSTITUTION_UUID_NOT_PROVIDED: "Institution UUID not provided",
+    INSTITUTION_NOT_FOUND: "The requested institution was not found"
 }
 
 
@@ -102,7 +100,8 @@ INFO_MESSAGES = {
     USER_CUSTOMER_INSERTED: "user customer inserted",
     SERVICE_INSERTED: "service inserted",
     INSTITUTION_INSERTED: "institution inserted",
-    CONTACT_INFORMATION_INSERTED: "contact information inserted"
+    CONTACT_INFORMATION_INSERTED: "contact information inserted",
+    SERVICE_OWNER_INSERTED: "service owner inserted"
 }
 
 STATUS_CODES = {

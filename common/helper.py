@@ -18,7 +18,6 @@ def get_response_info(code, data, status=0):
     }
 
 def current_site_url():
-    """Returns fully qualified URL (no trailing slash) for the current site."""
 
     current_site = Site.objects.get_current()
     url = 'http://%s' % (current_site.domain+"/api")
