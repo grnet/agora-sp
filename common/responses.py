@@ -68,7 +68,13 @@ ERROR_MESSAGES = {
     SERVICE_UUID_EXISTS: "A service object with the provided UUID already exists",
     SERVICE_OWNER_NOT_FOUND: "No service owner object exists with the provided UUID",
     CONTACT_INFORMATION_NOT_FOUND: "No contact information object exists with the provided UUID",
-    INSTITUTION_UUID_EXISTS: "An institution object with the provided UUID already exists"
+    INSTITUTION_UUID_EXISTS: "An institution object with the provided UUID already exists",
+    OWNER_FIRST_NAME_EMPTY:  "The provided first name is empty",
+    OWNER_LAST_NAME_EMPTY:  "The provided last name is empty",
+    OWNER_EMAIL_EMPTY:  "The provided email is empty",
+    OWNER_PHONE_EMPTY:  "The provided phone number is empty",
+    OWNER_URL_EMPTY:  "The provided url is empty",
+    CONTACT_INFORMATION_UUID_EXISTS: "A contact information object with the provided UUID already exists"
 }
 
 
@@ -95,7 +101,8 @@ INFO_MESSAGES = {
     EXTERNAL_SERVICE_DEPENDENCY_INSERTED: "external service dependency inserted",
     USER_CUSTOMER_INSERTED: "user customer inserted",
     SERVICE_INSERTED: "service inserted",
-    INSTITUTION_INSERTED: "institution inserted"
+    INSTITUTION_INSERTED: "institution inserted",
+    CONTACT_INFORMATION_INSERTED: "contact information inserted"
 }
 
 STATUS_CODES = {
