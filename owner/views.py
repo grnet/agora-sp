@@ -98,12 +98,60 @@ def get_service_owner_institution(request, service_name_or_uuid, service_owner):
     return JsonResponse(response)
 
 
+# Inserts an Institution object
 @api_view(['POST'])
 def insert_institution(request):
 
+    params = request.POST.copy()
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+
+    if "name" not in params:
+        return JsonResponse(helper.get_error_response(strings.INSTITUTION_NAME_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
+
+    uuid = None
+
+    name = params.get('name')
+
+    if name is None or len(name) == 0:
+        return JsonResponse(helper.get_error_response(strings.INSTITUTION_NAME_EMPTY, status=strings.REJECTED_405))
+
+    address = params.get('address') if "address" in params else None
+    country = params.get('country') if "country" in params else None
+    department = params.get('department') if 'department' in params else None
 
 
+    if "uuid" in params:
+
+        uuid = params.get("uuid")
+        result = prog.match(uuid)
+
+        if result is None:
+            return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
+                                                          status=strings.REJECTED_405))
+
+        try:
+            models.Institution.objects.get(id=uuid)
+            return JsonResponse(helper.get_error_response(strings.INSTITUTION_UUID_EXISTS,
+                                                          status=strings.CONFLICT_409))
+        except models.Institution.DoesNotExist:
+            pass
 
 
+    institution = models.Institution()
+    institution.name = name
+    institution.address = address
+    institution.country = country
+    institution.department = department
+    institution.save()
 
-    return JsonResponse({"write": "segment"})
+    if uuid is not None:
+        institution.id = uuid
+
+    institution.save()
+
+    data = {}
+
+    response = helper.get_response_info(strings.INSTITUTION_INSERTED, data, status=strings.CREATED_201)
+
+    return JsonResponse(response)

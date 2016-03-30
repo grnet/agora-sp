@@ -67,7 +67,8 @@ ERROR_MESSAGES = {
     SERVICE_INVALID_UUID: "An invalid service UUID was supplied",
     SERVICE_UUID_EXISTS: "A service object with the provided UUID already exists",
     SERVICE_OWNER_NOT_FOUND: "No service owner object exists with the provided UUID",
-    CONTACT_INFORMATION_NOT_FOUND: "No contact information object exists with the provided UUID"
+    CONTACT_INFORMATION_NOT_FOUND: "No contact information object exists with the provided UUID",
+    INSTITUTION_UUID_EXISTS: "An institution object with the provided UUID already exists"
 }
 
 
@@ -93,7 +94,8 @@ INFO_MESSAGES = {
     SERVICE_DEPENDENCY_INSERTED: "service dependency inserted",
     EXTERNAL_SERVICE_DEPENDENCY_INSERTED: "external service dependency inserted",
     USER_CUSTOMER_INSERTED: "user customer inserted",
-    SERVICE_INSERTED: "service inserted"
+    SERVICE_INSERTED: "service inserted",
+    INSTITUTION_INSERTED: "institution inserted"
 }
 
 STATUS_CODES = {
