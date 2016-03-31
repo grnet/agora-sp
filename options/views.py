@@ -68,6 +68,7 @@ def get_service_sla(request, search_type, version, sla_uuid):
 
     return JsonResponse(response)
 
+
 # Returns the selected service details options information
 @api_view(['GET'])
 def get_service_sla_parameter(request, search_type, version, sla_uuid, sla_param_uuid):
@@ -142,6 +143,7 @@ def get_service_sla_parameter(request, search_type, version, sla_uuid, sla_param
 
     return JsonResponse(response)
 
+
 # Returns the selected service details options information
 @api_view(['GET'])
 def get_service_options(request, search_type, version):
@@ -187,3 +189,131 @@ def get_service_options(request, search_type, version):
             response = helper.get_error_response(strings.INVALID_UUID)
 
     return JsonResponse(response)
+
+
+# Inserts an Service Option object
+@api_view(['POST'])
+def insert_service_option(request):
+
+    params = request.POST.copy()
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+
+    if "name" not in params:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_NAME_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
+
+    uuid = None
+
+    name = params.get('name')
+
+    if name is None or len(name) == 0:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_NAME_EMPTY, status=strings.REJECTED_405))
+
+    description = params.get('description') if "address" in params else None
+    pricing = params.get('pricing') if "country" in params else None
+
+
+    if "uuid" in params:
+
+        uuid = params.get("uuid")
+        result = prog.match(uuid)
+
+        if result is None:
+            return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
+                                                          status=strings.REJECTED_405))
+
+        try:
+            options_models.ServiceOption.objects.get(id=uuid)
+            return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_UUID_EXISTS,
+                                                          status=strings.CONFLICT_409))
+        except  options_models.ServiceOption.DoesNotExist:
+            pass
+
+
+    service_option = options_models.ServiceOption()
+    service_option.name = name
+    service_option.description = description
+    service_option.pricing = pricing
+
+    service_option.save()
+
+    if uuid is not None:
+        service_option.id = uuid
+
+    service_option.save()
+
+    data = {}
+
+    response = helper.get_response_info(strings.SERVICE_OPTION_INSERTED, data, status=strings.CREATED_201)
+
+    return JsonResponse(response)
+
+
+# Inserts an Service Option object
+@api_view(['POST'])
+def insert_SLA(request):
+
+    params = request.POST.copy()
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+
+    if "name" not in params:
+        return JsonResponse(helper.get_error_response(strings.SLA_NAME_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
+
+    uuid = None
+    name = params.get('name')
+    service_option_uuid = params.get('service_option_uuid')
+
+    if name is None or len(name) == 0:
+        return JsonResponse(helper.get_error_response(strings.SLA_NAME_EMPTY, status=strings.REJECTED_405))
+
+    if service_option_uuid is None or len(service_option_uuid) == 0:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_UUID_EMPTY, status=strings.REJECTED_405))
+
+
+    result = prog.match(service_option_uuid)
+
+    if result is None:
+        return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
+                                                      status=strings.REJECTED_405))
+
+    try:
+        service_option = options_models.ServiceOption.objects.get(id=service_option_uuid)
+    except options_models.ServiceOption.DoesNotExist:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_NOT_FOUND,
+                                                      status=strings.NOT_FOUND_404))
+
+    if "uuid" in params:
+
+        uuid = params.get("uuid")
+        result = prog.match(uuid)
+
+        if result is None:
+            return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
+                                                          status=strings.REJECTED_405))
+
+        try:
+            options_models.SLA.objects.get(id=uuid)
+            return JsonResponse(helper.get_error_response(strings.SLA_UUID_EXISTS,
+                                                          status=strings.CONFLICT_409))
+        except  options_models.SLA.DoesNotExist:
+            pass
+
+
+    SLA = options_models.SLA()
+    SLA.name = name
+    SLA.service_option_id = service_option
+
+    SLA.save()
+
+    if uuid is not None:
+        SLA.id = uuid
+
+    SLA.save()
+
+    data = {}
+
+    response = helper.get_response_info(strings.SLA_INSERTED, data, status=strings.CREATED_201)
+
+    return JsonResponse(response)
+

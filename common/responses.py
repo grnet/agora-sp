@@ -72,7 +72,16 @@ ERROR_MESSAGES = {
     CONTACT_INFORMATION_UUID_EXISTS: "A contact information object with the provided UUID already exists",
     SERVICE_OWNER_UUID_EXISTS: "A service owner with the provided UUID already exists",
     INSTITUTION_UUID_NOT_PROVIDED: "Institution UUID not provided",
-    INSTITUTION_NOT_FOUND: "The requested institution was not found"
+    INSTITUTION_NOT_FOUND: "The requested institution was not found",
+    SERVICE_OPTION_NAME_NOT_PROVIDED: "Service option name not provided",
+    SERVICE_OPTION_NAME_EMPTY: "The provided service option name is empty",
+    SERVICE_OPTION_UUID_EXISTS: "A service option object with the provided UUID already exists",
+    SLA_NAME_NOT_PROVIDED: "SLA name not provided",
+    SLA_NAME_EMPTY: "The provided SLA name is empty",
+    SERVICE_OPTION_NOT_FOUND: "The requested service option was not found",
+    SLA_UUID_EXISTS: "A SLA object with thr provided UUID already exists",
+    SERVICE_OPTION_UUID_EMPTY: "The provided service option uuid id empty"
+
 }
 
 
@@ -101,7 +110,9 @@ INFO_MESSAGES = {
     SERVICE_INSERTED: "service inserted",
     INSTITUTION_INSERTED: "institution inserted",
     CONTACT_INFORMATION_INSERTED: "contact information inserted",
-    SERVICE_OWNER_INSERTED: "service owner inserted"
+    SERVICE_OWNER_INSERTED: "service owner inserted",
+    SERVICE_OPTION_INSERTED: "service option inserted",
+    SLA_INSERTED: "SLA inserted"
 }
 
 STATUS_CODES = {
