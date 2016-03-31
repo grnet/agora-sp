@@ -97,7 +97,9 @@ ERROR_MESSAGES = {
     SERVICE_DETAILS_UUID_EMPTY: "The provided service details UUID is empty",
     SERVICE_DETAILS_OPTION_EXISTS: "A Service Details Option object with the provided UUID already exits",
     SERVICE_UUID_NOT_PROVIDED: "Service UUID not provided",
-    SERVICE_DETAILS_UUID_NOT_PROVIDED: "Service Details UUID not provided"
+    SERVICE_DETAILS_UUID_NOT_PROVIDED: "Service Details UUID not provided",
+    SERVICE_DETAILS_EXISTS: "A Service Details object with the provided UUID already exists",
+    SERVICE_DETAILS_VERSION_NOT_PROVIDED: "Service Details Version not provided"
 
 }
 
@@ -132,7 +134,8 @@ INFO_MESSAGES = {
     SLA_INSERTED: "SLA inserted",
     PARAMETER_INSERTED: "parameter inserted",
     SLA_PARAMETER_INSERTED: "sla parameter inserted",
-    SERVICE_DETAILS_OPTION_INSERTED: "service details option inserted"
+    SERVICE_DETAILS_OPTION_INSERTED: "service details option inserted",
+    SERVICE_DETAILS_INSERTED: "service details inserted"
 
 }
 

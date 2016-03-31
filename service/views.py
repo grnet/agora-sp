@@ -531,6 +531,133 @@ def insert_service_dependency(request, service_name_or_uuid):
     response = helper.get_response_info(strings.SERVICE_DEPENDENCY_INSERTED, data, status=strings.CREATED_201)
     return JsonResponse(response)
 
+
+# Inserts service details for a specific service
+@api_view(['POST'])
+def insert_service_details(request, service_name_or_uuid):
+
+    params = request.POST.copy()
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+
+    service, uuid, parsed_name, manual_uuid = None, None, None, None
+
+    if "service_uuid_name" not in params:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_UUID_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
+
+
+    if "version" not in params:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_VERSION_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
+
+    service_uuid_name = params.get("service_uuid_name")
+    version = params.get('version')
+
+    status = params.get('status') if "status" in params else None
+    features_current = params.get('features_current') if "features_current" in params else None
+    features_future = params.get('features_future') if "features_future" in params else None
+    usage_policy_url = params.get('usage_policy_url') if "usage_policy_url" in params else None
+    user_documentation_url = params.get('user_documentation_url') if "user_documentation_url" in params else None
+    operations_documentation_url = params.get('operations_documentation_url') if "operations_documentation_url" in params else None
+    monitoring_url = params.get('monitoring_url') if "monitoring_url" in params else None
+    accounting_url = params.get('accounting_url') if "accounting_url" in params else None
+    business_continuity_plan_url = params.get('business_continuity_plan_url') if "business_continuity_plan_url" in params else None
+    disaster_recovery_plan_url = params.get('disaster_recovery_plan_url') if "disaster_recovery_plan_url" in params else None
+    decommissioning_procedure_url = params.get('decommissioning_procedure_url') if "decommissioning_procedure_url" in params else None
+    cost_to_run = params.get('cost_to_run') if "cost_to_run" in params else None
+    cost_to_build = params.get('cost_to_build') if "cost_to_build" in params else None
+    use_cases = params.get('use_cases') if "use_cases" in params else None
+    usage_policy_has = params.get('usage_policy_has') if "usage_policy_has" in params else False
+    user_documentation_has = params.get('user_documentation_has') if "user_documentation_has" in params else False
+    operations_documentation_has = params.get('operations_documentation_has') if "operations_documentation_has" in params else False
+    monitoring_has = params.get('monitoring_has') if "monitoring_has" in params else False
+    accounting_has = params.get('accounting_has') if "accounting_has" in params else False
+    business_continuity_plan_has = params.get('business_continuity_plan_has') if "business_continuity_plan_has" in params else False
+    disaster_recovery_plan_has = params.get('disaster_recovery_plan_has') if "disaster_recovery_plan_has" in params else False
+    decommissioning_procedure_has = params.get('decommissioning_procedure_has') if "decommissioning_procedure_has" in params else False
+
+    result = prog.match(service_uuid_name)
+
+
+    try:
+        if result is None:
+            parsed_name = service_uuid_name.replace("_", " ").strip()
+            service = models.Service.objects.get(name=parsed_name)
+
+        else:
+            uuid = service_uuid_name
+
+            secondary_check = prog.match(uuid)
+
+            if secondary_check is None:
+                return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
+                                                      status=strings.REJECTED_405))
+
+            service = models.Service.objects.get(id=uuid)
+
+    except models.Service.DoesNotExist:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_NOT_FOUND, status=strings.NOT_FOUND_404))
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            return JsonResponse(helper.get_error_response(strings.INVALID_UUID, status=strings.REJECTED_405))
+
+    service_details = models.ServiceDetails()
+    service_details.id_service = service
+    service_details.version = version
+    service_details.status = status
+    service_details.features_current = features_current
+    service_details.features_future = features_future
+    service_details.usage_policy_url = usage_policy_url
+    service_details.usage_policy_has = usage_policy_has
+    service_details.user_documentation_has = user_documentation_has
+    service_details.user_documentation_url = user_documentation_url
+    service_details.operations_documentation_has = operations_documentation_has
+    service_details.operations_documentation_url = operations_documentation_url
+    service_details.monitoring_has = monitoring_has
+    service_details.monitoring_url = monitoring_url
+    service_details.accounting_has = accounting_has
+    service_details.accounting_url = accounting_url
+    service_details.business_continuity_plan_has = business_continuity_plan_has
+    service_details.business_continuity_plan_url = business_continuity_plan_url
+    service_details.disaster_recovery_plan_has = disaster_recovery_plan_has
+    service_details.disaster_recovery_plan_url = disaster_recovery_plan_url
+    service_details.decommissioning_procedure_has = decommissioning_procedure_has
+    service_details.decommissioning_procedure_url = decommissioning_procedure_url
+    service_details.cost_to_build = cost_to_build
+    service_details.cost_to_run = cost_to_run
+    service_details.use_cases = use_cases
+
+
+
+    if "manual_uuid" in params:
+
+        manual_uuid = params.get("manual_uuid")
+        result = prog.match(uuid)
+
+        if result is None:
+            return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
+                                                          status=strings.REJECTED_405))
+
+        try:
+            models.ServiceDetails.objects.get(id=uuid)
+            return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_EXISTS,
+                                                          status=strings.CONFLICT_409))
+        except models.ServiceDetails.DoesNotExist:
+            pass
+
+
+    if manual_uuid is not None:
+        service_details.id = manual_uuid
+
+
+    service_details.save()
+
+    data = {}
+    response = helper.get_response_info(strings.SERVICE_DETAILS_INSERTED, data, status=strings.CREATED_201)
+    return JsonResponse(response)
+
+
 # Inserts external service dependency
 @api_view(['POST'])
 def insert_external_service_dependency(request, service_name_or_uuid):
