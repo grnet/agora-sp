@@ -317,3 +317,69 @@ def insert_SLA(request):
 
     return JsonResponse(response)
 
+
+# Inserts an Service Option object
+@api_view(['POST'])
+def insert_parameter(request):
+
+    params = request.POST.copy()
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+
+    if "name" not in params:
+        return JsonResponse(helper.get_error_response(strings.PARAMETER_NAME_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
+
+
+    if "type" not in params:
+        return JsonResponse(helper.get_error_response(strings.PARAMETER_TYPE_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
+
+    uuid = None
+
+    name = params.get('name')
+
+    if name is None or len(name) == 0:
+        return JsonResponse(helper.get_error_response(strings.PARAMETER_NAME_EMPTY, status=strings.REJECTED_405))
+
+    type = params.get('type')
+
+    if type is None or len(type) == 0:
+        return JsonResponse(helper.get_error_response(strings.PARAMETER_TYPE_EMPTY, status=strings.REJECTED_405))
+
+    expression = params.get('expression') if "expression" in params else None
+
+
+    if "uuid" in params:
+
+        uuid = params.get("uuid")
+        result = prog.match(uuid)
+
+        if result is None:
+            return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
+                                                          status=strings.REJECTED_405))
+
+        try:
+            options_models.Parameter.objects.get(id=uuid)
+            return JsonResponse(helper.get_error_response(strings.PARAMETER_UUID_EXISTS,
+                                                          status=strings.CONFLICT_409))
+        except  options_models.Parameter.DoesNotExist:
+            pass
+
+
+    parameter = options_models.Parameter()
+    parameter.name = name
+    parameter.type = type
+    parameter.expression = expression
+
+    parameter.save()
+
+    if uuid is not None:
+        parameter.id = uuid
+
+    parameter.save()
+
+    data = {}
+
+    response = helper.get_response_info(strings.PARAMETER_INSERTED, data, status=strings.CREATED_201)
+
+    return JsonResponse(response)
