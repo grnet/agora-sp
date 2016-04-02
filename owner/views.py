@@ -53,7 +53,7 @@ def get_service_owner_institution(request, service_name_or_uuid, service_owner):
     """
 
     response = {}
-    service, owner, parsed_name, uuid, owner_name, owner_uuid = None, None, None, None, None, None
+    service, owner, parsed_name, uuid, owner_name, owner_uuid, owner_email = None, None, None, None, None, None, None
 
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     result = prog.match(service_name_or_uuid)
@@ -65,7 +65,11 @@ def get_service_owner_institution(request, service_name_or_uuid, service_owner):
         uuid = service_name_or_uuid
 
     if owner_match is None:
-        owner_name = service_owner.split("_")
+        if '@' not in service_owner:
+            owner_name = service_owner.split("_")
+        else:
+            owner_email = service_owner
+
     else:
         owner_uuid = service_owner
 
@@ -76,7 +80,11 @@ def get_service_owner_institution(request, service_name_or_uuid, service_owner):
             service = service_models.Service.objects.get(id=uuid)
 
         if owner_match is None:
-            owner = service_models.ServiceOwner.objects.get(first_name=owner_name[0], last_name=owner_name[1])
+            if '@' not in service_owner:
+                owner = service_models.ServiceOwner.objects.get(first_name=owner_name[0], last_name=owner_name[1])
+            else:
+                owner = service_models.ServiceOwner.objects.get(email=owner_email)
+
         else:
             owner = service_models.ServiceOwner.objects.get(id=owner_uuid)
 
