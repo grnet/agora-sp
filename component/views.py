@@ -66,7 +66,7 @@ def get_service_components(request, search_type, version):
 
 # Inserts the provided service component
 @api_view(['POST'])
-def insert_service_component(request, search_type, version):
+def insert_service_component(request):
     """
 
     Inserts the provided service component.
@@ -224,7 +224,7 @@ def get_service_component(request, search_type, version, comp_uuid):
 
 # Inserts the provided service component implementation
 @api_view(['POST'])
-def insert_service_component_implementation(request, search_type, version, comp_uuid):
+def insert_service_component_implementation(request):
     """
 
     Inserts the provided service component implementation.
@@ -235,6 +235,12 @@ def insert_service_component_implementation(request, search_type, version, comp_
     comp = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     uuid = None
+
+
+    if "component_uuid" not in comp:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_UUID_NOT_PROVIDED, status=strings.REJECTED_405))
+
+    comp_uuid = comp.get("component_uuid")
 
     result = prog.match(comp_uuid)
 
@@ -372,7 +378,7 @@ def get_service_component_implementations(request, search_type, version, comp_uu
 
 # Inserts the provided service component implementation details
 @api_view(['POST'])
-def insert_service_component_implementation_details(request, search_type, version, comp_uuid, imp_uuid):
+def insert_service_component_implementation_details(request):
     """
 
     Inserts the provided service component implementation details.
@@ -384,11 +390,22 @@ def insert_service_component_implementation_details(request, search_type, versio
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     uuid = None
 
+    if "component_uuid" not in comp:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_UUID_NOT_PROVIDED, status=strings.REJECTED_405))
+
+    comp_uuid = comp.get("component_uuid")
+
     result = prog.match(comp_uuid)
 
     if result is None:
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_INVALID_UUID,
                                                       status=strings.REJECTED_405))
+
+    if "component_implementation_uuid" not in comp:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_UUID_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
+
+    imp_uuid = comp.get("component_implementation_uuid")
 
     result = prog.match(imp_uuid)
 
@@ -537,7 +554,7 @@ def get_service_component_implementation_detail(request, search_type, version, c
 
 # Inserts the provided service component implementation details and service details relationship
 @api_view(['POST'])
-def insert_service_details_component_implementation_details(request, search_type, version):
+def insert_service_details_component_implementation_details(request):
     """
 
     Inserts the provided service component implementation details and service details relationship
@@ -559,6 +576,15 @@ def insert_service_details_component_implementation_details(request, search_type
     if result is None:
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_INVALID_UUID,
                             status=strings.REJECTED_405))
+
+    if "service_id" not in comp:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_UUID_NOT_PROVIDED, status=strings.REJECTED_405))
+
+    if "service_version" not in comp:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_VERSION_NOT_PROVIDED, status=strings.REJECTED_405))
+
+    search_type = comp.get('service_id')
+    version = comp.get('service_version')
 
     result = prog.match(search_type)
 
