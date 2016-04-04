@@ -436,6 +436,12 @@ class Service_DependsOn_Service(models.Model):
 
         return str(srv1.name) + " " + str(srv2.name)
 
+    def as_json(self):
+        return {
+            "service": self.id_service_one.name,
+            "dependency": self.id_service_two.name
+        }
+
 
 class Service_ExternalService(models.Model):
     class Meta:

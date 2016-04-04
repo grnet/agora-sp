@@ -163,17 +163,16 @@ class ServiceTestCase(TestCase):
             "details": "Test details",
             "uuid": "a42732fc-584e-429e-8df3-610caf2b1a51"
         }
-        post_data1 = {
-            "name": "Test name",
-            "description": "Test description",
-            "service": "Test service",
-            "details": "Test details"
-        }
         response = self.client_stub.post("/api/v1/portfolio/services/external_service/add", post_data)
-        response1 = self.client_stub.post("/api/v1/portfolio/services/external_service/add", post_data1)
-        expected_response = helper.get_response_info(strings.EXTERNAL_SERVICE_INSERTED, {}, status=strings.CREATED_201)
+        expected_data = {
+            "id": post_data["uuid"],
+            "name": post_data["name"],
+            "description": post_data["description"],
+            "service": post_data["service"],
+            "details": post_data["details"]
+        }
+        expected_response = helper.get_response_info(strings.EXTERNAL_SERVICE_INSERTED, expected_data, status=strings.CREATED_201)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
-        self.assertJSONEqual(json.dumps(expected_response), response1.content)
 
     def test_insert_service_dependency_no_dependency(self):
         post_data = {
@@ -206,12 +205,16 @@ class ServiceTestCase(TestCase):
         expected_response = helper.get_error_response(strings.SERVICE_DEPENDENCY_EXISTS, status=strings.CONFLICT_409)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
-    def test_insert_service_dependency_dependency(self):
+    def test_insert_service_dependency(self):
         post_data = {
             "service_dependency": "583ec8f2-9ef6-4e51-89bd-9af7f5fcea9c"
         }
         response = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/service_dependencies/add", post_data)
-        expected_response = helper.get_response_info(strings.SERVICE_DEPENDENCY_INSERTED, {}, status=strings.CREATED_201)
+        expected_data = {
+            "service": "B2SAFE",
+            "dependency": "EUDAT Central Monitoring service"
+        }
+        expected_response = helper.get_response_info(strings.SERVICE_DEPENDENCY_INSERTED, expected_data, status=strings.CREATED_201)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_insert_external_service_dependency_no_dependency(self):
@@ -245,12 +248,16 @@ class ServiceTestCase(TestCase):
         expected_response = helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_EXISTS, status=strings.CONFLICT_409)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
-    def test_insert_external_service_dependency_dependency(self):
+    def test_insert_external_service_dependency(self):
         post_data = {
             "external_service_dependency": "a42732fc-584e-429e-8df3-610caf2b1a52"
         }
         response = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/service_external_dependencies/add", post_data)
-        expected_response = helper.get_response_info(strings.EXTERNAL_SERVICE_DEPENDENCY_INSERTED, {}, status=strings.CREATED_201)
+        expected_data = {
+            "service": "88b35b0d-adc2-4a2e-b5fc-cae2d6f5456a",
+            "external_service": post_data["external_service_dependency"]
+        }
+        expected_response = helper.get_response_info(strings.EXTERNAL_SERVICE_DEPENDENCY_INSERTED, expected_data, status=strings.CREATED_201)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_insert_user_customer_params_not_provided(self):
@@ -301,14 +308,19 @@ class ServiceTestCase(TestCase):
         expected_response = helper.get_error_response(strings.USER_CUSTOMER_EXISTS, status=strings.CONFLICT_409)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
-    def test_insert_user_customer_existing(self):
+    def test_insert_user_customer(self):
         post_data = {
             "name": "Service provider",
             "role": "User",
             "uuid": "5fa10867-e6bf-4ad0-9ac9-784542053c63"
         }
         response = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/user_customer/add", post_data)
-        expected_response = helper.get_response_info(strings.USER_CUSTOMER_INSERTED, {}, status=strings.CREATED_201)
+        expected_data = {
+            "id": post_data["uuid"],
+            "name": post_data["name"],
+            "role": post_data["role"]
+        }
+        expected_response = helper.get_response_info(strings.USER_CUSTOMER_INSERTED, expected_data, status=strings.CREATED_201)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_insert_service_invalid_name(self):
@@ -384,5 +396,48 @@ class ServiceTestCase(TestCase):
             "competitors": "competitors",
         }
         response = self.client_stub.post("/api/v1/portfolio/services/add", post_data)
-        expected_response = helper.get_response_info(strings.SERVICE_INSERTED, {}, status=strings.CREATED_201)
+        expected_data = {
+            "uuid": post_data["uuid"],
+            "service_complete_link": {
+                "related": {
+                    "href": helper.current_site_url() + "/v1/portfolio/services/" + post_data["name"].replace(" ", "_")
+                            + "?view=complete",
+                    "meta": {
+                        "desc": "Portfolio level details about this service."
+                    }
+                }},
+            "name": post_data["name"],
+            "description_external": post_data["description_external"],
+            "description_internal": post_data["description_internal"],
+            "service_area": post_data["service_area"],
+            "request_procedures": post_data["request_procedures"],
+            "funders_for_service": post_data["funders_for_service"],
+            "value_to_customer": post_data["value_to_customer"],
+            "risks": post_data["risks"],
+            "service_details_list": {
+                "count": 0,
+                "service_details": []
+            },
+            "competitors": post_data["competitors"],
+            "user_customers_list": {
+                "count": 0,
+                "user_customers": []
+            },
+            "service_owner_link": {
+                "related": {
+                    "href": helper.current_site_url() + "/v1/portfolio/services/" + post_data["name"].replace(" ", "_") + "/service_owner",
+                    "meta": {
+                        "desc": "Service owner link"
+                    }
+                }
+            },
+            "contact_information_link": {
+                "related": {
+                    "href": helper.current_site_url() + "/v1/portfolio/services/" + post_data["name"].replace(" ", "_") + "/contact_information",
+                    "meta": {
+                        "desc": "Link contact information about this service"
+                    }
+                }}
+        }
+        expected_response = helper.get_response_info(strings.SERVICE_INSERTED, expected_data, status=strings.CREATED_201)
         self.assertJSONEqual(json.dumps(expected_response), response.content)

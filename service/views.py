@@ -427,7 +427,7 @@ def insert_service(request, type):
         service.id = uuid
     service.save()
 
-    data = {}
+    data = service.as_portfolio()
     response = helper.get_response_info(strings.SERVICE_INSERTED, data, status=strings.CREATED_201)
     return JsonResponse(response)
 
@@ -478,7 +478,7 @@ def insert_external_service(request, type):
         external_service.id = uuid
     external_service.save()
 
-    data = {}
+    data = external_service.as_json()
     response = helper.get_response_info(strings.EXTERNAL_SERVICE_INSERTED, data, status=strings.CREATED_201)
     return JsonResponse(response)
 
@@ -527,7 +527,7 @@ def insert_service_dependency(request, service_name_or_uuid):
     if not created:
         return JsonResponse(helper.get_error_response(strings.SERVICE_DEPENDENCY_EXISTS, status=strings.CONFLICT_409))
 
-    data = {}
+    data = obj.as_json()
     response = helper.get_response_info(strings.SERVICE_DEPENDENCY_INSERTED, data, status=strings.CREATED_201)
     return JsonResponse(response)
 
@@ -653,7 +653,7 @@ def insert_service_details(request, service_name_or_uuid):
 
     service_details.save()
 
-    data = {}
+    data = service_details.as_json()
     response = helper.get_response_info(strings.SERVICE_DETAILS_INSERTED, data, status=strings.CREATED_201)
     return JsonResponse(response)
 
@@ -703,7 +703,7 @@ def insert_external_service_dependency(request, service_name_or_uuid):
     if not created:
         return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_EXISTS, status=strings.CONFLICT_409))
 
-    data = {}
+    data = obj.as_json()
     response = helper.get_response_info(strings.EXTERNAL_SERVICE_DEPENDENCY_INSERTED, data, status=strings.CREATED_201)
     return JsonResponse(response)
 
@@ -775,7 +775,7 @@ def insert_user_customer(request, service_name_or_uuid):
         return JsonResponse(helper.get_error_response(strings.SERVICE_NOT_FOUND, status=strings.NOT_FOUND_404))
 
 
-    data = {}
+    data = user_customer.as_json()
     response = helper.get_response_info(strings.USER_CUSTOMER_INSERTED, data, status=strings.CREATED_201)
     return JsonResponse(response)
 
