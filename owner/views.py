@@ -158,7 +158,7 @@ def insert_institution(request):
 
     institution.save()
 
-    data = {}
+    data = institution.as_json()
 
     response = helper.get_response_info(strings.INSTITUTION_INSERTED, data, status=strings.CREATED_201)
 
@@ -227,7 +227,7 @@ def insert_contact_information(request):
 
     contact_information.save()
 
-    data = {}
+    data = contact_information.as_json()
 
     response = helper.get_response_info(strings.CONTACT_INFORMATION_INSERTED, data, status=strings.CREATED_201)
 
@@ -310,7 +310,7 @@ def insert_service_owner(request):
 
     service_owner.save()
 
-    data = {}
+    data = service_owner.as_json()
 
     response = helper.get_response_info(strings.SERVICE_OWNER_INSERTED, data, status=strings.CREATED_201)
 
