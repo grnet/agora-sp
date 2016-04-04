@@ -455,6 +455,15 @@ def insert_SLA_parameter(request):
         return JsonResponse(helper.get_error_response(strings.PARAMETER_NOT_FOUND,
                                                       status=strings.NOT_FOUND_404))
 
+
+
+    obj, created = options_models.SLAParameter.objects.get_or_create(parameter_id=parameter,
+                                                                          sla_id=sla,
+                                                                     service_option_id=service_option
+                                                                     )
+    if not created:
+        return JsonResponse(helper.get_error_response(strings.SLA_PARAMETER_EXISTS, status=strings.CONFLICT_409))
+
     if "uuid" in params:
 
         uuid = params.get("uuid")
@@ -561,6 +570,14 @@ def insert_service_details_option(request):
     except service_models.ServiceDetails.DoesNotExist:
         return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_NOT_FOUND,
                                                       status=strings.NOT_FOUND_404))
+
+
+    obj, created = options_models.SLAParameter.objects.get_or_create(service_id=service,
+                                                                          service_details_id=service_details,
+                                                                     service_options_id=service_option
+                                                                     )
+    if not created:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_EXISTS, status=strings.CONFLICT_409))
 
     if "uuid" in params:
 

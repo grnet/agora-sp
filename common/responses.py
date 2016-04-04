@@ -101,7 +101,9 @@ ERROR_MESSAGES = {
     SERVICE_DETAILS_EXISTS: "A Service Details object with the provided UUID already exists",
     SERVICE_DETAILS_VERSION_NOT_PROVIDED: "Service Details Version not provided",
     SERVICE_COMPONENT_UUID_NOT_PROVIDED: "Service component UUID not provided",
-    SERVICE_COMPONENT_IMPLEMENTATION_UUID_NOT_PROVIDED: "Service component implementation UUID not provided"
+    SERVICE_COMPONENT_IMPLEMENTATION_UUID_NOT_PROVIDED: "Service component implementation UUID not provided",
+    SLA_PARAMETER_EXISTS: "A SLA Parameter object with the provided information already exists",
+    SERVICE_OPTION_EXISTS: "A Service Option with the provided information already exists"
 
 }
 
