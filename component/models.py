@@ -20,7 +20,7 @@ class ServiceComponent(models.Model):
             .filter(component_id=self.pk)]
 
         return {
-            "uuid": self.id,
+            "uuid": str(self.id),
             "name": self.name,
             "description": self.description,
             "component_implementations_list": {
@@ -34,7 +34,7 @@ class ServiceComponent(models.Model):
         service = Service.objects.get(id=service_id)
 
         return {
-            "uuid": self.id,
+            "uuid": str(self.id),
             "name": self.name,
             "description": self.description,
             "component_implementation_link": {
@@ -64,7 +64,7 @@ class ServiceComponentImplementation(models.Model):
                                 filter(component_id=self.component_id.pk, component_implementation_id=self.pk)]
 
         return {
-            "uuid": self.id,
+            "uuid": str(self.id),
             "name": self.name,
             "description": self.description,
             "component_implementation_details_list": {
@@ -78,7 +78,7 @@ class ServiceComponentImplementation(models.Model):
         service = Service.objects.get(id=service_id)
 
         return {
-            "uuid": self.id,
+            "uuid": str(self.id),
             "name": self.name,
             "description": self.description,
             "component_implementation_details_link": {
@@ -106,7 +106,7 @@ class ServiceComponentImplementationDetail(models.Model):
 
     def as_json(self):
         return {
-            "uuid": self.id,
+            "uuid": str(self.id),
             "version": self.version,
             "configuration_parameters": self.configuration_parameters
         }
@@ -124,3 +124,10 @@ class ServiceDetailsComponent(models.Model):
     def __unicode__(self):
         return str(self.service_id.name) + " "  + str(self.service_details_id.version) + " " + \
                str(self.service_component_implementation_detail_id.version)
+
+    def as_json(self):
+        return {
+            "service_uuid": self.service_id.name,
+            "service_details_version": self.service_details_id.version,
+            "service_component_implementation_detail_uuid": self.service_component_implementation_detail_id.pk
+        }

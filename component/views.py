@@ -116,7 +116,7 @@ def insert_service_component(request):
         service_component.id = uuid
     service_component.save()
 
-    data = {}
+    data = service_component.as_json()
     response = helper.get_response_info(strings.SERVICE_COMPONENT_INSERTED, data, status=strings.CREATED_201)
     return JsonResponse(response)
 
@@ -293,7 +293,7 @@ def insert_service_component_implementation(request):
         service_component_implementation.id = uuid
     service_component_implementation.save()
 
-    data = {}
+    data = service_component_implementation.as_json()
     response = helper.get_response_info(strings.SERVICE_COMPONENT_IMPLEMENTATION_INSERTED, data,
                                         status=strings.CREATED_201)
     return JsonResponse(response)
@@ -463,7 +463,7 @@ def insert_service_component_implementation_details(request):
         service_component_implementation_details.id = uuid
     service_component_implementation_details.save()
 
-    data = {}
+    data = service_component_implementation_details.as_json()
     response = helper.get_response_info(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_INSERTED, data,
                                         status=strings.CREATED_201)
     return JsonResponse(response)
@@ -612,7 +612,8 @@ def insert_service_details_component_implementation_details(request):
         if not created:
             response = helper.get_error_response(strings.SERVICE_DETAILS_COMPONENT_EXISTS, status=strings.REJECTED_405)
         else:
-            response = helper.get_response_info(strings.SERVICE_DETAILS_COMPONENT_INSERTED, {}, status=strings.OK_200)
+            data = obj.as_json()
+            response = helper.get_response_info(strings.SERVICE_DETAILS_COMPONENT_INSERTED, data, status=strings.OK_200)
 
     except service_models.Service.DoesNotExist:
         response = helper.get_error_response(strings.SERVICE_NOT_FOUND)

@@ -2,6 +2,7 @@ from django.test import TestCase, Client
 from django.test.client import RequestFactory
 import json
 from common import helper, strings
+from models import *
 # Create your tests here.
 
 
@@ -98,15 +99,6 @@ class ComponentTestCase(TestCase):
         expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_UUID_EXISTS, status=strings.CONFLICT_409)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
-    def test_insert_service_component(self):
-        post_data = {
-            "name": "Test name",
-            "description": "Test description"
-        }
-        response = self.client_stub.post("/api/v1/component/add", post_data)
-        expected_response = helper.get_response_info(strings.SERVICE_COMPONENT_INSERTED, {}, status=strings.CREATED_201)
-        self.assertJSONEqual(json.dumps(expected_response), response.content)
-
     def test_insert_service_component_with_uuid(self):
         post_data = {
             "name": "Test name",
@@ -114,7 +106,16 @@ class ComponentTestCase(TestCase):
             "uuid": "56601d76-c1e2-488c-a812-dba8e5508c2e"
         }
         response = self.client_stub.post("/api/v1/component/add", post_data)
-        expected_response = helper.get_response_info(strings.SERVICE_COMPONENT_INSERTED, {}, status=strings.CREATED_201)
+        expected_data = {
+            "uuid": post_data["uuid"],
+            "name": post_data["name"],
+            "description": post_data["description"],
+            "component_implementations_list": {
+                "count": 0,
+                "component_implementations": []
+            }
+        }
+        expected_response = helper.get_response_info(strings.SERVICE_COMPONENT_INSERTED, expected_data, status=strings.CREATED_201)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_insert_service_component_implementation_no_name(self):
@@ -178,17 +179,6 @@ class ComponentTestCase(TestCase):
         expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_UUID_EXISTS, status=strings.CONFLICT_409)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
-    def test_insert_service_component_implementation(self):
-        post_data = {
-            "name": "Test name",
-            "description": "Test description",
-            "component_uuid": "af2f812b-eda6-497a-9d22-534f885b7034",
-            "component_implementation_uuid": "d01dcee5-eb04-4147-9bb0-54ed81567494"
-        }
-        response = self.client_stub.post("/api/v1/component/service_component_implementation/add", post_data)
-        expected_response = helper.get_response_info(strings.SERVICE_COMPONENT_IMPLEMENTATION_INSERTED, {}, status=strings.CREATED_201)
-        self.assertJSONEqual(json.dumps(expected_response), response.content)
-
     def test_insert_service_component_implementation_with_uuid(self):
         post_data = {
             "name": "Test name",
@@ -197,7 +187,16 @@ class ComponentTestCase(TestCase):
             "component_uuid": "af2f812b-eda6-497a-9d22-534f885b7034"
         }
         response = self.client_stub.post("/api/v1/component/service_component_implementation/add", post_data)
-        expected_response = helper.get_response_info(strings.SERVICE_COMPONENT_IMPLEMENTATION_INSERTED, {}, status=strings.CREATED_201)
+        expected_data = {
+            "uuid": post_data["uuid"],
+            "name": post_data["name"],
+            "description": post_data["description"],
+            "component_implementation_details_list": {
+                "count": 0,
+                "component_implementation_details": []
+            }
+        }
+        expected_response = helper.get_response_info(strings.SERVICE_COMPONENT_IMPLEMENTATION_INSERTED, expected_data, status=strings.CREATED_201)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_insert_service_component_implementation_no_component_uuid(self):
@@ -297,17 +296,6 @@ class ComponentTestCase(TestCase):
         expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UUID_EXISTS, status=strings.CONFLICT_409)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
-    def test_insert_service_component_implementation_details(self):
-        post_data = {
-            "version": "0.1.2",
-            "configuration_parameters": "<xml>Test configuration</xml>",
-            "component_uuid": "af2f812b-eda6-497a-9d22-534f885b7034",
-            "component_implementation_uuid": "d01dcee5-eb04-4147-9bb0-54ed81567494"
-        }
-        response = self.client_stub.post("/api/v1/component/service_component_implementation_detail/add", post_data)
-        expected_response = helper.get_response_info(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_INSERTED, {}, status=strings.CREATED_201)
-        self.assertJSONEqual(json.dumps(expected_response), response.content)
-
     def test_insert_service_component_implementation_details_with_uuid(self):
         post_data = {
             "version": "0.1.2",
@@ -317,7 +305,12 @@ class ComponentTestCase(TestCase):
             "component_implementation_uuid": "d01dcee5-eb04-4147-9bb0-54ed81567494"
         }
         response = self.client_stub.post("/api/v1/component/service_component_implementation_detail/add", post_data)
-        expected_response = helper.get_response_info(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_INSERTED, {}, status=strings.CREATED_201)
+        expected_data = {
+            "uuid": post_data["uuid"],
+            "version": post_data["version"],
+            "configuration_parameters": post_data["configuration_parameters"]
+        }
+        expected_response = helper.get_response_info(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_INSERTED, expected_data, status=strings.CREATED_201)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_insert_service_details_component_no_uuid(self):
@@ -361,7 +354,12 @@ class ComponentTestCase(TestCase):
             "component_implementation_details_uuid": "309ffba9-dc3f-45c5-8a2e-150cd2e62c92"
         }
         response = self.client_stub.post("/api/v1/component/service_details_component_implementation_details/add", post_data)
-        expected_response = helper.get_response_info(strings.SERVICE_DETAILS_COMPONENT_INSERTED, {}, status=strings.OK_200)
+        expected_data = {
+            "service_uuid": post_data["service_id"],
+            "service_details_version": post_data["service_version"],
+            "service_component_implementation_detail_uuid": post_data["component_implementation_details_uuid"]
+        }
+        expected_response = helper.get_response_info(strings.SERVICE_DETAILS_COMPONENT_INSERTED, expected_data, status=strings.OK_200)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
 
