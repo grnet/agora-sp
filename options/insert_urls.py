@@ -4,9 +4,9 @@ from options import views
 
 urlpatterns = [
 
-    url(r'^insert_service_details_option/?$', views.insert_service_details_option),
-    url(r'^insert_service_option/?$', views.insert_service_option),
-    url(r'^insert_parameter/?$', views.insert_parameter),
-    url(r'^insert_SLA_parameter/?$', views.insert_SLA_parameter),
-    url(r'^insert_SLA/?$', views.insert_SLA),
+    url(r'^service_details_option/add/?$', views.insert_service_details_option),
+    url(r'^service_option/add/?$', views.insert_service_option),
+    url(r'^parameter/add/?$', views.insert_parameter),
+    url(r'^SLA_paramters/add/?$', views.insert_SLA_parameter),
+    url(r'^SLAs/add/?$', views.insert_SLA),
 ]
