@@ -108,6 +108,13 @@ class SLAParameter(models.Model):
     def __unicode__(self):
         return str(self.parameter_id) + " " + str(self.sla_id) + " " + str(self.service_option_id)
 
+    def as_json(self):
+        return {
+            "parameter_uuid": self.parameter_id,
+            "sla_uuid": self.sla_id,
+            "service_option_id": self.service_option_id
+        }
+
 
 class ServiceDetailsOption(models.Model):
     class Meta:

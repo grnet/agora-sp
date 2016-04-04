@@ -242,7 +242,7 @@ def insert_service_option(request):
 
     service_option.save()
 
-    data = {}
+    data = service_option.as_json()
 
     response = helper.get_response_info(strings.SERVICE_OPTION_INSERTED, data, status=strings.CREATED_201)
 
@@ -311,7 +311,7 @@ def insert_SLA(request):
 
     SLA.save()
 
-    data = {}
+    data = SLA.as_json()
 
     response = helper.get_response_info(strings.SLA_INSERTED, data, status=strings.CREATED_201)
 
@@ -378,7 +378,7 @@ def insert_parameter(request):
 
     parameter.save()
 
-    data = {}
+    data = parameter.as_json()
 
     response = helper.get_response_info(strings.PARAMETER_INSERTED, data, status=strings.CREATED_201)
 
@@ -484,7 +484,7 @@ def insert_SLA_parameter(request):
 
     sla_parameter.save()
 
-    data = {}
+    data = sla_parameter.as_json()
 
     response = helper.get_response_info(strings.SLA_PARAMETER_INSERTED, data, status=strings.CREATED_201)
 
@@ -590,7 +590,7 @@ def insert_service_details_option(request):
 
     service_details_option.save()
 
-    data = {}
+    data = service_details_option.as_json()
 
     response = helper.get_response_info(strings.SERVICE_DETAILS_OPTION_INSERTED, data, status=strings.CREATED_201)
 
