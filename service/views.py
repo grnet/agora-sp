@@ -342,7 +342,7 @@ def get_service_dependencies(request,  service_name_or_uuid):
 
 # Inserts service
 @api_view(['POST'])
-def insert_service(request, type):
+def insert_service(request):
 
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
@@ -433,7 +433,7 @@ def insert_service(request, type):
 
 # Inserts external service
 @api_view(['POST'])
-def insert_external_service(request, type):
+def insert_external_service(request):
 
     params = request.POST.copy()
 

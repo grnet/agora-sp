@@ -125,7 +125,7 @@ class ServiceTestCase(TestCase):
     def test_insert_external_service_name_not_provided(self):
         post_data = {
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/external_service/add", post_data)
+        response = self.client_stub.post("/api/v1/services/external_service/add", post_data)
         expected_response = helper.get_error_response(strings.EXTERNAL_SERVICE_NAME_NOT_PROVIDED, status=strings.REJECTED_405)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
@@ -133,7 +133,7 @@ class ServiceTestCase(TestCase):
         post_data = {
             "name": ""
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/external_service/add", post_data)
+        response = self.client_stub.post("/api/v1/services/external_service/add", post_data)
         expected_response = helper.get_error_response(strings.EXTERNAL_SERVICE_NAME_EMPTY, status=strings.REJECTED_405)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
@@ -142,7 +142,7 @@ class ServiceTestCase(TestCase):
             "name": "Test name",
             "uuid": "a42732fc-584e-429e-8df3-610caf2b1a5R"
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/external_service/add", post_data)
+        response = self.client_stub.post("/api/v1/services/external_service/add", post_data)
         expected_response = helper.get_error_response(strings.EXTERNAL_SERVICE_INVALID_UUID, status=strings.REJECTED_405)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
@@ -151,7 +151,7 @@ class ServiceTestCase(TestCase):
             "name": "Test name",
             "uuid": "a42732fc-584e-429e-8df3-610caf2b1a50"
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/external_service/add", post_data)
+        response = self.client_stub.post("/api/v1/services/external_service/add", post_data)
         expected_response = helper.get_error_response(strings.EXTERNAL_SERVICE_UUID_EXISTS, status=strings.CONFLICT_409)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
@@ -163,7 +163,7 @@ class ServiceTestCase(TestCase):
             "details": "Test details",
             "uuid": "a42732fc-584e-429e-8df3-610caf2b1a51"
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/external_service/add", post_data)
+        response = self.client_stub.post("/api/v1/services/external_service/add", post_data)
         expected_data = {
             "id": post_data["uuid"],
             "name": post_data["name"],
@@ -177,7 +177,7 @@ class ServiceTestCase(TestCase):
     def test_insert_service_dependency_no_dependency(self):
         post_data = {
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/service_dependencies/add", post_data)
+        response = self.client_stub.post("/api/v1/services/B2SAFE/service_dependencies/add", post_data)
         expected_response = helper.get_error_response(strings.SERVICE_DEPENDENCY_UUID_NOT_PROVIDED, status=strings.REJECTED_405)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
@@ -185,7 +185,7 @@ class ServiceTestCase(TestCase):
         post_data = {
             "service_dependency": "a42732fc-584e-429e-8df3-610caf2b1a5R"
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/service_dependencies/add", post_data)
+        response = self.client_stub.post("/api/v1/services/B2SAFE/service_dependencies/add", post_data)
         expected_response = helper.get_error_response(strings.SERVICE_DEPENDENCY_INVALID_UUID, status=strings.REJECTED_405)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
@@ -193,7 +193,7 @@ class ServiceTestCase(TestCase):
         post_data = {
             "service_dependency": "a42732fc-584e-429e-8df3-610caf2b1a52"
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/service_dependencies/add", post_data)
+        response = self.client_stub.post("/api/v1/services/B2SAFE/service_dependencies/add", post_data)
         expected_response = helper.get_error_response(strings.SERVICE_DEPENDENCY_NOT_FOUND, status=strings.NOT_FOUND_404)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
@@ -201,7 +201,7 @@ class ServiceTestCase(TestCase):
         post_data = {
             "service_dependency": "9985c4ee-bef1-46d5-ae00-e501bfa7bdd0"
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/service_dependencies/add", post_data)
+        response = self.client_stub.post("/api/v1/services/B2SAFE/service_dependencies/add", post_data)
         expected_response = helper.get_error_response(strings.SERVICE_DEPENDENCY_EXISTS, status=strings.CONFLICT_409)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
@@ -209,7 +209,7 @@ class ServiceTestCase(TestCase):
         post_data = {
             "service_dependency": "583ec8f2-9ef6-4e51-89bd-9af7f5fcea9c"
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/service_dependencies/add", post_data)
+        response = self.client_stub.post("/api/v1/services/B2SAFE/service_dependencies/add", post_data)
         expected_data = {
             "service": "B2SAFE",
             "dependency": "EUDAT Central Monitoring service"
@@ -220,7 +220,7 @@ class ServiceTestCase(TestCase):
     def test_insert_external_service_dependency_no_dependency(self):
         post_data = {
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/service_external_dependencies/add", post_data)
+        response = self.client_stub.post("/api/v1/services/B2SAFE/service_external_dependencies/add", post_data)
         expected_response = helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_UUID_NOT_PROVIDED, status=strings.REJECTED_405)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
@@ -228,7 +228,7 @@ class ServiceTestCase(TestCase):
         post_data = {
             "external_service_dependency": "a42732fc-584e-429e-8df3-610caf2b1a5R"
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/service_external_dependencies/add", post_data)
+        response = self.client_stub.post("/api/v1/services/B2SAFE/service_external_dependencies/add", post_data)
         expected_response = helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_INVALID_UUID, status=strings.REJECTED_405)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
@@ -236,7 +236,7 @@ class ServiceTestCase(TestCase):
         post_data = {
             "external_service_dependency": "a42732fc-584e-429e-8df3-610caf2b1a54"
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/service_external_dependencies/add", post_data)
+        response = self.client_stub.post("/api/v1/services/B2SAFE/service_external_dependencies/add", post_data)
         expected_response = helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_NOT_FOUND, status=strings.NOT_FOUND_404)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
@@ -244,7 +244,7 @@ class ServiceTestCase(TestCase):
         post_data = {
             "external_service_dependency": "a42732fc-584e-429e-8df3-610caf2b1a50"
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/service_external_dependencies/add", post_data)
+        response = self.client_stub.post("/api/v1/services/B2SAFE/service_external_dependencies/add", post_data)
         expected_response = helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_EXISTS, status=strings.CONFLICT_409)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
@@ -252,7 +252,7 @@ class ServiceTestCase(TestCase):
         post_data = {
             "external_service_dependency": "a42732fc-584e-429e-8df3-610caf2b1a52"
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/service_external_dependencies/add", post_data)
+        response = self.client_stub.post("/api/v1/services/B2SAFE/service_external_dependencies/add", post_data)
         expected_data = {
             "service": "88b35b0d-adc2-4a2e-b5fc-cae2d6f5456a",
             "external_service": post_data["external_service_dependency"]
@@ -265,8 +265,8 @@ class ServiceTestCase(TestCase):
         post_data1 = {
             "name": "Test name"
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/user_customer/add", post_data)
-        response1 = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/user_customer/add", post_data1)
+        response = self.client_stub.post("/api/v1/services/B2SAFE/user_customer/add", post_data)
+        response1 = self.client_stub.post("/api/v1/services/B2SAFE/user_customer/add", post_data1)
         expected_response = helper.get_error_response(strings.USER_CUSTOMER_NAME_NOT_PROVIDED, status=strings.REJECTED_405)
         expected_response1 = helper.get_error_response(strings.USER_CUSTOMER_ROLE_NOT_PROVIDED, status=strings.REJECTED_405)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
@@ -281,8 +281,8 @@ class ServiceTestCase(TestCase):
             "name": "Test name",
             "role": "User"
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/user_customer/add", post_data)
-        response1 = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/user_customer/add", post_data1)
+        response = self.client_stub.post("/api/v1/services/B2SAFE/user_customer/add", post_data)
+        response1 = self.client_stub.post("/api/v1/services/B2SAFE/user_customer/add", post_data1)
         expected_response = helper.get_error_response(strings.USER_CUSTOMER_ROLE_EMPTY, status=strings.REJECTED_405)
         expected_response1 = helper.get_error_response(strings.USER_CUSTOMER_NAME_INVALID,  status=strings.REJECTED_405)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
@@ -294,7 +294,7 @@ class ServiceTestCase(TestCase):
             "role": "User",
             "uuid": "a42732fc-584e-429e-8df3-610caf2b1a5K"
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/user_customer/add", post_data)
+        response = self.client_stub.post("/api/v1/services/B2SAFE/user_customer/add", post_data)
         expected_response = helper.get_error_response(strings.USER_CUSTOMER_INVALID_UUID, status=strings.REJECTED_405)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
@@ -304,7 +304,7 @@ class ServiceTestCase(TestCase):
             "role": "User",
             "uuid": "5fa10867-e6bf-4ad0-9ac9-784542053c69"
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/user_customer/add", post_data)
+        response = self.client_stub.post("/api/v1/services/B2SAFE/user_customer/add", post_data)
         expected_response = helper.get_error_response(strings.USER_CUSTOMER_EXISTS, status=strings.CONFLICT_409)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
@@ -314,7 +314,7 @@ class ServiceTestCase(TestCase):
             "role": "User",
             "uuid": "5fa10867-e6bf-4ad0-9ac9-784542053c63"
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/B2SAFE/user_customer/add", post_data)
+        response = self.client_stub.post("/api/v1/services/B2SAFE/user_customer/add", post_data)
         expected_data = {
             "id": post_data["uuid"],
             "name": post_data["name"],
@@ -330,8 +330,8 @@ class ServiceTestCase(TestCase):
             "service_owner_uuid": "",
             "service_contact_information_uuid": ""
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/add", post_data)
-        response1 = self.client_stub.post("/api/v1/portfolio/services/add", post_data1)
+        response = self.client_stub.post("/api/v1/services/add", post_data)
+        response1 = self.client_stub.post("/api/v1/services/add", post_data1)
         expected_response = helper.get_error_response(strings.SERVICE_NAME_NOT_PROVIDED, status=strings.REJECTED_405)
         expected_response1 = helper.get_error_response(strings.SERVICE_NAME_EMPTY, status=strings.REJECTED_405)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
@@ -343,7 +343,7 @@ class ServiceTestCase(TestCase):
             "service_owner_uuid": "5fa10867-e6bf-4ad0-9ac9-784542053c69",
             "service_contact_information_uuid": "5fa10867-e6bf-4ad0-9ac9-784542053c69"
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/add", post_data)
+        response = self.client_stub.post("/api/v1/services/add", post_data)
         expected_response = helper.get_error_response(strings.SERVICE_OWNER_NOT_FOUND, status=strings.NOT_FOUND_404)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
@@ -353,7 +353,7 @@ class ServiceTestCase(TestCase):
             "service_owner_uuid": "3cac63c1-a8d1-4178-aa8a-cd149696532d",
             "service_contact_information_uuid": "5fa10867-e6bf-4ad0-9ac9-784542053c69"
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/add", post_data)
+        response = self.client_stub.post("/api/v1/services/add", post_data)
         expected_response = helper.get_error_response(strings.CONTACT_INFORMATION_NOT_FOUND, status=strings.NOT_FOUND_404)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
@@ -364,7 +364,7 @@ class ServiceTestCase(TestCase):
             "service_contact_information_uuid": "264fbac7-2bf0-4b9a-b182-293e65d599ce",
             "uuid": "a42732fc-584e-429e-8df3-610caf2b1a5K"
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/add", post_data)
+        response = self.client_stub.post("/api/v1/services/add", post_data)
         expected_response = helper.get_error_response(strings.SERVICE_INVALID_UUID, status=strings.REJECTED_405)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
@@ -375,7 +375,7 @@ class ServiceTestCase(TestCase):
             "service_contact_information_uuid": "264fbac7-2bf0-4b9a-b182-293e65d599ce",
             "uuid": "583ec8f2-9ef6-4e51-89bd-9af7f5fcea9c"
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/add", post_data)
+        response = self.client_stub.post("/api/v1/services/add", post_data)
         expected_response = helper.get_error_response(strings.SERVICE_UUID_EXISTS, status=strings.CONFLICT_409)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
@@ -395,7 +395,7 @@ class ServiceTestCase(TestCase):
             "risks": "risks",
             "competitors": "competitors",
         }
-        response = self.client_stub.post("/api/v1/portfolio/services/add", post_data)
+        response = self.client_stub.post("/api/v1/services/add", post_data)
         expected_data = {
             "uuid": post_data["uuid"],
             "service_complete_link": {
