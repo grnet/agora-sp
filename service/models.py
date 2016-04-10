@@ -259,6 +259,7 @@ class ServiceDetails(models.Model):
     cost_to_run = models.CharField(max_length=255, default=None, blank=True, null=True)
     cost_to_build = models.CharField(max_length=255, default=None, blank=True, null=True)
     use_cases = models.CharField(max_length=255, default=None, blank=True, null=True)
+    is_in_portfolio = models.BooleanField(default=False)
 
     def __unicode__(self):
         primary_key = self.id_service.pk
