@@ -174,5 +174,6 @@ SWAGGER_SETTINGS = {
     'resource_access_handler': None,
     'base_path':str(ALLOWED_HOSTS[SITE_ID])+'/api/docs',
     'doc_expansion': 'list',
+    'operationsSorter' : 'method'
 
 }

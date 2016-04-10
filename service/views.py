@@ -87,7 +87,6 @@ def list_service_objects(request, api_version):
 def get_service(request,  service_name_or_uuid):
     """
     Retrieves a specific service by name or uuid
-
     """
     type = request.get_full_path().split("/")[3]
     params = request.GET.copy()
