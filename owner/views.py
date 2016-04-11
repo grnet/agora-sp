@@ -109,7 +109,10 @@ def get_service_owner_institution(request, service_name_or_uuid, service_owner):
 # Inserts an Institution object
 @api_view(['POST'])
 def insert_institution(request):
+    """
+    Inserts an institution object
 
+    """
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
@@ -168,7 +171,10 @@ def insert_institution(request):
 # Inserts an Contact Information object
 @api_view(['POST'])
 def insert_contact_information(request):
+    """
+    Inserts a contact information object
 
+    """
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
@@ -237,7 +243,10 @@ def insert_contact_information(request):
 # Inserts an Service Owner object
 @api_view(['POST'])
 def insert_service_owner(request):
+    """
+    Inserts an service owner object
 
+    """
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 

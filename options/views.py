@@ -76,7 +76,10 @@ def get_service_sla_parameter(request, search_type, version, sla_uuid, sla_param
     Retrieves the service sla parameter
 
     """
+    """
+    Inserts a service option object
 
+    """
     service, parsed_name, uuid = None, None, None
 
     response = {}
@@ -194,7 +197,10 @@ def get_service_options(request, search_type, version):
 # Inserts an Service Option object
 @api_view(['POST'])
 def insert_service_option(request):
+    """
+    Inserts a service option object
 
+    """
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
@@ -252,7 +258,10 @@ def insert_service_option(request):
 # Inserts an SLA object
 @api_view(['POST'])
 def insert_SLA(request):
+    """
+    Inserts a SLA object
 
+    """
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
@@ -321,7 +330,10 @@ def insert_SLA(request):
 # Inserts an Parameter object
 @api_view(['POST'])
 def insert_parameter(request):
+    """
+    Inserts a paramater object
 
+    """
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
@@ -388,7 +400,10 @@ def insert_parameter(request):
 # Inserts an SLA parameter object
 @api_view(['POST'])
 def insert_SLA_parameter(request):
+    """
+    Inserts a SLA parameter object
 
+    """
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
@@ -503,7 +518,10 @@ def insert_SLA_parameter(request):
 # Inserts an service details option object
 @api_view(['POST'])
 def insert_service_details_option(request):
+    """
+    Inserts a service details object
 
+    """
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 

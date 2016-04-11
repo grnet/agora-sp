@@ -342,7 +342,10 @@ def get_service_dependencies(request,  service_name_or_uuid):
 # Inserts service
 @api_view(['POST'])
 def insert_service(request):
+    """
+    Inserts a service object
 
+    """
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     uuid, service_owner, service_contact_information = None, None, None
@@ -433,7 +436,10 @@ def insert_service(request):
 # Inserts external service
 @api_view(['POST'])
 def insert_external_service(request):
+    """
+    Inserts an external service object
 
+    """
     params = request.POST.copy()
 
     uuid = None
@@ -484,7 +490,10 @@ def insert_external_service(request):
 # Inserts service dependency
 @api_view(['POST'])
 def insert_service_dependency(request, service_name_or_uuid):
+    """
+    Inserts a service dependency object
 
+    """
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     service, service_dependency, parsed_name, uuid = None, None, None, None
@@ -534,7 +543,10 @@ def insert_service_dependency(request, service_name_or_uuid):
 # Inserts service details for a specific service
 @api_view(['POST'])
 def insert_service_details(request, service_name_or_uuid):
+    """
+    Inserts a service details object
 
+    """
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
@@ -660,7 +672,10 @@ def insert_service_details(request, service_name_or_uuid):
 # Inserts external service dependency
 @api_view(['POST'])
 def insert_external_service_dependency(request, service_name_or_uuid):
+    """
+    Inserts a external service details object
 
+    """
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     service, external_service_dependency, parsed_name, uuid = None, None, None, None
@@ -709,7 +724,10 @@ def insert_external_service_dependency(request, service_name_or_uuid):
 # Inserts user customer
 @api_view(['POST'])
 def insert_user_customer(request, service_name_or_uuid):
+    """
+    Inserts an user customer object
 
+    """
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     service, parsed_name, service_uuid, uuid = None, None, None, None
