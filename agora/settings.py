@@ -48,6 +48,8 @@ INSTALLED_APPS = [
 ]
 
 
+PROJECT_APPS = ['component', 'options', 'owner', 'service']
+
 SITE_ID = 3
 
 MIDDLEWARE_CLASSES = [
