@@ -25,10 +25,13 @@ class Service(models.Model):
     def __unicode__(self):
         return str(self.name)
 
-    def get_service_details(self, complete=False, url=False):
+    def get_service_details(self, complete=False, url=False, catalogue=False):
 
         services = []
-        servs = ServiceDetails.objects.filter(id_service=self.pk)
+        if not catalogue:
+            servs = ServiceDetails.objects.filter(id_service=self.pk)
+        else:
+            servs = ServiceDetails.objects.filter(id_service=self.pk, is_in_catalogue=True)
         for s in servs:
             if complete:
                 services.append(s.as_complete(url=url))
@@ -210,7 +213,7 @@ class Service(models.Model):
 
     def as_catalogue(self):
 
-        service_details = self.get_service_details(complete=True, url=True)
+        service_details = self.get_service_details(complete=True, url=True, catalogue=True)
 
         return {
             "uuid": self.id,

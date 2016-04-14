@@ -32,7 +32,12 @@ def list_services(request,  type):
             response = helper.get_error_response(strings.INVALID_QUERY_PARAMETER)
 
     elif type == "catalogue":
-        services = [s.as_catalogue() for s in serv_models]
+        for s in serv_models:
+            s = s.as_catalogue()
+            if s["service_details_list"]["count"] == 0:
+                continue
+            services.append(s)
+        # services = [s.as_catalogue() for s in serv_models]
 
     if len(services) > 0:
         data = {
