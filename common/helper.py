@@ -1,11 +1,12 @@
 import responses
 from django.contrib.sites.models import Site
 
-def get_error_response(code, status=1):
+def get_error_response(code, status=1, additional_status_msg=None):
     return {
         "status": responses.STATUS_CODES[status],
         "errors": {
-            "detail": responses.ERROR_MESSAGES[code]
+            "detail": responses.ERROR_MESSAGES[code] if additional_status_msg is None else responses.ERROR_MESSAGES[code]
+                                                                                       + additional_status_msg
         }
     }
 

@@ -375,7 +375,8 @@ class ServiceDetails(models.Model):
             },
             "cost_to_run": self.cost_to_run,
             "cost_to_build": self.cost_to_build,
-            "use_cases": self.use_cases
+            "use_cases": self.use_cases,
+            "is_in_catalogue": self.is_in_catalogue
         }
 
         if url:
