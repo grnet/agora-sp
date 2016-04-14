@@ -552,16 +552,17 @@ def insert_service_details(request, service_name_or_uuid):
 
     service, uuid, parsed_name, manual_uuid = None, None, None, None
 
-    if "service_uuid_name" not in params:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+    # if "service_uuid_name" not in params:
+    #     return JsonResponse(helper.get_error_response(strings.SERVICE_UUID_NOT_PROVIDED,
+    #                                                   status=strings.REJECTED_405))
 
 
     if "version" not in params:
         return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_VERSION_NOT_PROVIDED,
                                                       status=strings.REJECTED_405))
 
-    service_uuid_name = params.get("service_uuid_name")
+    # service_uuid_name = params.get("service_uuid_name")
+    service_uuid_name = service_name_or_uuid
     version = params.get('version')
 
     status = params.get('status') if "status" in params else None
@@ -586,6 +587,11 @@ def insert_service_details(request, service_name_or_uuid):
     business_continuity_plan_has = params.get('business_continuity_plan_has') if "business_continuity_plan_has" in params else False
     disaster_recovery_plan_has = params.get('disaster_recovery_plan_has') if "disaster_recovery_plan_has" in params else False
     decommissioning_procedure_has = params.get('decommissioning_procedure_has') if "decommissioning_procedure_has" in params else False
+    is_in_catalogue = params.get("is_in_catalogue") if "is_in_catalogue" in params else False
+
+    if type(is_in_catalogue) is not bool:
+        return JsonResponse(helper.get_error_response(strings.VARIABLE_MUST_BE_BOOLEAN, status=strings.REJECTED_405,
+                                                      additional_status_msg="is_in_catalogue"))
 
     result = prog.match(service_uuid_name)
 
@@ -638,12 +644,13 @@ def insert_service_details(request, service_name_or_uuid):
     service_details.cost_to_build = cost_to_build
     service_details.cost_to_run = cost_to_run
     service_details.use_cases = use_cases
+    service_details.is_in_catalogue = is_in_catalogue
 
 
 
-    if "manual_uuid" in params:
+    if "uuid" in params:
 
-        manual_uuid = params.get("manual_uuid")
+        manual_uuid = params.get("uuid")
         result = prog.match(uuid)
 
         if result is None:

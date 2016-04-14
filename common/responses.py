@@ -103,8 +103,8 @@ ERROR_MESSAGES = {
     SERVICE_COMPONENT_UUID_NOT_PROVIDED: "Service component UUID not provided",
     SERVICE_COMPONENT_IMPLEMENTATION_UUID_NOT_PROVIDED: "Service component implementation UUID not provided",
     SLA_PARAMETER_EXISTS: "A SLA Parameter object with the provided information already exists",
-    SERVICE_OPTION_EXISTS: "A Service Option with the provided information already exists"
-
+    SERVICE_OPTION_EXISTS: "A Service Option with the provided information already exists",
+    VARIABLE_MUST_BE_BOOLEAN: "The provided variable must be boolean: "
 }
 
 
