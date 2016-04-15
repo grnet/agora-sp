@@ -139,7 +139,10 @@ INFO_MESSAGES = {
     PARAMETER_INSERTED: "parameter inserted",
     SLA_PARAMETER_INSERTED: "sla parameter inserted",
     SERVICE_DETAILS_OPTION_INSERTED: "service details option inserted",
-    SERVICE_DETAILS_INSERTED: "service details inserted"
+    SERVICE_DETAILS_INSERTED: "service details inserted",
+    SERVICE_OWNER_UPDATED: "service owner updated",
+    INSTITUTION_UPDATED: "institution updated",
+    CONTACT_INFORMATION_UPDATED: "contact information updated"
 
 }
 
@@ -150,5 +153,6 @@ STATUS_CODES = {
     CREATED_201: "201 Created",
     FORBIDDEN_403: "403 Forbidden",
     REJECTED_405: "405 Rejected",
-    CONFLICT_409: "409 Conflict"
+    CONFLICT_409: "409 Conflict",
+    UPDATED_202: "202 Updated"
 }

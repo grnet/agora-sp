@@ -112,7 +112,12 @@ def insert_institution(request):
     """
     Inserts an institution object
 
+    :param request:
+    :return:
     """
+
+    op_type = helper.get_last_url_part(request)
+
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
@@ -143,10 +148,12 @@ def insert_institution(request):
 
         try:
             models.Institution.objects.get(id=uuid)
-            return JsonResponse(helper.get_error_response(strings.INSTITUTION_UUID_EXISTS,
-                                                          status=strings.CONFLICT_409))
+            if op_type == "add":
+                return JsonResponse(helper.get_error_response(strings.INSTITUTION_UUID_EXISTS,
+                                                              status=strings.CONFLICT_409))
         except models.Institution.DoesNotExist:
-            pass
+            if op_type == "edit":
+                return JsonResponse(helper.get_error_response(strings.INSTITUTION_NOT_FOUND, status=strings.NOT_FOUND_404))
 
 
     institution = models.Institution()
@@ -163,7 +170,9 @@ def insert_institution(request):
 
     data = institution.as_json()
 
-    response = helper.get_response_info(strings.INSTITUTION_INSERTED, data, status=strings.CREATED_201)
+    msg = strings.INSTITUTION_INSERTED if op_type == "add" else strings.INSTITUTION_UPDATED
+    status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
+    response = helper.get_response_info(msg, data, status=status)
 
     return JsonResponse(response)
 
@@ -175,16 +184,21 @@ def insert_contact_information(request):
     Inserts a contact information object
 
     """
+
+    op_type = helper.get_last_url_part(request)
+
+    uuid = None
+
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
-    if "name" not in params:
-        return JsonResponse(helper.get_error_response(strings.INSTITUTION_NAME_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+    # if "name" not in params:
+    #     return JsonResponse(helper.get_error_response(strings.INSTITUTION_NAME_NOT_PROVIDED,
+    #                                                   status=strings.REJECTED_405))
 
     first_name = params.get('first_name')
     last_name = params.get('last_name')
-    email = params.get('department')
+    email = params.get('email')
     phone = params.get('phone')
     url = params.get('url')
 
@@ -215,10 +229,12 @@ def insert_contact_information(request):
 
         try:
             models.ContactInformation.objects.get(id=uuid)
-            return JsonResponse(helper.get_error_response(strings.CONTACT_INFORMATION_UUID_EXISTS,
-                                                          status=strings.CONFLICT_409))
-        except models.Institution.DoesNotExist:
-            pass
+            if op_type == "add":
+                return JsonResponse(helper.get_error_response(strings.CONTACT_INFORMATION_UUID_EXISTS,
+                                                              status=strings.CONFLICT_409))
+        except models.ContactInformation.DoesNotExist:
+            if op_type == "edit":
+                return JsonResponse(helper.get_error_response(strings.CONTACT_INFORMATION_NOT_FOUND, status=strings.NOT_FOUND_404))
 
 
     contact_information = models.ContactInformation()
@@ -235,7 +251,9 @@ def insert_contact_information(request):
 
     data = contact_information.as_json()
 
-    response = helper.get_response_info(strings.CONTACT_INFORMATION_INSERTED, data, status=strings.CREATED_201)
+    msg = strings.CONTACT_INFORMATION_INSERTED if op_type == "add" else strings.CONTACT_INFORMATION_UPDATED
+    status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
+    response = helper.get_response_info(msg, data, status=status)
 
     return JsonResponse(response)
 
@@ -247,6 +265,9 @@ def insert_service_owner(request):
     Inserts an service owner object
 
     """
+
+    op_type = helper.get_last_url_part(request)
+
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
@@ -301,10 +322,12 @@ def insert_service_owner(request):
 
         try:
             models.ServiceOwner.objects.get(id=uuid)
-            return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_UUID_EXISTS,
-                                                          status=strings.CONFLICT_409))
-        except models.Institution.DoesNotExist:
-            pass
+            if op_type == "add":
+                return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_UUID_EXISTS,
+                                                              status=strings.CONFLICT_409))
+        except models.ServiceOwner.DoesNotExist:
+            if op_type == "edit":
+                return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_NOT_FOUND, status=strings.NOT_FOUND_404))
 
 
     service_owner = models.ServiceOwner()
@@ -321,6 +344,7 @@ def insert_service_owner(request):
 
     data = service_owner.as_json()
 
-    response = helper.get_response_info(strings.SERVICE_OWNER_INSERTED, data, status=strings.CREATED_201)
-
+    msg = strings.SERVICE_OWNER_INSERTED if op_type == "add" else strings.SERVICE_OWNER_UPDATED
+    status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
+    response = helper.get_response_info(msg, data, status=status)
     return JsonResponse(response)

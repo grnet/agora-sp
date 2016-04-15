@@ -359,7 +359,7 @@ class ComponentTestCase(TestCase):
             "service_details_version": post_data["service_version"],
             "service_component_implementation_detail_uuid": post_data["component_implementation_details_uuid"]
         }
-        expected_response = helper.get_response_info(strings.SERVICE_DETAILS_COMPONENT_INSERTED, expected_data, status=strings.OK_200)
+        expected_response = helper.get_response_info(strings.SERVICE_DETAILS_COMPONENT_INSERTED, expected_data, status=strings.CREATED_201)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
 

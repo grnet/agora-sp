@@ -613,7 +613,7 @@ def insert_service_details_component_implementation_details(request):
             response = helper.get_error_response(strings.SERVICE_DETAILS_COMPONENT_EXISTS, status=strings.REJECTED_405)
         else:
             data = obj.as_json()
-            response = helper.get_response_info(strings.SERVICE_DETAILS_COMPONENT_INSERTED, data, status=strings.OK_200)
+            response = helper.get_response_info(strings.SERVICE_DETAILS_COMPONENT_INSERTED, data, status=strings.CREATED_201)
 
     except service_models.Service.DoesNotExist:
         response = helper.get_error_response(strings.SERVICE_NOT_FOUND)

@@ -49,3 +49,8 @@ def generate_full_url(request):
     host_protocol = str(absolute_uri).replace(str(full_path),"")
 
     return str(host_protocol)
+
+def get_last_url_part(request):
+    url = request.get_full_path()
+    url_parts = url.strip("/").split("/")
+    return url_parts[-1]

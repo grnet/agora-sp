@@ -51,3 +51,241 @@ class OwnerTestCase(TestCase):
 
         self.assertJSONEqual(json.dumps(expected_response), response_name.content)
         self.assertJSONEqual(json.dumps(expected_response), response_uuid.content)
+
+    def test_insert_institution(self):
+
+        post_data = {
+            "name": "Test name",
+            "address": "Test address",
+            "country": "Test country",
+            "department": "Test department",
+            "uuid": "72eee88a-aaa4-4d7b-86a4-4124e3a9d99d"
+        }
+
+        response = self.client_stub.post("/api/v1/owner/institution/add", post_data)
+        expected_data = {
+            "name": post_data["name"],
+            "address": post_data["address"],
+            "country": post_data["country"],
+            "department": post_data["department"],
+            "uuid": post_data["uuid"]
+        }
+
+        expected_response = helper.get_response_info(strings.INSTITUTION_INSERTED, expected_data, status=strings.CREATED_201)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_insert_existing_institution(self):
+
+        post_data = {
+            "name": "Test name",
+            "address": "Test address",
+            "country": "Test country",
+            "department": "Test department",
+            "uuid": "72eee88a-aaa4-4d7b-86a4-4124e3a9d99c"
+        }
+
+        response = self.client_stub.post("/api/v1/owner/institution/add", post_data)
+        expected_response = helper.get_error_response(strings.INSTITUTION_UUID_EXISTS, strings.CONFLICT_409)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_edit_non_existing_institution(self):
+
+        post_data = {
+            "name": "Test name",
+            "address": "Test address",
+            "country": "Test country",
+            "department": "Test department",
+            "uuid": "72eee88a-aaa4-4d7b-86a4-4124e3a9d99d"
+        }
+
+        response = self.client_stub.post("/api/v1/owner/institution/edit", post_data)
+        expected_response = helper.get_error_response(strings.INSTITUTION_NOT_FOUND, strings.NOT_FOUND_404)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_edit_institution(self):
+
+        post_data = {
+            "name": "Test name",
+            "address": "Test address",
+            "country": "Test country",
+            "department": "Test department",
+            "uuid": "56da9c1f-1842-4158-8dfd-e2d2d01ace08"
+        }
+
+        response = self.client_stub.post("/api/v1/owner/institution/edit", post_data)
+        expected_data = {
+            "name": post_data["name"],
+            "address": post_data["address"],
+            "country": post_data["country"],
+            "department": post_data["department"],
+            "uuid": post_data["uuid"]
+        }
+
+        expected_response = helper.get_response_info(strings.INSTITUTION_UPDATED, expected_data, status=strings.UPDATED_202)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_insert_contact(self):
+
+        post_data = {
+            "first_name": "Test first name",
+            "last_name": "Test last name",
+            "email": "Test email",
+            "phone": "Test phone",
+            "url": "Test url",
+            "uuid": "73eee88a-aaa4-4d7b-86a4-4124e3a9d99d"
+        }
+
+        response = self.client_stub.post("/api/v1/owner/contact_information/add", post_data)
+        expected_data = {
+            "first_name": post_data["first_name"],
+            "last_name": post_data["last_name"],
+            "email": post_data["email"],
+            "phone": post_data["phone"],
+            "uuid": post_data["uuid"]
+        }
+
+        expected_response = helper.get_response_info(strings.CONTACT_INFORMATION_INSERTED, expected_data, status=strings.CREATED_201)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_insert_existing_contact(self):
+
+        post_data = {
+            "first_name": "Test first name",
+            "last_name": "Test last name",
+            "email": "Test email",
+            "phone": "Test phone",
+            "url": "Test url",
+            "uuid": "7166dfad-082b-4e81-bf86-cae10af12cfd"
+        }
+
+        response = self.client_stub.post("/api/v1/owner/contact_information/add", post_data)
+        expected_response = helper.get_error_response(strings.CONTACT_INFORMATION_UUID_EXISTS, strings.CONFLICT_409)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_edit_non_existing_contact(self):
+
+        post_data = {
+            "first_name": "Test first name",
+            "last_name": "Test last name",
+            "email": "Test email",
+            "phone": "Test phone",
+            "url": "Test url",
+            "uuid": "7166dfad-082b-4e81-bf86-cae10af12cfc"
+        }
+
+        response = self.client_stub.post("/api/v1/owner/contact_information/edit", post_data)
+        expected_response = helper.get_error_response(strings.CONTACT_INFORMATION_NOT_FOUND, strings.NOT_FOUND_404)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_edit_contact(self):
+
+        post_data = {
+            "first_name": "Test first name",
+            "last_name": "Test last name",
+            "email": "Test email",
+            "phone": "Test phone",
+            "url": "Test url",
+            "uuid": "7166dfad-082b-4e81-bf86-cae10af12cfd"
+        }
+
+        response = self.client_stub.post("/api/v1/owner/contact_information/edit", post_data)
+        expected_data = {
+            "first_name": post_data["first_name"],
+            "last_name": post_data["last_name"],
+            "email": post_data["email"],
+            "phone": post_data["phone"],
+            "uuid": post_data["uuid"]
+        }
+
+        expected_response = helper.get_response_info(strings.CONTACT_INFORMATION_UPDATED, expected_data, status=strings.UPDATED_202)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_insert_owner(self):
+
+        post_data = {
+            "first_name": "Test first name",
+            "last_name": "Test last name",
+            "email": "Test email",
+            "phone": "Test phone",
+            "institution_uuid": "224fe496-5023-49e6-8953-19d5b1331333",
+            "uuid": "53eee88a-aaa4-4d7b-86a4-4124e3a9d99d"
+        }
+
+        response = self.client_stub.post("/api/v1/owner/add", post_data)
+        expected_data = {
+            "first_name": post_data["first_name"],
+            "last_name": post_data["last_name"],
+            "email": post_data["email"],
+            "phone": post_data["phone"],
+            "institution": {
+                "name": "GRNET",
+                "address": "Mesogeon av.",
+                "country": "GREECE",
+                "department": "Admin",
+                "uuid": "224fe496-5023-49e6-8953-19d5b1331333"
+            },
+            "uuid": post_data["uuid"]
+        }
+
+        expected_response = helper.get_response_info(strings.SERVICE_OWNER_INSERTED, expected_data, status=strings.CREATED_201)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_insert_existing_owner(self):
+
+        post_data = {
+            "first_name": "Test first name",
+            "last_name": "Test last name",
+            "email": "Test email",
+            "phone": "Test phone",
+            "institution_uuid": "224fe496-5023-49e6-8953-19d5b1331333",
+            "uuid": "a9976cd2-14e4-47b7-9353-7e9faba2f200"
+        }
+
+        response = self.client_stub.post("/api/v1/owner/add", post_data)
+        expected_response = helper.get_error_response(strings.SERVICE_OWNER_UUID_EXISTS, strings.CONFLICT_409)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_edit_non_existing_owner(self):
+
+        post_data = {
+            "first_name": "Test first name",
+            "last_name": "Test last name",
+            "email": "Test email",
+            "phone": "Test phone",
+            "institution_uuid": "224fe496-5023-49e6-8953-19d5b1331333",
+            "uuid": "a9976cd2-14e4-47b7-9353-7e9faba2f20d"
+        }
+
+        response = self.client_stub.post("/api/v1/owner/edit", post_data)
+        expected_response = helper.get_error_response(strings.SERVICE_OWNER_NOT_FOUND, strings.NOT_FOUND_404)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_edit_owner(self):
+
+        post_data = {
+            "first_name": "Test first name",
+            "last_name": "Test last name",
+            "email": "Test email",
+            "phone": "Test phone",
+            "institution_uuid": "224fe496-5023-49e6-8953-19d5b1331333",
+            "uuid": "a9976cd2-14e4-47b7-9353-7e9faba2f200"
+        }
+
+        response = self.client_stub.post("/api/v1/owner/edit", post_data)
+        expected_data = {
+            "first_name": post_data["first_name"],
+            "last_name": post_data["last_name"],
+            "email": post_data["email"],
+            "phone": post_data["phone"],
+            "institution": {
+                "name": "GRNET",
+                "address": "Mesogeon av.",
+                "country": "GREECE",
+                "department": "Admin",
+                "uuid": "224fe496-5023-49e6-8953-19d5b1331333"
+            },
+            "uuid": post_data["uuid"]
+        }
+
+        expected_response = helper.get_response_info(strings.SERVICE_OWNER_UPDATED, expected_data, status=strings.UPDATED_202)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
