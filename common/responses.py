@@ -142,8 +142,12 @@ INFO_MESSAGES = {
     SERVICE_DETAILS_INSERTED: "service details inserted",
     SERVICE_OWNER_UPDATED: "service owner updated",
     INSTITUTION_UPDATED: "institution updated",
-    CONTACT_INFORMATION_UPDATED: "contact information updated"
-
+    CONTACT_INFORMATION_UPDATED: "contact information updated",
+    SERVICE_OPTION_UPDATED: "service option updated",
+    SLA_UPDATED: "SLA updated",
+    PARAMETER_UPDATED: "parameter updated",
+    SLA_PARAMETER_UPDATED: "SLA parameter updated",
+    SERVICE_DETAILS_OPTION_UPDATED: "service details options updated"
 }
 
 STATUS_CODES = {

@@ -101,7 +101,6 @@ def get_service_sla_parameter(request, search_type, version, sla_uuid, sla_param
     else:
         uuid = search_type
 
-
     try:
         if result is None:
             service = service_models.Service.objects.get(name=parsed_name)
@@ -201,6 +200,9 @@ def insert_service_option(request):
     Inserts a service option object
 
     """
+
+    op_type = helper.get_last_url_part(request)
+
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
@@ -230,10 +232,12 @@ def insert_service_option(request):
 
         try:
             options_models.ServiceOption.objects.get(id=uuid)
-            return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_UUID_EXISTS,
-                                                          status=strings.CONFLICT_409))
-        except  options_models.ServiceOption.DoesNotExist:
-            pass
+            if op_type == "add":
+                return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_UUID_EXISTS,
+                                                              status=strings.CONFLICT_409))
+        except options_models.ServiceOption.DoesNotExist:
+            if op_type == "edit":
+                return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_NOT_FOUND, status=strings.NOT_FOUND_404))
 
 
     service_option = options_models.ServiceOption()
@@ -250,7 +254,9 @@ def insert_service_option(request):
 
     data = service_option.as_json()
 
-    response = helper.get_response_info(strings.SERVICE_OPTION_INSERTED, data, status=strings.CREATED_201)
+    msg = strings.SERVICE_OPTION_INSERTED if op_type == "add" else strings.SERVICE_OPTION_UPDATED
+    status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
+    response = helper.get_response_info(msg, data, status=status)
 
     return JsonResponse(response)
 
@@ -262,6 +268,9 @@ def insert_SLA(request):
     Inserts a SLA object
 
     """
+
+    op_type = helper.get_last_url_part(request)
+
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
@@ -303,10 +312,12 @@ def insert_SLA(request):
 
         try:
             options_models.SLA.objects.get(id=uuid)
-            return JsonResponse(helper.get_error_response(strings.SLA_UUID_EXISTS,
-                                                          status=strings.CONFLICT_409))
-        except  options_models.SLA.DoesNotExist:
-            pass
+            if op_type == "add":
+                return JsonResponse(helper.get_error_response(strings.SLA_UUID_EXISTS,
+                                                              status=strings.CONFLICT_409))
+        except options_models.SLA.DoesNotExist:
+            if op_type == "edit":
+                return JsonResponse(helper.get_error_response(strings.SLA_NOT_FOUND, status=strings.NOT_FOUND_404))
 
 
     SLA = options_models.SLA()
@@ -322,7 +333,9 @@ def insert_SLA(request):
 
     data = SLA.as_json()
 
-    response = helper.get_response_info(strings.SLA_INSERTED, data, status=strings.CREATED_201)
+    msg = strings.SLA_INSERTED if op_type == "add" else strings.SLA_UPDATED
+    status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
+    response = helper.get_response_info(msg, data, status=status)
 
     return JsonResponse(response)
 
@@ -334,6 +347,9 @@ def insert_parameter(request):
     Inserts a paramater object
 
     """
+
+    op_type = helper.get_last_url_part(request)
+
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
@@ -372,10 +388,12 @@ def insert_parameter(request):
 
         try:
             options_models.Parameter.objects.get(id=uuid)
-            return JsonResponse(helper.get_error_response(strings.PARAMETER_UUID_EXISTS,
-                                                          status=strings.CONFLICT_409))
-        except  options_models.Parameter.DoesNotExist:
-            pass
+            if op_type == "add":
+                return JsonResponse(helper.get_error_response(strings.PARAMETER_UUID_EXISTS,
+                                                              status=strings.CONFLICT_409))
+        except options_models.Parameter.DoesNotExist:
+            if op_type == "edit":
+                return JsonResponse(helper.get_error_response(strings.PARAMETER_NOT_FOUND, status=strings.NOT_FOUND_404))
 
 
     parameter = options_models.Parameter()
@@ -392,7 +410,9 @@ def insert_parameter(request):
 
     data = parameter.as_json()
 
-    response = helper.get_response_info(strings.PARAMETER_INSERTED, data, status=strings.CREATED_201)
+    msg = strings.PARAMETER_INSERTED if op_type == "add" else strings.PARAMETER_UPDATED
+    status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
+    response = helper.get_response_info(msg, data, status=status)
 
     return JsonResponse(response)
 
@@ -404,6 +424,8 @@ def insert_SLA_parameter(request):
     Inserts a SLA parameter object
 
     """
+
+    op_type = helper.get_last_url_part(request)
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
@@ -476,8 +498,10 @@ def insert_SLA_parameter(request):
                                                                           sla_id=sla,
                                                                      service_option_id=service_option
                                                                      )
-    if not created:
+    if not created and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.SLA_PARAMETER_EXISTS, status=strings.CONFLICT_409))
+    elif created and op_type == "edit":
+        return JsonResponse(helper.get_error_response(strings.SLA_PARAMETER_NOT_FOUND, status=strings.NOT_FOUND_404))
 
     if "uuid" in params:
 
@@ -490,10 +514,12 @@ def insert_SLA_parameter(request):
 
         try:
             options_models.SLAParameter.objects.get(id=uuid)
-            return JsonResponse(helper.get_error_response(strings.SLA_PARAMETER_UUID_EXISTS,
-                                                          status=strings.CONFLICT_409))
-        except  options_models.SLA.DoesNotExist:
-            pass
+            if op_type == "add":
+                return JsonResponse(helper.get_error_response(strings.SLA_PARAMETER_UUID_EXISTS,
+                                                              status=strings.CONFLICT_409))
+        except options_models.SLAParameter.DoesNotExist:
+            if op_type == "edit":
+                return JsonResponse(helper.get_error_response(strings.SLA_PARAMETER_NOT_FOUND, status=strings.NOT_FOUND_404))
 
 
     sla_parameter = options_models.SLAParameter()
@@ -510,7 +536,9 @@ def insert_SLA_parameter(request):
 
     data = sla_parameter.as_json()
 
-    response = helper.get_response_info(strings.SLA_PARAMETER_INSERTED, data, status=strings.CREATED_201)
+    msg = strings.SLA_PARAMETER_INSERTED if op_type == "add" else strings.SLA_PARAMETER_UPDATED
+    status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
+    response = helper.get_response_info(msg, data, status=status)
 
     return JsonResponse(response)
 
@@ -522,6 +550,8 @@ def insert_service_details_option(request):
     Inserts a service details object
 
     """
+
+    op_type = helper.get_last_url_part(request)
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
@@ -594,8 +624,10 @@ def insert_service_details_option(request):
                                                                           service_details_id=service_details,
                                                                      service_options_id=service_option
                                                                      )
-    if not created:
+    if not created and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_EXISTS, status=strings.CONFLICT_409))
+    elif created and op_type == "edit":
+        return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_NOT_FOUND, status=strings.NOT_FOUND_404))
 
     if "uuid" in params:
 
@@ -627,7 +659,9 @@ def insert_service_details_option(request):
 
     data = service_details_option.as_json()
 
-    response = helper.get_response_info(strings.SERVICE_DETAILS_OPTION_INSERTED, data, status=strings.CREATED_201)
+    msg = strings.SERVICE_DETAILS_OPTION_INSERTED if op_type == "add" else strings.SERVICE_DETAILS_OPTION_UPDATED
+    status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
+    response = helper.get_response_info(msg, data, status=status)
 
     return JsonResponse(response)
 
