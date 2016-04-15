@@ -299,7 +299,7 @@ def insert_service_component_implementation(request):
         except component_models.ServiceComponentImplementation.DoesNotExist:
             if op_type == "edit":
                 return JsonResponse(helper.
-                                    get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_NOT_FOUND,
+                                    get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_NOT_FOUND,
                                                        status=strings.NOT_FOUND_404))
 
     try:

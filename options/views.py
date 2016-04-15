@@ -556,7 +556,7 @@ def insert_service_details_option(request):
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
 
-    uuid = None
+    uuid, service_details_option = None, None
     service_id = params.get('service_uuid')
     service_details_id = params.get('service_details_uuid')
     service_options_id = params.get('service_options_uuid')
@@ -619,46 +619,30 @@ def insert_service_details_option(request):
         return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_NOT_FOUND,
                                                       status=strings.NOT_FOUND_404))
 
+    if op_type == "add":
+        service_details_option, created = options_models.ServiceDetailsOption.objects.get_or_create(service_id=service,
+                                                                              service_details_id=service_details,
+                                                                         service_options_id=service_option)
+        if not created:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_EXISTS, status=strings.CONFLICT_409))
 
-    obj, created = options_models.SLAParameter.objects.get_or_create(service_id=service,
-                                                                          service_details_id=service_details,
-                                                                     service_options_id=service_option
-                                                                     )
-    if not created and op_type == "add":
-        return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_EXISTS, status=strings.CONFLICT_409))
-    elif created and op_type == "edit":
-        return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_NOT_FOUND, status=strings.NOT_FOUND_404))
-
-    if "uuid" in params:
-
-        uuid = params.get("uuid")
-        result = prog.match(uuid)
-
-        if result is None:
-            return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                          status=strings.REJECTED_405))
+    elif op_type == "edit":
         try:
-            options_models.ServiceDetailsOption.objects.get(id=uuid)
-            return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_OPTION_EXISTS,
-                                                          status=strings.CONFLICT_409))
-        except  options_models.ServiceDetailsOption.DoesNotExist:
-            pass
+            service_details_option = options_models.ServiceDetailsOption.objects.get(service_id=service,
+                                                                                     service_details_id=service_details,
+                                                                                     service_options_id=service_option)
+        except options_models.ServiceDetailsOption.DoesNotExist:
+                return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_NOT_FOUND, status=strings.NOT_FOUND_404))
 
 
-    service_details_option = options_models.ServiceDetailsOption()
-    service_details_option.service_options_id = service_option
-    service_details_option.service_id = service
-    service_details_option.service_details_id = service_details
+    # service_details_option = options_models.ServiceDetailsOption()
+    # service_details_option.service_options_id = service_option
+    # service_details_option.service_id = service
+    # service_details_option.service_details_id = service_details
+    # service_details_option.save()
 
-    service_details_option.save()
-
-    if uuid is not None:
-        service_details_option.id = uuid
-
-    service_details_option.save()
 
     data = service_details_option.as_json()
-
     msg = strings.SERVICE_DETAILS_OPTION_INSERTED if op_type == "add" else strings.SERVICE_DETAILS_OPTION_UPDATED
     status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
     response = helper.get_response_info(msg, data, status=status)

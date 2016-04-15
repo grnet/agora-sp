@@ -118,6 +118,38 @@ class ComponentTestCase(TestCase):
         expected_response = helper.get_response_info(strings.SERVICE_COMPONENT_INSERTED, expected_data, status=strings.CREATED_201)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
+    def test_edit_non_existing_service_component(self):
+        post_data = {
+            "name": "Test name",
+            "description": "Test description",
+            "uuid": "56601d76-c1e2-488c-a812-dba8e5508c2e"
+        }
+
+        response = self.client_stub.post("/api/v1/component/edit", post_data)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_NOT_FOUND, status=strings.NOT_FOUND_404)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_edit_service_component(self):
+        post_data = {
+            "name": "Test name",
+            "description": "Test description",
+            "uuid": "56601d76-c1e2-488c-a812-dba8e5508c29"
+        }
+
+        expected_data = {
+            "uuid": post_data["uuid"],
+            "name": post_data["name"],
+            "description": post_data["description"],
+            "component_implementations_list": {
+                "count": 0,
+                "component_implementations": []
+            }
+        }
+
+        response = self.client_stub.post("/api/v1/component/edit", post_data)
+        expected_response = helper.get_response_info(strings.SERVICE_COMPONENT_UPDATED, expected_data, status=strings.UPDATED_202)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
     def test_insert_service_component_implementation_no_name(self):
         post_data = {
             "component_uuid": "af2f812b-eda6-497a-9d22-534f885b7034"
@@ -205,6 +237,40 @@ class ComponentTestCase(TestCase):
         }
         response = self.client_stub.post("/api/v1/component/service_component_implementation/add", post_data)
         expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_UUID_NOT_PROVIDED, status=strings.REJECTED_405)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_edit_non_existing_service_component_implementation(self):
+        post_data = {
+            "name": "Test name",
+            "description": "Test description",
+            "component_uuid": "af2f812b-eda6-497a-9d22-534f885b7034",
+            "uuid": "56601d76-c1e2-488c-a812-aba8e5508c2e"
+        }
+
+        response = self.client_stub.post("/api/v1/component/service_component_implementation/edit", post_data)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_NOT_FOUND, status=strings.NOT_FOUND_404)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_edit_service_component_implementation(self):
+        post_data = {
+            "name": "Test name",
+            "description": "Test description",
+            "component_uuid": "af2f812b-eda6-497a-9d22-534f885b7034",
+            "uuid": "5e27aa64-4668-464c-96c7-fbe5b4871219",
+        }
+
+        expected_data = {
+            "uuid": post_data["uuid"],
+            "name": post_data["name"],
+            "description": post_data["description"],
+            "component_implementation_details_list": {
+                "count": 0,
+                "component_implementation_details": []
+            }
+        }
+
+        response = self.client_stub.post("/api/v1/component/service_component_implementation/edit", post_data)
+        expected_response = helper.get_response_info(strings.SERVICE_COMPONENT_IMPLEMENTATION_UPDATED, expected_data, status=strings.UPDATED_202)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_insert_service_component_implementation_details_no_version(self):
@@ -311,6 +377,38 @@ class ComponentTestCase(TestCase):
             "configuration_parameters": post_data["configuration_parameters"]
         }
         expected_response = helper.get_response_info(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_INSERTED, expected_data, status=strings.CREATED_201)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_edit_non_existing_service_component_implementation_details(self):
+        post_data = {
+            "version": "0.1.2",
+            "configuration_parameters": "<xml>Test configuration</xml>",
+            "uuid": "309ffba9-dc3f-45c5-8a2e-150cd2e62c93",
+            "component_uuid": "af2f812b-eda6-497a-9d22-534f885b7034",
+            "component_implementation_uuid": "e01dcee5-eb04-4147-9bb0-54ed81567494"
+        }
+
+        response = self.client_stub.post("/api/v1/component/service_component_implementation_detail/edit", post_data)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_NOT_FOUND, status=strings.NOT_FOUND_404)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_edit_service_component_implementation_details(self):
+        post_data = {
+            "version": "0.1.2",
+            "configuration_parameters": "<xml>Test configuration</xml>",
+            "uuid": "309ffba9-dc3f-45c5-8a2e-150cd2e62c92",
+            "component_uuid": "af2f812b-eda6-497a-9d22-534f885b7034",
+            "component_implementation_uuid": "bac1cb25-f24e-4cea-a2e8-d94b27a2e169"
+        }
+
+        expected_data = {
+            "uuid": post_data["uuid"],
+            "version": post_data["version"],
+            "configuration_parameters": post_data["configuration_parameters"]
+        }
+
+        response = self.client_stub.post("/api/v1/component/service_component_implementation_detail/edit", post_data)
+        expected_response = helper.get_response_info(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UPDATED, expected_data, status=strings.UPDATED_202)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_insert_service_details_component_no_uuid(self):
