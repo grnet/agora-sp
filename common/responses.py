@@ -147,7 +147,10 @@ INFO_MESSAGES = {
     SLA_UPDATED: "SLA updated",
     PARAMETER_UPDATED: "parameter updated",
     SLA_PARAMETER_UPDATED: "SLA parameter updated",
-    SERVICE_DETAILS_OPTION_UPDATED: "service details options updated"
+    SERVICE_DETAILS_OPTION_UPDATED: "service details options updated",
+    SERVICE_COMPONENT_UPDATED: "service component updated",
+    SERVICE_COMPONENT_IMPLEMENTATION_UPDATED: "service component implementation updated",
+    SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UPDATED: "service component implementation details updated"
 }
 
 STATUS_CODES = {
