@@ -155,6 +155,42 @@ class ServiceTestCase(TestCase):
         expected_response = helper.get_error_response(strings.EXTERNAL_SERVICE_UUID_EXISTS, status=strings.CONFLICT_409)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
+    def test_edit_non_existing_external_service(self):
+        post_data = {
+            "name": "Test name",
+            "uuid": "a42732fc-584e-429e-8df3-610caf2bea55"
+        }
+        response = self.client_stub.post("/api/v1/services/external_service/edit", post_data)
+        expected_response = helper.get_error_response(strings.EXTERNAL_SERVICE_NOT_FOUND, status=strings.NOT_FOUND_404)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_edit_external_service_no_uuid(self):
+        post_data = {
+            "name": "Test name"
+        }
+        response = self.client_stub.post("/api/v1/services/external_service/edit", post_data)
+        expected_response = helper.get_error_response(strings.EXTERNAL_SERVICE_UUID_NOT_PROVIDED, status=strings.REJECTED_405)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_edit_external_service(self):
+        post_data = {
+            "name": "Test name",
+            "description": "Test description",
+            "service": "Test service",
+            "details": "Test details",
+            "uuid": "a42732fc-584e-429e-8df3-610caf2b1a50"
+        }
+        response = self.client_stub.post("/api/v1/services/external_service/edit", post_data)
+        expected_data = {
+            "id": post_data["uuid"],
+            "name": post_data["name"],
+            "description": post_data["description"],
+            "service": post_data["service"],
+            "details": post_data["details"]
+        }
+        expected_response = helper.get_response_info(strings.EXTERNAL_SERVICE_UPDATED, expected_data, status=strings.UPDATED_202)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
     def test_insert_external_service(self):
         post_data = {
             "name": "Test name",
@@ -308,6 +344,40 @@ class ServiceTestCase(TestCase):
         expected_response = helper.get_error_response(strings.USER_CUSTOMER_EXISTS, status=strings.CONFLICT_409)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
+    def test_edit_user_customer_no_uuid(self):
+        post_data = {
+            "name": "Service provider",
+            "role": "User"
+        }
+        response = self.client_stub.post("/api/v1/services/B2SAFE/user_customer/edit", post_data)
+        expected_response = helper.get_error_response(strings.USER_CUSTOMER_UUID_NOT_PROVIDED, status=strings.REJECTED_405)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_edit_non_existing_user_customer(self):
+        post_data = {
+            "name": "Service provider",
+            "role": "User",
+            "uuid": "5fa10867-e6bf-4ad0-9ac9-784542053c61"
+        }
+        response = self.client_stub.post("/api/v1/services/B2SAFE/user_customer/edit", post_data)
+        expected_response = helper.get_error_response(strings.USER_CUSTOMER_NOT_FOUND, status=strings.NOT_FOUND_404)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_edit_user_customer(self):
+        post_data = {
+            "name": "Service provider",
+            "role": "User",
+            "uuid": "5fa10867-e6bf-4ad0-9ac9-784542053c69"
+        }
+        response = self.client_stub.post("/api/v1/services/B2SAFE/user_customer/edit", post_data)
+        expected_data = {
+            "id": post_data["uuid"],
+            "name": post_data["name"],
+            "role": post_data["role"]
+        }
+        expected_response = helper.get_response_info(strings.USER_CUSTOMER_UPDATED, expected_data, status=strings.UPDATED_202)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
     def test_insert_user_customer(self):
         post_data = {
             "name": "Service provider",
@@ -377,6 +447,90 @@ class ServiceTestCase(TestCase):
         }
         response = self.client_stub.post("/api/v1/services/add", post_data)
         expected_response = helper.get_error_response(strings.SERVICE_UUID_EXISTS, status=strings.CONFLICT_409)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_edit_service_existing_no_uuid(self):
+        post_data = {
+            "name": "Test service",
+            "service_owner_uuid": "3cac63c1-a8d1-4178-aa8a-cd149696532d",
+            "service_contact_information_uuid": "264fbac7-2bf0-4b9a-b182-293e65d599ce"
+        }
+        response = self.client_stub.post("/api/v1/services/edit", post_data)
+        expected_response = helper.get_error_response(strings.SERVICE_UUID_NOT_PROVIDED, status=strings.REJECTED_405)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_edit_non_existing_service_existing(self):
+        post_data = {
+            "name": "Test service",
+            "service_owner_uuid": "3cac63c1-a8d1-4178-aa8a-cd149696532d",
+            "service_contact_information_uuid": "264fbac7-2bf0-4b9a-b182-293e65d599ce",
+            "uuid": "583ec8f2-9ef6-4e51-89bd-9af7f5fcea9d"
+        }
+        response = self.client_stub.post("/api/v1/services/edit", post_data)
+        expected_response = helper.get_error_response(strings.SERVICE_NOT_FOUND, status=strings.NOT_FOUND_404)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_edit_service(self):
+        post_data = {
+            "name": "EUDAT Central Monitoring service",
+            "service_owner_uuid": "3cac63c1-a8d1-4178-aa8a-cd149696532d",
+            "service_contact_information_uuid": "264fbac7-2bf0-4b9a-b182-293e65d599ce",
+            "uuid": "583ec8f2-9ef6-4e51-89bd-9af7f5fcea9c",
+            "description_external": "external",
+            "description_internal": "description_internal",
+            "service_area": "service_area",
+            "service_type": "service_type",
+            "request_procedures": "request_procedures",
+            "funders_for_service": "funders_for_service",
+            "value_to_customer": "value_to_customer",
+            "risks": "risks",
+            "competitors": "new competitors",
+        }
+        response = self.client_stub.post("/api/v1/services/edit", post_data)
+        expected_data = {
+            "uuid": post_data["uuid"],
+            "service_complete_link": {
+                "related": {
+                    "href": helper.current_site_url() + "/v1/portfolio/services/" + post_data["name"].replace(" ", "_")
+                            + "?view=complete",
+                    "meta": {
+                        "desc": "Portfolio level details about this service."
+                    }
+                }},
+            "name": post_data["name"],
+            "description_external": post_data["description_external"],
+            "description_internal": post_data["description_internal"],
+            "service_area": post_data["service_area"],
+            "request_procedures": post_data["request_procedures"],
+            "funders_for_service": post_data["funders_for_service"],
+            "value_to_customer": post_data["value_to_customer"],
+            "risks": post_data["risks"],
+            "service_details_list": {
+                "count": 1,
+                "service_details": [{"accounting_link": {"related": {"href": "/", "meta": {"desc": "A link to the accounting system for this service."}}}, "version": "1.0", "monitoring_has": False, "service_status": "Active", "features_current": "http://eudat.eu/User%20Documentation%20-%20The%20EUDAT%20Monitoring%20system.html#UserDocumentation-TheEUDATMonitoringsystem-Features", "decommissioning_procedure_has": False, "cost_to_run": "/", "operations_documentation_link": {"related": {"href": "", "meta": {"desc": "A link to the operations documentation for this service."}}}, "user_documentation_link": {"related": {"href": "http://eudat.eu/User%20Documentation%20-%20Monitoring%20System%20Operator%20View.html", "meta": {"desc": "A link to the user documentation for this service."}}}, "service_details_link": {"related": {"href": "http://agora-dev.aris.grnet.gr/api/v1/portfolio/services/EUDAT_Central_Monitoring_service/service_details/1.0", "meta": {"desc": "Service details link"}}}, "accounting_has": False, "business_continuity_plan_link": {"related": {"href": "/", "meta": {"desc": "A link to the business continuity plan for this service."}}}, "usage_policy_link": {"related": {"href": "/", "meta": {"desc": "A link to the usage policy for this service."}}}, "operations_documentation_has": False, "monitoring_link": {"related": {"href": "/", "meta": {"desc": "A link to the monitoring system for this service."}}}, "business_continuity_plan_has": False, "disaster_recovery_plan_url": {"related": {"href": "/", "meta": {"desc": "A link to the disaster recovery plan for this service."}}}, "cost_to_build": "/", "use_cases": "", "dependencies": {"count": 0, "services": [], "service_dependencies_link": {"related": {"href": "http://agora-dev.aris.grnet.gr/api/v1/portfolio/services/EUDAT_Central_Monitoring_service/service_dependencies", "meta": {"desc": "A list of links to the service dependencies"}}}}, "disaster_recovery_plan_has": False, "is_in_catalogue": True, "uuid": "823175e6-de78-43f0-a123-d756a2f2b7e5", "features_future": "/", "usage_policy_has": False, "user_documentation_has": True, "decommissioning_procedure_url": {"related": {"href": "/", "meta": {"desc": "A link to the decommissioning procedure for this service."}}}}]
+            },
+            "competitors": post_data["competitors"],
+            "user_customers_list": {
+                "count": 0,
+                "user_customers": []
+            },
+            "service_owner_link": {
+                "related": {
+                    "href": helper.current_site_url() + "/v1/portfolio/services/" + post_data["name"].replace(" ", "_") + "/service_owner",
+                    "meta": {
+                        "desc": "Service owner link"
+                    }
+                }
+            },
+            "contact_information_link": {
+                "related": {
+                    "href": helper.current_site_url() + "/v1/portfolio/services/" + post_data["name"].replace(" ", "_") + "/contact_information",
+                    "meta": {
+                        "desc": "Link contact information about this service"
+                    }
+                }}
+        }
+        expected_response = helper.get_response_info(strings.SERVICE_UPDATED, expected_data, status=strings.UPDATED_202)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_insert_service(self):

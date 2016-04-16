@@ -99,13 +99,17 @@ ERROR_MESSAGES = {
     SERVICE_UUID_NOT_PROVIDED: "Service UUID not provided",
     SERVICE_DETAILS_UUID_NOT_PROVIDED: "Service Details UUID not provided",
     SERVICE_DETAILS_EXISTS: "A Service Details object with the provided UUID already exists",
-    SERVICE_DETAILS_VERSION_NOT_PROVIDED: "Service Details Version not provided",
+    SERVICE_DETAILS_VERSION_NOT_PROVIDED: "Service Details version not provided",
     SERVICE_COMPONENT_UUID_NOT_PROVIDED: "Service component UUID not provided",
     SERVICE_COMPONENT_IMPLEMENTATION_UUID_NOT_PROVIDED: "Service component implementation UUID not provided",
     SLA_PARAMETER_EXISTS: "A SLA Parameter object with the provided information already exists",
     SERVICE_OPTION_EXISTS: "A Service Option with the provided information already exists",
     VARIABLE_MUST_BE_BOOLEAN: "The provided variable must be boolean: ",
-    SLA_PARAMETER_UUID_NOT_PROVIDED: "SLA parameter UUID not provided"
+    SLA_PARAMETER_UUID_NOT_PROVIDED: "SLA parameter UUID not provided",
+    EXTERNAL_SERVICE_NOT_FOUND: "The requested external service was not found",
+    EXTERNAL_SERVICE_UUID_NOT_PROVIDED: "External service UUID not provided",
+    USER_CUSTOMER_NOT_FOUND: "The requested user customer was not found",
+    USER_CUSTOMER_UUID_NOT_PROVIDED: "User customer UUID not provided"
 }
 
 
@@ -151,7 +155,11 @@ INFO_MESSAGES = {
     SERVICE_DETAILS_OPTION_UPDATED: "service details options updated",
     SERVICE_COMPONENT_UPDATED: "service component updated",
     SERVICE_COMPONENT_IMPLEMENTATION_UPDATED: "service component implementation updated",
-    SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UPDATED: "service component implementation details updated"
+    SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UPDATED: "service component implementation details updated",
+    SERVICE_UPDATED: "Service updated",
+    EXTERNAL_SERVICE_UPDATED: "External service updated",
+    SERVICE_DETAILS_UPDATED: "Service details updated",
+    USER_CUSTOMER_UPDATED: "User customer updated"
 }
 
 STATUS_CODES = {
