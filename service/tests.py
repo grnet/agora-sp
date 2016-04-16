@@ -299,7 +299,7 @@ class ServiceTestCase(TestCase):
     def test_insert_user_customer_params_not_provided(self):
         post_data = {}
         post_data1 = {
-            "name": "Test name"
+            "name": "Service provider"
         }
         response = self.client_stub.post("/api/v1/services/B2SAFE/user_customer/add", post_data)
         response1 = self.client_stub.post("/api/v1/services/B2SAFE/user_customer/add", post_data1)
@@ -314,13 +314,13 @@ class ServiceTestCase(TestCase):
             "role": "",
         }
         post_data1 = {
-            "name": "Test name",
-            "role": "User"
+            "name": "Service provider",
+            "role": ""
         }
         response = self.client_stub.post("/api/v1/services/B2SAFE/user_customer/add", post_data)
         response1 = self.client_stub.post("/api/v1/services/B2SAFE/user_customer/add", post_data1)
-        expected_response = helper.get_error_response(strings.USER_CUSTOMER_ROLE_EMPTY, status=strings.REJECTED_405)
-        expected_response1 = helper.get_error_response(strings.USER_CUSTOMER_NAME_INVALID,  status=strings.REJECTED_405)
+        expected_response1 = helper.get_error_response(strings.USER_CUSTOMER_ROLE_EMPTY, status=strings.REJECTED_405)
+        expected_response = helper.get_error_response(strings.USER_CUSTOMER_NAME_INVALID,  status=strings.REJECTED_405)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
         self.assertJSONEqual(json.dumps(expected_response1), response1.content)
 

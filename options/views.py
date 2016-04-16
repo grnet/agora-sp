@@ -240,6 +240,8 @@ def insert_service_option(request):
     elif op_type == "edit":
         return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_UUID_NOT_PROVIDED,
                                                       status=strings.REJECTED_405))
+    elif op_type == "add":
+        service_option = options_models.ServiceOption()
 
     if name is not None:
         service_option.name = name
@@ -325,6 +327,8 @@ def insert_SLA(request):
     elif op_type == "edit":
         return JsonResponse(helper.get_error_response(strings.SLA_UUID_NOT_PROVIDED,
                                                       status=strings.REJECTED_405))
+    elif op_type == "add":
+        SLA = options_models.SLA()
 
     if name is not None:
         SLA.name = name
@@ -397,6 +401,8 @@ def insert_parameter(request):
     elif op_type == "edit":
         return JsonResponse(helper.get_error_response(strings.PARAMETER_UUID_NOT_PROVIDED,
                                                       status=strings.REJECTED_405))
+    elif op_type == "add":
+        parameter = options_models.Parameter()
 
     if name is not None:
         parameter.name = name
@@ -521,6 +527,8 @@ def insert_SLA_parameter(request):
     elif op_type == "edit":
         return JsonResponse(helper.get_error_response(strings.SLA_PARAMETER_UUID_NOT_PROVIDED,
                                                       status=strings.REJECTED_405))
+    elif op_type == "add":
+        sla_parameter = options_models.SLAParameter()
 
     sla_parameter.parameter_id = parameter
     sla_parameter.service_option_id = service_option

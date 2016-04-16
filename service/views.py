@@ -417,6 +417,8 @@ def insert_service(request):
                                                               status=strings.NOT_FOUND_404))
     elif op_type == "edit":
         return JsonResponse(helper.get_error_response(strings.SERVICE_UUID_NOT_PROVIDED, status=strings.REJECTED_405))
+    elif op_type == "add":
+        service = models.Service()
 
     if name is not None:
         service.name = name
@@ -507,6 +509,8 @@ def insert_external_service(request):
     elif op_type == "edit":
         return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_UUID_NOT_PROVIDED,
                                                       status=strings.REJECTED_405))
+    elif op_type == "add":
+        external_service = models.ExternalService()
 
     if name is not None:
         external_service.name = name
@@ -664,7 +668,8 @@ def insert_service_details(request, service_name_or_uuid):
     elif op_type == "edit":
         return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_UUID_NOT_PROVIDED,
                                                       status=strings.NOT_FOUND_404))
-
+    elif op_type == "add":
+        service_details = models.ServiceDetails()
 
     service_details.id_service = service
 
@@ -865,6 +870,8 @@ def insert_user_customer(request, service_name_or_uuid):
     elif op_type == "edit":
         return JsonResponse(helper.get_error_response(strings.USER_CUSTOMER_UUID_NOT_PROVIDED,
                                                       status=strings.REJECTED_405))
+    elif op_type == "add":
+        user_customer = models.UserCustomer()
 
     result = prog.match(service_name_or_uuid)
 

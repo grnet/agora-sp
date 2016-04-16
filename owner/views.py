@@ -153,6 +153,8 @@ def insert_institution(request):
     elif op_type == "edit":
         return JsonResponse(helper.get_error_response(strings.INSTITUTION_UUID_NOT_PROVIDED,
                                                       status=strings.REJECTED_405))
+    elif op_type == "add":
+        institution = models.Institution()
 
     if name is not None:
         institution.name = name
@@ -216,6 +218,8 @@ def insert_contact_information(request):
     elif op_type == "edit":
         return JsonResponse(helper.get_error_response(strings.SERVICE_CONTACT_INFORMATION_UUID_NOT_PROVIDED,
                                                       status=strings.REJECTED_405))
+    elif op_type == "add":
+        contact_information = models.ContactInformation()
 
     if "first_name" in params:
         first_name = params.get('first_name')
@@ -312,6 +316,8 @@ def insert_service_owner(request):
     elif op_type == "edit":
         return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_UUID_NOT_PROVIDED,
                                                       status=strings.REJECTED_405))
+    elif op_type == "add":
+        service_owner = models.ServiceOwner()
 
     if "first_name" in params:
         first_name = params.get('first_name')
