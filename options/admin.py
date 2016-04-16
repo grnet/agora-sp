@@ -1,25 +1,26 @@
 from django.contrib import admin
+from reversion.admin import VersionAdmin
 from options.models import *
 # Register your models here.
 
 
-class ServiceOptionAdmin(admin.ModelAdmin):
+class ServiceOptionAdmin(VersionAdmin):
     pass
 
 
-class SLAAdmin(admin.ModelAdmin):
+class SLAAdmin(VersionAdmin):
     pass
 
 
-class ParameterAdmin(admin.ModelAdmin):
+class ParameterAdmin(VersionAdmin):
     pass
 
 
-class SLAParameterAdmin(admin.ModelAdmin):
+class SLAParameterAdmin(VersionAdmin):
     pass
 
 
-class ServiceDetailsOptionAdmin(admin.ModelAdmin):
+class ServiceDetailsOptionAdmin(VersionAdmin):
     pass
 
 

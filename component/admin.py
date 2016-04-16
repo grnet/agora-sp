@@ -1,21 +1,22 @@
 from django.contrib import admin
+from reversion.admin import VersionAdmin
 from component.models import *
 # Register your models here.
 
 
-class ServiceComponentAdmin(admin.ModelAdmin):
+class ServiceComponentAdmin(VersionAdmin):
     pass
 
 
-class ServiceComponentImplementationAdmin(admin.ModelAdmin):
+class ServiceComponentImplementationAdmin(VersionAdmin):
     pass
 
 
-class ServiceComponentImplementationDetailAdmin(admin.ModelAdmin):
+class ServiceComponentImplementationDetailAdmin(VersionAdmin):
     pass
 
 
-class ServiceDetailsComponentAdmin(admin.ModelAdmin):
+class ServiceDetailsComponentAdmin(VersionAdmin):
     pass
 
 

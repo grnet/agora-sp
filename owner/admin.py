@@ -1,25 +1,27 @@
 from django.contrib import admin
+from reversion.admin import VersionAdmin
 from owner.models import *
 
 # Register your models here.
 
 
-class InstitutionAdmin(admin.ModelAdmin):
+class InstitutionAdmin(VersionAdmin):
     pass
 
 
-class ServiceOwnerAdmin(admin.ModelAdmin):
+class ServiceOwnerAdmin(VersionAdmin):
     pass
 
 
-class ContactInformationAdmin(admin.ModelAdmin):
+class ContactInformationAdmin(VersionAdmin):
     pass
 
 
-class InternalAdmin(admin.ModelAdmin):
+class InternalAdmin(VersionAdmin):
     pass
 
-class ExternalAdmin(admin.ModelAdmin):
+
+class ExternalAdmin(VersionAdmin):
     pass
 
 

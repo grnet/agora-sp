@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'django_jenkins',
     'rest_framework_swagger',
     'rest_framework',
+    'reversion',
     'component',
     'options',
     'owner',
