@@ -88,7 +88,7 @@ ERROR_MESSAGES = {
     PARAMETER_TYPE_NOT_PROVIDED: "Parameter type not provided",
     PARAMETER_UUID_NOT_PROVIDED: "Parameter UUID not provided",
     SLA_UUID_NOT_PROVIDED: "SLA UUID not provided",
-    SERVICE_OPTION_UUID_NOT_PROVIDED: "Service Option UUD not provided",
+    SERVICE_OPTION_UUID_NOT_PROVIDED: "Service Option UUiD not provided",
     PARAMETER_UUID_EMPTY: "The provided parameter UUID is empty",
     SLA_UUID_EMPTY: "The provided SLA UUID is empty",
     PARAMETER_NOT_FOUND: "The requested parameter was not found",
@@ -104,7 +104,8 @@ ERROR_MESSAGES = {
     SERVICE_COMPONENT_IMPLEMENTATION_UUID_NOT_PROVIDED: "Service component implementation UUID not provided",
     SLA_PARAMETER_EXISTS: "A SLA Parameter object with the provided information already exists",
     SERVICE_OPTION_EXISTS: "A Service Option with the provided information already exists",
-    VARIABLE_MUST_BE_BOOLEAN: "The provided variable must be boolean: "
+    VARIABLE_MUST_BE_BOOLEAN: "The provided variable must be boolean: ",
+    SLA_PARAMETER_UUID_NOT_PROVIDED: "SLA parameter UUID not provided"
 }
 
 

@@ -119,6 +119,9 @@ def insert_service_component(request):
             if op_type == "edit":
                 return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_NOT_FOUND,
                                                               status=strings.NOT_FOUND_404))
+    elif op_type == "edit":
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_UUID_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
 
     service_component = component_models.ServiceComponent()
     service_component.name = name
@@ -301,6 +304,9 @@ def insert_service_component_implementation(request):
                 return JsonResponse(helper.
                                     get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_NOT_FOUND,
                                                        status=strings.NOT_FOUND_404))
+    elif op_type == "edit":
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_UUID_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
 
     try:
         service_component = component_models.ServiceComponent.objects.get(id=comp_uuid)
@@ -480,6 +486,9 @@ def insert_service_component_implementation_details(request):
             if op_type == "edit":
                 return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_NOT_FOUND,
                                                               status=strings.NOT_FOUND_404))
+    elif op_type == "edit":
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UUID_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
 
     try:
         service_component = component_models.ServiceComponent.objects.get(id=comp_uuid)

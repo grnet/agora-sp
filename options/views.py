@@ -116,7 +116,8 @@ def get_service_sla_parameter(request, search_type, version, sla_uuid, sla_param
                                                                            service_details_id=service_details.pk,
                                                                            service_options_id=sla.service_option_id.pk)
 
-        sla_param = options_models.SLAParameter.objects.get(sla_id=sla.pk, service_option_id=service_det_options.service_options_id,
+        sla_param = options_models.SLAParameter.objects.get(sla_id=sla.pk,
+                                                            service_option_id=service_det_options.service_options_id,
                                                             parameter_id=sla_param_uuid)
         parameter = options_models.Parameter.objects.get(id=sla_param_uuid)
 
@@ -237,8 +238,11 @@ def insert_service_option(request):
                                                               status=strings.CONFLICT_409))
         except options_models.ServiceOption.DoesNotExist:
             if op_type == "edit":
-                return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_NOT_FOUND, status=strings.NOT_FOUND_404))
-
+                return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_NOT_FOUND,
+                                                              status=strings.NOT_FOUND_404))
+    elif op_type == "edit":
+        return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_UUID_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
 
     service_option = options_models.ServiceOption()
     service_option.name = name
@@ -318,7 +322,9 @@ def insert_SLA(request):
         except options_models.SLA.DoesNotExist:
             if op_type == "edit":
                 return JsonResponse(helper.get_error_response(strings.SLA_NOT_FOUND, status=strings.NOT_FOUND_404))
-
+    elif op_type == "edit":
+        return JsonResponse(helper.get_error_response(strings.SLA_UUID_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
 
     SLA = options_models.SLA()
     SLA.name = name
@@ -393,8 +399,11 @@ def insert_parameter(request):
                                                               status=strings.CONFLICT_409))
         except options_models.Parameter.DoesNotExist:
             if op_type == "edit":
-                return JsonResponse(helper.get_error_response(strings.PARAMETER_NOT_FOUND, status=strings.NOT_FOUND_404))
-
+                return JsonResponse(helper.get_error_response(strings.PARAMETER_NOT_FOUND,
+                                                              status=strings.NOT_FOUND_404))
+    elif op_type == "edit":
+        return JsonResponse(helper.get_error_response(strings.PARAMETER_UUID_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
 
     parameter = options_models.Parameter()
     parameter.name = name
@@ -519,8 +528,11 @@ def insert_SLA_parameter(request):
                                                               status=strings.CONFLICT_409))
         except options_models.SLAParameter.DoesNotExist:
             if op_type == "edit":
-                return JsonResponse(helper.get_error_response(strings.SLA_PARAMETER_NOT_FOUND, status=strings.NOT_FOUND_404))
-
+                return JsonResponse(helper.get_error_response(strings.SLA_PARAMETER_NOT_FOUND,
+                                                              status=strings.NOT_FOUND_404))
+    elif op_type == "edit":
+        return JsonResponse(helper.get_error_response(strings.SLA_PARAMETER_UUID_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
 
     sla_parameter = options_models.SLAParameter()
     sla_parameter.parameter_id = parameter
@@ -632,7 +644,8 @@ def insert_service_details_option(request):
                                                                                      service_details_id=service_details,
                                                                                      service_options_id=service_option)
         except options_models.ServiceDetailsOption.DoesNotExist:
-                return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_NOT_FOUND, status=strings.NOT_FOUND_404))
+                return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_NOT_FOUND,
+                                                              status=strings.NOT_FOUND_404))
 
 
     # service_details_option = options_models.ServiceDetailsOption()

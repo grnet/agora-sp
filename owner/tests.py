@@ -102,6 +102,19 @@ class OwnerTestCase(TestCase):
         expected_response = helper.get_error_response(strings.INSTITUTION_NOT_FOUND, strings.NOT_FOUND_404)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
+    def test_edit_institution_no_uuid(self):
+
+        post_data = {
+            "name": "Test name",
+            "address": "Test address",
+            "country": "Test country",
+            "department": "Test department"
+        }
+
+        response = self.client_stub.post("/api/v1/owner/institution/edit", post_data)
+        expected_response = helper.get_error_response(strings.INSTITUTION_UUID_NOT_PROVIDED, strings.REJECTED_405)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
     def test_edit_institution(self):
 
         post_data = {
@@ -175,6 +188,20 @@ class OwnerTestCase(TestCase):
 
         response = self.client_stub.post("/api/v1/owner/contact_information/edit", post_data)
         expected_response = helper.get_error_response(strings.CONTACT_INFORMATION_NOT_FOUND, strings.NOT_FOUND_404)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_edit_contact_no_uuid(self):
+
+        post_data = {
+            "first_name": "Test first name",
+            "last_name": "Test last name",
+            "email": "Test email",
+            "phone": "Test phone",
+            "url": "Test url"
+        }
+
+        response = self.client_stub.post("/api/v1/owner/contact_information/edit", post_data)
+        expected_response = helper.get_error_response(strings.SERVICE_CONTACT_INFORMATION_UUID_NOT_PROVIDED, strings.REJECTED_405)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_edit_contact(self):
@@ -258,6 +285,20 @@ class OwnerTestCase(TestCase):
 
         response = self.client_stub.post("/api/v1/owner/edit", post_data)
         expected_response = helper.get_error_response(strings.SERVICE_OWNER_NOT_FOUND, strings.NOT_FOUND_404)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_edit_owner_no_uuid(self):
+
+        post_data = {
+            "first_name": "Test first name",
+            "last_name": "Test last name",
+            "email": "Test email",
+            "phone": "Test phone",
+            "institution_uuid": "224fe496-5023-49e6-8953-19d5b1331333"
+        }
+
+        response = self.client_stub.post("/api/v1/owner/edit", post_data)
+        expected_response = helper.get_error_response(strings.SERVICE_OWNER_UUID_NOT_PROVIDED, strings.REJECTED_405)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_edit_owner(self):

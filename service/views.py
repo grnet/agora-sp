@@ -351,6 +351,8 @@ def insert_service(request):
     Inserts a service object
 
     """
+
+    op_type = helper.get_last_url_part(request)
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     uuid, service_owner, service_contact_information = None, None, None

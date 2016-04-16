@@ -153,8 +153,11 @@ def insert_institution(request):
                                                               status=strings.CONFLICT_409))
         except models.Institution.DoesNotExist:
             if op_type == "edit":
-                return JsonResponse(helper.get_error_response(strings.INSTITUTION_NOT_FOUND, status=strings.NOT_FOUND_404))
-
+                return JsonResponse(helper.get_error_response(strings.INSTITUTION_NOT_FOUND,
+                                                              status=strings.NOT_FOUND_404))
+    elif op_type == "edit":
+        return JsonResponse(helper.get_error_response(strings.INSTITUTION_UUID_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
 
     institution = models.Institution()
     institution.name = name
@@ -234,8 +237,11 @@ def insert_contact_information(request):
                                                               status=strings.CONFLICT_409))
         except models.ContactInformation.DoesNotExist:
             if op_type == "edit":
-                return JsonResponse(helper.get_error_response(strings.CONTACT_INFORMATION_NOT_FOUND, status=strings.NOT_FOUND_404))
-
+                return JsonResponse(helper.get_error_response(strings.CONTACT_INFORMATION_NOT_FOUND,
+                                                              status=strings.NOT_FOUND_404))
+    elif op_type == "edit":
+        return JsonResponse(helper.get_error_response(strings.SERVICE_CONTACT_INFORMATION_UUID_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
 
     contact_information = models.ContactInformation()
     contact_information.first_name = first_name
@@ -327,7 +333,11 @@ def insert_service_owner(request):
                                                               status=strings.CONFLICT_409))
         except models.ServiceOwner.DoesNotExist:
             if op_type == "edit":
-                return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_NOT_FOUND, status=strings.NOT_FOUND_404))
+                return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_NOT_FOUND,
+                                                              status=strings.NOT_FOUND_404))
+    elif op_type == "edit":
+        return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_UUID_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
 
 
     service_owner = models.ServiceOwner()

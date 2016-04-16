@@ -129,6 +129,16 @@ class ComponentTestCase(TestCase):
         expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_NOT_FOUND, status=strings.NOT_FOUND_404)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
+    def test_edit_service_component_no_uuid(self):
+        post_data = {
+            "name": "Test name",
+            "description": "Test description"
+        }
+
+        response = self.client_stub.post("/api/v1/component/edit", post_data)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_UUID_NOT_PROVIDED, status=strings.REJECTED_405)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
     def test_edit_service_component(self):
         post_data = {
             "name": "Test name",
@@ -249,6 +259,17 @@ class ComponentTestCase(TestCase):
 
         response = self.client_stub.post("/api/v1/component/service_component_implementation/edit", post_data)
         expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_NOT_FOUND, status=strings.NOT_FOUND_404)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_edit_service_component_implementation_no_uuid(self):
+        post_data = {
+            "name": "Test name",
+            "description": "Test description",
+            "component_uuid": "af2f812b-eda6-497a-9d22-534f885b7034"
+        }
+
+        response = self.client_stub.post("/api/v1/component/service_component_implementation/edit", post_data)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_UUID_NOT_PROVIDED, status=strings.REJECTED_405)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_edit_service_component_implementation(self):
@@ -390,6 +411,18 @@ class ComponentTestCase(TestCase):
 
         response = self.client_stub.post("/api/v1/component/service_component_implementation_detail/edit", post_data)
         expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_NOT_FOUND, status=strings.NOT_FOUND_404)
+        self.assertJSONEqual(json.dumps(expected_response), response.content)
+
+    def test_edit_service_component_implementation_details_no_uuid(self):
+        post_data = {
+            "version": "0.1.2",
+            "configuration_parameters": "<xml>Test configuration</xml>",
+            "component_uuid": "af2f812b-eda6-497a-9d22-534f885b7034",
+            "component_implementation_uuid": "e01dcee5-eb04-4147-9bb0-54ed81567494"
+        }
+
+        response = self.client_stub.post("/api/v1/component/service_component_implementation_detail/edit", post_data)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UUID_NOT_PROVIDED, status=strings.REJECTED_405)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_edit_service_component_implementation_details(self):
