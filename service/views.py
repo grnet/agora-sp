@@ -355,11 +355,17 @@ def insert_service(request):
     op_type = helper.get_last_url_part(request)
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
-    uuid, service_owner, service_contact_information, name = None, None, None, None
+    uuid, service, service_owner, service_contact_information, name = None, None, None, None, None
 
     if "name" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.SERVICE_NAME_NOT_PROVIDED,
                                                       status=strings.REJECTED_405))
+    elif "name" in params:
+        name = params.get('name')
+        if (name is None or len(name) == 0) and "name" in params:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_NAME_EMPTY, status=strings.REJECTED_405))
+    elif op_type == "edit":
+        name = None
 
     if "service_owner_uuid" not in params:
         return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_UUID_NOT_PROVIDED,
@@ -369,20 +375,6 @@ def insert_service(request):
         return JsonResponse(helper.get_error_response(strings.SERVICE_CONTACT_INFORMATION_UUID_NOT_PROVIDED,
                                                       status=strings.REJECTED_405))
 
-    if "name" in params:
-        name = params.get('name')
-    if (name is None or len(name) == 0) and "name" in params:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_NAME_EMPTY, status=strings.REJECTED_405))
-
-    description_external = params.get('description_external') if "description_external" in params else None
-    description_internal = params.get('description_internal') if "description_internal" in params else None
-    service_area = params.get('service_area') if "service_area" in params else None
-    service_type = params.get('service_type') if "service_type" in params else None
-    request_procedures = params.get('request_procedures') if "request_procedures" in params else None
-    funders_for_service = params.get('funders_for_service') if "funders_for_service" in params else None
-    value_to_customer = params.get('value_to_customer') if "value_to_customer" in params else None
-    risks = params.get('risks') if "risks" in params else None
-    competitors = params.get('competitors') if "competitors" in params else None
     service_owner_uuid = params.get('service_owner_uuid')
     service_contact_information_uuid = params.get('service_contact_information_uuid')
 
@@ -414,35 +406,55 @@ def insert_service(request):
                                                           status=strings.REJECTED_405))
 
         try:
-            models.Service.objects.get(id=uuid)
+            service = models.Service.objects.get(id=uuid)
             if op_type == "add":
                 return JsonResponse(helper.get_error_response(strings.SERVICE_UUID_EXISTS,
                                                               status=strings.CONFLICT_409))
         except models.Service.DoesNotExist:
+            service = models.Service()
             if op_type == "edit":
                 return JsonResponse(helper.get_error_response(strings.SERVICE_NOT_FOUND,
                                                               status=strings.NOT_FOUND_404))
     elif op_type == "edit":
         return JsonResponse(helper.get_error_response(strings.SERVICE_UUID_NOT_PROVIDED, status=strings.REJECTED_405))
 
-    service = models.Service()
     if name is not None:
         service.name = name
-    service.description_external = description_external
-    service.description_internal = description_internal
-    service.service_area = service_area
-    service.service_type = service_type
-    service.request_procedures = request_procedures
-    service.funders_for_service = funders_for_service
-    service.value_to_customer = value_to_customer
-    service.risks = risks
-    service.competitors = competitors
+
+    if "description_external" in params:
+        service.description_external = params.get('description_external')
+
+    if "description_internal" in params:
+        service.description_internal = params.get('description_internal')
+
+    if "service_area" in params:
+        service.service_area = params.get('service_area')
+
+    if "service_type" in params:
+        service.service_type = params.get('service_type')
+
+    if "request_procedures" in params:
+        service.request_procedures = params.get('request_procedures')
+
+    if "funders_for_service" in params:
+        service.funders_for_service = params.get('funders_for_service')
+
+    if "value_to_customer" in params:
+        service.value_to_customer = params.get('value_to_customer')
+
+    if "risks" in params:
+        service.risks = params.get('risks')
+
+    if "competitors" in params:
+        service.competitors = params.get('competitors')
+
     service.id_service_owner = service_owner
     service.id_contact_information = service_contact_information
+
     if uuid is not None:
         service.id = uuid
-    service.save()
 
+    service.save()
     data = service.as_portfolio()
     msg = strings.SERVICE_INSERTED if op_type == "add" else strings.SERVICE_UPDATED
     status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
@@ -459,20 +471,18 @@ def insert_external_service(request):
 
     op_type = helper.get_last_url_part(request)
     params = request.POST.copy()
+    uuid, name, external_service = None, None, None
 
-    uuid = None
-
-    if "name" not in params:
+    if "name" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_NAME_NOT_PROVIDED,
                                                       status=strings.REJECTED_405))
-
-    name = params.get('name')
-    description = params.get('description') if "description" in params else None
-    service = params.get('service') if "service" in params else None
-    details = params.get('details') if "details" in params else None
-
-    if name is None or len(name) == 0:
-        return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_NAME_EMPTY, status=strings.REJECTED_405))
+    elif "name" in params:
+        name = params.get('name')
+        if name is None or len(name) == 0:
+            return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_NAME_EMPTY,
+                                                          status=strings.REJECTED_405))
+    elif op_type == "edit":
+        name = None
 
     if "uuid" in params:
         uuid = params.get("uuid")
@@ -485,11 +495,12 @@ def insert_external_service(request):
                                                           status=strings.REJECTED_405))
 
         try:
-            models.ExternalService.objects.get(id=uuid)
+            external_service = models.ExternalService.objects.get(id=uuid)
             if op_type == "add":
                 return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_UUID_EXISTS,
                                                               status=strings.CONFLICT_409))
         except models.ExternalService.DoesNotExist:
+            external_service = models.ExternalService()
             if op_type == "edit":
                 return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_NOT_FOUND,
                                                               status=strings.NOT_FOUND_404))
@@ -497,15 +508,22 @@ def insert_external_service(request):
         return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_UUID_NOT_PROVIDED,
                                                       status=strings.REJECTED_405))
 
-    external_service = models.ExternalService()
-    external_service.name = name
-    external_service.description = description
-    external_service.service = service
-    external_service.details = details
+    if name is not None:
+        external_service.name = name
+
+    if "description" in params:
+        external_service.description = params.get('description')
+
+    if "service" in params:
+        external_service.service = params.get('service')
+
+    if "details" in params:
+        external_service.details = params.get('details')
+
     if uuid is not None:
         external_service.id = uuid
-    external_service.save()
 
+    external_service.save()
     data = external_service.as_json()
     msg = strings.EXTERNAL_SERVICE_INSERTED if op_type == "add" else strings.EXTERNAL_SERVICE_UPDATED
     status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
@@ -577,51 +595,28 @@ def insert_service_details(request, service_name_or_uuid):
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
-    service, uuid, parsed_name, manual_uuid = None, None, None, None
+    service, uuid, parsed_name, manual_uuid, version, service_details = None, None, None, None, None, None
 
     # if "service_uuid_name" not in params:
     #     return JsonResponse(helper.get_error_response(strings.SERVICE_UUID_NOT_PROVIDED,
     #                                                   status=strings.REJECTED_405))
 
 
-    if "version" not in params:
+    if "version" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_VERSION_NOT_PROVIDED,
                                                       status=strings.REJECTED_405))
+    elif "version" in params:
+        version = params.get('version')
+        if version is None or len(version) == 0:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_VERSION_EMPTY,
+                                                          status=strings.REJECTED_405))
+    elif op_type == "edit":
+        version = None
 
     # service_uuid_name = params.get("service_uuid_name")
     service_uuid_name = service_name_or_uuid
-    version = params.get('version')
-
-    status = params.get('status') if "status" in params else None
-    features_current = params.get('features_current') if "features_current" in params else None
-    features_future = params.get('features_future') if "features_future" in params else None
-    usage_policy_url = params.get('usage_policy_url') if "usage_policy_url" in params else None
-    user_documentation_url = params.get('user_documentation_url') if "user_documentation_url" in params else None
-    operations_documentation_url = params.get('operations_documentation_url') if "operations_documentation_url" in params else None
-    monitoring_url = params.get('monitoring_url') if "monitoring_url" in params else None
-    accounting_url = params.get('accounting_url') if "accounting_url" in params else None
-    business_continuity_plan_url = params.get('business_continuity_plan_url') if "business_continuity_plan_url" in params else None
-    disaster_recovery_plan_url = params.get('disaster_recovery_plan_url') if "disaster_recovery_plan_url" in params else None
-    decommissioning_procedure_url = params.get('decommissioning_procedure_url') if "decommissioning_procedure_url" in params else None
-    cost_to_run = params.get('cost_to_run') if "cost_to_run" in params else None
-    cost_to_build = params.get('cost_to_build') if "cost_to_build" in params else None
-    use_cases = params.get('use_cases') if "use_cases" in params else None
-    usage_policy_has = params.get('usage_policy_has') if "usage_policy_has" in params else False
-    user_documentation_has = params.get('user_documentation_has') if "user_documentation_has" in params else False
-    operations_documentation_has = params.get('operations_documentation_has') if "operations_documentation_has" in params else False
-    monitoring_has = params.get('monitoring_has') if "monitoring_has" in params else False
-    accounting_has = params.get('accounting_has') if "accounting_has" in params else False
-    business_continuity_plan_has = params.get('business_continuity_plan_has') if "business_continuity_plan_has" in params else False
-    disaster_recovery_plan_has = params.get('disaster_recovery_plan_has') if "disaster_recovery_plan_has" in params else False
-    decommissioning_procedure_has = params.get('decommissioning_procedure_has') if "decommissioning_procedure_has" in params else False
-    is_in_catalogue = params.get("is_in_catalogue") if "is_in_catalogue" in params else False
-
-    if type(is_in_catalogue) is not bool:
-        return JsonResponse(helper.get_error_response(strings.VARIABLE_MUST_BE_BOOLEAN, status=strings.REJECTED_405,
-                                                      additional_status_msg="is_in_catalogue"))
 
     result = prog.match(service_uuid_name)
-
 
     try:
         if result is None:
@@ -646,34 +641,6 @@ def insert_service_details(request, service_name_or_uuid):
         if str(v) == "badly formed hexadecimal UUID string":
             return JsonResponse(helper.get_error_response(strings.INVALID_UUID, status=strings.REJECTED_405))
 
-    service_details = models.ServiceDetails()
-    service_details.id_service = service
-    service_details.version = version
-    service_details.status = status
-    service_details.features_current = features_current
-    service_details.features_future = features_future
-    service_details.usage_policy_url = usage_policy_url
-    service_details.usage_policy_has = usage_policy_has
-    service_details.user_documentation_has = user_documentation_has
-    service_details.user_documentation_url = user_documentation_url
-    service_details.operations_documentation_has = operations_documentation_has
-    service_details.operations_documentation_url = operations_documentation_url
-    service_details.monitoring_has = monitoring_has
-    service_details.monitoring_url = monitoring_url
-    service_details.accounting_has = accounting_has
-    service_details.accounting_url = accounting_url
-    service_details.business_continuity_plan_has = business_continuity_plan_has
-    service_details.business_continuity_plan_url = business_continuity_plan_url
-    service_details.disaster_recovery_plan_has = disaster_recovery_plan_has
-    service_details.disaster_recovery_plan_url = disaster_recovery_plan_url
-    service_details.decommissioning_procedure_has = decommissioning_procedure_has
-    service_details.decommissioning_procedure_url = decommissioning_procedure_url
-    service_details.cost_to_build = cost_to_build
-    service_details.cost_to_run = cost_to_run
-    service_details.use_cases = use_cases
-    service_details.is_in_catalogue = is_in_catalogue
-
-
 
     if "uuid" in params:
 
@@ -685,11 +652,12 @@ def insert_service_details(request, service_name_or_uuid):
                                                           status=strings.REJECTED_405))
 
         try:
-            models.ServiceDetails.objects.get(id=uuid)
+            service_details = models.ServiceDetails.objects.get(id=uuid)
             if op_type == "add":
                 return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_EXISTS,
                                                               status=strings.CONFLICT_409))
         except models.ServiceDetails.DoesNotExist:
+            service_details = models.ServiceDetails()
             if op_type == "edit":
                 return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_NOT_FOUND,
                                                               status=strings.REJECTED_405))
@@ -697,12 +665,89 @@ def insert_service_details(request, service_name_or_uuid):
         return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_UUID_NOT_PROVIDED,
                                                       status=strings.NOT_FOUND_404))
 
+
+    service_details.id_service = service
+
+    if version is not None:
+        service_details.version = version
+
+    if "status" in params:
+        service_details.status = params.get('status')
+
+    if "features_current" in params:
+        service_details.features_current = params.get('features_current')
+
+    if "features_future" in params:
+        service_details.features_future = params.get('features_future')
+
+    if "usage_policy_has" in params:
+        service_details.usage_policy_has = params.get('usage_policy_has')
+
+    if "usage_policy_url" in params:
+        service_details.usage_policy_url = params.get('usage_policy_url')
+
+    if "user_documentation_has" in params:
+        service_details.user_documentation_has = params.get('user_documentation_has')
+
+    if "user_documentation_url" in params:
+        service_details.user_documentation_url = params.get('user_documentation_url')
+
+    if "operations_documentation_has" in params:
+        service_details.operations_documentation_has = params.get('operations_documentation_has')
+
+    if "operations_documentation_url" in params:
+        service_details.operations_documentation_url = params.get('operations_documentation_url')
+
+    if "monitoring_has" in params:
+        service_details.monitoring_has = params.get('monitoring_has')
+
+    if "monitoring_url" in params:
+        service_details.monitoring_url = params.get('monitoring_url')
+
+    if "accounting_has" in params:
+        service_details.accounting_has = params.get('accounting_has')
+
+    if "accounting_url" in params:
+        service_details.accounting_url = params.get('accounting_url')
+
+    if "business_continuity_plan_has" in params:
+        service_details.business_continuity_plan_has = params.get('business_continuity_plan_has')
+
+    if "business_continuity_plan_url" in params:
+        service_details.business_continuity_plan_url = params.get('business_continuity_plan_url')
+
+    if "disaster_recovery_plan_has" in params:
+        service_details.disaster_recovery_plan_has = params.get('disaster_recovery_plan_has')
+
+    if "disaster_recovery_plan_url" in params:
+        service_details.disaster_recovery_plan_url = params.get('disaster_recovery_plan_url')
+
+    if "decommissioning_procedure_has" in params:
+        service_details.decommissioning_procedure_has = params.get('decommissioning_procedure_has')
+
+    if "decommissioning_procedure_url" in params:
+        service_details.decommissioning_procedure_url = params.get('decommissioning_procedure_url')
+
+    if "cost_to_run" in params:
+        service_details.cost_to_run = params.get('cost_to_run')
+
+    if "cost_to_build" in params:
+        service_details.cost_to_build = params.get('cost_to_build')
+
+    if "use_cases" in params:
+        service_details.use_cases = params.get('use_cases')
+
+    if "is_in_catalogue" in params:
+        is_in_catalogue = params.get('is_in_catalogue')
+        if type(is_in_catalogue) is not bool:
+            return JsonResponse(helper.get_error_response(strings.VARIABLE_MUST_BE_BOOLEAN, status=strings.REJECTED_405,
+                                                      additional_status_msg="is_in_catalogue"))
+        service_details.is_in_catalogue = is_in_catalogue
+
     if manual_uuid is not None:
         service_details.id = manual_uuid
 
-
     service_details.save()
-
     data = service_details.as_json()
     msg = strings.SERVICE_DETAILS_INSERTED if op_type == "add" else strings.SERVICE_DETAILS_UPDATED
     status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
@@ -773,24 +818,29 @@ def insert_user_customer(request, service_name_or_uuid):
     op_type = helper.get_last_url_part(request)
     params = request.POST.copy()
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
-    service, parsed_name, service_uuid, uuid = None, None, None, None
+    service, parsed_name, service_uuid, uuid, user_customer, name, role = None, None, None, None, None, None, None
 
-    if "name" not in params:
+    if "name" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.USER_CUSTOMER_NAME_NOT_PROVIDED,
                                                       status=strings.REJECTED_405))
-    if "role" not in params:
+    elif "name" in params:
+        name = params.get('name')
+        if (name, name) not in models.UserCustomer.USER_TYPES:
+            return JsonResponse(helper.get_error_response(strings.USER_CUSTOMER_NAME_INVALID,
+                                                          status=strings.REJECTED_405))
+    elif op_type == "edit":
+        name = None
+
+    if "role" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.USER_CUSTOMER_ROLE_NOT_PROVIDED,
                                                       status=strings.REJECTED_405))
-    name = params.get('name')
-    role = params.get('role')
-
-    if role is None or len(role) == 0:
-        return JsonResponse(helper.get_error_response(strings.USER_CUSTOMER_ROLE_EMPTY,
-                                                      status=strings.REJECTED_405))
-
-    if (name, name) not in models.UserCustomer.USER_TYPES:
-        return JsonResponse(helper.get_error_response(strings.USER_CUSTOMER_NAME_INVALID,
-                                                      status=strings.REJECTED_405))
+    elif "role" in params:
+        role = params.get('role')
+        if role is None or len(role) == 0:
+            return JsonResponse(helper.get_error_response(strings.USER_CUSTOMER_ROLE_EMPTY,
+                                                          status=strings.REJECTED_405))
+    elif op_type == "edit":
+        role = None
 
     if "uuid" in params:
         uuid = params.get('uuid')
@@ -803,11 +853,12 @@ def insert_user_customer(request, service_name_or_uuid):
                                                           status=strings.REJECTED_405))
 
         try:
-            models.UserCustomer.objects.get(id=uuid)
+            user_customer = models.UserCustomer.objects.get(id=uuid)
             if op_type == "add":
                 return JsonResponse(helper.get_error_response(strings.USER_CUSTOMER_EXISTS,
                                                               status=strings.CONFLICT_409))
         except models.UserCustomer.DoesNotExist:
+            user_customer = models.UserCustomer()
             if op_type == "edit":
                 return JsonResponse(helper.get_error_response(strings.USER_CUSTOMER_NOT_FOUND,
                                                               status=strings.NOT_FOUND_404))
@@ -828,18 +879,21 @@ def insert_user_customer(request, service_name_or_uuid):
         else:
             service = models.Service.objects.get(id=service_uuid)
 
-        user_customer = models.UserCustomer()
-        user_customer.name = name
-        user_customer.role = role
-        user_customer.service_id = service
-        if uuid is not None:
-            user_customer.id = uuid
-
-        user_customer.save()
-
     except models.Service.DoesNotExist:
         return JsonResponse(helper.get_error_response(strings.SERVICE_NOT_FOUND, status=strings.NOT_FOUND_404))
 
+    if name is not None:
+        user_customer.name = name
+
+    if role is not None:
+        user_customer.role = role
+
+    user_customer.service_id = service
+
+    if uuid is not None:
+        user_customer.id = uuid
+
+    user_customer.save()
 
     data = user_customer.as_json()
     msg = strings.USER_CUSTOMER_INSERTED if op_type == "add" else strings.USER_CUSTOMER_UPDATED

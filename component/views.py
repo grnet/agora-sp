@@ -475,7 +475,6 @@ def insert_service_component_implementation_details(request):
     #         strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_CONFIGURATION_PARAMETERS_NOT_PROVIDED,
     #                                                   status=strings.REJECTED_405))
 
-
     if "uuid" in params:
         uuid = params.get("uuid")
 
@@ -502,21 +501,26 @@ def insert_service_component_implementation_details(request):
     try:
         service_component = component_models.ServiceComponent.objects.get(id=comp_uuid)
         service_component_implementation = component_models.ServiceComponentImplementation.objects.get(id=imp_uuid)
+
     except component_models.ServiceComponent.DoesNotExist:
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_NOT_FOUND))
+
     except component_models.ServiceComponentImplementation.DoesNotExist:
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_NOT_FOUND))
 
     if version is not None:
         service_component_implementation_details.version = version
+
     if "configuration_parameters" in params:
         service_component_implementation_details.configuration_parameters = params.get('configuration_parameters')
+
     service_component_implementation_details.component_id = service_component
     service_component_implementation_details.component_implementation_id = service_component_implementation
+
     if uuid is not None:
         service_component_implementation_details.id = uuid
-    service_component_implementation_details.save()
 
+    service_component_implementation_details.save()
     data = service_component_implementation_details.as_json()
     msg = strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_INSERTED if op_type == "add" else \
         strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UPDATED
