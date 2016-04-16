@@ -109,7 +109,9 @@ ERROR_MESSAGES = {
     EXTERNAL_SERVICE_NOT_FOUND: "The requested external service was not found",
     EXTERNAL_SERVICE_UUID_NOT_PROVIDED: "External service UUID not provided",
     USER_CUSTOMER_NOT_FOUND: "The requested user customer was not found",
-    USER_CUSTOMER_UUID_NOT_PROVIDED: "User customer UUID not provided"
+    USER_CUSTOMER_UUID_NOT_PROVIDED: "User customer UUID not provided",
+    INSTITUTION_NAME_NOT_PROVIDED: "Institution name not provided",
+    INSTITUTION_NAME_EMPTY: "The provided institution name is empty"
 }
 
 
