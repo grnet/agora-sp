@@ -46,8 +46,10 @@ INSTALLED_APPS = [
     'options',
     'owner',
     'service',
+    'accounts',
 ]
 
+AUTH_USER_MODEL = "accounts.User"
 
 PROJECT_APPS = ['component', 'options', 'owner', 'service']
 
