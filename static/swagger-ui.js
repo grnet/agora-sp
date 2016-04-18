@@ -61,7 +61,7 @@ function clippyCopiedCallback(a) {
   // 500))
 }
 
-// Logging function that accounts for browsers that don't have window.console
+// Logging function that registration for browsers that don't have window.console
 log = function(){
   log.history = log.history || [];
   log.history.push(arguments);

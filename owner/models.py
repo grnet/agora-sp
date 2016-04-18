@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from accounts.models import User as CustomUser
 import uuid
 
 class Institution(models.Model):
@@ -31,6 +32,8 @@ class ServiceOwner(models.Model):
     email = models.EmailField(default=None, blank=True)
     phone = models.CharField(max_length=255, default=None, blank=True, null=True)
     id_service_owner = models.ForeignKey(Institution)
+
+    id_account = models.ForeignKey(CustomUser, null=True, blank=True, default = None)
 
     def __unicode__(self):
         return str(self.first_name) + " " + str(self.last_name)

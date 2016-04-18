@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 
+
 urlpatterns = [
     url(r'^api/admin/?', admin.site.urls),
     url(r'^api/docs/?', include('rest_framework_swagger.urls')),
@@ -26,7 +27,8 @@ urlpatterns = [
     url(r'^api/v1/services/?', include('service.insert_urls')),
     url(r'^api/v1/owner/?', include('owner.insert_urls')),
     url(r'^api/v1/options/?', include('options.insert_urls')),
-    url(r'^api/v1/component/?', include('component.insert_urls'))
+    url(r'^api/v1/component/?', include('component.insert_urls')),
+    url(r'^accounts/?', include('django.contrib.auth.urls'))
 ]
 
 handler404 = "agora.views.error404"

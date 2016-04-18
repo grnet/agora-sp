@@ -3,6 +3,7 @@ from owner import models
 from service import models as service_models
 from rest_framework.decorators import *
 from common import helper, strings
+from django.contrib.auth.decorators import login_required
 import re
 
 
@@ -107,6 +108,7 @@ def get_service_owner_institution(request, service_name_or_uuid, service_owner):
 
 
 # Inserts an Institution object
+@login_required
 @api_view(['POST'])
 def insert_institution(request):
     """
@@ -180,6 +182,7 @@ def insert_institution(request):
 
 
 # Inserts an Contact Information object
+@login_required
 @api_view(['POST'])
 def insert_contact_information(request):
     """
@@ -264,6 +267,7 @@ def insert_contact_information(request):
 
 
 # Inserts an Service Owner object
+@login_required
 @api_view(['POST'])
 def insert_service_owner(request):
     """

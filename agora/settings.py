@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'secret-key'
 
 # SECURITY WARNING don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'agora-dev.vi-seem.eu', 'agora-dev.aris.grnet.gr' ]
 
@@ -50,6 +50,7 @@ INSTALLED_APPS = [
 ]
 
 AUTH_USER_MODEL = "accounts.User"
+LOGIN_REDIRECT_URL = "/api/v1/portfolio/services/"
 
 PROJECT_APPS = ['component', 'options', 'owner', 'service']
 
@@ -145,9 +146,6 @@ STATICFILES_DIRS = (
    os.path.join(BASE_DIR, "static", "rest_framework_swagger"),
 )
 
-TEMPLATE_DIRS = (
-    os.path.join(BASE_DIR,  'templates'),
-)
 
 SWAGGER_SETTINGS = {
     'exclude_namespaces': [],
