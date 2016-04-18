@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 from django.utils import timezone
 from django.utils.http import urlquote
 from django.core.mail import send_mail
-
+import uuid
 
 class UserManager(BaseUserManager):
 
@@ -21,6 +21,7 @@ class UserManager(BaseUserManager):
 
         email = self.normalize_email(email)
         user = self.model(email=email,
+                          username=username,
                           is_staff=is_staff, is_active=True,
                           is_superuser=is_superuser, last_login=now,
                           date_joined=now, **extra_fields)
@@ -39,8 +40,7 @@ class UserManager(BaseUserManager):
 
 class User(AbstractBaseUser, PermissionsMixin):
     """
-    A fully featured User model with admin-compliant permissions that uses
-    a full-length email field as the username.
+    A fully featured User model with admin-compliant permissions
 
     Email and password are required. Other fields are optional.
     """
@@ -59,7 +59,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     objects = UserManager()
 
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = []
+    REQUIRED_FIELDS = ['email', ]
 
     class Meta:
         verbose_name = ('user')

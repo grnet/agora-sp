@@ -112,7 +112,8 @@ ERROR_MESSAGES = {
     USER_CUSTOMER_UUID_NOT_PROVIDED: "User customer UUID not provided",
     INSTITUTION_NAME_NOT_PROVIDED: "Institution name not provided",
     INSTITUTION_NAME_EMPTY: "The provided institution name is empty",
-    SERVICE_DETAILS_VERSION_EMPTY: "The provided service details version is empty"
+    SERVICE_DETAILS_VERSION_EMPTY: "The provided service details version is empty",
+    OPERATION_NOT_PERMITTED: "You do not have permissions to perform this task"
 }
 
 

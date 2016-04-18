@@ -49,6 +49,9 @@ class Service(models.Model):
     def get_service_owners(self):
         return ServiceOwner.objects.get(id=self.id_service_owner.pk).as_json()
 
+    def get_service_owner_object(self):
+        return ServiceOwner.objects.get(id=self.id_service_owner.pk)
+
     def get_service_institution(self):
         return Institution.objects.get(pk=ServiceOwner.objects.
                                        get(id=self.id_service_owner.pk).id_service_owner.pk).as_json()

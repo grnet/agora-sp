@@ -14,7 +14,7 @@ class CustomUserCreationForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ("email",)
+        fields = ("email", "username")
 
 class CustomUserChangeForm(UserChangeForm):
     """A form for updating users. Includes all the fields on

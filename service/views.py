@@ -7,6 +7,7 @@ from owner.models import ServiceOwner, ContactInformation
 from rest_framework.decorators import *
 from common import helper, strings
 from django.contrib.auth.decorators import login_required
+from common.decorators import check_service_ownership_or_superuser
 import re
 
 
@@ -587,7 +588,6 @@ def insert_service_dependency(request, service_name_or_uuid):
     response = helper.get_response_info(strings.SERVICE_DEPENDENCY_INSERTED, data, status=strings.CREATED_201)
     return JsonResponse(response)
 
-
 # Inserts service details for a specific service
 @api_view(['POST'])
 def insert_service_details(request, service_name_or_uuid):
@@ -759,7 +759,6 @@ def insert_service_details(request, service_name_or_uuid):
     status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
     response = helper.get_response_info(msg, data, status=status)
     return JsonResponse(response)
-
 
 # Inserts external service dependency
 @api_view(['POST'])

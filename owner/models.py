@@ -49,7 +49,8 @@ class ServiceOwner(models.Model):
             "last_name": self.last_name,
             "email": self.email,
             "phone": self.phone,
-            "institution": self.id_service_owner.as_json()
+            "institution": self.id_service_owner.as_json(),
+            "account_id": self.id_account_id
         }
 
 class ContactInformation(models.Model):
