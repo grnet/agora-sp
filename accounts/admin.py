@@ -1,9 +1,4 @@
 from django.contrib import admin
-from reversion.admin import VersionAdmin
-from accounts.models import User
-
-
-from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import ugettext_lazy as _
 
@@ -26,7 +21,7 @@ class CustomUserAdmin(UserAdmin):
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
-            'fields': ('email', 'password1', 'password2')}
+            'fields': ('username', 'email', 'password1', 'password2')}
         ),
     )
     form = CustomUserChangeForm
