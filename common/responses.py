@@ -112,7 +112,17 @@ ERROR_MESSAGES = {
     USER_CUSTOMER_UUID_NOT_PROVIDED: "User customer UUID not provided",
     INSTITUTION_NAME_NOT_PROVIDED: "Institution name not provided",
     INSTITUTION_NAME_EMPTY: "The provided institution name is empty",
-    SERVICE_DETAILS_VERSION_EMPTY: "The provided service details version is empty"
+    SERVICE_DETAILS_VERSION_EMPTY: "The provided service details version is empty",
+    NEW_SERVICE_UUID_NOT_PROVIDED: "New service UUID not provided",
+    NEW_SERVICE_DETAILS_UUID_NOT_PROVIDED: "New service details UUID not provided",
+    NEW_SERVICE_OPTION_UUID_NOT_PROVIDED: "New service option UUID not provided",
+    NEW_SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UUID_NOT_PROVIDED: "New service component implementation details UUID not provided",
+    NEW_SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_INVALID_UUID: "The provided new service component implementation details UUID is invalid",
+    NEW_SERVICE_DETAILS_VERSION_NOT_PROVIDED: "New service details version not provided",
+    NEW_SERVICE_DEPENDENCY_UUID_NOT_PROVIDED: "New service dependency UUID not provided",
+    NEW_SERVICE_DEPENDENCY_INVALID_UUID: "The provided new service dependency UUID is invalid",
+    NEW_EXTERNAL_SERVICE_DEPENDENCY_UUID_NOT_PROVIDED: "New external service dependency UUID not provided",
+    NEW_EXTERNAL_SERVICE_DEPENDENCY_INVALID_UUID: "The provided new external service dependency UUID is invalid"
 }
 
 
@@ -162,7 +172,9 @@ INFO_MESSAGES = {
     SERVICE_UPDATED: "Service updated",
     EXTERNAL_SERVICE_UPDATED: "External service updated",
     SERVICE_DETAILS_UPDATED: "Service details updated",
-    USER_CUSTOMER_UPDATED: "User customer updated"
+    USER_CUSTOMER_UPDATED: "User customer updated",
+    SERVICE_DETAILS_COMPONENT_UPDATED: "Service details component updated",
+    SERVICE_DEPENDENCY_UPDATED: "Service dependency updated"
 }
 
 STATUS_CODES = {
