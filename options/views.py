@@ -203,7 +203,7 @@ def edit_service_option(request):
     :return:
     """
 
-    insert_service_option(request)
+    return insert_service_option(request)
 
 # Inserts a Service Option object
 @api_view(['POST'])
@@ -282,7 +282,7 @@ def edit_SLA(request):
     :return:
     """
 
-    insert_SLA(request)
+    return insert_SLA(request)
 
 # Inserts an SLA object
 @api_view(['POST'])
@@ -377,7 +377,7 @@ def edit_parameter(request):
     :return:
     """
 
-    insert_parameter(request)
+    return insert_parameter(request)
 
 # Inserts a Parameter object
 @api_view(['POST'])
@@ -465,7 +465,7 @@ def edit_SLA_parameter(request):
     :return:
     """
 
-    insert_SLA_parameter(request)
+    return insert_SLA_parameter(request)
 
 # Inserts an SLA parameter object
 @api_view(['POST'])

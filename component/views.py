@@ -79,7 +79,7 @@ def edit_service_component(request):
     :return:
     """
 
-    insert_service_component(request)
+    return insert_service_component(request)
 
 # Inserts the provided service component
 @api_view(['POST'])
@@ -268,7 +268,7 @@ def edit_service_component_implementation(request):
     :return:
     """
 
-    insert_service_component_implementation(request)
+    return insert_service_component_implementation(request)
 
 # Inserts the provided service component implementation
 @api_view(['POST'])
@@ -453,7 +453,7 @@ def edit_service_component_implementation_details(request):
     :return:
     """
 
-    insert_service_component_implementation_details(request)
+    return insert_service_component_implementation_details(request)
 
 # Inserts the provided service component implementation details
 @api_view(['POST'])

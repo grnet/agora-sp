@@ -353,7 +353,7 @@ def edit_service(request):
     :return:
     """
 
-    insert_service(request)
+    return insert_service(request)
 
 # Inserts service
 @api_view(['POST'])
@@ -483,7 +483,7 @@ def edit_external_service(request):
     :return:
     """
 
-    insert_external_service(request)
+    return insert_external_service(request)
 
 # Inserts external service
 @api_view(['POST'])
@@ -687,7 +687,7 @@ def edit_service_details(request, service_name_or_uuid):
     :return:
     """
 
-    insert_service_details(request, service_name_or_uuid)
+    return insert_service_details(request, service_name_or_uuid)
 
 # Inserts service details for a specific service
 @api_view(['POST'])
@@ -994,7 +994,7 @@ def edit_user_customer(request, service_name_or_uuid):
     :return:
     """
 
-    insert_user_customer(request, service_name_or_uuid)
+    return insert_user_customer(request, service_name_or_uuid)
 
 # Inserts user customer
 @api_view(['POST'])

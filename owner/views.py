@@ -115,7 +115,7 @@ def edit_institution(request):
     :return:
     """
 
-    insert_institution(request)
+    return insert_institution(request)
 
 # Inserts an Institution object
 @api_view(['POST'])
@@ -199,7 +199,7 @@ def edit_contact_information(request):
     :return:
     """
 
-    insert_contact_information(request)
+    return insert_contact_information(request)
 
 # Inserts an Contact Information object
 @api_view(['POST'])
@@ -294,7 +294,7 @@ def edit_service_owner(request):
     :return:
     """
 
-    insert_service_owner(request)
+    return insert_service_owner(request)
 
 # Inserts an Service Owner object
 @api_view(['POST'])
