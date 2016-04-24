@@ -75,8 +75,12 @@ def get_service_components(request, search_type, version):
 def edit_service_component(request):
     """
 
-    :param request:
-    :return:
+    Updates an existing service component with the provided data.
+
+    :param uuid: service component UUID
+    :param name: service component name
+    :param description: service component description
+    :return: the updated service component
     """
 
     return insert_service_component(request)
@@ -88,7 +92,10 @@ def insert_service_component(request):
 
     Inserts the provided service component.
 
-    :return: response message and service component URL
+    :param uuid: service component UUID
+    :param name: service component name
+    :param description: service component description
+    :return: the inserted service component
     """
 
     op_type = helper.get_last_url_part(request)
@@ -264,8 +271,11 @@ def get_service_component(request, search_type, version, comp_uuid):
 def edit_service_component_implementation(request):
     """
 
-    :param request:
-    :return:
+    :param component_uuid: UUID of the related service component
+    :param uuid: service component implementation UUID
+    :param name: service component implementation name
+    :param description: service component implementation description
+    :return: the updated service component implementation
     """
 
     return insert_service_component_implementation(request)
@@ -277,7 +287,11 @@ def insert_service_component_implementation(request):
 
     Inserts the provided service component implementation.
 
-    :return: response message and service component implementation URL
+    :param component_uuid: UUID of the related service component
+    :param uuid: service component implementation UUID
+    :param name: service component implementation name
+    :param description: service component implementation description
+    :return: the inserted service component implementation
     """
 
     op_type = helper.get_last_url_part(request)
@@ -449,8 +463,14 @@ def get_service_component_implementations(request, search_type, version, comp_uu
 def edit_service_component_implementation_details(request):
     """
 
-    :param request:
-    :return:
+    Updates the provided service component implementation details
+
+    :param uuid: service component implementation details UUID
+    :param component_uuid: the related service component UUID
+    :param component_implementation_uuid: the related service component implementation UUID
+    :param version: service component implementation details version
+    :param configuration_parameters: service component implementation details configuration parameters
+    :return: the updated service component implementation details
     """
 
     return insert_service_component_implementation_details(request)
@@ -462,7 +482,12 @@ def insert_service_component_implementation_details(request):
 
     Inserts the provided service component implementation details.
 
-    :return: response message and service component implementation details URL
+    :param uuid: service component implementation details UUID
+    :param component_uuid: the related service component UUID
+    :param component_implementation_uuid: the related service component implementation UUID
+    :param version: service component implementation details version
+    :param configuration_parameters: service component implementation details configuration parameters
+    :return: the inserted service component implementation details
     """
 
     op_type = helper.get_last_url_part(request)
@@ -653,14 +678,20 @@ def get_service_component_implementation_detail(request, search_type, version, c
 
     return JsonResponse(response)
 
-# Inserts the provided service component implementation details and service details relationship
+# Updates the provided service component implementation details and service details relationship
 @api_view(['POST'])
 def edit_service_details_component_implementation_details(request):
     """
 
-    Inserts the provided service component implementation details and service details relationship
+    Updates the provided service component implementation details and service details relationship
 
-    :return: response message
+    :param service_id: the service UUID
+    :param new_service_id: the new service UUID
+    :param service_version: the service details version
+    :param new_service_version: the new service details version
+    :param component_implementation_details_uuid: the service component implementation details UUID
+    :param new_component_implementation_details_uuid: the new service component implementation details UUID
+    :return: the updated service details component
     """
 
     comp = request.POST.copy()
@@ -775,7 +806,10 @@ def insert_service_details_component_implementation_details(request):
 
     Inserts the provided service component implementation details and service details relationship
 
-    :return: response message
+    :param service_id: the service UUID
+    :param service_version: the service details version
+    :param component_implementation_details_uuid: the service component implementation details UUID
+    :return: the inserted service details component
     """
 
     comp = request.POST.copy()
