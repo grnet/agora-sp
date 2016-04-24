@@ -4,6 +4,7 @@ from service import models as service_models
 from component import models as component_models
 from rest_framework.decorators import *
 from common import helper, strings
+from django.db import IntegrityError
 
 # Create your views here.
 
@@ -70,6 +71,20 @@ def get_service_components(request, search_type, version):
 
     return JsonResponse(response)
 
+# Updates the provided service component
+@api_view(['POST'])
+def edit_service_component(request):
+    """
+
+    Updates an existing service component with the provided data.
+
+    :param uuid: service component UUID
+    :param name: service component name
+    :param description: service component description
+    :return: the updated service component
+    """
+
+    return insert_service_component(request)
 
 # Inserts the provided service component
 @api_view(['POST'])
@@ -78,7 +93,10 @@ def insert_service_component(request):
 
     Inserts the provided service component.
 
-    :return: response message and service component URL
+    :param uuid: service component UUID
+    :param name: service component name
+    :param description: service component description
+    :return: the inserted service component
     """
 
     op_type = helper.get_last_url_part(request)
@@ -249,6 +267,20 @@ def get_service_component(request, search_type, version, comp_uuid):
     return JsonResponse(response)
 
 
+# Updates the provided service component implementation
+@api_view(['POST'])
+def edit_service_component_implementation(request):
+    """
+
+    :param component_uuid: UUID of the related service component
+    :param uuid: service component implementation UUID
+    :param name: service component implementation name
+    :param description: service component implementation description
+    :return: the updated service component implementation
+    """
+
+    return insert_service_component_implementation(request)
+
 # Inserts the provided service component implementation
 @api_view(['POST'])
 def insert_service_component_implementation(request):
@@ -256,7 +288,11 @@ def insert_service_component_implementation(request):
 
     Inserts the provided service component implementation.
 
-    :return: response message and service component implementation URL
+    :param component_uuid: UUID of the related service component
+    :param uuid: service component implementation UUID
+    :param name: service component implementation name
+    :param description: service component implementation description
+    :return: the inserted service component implementation
     """
 
     op_type = helper.get_last_url_part(request)
@@ -423,6 +459,22 @@ def get_service_component_implementations(request, search_type, version, comp_uu
 
     return JsonResponse(response)
 
+# Updates the provided service component implementation details
+@api_view(['POST'])
+def edit_service_component_implementation_details(request):
+    """
+
+    Updates the provided service component implementation details
+
+    :param uuid: service component implementation details UUID
+    :param component_uuid: the related service component UUID
+    :param component_implementation_uuid: the related service component implementation UUID
+    :param version: service component implementation details version
+    :param configuration_parameters: service component implementation details configuration parameters
+    :return: the updated service component implementation details
+    """
+
+    return insert_service_component_implementation_details(request)
 
 # Inserts the provided service component implementation details
 @api_view(['POST'])
@@ -431,7 +483,12 @@ def insert_service_component_implementation_details(request):
 
     Inserts the provided service component implementation details.
 
-    :return: response message and service component implementation details URL
+    :param uuid: service component implementation details UUID
+    :param component_uuid: the related service component UUID
+    :param component_implementation_uuid: the related service component implementation UUID
+    :param version: service component implementation details version
+    :param configuration_parameters: service component implementation details configuration parameters
+    :return: the inserted service component implementation details
     """
 
     op_type = helper.get_last_url_part(request)
@@ -622,6 +679,131 @@ def get_service_component_implementation_detail(request, search_type, version, c
 
     return JsonResponse(response)
 
+# Updates the provided service component implementation details and service details relationship
+@api_view(['POST'])
+def edit_service_details_component_implementation_details(request):
+    """
+
+    Updates the provided service component implementation details and service details relationship
+
+    :param service_id: the service UUID
+    :param new_service_id: the new service UUID
+    :param service_version: the service details version
+    :param new_service_version: the new service details version
+    :param component_implementation_details_uuid: the service component implementation details UUID
+    :param new_component_implementation_details_uuid: the new service component implementation details UUID
+    :return: the updated service details component
+    """
+
+    comp = request.POST.copy()
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    uuid, parsed_name, new_uuid, new_parsed_name = None, None, None, None
+
+    if "component_implementation_details_uuid" not in comp:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UUID_NOT_PROVIDED,
+                            status=strings.REJECTED_405))
+
+    comp_imp_det_uuid = comp.get('component_implementation_details_uuid')
+    result = prog.match(comp_imp_det_uuid)
+
+    if result is None:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_INVALID_UUID,
+                            status=strings.REJECTED_405))
+
+    if "new_component_implementation_details_uuid" not in comp:
+        return JsonResponse(helper.get_error_response(strings.NEW_SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UUID_NOT_PROVIDED,
+                            status=strings.REJECTED_405))
+
+    new_comp_imp_det_uuid = comp.get('new_component_implementation_details_uuid')
+    result = prog.match(new_comp_imp_det_uuid)
+
+    if result is None:
+        return JsonResponse(helper.get_error_response(strings.NEW_SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_INVALID_UUID,
+                            status=strings.REJECTED_405))
+
+    if "service_id" not in comp:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_UUID_NOT_PROVIDED, status=strings.REJECTED_405))
+
+    if "service_version" not in comp:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_VERSION_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
+
+    if "new_service_id" not in comp:
+        return JsonResponse(helper.get_error_response(strings.NEW_SERVICE_UUID_NOT_PROVIDED, status=strings.REJECTED_405))
+
+    if "new_service_version" not in comp:
+        return JsonResponse(helper.get_error_response(strings.NEW_SERVICE_DETAILS_VERSION_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
+
+    search_type = comp.get('service_id')
+    version = comp.get('service_version')
+    new_search_type = comp.get('new_service_id')
+    new_version = comp.get('new_service_version')
+
+    result = prog.match(search_type)
+
+    if result is None:
+        parsed_name = search_type.replace("_", " ").strip()
+    else:
+        uuid = search_type
+
+    new_result = prog.match(new_search_type)
+
+    if new_result is None:
+        new_parsed_name = new_search_type.replace("_", " ").strip()
+    else:
+        new_uuid = new_search_type
+
+    try:
+        if result is None:
+            service = service_models.Service.objects.get(name=parsed_name)
+        else:
+            service = service_models.Service.objects.get(id=uuid)
+
+        if new_result is None:
+            new_service = service_models.Service.objects.get(name=new_parsed_name)
+        else:
+            new_service = service_models.Service.objects.get(id=new_uuid)
+
+        service_details = service_models.ServiceDetails.objects.get(id_service=service.pk, version=version)
+
+        get_service_component_implementation_detail = component_models.ServiceComponentImplementationDetail.objects\
+                                                                        .get(id=comp_imp_det_uuid)
+
+        new_service_details = service_models.ServiceDetails.objects.get(id_service=new_service.pk, version=new_version)
+
+        new_get_service_component_implementation_detail = component_models.ServiceComponentImplementationDetail.objects\
+                                                                        .get(id=new_comp_imp_det_uuid)
+
+
+        obj = component_models.ServiceDetailsComponent.objects.get(service_id=service,
+                            service_details_id=service_details,
+                            service_component_implementation_detail_id=get_service_component_implementation_detail)
+
+
+        obj.service_id = new_service
+        obj.service_details_id = new_service_details
+        obj.service_component_implementation_detail_id = new_get_service_component_implementation_detail
+        obj.save()
+        data = obj.as_json()
+        response = helper.get_response_info(strings.SERVICE_DETAILS_COMPONENT_UPDATED, data,
+                                            status=strings.UPDATED_202)
+
+    except service_models.Service.DoesNotExist:
+        response = helper.get_error_response(strings.SERVICE_NOT_FOUND)
+
+    except service_models.ServiceDetails.DoesNotExist:
+        response = helper.get_error_response(strings.SERVICE_DETAILS_NOT_FOUND)
+
+    except component_models.ServiceComponentImplementationDetail.DoesNotExist:
+        response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_NOT_FOUND)
+    except component_models.ServiceDetailsComponent.DoesNotExist:
+        response = helper.get_error_response(strings.SERVICE_DETAILS_COMPONENT_NOT_FOUND)
+    except IntegrityError:
+        response = helper.get_error_response(strings.SERVICE_DETAILS_COMPONENT_EXISTS, status=strings.REJECTED_405)
+
+    return JsonResponse(response)
+
 # Inserts the provided service component implementation details and service details relationship
 @api_view(['POST'])
 def insert_service_details_component_implementation_details(request):
@@ -629,7 +811,10 @@ def insert_service_details_component_implementation_details(request):
 
     Inserts the provided service component implementation details and service details relationship
 
-    :return: response message
+    :param service_id: the service UUID
+    :param service_version: the service details version
+    :param component_implementation_details_uuid: the service component implementation details UUID
+    :return: the inserted service details component
     """
 
     comp = request.POST.copy()

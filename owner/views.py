@@ -107,6 +107,17 @@ def get_service_owner_institution(request, service_name_or_uuid, service_owner):
     return JsonResponse(response)
 
 
+# Updates an Institution object
+@api_view(['POST'])
+def edit_institution(request):
+    """
+
+    :param request:
+    :return:
+    """
+
+    return insert_institution(request)
+
 # Inserts an Institution object
 @login_required
 @api_view(['POST'])
@@ -180,6 +191,17 @@ def insert_institution(request):
 
     return JsonResponse(response)
 
+
+# Updates an Contact Information object
+@api_view(['POST'])
+def edit_contact_information(request):
+    """
+
+    :param request:
+    :return:
+    """
+
+    return insert_contact_information(request)
 
 # Inserts an Contact Information object
 @login_required
@@ -266,12 +288,23 @@ def insert_contact_information(request):
     return JsonResponse(response)
 
 
+# Updates a Service Owner object
+@api_view(['POST'])
+def edit_service_owner(request):
+    """
+
+    :param request:
+    :return:
+    """
+
+    return insert_service_owner(request)
+
 # Inserts an Service Owner object
 @login_required
 @api_view(['POST'])
 def insert_service_owner(request):
     """
-    Inserts an service owner object
+    Inserts a service owner object
 
     """
 

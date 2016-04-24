@@ -8,6 +8,7 @@ from rest_framework.decorators import *
 from common import helper, strings
 from django.contrib.auth.decorators import login_required
 from common.decorators import check_service_ownership_or_superuser
+from django.db import IntegrityError
 import re
 
 
@@ -347,6 +348,17 @@ def get_service_dependencies(request,  service_name_or_uuid):
 
     return JsonResponse(response)
 
+# Updates service
+@api_view(['POST'])
+def edit_service(request):
+    """
+
+    :param request:
+    :return:
+    """
+
+    return insert_service(request)
+
 # Inserts service
 @api_view(['POST'])
 def insert_service(request):
@@ -465,6 +477,17 @@ def insert_service(request):
     status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
     response = helper.get_response_info(msg, data, status=status)
     return JsonResponse(response)
+
+# Updates external service
+@api_view(['POST'])
+def edit_external_service(request):
+    """
+
+    :param request:
+    :return:
+    """
+
+    return insert_external_service(request)
 
 # Inserts external service
 @api_view(['POST'])
@@ -588,6 +611,90 @@ def insert_service_dependency(request, service_name_or_uuid):
     data = obj.as_json()
     response = helper.get_response_info(strings.SERVICE_DEPENDENCY_INSERTED, data, status=strings.CREATED_201)
     return JsonResponse(response)
+
+# Inserts service dependency
+@api_view(['POST'])
+def edit_service_dependency(request, service_name_or_uuid):
+    """
+    Inserts a service dependency object
+
+    """
+    params = request.POST.copy()
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    service, service_dependency, parsed_name, uuid = None, None, None, None
+
+    if "service_dependency" not in params:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_DEPENDENCY_UUID_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
+
+    if "new_service_dependency" not in params:
+        return JsonResponse(helper.get_error_response(strings.NEW_SERVICE_DEPENDENCY_UUID_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
+
+    dependency_uuid = params.get("service_dependency")
+    new_dependency_uuid = params.get("new_service_dependency")
+
+    result = prog.match(dependency_uuid)
+    if result is None:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_DEPENDENCY_INVALID_UUID,
+                                                      status=strings.REJECTED_405))
+
+    result = prog.match(new_dependency_uuid)
+    if result is None:
+        return JsonResponse(helper.get_error_response(strings.NEW_SERVICE_DEPENDENCY_INVALID_UUID,
+                                                      status=strings.REJECTED_405))
+
+    result = prog.match(service_name_or_uuid)
+
+    if result is None:
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
+    else:
+        uuid = service_name_or_uuid
+
+    try:
+        if result is None:
+            service = models.Service.objects.get(name=parsed_name)
+        else:
+            service = models.Service.objects.get(id=uuid)
+
+    except models.Service.DoesNotExist:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_NOT_FOUND, status=strings.NOT_FOUND_404))
+
+    try:
+        service_dependency = models.Service.objects.get(id=dependency_uuid)
+        new_service_dependency = models.Service.objects.get(id=new_dependency_uuid)
+
+        obj = models.Service_DependsOn_Service.objects.get(id_service_one=service,
+                                                                          id_service_two=service_dependency)
+
+        obj.id_service_two = new_service_dependency
+        obj.save()
+    except models.Service.DoesNotExist:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_DEPENDENCY_NOT_FOUND,
+                                                      status=strings.NOT_FOUND_404))
+    except models.Service_DependsOn_Service.DoesNotExist:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_DEPENDENCY_NOT_FOUND,
+                            status=strings.NOT_FOUND_404))
+    except IntegrityError:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_DEPENDENCY_EXISTS,
+                                                      status=strings.REJECTED_405))
+
+    data = obj.as_json()
+    response = helper.get_response_info(strings.SERVICE_DEPENDENCY_UPDATED, data, status=strings.UPDATED_202)
+    return JsonResponse(response)
+
+
+# Updates service details for a specific service
+@api_view(['POST'])
+def edit_service_details(request, service_name_or_uuid):
+    """
+
+    :param request:
+    :param service_name_or_uuid:
+    :return:
+    """
+
+    return insert_service_details(request, service_name_or_uuid)
 
 # Inserts service details for a specific service
 @api_view(['POST'])
@@ -761,6 +868,7 @@ def insert_service_details(request, service_name_or_uuid):
     response = helper.get_response_info(msg, data, status=status)
     return JsonResponse(response)
 
+
 # Inserts external service dependency
 @api_view(['POST'])
 def insert_external_service_dependency(request, service_name_or_uuid):
@@ -812,6 +920,91 @@ def insert_external_service_dependency(request, service_name_or_uuid):
     data = obj.as_json()
     response = helper.get_response_info(strings.EXTERNAL_SERVICE_DEPENDENCY_INSERTED, data, status=strings.CREATED_201)
     return JsonResponse(response)
+
+# Inserts external service dependency
+@api_view(['POST'])
+def edit_external_service_dependency(request, service_name_or_uuid):
+    """
+    Inserts a external service details object
+
+    """
+    params = request.POST.copy()
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    service, external_service_dependency, parsed_name, uuid = None, None, None, None
+
+    if "external_service_dependency" not in params:
+        return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_UUID_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
+
+    if "new_external_service_dependency" not in params:
+        return JsonResponse(helper.get_error_response(strings.NEW_EXTERNAL_SERVICE_DEPENDENCY_UUID_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
+
+    external_dependency_uuid = params.get("external_service_dependency")
+    new_external_dependency_uuid = params.get("new_external_service_dependency")
+
+    result = prog.match(external_dependency_uuid)
+    if result is None:
+        return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_INVALID_UUID,
+                                                      status=strings.REJECTED_405))
+
+    result = prog.match(new_external_dependency_uuid)
+    if result is None:
+        return JsonResponse(helper.get_error_response(strings.NEW_EXTERNAL_SERVICE_DEPENDENCY_INVALID_UUID,
+                                                      status=strings.REJECTED_405))
+
+    result = prog.match(service_name_or_uuid)
+
+    if result is None:
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
+    else:
+        uuid = service_name_or_uuid
+
+    try:
+        if result is None:
+            service = models.Service.objects.get(name=parsed_name)
+        else:
+            service = models.Service.objects.get(id=uuid)
+
+    except models.Service.DoesNotExist:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_NOT_FOUND, status=strings.NOT_FOUND_404))
+
+    try:
+        external_service_dependency = models.ExternalService.objects.get(id=external_dependency_uuid)
+        new_external_service_dependency = models.ExternalService.objects.get(id=new_external_dependency_uuid)
+
+        obj = models.Service_ExternalService.objects.get(id_service=service,
+                                                                          id_external_service=external_service_dependency)
+
+        obj.id_external_service = new_external_service_dependency
+        obj.save()
+
+    except models.ExternalService.DoesNotExist:
+        return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_NOT_FOUND,
+                                                      status=strings.NOT_FOUND_404))
+    except models.Service_ExternalService.DoesNotExist:
+        return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_NOT_FOUND,
+                                                      status=strings.NOT_FOUND_404))
+    except IntegrityError:
+        return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_EXISTS,
+                                                      status=strings.REJECTED_405))
+
+    data = obj.as_json()
+    response = helper.get_response_info(strings.EXTERNAL_SERVICE_DEPENDENCY_INSERTED, data, status=strings.CREATED_201)
+    return JsonResponse(response)
+
+
+# Updates user customer
+@api_view(['POST'])
+def edit_user_customer(request, service_name_or_uuid):
+    """
+
+    :param request:
+    :param service_name_or_uuid:
+    :return:
+    """
+
+    return insert_user_customer(request, service_name_or_uuid)
 
 # Inserts user customer
 @api_view(['POST'])
