@@ -4,6 +4,7 @@ from service import models as service_models
 from component import models as component_models
 from rest_framework.decorators import *
 from common import helper, strings
+from django.db import IntegrityError
 
 # Create your views here.
 
@@ -796,6 +797,10 @@ def edit_service_details_component_implementation_details(request):
 
     except component_models.ServiceComponentImplementationDetail.DoesNotExist:
         response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_NOT_FOUND)
+    except component_models.ServiceDetailsComponent.DoesNotExist:
+        response = helper.get_error_response(strings.SERVICE_DETAILS_COMPONENT_NOT_FOUND)
+    except IntegrityError:
+        response = helper.get_error_response(strings.SERVICE_DETAILS_COMPONENT_EXISTS, status=strings.REJECTED_405)
 
     return JsonResponse(response)
 

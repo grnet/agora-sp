@@ -6,6 +6,7 @@ from options.models import ServiceDetailsOption
 from owner.models import ServiceOwner, ContactInformation
 from rest_framework.decorators import *
 from common import helper, strings
+from django.db import IntegrityError
 import re
 
 
@@ -663,14 +664,17 @@ def edit_service_dependency(request, service_name_or_uuid):
         obj = models.Service_DependsOn_Service.objects.get(id_service_one=service,
                                                                           id_service_two=service_dependency)
 
-        obj.id_service_two = new_dependency_uuid
+        obj.id_service_two = new_service_dependency
         obj.save()
     except models.Service.DoesNotExist:
         return JsonResponse(helper.get_error_response(strings.SERVICE_DEPENDENCY_NOT_FOUND,
                                                       status=strings.NOT_FOUND_404))
     except models.Service_DependsOn_Service.DoesNotExist:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_DEPENDENCY_NOT_FOUND),
-                            status=strings.NOT_FOUND_404)
+        return JsonResponse(helper.get_error_response(strings.SERVICE_DEPENDENCY_NOT_FOUND,
+                            status=strings.NOT_FOUND_404))
+    except IntegrityError:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_DEPENDENCY_EXISTS,
+                                                      status=strings.REJECTED_405))
 
     data = obj.as_json()
     response = helper.get_response_info(strings.SERVICE_DEPENDENCY_UPDATED, data, status=strings.UPDATED_202)
@@ -978,6 +982,9 @@ def edit_external_service_dependency(request, service_name_or_uuid):
     except models.Service_ExternalService.DoesNotExist:
         return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_NOT_FOUND,
                                                       status=strings.NOT_FOUND_404))
+    except IntegrityError:
+        return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_EXISTS,
+                                                      status=strings.REJECTED_405))
 
     data = obj.as_json()
     response = helper.get_response_info(strings.EXTERNAL_SERVICE_DEPENDENCY_INSERTED, data, status=strings.CREATED_201)

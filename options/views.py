@@ -4,6 +4,7 @@ from options import models as options_models
 from models import  ServiceDetailsOption, ServiceDetails, Service
 from rest_framework.decorators import *
 from common import helper, strings
+from django.db import IntegrityError
 import re
 
 
@@ -697,8 +698,11 @@ def edit_service_details_option(request):
         service_details_option.service_options_id = new_service_option
         service_details_option.save()
     except options_models.ServiceDetailsOption.DoesNotExist:
-            return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_NOT_FOUND,
+            return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_OPTIONS_NOT_FOUND,
                                                           status=strings.NOT_FOUND_404))
+    except IntegrityError:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_OPTIONS_EXISTS,
+                                                      status=strings.REJECTED_405))
 
     data = service_details_option.as_json()
     msg = strings.SERVICE_DETAILS_OPTION_UPDATED
