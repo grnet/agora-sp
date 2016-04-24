@@ -124,8 +124,7 @@ ERROR_MESSAGES = {
     NEW_EXTERNAL_SERVICE_DEPENDENCY_UUID_NOT_PROVIDED: "New external service dependency UUID not provided",
     NEW_EXTERNAL_SERVICE_DEPENDENCY_INVALID_UUID: "The provided new external service dependency UUID is invalid",
     SERVICE_DETAILS_COMPONENT_NOT_FOUND: "The provided service details are not associated to the provided service component implementation details",
-    SERVICE_DETAILS_OPTIONS_EXISTS: "The provided service details are already associated with the provided service options"
-    SERVICE_DETAILS_VERSION_EMPTY: "The provided service details version is empty",
+    SERVICE_DETAILS_OPTIONS_EXISTS: "The provided service details are already associated with the provided service options",
     OPERATION_NOT_PERMITTED: "You do not have permissions to perform this task"
 }
 

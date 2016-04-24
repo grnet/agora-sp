@@ -15,8 +15,10 @@ def check_service_ownership_or_superuser(func):
         if user.is_superuser:
             return func(request, *args, **kwargs)
 
-
-        service_name_or_uuid = kwargs["service_name_or_uuid"]
+        if hasattr(kwargs, "service_name_or_uuid"):
+            service_name_or_uuid = kwargs["service_name_or_uuid"]
+        else:
+            service_name_or_uuid = kwargs["search_type"]
 
         prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
