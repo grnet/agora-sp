@@ -6,7 +6,6 @@ from service.models import Service
 from common import helper, strings
 import re
 
-#Custom decorator
 def check_service_ownership_or_superuser(func):
 
     def check_and_call(request, *args, **kwargs):
@@ -35,8 +34,8 @@ def check_service_ownership_or_superuser(func):
                 service = Service.objects.get(id=uuid)
 
         except Service.DoesNotExist:
-            service = None
             response = helper.get_error_response(strings.SERVICE_NOT_FOUND)
+            return JsonResponse(response)
 
         owner = service.get_service_owners()
 

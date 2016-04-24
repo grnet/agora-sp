@@ -90,6 +90,7 @@ def list_service_objects(request, api_version):
     return JsonResponse(response)
 
 # Returns the required information about the service chosen by uuid
+# @check_service_ownership_or_superuser
 @api_view(['GET'])
 def get_service(request,  service_name_or_uuid):
     """
