@@ -10,7 +10,7 @@ from common.decorators import check_service_ownership_or_superuser
 
 
 # Returns the selected service components
-@check_service_ownership_or_superuser
+# @check_service_ownership_or_superuser
 @api_view(['GET'])
 def get_service_components(request, search_type, version):
     """
@@ -162,7 +162,7 @@ def insert_service_component(request):
 
 
 # Returns the selected service component
-@check_service_ownership_or_superuser
+# @check_service_ownership_or_superuser
 @api_view(['GET'])
 def get_service_component(request, search_type, version, comp_uuid):
     """
@@ -379,7 +379,7 @@ def insert_service_component_implementation(request):
 
 # Returns the selected service component implementations
 @api_view(['GET'])
-@check_service_ownership_or_superuser
+# @check_service_ownership_or_superuser
 def get_service_component_implementations(request, search_type, version, comp_uuid):
     """
 
@@ -595,7 +595,7 @@ def insert_service_component_implementation_details(request):
     return JsonResponse(response)
 
 # Returns the selected service component implementation details
-@check_service_ownership_or_superuser
+# @check_service_ownership_or_superuser
 @api_view(['GET'])
 def get_service_component_implementation_detail(request, search_type, version, comp_uuid, imp_uuid):
     """

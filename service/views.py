@@ -57,7 +57,7 @@ def show_service_list_view(request):
     return render(request, 'service/service_list.html')
 
 # Renders the details view for the selected service
-@check_service_ownership_or_superuser
+# @check_service_ownership_or_superuser
 @api_view(['GET'])
 def show_service_details(request, uuid):
     return render(request, 'service/service_portfolio_view.html', { "uuid": uuid })
@@ -92,7 +92,7 @@ def list_service_objects(request, api_version):
     return JsonResponse(response)
 
 # Returns the required information about the service chosen by uuid
-@check_service_ownership_or_superuser
+# @check_service_ownership_or_superuser
 @api_view(['GET'])
 def get_service(request,  service_name_or_uuid):
     """
@@ -146,7 +146,7 @@ def get_service(request,  service_name_or_uuid):
     return JsonResponse(response)
 
 # Returns the service details about the service chosen by uuid
-@check_service_ownership_or_superuser
+# @check_service_ownership_or_superuser
 @api_view(['GET'])
 def get_service_details(request, service_name_or_uuid, version):
     """
@@ -211,7 +211,7 @@ def get_service_details(request, service_name_or_uuid, version):
     return JsonResponse(response)
 
 # Returns the list of service details for the selected service
-@check_service_ownership_or_superuser
+# @check_service_ownership_or_superuser
 @api_view(['GET'])
 def get_all_service_details(request, service_name_or_uuid):
     """
@@ -313,7 +313,7 @@ def get_service_institution(request, service_name_or_uuid):
     return JsonResponse(response)
 
 # Returns the selected services dependencies
-@check_service_ownership_or_superuser
+# @check_service_ownership_or_superuser
 @api_view(['GET'])
 def get_service_dependencies(request,  service_name_or_uuid):
     """
@@ -1107,7 +1107,7 @@ def insert_user_customer(request, service_name_or_uuid):
     return JsonResponse(response)
 
 # Returns the selected services external dependencies
-@check_service_ownership_or_superuser
+# @check_service_ownership_or_superuser
 @api_view(['GET'])
 def get_service_external_dependencies(request,  service_name_or_uuid):
     """
@@ -1149,7 +1149,7 @@ def get_service_external_dependencies(request,  service_name_or_uuid):
     return JsonResponse(response)
 
 # Return the selected service contact information
-@api_view(['GET'])
+# @api_view(['GET'])
 @check_service_ownership_or_superuser
 def get_service_contact_information(request, service_name_or_uuid):
     """

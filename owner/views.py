@@ -119,7 +119,7 @@ def edit_institution(request):
     return insert_institution(request)
 
 # Inserts an Institution object
-@login_required
+# @login_required
 @api_view(['POST'])
 def insert_institution(request):
     """
@@ -204,7 +204,7 @@ def edit_contact_information(request):
     return insert_contact_information(request)
 
 # Inserts an Contact Information object
-@login_required
+# @login_required
 @api_view(['POST'])
 def insert_contact_information(request):
     """
@@ -300,7 +300,7 @@ def edit_service_owner(request):
     return insert_service_owner(request)
 
 # Inserts an Service Owner object
-@login_required
+# @login_required
 @api_view(['POST'])
 def insert_service_owner(request):
     """
