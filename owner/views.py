@@ -283,9 +283,6 @@ def insert_contact_information(request):
         else:
             contact_information.url = url
 
-
-
-
     if uuid is not None:
         contact_information.id = uuid
 
@@ -325,6 +322,10 @@ def insert_service_owner(request):
 
     if "institution_uuid" not in params:
         return JsonResponse(helper.get_error_response(strings.INSTITUTION_UUID_NOT_PROVIDED,
+                                                      status=strings.REJECTED_405))
+
+    if "email" not in params:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_EMAIL_NOT_PROVIDED,
                                                       status=strings.REJECTED_405))
 
     institution_uuid, service_owner, uuid = None, None, None
@@ -369,14 +370,14 @@ def insert_service_owner(request):
 
     if "first_name" in params:
         first_name = params.get('first_name')
-        if first_name is None or len(first_name) == 0:
-            return JsonResponse(helper.get_error_response(strings.OWNER_FIRST_NAME_EMPTY, status=strings.REJECTED_405))
+        # if first_name is None or len(first_name) == 0:
+        #     return JsonResponse(helper.get_error_response(strings.OWNER_FIRST_NAME_EMPTY, status=strings.REJECTED_405))
         service_owner.first_name = first_name
 
     if "last_name" in params:
         last_name = params.get('last_name')
-        if last_name is None or len(last_name) == 0:
-            return JsonResponse(helper.get_error_response(strings.OWNER_LAST_NAME_EMPTY, status=strings.REJECTED_405))
+        # if last_name is None or len(last_name) == 0:
+        #     return JsonResponse(helper.get_error_response(strings.OWNER_LAST_NAME_EMPTY, status=strings.REJECTED_405))
         service_owner.last_name = last_name
 
     if "email" in params:
@@ -387,8 +388,8 @@ def insert_service_owner(request):
 
     if "phone" in params:
         phone = params.get('phone')
-        if phone is None or len(phone) == 0:
-            return JsonResponse(helper.get_error_response(strings.OWNER_PHONE_EMPTY, status=strings.REJECTED_405))
+        # if phone is None or len(phone) == 0:
+        #     return JsonResponse(helper.get_error_response(strings.OWNER_PHONE_EMPTY, status=strings.REJECTED_405))
         service_owner.phone = phone
 
     service_owner.id_service_owner = institution

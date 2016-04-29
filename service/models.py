@@ -63,6 +63,9 @@ class Service(models.Model):
     def get_service_contact_information(self):
         return ContactInformation.objects.get(id=self.id_contact_information.pk).as_json()
 
+    def get_service_contact_information_object(self):
+        return ContactInformation.objects.get(id=self.id_contact_information.pk)
+
     def get_service_dependencies(self):
         dependencies = Service_DependsOn_Service.objects.filter(id_service_one=self.pk)
         service_dependencies = []
@@ -73,6 +76,7 @@ class Service(models.Model):
                 "uuid": service.id,
                 "name": service.name,
                 "service_link": {
+                    "name": service.name,
                     "related": {
                         "href": helper.current_site_url() + "/v1/portfolio/services/" + str(
                             Service.objects.get(pk=d.id_service_two.pk).name)
@@ -121,14 +125,16 @@ class Service(models.Model):
                 "count": len(service_details),
                 "service_details": service_details
             },
-            "service_owner_link": {
+            "service_owner": {
+                "email": self.get_service_owner_object().email,
+                "links": {
                 "related": {
                     "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
                             + "/service_owner",
                     "meta": {
                         "desc": "Service owner link"
                     }
-                }
+                }}
             },
             "dependencies": {
                 "count": len(service_dependencies),
@@ -156,7 +162,9 @@ class Service(models.Model):
 
                 "external_services": external_services
             },
-            "contact_information_link": {
+            "contact_information": {
+                "email": self.get_service_contact_information_object().email,
+                "url": self.get_service_contact_information_object().url,
                 "related": {
                     "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/contact_information",
                     "meta": {
@@ -197,15 +205,20 @@ class Service(models.Model):
                 "count": len(users_customers),
                 "user_customers": users_customers
             },
-            "service_owner_link": {
+            "service_owner": {
+                "email": self.get_service_owner_object().email,
+                "links": {
                 "related": {
-                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/service_owner",
+                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
+                            + "/service_owner",
                     "meta": {
                         "desc": "Service owner link"
                     }
-                }
+                }}
             },
-            "contact_information_link": {
+            "contact_information": {
+                "email": self.get_service_contact_information_object().email,
+                "url": self.get_service_contact_information_object().url,
                 "related": {
                     "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/contact_information",
                     "meta": {
@@ -220,8 +233,9 @@ class Service(models.Model):
 
         return {
             "uuid": self.id,
-            "service_link": {
-                "related": {
+            "service": {
+                "name": self.name,
+                "link": {
                     "href": helper.current_site_url() + "/v1/catalogue/services/" + str(self.name).replace(" ", "_"),
                     "meta": {
                         "desc": "Catalogue level details about this service."
@@ -275,14 +289,16 @@ class ServiceDetails(models.Model):
     def as_short(self):
         return {
             "uuid": self.id,
-            "service_details_link": {
-                "related": {
-                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(
-                        self.id_service.name).replace(" ", "_") + "/service_details/" + str(self.version),
+            "service_details": {
+                "version": self.version,
+                "status": self.status,
+                "in_catalogue": self.is_in_catalogue,
+                "links": {
+                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name).
+                        replace(" ", "_") + "/service_details/" + self.version,
                     "meta": {
-                        "desc": "Service details access url."
+                        "desc": "Service details link"
                     }
-
                 }
             },
             "version": self.version,
@@ -386,8 +402,11 @@ class ServiceDetails(models.Model):
         }
 
         if url:
-            details["service_details_link"] = {
-                "related": {
+            details["service_details"] = {
+                "version": self.version,
+                "status": self.status,
+                "in_catalogue": self.is_in_catalogue,
+                "links": {
                     "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name).
                         replace(" ", "_") + "/service_details/" + self.version,
                     "meta": {

@@ -27,8 +27,8 @@ class Institution(models.Model):
 
 class ServiceOwner(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    first_name = models.CharField(max_length=255, default=None, blank=True)
-    last_name = models.CharField(max_length=255, default=None, blank=True)
+    first_name = models.CharField(max_length=255, default=None, blank=True, null=True)
+    last_name = models.CharField(max_length=255, default=None, blank=True, null=True)
     email = models.EmailField(default=None, blank=True)
     phone = models.CharField(max_length=255, default=None, blank=True, null=True)
     id_service_owner = models.ForeignKey(Institution)

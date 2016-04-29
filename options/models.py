@@ -29,8 +29,9 @@ class ServiceOption(models.Model):
             "name": self.name,
             "description": self.description,
             "pricing": self.pricing,
-            "SLA_link": {
-                "related": {
+            "SLA": {
+                "name": sla.name,
+                "link": {
                     "href": sla_url,
                     "meta": {
                         "desc": "A link to the SLA for this service."
@@ -77,8 +78,9 @@ class Parameter(models.Model):
             "name": self.name,
             "type": self.type,
             "expression": self.expression,
-            "SLA_parameter_link": {
-                "related": {
+            "SLA_parameter": {
+                "name": self.name,
+                "link": {
                     "href": helper.current_site_url() + "/v1/portfolio/services/" + service_name.replace(" ", "_") + "/service_details/" + service_details_version
                    + "/service_options/sla/" + str(sla_id) + "/sla_parameter/" + str(self.pk) + "/parameter",
                     "meta": {
