@@ -1,6 +1,8 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.shortcuts import get_object_or_404
+import json
 from accounts.models import User as CustomUser
 import uuid
 
@@ -64,6 +66,28 @@ class ContactInformation(models.Model):
     def __unicode__(self):
         return str(self.first_name) + " " + str(self.last_name)
 
+
+    def get_internal(self):
+
+        response = []
+
+        for internal in Internal.objects.filter(id_contact_info=self):
+            response.append({"contact_info_id": internal.id_contact_info.pk})
+
+        return { "count": len(response),
+                 "internal": response }
+
+    def get_external(self):
+
+        response = []
+
+        for external in External.objects.filter(id_contact_info=self):
+            response.append({"contact_info_id": external.id_contact_info.pk})
+
+        return { "count": len(response),
+                 "external": response }
+
+
     def as_json(self):
         return {
             "uuid": self.id,
@@ -71,7 +95,9 @@ class ContactInformation(models.Model):
             "last_name": self.last_name,
             "email": self.email,
             "phone": self.phone,
-            "url": self.url
+            "url": self.url,
+            "internal_list": self.get_internal(),
+            "external_list": self.get_external()
         }
 
 
@@ -81,6 +107,11 @@ class Internal(models.Model):
     def __unicode__(self):
         cont_info = ContactInformation.objects.get(pk=self.id_contact_info.pk)
         return str(cont_info)
+
+    def as_json(self):
+        return {
+            "contact_information": ContactInformation.objects.get(pk=self.id_contact_info.pk)
+        }
 
 
 class External(models.Model):
