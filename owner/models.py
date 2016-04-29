@@ -24,6 +24,17 @@ class Institution(models.Model):
             "department": self.department
         }
 
+    def save(self, *args, **kwargs):
+        if not self.name:
+            self.name = None
+        if not self.address:
+            self.address = None
+        if not self.country:
+            self.country = None
+        if not self.department:
+            self.department = None
+        super(Institution, self).save(*args, **kwargs)
+
 class ServiceOwner(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -41,6 +52,17 @@ class ServiceOwner(models.Model):
     def get_institution(self):
         return Institution.objects.get(id=self.id_service_owner.pk).as_json()
 
+
+    def save(self, *args, **kwargs):
+        if not self.phone:
+            self.phone = None
+        if not self.first_name:
+            self.first_name = None
+        if not self.last_name:
+            self.last_name = None
+        if not self.email:
+            self.email = None
+        super(ServiceOwner, self).save(*args, **kwargs)
 
     def as_json(self):
         return {
@@ -65,6 +87,19 @@ class ContactInformation(models.Model):
     def __unicode__(self):
         return str(self.first_name) + " " + str(self.last_name)
 
+
+    def save(self, *args, **kwargs):
+        if not self.phone:
+            self.phone = None
+        if not self.first_name:
+            self.first_name = None
+        if not self.last_name:
+            self.last_name = None
+        if not self.email:
+            self.email = None
+        if not self.url:
+            self.url = None
+        super(ContactInformation, self).save(*args, **kwargs)
 
     def as_json(self):
         return {

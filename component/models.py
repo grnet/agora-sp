@@ -48,6 +48,11 @@ class ServiceComponent(models.Model):
                 }}
         }
 
+    def save(self, *args, **kwargs):
+        if not self.description:
+            self.description = None
+        super(ServiceComponent, self).save(*args, **kwargs)
+
 
 class ServiceComponentImplementation(models.Model):
 
@@ -93,6 +98,11 @@ class ServiceComponentImplementation(models.Model):
         }
 
 
+    def save(self, *args, **kwargs):
+        if not self.description:
+            self.description = None
+        super(ServiceComponentImplementation, self).save(*args, **kwargs)
+
 class ServiceComponentImplementationDetail(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -110,6 +120,12 @@ class ServiceComponentImplementationDetail(models.Model):
             "version": self.version,
             "configuration_parameters": self.configuration_parameters
         }
+
+
+    def save(self, *args, **kwargs):
+        if not self.configuration_parameters:
+            self.configuration_parameters = None
+        super(ServiceComponentImplementationDetail, self).save(*args, **kwargs)
 
 
 class ServiceDetailsComponent(models.Model):

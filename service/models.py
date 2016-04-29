@@ -25,6 +25,29 @@ class Service(models.Model):
     def __unicode__(self):
         return str(self.name)
 
+    def save(self, *args, **kwargs):
+        if not self.description_internal:
+            self.description_internal = None
+        if not self.description_external:
+            self.description_external = None
+        if not self.service_area:
+            self.service_area = None
+        if not self.service_type:
+            self.service_type = None
+        if not self.request_procedures:
+            self.request_procedures = None
+        if not self.funders_for_service:
+            self.funders_for_service = None
+        if not self.value_to_customer:
+            self.value_to_customer = None
+        if not self.request_procedures:
+            self.request_procedures = None
+        if not self.risks:
+            self.risks = None
+        if not self.competitors:
+            self.competitors = None
+        super(Service, self).save(*args, **kwargs)
+
     def get_service_details(self, complete=False, url=False, catalogue=False):
 
         services = []
@@ -274,6 +297,21 @@ class ServiceDetails(models.Model):
         srv = Service.objects.get(pk=primary_key)
         return str(srv.name) + " " + str(self.version)
 
+    def save(self, *args, **kwargs):
+        if not self.status:
+            self.status = None
+        if not self.features_current:
+            self.features_current = None
+        if not self.features_future:
+            self.features_future = None
+        if not self.cost_to_run:
+            self.cost_to_run = None
+        if not self.cost_to_build:
+            self.cost_to_build = None
+        if not self.use_cases:
+            self.use_cases = None
+        super(ServiceDetails, self).save(*args, **kwargs)
+
     def as_short(self):
         return {
             "uuid": self.id,
@@ -428,6 +466,11 @@ class ExternalService(models.Model):
             "service": self.service,
             "details": self.details
         }
+
+    def save(self, *args, **kwargs):
+        if not self.description:
+            self.description = None
+        super(ExternalService, self).save(*args, **kwargs)
 
 
 class Service_DependsOn_Service(models.Model):
