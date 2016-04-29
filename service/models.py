@@ -14,16 +14,39 @@ class Service(models.Model):
     description_internal = models.TextField(default=None, blank=True, null=True)
     service_area = models.CharField(max_length=255, default=None, blank=True, null=True)
     service_type = models.CharField(max_length=255, default=None, blank=True, null=True)
-    request_procedures = models.CharField(max_length=255, default=None, blank=True, null=True)
-    funders_for_service = models.CharField(max_length=255, default=None, blank=True, null=True)
-    value_to_customer = models.CharField(max_length=255, default=None, blank=True, null=True)
-    risks = models.CharField(max_length=255, default=None, blank=True, null=True)
-    competitors = models.CharField(max_length=255, default=None, blank=True, null=True)
+    request_procedures = models.TextField( default=None, blank=True, null=True)
+    funders_for_service = models.TextField(default=None, blank=True, null=True)
+    value_to_customer = models.TextField(default=None, blank=True, null=True)
+    risks = models.TextField(default=None, blank=True, null=True)
+    competitors = models.TextField(default=None, blank=True, null=True)
     id_service_owner = models.ForeignKey(ServiceOwner)
     id_contact_information = models.ForeignKey(ContactInformation)
 
     def __unicode__(self):
         return str(self.name)
+
+    def save(self, *args, **kwargs):
+        if not self.description_internal:
+            self.description_internal = None
+        if not self.description_external:
+            self.description_external = None
+        if not self.service_area:
+            self.service_area = None
+        if not self.service_type:
+            self.service_type = None
+        if not self.request_procedures:
+            self.request_procedures = None
+        if not self.funders_for_service:
+            self.funders_for_service = None
+        if not self.value_to_customer:
+            self.value_to_customer = None
+        if not self.request_procedures:
+            self.request_procedures = None
+        if not self.risks:
+            self.risks = None
+        if not self.competitors:
+            self.competitors = None
+        super(Service, self).save(*args, **kwargs)
 
     def get_service_details(self, complete=False, url=False, catalogue=False):
 
@@ -111,6 +134,7 @@ class Service(models.Model):
             "name": self.name,
             "description_external": self.description_external,
             "description_internal": self.description_internal,
+            "service_type": self.service_type,
             "service_area": self.service_area,
             "request_procedures": self.request_procedures,
             "funders_for_service": self.funders_for_service,
@@ -189,6 +213,7 @@ class Service(models.Model):
                     }
                 }},
             "name": self.name,
+            "service_type": self.service_type,
             "description_external": self.description_external,
             "description_internal": self.description_internal,
             "service_area": self.service_area,
@@ -257,9 +282,9 @@ class ServiceDetails(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
     id_service = models.ForeignKey(Service)
     version = models.CharField(max_length=255, default=None, blank=True)
-    status = models.CharField(max_length=255, default=None, blank=True, null=True)
-    features_current = models.CharField(max_length=255, default=None, blank=True, null=True)
-    features_future = models.CharField(max_length=255, default=None, blank=True, null=True)
+    status = models.CharField(max_length=255, default="Inactive", blank=True, null=True)
+    features_current = models.TextField(default=None, blank=True, null=True)
+    features_future = models.TextField( default=None, blank=True, null=True)
     usage_policy_has = models.BooleanField(default=False, blank=True)
     usage_policy_url = models.CharField(max_length=255, default=None, blank=True, null=True)
     user_documentation_has = models.BooleanField(default=False, blank=True)
@@ -278,13 +303,28 @@ class ServiceDetails(models.Model):
     decommissioning_procedure_url = models.CharField(max_length=255, default=None, blank=True, null=True)
     cost_to_run = models.CharField(max_length=255, default=None, blank=True, null=True)
     cost_to_build = models.CharField(max_length=255, default=None, blank=True, null=True)
-    use_cases = models.CharField(max_length=255, default=None, blank=True, null=True)
+    use_cases = models.TextField(default=None, blank=True, null=True)
     is_in_catalogue = models.BooleanField(default=False)
 
     def __unicode__(self):
         primary_key = self.id_service.pk
         srv = Service.objects.get(pk=primary_key)
         return str(srv.name) + " " + str(self.version)
+
+    def save(self, *args, **kwargs):
+        if not self.status:
+            self.status = "Inactive"
+        if not self.features_current:
+            self.features_current = None
+        if not self.features_future:
+            self.features_future = None
+        if not self.cost_to_run:
+            self.cost_to_run = None
+        if not self.cost_to_build:
+            self.cost_to_build = None
+        if not self.use_cases:
+            self.use_cases = None
+        super(ServiceDetails, self).save(*args, **kwargs)
 
     def as_short(self):
         return {
@@ -398,7 +438,7 @@ class ServiceDetails(models.Model):
             "cost_to_run": self.cost_to_run,
             "cost_to_build": self.cost_to_build,
             "use_cases": self.use_cases,
-            "is_in_catalogue": self.is_in_catalogue
+            "service_type": "Catalogue" if self.is_in_catalogue else "Portfolio"
         }
 
         if url:
@@ -445,6 +485,11 @@ class ExternalService(models.Model):
             "service": self.service,
             "details": self.details
         }
+
+    def save(self, *args, **kwargs):
+        if not self.description:
+            self.description = None
+        super(ExternalService, self).save(*args, **kwargs)
 
 
 class Service_DependsOn_Service(models.Model):

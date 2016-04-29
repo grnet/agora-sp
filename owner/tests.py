@@ -16,13 +16,11 @@ class OwnerTestCase(TestCase):
 
     def test_service_owner(self):
         response_name = self.client_stub.get('/api/v1/portfolio/services/B2SAFE/service_owner')
-        response_uuid = self.client_stub.get('/api/v1/portfolio/services/88b35b0d-adc2-4a2e-b5fc-cae2d6f5456a/service_owner')
 
-        data = {"first_name": "Claudio", "last_name": "Cacciari", "uuid": "a9976cd2-14e4-47b7-9353-7e9faba2f200", "email": "c.cacciari@cineca.it", "phone": "000", "institution": {"department": "Admin", "country": "ITALY", "address": "A", "uuid": "df3ab1f3-08d3-408a-bf00-532a41ccffa4", "name": "CINECA"}}
+        data =  {"first_name": "Claudio", "last_name": "Cacciari", "uuid": "a9976cd2-14e4-47b7-9353-7e9faba2f200", "email": "c.cacciari@cineca.it", "phone": "000", "institution": {"department": "Admin", "country": "ITALY", "address": "A", "uuid": "df3ab1f3-08d3-408a-bf00-532a41ccffa4", "name": "CINECA"}, "account_id": None}
         expected_response = helper.get_response_info(strings.SERVICE_OWNER_INFORMATION, data)
 
         self.assertJSONEqual(json.dumps(expected_response), response_name.content)
-        self.assertJSONEqual(json.dumps(expected_response), response_uuid.content)
 
     def test_service_owner_institution(self):
 
@@ -240,6 +238,7 @@ class OwnerTestCase(TestCase):
 
         response = self.client_stub.post("/api/v1/owner/add", post_data)
         expected_data = {
+            "account_id": None,
             "first_name": post_data["first_name"],
             "last_name": post_data["last_name"],
             "email": post_data["email"],
@@ -314,6 +313,7 @@ class OwnerTestCase(TestCase):
 
         response = self.client_stub.post("/api/v1/owner/edit", post_data)
         expected_data = {
+            "account_id": None,
             "first_name": post_data["first_name"],
             "last_name": post_data["last_name"],
             "email": post_data["email"],

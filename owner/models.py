@@ -1,13 +1,11 @@
 from __future__ import unicode_literals
 
 from django.db import models
-from django.shortcuts import get_object_or_404
-import json
 from accounts.models import User as CustomUser
 import uuid
 
-
 class Institution(models.Model):
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, blank=True)
     address = models.CharField(max_length=255, default=None, blank=True, null=True)
@@ -26,6 +24,16 @@ class Institution(models.Model):
             "department": self.department
         }
 
+    def save(self, *args, **kwargs):
+        if not self.name:
+            self.name = None
+        if not self.address:
+            self.address = None
+        if not self.country:
+            self.country = None
+        if not self.department:
+            self.department = None
+        super(Institution, self).save(*args, **kwargs)
 
 class ServiceOwner(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -43,6 +51,18 @@ class ServiceOwner(models.Model):
     def get_institution(self):
         return Institution.objects.get(id=self.id_service_owner.pk).as_json()
 
+
+    def save(self, *args, **kwargs):
+        if not self.phone:
+            self.phone = None
+        if not self.first_name:
+            self.first_name = None
+        if not self.last_name:
+            self.last_name = None
+        if not self.email:
+            self.email = None
+        super(ServiceOwner, self).save(*args, **kwargs)
+
     def as_json(self):
         return {
             "uuid": self.id,
@@ -56,6 +76,7 @@ class ServiceOwner(models.Model):
 
 
 class ContactInformation(models.Model):
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     first_name = models.CharField(max_length=255, default=None, blank=True, null=True)
     last_name = models.CharField(max_length=255, default=None, blank=True, null=True)
@@ -87,6 +108,19 @@ class ContactInformation(models.Model):
         return { "count": len(response),
                  "external": response }
 
+
+    def save(self, *args, **kwargs):
+        if not self.phone:
+            self.phone = None
+        if not self.first_name:
+            self.first_name = None
+        if not self.last_name:
+            self.last_name = None
+        if not self.email:
+            self.email = None
+        if not self.url:
+            self.url = None
+        super(ContactInformation, self).save(*args, **kwargs)
 
     def as_json(self):
         return {

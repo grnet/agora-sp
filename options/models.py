@@ -39,6 +39,13 @@ class ServiceOption(models.Model):
                 }}
         }
 
+    def save(self, *args, **kwargs):
+        if not self.description:
+            self.description = None
+        if not self.pricing:
+            self.pricing = None
+        super(ServiceOption, self).save(*args, **kwargs)
+
 
 class SLA(models.Model):
 
@@ -96,6 +103,12 @@ class Parameter(models.Model):
             "expression": self.expression
         }
 
+    def save(self, *args, **kwargs):
+        if not self.expression:
+            self.expression = None
+        if not self.type:
+            self.type = None
+        super(Parameter, self).save(*args, **kwargs)
 
 
 class SLAParameter(models.Model):
