@@ -107,6 +107,7 @@ class Service(models.Model):
             "name": self.name,
             "description_external": self.description_external,
             "description_internal": self.description_internal,
+            "service_type": self.service_type,
             "service_area": self.service_area,
             "request_procedures": self.request_procedures,
             "funders_for_service": self.funders_for_service,
@@ -181,6 +182,7 @@ class Service(models.Model):
                     }
                 }},
             "name": self.name,
+            "service_type": self.service_type,
             "description_external": self.description_external,
             "description_internal": self.description_internal,
             "service_area": self.service_area,
@@ -382,7 +384,7 @@ class ServiceDetails(models.Model):
             "cost_to_run": self.cost_to_run,
             "cost_to_build": self.cost_to_build,
             "use_cases": self.use_cases,
-            "is_in_catalogue": self.is_in_catalogue
+            "service_type": "Catalogue" if self.is_in_catalogue else "Portfolio"
         }
 
         if url:

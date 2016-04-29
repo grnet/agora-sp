@@ -70,7 +70,7 @@ def get_service_components(request, search_type, version):
     except service_models.ServiceDetails.DoesNotExist:
         response = helper.get_error_response(strings.SERVICE_DETAILS_NOT_FOUND)
 
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 # Updates the provided service component
 @api_view(['POST'])
@@ -106,12 +106,13 @@ def insert_service_component(request):
 
     if "name" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_NAME_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
     elif "name" in params:
         name = params.get('name')
         if name is None or len(name) == 0:
             return JsonResponse(helper.get_error_response(strings.
-                                                          SERVICE_COMPONENT_NAME_EMPTY, status=strings.REJECTED_405))
+                                                          SERVICE_COMPONENT_NAME_EMPTY, status=strings.REJECTED_405),
+                                status=405)
     elif op_type == "edit":
         name = None
 
@@ -128,21 +129,21 @@ def insert_service_component(request):
 
         if result is None:
             return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_INVALID_UUID,
-                                                          status=strings.REJECTED_405))
+                                                          status=strings.REJECTED_405), status=405)
 
         try:
             service_component = component_models.ServiceComponent.objects.get(id=uuid)
             if op_type == "add":
                 return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_UUID_EXISTS,
-                                                              status=strings.CONFLICT_409))
+                                                              status=strings.CONFLICT_409), status=409)
         except component_models.ServiceComponent.DoesNotExist:
             service_component = component_models.ServiceComponent()
             if op_type == "edit":
                 return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_NOT_FOUND,
-                                                              status=strings.NOT_FOUND_404))
+                                                              status=strings.NOT_FOUND_404), status=404)
     elif op_type == "edit":
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
     elif op_type == "add":
         service_component = component_models.ServiceComponent()
 
@@ -158,7 +159,7 @@ def insert_service_component(request):
     msg = strings.SERVICE_COMPONENT_INSERTED if op_type == "add" else strings.SERVICE_COMPONENT_UPDATED
     status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
     response = helper.get_response_info(msg, data, status=status)
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 
 # Returns the selected service component
@@ -189,7 +190,7 @@ def get_service_component(request, search_type, version, comp_uuid):
         response["errors"] = {
             "detail": "An invalid service component UUID was supplied"
         }
-        return JsonResponse(response)
+        return JsonResponse(response, status=int(response["status"][:3]))
 
     if result is None:
         parsed_name = search_type.replace("_", " ")
@@ -266,7 +267,7 @@ def get_service_component(request, search_type, version, comp_uuid):
     #         "detail": "The requested service was not found"
     #     }
 
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 
 # Updates the provided service component implementation
@@ -304,7 +305,7 @@ def insert_service_component_implementation(request):
 
     if "component_uuid" not in params:
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     comp_uuid = params.get("component_uuid")
 
@@ -312,16 +313,16 @@ def insert_service_component_implementation(request):
 
     if result is None:
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_INVALID_UUID,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     if "name" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_NAME_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
     elif "name" in params:
         name = params.get('name')
         if name is None or len(name) == 0:
             return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_NAME_EMPTY,
-                                                          status=strings.REJECTED_405))
+                                                          status=strings.REJECTED_405), status=405)
     elif op_type == "edit":
         name = None
 
@@ -336,29 +337,29 @@ def insert_service_component_implementation(request):
 
         if result is None:
             return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_INVALID_UUID,
-                                                          status=strings.REJECTED_405))
+                                                          status=strings.REJECTED_405), status=405)
 
         try:
             service_component_implementation = component_models.ServiceComponentImplementation.objects.get(id=uuid)
             if op_type == "add":
                 return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_UUID_EXISTS,
-                                                              status=strings.CONFLICT_409))
+                                                              status=strings.CONFLICT_409), status=409)
         except component_models.ServiceComponentImplementation.DoesNotExist:
             service_component_implementation = component_models.ServiceComponentImplementation()
             if op_type == "edit":
                 return JsonResponse(helper.
                                     get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_NOT_FOUND,
-                                                       status=strings.NOT_FOUND_404))
+                                                       status=strings.NOT_FOUND_404), status=404)
     elif op_type == "edit":
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
     elif op_type == "add":
         service_component_implementation = component_models.ServiceComponentImplementation()
 
     try:
         service_component = component_models.ServiceComponent.objects.get(id=comp_uuid)
     except component_models.ServiceComponent.DoesNotExist:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_NOT_FOUND))
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_NOT_FOUND), status=404)
 
     if name is not None:
         service_component_implementation.name = name
@@ -374,7 +375,7 @@ def insert_service_component_implementation(request):
         strings.SERVICE_COMPONENT_IMPLEMENTATION_UPDATED
     status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
     response = helper.get_response_info(msg, data, status=status)
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 
 # Returns the selected service component implementations
@@ -400,7 +401,7 @@ def get_service_component_implementations(request, search_type, version, comp_uu
 
     if result_comp is None:
         response = helper.get_error_response(strings.SERVICE_COMPONENT_INVALID_UUID)
-        return JsonResponse(response)
+        return JsonResponse(response, status=int(response["status"][:3]))
 
     if result is None:
         parsed_name = search_type.replace("_", " ").strip()
@@ -460,7 +461,7 @@ def get_service_component_implementations(request, search_type, version, comp_uu
     except component_models.ServiceDetailsComponent.DoesNotExist:
         response = helper.get_error_response(strings.SERVICE_COMPONENTS_IMPLEMENTATION_NONMATCHING_UUID)
 
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 # Updates the provided service component implementation details
 @api_view(['POST'])
@@ -501,7 +502,7 @@ def insert_service_component_implementation_details(request):
 
     if "component_uuid" not in params:
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     comp_uuid = params.get("component_uuid")
 
@@ -509,11 +510,11 @@ def insert_service_component_implementation_details(request):
 
     if result is None:
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_INVALID_UUID,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     if "component_implementation_uuid" not in params:
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     imp_uuid = params.get("component_implementation_uuid")
 
@@ -521,16 +522,16 @@ def insert_service_component_implementation_details(request):
 
     if result is None:
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_INVALID_UUID,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     if "version" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_VERSION_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
     elif "version" in params:
         version = params.get('version')
         if version is None or len(version) == 0:
             return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_VERSION_EMPTY,
-                                                          status=strings.REJECTED_405))
+                                                          status=strings.REJECTED_405), status=405)
     elif op_type == "edit":
         version = None
 
@@ -546,21 +547,21 @@ def insert_service_component_implementation_details(request):
 
         if result is None:
             return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_INVALID_UUID,
-                                                          status=strings.REJECTED_405))
+                                                          status=strings.REJECTED_405), status=405)
 
         try:
             service_component_implementation_details = component_models.ServiceComponentImplementationDetail.objects.get(id=uuid)
             if op_type == "add":
                 return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UUID_EXISTS,
-                                                              status=strings.CONFLICT_409))
+                                                              status=strings.CONFLICT_409), status=409)
         except component_models.ServiceComponentImplementationDetail.DoesNotExist:
             service_component_implementation_details = component_models.ServiceComponentImplementationDetail()
             if op_type == "edit":
                 return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_NOT_FOUND,
-                                                              status=strings.NOT_FOUND_404))
+                                                              status=strings.NOT_FOUND_404), status=404)
     elif op_type == "edit":
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
     elif op_type == "add":
         service_component_implementation_details = component_models.ServiceComponentImplementationDetail()
 
@@ -569,10 +570,10 @@ def insert_service_component_implementation_details(request):
         service_component_implementation = component_models.ServiceComponentImplementation.objects.get(id=imp_uuid)
 
     except component_models.ServiceComponent.DoesNotExist:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_NOT_FOUND))
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_NOT_FOUND), status=404)
 
     except component_models.ServiceComponentImplementation.DoesNotExist:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_NOT_FOUND))
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_NOT_FOUND), status=404)
 
     if version is not None:
         service_component_implementation_details.version = version
@@ -592,7 +593,7 @@ def insert_service_component_implementation_details(request):
         strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UPDATED
     status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
     response = helper.get_response_info(msg, data, status=status)
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 # Returns the selected service component implementation details
 # @check_service_ownership_or_superuser
@@ -618,12 +619,12 @@ def get_service_component_implementation_detail(request, search_type, version, c
 
     if result_comp is None:
         response = helper.get_error_response(strings.SERVICE_COMPONENT_INVALID_UUID)
-        return JsonResponse(response)
+        return JsonResponse(response, status=int(response["status"][:3]))
 
     result_comp = prog.match(imp_uuid)
     if result_comp is None:
         response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_INVALID_UUID)
-        return JsonResponse(response)
+        return JsonResponse(response, status=int(response["status"][:3]))
 
     if result is None:
         parsed_name = search_type.replace("_", " ").strip()
@@ -681,7 +682,7 @@ def get_service_component_implementation_detail(request, search_type, version, c
     except component_models.ServiceDetailsComponent.DoesNotExist:
         response = helper.get_error_response(strings.SERVICE_COMPONENTS_IMPLEMENTATION_NONMATCHING_UUID)
 
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 # Updates the provided service component implementation details and service details relationship
 @api_view(['POST'])
@@ -705,39 +706,41 @@ def edit_service_details_component_implementation_details(request):
 
     if "component_implementation_details_uuid" not in comp:
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UUID_NOT_PROVIDED,
-                            status=strings.REJECTED_405))
+                            status=strings.REJECTED_405), status=405)
 
     comp_imp_det_uuid = comp.get('component_implementation_details_uuid')
     result = prog.match(comp_imp_det_uuid)
 
     if result is None:
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_INVALID_UUID,
-                            status=strings.REJECTED_405))
+                            status=strings.REJECTED_405), status=405)
 
     if "new_component_implementation_details_uuid" not in comp:
         return JsonResponse(helper.get_error_response(strings.NEW_SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UUID_NOT_PROVIDED,
-                            status=strings.REJECTED_405))
+                            status=strings.REJECTED_405), status=405)
 
     new_comp_imp_det_uuid = comp.get('new_component_implementation_details_uuid')
     result = prog.match(new_comp_imp_det_uuid)
 
     if result is None:
         return JsonResponse(helper.get_error_response(strings.NEW_SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_INVALID_UUID,
-                            status=strings.REJECTED_405))
+                            status=strings.REJECTED_405), status=405)
 
     if "service_id" not in comp:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_UUID_NOT_PROVIDED, status=strings.REJECTED_405))
+        return JsonResponse(helper.get_error_response(strings.SERVICE_UUID_NOT_PROVIDED, status=strings.REJECTED_405),
+                            status=405)
 
     if "service_version" not in comp:
         return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_VERSION_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     if "new_service_id" not in comp:
-        return JsonResponse(helper.get_error_response(strings.NEW_SERVICE_UUID_NOT_PROVIDED, status=strings.REJECTED_405))
+        return JsonResponse(helper.get_error_response(strings.NEW_SERVICE_UUID_NOT_PROVIDED, status=strings.REJECTED_405),
+                            status=405)
 
     if "new_service_version" not in comp:
         return JsonResponse(helper.get_error_response(strings.NEW_SERVICE_DETAILS_VERSION_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     search_type = comp.get('service_id')
     version = comp.get('service_version')
@@ -806,7 +809,7 @@ def edit_service_details_component_implementation_details(request):
     except IntegrityError:
         response = helper.get_error_response(strings.SERVICE_DETAILS_COMPONENT_EXISTS, status=strings.REJECTED_405)
 
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 # Inserts the provided service component implementation details and service details relationship
 @api_view(['POST'])
@@ -827,21 +830,22 @@ def insert_service_details_component_implementation_details(request):
 
     if "component_implementation_details_uuid" not in comp:
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UUID_NOT_PROVIDED,
-                            status=strings.REJECTED_405))
+                            status=strings.REJECTED_405), status=405)
 
     comp_imp_det_uuid = comp.get('component_implementation_details_uuid')
     result = prog.match(comp_imp_det_uuid)
 
     if result is None:
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_INVALID_UUID,
-                            status=strings.REJECTED_405))
+                            status=strings.REJECTED_405), status=405)
 
     if "service_id" not in comp:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_UUID_NOT_PROVIDED, status=strings.REJECTED_405))
+        return JsonResponse(helper.get_error_response(strings.SERVICE_UUID_NOT_PROVIDED, status=strings.REJECTED_405),
+                            status=405)
 
     if "service_version" not in comp:
         return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_VERSION_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     search_type = comp.get('service_id')
     version = comp.get('service_version')
@@ -885,4 +889,4 @@ def insert_service_details_component_implementation_details(request):
     except component_models.ServiceComponentImplementationDetail.DoesNotExist:
         response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_NOT_FOUND)
 
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))

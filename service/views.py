@@ -49,7 +49,7 @@ def list_services(request,  type):
         }
         response = helper.get_response_info(strings.SERVICE_LIST, data)
 
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 # Renders the list service view
 @api_view(['GET'])
@@ -89,7 +89,7 @@ def list_service_objects(request, api_version):
                 "services": "No services in database"
             }
 
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 # Returns the required information about the service chosen by uuid
 # @check_service_ownership_or_superuser
@@ -104,7 +104,7 @@ def get_service(request,  service_name_or_uuid):
 
     if detail_level is not None and detail_level != "short" and detail_level != "complete":
         response = helper.get_error_response(strings.INVALID_QUERY_PARAMETER)
-        return JsonResponse(response)
+        return JsonResponse(response, status=int(response["status"][:3]))
 
     response = {}
     service, parsed_name, uuid = None, None, None
@@ -143,7 +143,7 @@ def get_service(request,  service_name_or_uuid):
 
         response = helper.get_response_info(strings.SERVICE_INFORMATION, service)
 
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 # Returns the service details about the service chosen by uuid
 # @check_service_ownership_or_superuser
@@ -208,7 +208,7 @@ def get_service_details(request, service_name_or_uuid, version):
         if str(v) == "badly formed hexadecimal UUID string":
             response = helper.get_error_response(strings.INVALID_UUID)
 
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 # Returns the list of service details for the selected service
 # @check_service_ownership_or_superuser
@@ -259,7 +259,7 @@ def get_all_service_details(request, service_name_or_uuid):
         if str(v) == "badly formed hexadecimal UUID string":
             response = helper.get_error_response(strings.INVALID_UUID)
 
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 # Returns the service institution
 @api_view(['GET'])
@@ -303,14 +303,14 @@ def get_service_institution(request, service_name_or_uuid):
             response["errors"] = {
                 "detail": "An invalid UUID was supplied"
             }
-        return JsonResponse(response)
+        return JsonResponse(response, status=int(response["status"][:3]))
 
     if serv is not None:
             response["status"] = "200 OK"
             response["data"] = serv.get_service_institution()
             response["info"] = "service institution information"
 
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 # Returns the selected services dependencies
 # @check_service_ownership_or_superuser
@@ -350,7 +350,7 @@ def get_service_dependencies(request,  service_name_or_uuid):
         if str(v) == "badly formed hexadecimal UUID string":
             response = helper.get_error_response(strings.INVALID_UUID)
 
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 # Updates service
 @api_view(['POST'])
@@ -378,21 +378,22 @@ def insert_service(request):
 
     if "name" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.SERVICE_NAME_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
     elif "name" in params:
         name = params.get('name')
         if (name is None or len(name) == 0) and "name" in params:
-            return JsonResponse(helper.get_error_response(strings.SERVICE_NAME_EMPTY, status=strings.REJECTED_405))
+            return JsonResponse(helper.get_error_response(strings.SERVICE_NAME_EMPTY, status=strings.REJECTED_405),
+                                status=405)
     elif op_type == "edit":
         name = None
 
     if "service_owner_uuid" not in params:
         return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     if "service_contact_information_uuid" not in params:
         return JsonResponse(helper.get_error_response(strings.SERVICE_CONTACT_INFORMATION_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     service_owner_uuid = params.get('service_owner_uuid')
     service_contact_information_uuid = params.get('service_contact_information_uuid')
@@ -400,20 +401,22 @@ def insert_service(request):
     result = prog.match(service_owner_uuid)
     if result is None:
         return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_INVALID_UUID,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     result = prog.match(service_contact_information_uuid)
     if result is None:
         return JsonResponse(helper.get_error_response(strings.SERVICE_CONTACT_INFORMATION_INVALID_UUID,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     try:
         service_owner = ServiceOwner.objects.get(id=service_owner_uuid)
         service_contact_information = ContactInformation.objects.get(id=service_contact_information_uuid)
     except ServiceOwner.DoesNotExist:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_NOT_FOUND, status=strings.NOT_FOUND_404))
+        return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_NOT_FOUND, status=strings.NOT_FOUND_404),
+                            status=404)
     except ContactInformation.DoesNotExist:
-        return JsonResponse(helper.get_error_response(strings.CONTACT_INFORMATION_NOT_FOUND, status=strings.NOT_FOUND_404))
+        return JsonResponse(helper.get_error_response(strings.CONTACT_INFORMATION_NOT_FOUND, status=strings.NOT_FOUND_404),
+                            status=404)
 
     if "uuid" in params:
         uuid = params.get("uuid")
@@ -422,20 +425,21 @@ def insert_service(request):
 
         if result is None:
             return JsonResponse(helper.get_error_response(strings.SERVICE_INVALID_UUID,
-                                                          status=strings.REJECTED_405))
+                                                          status=strings.REJECTED_405), status=405)
 
         try:
             service = models.Service.objects.get(id=uuid)
             if op_type == "add":
                 return JsonResponse(helper.get_error_response(strings.SERVICE_UUID_EXISTS,
-                                                              status=strings.CONFLICT_409))
+                                                              status=strings.CONFLICT_409), status=409)
         except models.Service.DoesNotExist:
             service = models.Service()
             if op_type == "edit":
                 return JsonResponse(helper.get_error_response(strings.SERVICE_NOT_FOUND,
-                                                              status=strings.NOT_FOUND_404))
+                                                              status=strings.NOT_FOUND_404), status=404)
     elif op_type == "edit":
-        return JsonResponse(helper.get_error_response(strings.SERVICE_UUID_NOT_PROVIDED, status=strings.REJECTED_405))
+        return JsonResponse(helper.get_error_response(strings.SERVICE_UUID_NOT_PROVIDED, status=strings.REJECTED_405),
+                            status=405)
     elif op_type == "add":
         service = models.Service()
 
@@ -480,7 +484,7 @@ def insert_service(request):
     msg = strings.SERVICE_INSERTED if op_type == "add" else strings.SERVICE_UPDATED
     status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
     response = helper.get_response_info(msg, data, status=status)
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 # Updates external service
 @api_view(['POST'])
@@ -507,12 +511,12 @@ def insert_external_service(request):
 
     if "name" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_NAME_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
     elif "name" in params:
         name = params.get('name')
         if name is None or len(name) == 0:
             return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_NAME_EMPTY,
-                                                          status=strings.REJECTED_405))
+                                                          status=strings.REJECTED_405), status=405)
     elif op_type == "edit":
         name = None
 
@@ -524,21 +528,21 @@ def insert_external_service(request):
 
         if result is None:
             return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_INVALID_UUID,
-                                                          status=strings.REJECTED_405))
+                                                          status=strings.REJECTED_405), status=405)
 
         try:
             external_service = models.ExternalService.objects.get(id=uuid)
             if op_type == "add":
                 return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_UUID_EXISTS,
-                                                              status=strings.CONFLICT_409))
+                                                              status=strings.CONFLICT_409), status=409)
         except models.ExternalService.DoesNotExist:
             external_service = models.ExternalService()
             if op_type == "edit":
                 return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_NOT_FOUND,
-                                                              status=strings.NOT_FOUND_404))
+                                                              status=strings.NOT_FOUND_404), status=404)
     elif op_type == "edit":
         return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
     elif op_type == "add":
         external_service = models.ExternalService()
 
@@ -562,7 +566,7 @@ def insert_external_service(request):
     msg = strings.EXTERNAL_SERVICE_INSERTED if op_type == "add" else strings.EXTERNAL_SERVICE_UPDATED
     status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
     response = helper.get_response_info(msg, data, status=status)
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 # Inserts service dependency
 @api_view(['POST'])
@@ -577,13 +581,13 @@ def insert_service_dependency(request, service_name_or_uuid):
 
     if "service_dependency" not in params:
         return JsonResponse(helper.get_error_response(strings.SERVICE_DEPENDENCY_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     dependency_uuid = params.get("service_dependency")
     result = prog.match(dependency_uuid)
     if result is None:
         return JsonResponse(helper.get_error_response(strings.SERVICE_DEPENDENCY_INVALID_UUID,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     result = prog.match(service_name_or_uuid)
 
@@ -599,22 +603,24 @@ def insert_service_dependency(request, service_name_or_uuid):
             service = models.Service.objects.get(id=uuid)
 
     except models.Service.DoesNotExist:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_NOT_FOUND, status=strings.NOT_FOUND_404))
+        return JsonResponse(helper.get_error_response(strings.SERVICE_NOT_FOUND, status=strings.NOT_FOUND_404),
+                            status=404)
 
     try:
         service_dependency = models.Service.objects.get(id=dependency_uuid)
     except models.Service.DoesNotExist:
         return JsonResponse(helper.get_error_response(strings.SERVICE_DEPENDENCY_NOT_FOUND,
-                                                      status=strings.NOT_FOUND_404))
+                                                      status=strings.NOT_FOUND_404), status=404)
 
     obj, created = models.Service_DependsOn_Service.objects.get_or_create(id_service_one=service,
                                                                           id_service_two=service_dependency)
     if not created:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_DEPENDENCY_EXISTS, status=strings.CONFLICT_409))
+        return JsonResponse(helper.get_error_response(strings.SERVICE_DEPENDENCY_EXISTS, status=strings.CONFLICT_409),
+                            status=409)
 
     data = obj.as_json()
     response = helper.get_response_info(strings.SERVICE_DEPENDENCY_INSERTED, data, status=strings.CREATED_201)
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 # Inserts service dependency
 @api_view(['POST'])
@@ -629,11 +635,11 @@ def edit_service_dependency(request, service_name_or_uuid):
 
     if "service_dependency" not in params:
         return JsonResponse(helper.get_error_response(strings.SERVICE_DEPENDENCY_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     if "new_service_dependency" not in params:
         return JsonResponse(helper.get_error_response(strings.NEW_SERVICE_DEPENDENCY_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     dependency_uuid = params.get("service_dependency")
     new_dependency_uuid = params.get("new_service_dependency")
@@ -641,12 +647,12 @@ def edit_service_dependency(request, service_name_or_uuid):
     result = prog.match(dependency_uuid)
     if result is None:
         return JsonResponse(helper.get_error_response(strings.SERVICE_DEPENDENCY_INVALID_UUID,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     result = prog.match(new_dependency_uuid)
     if result is None:
         return JsonResponse(helper.get_error_response(strings.NEW_SERVICE_DEPENDENCY_INVALID_UUID,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     result = prog.match(service_name_or_uuid)
 
@@ -662,7 +668,8 @@ def edit_service_dependency(request, service_name_or_uuid):
             service = models.Service.objects.get(id=uuid)
 
     except models.Service.DoesNotExist:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_NOT_FOUND, status=strings.NOT_FOUND_404))
+        return JsonResponse(helper.get_error_response(strings.SERVICE_NOT_FOUND, status=strings.NOT_FOUND_404),
+                            status=404)
 
     try:
         service_dependency = models.Service.objects.get(id=dependency_uuid)
@@ -675,17 +682,17 @@ def edit_service_dependency(request, service_name_or_uuid):
         obj.save()
     except models.Service.DoesNotExist:
         return JsonResponse(helper.get_error_response(strings.SERVICE_DEPENDENCY_NOT_FOUND,
-                                                      status=strings.NOT_FOUND_404))
+                                                      status=strings.NOT_FOUND_404), status=404)
     except models.Service_DependsOn_Service.DoesNotExist:
         return JsonResponse(helper.get_error_response(strings.SERVICE_DEPENDENCY_NOT_FOUND,
-                            status=strings.NOT_FOUND_404))
+                            status=strings.NOT_FOUND_404), status=404)
     except IntegrityError:
         return JsonResponse(helper.get_error_response(strings.SERVICE_DEPENDENCY_EXISTS,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     data = obj.as_json()
     response = helper.get_response_info(strings.SERVICE_DEPENDENCY_UPDATED, data, status=strings.UPDATED_202)
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 
 # Updates service details for a specific service
@@ -721,12 +728,12 @@ def insert_service_details(request, service_name_or_uuid):
 
     if "version" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_VERSION_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
     elif "version" in params:
         version = params.get('version')
         if version is None or len(version) == 0:
             return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_VERSION_EMPTY,
-                                                          status=strings.REJECTED_405))
+                                                          status=strings.REJECTED_405), status=405)
     elif op_type == "edit":
         version = None
 
@@ -747,16 +754,18 @@ def insert_service_details(request, service_name_or_uuid):
 
             if secondary_check is None:
                 return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
             service = models.Service.objects.get(id=uuid)
 
     except models.Service.DoesNotExist:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_NOT_FOUND, status=strings.NOT_FOUND_404))
+        return JsonResponse(helper.get_error_response(strings.SERVICE_NOT_FOUND, status=strings.NOT_FOUND_404),
+                            status=404)
 
     except ValueError as v:
         if str(v) == "badly formed hexadecimal UUID string":
-            return JsonResponse(helper.get_error_response(strings.INVALID_UUID, status=strings.REJECTED_405))
+            return JsonResponse(helper.get_error_response(strings.INVALID_UUID, status=strings.REJECTED_405),
+                                status=405)
 
 
     if "uuid" in params:
@@ -766,21 +775,21 @@ def insert_service_details(request, service_name_or_uuid):
 
         if result is None:
             return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                          status=strings.REJECTED_405))
+                                                          status=strings.REJECTED_405), status=405)
 
         try:
             service_details = models.ServiceDetails.objects.get(id=uuid)
             if op_type == "add":
                 return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_EXISTS,
-                                                              status=strings.CONFLICT_409))
+                                                              status=strings.CONFLICT_409), status=409)
         except models.ServiceDetails.DoesNotExist:
             service_details = models.ServiceDetails()
             if op_type == "edit":
                 return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_NOT_FOUND,
-                                                              status=strings.REJECTED_405))
+                                                              status=strings.REJECTED_405), status=405)
     elif op_type == "edit":
         return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_UUID_NOT_PROVIDED,
-                                                      status=strings.NOT_FOUND_404))
+                                                      status=strings.NOT_FOUND_404), status=404)
     elif op_type == "add":
         service_details = models.ServiceDetails()
 
@@ -859,7 +868,7 @@ def insert_service_details(request, service_name_or_uuid):
         is_in_catalogue = params.get('is_in_catalogue')
         if type(is_in_catalogue) is not bool:
             return JsonResponse(helper.get_error_response(strings.VARIABLE_MUST_BE_BOOLEAN, status=strings.REJECTED_405,
-                                                      additional_status_msg="is_in_catalogue"))
+                                                      additional_status_msg="is_in_catalogue"), status=405)
         service_details.is_in_catalogue = is_in_catalogue
 
     if manual_uuid is not None:
@@ -870,7 +879,7 @@ def insert_service_details(request, service_name_or_uuid):
     msg = strings.SERVICE_DETAILS_INSERTED if op_type == "add" else strings.SERVICE_DETAILS_UPDATED
     status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
     response = helper.get_response_info(msg, data, status=status)
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 
 # Inserts external service dependency
@@ -886,13 +895,13 @@ def insert_external_service_dependency(request, service_name_or_uuid):
 
     if "external_service_dependency" not in params:
         return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     external_dependency_uuid = params.get("external_service_dependency")
     result = prog.match(external_dependency_uuid)
     if result is None:
         return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_INVALID_UUID,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     result = prog.match(service_name_or_uuid)
 
@@ -908,22 +917,24 @@ def insert_external_service_dependency(request, service_name_or_uuid):
             service = models.Service.objects.get(id=uuid)
 
     except models.Service.DoesNotExist:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_NOT_FOUND, status=strings.NOT_FOUND_404))
+        return JsonResponse(helper.get_error_response(strings.SERVICE_NOT_FOUND, status=strings.NOT_FOUND_404),
+                            status=404)
 
     try:
         external_service_dependency = models.ExternalService.objects.get(id=external_dependency_uuid)
     except models.ExternalService.DoesNotExist:
         return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_NOT_FOUND,
-                                                      status=strings.NOT_FOUND_404))
+                                                      status=strings.NOT_FOUND_404), status=404)
 
     obj, created = models.Service_ExternalService.objects.get_or_create(id_service=service,
                                                                           id_external_service=external_service_dependency)
     if not created:
-        return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_EXISTS, status=strings.CONFLICT_409))
+        return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_EXISTS, status=strings.CONFLICT_409),
+                            status=409)
 
     data = obj.as_json()
     response = helper.get_response_info(strings.EXTERNAL_SERVICE_DEPENDENCY_INSERTED, data, status=strings.CREATED_201)
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 # Inserts external service dependency
 @api_view(['POST'])
@@ -938,11 +949,11 @@ def edit_external_service_dependency(request, service_name_or_uuid):
 
     if "external_service_dependency" not in params:
         return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     if "new_external_service_dependency" not in params:
         return JsonResponse(helper.get_error_response(strings.NEW_EXTERNAL_SERVICE_DEPENDENCY_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     external_dependency_uuid = params.get("external_service_dependency")
     new_external_dependency_uuid = params.get("new_external_service_dependency")
@@ -950,12 +961,12 @@ def edit_external_service_dependency(request, service_name_or_uuid):
     result = prog.match(external_dependency_uuid)
     if result is None:
         return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_INVALID_UUID,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     result = prog.match(new_external_dependency_uuid)
     if result is None:
         return JsonResponse(helper.get_error_response(strings.NEW_EXTERNAL_SERVICE_DEPENDENCY_INVALID_UUID,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
 
     result = prog.match(service_name_or_uuid)
 
@@ -971,7 +982,7 @@ def edit_external_service_dependency(request, service_name_or_uuid):
             service = models.Service.objects.get(id=uuid)
 
     except models.Service.DoesNotExist:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_NOT_FOUND, status=strings.NOT_FOUND_404))
+        return JsonResponse(helper.get_error_response(strings.SERVICE_NOT_FOUND, status=strings.NOT_FOUND_404), status=404)
 
     try:
         external_service_dependency = models.ExternalService.objects.get(id=external_dependency_uuid)
@@ -985,17 +996,17 @@ def edit_external_service_dependency(request, service_name_or_uuid):
 
     except models.ExternalService.DoesNotExist:
         return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_NOT_FOUND,
-                                                      status=strings.NOT_FOUND_404))
+                                                      status=strings.NOT_FOUND_404), status=404)
     except models.Service_ExternalService.DoesNotExist:
         return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_NOT_FOUND,
-                                                      status=strings.NOT_FOUND_404))
+                                                      status=strings.NOT_FOUND_404), status=404)
     except IntegrityError:
         return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_EXISTS,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=404)
 
     data = obj.as_json()
     response = helper.get_response_info(strings.EXTERNAL_SERVICE_DEPENDENCY_INSERTED, data, status=strings.CREATED_201)
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 
 # Updates user customer
@@ -1025,23 +1036,23 @@ def insert_user_customer(request, service_name_or_uuid):
 
     if "name" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.USER_CUSTOMER_NAME_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
     elif "name" in params:
         name = params.get('name')
         if (name, name) not in models.UserCustomer.USER_TYPES:
             return JsonResponse(helper.get_error_response(strings.USER_CUSTOMER_NAME_INVALID,
-                                                          status=strings.REJECTED_405))
+                                                          status=strings.REJECTED_405), status=405)
     elif op_type == "edit":
         name = None
 
     if "role" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.USER_CUSTOMER_ROLE_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
     elif "role" in params:
         role = params.get('role')
         if role is None or len(role) == 0:
             return JsonResponse(helper.get_error_response(strings.USER_CUSTOMER_ROLE_EMPTY,
-                                                          status=strings.REJECTED_405))
+                                                          status=strings.REJECTED_405), status=405)
     elif op_type == "edit":
         role = None
 
@@ -1053,21 +1064,21 @@ def insert_user_customer(request, service_name_or_uuid):
 
         if result is None:
             return JsonResponse(helper.get_error_response(strings.USER_CUSTOMER_INVALID_UUID,
-                                                          status=strings.REJECTED_405))
+                                                          status=strings.REJECTED_405), status=405)
 
         try:
             user_customer = models.UserCustomer.objects.get(id=uuid)
             if op_type == "add":
                 return JsonResponse(helper.get_error_response(strings.USER_CUSTOMER_EXISTS,
-                                                              status=strings.CONFLICT_409))
+                                                              status=strings.CONFLICT_409), status=409)
         except models.UserCustomer.DoesNotExist:
             user_customer = models.UserCustomer()
             if op_type == "edit":
                 return JsonResponse(helper.get_error_response(strings.USER_CUSTOMER_NOT_FOUND,
-                                                              status=strings.NOT_FOUND_404))
+                                                              status=strings.NOT_FOUND_404), status=404)
     elif op_type == "edit":
         return JsonResponse(helper.get_error_response(strings.USER_CUSTOMER_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_405), status=405)
     elif op_type == "add":
         user_customer = models.UserCustomer()
 
@@ -1085,7 +1096,8 @@ def insert_user_customer(request, service_name_or_uuid):
             service = models.Service.objects.get(id=service_uuid)
 
     except models.Service.DoesNotExist:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_NOT_FOUND, status=strings.NOT_FOUND_404))
+        return JsonResponse(helper.get_error_response(strings.SERVICE_NOT_FOUND, status=strings.NOT_FOUND_404),
+                            status=404)
 
     if name is not None:
         user_customer.name = name
@@ -1104,7 +1116,7 @@ def insert_user_customer(request, service_name_or_uuid):
     msg = strings.USER_CUSTOMER_INSERTED if op_type == "add" else strings.USER_CUSTOMER_UPDATED
     status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
     response = helper.get_response_info(msg, data, status=status)
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 # Returns the selected services external dependencies
 # @check_service_ownership_or_superuser
@@ -1146,7 +1158,7 @@ def get_service_external_dependencies(request,  service_name_or_uuid):
         if str(v) == "badly formed hexadecimal UUID string":
             response = helper.get_error_response(strings.INVALID_UUID)
 
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 # Return the selected service contact information
 # @api_view(['GET'])
@@ -1188,14 +1200,14 @@ def get_service_contact_information(request, service_name_or_uuid):
             response["errors"] = {
                 "detail": "An invalid UUID was supplied"
             }
-        return JsonResponse(response)
+        return JsonResponse(response, status=int(response["status"][:3]))
 
 
     response["status"] = "200 OK"
     response["data"] = serv.get_service_contact_information()
     response["info"] = "service contact information"
 
-    return JsonResponse(response)
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 # Retrieve a service object by UUID or Name
 def get_service_object():

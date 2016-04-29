@@ -7,7 +7,7 @@ def error400(request):
         "errors": {
             "detail": "The requested page was not found"
         }
-    })
+    }, status=400)
 
 
 def error404(request):
@@ -16,7 +16,7 @@ def error404(request):
         "errors": {
             "detail": "The requested page was not found"
         }
-    })
+    }, status=404)
 
 
 def error500(request):
@@ -25,4 +25,4 @@ def error500(request):
         "errors": {
             "detail": "Something went wrong on our side"
         }
-    })
+    }, status=500)
