@@ -268,7 +268,7 @@ class ServiceDetails(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
     id_service = models.ForeignKey(Service)
     version = models.CharField(max_length=255, default=None, blank=True)
-    status = models.CharField(max_length=255, default=None, blank=True, null=True)
+    status = models.CharField(max_length=255, default="Inactive", blank=True, null=True)
     features_current = models.TextField(default=None, blank=True, null=True)
     features_future = models.TextField( default=None, blank=True, null=True)
     usage_policy_has = models.BooleanField(default=False, blank=True)
@@ -299,7 +299,7 @@ class ServiceDetails(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.status:
-            self.status = None
+            self.status = "Inactive"
         if not self.features_current:
             self.features_current = None
         if not self.features_future:
