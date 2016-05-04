@@ -147,6 +147,10 @@ STATICFILES_DIRS = (
 )
 
 
+REST_FRAMEWORK = {
+    'EXCEPTION_HANDLER': 'agora.views.custom_exception_handler'
+}
+
 SWAGGER_SETTINGS = {
     'exclude_namespaces': [],
     'api_version': '1.0',
