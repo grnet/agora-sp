@@ -4,6 +4,7 @@ from django.db import models
 import uuid
 from owner.models import ServiceOwner, ContactInformation, Institution
 from common import helper
+from collections import OrderedDict
 
 
 class Service(models.Model):
@@ -129,27 +130,12 @@ class Service(models.Model):
         users_customers = self.get_user_customers()
         service_details = self.get_service_details(complete=True, url=True)
 
-        return {
-            "uuid": str(self.pk),
-            "name": self.name,
-            "description_external": self.description_external,
-            "description_internal": self.description_internal,
-            "service_type": self.service_type,
-            "service_area": self.service_area,
-            "request_procedures": self.request_procedures,
-            "funders_for_service": self.funders_for_service,
-            "value_to_customer": self.value_to_customer,
-            "risks": self.risks,
-            "competitors": self.competitors,
-            "user_customers_list": {
-                "count": len(users_customers),
-                "user_customers": users_customers
-            },
-            "service_details_list": {
-                "count": len(service_details),
-                "service_details": service_details
-            },
-            "service_owner": {
+        return OrderedDict([
+            ("uuid", self.id),
+            ("name", self.name),
+            ("description_external", self.description_external),
+            ("description_internal", self.description_internal),
+            ("service_owner", {
                 "email": self.get_service_owner_object().email,
                 "links": {
                 "related": {
@@ -159,8 +145,22 @@ class Service(models.Model):
                         "desc": "Service owner link"
                     }
                 }}
-            },
-            "dependencies": {
+            }),
+            ("contact_information", {
+                "email": self.get_service_contact_information_object().email,
+                "url": self.get_service_contact_information_object().url,
+                "related": {
+                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/contact_information",
+                    "meta": {
+                        "desc": "Link contact information about this service"
+                    }
+                }}),
+            ("service_area", self.service_area),
+            ("user_customers_list", {
+                "count": len(users_customers),
+                "user_customers": users_customers
+            }),
+            ("dependencies", {
                 "count": len(service_dependencies),
                 "service_dependencies_link": {
                     "related": {
@@ -173,8 +173,8 @@ class Service(models.Model):
 
                 },
                 "services": service_dependencies
-            },
-            "external": {
+            }),
+            ("external", {
                 "count": len(external_services),
                "external_services_link": {
                     "related": {
@@ -185,52 +185,39 @@ class Service(models.Model):
                 },
 
                 "external_services": external_services
-            },
-            "contact_information": {
-                "email": self.get_service_contact_information_object().email,
-                "url": self.get_service_contact_information_object().url,
-                "related": {
-                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/contact_information",
-                    "meta": {
-                        "desc": "Link contact information about this service"
-                    }
-                }}
-        }
-
-    def as_portfolio(self):
-
-        users_customers = self.get_user_customers()
-        service_details = self.get_service_details(complete=True, url=True)
-
-        return {
-            "uuid": self.id,
-            "service_complete_link": {
+            }),
+            ("funders_for_service", self.funders_for_service),
+            ("value_to_customer", self.value_to_customer),
+            ("risks", self.risks),
+            ("competitors", self.competitors),
+            ("service_type", self.service_type),
+            ("request_procedures", self.request_procedures),
+            ("service_details_list", {
+                "count": len(service_details),
+                "service_details": service_details
+            }),
+            ("service_complete_link", {
                 "related": {
                     "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
                             + "?view=complete",
                     "meta": {
                         "desc": "Portfolio level details about this service."
                     }
-                }},
-            "name": self.name,
-            "service_type": self.service_type,
-            "description_external": self.description_external,
-            "description_internal": self.description_internal,
-            "service_area": self.service_area,
-            "request_procedures": self.request_procedures,
-            "funders_for_service": self.funders_for_service,
-            "value_to_customer": self.value_to_customer,
-            "risks": self.risks,
-            "service_details_list": {
-                "count": len(service_details),
-                "service_details": service_details
-            },
-            "competitors": self.competitors,
-            "user_customers_list": {
-                "count": len(users_customers),
-                "user_customers": users_customers
-            },
-            "service_owner": {
+                }}),
+        ])
+
+
+    def as_portfolio(self):
+
+        users_customers = self.get_user_customers()
+        service_details = self.get_service_details(complete=True, url=True)
+
+        return OrderedDict([
+            ("uuid", self.id),
+            ("name", self.name),
+            ("description_external", self.description_external),
+            ("description_internal", self.description_internal),
+            ("service_owner", {
                 "email": self.get_service_owner_object().email,
                 "links": {
                 "related": {
@@ -240,8 +227,8 @@ class Service(models.Model):
                         "desc": "Service owner link"
                     }
                 }}
-            },
-            "contact_information": {
+            }),
+            ("contact_information", {
                 "email": self.get_service_contact_information_object().email,
                 "url": self.get_service_contact_information_object().url,
                 "related": {
@@ -249,32 +236,56 @@ class Service(models.Model):
                     "meta": {
                         "desc": "Link contact information about this service"
                     }
-                }}
-        }
+                }}),
+            ("service_area", self.service_area),
+            ("user_customers_list", {
+                "count": len(users_customers),
+                "user_customers": users_customers
+            }),
+            ("funders_for_service", self.funders_for_service),
+            ("value_to_customer", self.value_to_customer),
+            ("risks", self.risks),
+            ("competitors", self.competitors),
+            ("service_type", self.service_type),
+            ("request_procedures", self.request_procedures),
+            ("service_details_list", {
+                "count": len(service_details),
+                "service_details": service_details
+            }),
+            ("service_complete_link", {
+                "related": {
+                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
+                            + "?view=complete",
+                    "meta": {
+                        "desc": "Portfolio level details about this service."
+                    }
+                }})
+        ])
 
     def as_catalogue(self):
 
         service_details = self.get_service_details(complete=True, url=True, catalogue=True)
 
-        return {
-            "uuid": self.id,
-            "service": {
+        return OrderedDict([
+            ("uuid", self.id),
+            ("name", self.name),
+            ("description_external", self.description_external),
+            ("service_area", self.service_area),
+            ("value_to_customer", self.value_to_customer),
+            ("service_type", self.service_type),
+            ("service", {
                 "name": self.name,
                 "link": {
                     "href": helper.current_site_url() + "/v1/catalogue/services/" + str(self.name).replace(" ", "_"),
                     "meta": {
                         "desc": "Catalogue level details about this service."
                     }
-                }},
-            "name": self.name,
-            "description_external": self.description_external,
-            "service_area": self.service_area,
-            "value_to_customer": self.value_to_customer,
-            "service_details_list": {
+                }}),
+            ("service_details_list", {
                 "count": len(service_details),
                 "service_details": service_details
-            },
-        }
+            })
+        ])
 
 
 class ServiceDetails(models.Model):
@@ -327,9 +338,13 @@ class ServiceDetails(models.Model):
         super(ServiceDetails, self).save(*args, **kwargs)
 
     def as_short(self):
-        return {
-            "uuid": self.id,
-            "service_details": {
+        return OrderedDict([
+            ("uuid", self.id),
+            ("version", self.version),
+            ("service_status", self.status),
+            ("features_current", self.features_current),
+            ("features_future", self.features_future),
+            ("service_details", {
                 "version": self.version,
                 "status": self.status,
                 "in_catalogue": self.is_in_catalogue,
@@ -340,88 +355,21 @@ class ServiceDetails(models.Model):
                         "desc": "Service details link"
                     }
                 }
-            },
-            "version": self.version,
-            "service_status": self.status,
-            "features_current": self.features_current,
-            "features_future": self.features_future
-        }
+            })
+        ])
 
     def as_complete(self, url=False):
 
         service_dependencies = self.id_service.get_service_dependencies()
 
-        details = {
-            "uuid": self.id,
-            "version": self.version,
-            "service_status": self.status,
-            "features_current": self.features_current,
-            "features_future": self.features_future,
-            "usage_policy_has": self.usage_policy_has,
-            "usage_policy_link": {
-                "related": {
-                    "href": self.usage_policy_url,
-                    "meta": {
-                        "desc": "A link to the usage policy for this service."
-                    }
-                }},
-            "user_documentation_has": self.user_documentation_has,
-            "user_documentation_link":  {
-                "related": {
-                    "href": self.user_documentation_url,
-                    "meta": {
-                        "desc": "A link to the user documentation for this service."
-                    }
-                }},
-            "operations_documentation_has": self.operations_documentation_has,
-            "operations_documentation_link": {
-                "related": {
-                    "href": self.operations_documentation_url,
-                    "meta": {
-                        "desc": "A link to the operations documentation for this service."
-                    }
-                }},
-            "monitoring_has": self.monitoring_has,
-            "monitoring_link": {
-                "related": {
-                    "href": self.monitoring_url,
-                    "meta": {
-                        "desc": "A link to the monitoring system for this service."
-                    }
-                }},
-            "accounting_has": self.accounting_has,
-            "accounting_link":  {
-                "related": {
-                    "href": self.accounting_url,
-                    "meta": {
-                        "desc": "A link to the accounting system for this service."
-                    }
-                }},
-            "business_continuity_plan_has": self.business_continuity_plan_has,
-            "business_continuity_plan_link": {
-                "related": {
-                    "href": self.business_continuity_plan_url,
-                    "meta": {
-                        "desc": "A link to the business continuity plan for this service."
-                    }
-                }},
-            "disaster_recovery_plan_has": self.disaster_recovery_plan_has,
-            "disaster_recovery_plan_url": {
-                "related": {
-                    "href": self.disaster_recovery_plan_url,
-                    "meta": {
-                        "desc": "A link to the disaster recovery plan for this service."
-                    }
-                }},
-            "decommissioning_procedure_has": self.decommissioning_procedure_has,
-            "decommissioning_procedure_url":  {
-                "related": {
-                    "href": self.decommissioning_procedure_url,
-                    "meta": {
-                        "desc": "A link to the decommissioning procedure for this service."
-                    }
-                }},
-            "dependencies": {
+        details = OrderedDict([
+            ("uuid", self.id),
+            ("version", self.version),
+            ("service_status", self.status),
+            ("use_cases", self.use_cases),
+            ("features_current", self.features_current),
+            ("features_future", self.features_future),
+            ("dependencies", {
                 "count": len(service_dependencies),
                 "service_dependencies_link": {
                     "related": {
@@ -434,15 +382,79 @@ class ServiceDetails(models.Model):
 
                 },
                 "services": service_dependencies
-            },
-            "cost_to_run": self.cost_to_run,
-            "cost_to_build": self.cost_to_build,
-            "use_cases": self.use_cases,
-            "service_type": "Catalogue" if self.is_in_catalogue else "Portfolio"
-        }
+            }),
+            ("usage_policy_has", self.usage_policy_has),
+            ("usage_policy_link", {
+                "related": {
+                    "href": self.usage_policy_url,
+                    "meta": {
+                        "desc": "A link to the usage policy for this service."
+                    }
+                }}),
+            ("user_documentation_has", self.user_documentation_has),
+            ("user_documentation_link",  {
+                "related": {
+                    "href": self.user_documentation_url,
+                    "meta": {
+                        "desc": "A link to the user documentation for this service."
+                    }
+                }}),
+            ("operations_documentation_has", self.operations_documentation_has),
+            ("operations_documentation_link", {
+                "related": {
+                    "href": self.operations_documentation_url,
+                    "meta": {
+                        "desc": "A link to the operations documentation for this service."
+                    }
+                }}),
+            ("monitoring_has", self.monitoring_has),
+            ("monitoring_link", {
+                "related": {
+                    "href": self.monitoring_url,
+                    "meta": {
+                        "desc": "A link to the monitoring system for this service."
+                    }
+                }}),
+            ("accounting_has", self.accounting_has),
+            ("accounting_link",  {
+                "related": {
+                    "href": self.accounting_url,
+                    "meta": {
+                        "desc": "A link to the accounting system for this service."
+                    }
+                }}),
+            ("business_continuity_plan_has", self.business_continuity_plan_has),
+            ("business_continuity_plan_link", {
+                "related": {
+                    "href": self.business_continuity_plan_url,
+                    "meta": {
+                        "desc": "A link to the business continuity plan for this service."
+                    }
+                }}),
+            ("disaster_recovery_plan_has", self.disaster_recovery_plan_has),
+            ("disaster_recovery_plan_url", {
+                "related": {
+                    "href": self.disaster_recovery_plan_url,
+                    "meta": {
+                        "desc": "A link to the disaster recovery plan for this service."
+                    }
+                }}),
+            ("decommissioning_procedure_has", self.decommissioning_procedure_has),
+            ("decommissioning_procedure_url",  {
+                "related": {
+                    "href": self.decommissioning_procedure_url,
+                    "meta": {
+                        "desc": "A link to the decommissioning procedure for this service."
+                    }
+                }}),
+            ("cost_to_run", self.cost_to_run),
+            ("cost_to_build", self.cost_to_build),
+            ("service_type", "Catalogue" if self.is_in_catalogue else "Portfolio")
+        ])
+
 
         if url:
-            details["service_details"] = {
+            details.update({"service_details": {
                 "version": self.version,
                 "status": self.status,
                 "in_catalogue": self.is_in_catalogue,
@@ -453,7 +465,7 @@ class ServiceDetails(models.Model):
                         "desc": "Service details link"
                     }
                 }
-            }
+            }})
 
         return details
 
