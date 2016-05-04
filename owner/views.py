@@ -136,12 +136,12 @@ def insert_institution(request):
 
     if "name" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.INSTITUTION_NAME_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
     elif "name" in params:
         name = params.get('name')
         if name is None or len(name) == 0:
-            return JsonResponse(helper.get_error_response(strings.INSTITUTION_NAME_EMPTY, status=strings.REJECTED_405),
-                                status=405)
+            return JsonResponse(helper.get_error_response(strings.INSTITUTION_NAME_EMPTY, status=strings.REJECTED_406),
+                                status=406)
     elif op_type == "edit":
         name = None
 
@@ -152,7 +152,7 @@ def insert_institution(request):
 
         if result is None:
             return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                          status=strings.REJECTED_405), status=405)
+                                                          status=strings.REJECTED_406), status=406)
 
         try:
             institution = models.Institution.objects.get(id=uuid)
@@ -166,7 +166,7 @@ def insert_institution(request):
                                                               status=strings.NOT_FOUND_404), status=404)
     elif op_type == "edit":
         return JsonResponse(helper.get_error_response(strings.INSTITUTION_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
     elif op_type == "add":
         institution = models.Institution()
 
@@ -227,7 +227,7 @@ def insert_contact_information(request):
 
         if result is None:
             return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                          status=strings.REJECTED_405), status=405)
+                                                          status=strings.REJECTED_406), status=406)
 
         try:
             contact_information = models.ContactInformation.objects.get(id=uuid)
@@ -241,45 +241,45 @@ def insert_contact_information(request):
                                                               status=strings.NOT_FOUND_404), status=404)
     elif op_type == "edit":
         return JsonResponse(helper.get_error_response(strings.SERVICE_CONTACT_INFORMATION_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
     elif op_type == "add":
         contact_information = models.ContactInformation()
 
 
     if ("email" not in params) & ("url" not in params):
-        return JsonResponse(helper.get_error_response(strings.OWNER_URL_OR_EMAIL_NOT_PROVIDED, status=strings.REJECTED_405))
+        return JsonResponse(helper.get_error_response(strings.OWNER_URL_OR_EMAIL_NOT_PROVIDED, status=strings.REJECTED_406))
 
 
     if "first_name" in params:
         first_name = params.get('first_name')
         # if first_name is None or len(first_name) == 0:
-        #     return JsonResponse(helper.get_error_response(strings.OWNER_FIRST_NAME_EMPTY, status=strings.REJECTED_405))
+        #     return JsonResponse(helper.get_error_response(strings.OWNER_FIRST_NAME_EMPTY, status=strings.REJECTED_406))
         contact_information.first_name = first_name
 
     if "last_name" in params:
         last_name = params.get('last_name')
         # if last_name is None or len(last_name) == 0:
-        #     return JsonResponse(helper.get_error_response(strings.OWNER_LAST_NAME_EMPTY, status=strings.REJECTED_405))
+        #     return JsonResponse(helper.get_error_response(strings.OWNER_LAST_NAME_EMPTY, status=strings.REJECTED_406))
         contact_information.last_name = last_name
 
     if "email" in params:
         email = params.get('email')
         if email is None or len(email) == 0:
-            return JsonResponse(helper.get_error_response(strings.OWNER_EMAIL_EMPTY, status=strings.REJECTED_405),
-                                status=405)
+            return JsonResponse(helper.get_error_response(strings.OWNER_EMAIL_EMPTY, status=strings.REJECTED_406),
+                                status=406)
         contact_information.email = email
 
     if "phone" in params:
         phone = params.get('phone')
         # if phone is None or len(phone) == 0:
-        #     return JsonResponse(helper.get_error_response(strings.OWNER_PHONE_EMPTY, status=strings.REJECTED_405))
+        #     return JsonResponse(helper.get_error_response(strings.OWNER_PHONE_EMPTY, status=strings.REJECTED_406))
         contact_information.phone = phone
 
     if "url" in params:
         url = params.get('url')
         if url is None or len(url) == 0:
-            return JsonResponse(helper.get_error_response(strings.OWNER_URL_EMPTY, status=strings.REJECTED_405),
-                                status=405)
+            return JsonResponse(helper.get_error_response(strings.OWNER_URL_EMPTY, status=strings.REJECTED_406),
+                                status=406)
         contact_information.url = url
 
     if uuid is not None:
@@ -321,11 +321,11 @@ def insert_service_owner(request):
 
     if "institution_uuid" not in params:
         return JsonResponse(helper.get_error_response(strings.INSTITUTION_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     if "email" not in params:
         return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_EMAIL_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405))
+                                                      status=strings.REJECTED_406))
 
     institution_uuid, service_owner, uuid = None, None, None
     institution_uuid = params.get('institution_uuid')
@@ -334,7 +334,7 @@ def insert_service_owner(request):
 
     if result is None:
         return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     try:
         institution = models.Institution.objects.get(id=institution_uuid)
@@ -350,7 +350,7 @@ def insert_service_owner(request):
 
         if result is None:
             return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                          status=strings.REJECTED_405), status=405)
+                                                          status=strings.REJECTED_406), status=406)
 
         try:
             service_owner = models.ServiceOwner.objects.get(id=uuid)
@@ -364,33 +364,33 @@ def insert_service_owner(request):
                                                               status=strings.NOT_FOUND_404), status=404)
     elif op_type == "edit":
         return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
     elif op_type == "add":
         service_owner = models.ServiceOwner()
 
     if "first_name" in params:
         first_name = params.get('first_name')
         # if first_name is None or len(first_name) == 0:
-        #     return JsonResponse(helper.get_error_response(strings.OWNER_FIRST_NAME_EMPTY, status=strings.REJECTED_405))
+        #     return JsonResponse(helper.get_error_response(strings.OWNER_FIRST_NAME_EMPTY, status=strings.REJECTED_406))
         service_owner.first_name = first_name
 
     if "last_name" in params:
         last_name = params.get('last_name')
         # if last_name is None or len(last_name) == 0:
-        #     return JsonResponse(helper.get_error_response(strings.OWNER_LAST_NAME_EMPTY, status=strings.REJECTED_405))
+        #     return JsonResponse(helper.get_error_response(strings.OWNER_LAST_NAME_EMPTY, status=strings.REJECTED_406))
         service_owner.last_name = last_name
 
     if "email" in params:
         email = params.get('email')
         if email is None or len(email) == 0:
-            return JsonResponse(helper.get_error_response(strings.OWNER_EMAIL_EMPTY, status=strings.REJECTED_405),
-                                status=405)
+            return JsonResponse(helper.get_error_response(strings.OWNER_EMAIL_EMPTY, status=strings.REJECTED_406),
+                                status=406)
         service_owner.email = email
 
     if "phone" in params:
         phone = params.get('phone')
         # if phone is None or len(phone) == 0:
-        #     return JsonResponse(helper.get_error_response(strings.OWNER_PHONE_EMPTY, status=strings.REJECTED_405))
+        #     return JsonResponse(helper.get_error_response(strings.OWNER_PHONE_EMPTY, status=strings.REJECTED_406))
         service_owner.phone = phone
 
     service_owner.id_service_owner = institution

@@ -67,7 +67,7 @@ class ComponentTestCase(TestCase):
         post_data = {}
         response = self.client_stub.post("/api/v1/component/add", post_data)
 
-        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_NAME_NOT_PROVIDED, status=strings.REJECTED_405)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_NAME_NOT_PROVIDED, status=strings.REJECTED_406)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_insert_service_component_empty_name(self):
@@ -76,7 +76,7 @@ class ComponentTestCase(TestCase):
             "description": ""
         }
         response = self.client_stub.post("/api/v1/component/add", post_data)
-        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_NAME_EMPTY, status=strings.REJECTED_405)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_NAME_EMPTY, status=strings.REJECTED_406)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_insert_service_component_invalid_uuid(self):
@@ -86,7 +86,7 @@ class ComponentTestCase(TestCase):
             "uuid": "af2f812b-eda6-497a-9d22-534f885b703G"
         }
         response = self.client_stub.post("/api/v1/component/add", post_data)
-        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_INVALID_UUID, status=strings.REJECTED_405)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_INVALID_UUID, status=strings.REJECTED_406)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_insert_service_component_existing_uuid(self):
@@ -136,7 +136,7 @@ class ComponentTestCase(TestCase):
         }
 
         response = self.client_stub.post("/api/v1/component/edit", post_data)
-        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_UUID_NOT_PROVIDED, status=strings.REJECTED_405)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_UUID_NOT_PROVIDED, status=strings.REJECTED_406)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_edit_service_component(self):
@@ -166,7 +166,7 @@ class ComponentTestCase(TestCase):
         }
         response = self.client_stub.post("/api/v1/component/service_component_implementation/add", post_data)
 
-        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_NAME_NOT_PROVIDED, status=strings.REJECTED_405)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_NAME_NOT_PROVIDED, status=strings.REJECTED_406)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_insert_service_component_implementation_empty_name(self):
@@ -176,7 +176,7 @@ class ComponentTestCase(TestCase):
             "component_uuid": "af2f812b-eda6-497a-9d22-534f885b7034"
         }
         response = self.client_stub.post("/api/v1/component/service_component_implementation/add", post_data)
-        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_NAME_EMPTY, status=strings.REJECTED_405)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_NAME_EMPTY, status=strings.REJECTED_406)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_insert_service_component_implementation_invalid_comp_uuid(self):
@@ -186,7 +186,7 @@ class ComponentTestCase(TestCase):
             "component_uuid": "af2f812b-eda6-497a-9d22-534f885b703G"
         }
         response = self.client_stub.post("/api/v1/component/service_component_implementation/add", post_data)
-        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_INVALID_UUID, status=strings.REJECTED_405)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_INVALID_UUID, status=strings.REJECTED_406)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_insert_service_component_implementation_non_existing_comp_uuid(self):
@@ -207,7 +207,7 @@ class ComponentTestCase(TestCase):
             "component_uuid": "af2f812b-eda6-497a-9d22-534f885b7034"
         }
         response = self.client_stub.post("/api/v1/component/service_component_implementation/add", post_data)
-        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_INVALID_UUID, status=strings.REJECTED_405)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_INVALID_UUID, status=strings.REJECTED_406)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_insert_service_component_implementation_existing_uuid(self):
@@ -246,7 +246,7 @@ class ComponentTestCase(TestCase):
 
         }
         response = self.client_stub.post("/api/v1/component/service_component_implementation/add", post_data)
-        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_UUID_NOT_PROVIDED, status=strings.REJECTED_405)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_UUID_NOT_PROVIDED, status=strings.REJECTED_406)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_edit_non_existing_service_component_implementation(self):
@@ -269,7 +269,7 @@ class ComponentTestCase(TestCase):
         }
 
         response = self.client_stub.post("/api/v1/component/service_component_implementation/edit", post_data)
-        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_UUID_NOT_PROVIDED, status=strings.REJECTED_405)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_UUID_NOT_PROVIDED, status=strings.REJECTED_406)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_edit_service_component_implementation(self):
@@ -301,7 +301,7 @@ class ComponentTestCase(TestCase):
         }
         response = self.client_stub.post("/api/v1/component/service_component_implementation_detail/add", post_data)
 
-        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_VERSION_NOT_PROVIDED, status=strings.REJECTED_405)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_VERSION_NOT_PROVIDED, status=strings.REJECTED_406)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_insert_service_component_implementation_details_empty_version(self):
@@ -312,7 +312,7 @@ class ComponentTestCase(TestCase):
             "component_implementation_uuid": "e01dcee5-eb04-4147-9bb0-54ed81567494"
         }
         response = self.client_stub.post("/api/v1/component/service_component_implementation_detail/add", post_data)
-        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_VERSION_EMPTY, status=strings.REJECTED_405)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_VERSION_EMPTY, status=strings.REJECTED_406)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_insert_service_component_implementation_details_invalid_comp_uuid(self):
@@ -323,7 +323,7 @@ class ComponentTestCase(TestCase):
             "component_implementation_uuid": "e01dcee5-eb04-4147-9bb0-54ed81567494"
         }
         response = self.client_stub.post("/api/v1/component/service_component_implementation_detail/add", post_data)
-        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_INVALID_UUID, status=strings.REJECTED_405)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_INVALID_UUID, status=strings.REJECTED_406)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_insert_service_component_implementation_details_non_existing_comp_uuid(self):
@@ -345,7 +345,7 @@ class ComponentTestCase(TestCase):
             "component_implementation_uuid": "e01dcee5-eb04-4147-9bb0-54ed8156749G"
         }
         response = self.client_stub.post("/api/v1/component/service_component_implementation_detail/add", post_data)
-        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_INVALID_UUID, status=strings.REJECTED_405)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_INVALID_UUID, status=strings.REJECTED_406)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_insert_service_component_implementation_details_non_existing_comp_imp_uuid(self):
@@ -368,7 +368,7 @@ class ComponentTestCase(TestCase):
             "component_implementation_uuid": "e01dcee5-eb04-4147-9bb0-54ed81567494"
         }
         response = self.client_stub.post("/api/v1/component/service_component_implementation_detail/add", post_data)
-        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_INVALID_UUID, status=strings.REJECTED_405)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_INVALID_UUID, status=strings.REJECTED_406)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_insert_service_component_implementation_details_existing_uuid(self):
@@ -422,7 +422,7 @@ class ComponentTestCase(TestCase):
         }
 
         response = self.client_stub.post("/api/v1/component/service_component_implementation_detail/edit", post_data)
-        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UUID_NOT_PROVIDED, status=strings.REJECTED_405)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UUID_NOT_PROVIDED, status=strings.REJECTED_406)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_edit_service_component_implementation_details(self):
@@ -447,7 +447,7 @@ class ComponentTestCase(TestCase):
     def test_insert_service_details_component_no_uuid(self):
         post_data = {}
         response = self.client_stub.post("/api/v1/component/service_details_component_implementation_details/add", post_data)
-        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UUID_NOT_PROVIDED, status=strings.REJECTED_405)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UUID_NOT_PROVIDED, status=strings.REJECTED_406)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_insert_service_details_component_invalid_uuid(self):
@@ -455,7 +455,7 @@ class ComponentTestCase(TestCase):
             "component_implementation_details_uuid": "af2f812b-eda6-497a-9d22-534f885b703G"
         }
         response = self.client_stub.post("/api/v1/component/service_details_component_implementation_details/add", post_data)
-        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_INVALID_UUID, status=strings.REJECTED_405)
+        expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_INVALID_UUID, status=strings.REJECTED_406)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_insert_service_details_component_non_existing_comp_imp_det(self):
@@ -475,7 +475,7 @@ class ComponentTestCase(TestCase):
             "component_implementation_details_uuid": "a1b4569c-b7eb-4881-9f93-2e37ee662c28"
         }
         response = self.client_stub.post("/api/v1/component/service_details_component_implementation_details/add", post_data)
-        expected_response = helper.get_error_response(strings.SERVICE_DETAILS_COMPONENT_EXISTS, strings.REJECTED_405)
+        expected_response = helper.get_error_response(strings.SERVICE_DETAILS_COMPONENT_EXISTS, strings.REJECTED_406)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_insert_service_details_component(self):

@@ -110,7 +110,7 @@ class OwnerTestCase(TestCase):
         }
 
         response = self.client_stub.post("/api/v1/owner/institution/edit", post_data)
-        expected_response = helper.get_error_response(strings.INSTITUTION_UUID_NOT_PROVIDED, strings.REJECTED_405)
+        expected_response = helper.get_error_response(strings.INSTITUTION_UUID_NOT_PROVIDED, strings.REJECTED_406)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_edit_institution(self):
@@ -199,7 +199,7 @@ class OwnerTestCase(TestCase):
         }
 
         response = self.client_stub.post("/api/v1/owner/contact_information/edit", post_data)
-        expected_response = helper.get_error_response(strings.SERVICE_CONTACT_INFORMATION_UUID_NOT_PROVIDED, strings.REJECTED_405)
+        expected_response = helper.get_error_response(strings.SERVICE_CONTACT_INFORMATION_UUID_NOT_PROVIDED, strings.REJECTED_406)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_edit_contact(self):
@@ -297,7 +297,7 @@ class OwnerTestCase(TestCase):
         }
 
         response = self.client_stub.post("/api/v1/owner/edit", post_data)
-        expected_response = helper.get_error_response(strings.SERVICE_OWNER_UUID_NOT_PROVIDED, strings.REJECTED_405)
+        expected_response = helper.get_error_response(strings.SERVICE_OWNER_UUID_NOT_PROVIDED, strings.REJECTED_406)
         self.assertJSONEqual(json.dumps(expected_response), response.content)
 
     def test_edit_owner(self):
