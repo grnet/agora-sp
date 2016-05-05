@@ -28,6 +28,7 @@ urlpatterns = [
     url(r'^api/v1/owner/?', include('owner.insert_urls')),
     url(r'^api/v1/options/?', include('options.insert_urls')),
     url(r'^api/v1/component/?', include('component.insert_urls')),
+    url(r'^api/v1/accounts/?', include('accounts.urls')),
     url(r'^accounts/?', include('django.contrib.auth.urls'))
 ]
 

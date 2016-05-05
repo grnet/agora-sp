@@ -18,26 +18,42 @@ class ServiceOption(models.Model):
 
     def as_json(self, service_name, service_details_version):
         sla = SLA.objects.filter(service_option_id=self.pk)
-        if len(sla) == 1:
+
+        if len(sla) > 0:
             sla_url = helper.current_site_url()+"/v1/portfolio/services/" + service_name.replace(" ", "_") + "/service_details/" + service_details_version \
                       + "/service_options/sla/" + str(sla[0].pk)
+            return {
+                "uuid": self.id,
+                "name": self.name,
+                "description": self.description,
+                "pricing": self.pricing,
+                "SLA": {
+                    "name": sla[0].name,
+                    "link": {
+                        "href": sla_url,
+                        "meta": {
+                            "desc": "A link to the SLA for this service."
+                        }
+                    }}
+            }
         else:
             sla_url = ""
+            return {
+                "uuid": self.id,
+                "name": self.name,
+                "description": self.description,
+                "pricing": self.pricing,
+                "SLA": {
+                    "name": "",
+                    "link": {
+                        "href": sla_url,
+                        "meta": {
+                            "desc": "A link to the SLA for this service."
+                        }
+                    }}
+            }
 
-        return {
-            "uuid": self.id,
-            "name": self.name,
-            "description": self.description,
-            "pricing": self.pricing,
-            "SLA": {
-                "name": sla.name,
-                "link": {
-                    "href": sla_url,
-                    "meta": {
-                        "desc": "A link to the SLA for this service."
-                    }
-                }}
-        }
+
 
     def save(self, *args, **kwargs):
         if not self.description:
@@ -66,6 +82,13 @@ class SLA(models.Model):
                 "count": len(parameters),
                 "parameters": parameters
             }
+        }
+
+    def as_short(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "service_option": self.service_option_id.id
         }
 
 

@@ -1,5 +1,4 @@
 import json
-
 from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from service.models import Service
@@ -9,16 +8,18 @@ import re
 def check_service_ownership_or_superuser(func):
 
     def check_and_call(request, *args, **kwargs):
+
         user = request.user
+
         print user.id
+
+        params = request.POST.copy()
 
         if user.is_superuser:
             return func(request, *args, **kwargs)
 
-        if hasattr(kwargs, "service_name_or_uuid"):
-            service_name_or_uuid = kwargs["service_name_or_uuid"]
-        else:
-            service_name_or_uuid = kwargs["search_type"]
+        if "uuid" in params:
+            service_name_or_uuid = params.get('uuid')
 
         prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
@@ -45,6 +46,7 @@ def check_service_ownership_or_superuser(func):
             return func(request, *args, **kwargs)
         else:
             response = helper.get_error_response(strings.OPERATION_NOT_PERMITTED, strings.FORBIDDEN_403)
-            return JsonResponse(response)
+
+            return JsonResponse({"resp": response, "user": user.is_authenticated()})
 
     return check_and_call

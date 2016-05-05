@@ -7,6 +7,7 @@ from owner.models import ServiceOwner, ContactInformation
 from rest_framework.decorators import *
 from common import helper, strings
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from common.decorators import check_service_ownership_or_superuser
 from django.db import IntegrityError
 import re
@@ -313,7 +314,7 @@ def get_service_institution(request, service_name_or_uuid):
     return JsonResponse(response, status=int(response["status"][:3]))
 
 # Returns the selected services dependencies
-# @check_service_ownership_or_superuser
+
 @api_view(['GET'])
 def get_service_dependencies(request,  service_name_or_uuid):
     """
@@ -353,6 +354,8 @@ def get_service_dependencies(request,  service_name_or_uuid):
     return JsonResponse(response, status=int(response["status"][:3]))
 
 # Updates service
+# @csrf_exempt
+# @check_service_ownership_or_superuser
 @api_view(['POST'])
 def edit_service(request):
     """

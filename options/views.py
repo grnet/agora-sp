@@ -364,7 +364,7 @@ def insert_SLA(request):
         SLA.id = uuid
 
     SLA.save()
-    data = SLA.as_json()
+    data = SLA.as_short()
     msg = strings.SLA_INSERTED if op_type == "add" else strings.SLA_UPDATED
     status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
     response = helper.get_response_info(msg, data, status=status)
@@ -454,7 +454,7 @@ def insert_parameter(request):
         parameter.id = uuid
 
     parameter.save()
-    data = parameter.as_json()
+    data = parameter.as_short()
     msg = strings.PARAMETER_INSERTED if op_type == "add" else strings.PARAMETER_UPDATED
     status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
     response = helper.get_response_info(msg, data, status=status)

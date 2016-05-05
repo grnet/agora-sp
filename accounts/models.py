@@ -42,7 +42,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     """
     A fully featured User model with admin-compliant permissions
 
-    Email and password are required. Other fields are optional.
     """
     username = models.CharField(('username'), max_length=30, unique=True, default=None)
     email = models.EmailField(('email address'), max_length=254, unique=True)
