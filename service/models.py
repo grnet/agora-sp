@@ -449,7 +449,7 @@ class ServiceDetails(models.Model):
                 }}),
             ("cost_to_run", self.cost_to_run),
             ("cost_to_build", self.cost_to_build),
-            ("service_type", "Catalogue" if self.is_in_catalogue else "Portfolio")
+            ("service_details_type", "Catalogue" if self.is_in_catalogue else "Portfolio")
         ])
 
 
