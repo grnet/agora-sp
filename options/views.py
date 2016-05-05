@@ -221,12 +221,12 @@ def insert_service_option(request):
 
     if "name" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_NAME_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
     elif "name" in params:
         name = params.get('name')
         if name is None or len(name) == 0:
             return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_NAME_EMPTY,
-                                                          status=strings.REJECTED_405), status=405)
+                                                          status=strings.REJECTED_406), status=406)
     elif op_type == "edit":
         name = None
 
@@ -237,7 +237,7 @@ def insert_service_option(request):
 
         if result is None:
             return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                          status=strings.REJECTED_405), status=405)
+                                                          status=strings.REJECTED_406), status=406)
 
         try:
             service_option = options_models.ServiceOption.objects.get(id=uuid)
@@ -251,7 +251,7 @@ def insert_service_option(request):
                                                               status=strings.NOT_FOUND_404), status=404)
     elif op_type == "edit":
         return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
     elif op_type == "add":
         service_option = options_models.ServiceOption()
 
@@ -300,30 +300,30 @@ def insert_SLA(request):
 
     if "name" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.SLA_NAME_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
     elif "name" in params:
         name = params.get('name')
         if name is None or len(name) == 0:
-            return JsonResponse(helper.get_error_response(strings.SLA_NAME_EMPTY, status=strings.REJECTED_405),
-                                status=405)
+            return JsonResponse(helper.get_error_response(strings.SLA_NAME_EMPTY, status=strings.REJECTED_406),
+                                status=406)
     elif op_type == "edit":
         name = None
 
     if "service_option_uuid" not in params:
         return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
     service_option_uuid = params.get('service_option_uuid')
 
     if service_option_uuid is None or len(service_option_uuid) == 0:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_UUID_EMPTY, status=strings.REJECTED_405),
-                            status=405)
+        return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_UUID_EMPTY, status=strings.REJECTED_406),
+                            status=406)
 
 
     result = prog.match(service_option_uuid)
 
     if result is None:
         return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     try:
         service_option = options_models.ServiceOption.objects.get(id=service_option_uuid)
@@ -338,7 +338,7 @@ def insert_SLA(request):
 
         if result is None:
             return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                          status=strings.REJECTED_405), status=405)
+                                                          status=strings.REJECTED_406), status=406)
 
         try:
             SLA = options_models.SLA.objects.get(id=uuid)
@@ -352,7 +352,7 @@ def insert_SLA(request):
                                     status=404)
     elif op_type == "edit":
         return JsonResponse(helper.get_error_response(strings.SLA_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
     elif op_type == "add":
         SLA = options_models.SLA()
 
@@ -398,23 +398,23 @@ def insert_parameter(request):
 
     if "name" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.PARAMETER_NAME_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
     elif "name" in params:
         name = params.get('name')
         if name is None or len(name) == 0:
-            return JsonResponse(helper.get_error_response(strings.PARAMETER_NAME_EMPTY, status=strings.REJECTED_405),
-                                status=405)
+            return JsonResponse(helper.get_error_response(strings.PARAMETER_NAME_EMPTY, status=strings.REJECTED_406),
+                                status=406)
     elif op_type == "edit":
         name = None
 
     if "type" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.PARAMETER_TYPE_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
     elif "type" in params:
         type = params.get('type')
         if type is None or len(type) == 0:
-            return JsonResponse(helper.get_error_response(strings.PARAMETER_TYPE_EMPTY, status=strings.REJECTED_405),
-                                status=405)
+            return JsonResponse(helper.get_error_response(strings.PARAMETER_TYPE_EMPTY, status=strings.REJECTED_406),
+                                status=406)
     elif op_type == "edit":
         type = None
 
@@ -425,7 +425,7 @@ def insert_parameter(request):
 
         if result is None:
             return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                          status=strings.REJECTED_405), status=405)
+                                                          status=strings.REJECTED_406), status=406)
 
         try:
             parameter = options_models.Parameter.objects.get(id=uuid)
@@ -439,7 +439,7 @@ def insert_parameter(request):
                                                               status=strings.NOT_FOUND_404), status=404)
     elif op_type == "edit":
         return JsonResponse(helper.get_error_response(strings.PARAMETER_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
     elif op_type == "add":
         parameter = options_models.Parameter()
 
@@ -488,51 +488,51 @@ def insert_SLA_parameter(request):
 
     if "parameter_uuid" not in params:
         return JsonResponse(helper.get_error_response(strings.PARAMETER_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     if "sla_uuid" not in params:
         return JsonResponse(helper.get_error_response(strings.SLA_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     if "service_option_uuid" not in params:
         return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     parameter_uuid = params.get('parameter_uuid')
     sla_uuid = params.get('sla_uuid')
     service_option_uuid = params.get('service_option_uuid')
 
     if parameter_uuid is None or len(parameter_uuid) == 0:
-        return JsonResponse(helper.get_error_response(strings.PARAMETER_UUID_EMPTY, status=strings.REJECTED_405),
-                            status=405)
+        return JsonResponse(helper.get_error_response(strings.PARAMETER_UUID_EMPTY, status=strings.REJECTED_406),
+                            status=406)
 
 
     if service_option_uuid is None or len(service_option_uuid) == 0:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_UUID_EMPTY, status=strings.REJECTED_405),
-                            status=405)
+        return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_UUID_EMPTY, status=strings.REJECTED_406),
+                            status=406)
 
 
     if sla_uuid is None or len(parameter_uuid) == 0:
-        return JsonResponse(helper.get_error_response(strings.SLA_UUID_EMPTY, status=strings.REJECTED_405), status=405)
+        return JsonResponse(helper.get_error_response(strings.SLA_UUID_EMPTY, status=strings.REJECTED_406), status=406)
 
 
     result = prog.match(parameter_uuid)
 
     if result is None:
         return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     result = prog.match(service_option_uuid)
 
     if result is None:
         return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     result = prog.match(sla_uuid)
 
     if result is None:
         return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     try:
         service_option = options_models.ServiceOption.objects.get(id=service_option_uuid)
@@ -566,7 +566,7 @@ def insert_SLA_parameter(request):
 
         if result is None:
             return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                          status=strings.REJECTED_405), status=405)
+                                                          status=strings.REJECTED_406), status=406)
 
         try:
             sla_parameter = options_models.SLAParameter.objects.get(id=uuid)
@@ -580,7 +580,7 @@ def insert_SLA_parameter(request):
                                                               status=strings.NOT_FOUND_404), status=404)
     elif op_type == "edit":
         return JsonResponse(helper.get_error_response(strings.SLA_PARAMETER_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
     elif op_type == "add":
         sla_parameter = options_models.SLAParameter()
 
@@ -611,27 +611,27 @@ def edit_service_details_option(request):
 
     if "service_uuid" not in params:
         return JsonResponse(helper.get_error_response(strings.SERVICE_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     if "service_details_uuid" not in params:
         return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     if "service_options_uuid" not in params:
         return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     if "new_service_uuid" not in params:
         return JsonResponse(helper.get_error_response(strings.NEW_SERVICE_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     if "new_service_details_uuid" not in params:
         return JsonResponse(helper.get_error_response(strings.NEW_SERVICE_DETAILS_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     if "new_service_options_uuid" not in params:
         return JsonResponse(helper.get_error_response(strings.NEW_SERVICE_OPTION_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     service_id = params.get('service_uuid')
     service_details_id = params.get('service_details_uuid')
@@ -646,37 +646,37 @@ def edit_service_details_option(request):
 
     if result is None:
         return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     result = prog.match(service_details_id)
 
     if result is None:
         return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     result = prog.match(service_options_id)
 
     if result is None:
         return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     result = prog.match(new_service_id)
 
     if result is None:
         return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     result = prog.match(new_service_details_id)
 
     if result is None:
         return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     result = prog.match(new_service_options_id)
 
     if result is None:
         return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     try:
         service = service_models.Service.objects.get(id=service_id)
@@ -711,7 +711,7 @@ def edit_service_details_option(request):
                                                           status=strings.NOT_FOUND_404), status=404)
     except IntegrityError:
         return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_OPTIONS_EXISTS,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     data = service_details_option.as_json()
     msg = strings.SERVICE_DETAILS_OPTION_UPDATED
@@ -737,52 +737,52 @@ def insert_service_details_option(request):
 
     if "service_uuid" not in params:
         return JsonResponse(helper.get_error_response(strings.SERVICE_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     if "service_details_uuid" not in params:
         return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     if "service_options_uuid" not in params:
         return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     service_id = params.get('service_uuid')
     service_details_id = params.get('service_details_uuid')
     service_options_id = params.get('service_options_uuid')
 
     if service_id is None or len(service_id) == 0:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_UUID_EMPTY, status=strings.REJECTED_405),
-                            status=405)
+        return JsonResponse(helper.get_error_response(strings.SERVICE_UUID_EMPTY, status=strings.REJECTED_406),
+                            status=406)
 
 
     if service_details_id is None or len(service_details_id) == 0:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_UUID_EMPTY, status=strings.REJECTED_405),
-                            status=405)
+        return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_UUID_EMPTY, status=strings.REJECTED_406),
+                            status=406)
 
 
     if service_options_id is None or len(service_options_id) == 0:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_UUID_EMPTY, status=strings.REJECTED_405),
-                            status=405)
+        return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_UUID_EMPTY, status=strings.REJECTED_406),
+                            status=406)
 
 
     result = prog.match(service_id)
 
     if result is None:
         return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     result = prog.match(service_details_id)
 
     if result is None:
         return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     result = prog.match(service_options_id)
 
     if result is None:
         return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                      status=strings.REJECTED_405), status=405)
+                                                      status=strings.REJECTED_406), status=406)
 
     try:
         service = service_models.Service.objects.get(id=service_id)

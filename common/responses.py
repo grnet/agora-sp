@@ -188,7 +188,7 @@ STATUS_CODES = {
     NO_CONTENT_204: "204 No Content",
     CREATED_201: "201 Created",
     FORBIDDEN_403: "403 Forbidden",
-    REJECTED_405: "405 Rejected",
+    REJECTED_406: "405 Not Acceptable",
     CONFLICT_409: "409 Conflict",
     UPDATED_202: "202 Updated"
 }
