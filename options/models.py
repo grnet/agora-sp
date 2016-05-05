@@ -29,8 +29,8 @@ class ServiceOption(models.Model):
                 "pricing": self.pricing,
                 "SLA": {
                     "name": sla[0].name,
-                    "link": {
-                        "href": sla_url,
+                    "links": {
+                        "self": sla_url,
                         "meta": {
                             "desc": "A link to the SLA for this service."
                         }

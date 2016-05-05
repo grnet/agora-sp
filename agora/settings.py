@@ -56,7 +56,7 @@ LOGIN_REDIRECT_URL = "/api/v1/portfolio/services/"
 
 PROJECT_APPS = ['component', 'options', 'owner', 'service']
 
-SITE_ID = 3
+SITE_ID = 1
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
@@ -75,8 +75,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-    )
-}
+    ),
+      'EXCEPTION_HANDLER': 'agora.views.custom_exception_handler'}
 
 ROOT_URLCONF = 'agora.urls'
 
