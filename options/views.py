@@ -216,7 +216,7 @@ def insert_service_option(request):
 
     op_type = helper.get_last_url_part(request)
     uuid, name, service_option = None, None, None
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
     if "name" not in params and op_type == "add":
@@ -295,7 +295,7 @@ def insert_SLA(request):
 
     op_type = helper.get_last_url_part(request)
     uuid, name, SLA, service_option = None, None, None, None
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
     if "name" not in params and op_type == "add":
@@ -396,7 +396,7 @@ def insert_parameter(request):
 
     op_type = helper.get_last_url_part(request)
     uuid, name, type, parameter = None, None, None, None
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
     if "name" not in params and op_type == "add":
@@ -485,7 +485,7 @@ def insert_SLA_parameter(request):
     """
 
     op_type = helper.get_last_url_part(request)
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     uuid, sla_parameter = None, None
 
@@ -609,7 +609,7 @@ def edit_service_details_option(request):
     :return:
     """
 
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
     if "service_uuid" not in params:
@@ -731,7 +731,7 @@ def insert_service_details_option(request):
 
     """
 
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
 

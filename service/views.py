@@ -373,9 +373,9 @@ def insert_service(request):
     Inserts a service object
 
     """
-
+    import json
     op_type = helper.get_last_url_part(request)
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     uuid, service, service_owner, service_contact_information, name = None, None, None, None, None
 
@@ -513,7 +513,7 @@ def insert_external_service(request):
     """
 
     op_type = helper.get_last_url_part(request)
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     uuid, name, external_service = None, None, None
 
     if "name" not in params and op_type == "add":
@@ -582,7 +582,7 @@ def insert_service_dependency(request, service_name_or_uuid):
     Inserts a service dependency object
 
     """
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     service, service_dependency, parsed_name, uuid = None, None, None, None
 
@@ -636,7 +636,7 @@ def edit_service_dependency(request, service_name_or_uuid):
     Inserts a service dependency object
 
     """
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     service, service_dependency, parsed_name, uuid = None, None, None, None
 
@@ -723,7 +723,7 @@ def insert_service_details(request, service_name_or_uuid):
     """
 
     op_type = helper.get_last_url_part(request)
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
     service, uuid, parsed_name, manual_uuid, version, service_details = None, None, None, None, None, None
@@ -896,7 +896,7 @@ def insert_external_service_dependency(request, service_name_or_uuid):
     Inserts a external service details object
 
     """
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     service, external_service_dependency, parsed_name, uuid = None, None, None, None
 
@@ -950,7 +950,7 @@ def edit_external_service_dependency(request, service_name_or_uuid):
     Inserts a external service details object
 
     """
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     service, external_service_dependency, parsed_name, uuid = None, None, None, None
 
@@ -1037,7 +1037,7 @@ def insert_user_customer(request, service_name_or_uuid):
     """
 
     op_type = helper.get_last_url_part(request)
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     service, parsed_name, service_uuid, uuid, user_customer, name, role = None, None, None, None, None, None, None
 

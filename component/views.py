@@ -101,7 +101,7 @@ def insert_service_component(request):
     """
 
     op_type = helper.get_last_url_part(request)
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     uuid, name, service_component = None, None, None
 
     if "name" not in params and op_type == "add":
@@ -299,7 +299,7 @@ def insert_service_component_implementation(request):
     """
 
     op_type = helper.get_last_url_part(request)
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     uuid, name, service_component_implementation = None, None, None
 
@@ -496,7 +496,7 @@ def insert_service_component_implementation_details(request):
     """
 
     op_type = helper.get_last_url_part(request)
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     uuid, version, service_component_implementation_details = None, None, None
 
@@ -700,7 +700,7 @@ def edit_service_details_component_implementation_details(request):
     :return: the updated service details component
     """
 
-    comp = request.POST.copy()
+    comp = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     uuid, parsed_name, new_uuid, new_parsed_name = None, None, None, None
 
@@ -824,7 +824,7 @@ def insert_service_details_component_implementation_details(request):
     :return: the inserted service details component
     """
 
-    comp = request.POST.copy()
+    comp = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     uuid, parsed_name = None, None
 
