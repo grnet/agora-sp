@@ -97,18 +97,13 @@ class Service(models.Model):
         for d in dependencies:
             service = Service.objects.get(id=d.id_service_two.pk)
             service_dependencies.append({
-                "uuid": service.id,
-                "name": service.name,
-                "service_link": {
+                "service": {
+                    "uuid": service.id,
                     "name": service.name,
-                    "related": {
-                        "href": helper.current_site_url() + "/v1/portfolio/services/" + str(
+                    "links": {
+                        "self":helper.current_site_url() + "/v1/portfolio/services/" + str(
                             Service.objects.get(pk=d.id_service_two.pk).name)
                     },
-                    "meta": {
-                        "desc": "A list of service dependencies"
-                    }
-
                 }
             })
 
@@ -136,24 +131,18 @@ class Service(models.Model):
             ("description_external", self.description_external),
             ("description_internal", self.description_internal),
             ("service_owner", {
+                "uuid": self.get_service_owner_object().id,
                 "email": self.get_service_owner_object().email,
                 "links": {
-                "related": {
-                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
-                            + "/service_owner",
-                    "meta": {
-                        "desc": "Service owner link"
-                    }
+                "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_"),
+
                 }}
-            }),
+            ),
             ("contact_information", {
                 "email": self.get_service_contact_information_object().email,
                 "url": self.get_service_contact_information_object().url,
-                "related": {
-                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/contact_information",
-                    "meta": {
-                        "desc": "Link contact information about this service"
-                    }
+               "links": {
+                "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/contact_information",
                 }}),
             ("service_area", self.service_area),
             ("user_customers_list", {
@@ -218,24 +207,19 @@ class Service(models.Model):
             ("description_external", self.description_external),
             ("description_internal", self.description_internal),
             ("service_owner", {
+                "uuid": self.get_service_owner_object().id,
                 "email": self.get_service_owner_object().email,
                 "links": {
-                "related": {
-                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
+                "links": {
+                "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
                             + "/service_owner",
-                    "meta": {
-                        "desc": "Service owner link"
-                    }
                 }}
             }),
             ("contact_information", {
                 "email": self.get_service_contact_information_object().email,
                 "url": self.get_service_contact_information_object().url,
-                "related": {
-                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/contact_information",
-                    "meta": {
-                        "desc": "Link contact information about this service"
-                    }
+               "links": {
+                "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/contact_information",
                 }}),
             ("service_area", self.service_area),
             ("user_customers_list", {
@@ -275,11 +259,8 @@ class Service(models.Model):
             ("service_type", self.service_type),
             ("service", {
                 "name": self.name,
-                "link": {
-                    "href": helper.current_site_url() + "/v1/catalogue/services/" + str(self.name).replace(" ", "_"),
-                    "meta": {
-                        "desc": "Catalogue level details about this service."
-                    }
+                "links": {
+                "self": helper.current_site_url() + "/v1/catalogue/services/" + str(self.name).replace(" ", "_"),
                 }}),
             ("service_details_list", {
                 "count": len(service_details),
@@ -349,11 +330,8 @@ class ServiceDetails(models.Model):
                 "status": self.status,
                 "in_catalogue": self.is_in_catalogue,
                 "links": {
-                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name).
+                "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name).
                         replace(" ", "_") + "/service_details/" + self.version,
-                    "meta": {
-                        "desc": "Service details link"
-                    }
                 }
             })
         ])
@@ -459,11 +437,8 @@ class ServiceDetails(models.Model):
                 "status": self.status,
                 "in_catalogue": self.is_in_catalogue,
                 "links": {
-                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name).
+                "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name).
                         replace(" ", "_") + "/service_details/" + self.version,
-                    "meta": {
-                        "desc": "Service details link"
-                    }
                 }
             }})
 

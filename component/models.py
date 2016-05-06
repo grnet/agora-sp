@@ -34,17 +34,14 @@ class ServiceComponent(models.Model):
         service = Service.objects.get(id=service_id)
 
         return {
+            "component_implementation": {
             "uuid": str(self.id),
             "name": self.name,
             "description": self.description,
-            "component_implementation_link": {
-                "related": {
-                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(service.name).replace(" ", "_")
+                "links": {
+                        "self":helper.current_site_url() + "/v1/portfolio/services/" + str(service.name).replace(" ", "_")
                             + "/service_details/" + str(service_details_version) + "/service_components/" + str(self.pk)
                             + "/service_component_implementations",
-                    "meta": {
-                        "desc": "Link to the concrete service component implementations."
-                    }
                 }}
         }
 

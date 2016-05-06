@@ -90,23 +90,22 @@ class ContactInformation(models.Model):
 
     def get_internal(self):
 
-        response = []
+        return {
+            "uuid": self.id,
+            "first_name": self.first_name,
+            "last_name": self.last_name,
+            "email": self.email,
+            "phone": self.phone,
+            "url": self.url,
+        }
 
-        for internal in Internal.objects.filter(id_contact_info=self):
-            response.append({"contact_info_id": internal.id_contact_info.pk})
-
-        return { "count": len(response),
-                 "internal": response }
 
     def get_external(self):
 
-        response = []
-
-        for external in External.objects.filter(id_contact_info=self):
-            response.append({"contact_info_id": external.id_contact_info.pk})
-
-        return { "count": len(response),
-                 "external": response }
+        return {
+            "email": self.email,
+            "url": self.url,
+        }
 
 
     def save(self, *args, **kwargs):
@@ -124,14 +123,8 @@ class ContactInformation(models.Model):
 
     def as_json(self):
         return {
-            "uuid": self.id,
-            "first_name": self.first_name,
-            "last_name": self.last_name,
-            "email": self.email,
-            "phone": self.phone,
-            "url": self.url,
-            "internal_list": self.get_internal(),
-            "external_list": self.get_external()
+            "internal_contact_information": self.get_internal(),
+            "external_contact_information": self.get_external()
         }
 
 

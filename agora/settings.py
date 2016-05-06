@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'secret-key'
 
 # SECURITY WARNING don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'agora-dev.vi-seem.eu', 'agora-dev.aris.grnet.gr' ]
 
@@ -75,8 +75,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
         'rest_framework.authentication.BasicAuthentication',
         'rest_framework.authentication.SessionAuthentication',
-    )
-}
+    ),
+      'EXCEPTION_HANDLER': 'agora.views.custom_exception_handler'}
 
 ROOT_URLCONF = 'agora.urls'
 
