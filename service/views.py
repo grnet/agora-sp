@@ -390,36 +390,40 @@ def insert_service(request):
     elif op_type == "edit":
         name = None
 
-    if "service_owner_uuid" not in params:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_406), status=406)
+    # if "service_owner_uuid" not in params:
+    #     return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_UUID_NOT_PROVIDED,
+    #                                                   status=strings.REJECTED_406), status=406)
+    #
+    # if "service_contact_information_uuid" not in params:
+    #     return JsonResponse(helper.get_error_response(strings.SERVICE_CONTACT_INFORMATION_UUID_NOT_PROVIDED,
+    #                                                   status=strings.REJECTED_406), status=406)
 
-    if "service_contact_information_uuid" not in params:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_CONTACT_INFORMATION_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_406), status=406)
 
-    service_owner_uuid = params.get('service_owner_uuid')
-    service_contact_information_uuid = params.get('service_contact_information_uuid')
+    if "service_owner_uuid" in params:
+        service_owner_uuid = params.get('service_owner_uuid')
+        result = prog.match(service_owner_uuid)
+        if result is None:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_INVALID_UUID,
+                                                          status=strings.REJECTED_406), status=406)
 
-    result = prog.match(service_owner_uuid)
-    if result is None:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_INVALID_UUID,
-                                                      status=strings.REJECTED_406), status=406)
+        try:
+            service_owner = ServiceOwner.objects.get(id=service_owner_uuid)
+        except ServiceOwner.DoesNotExist:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_NOT_FOUND, status=strings.NOT_FOUND_404),
+                                status=404)
 
-    result = prog.match(service_contact_information_uuid)
-    if result is None:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_CONTACT_INFORMATION_INVALID_UUID,
-                                                      status=strings.REJECTED_406), status=406)
+    if "service_contact_information_uuid" in params:
+        service_contact_information_uuid = params.get('service_contact_information_uuid')
+        result = prog.match(service_contact_information_uuid)
+        if result is None:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_CONTACT_INFORMATION_INVALID_UUID,
+                                                          status=strings.REJECTED_406), status=406)
 
-    try:
-        service_owner = ServiceOwner.objects.get(id=service_owner_uuid)
-        service_contact_information = ContactInformation.objects.get(id=service_contact_information_uuid)
-    except ServiceOwner.DoesNotExist:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_NOT_FOUND, status=strings.NOT_FOUND_404),
-                            status=404)
-    except ContactInformation.DoesNotExist:
-        return JsonResponse(helper.get_error_response(strings.CONTACT_INFORMATION_NOT_FOUND, status=strings.NOT_FOUND_404),
-                            status=404)
+        try:
+            service_contact_information = ContactInformation.objects.get(id=service_contact_information_uuid)
+        except ContactInformation.DoesNotExist:
+            return JsonResponse(helper.get_error_response(strings.CONTACT_INFORMATION_NOT_FOUND, status=strings.NOT_FOUND_404),
+                                status=404)
 
     if "uuid" in params:
         uuid = params.get("uuid")
