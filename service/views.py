@@ -1165,7 +1165,7 @@ def get_service_external_dependencies(request,  service_name_or_uuid):
 
 # Return the selected service contact information
 # @api_view(['GET'])
-@check_service_ownership_or_superuser
+# @check_service_ownership_or_superuser
 def get_service_contact_information(request, service_name_or_uuid):
     """
     Retrieves the contact information for a specific service

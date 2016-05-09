@@ -9,7 +9,6 @@ import re
 
 # Returns a list of the service owners
 @api_view(['GET'])
-
 def get_service_owner(request, service_name_or_uuid):
     """
     Retrieves a the service owner

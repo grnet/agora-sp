@@ -35,6 +35,7 @@ class Institution(models.Model):
             self.department = None
         super(Institution, self).save(*args, **kwargs)
 
+
 class ServiceOwner(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     first_name = models.CharField(max_length=255, default=None, blank=True, null=True)
