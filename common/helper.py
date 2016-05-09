@@ -54,3 +54,6 @@ def get_last_url_part(request):
     url = request.get_full_path()
     url_parts = url.strip("/").split("/")
     return url_parts[-1]
+
+def get_request_data(request):
+    return request.data if request.META['CONTENT_TYPE'] == "application/json" else request.POST.copy()

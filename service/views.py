@@ -373,9 +373,9 @@ def insert_service(request):
     Inserts a service object
 
     """
-
+    import json
     op_type = helper.get_last_url_part(request)
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     uuid, service, service_owner, service_contact_information, name = None, None, None, None, None
 
@@ -390,36 +390,40 @@ def insert_service(request):
     elif op_type == "edit":
         name = None
 
-    if "service_owner_uuid" not in params:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_406), status=406)
+    # if "service_owner_uuid" not in params:
+    #     return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_UUID_NOT_PROVIDED,
+    #                                                   status=strings.REJECTED_406), status=406)
+    #
+    # if "service_contact_information_uuid" not in params:
+    #     return JsonResponse(helper.get_error_response(strings.SERVICE_CONTACT_INFORMATION_UUID_NOT_PROVIDED,
+    #                                                   status=strings.REJECTED_406), status=406)
 
-    if "service_contact_information_uuid" not in params:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_CONTACT_INFORMATION_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_406), status=406)
 
-    service_owner_uuid = params.get('service_owner_uuid')
-    service_contact_information_uuid = params.get('service_contact_information_uuid')
+    if "service_owner_uuid" in params:
+        service_owner_uuid = params.get('service_owner_uuid')
+        result = prog.match(service_owner_uuid)
+        if result is None:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_INVALID_UUID,
+                                                          status=strings.REJECTED_406), status=406)
 
-    result = prog.match(service_owner_uuid)
-    if result is None:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_INVALID_UUID,
-                                                      status=strings.REJECTED_406), status=406)
+        try:
+            service_owner = ServiceOwner.objects.get(id=service_owner_uuid)
+        except ServiceOwner.DoesNotExist:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_NOT_FOUND, status=strings.NOT_FOUND_404),
+                                status=404)
 
-    result = prog.match(service_contact_information_uuid)
-    if result is None:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_CONTACT_INFORMATION_INVALID_UUID,
-                                                      status=strings.REJECTED_406), status=406)
+    if "service_contact_information_uuid" in params:
+        service_contact_information_uuid = params.get('service_contact_information_uuid')
+        result = prog.match(service_contact_information_uuid)
+        if result is None:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_CONTACT_INFORMATION_INVALID_UUID,
+                                                          status=strings.REJECTED_406), status=406)
 
-    try:
-        service_owner = ServiceOwner.objects.get(id=service_owner_uuid)
-        service_contact_information = ContactInformation.objects.get(id=service_contact_information_uuid)
-    except ServiceOwner.DoesNotExist:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_NOT_FOUND, status=strings.NOT_FOUND_404),
-                            status=404)
-    except ContactInformation.DoesNotExist:
-        return JsonResponse(helper.get_error_response(strings.CONTACT_INFORMATION_NOT_FOUND, status=strings.NOT_FOUND_404),
-                            status=404)
+        try:
+            service_contact_information = ContactInformation.objects.get(id=service_contact_information_uuid)
+        except ContactInformation.DoesNotExist:
+            return JsonResponse(helper.get_error_response(strings.CONTACT_INFORMATION_NOT_FOUND, status=strings.NOT_FOUND_404),
+                                status=404)
 
     if "uuid" in params:
         uuid = params.get("uuid")
@@ -509,7 +513,7 @@ def insert_external_service(request):
     """
 
     op_type = helper.get_last_url_part(request)
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     uuid, name, external_service = None, None, None
 
     if "name" not in params and op_type == "add":
@@ -578,7 +582,7 @@ def insert_service_dependency(request, service_name_or_uuid):
     Inserts a service dependency object
 
     """
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     service, service_dependency, parsed_name, uuid = None, None, None, None
 
@@ -632,7 +636,7 @@ def edit_service_dependency(request, service_name_or_uuid):
     Inserts a service dependency object
 
     """
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     service, service_dependency, parsed_name, uuid = None, None, None, None
 
@@ -719,7 +723,7 @@ def insert_service_details(request, service_name_or_uuid):
     """
 
     op_type = helper.get_last_url_part(request)
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
     service, uuid, parsed_name, manual_uuid, version, service_details = None, None, None, None, None, None
@@ -892,7 +896,7 @@ def insert_external_service_dependency(request, service_name_or_uuid):
     Inserts a external service details object
 
     """
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     service, external_service_dependency, parsed_name, uuid = None, None, None, None
 
@@ -946,7 +950,7 @@ def edit_external_service_dependency(request, service_name_or_uuid):
     Inserts a external service details object
 
     """
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     service, external_service_dependency, parsed_name, uuid = None, None, None, None
 
@@ -1033,7 +1037,7 @@ def insert_user_customer(request, service_name_or_uuid):
     """
 
     op_type = helper.get_last_url_part(request)
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     service, parsed_name, service_uuid, uuid, user_customer, name, role = None, None, None, None, None, None, None
 

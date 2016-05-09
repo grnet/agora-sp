@@ -66,7 +66,7 @@ class ServiceOption(models.Model):
 class SLA(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    service_option_id = models.ForeignKey(ServiceOption)
+    service_option_id = models.ForeignKey(ServiceOption, null=True)
     name = models.CharField(max_length=255, default=None, blank=True)
 
     def __unicode__(self):
@@ -96,7 +96,7 @@ class Parameter(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, blank=True)
-    type = models.CharField(max_length=255, default=None, blank=True)
+    type = models.CharField(max_length=255, default=None, blank=True, null=True)
     expression = models.CharField(max_length=255, default=None, blank=True, null=True)
 
     def __unicode__(self):

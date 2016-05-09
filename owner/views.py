@@ -129,7 +129,7 @@ def insert_institution(request):
     """
 
     op_type = helper.get_last_url_part(request)
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     uuid, name, institution = None, None, None
 
@@ -214,7 +214,7 @@ def insert_contact_information(request):
 
     op_type = helper.get_last_url_part(request)
     uuid, contact_information = None, None
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
     condition = False
@@ -245,7 +245,7 @@ def insert_contact_information(request):
         contact_information = models.ContactInformation()
 
 
-    if ("email" not in params) & ("url" not in params):
+    if ("email" not in params) and ("url" not in params):
         return JsonResponse(helper.get_error_response(strings.OWNER_URL_OR_EMAIL_NOT_PROVIDED, status=strings.REJECTED_406))
 
 
@@ -315,32 +315,36 @@ def insert_service_owner(request):
     """
 
     op_type = helper.get_last_url_part(request)
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
-    if "institution_uuid" not in params:
-        return JsonResponse(helper.get_error_response(strings.INSTITUTION_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_406), status=406)
 
     if "email" not in params:
         return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_EMAIL_NOT_PROVIDED,
                                                       status=strings.REJECTED_406))
 
-    institution_uuid, service_owner, uuid = None, None, None
-    institution_uuid = params.get('institution_uuid')
+    institution, institution_uuid, service_owner, uuid = None, None, None, None
 
-    result = prog.match(institution_uuid)
 
-    if result is None:
-        return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                      status=strings.REJECTED_406), status=406)
+    # if "institution_uuid" not in params:
+    #     return JsonResponse(helper.get_error_response(strings.INSTITUTION_UUID_NOT_PROVIDED,
+    #                                                   status=strings.REJECTED_406), status=406)
 
-    try:
-        institution = models.Institution.objects.get(id=institution_uuid)
+    if "institution_uuid" in params:
+        institution_uuid = params.get('institution_uuid')
 
-    except models.Institution.DoesNotExist:
-        return JsonResponse(helper.get_error_response(strings.INSTITUTION_NOT_FOUND, status=strings.NOT_FOUND_404),
-                            status=404)
+        result = prog.match(institution_uuid)
+
+        if result is None:
+            return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
+                                                          status=strings.REJECTED_406), status=406)
+
+        try:
+            institution = models.Institution.objects.get(id=institution_uuid)
+
+        except models.Institution.DoesNotExist:
+            return JsonResponse(helper.get_error_response(strings.INSTITUTION_NOT_FOUND, status=strings.NOT_FOUND_404),
+                                status=404)
 
     if "uuid" in params:
 

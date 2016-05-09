@@ -3,3 +3,4 @@
 agora/*.pyc
 */migrations/*
 test1.json
+logs/debug.log

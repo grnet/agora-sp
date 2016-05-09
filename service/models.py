@@ -20,8 +20,8 @@ class Service(models.Model):
     value_to_customer = models.TextField(default=None, blank=True, null=True)
     risks = models.TextField(default=None, blank=True, null=True)
     competitors = models.TextField(default=None, blank=True, null=True)
-    id_service_owner = models.ForeignKey(ServiceOwner)
-    id_contact_information = models.ForeignKey(ContactInformation)
+    id_service_owner = models.ForeignKey(ServiceOwner, null=True)
+    id_contact_information = models.ForeignKey(ContactInformation, null=True)
 
     def __unicode__(self):
         return str(self.name)
@@ -74,7 +74,7 @@ class Service(models.Model):
         return ServiceOwner.objects.get(id=self.id_service_owner.pk).as_json()
 
     def get_service_owner_object(self):
-        return ServiceOwner.objects.get(id=self.id_service_owner.pk)
+        return ServiceOwner.objects.get(id=self.id_service_owner.pk) if self.id_service_owner is not None else None
 
     def get_service_institution(self):
         return Institution.objects.get(pk=ServiceOwner.objects.
@@ -88,7 +88,8 @@ class Service(models.Model):
         return ContactInformation.objects.get(id=self.id_contact_information.pk).as_json()
 
     def get_service_contact_information_object(self):
-        return ContactInformation.objects.get(id=self.id_contact_information.pk)
+        return ContactInformation.objects.get(id=self.id_contact_information.pk) if self.id_contact_information is \
+                                                                                    not None else None
 
     def get_service_dependencies(self):
         dependencies = Service_DependsOn_Service.objects.filter(id_service_one=self.pk)
@@ -125,25 +126,33 @@ class Service(models.Model):
         users_customers = self.get_user_customers()
         service_details = self.get_service_details(complete=True, url=True)
 
+        contact_information = self.get_service_contact_information_object()
+        if contact_information is not None:
+            contact_information = {
+                "email": self.get_service_contact_information_object().email,
+                "url": self.get_service_contact_information_object().url,
+                "links": {
+                    "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/contact_information",
+                }
+            }
+
+        service_owner = self.get_service_owner_object()
+        if service_owner is not None:
+            service_owner = {
+                "uuid": self.get_service_owner_object().id,
+                "email": self.get_service_owner_object().email,
+                "links": {
+                    "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_"),
+                }
+            }
+
         return OrderedDict([
             ("uuid", self.id),
             ("name", self.name),
             ("description_external", self.description_external),
             ("description_internal", self.description_internal),
-            ("service_owner", {
-                "uuid": self.get_service_owner_object().id,
-                "email": self.get_service_owner_object().email,
-                "links": {
-                "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_"),
-
-                }}
-            ),
-            ("contact_information", {
-                "email": self.get_service_contact_information_object().email,
-                "url": self.get_service_contact_information_object().url,
-               "links": {
-                "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/contact_information",
-                }}),
+            ("service_owner", service_owner),
+            ("contact_information", contact_information),
             ("service_area", self.service_area),
             ("user_customers_list", {
                 "count": len(users_customers),
@@ -201,26 +210,33 @@ class Service(models.Model):
         users_customers = self.get_user_customers()
         service_details = self.get_service_details(complete=True, url=True)
 
+        contact_information = self.get_service_contact_information_object()
+        if contact_information is not None:
+            contact_information = {
+                "email": self.get_service_contact_information_object().email,
+                "url": self.get_service_contact_information_object().url,
+                "links": {
+                    "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/contact_information",
+                }
+            }
+
+        service_owner = self.get_service_owner_object()
+        if service_owner is not None:
+            service_owner = {
+                "uuid": self.get_service_owner_object().id,
+                "email": self.get_service_owner_object().email,
+                "links": {
+                    "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_"),
+                }
+            }
+
         return OrderedDict([
             ("uuid", self.id),
             ("name", self.name),
             ("description_external", self.description_external),
             ("description_internal", self.description_internal),
-            ("service_owner", {
-                "uuid": self.get_service_owner_object().id,
-                "email": self.get_service_owner_object().email,
-                "links": {
-                "links": {
-                "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
-                            + "/service_owner",
-                }}
-            }),
-            ("contact_information", {
-                "email": self.get_service_contact_information_object().email,
-                "url": self.get_service_contact_information_object().url,
-               "links": {
-                "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/contact_information",
-                }}),
+            ("service_owner", service_owner),
+            ("contact_information", contact_information),
             ("service_area", self.service_area),
             ("user_customers_list", {
                 "count": len(users_customers),
@@ -427,7 +443,7 @@ class ServiceDetails(models.Model):
                 }}),
             ("cost_to_run", self.cost_to_run),
             ("cost_to_build", self.cost_to_build),
-            ("service_type", "Catalogue" if self.is_in_catalogue else "Portfolio")
+            ("service_details_type", "Catalogue" if self.is_in_catalogue else "Portfolio")
         ])
 
 

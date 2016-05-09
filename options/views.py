@@ -216,7 +216,7 @@ def insert_service_option(request):
 
     op_type = helper.get_last_url_part(request)
     uuid, name, service_option = None, None, None
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
     if "name" not in params and op_type == "add":
@@ -294,8 +294,8 @@ def insert_SLA(request):
     """
 
     op_type = helper.get_last_url_part(request)
-    uuid, name, SLA = None, None, None
-    params = request.POST.copy()
+    uuid, name, SLA, service_option = None, None, None, None
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
     if "name" not in params and op_type == "add":
@@ -309,27 +309,30 @@ def insert_SLA(request):
     elif op_type == "edit":
         name = None
 
-    if "service_option_uuid" not in params:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_UUID_NOT_PROVIDED,
-                                                      status=strings.REJECTED_406), status=406)
-    service_option_uuid = params.get('service_option_uuid')
-
-    if service_option_uuid is None or len(service_option_uuid) == 0:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_UUID_EMPTY, status=strings.REJECTED_406),
-                            status=406)
+    # if "service_option_uuid" not in params:
+    #     return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_UUID_NOT_PROVIDED,
+    #                                                   status=strings.REJECTED_406), status=406)
 
 
-    result = prog.match(service_option_uuid)
+    if "service_option_uuid" in params:
+        service_option_uuid = params.get('service_option_uuid')
 
-    if result is None:
-        return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
-                                                      status=strings.REJECTED_406), status=406)
+        if service_option_uuid is None or len(service_option_uuid) == 0:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_UUID_EMPTY, status=strings.REJECTED_406),
+                                status=406)
 
-    try:
-        service_option = options_models.ServiceOption.objects.get(id=service_option_uuid)
-    except options_models.ServiceOption.DoesNotExist:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_NOT_FOUND,
-                                                      status=strings.NOT_FOUND_404), status=404)
+
+        result = prog.match(service_option_uuid)
+
+        if result is None:
+            return JsonResponse(helper.get_error_response(strings.INVALID_UUID,
+                                                          status=strings.REJECTED_406), status=406)
+
+        try:
+            service_option = options_models.ServiceOption.objects.get(id=service_option_uuid)
+        except options_models.ServiceOption.DoesNotExist:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_NOT_FOUND,
+                                                          status=strings.NOT_FOUND_404), status=404)
 
     if "uuid" in params:
 
@@ -393,7 +396,7 @@ def insert_parameter(request):
 
     op_type = helper.get_last_url_part(request)
     uuid, name, type, parameter = None, None, None, None
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
     if "name" not in params and op_type == "add":
@@ -407,16 +410,16 @@ def insert_parameter(request):
     elif op_type == "edit":
         name = None
 
-    if "type" not in params and op_type == "add":
-        return JsonResponse(helper.get_error_response(strings.PARAMETER_TYPE_NOT_PROVIDED,
-                                                      status=strings.REJECTED_406), status=406)
-    elif "type" in params:
-        type = params.get('type')
-        if type is None or len(type) == 0:
-            return JsonResponse(helper.get_error_response(strings.PARAMETER_TYPE_EMPTY, status=strings.REJECTED_406),
-                                status=406)
-    elif op_type == "edit":
-        type = None
+    # if "type" not in params and op_type == "add":
+    #     return JsonResponse(helper.get_error_response(strings.PARAMETER_TYPE_NOT_PROVIDED,
+    #                                                   status=strings.REJECTED_406), status=406)
+    # elif "type" in params:
+    #     type = params.get('type')
+    #     if type is None or len(type) == 0:
+    #         return JsonResponse(helper.get_error_response(strings.PARAMETER_TYPE_EMPTY, status=strings.REJECTED_406),
+    #                             status=406)
+    # elif op_type == "edit":
+    #     type = None
 
     if "uuid" in params:
 
@@ -445,8 +448,8 @@ def insert_parameter(request):
 
     if name is not None:
         parameter.name = name
-    if type is not None:
-        parameter.type = type
+    if "type" in params:
+        parameter.type = params.get('type')
     if "expression" in params:
         parameter.expression = parameter.get('expression')
 
@@ -482,7 +485,7 @@ def insert_SLA_parameter(request):
     """
 
     op_type = helper.get_last_url_part(request)
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     uuid, sla_parameter = None, None
 
@@ -606,7 +609,7 @@ def edit_service_details_option(request):
     :return:
     """
 
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
     if "service_uuid" not in params:
@@ -728,7 +731,7 @@ def insert_service_details_option(request):
 
     """
 
-    params = request.POST.copy()
+    params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
 

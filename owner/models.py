@@ -42,7 +42,7 @@ class ServiceOwner(models.Model):
     last_name = models.CharField(max_length=255, default=None, blank=True, null=True)
     email = models.EmailField(default=None, blank=True)
     phone = models.CharField(max_length=255, default=None, blank=True, null=True)
-    id_service_owner = models.ForeignKey(Institution)
+    id_service_owner = models.ForeignKey(Institution, null=True)
 
     id_account = models.ForeignKey(CustomUser, null=True, blank=True, default=None)
 
@@ -71,7 +71,7 @@ class ServiceOwner(models.Model):
             "last_name": self.last_name,
             "email": self.email,
             "phone": self.phone,
-            "institution": self.id_service_owner.as_json(),
+            "institution": self.id_service_owner.as_json() if self.id_service_owner is not None else None,
             "account_id": self.id_account_id
         }
 
