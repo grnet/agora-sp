@@ -110,12 +110,10 @@ class Parameter(models.Model):
             "expression": self.expression,
             "SLA_parameter": {
                 "name": self.name,
-                "link": {
-                    "href": helper.current_site_url() + "/v1/portfolio/services/" + service_name.replace(" ", "_") + "/service_details/" + service_details_version
+                "links": {
+                    "self": helper.current_site_url() + "/v1/portfolio/services/" + service_name.replace(" ", "_") + "/service_details/" + service_details_version
                    + "/service_options/sla/" + str(sla_id) + "/sla_parameter/" + str(self.pk) + "/parameter",
-                    "meta": {
-                            "desc": "A link to the SLA parameters."
-                }}
+                }
         }}
 
     def as_short(self):
