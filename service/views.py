@@ -486,7 +486,12 @@ def insert_service(request):
     if uuid is not None:
         service.id = uuid
 
-    service.save()
+    try:
+        service.save()
+    except IntegrityError:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_NAME_EXISTS, status=strings.REJECTED_406),
+                            status=406)
+
     data = service.as_portfolio()
     msg = strings.SERVICE_INSERTED if op_type == "add" else strings.SERVICE_UPDATED
     status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
@@ -568,7 +573,13 @@ def insert_external_service(request):
     if uuid is not None:
         external_service.id = uuid
 
-    external_service.save()
+
+    try:
+        external_service.save()
+    except IntegrityError:
+        return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_NAME_EXISTS, status=strings.REJECTED_406),
+                            status=406)
+
     data = external_service.as_json()
     msg = strings.EXTERNAL_SERVICE_INSERTED if op_type == "add" else strings.EXTERNAL_SERVICE_UPDATED
     status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
@@ -881,7 +892,13 @@ def insert_service_details(request, service_name_or_uuid):
     if manual_uuid is not None:
         service_details.id = manual_uuid
 
-    service_details.save()
+
+    try:
+        service_details.save()
+    except IntegrityError:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_VERSION_EXISTS, status=strings.REJECTED_406),
+                            status=406)
+
     data = service_details.as_json()
     msg = strings.SERVICE_DETAILS_INSERTED if op_type == "add" else strings.SERVICE_DETAILS_UPDATED
     status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202

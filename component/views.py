@@ -153,7 +153,12 @@ def insert_service_component(request):
         service_component.description = params.get('description')
     if uuid is not None:
         service_component.id = uuid
-    service_component.save()
+
+    try:
+        service_component.save()
+    except IntegrityError:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_NAME_EXISTS,
+                                                      status=strings.REJECTED_406), status=406)
 
     data = service_component.as_json()
     msg = strings.SERVICE_COMPONENT_INSERTED if op_type == "add" else strings.SERVICE_COMPONENT_UPDATED
@@ -368,7 +373,12 @@ def insert_service_component_implementation(request):
     service_component_implementation.component_id = service_component
     if uuid is not None:
         service_component_implementation.id = uuid
-    service_component_implementation.save()
+
+    try:
+        service_component_implementation.save()
+    except IntegrityError:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_NAME_EXISTS,
+                                                      status=strings.REJECTED_406), status=406)
 
     data = service_component_implementation.as_json()
     msg = strings.SERVICE_COMPONENT_IMPLEMENTATION_INSERTED if op_type == "add" else \
@@ -587,7 +597,12 @@ def insert_service_component_implementation_details(request):
     if uuid is not None:
         service_component_implementation_details.id = uuid
 
-    service_component_implementation_details.save()
+    try:
+        service_component_implementation_details.save()
+    except IntegrityError:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_NAME_EXISTS,
+                                                      status=strings.REJECTED_406), status=406)
+
     data = service_component_implementation_details.as_json()
     msg = strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_INSERTED if op_type == "add" else \
         strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UPDATED

@@ -10,7 +10,7 @@ from collections import OrderedDict
 class Service(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
-    name = models.CharField(max_length=255, default=None, blank=True)
+    name = models.CharField(max_length=255, default=None, blank=True, unique=True)
     description_external = models.TextField(default=None, blank=True, null=True)
     description_internal = models.TextField(default=None, blank=True, null=True)
     service_area = models.CharField(max_length=255, default=None, blank=True, null=True)
@@ -285,6 +285,9 @@ class Service(models.Model):
 
 class ServiceDetails(models.Model):
 
+    class Meta:
+        unique_together = (("id_service", "version"))
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
     id_service = models.ForeignKey(Service)
     version = models.CharField(max_length=255, default=None, blank=True)
@@ -468,7 +471,7 @@ class ServiceDetails(models.Model):
 
 class ExternalService(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255, default=None, blank=True)
+    name = models.CharField(max_length=255, default=None, blank=True, unique=True)
     description = models.TextField(default=None, blank=True, null=True)
     service = models.CharField(max_length=255, default=None, blank=True, null=True)
     details = models.CharField(max_length=255, default=None, blank=True, null=True)

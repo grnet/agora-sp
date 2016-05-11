@@ -5,6 +5,7 @@ from rest_framework.decorators import *
 from common import helper, strings
 from django.contrib.auth.decorators import login_required
 import re
+from django.db import IntegrityError
 
 
 # Returns a list of the service owners
@@ -181,7 +182,11 @@ def insert_institution(request):
     if uuid is not None:
         institution.id = uuid
 
-    institution.save()
+    try:
+        institution.save()
+    except IntegrityError:
+        return JsonResponse(helper.get_error_response(strings.INSTITUTION_NAME_EXISTS, status=strings.REJECTED_406),
+                            status=406)
 
     data = institution.as_json()
 
@@ -400,8 +405,12 @@ def insert_service_owner(request):
 
     if uuid is not None:
         service_owner.id = uuid
+    try:
+        service_owner.save()
+    except IntegrityError:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_EMAIL_EXISTS, status=strings.REJECTED_406),
+                            status=406)
 
-    service_owner.save()
     data = service_owner.as_json()
     msg = strings.SERVICE_OWNER_INSERTED if op_type == "add" else strings.SERVICE_OWNER_UPDATED
     status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202

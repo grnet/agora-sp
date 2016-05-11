@@ -10,7 +10,7 @@ from collections import OrderedDict
 class ServiceOption(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255, default=None, blank=True)
+    name = models.CharField(max_length=255, default=None, blank=True, unique=True)
     description = models.TextField(default=None, blank=True, null=True)
     pricing = models.CharField(max_length=255, default=None, blank=True, null=True)
 
@@ -70,7 +70,7 @@ class SLA(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     service_option_id = models.ForeignKey(ServiceOption, null=True)
-    name = models.CharField(max_length=255, default=None, blank=True)
+    name = models.CharField(max_length=255, default=None, blank=True, unique=True)
 
     def __unicode__(self):
         return str(self.name)
@@ -98,7 +98,7 @@ class SLA(models.Model):
 class Parameter(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255, default=None, blank=True)
+    name = models.CharField(max_length=255, default=None, blank=True, unique=True)
     type = models.CharField(max_length=255, default=None, blank=True, null=True)
     expression = models.CharField(max_length=255, default=None, blank=True, null=True)
 

@@ -265,7 +265,12 @@ def insert_service_option(request):
     if uuid is not None:
         service_option.id = uuid
 
-    service_option.save()
+    try:
+        service_option.save()
+    except IntegrityError:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_NAME_EXISTS, status=strings.REJECTED_406),
+                            status=406)
+
     data = service_option.as_json()
     msg = strings.SERVICE_OPTION_INSERTED if op_type == "add" else strings.SERVICE_OPTION_UPDATED
     status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
@@ -366,7 +371,12 @@ def insert_SLA(request):
     if uuid is not None:
         SLA.id = uuid
 
-    SLA.save()
+    try:
+        SLA.save()
+    except IntegrityError:
+        return JsonResponse(helper.get_error_response(strings.SLA_NAME_EXISTS, status=strings.REJECTED_406),
+                            status=406)
+
     data = SLA.as_short()
     msg = strings.SLA_INSERTED if op_type == "add" else strings.SLA_UPDATED
     status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
@@ -456,7 +466,14 @@ def insert_parameter(request):
     if uuid is not None:
         parameter.id = uuid
 
-    parameter.save()
+
+    try:
+        parameter.save()
+
+    except IntegrityError:
+        return JsonResponse(helper.get_error_response(strings.PARAMETER_NAME_EXISTS, status=strings.REJECTED_406),
+                            status=406)
+
     data = parameter.as_short()
     msg = strings.PARAMETER_INSERTED if op_type == "add" else strings.PARAMETER_UPDATED
     status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202

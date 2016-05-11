@@ -127,7 +127,17 @@ ERROR_MESSAGES = {
     SERVICE_DETAILS_OPTIONS_EXISTS: "The provided service details are already associated with the provided service options",
     OPERATION_NOT_PERMITTED: "You do not have permissions to perform this task",
     OWNER_URL_OR_EMAIL_NOT_PROVIDED: "Email or url parameter not provided",
-    SERVICE_OWNER_EMAIL_NOT_PROVIDED: "Service Owner email not provided"
+    SERVICE_OWNER_EMAIL_NOT_PROVIDED: "Service Owner email not provided",
+    SERVICE_NAME_EXISTS: "A service with the provided name already exists",
+    SERVICE_COMPONENT_NAME_EXISTS: "A service component with the provided name already exists",
+    SERVICE_COMPONENT_IMPLEMENTATION_NAME_EXISTS: "A service component implementation with the provided name already exists",
+    SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_NAME_EXISTS: "A service component implementation details with the provided name already exists",
+    INSTITUTION_NAME_EXISTS: "An institution with the provided name already exists",
+    SERVICE_OWNER_EMAIL_EXISTS: "A service owner with the provided email already exists",
+    SERVICE_OPTION_NAME_EXISTS: "A service option with the provided name already exists",
+    SLA_NAME_EXISTS: "A SLA with the provided name already exists",
+    PARAMETER_NAME_EXISTS: "A parameter with the provided name already exists",
+    EXTERNAL_SERVICE_NAME_EXISTS: "An external service with the provided name already exists"
 }
 
 

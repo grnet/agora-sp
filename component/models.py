@@ -10,7 +10,7 @@ from collections import OrderedDict
 class ServiceComponent(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255, default=None, blank=True)
+    name = models.CharField(max_length=255, default=None, blank=True, unique=True)
     description = models.TextField(default=None, blank=True, null=True)
 
     def __unicode__(self):
@@ -54,6 +54,9 @@ class ServiceComponent(models.Model):
 
 
 class ServiceComponentImplementation(models.Model):
+
+    class Meta:
+        unique_together = (('component_id', "name"))
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     component_id = models.ForeignKey(ServiceComponent)
@@ -103,6 +106,9 @@ class ServiceComponentImplementation(models.Model):
         super(ServiceComponentImplementation, self).save(*args, **kwargs)
 
 class ServiceComponentImplementationDetail(models.Model):
+
+    class Meta:
+        unique_together = (('component_implementation_id', 'version'))
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     component_id = models.ForeignKey(ServiceComponent)

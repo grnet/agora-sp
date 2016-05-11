@@ -8,7 +8,7 @@ from collections import OrderedDict
 class Institution(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255, default=None, blank=True)
+    name = models.CharField(max_length=255, default=None, blank=True, unique=True)
     address = models.CharField(max_length=255, default=None, blank=True, null=True)
     country = models.CharField(max_length=255, default=None, blank=True, null=True)
     department = models.CharField(max_length=255, default=None, blank=True, null=True)
@@ -41,7 +41,7 @@ class ServiceOwner(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     first_name = models.CharField(max_length=255, default=None, blank=True, null=True)
     last_name = models.CharField(max_length=255, default=None, blank=True, null=True)
-    email = models.EmailField(default=None, blank=True)
+    email = models.EmailField(default=None, blank=True, unique=True)
     phone = models.CharField(max_length=255, default=None, blank=True, null=True)
     id_service_owner = models.ForeignKey(Institution, null=True)
 
@@ -84,7 +84,7 @@ class ContactInformation(models.Model):
     last_name = models.CharField(max_length=255, default=None, blank=True, null=True)
     email = models.EmailField(default=None, blank=True, null=True)
     phone = models.CharField(max_length=255, default=None, blank=True, null=True)
-    url = models.CharField(max_length=255, default=None, blank=True, null=True)
+    url = models.CharField(max_length=255, default=None, blank=True, null=True, unique=True)
 
     def __unicode__(self):
         return str(self.first_name) + " " + str(self.last_name)
