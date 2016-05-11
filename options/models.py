@@ -5,6 +5,7 @@ from django.db import models
 from service.models import Service, ServiceDetails
 from django.contrib.sites.models import Site
 from common import helper
+from collections import OrderedDict
 
 class ServiceOption(models.Model):
 
@@ -22,12 +23,12 @@ class ServiceOption(models.Model):
         if len(sla) > 0:
             sla_url = helper.current_site_url()+"/v1/portfolio/services/" + service_name.replace(" ", "_") + "/service_details/" + service_details_version \
                       + "/service_options/sla/" + str(sla[0].pk)
-            return {
-                "uuid": self.id,
-                "name": self.name,
-                "description": self.description,
-                "pricing": self.pricing,
-                "SLA": {
+            return OrderedDict([
+                ("uuid", self.id),
+                ("name", self.name),
+                ("description", self.description),
+                ("pricing", self.pricing),
+                ("SLA", {
                     "name": sla[0].name,
                     "links": {
                         "self": sla_url,
@@ -35,15 +36,16 @@ class ServiceOption(models.Model):
                             "desc": "A link to the SLA for this service."
                         }
                     }}
-            }
+                 )
+            ])
         else:
             sla_url = ""
-            return {
-                "uuid": self.id,
-                "name": self.name,
-                "description": self.description,
-                "pricing": self.pricing,
-                "SLA": {
+            return OrderedDict([
+                ("uuid", self.id),
+                ("name", self.name),
+                ("description", self.description),
+                ("pricing", self.pricing),
+                ("SLA", {
                     "name": "",
                     "link": {
                         "href": sla_url,
@@ -51,7 +53,8 @@ class ServiceOption(models.Model):
                             "desc": "A link to the SLA for this service."
                         }
                     }}
-            }
+                )
+            ])
 
 
 
@@ -103,26 +106,27 @@ class Parameter(models.Model):
         return str(self.name)
 
     def as_json(self, service_name, service_details_version, sla_id):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "type": self.type,
-            "expression": self.expression,
-            "SLA_parameter": {
+        return OrderedDict([
+            ("uuid", self.id),
+            ("name", self.name),
+            ("type", self.type),
+            ("expression", self.expression),
+            ("SLA_parameter", {
                 "name": self.name,
                 "links": {
                     "self": helper.current_site_url() + "/v1/portfolio/services/" + service_name.replace(" ", "_") + "/service_details/" + service_details_version
                    + "/service_options/sla/" + str(sla_id) + "/sla_parameter/" + str(self.pk) + "/parameter",
                 }
-        }}
+            })
+        ])
 
     def as_short(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "type": self.type,
-            "expression": self.expression
-        }
+        return OrderedDict([
+            ("uuid", self.id),
+            ("name", self.name),
+            ("type", self.type),
+            ("expression", self.expression)
+        ])
 
     def save(self, *args, **kwargs):
         if not self.expression:

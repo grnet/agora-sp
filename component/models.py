@@ -4,6 +4,7 @@ import uuid
 from django.db import models
 from service.models import Service, ServiceDetails
 from common import helper
+from collections import OrderedDict
 
 
 class ServiceComponent(models.Model):
@@ -19,30 +20,31 @@ class ServiceComponent(models.Model):
         component_implementations = [sci.as_json() for sci in ServiceComponentImplementation.objects
             .filter(component_id=self.pk)]
 
-        return {
-            "uuid": str(self.id),
-            "name": self.name,
-            "description": self.description,
-            "component_implementations_list": {
+        return OrderedDict([
+            ("uuid", str(self.id)),
+            ("name", self.name),
+            ("description", self.description),
+            ("component_implementations_list", {
                 "count": len(component_implementations),
                 "component_implementations": component_implementations
-            }
-        }
+            })
+        ])
 
     def as_short(self, service_id, service_details_version):
 
         service = Service.objects.get(id=service_id)
 
         return {
-            "component_implementation": {
-            "uuid": str(self.id),
-            "name": self.name,
-            "description": self.description,
-                "links": {
-                        "self":helper.current_site_url() + "/v1/portfolio/services/" + str(service.name).replace(" ", "_")
-                            + "/service_details/" + str(service_details_version) + "/service_components/" + str(self.pk)
-                            + "/service_component_implementations",
-                }}
+            "component_implementation": OrderedDict([
+                ("uuid", str(self.id)),
+                ("name", self.name),
+                ("description", self.description),
+                ("links", {
+                    "self":helper.current_site_url() + "/v1/portfolio/services/" + str(service.name).replace(" ", "_")
+                        + "/service_details/" + str(service_details_version) + "/service_components/" + str(self.pk)
+                        + "/service_component_implementations",
+                })
+            ])
         }
 
     def save(self, *args, **kwargs):
@@ -65,25 +67,25 @@ class ServiceComponentImplementation(models.Model):
         component_implementation_details = [scid.as_json() for scid in ServiceComponentImplementationDetail.objects.
                                 filter(component_id=self.component_id.pk, component_implementation_id=self.pk)]
 
-        return {
-            "uuid": str(self.id),
-            "name": self.name,
-            "description": self.description,
-            "component_implementation_details_list": {
+        return OrderedDict([
+            ("uuid", str(self.id)),
+            ("name", self.name),
+            ("description", self.description),
+            ("component_implementation_details_list", {
                 "count": len(component_implementation_details),
                 "component_implementation_details": component_implementation_details
-            }
-        }
+            })
+        ])
 
     def as_short(self, service_id, service_details_version):
 
         service = Service.objects.get(id=service_id)
 
-        return {
-            "uuid": str(self.id),
-            "name": self.name,
-            "description": self.description,
-            "component_implementation_details_link": {
+        return OrderedDict([
+            ("uuid", str(self.id)),
+            ("name", self.name),
+            ("description", self.description),
+            ("component_implementation_details_link", {
                 "related": {
                     "href": helper.current_site_url() + "/v1/portfolio/services/" + str(service.name).replace(" ", "_")
                            + "/service_details/" + str(service_details_version) + "/service_components/"
@@ -91,8 +93,8 @@ class ServiceComponentImplementation(models.Model):
                                                     + "/service_component_implementation_detail",
                     "meta": {
                         "desc": "Link to the concrete service component implementation details."
-                    }}}
-        }
+                    }}})
+        ])
 
 
     def save(self, *args, **kwargs):
@@ -112,11 +114,11 @@ class ServiceComponentImplementationDetail(models.Model):
         return str(self.component_implementation_id.name) + " " +  str(self.version)
 
     def as_json(self):
-        return {
-            "uuid": str(self.id),
-            "version": self.version,
-            "configuration_parameters": self.configuration_parameters
-        }
+        return OrderedDict([
+            ("uuid", str(self.id)),
+            ("version", self.version),
+            ("configuration_parameters", self.configuration_parameters)
+        ])
 
 
     def save(self, *args, **kwargs):

@@ -98,14 +98,14 @@ class Service(models.Model):
         for d in dependencies:
             service = Service.objects.get(id=d.id_service_two.pk)
             service_dependencies.append({
-                "service": {
-                    "uuid": service.id,
-                    "name": service.name,
-                    "links": {
+                "service": OrderedDict([
+                    ("name", service.name),
+                    ("uuid", service.id),
+                    ("links", {
                         "self":helper.current_site_url() + "/v1/portfolio/services/" + str(
                             Service.objects.get(pk=d.id_service_two.pk).name)
-                    },
-                }
+                    }),
+                ])
             })
 
         return service_dependencies
@@ -128,23 +128,22 @@ class Service(models.Model):
 
         contact_information = self.get_service_contact_information_object()
         if contact_information is not None:
-            contact_information = {
-                "email": self.get_service_contact_information_object().email,
-                "url": self.get_service_contact_information_object().url,
-                "links": {
+            contact_information = OrderedDict([
+                ("uuid", contact_information.id),
+                ("links", {
                     "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/contact_information",
-                }
-            }
+                })
+            ])
 
         service_owner = self.get_service_owner_object()
         if service_owner is not None:
-            service_owner = {
-                "uuid": self.get_service_owner_object().id,
-                "email": self.get_service_owner_object().email,
-                "links": {
+            service_owner = OrderedDict([
+                ("uuid", service_owner.id),
+                ("email", service_owner.email),
+                ("links", {
                     "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_"),
-                }
-            }
+                })
+            ])
 
         return OrderedDict([
             ("uuid", self.id),
@@ -212,23 +211,22 @@ class Service(models.Model):
 
         contact_information = self.get_service_contact_information_object()
         if contact_information is not None:
-            contact_information = {
-                "email": self.get_service_contact_information_object().email,
-                "url": self.get_service_contact_information_object().url,
-                "links": {
+            contact_information = OrderedDict([
+                ("uuid", contact_information.id),
+                ("links", {
                     "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/contact_information",
-                }
-            }
+                })
+            ])
 
         service_owner = self.get_service_owner_object()
         if service_owner is not None:
-            service_owner = {
-                "uuid": self.get_service_owner_object().id,
-                "email": self.get_service_owner_object().email,
-                "links": {
+            service_owner = OrderedDict([
+                ("uuid", service_owner.id),
+                ("email", service_owner.email),
+                ("links", {
                     "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_"),
-                }
-            }
+                })
+            ])
 
         return OrderedDict([
             ("uuid", self.id),
@@ -443,31 +441,29 @@ class ServiceDetails(models.Model):
                 }}),
             ("cost_to_run", self.cost_to_run),
             ("cost_to_build", self.cost_to_build),
-            ("service_details_type", "Catalogue" if self.is_in_catalogue else "Portfolio")
+            ("service_details_type", "Catalogue" if self.is_in_catalogue else "Portfolio"),
+            ("in_catalogue", self.is_in_catalogue)
         ])
 
 
         if url:
-            details.update({"service_details": {
-                "version": self.version,
-                "status": self.status,
-                "in_catalogue": self.is_in_catalogue,
+            details.update({"service_details_link": {
                 "links": {
-                "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name).
-                        replace(" ", "_") + "/service_details/" + self.version,
+                    "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name).
+                            replace(" ", "_") + "/service_details/" + self.version,
                 }
             }})
 
         return details
 
     def as_json(self):
-        return {
-            "uuid": self.id,
-            "version": self.version,
-            "service_status": self.status,
-            "features_current": self.features_current,
-            "features_future": self.features_future
-        }
+        return OrderedDict([
+            ("uuid", self.id),
+            ("version", self.version),
+            ("service_status", self.status),
+            ("features_current", self.features_current),
+            ("features_future", self.features_future)
+        ])
 
 
 class ExternalService(models.Model):
@@ -481,13 +477,13 @@ class ExternalService(models.Model):
         return str(self.name)
 
     def as_json(self):
-        return {
-            "id": self.id,
-            "name": self.name,
-            "description": self.description,
-            "service": self.service,
-            "details": self.details
-        }
+        return OrderedDict([
+            ("id", self.id),
+            ("name", self.name),
+            ("description", self.description),
+            ("service", self.service),
+            ("details", self.details)
+        ])
 
     def save(self, *args, **kwargs):
         if not self.description:
@@ -559,8 +555,8 @@ class UserCustomer(models.Model):
         return str(self.name) + " as " + str(self.role) + " for " + str(self.service_id)
 
     def as_json(self):
-        return {
-            "id": self.pk,
-            "name": self.name,
-            "role": self.role
-        }
+        return OrderedDict([
+            ("uuid", self.pk),
+            ("name", self.name),
+            ("role", self.role)
+        ])

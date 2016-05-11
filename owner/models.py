@@ -3,6 +3,7 @@ from __future__ import unicode_literals
 from django.db import models
 from accounts.models import User as CustomUser
 import uuid
+from collections import OrderedDict
 
 class Institution(models.Model):
 
@@ -16,13 +17,13 @@ class Institution(models.Model):
         return str(self.name)
 
     def as_json(self):
-        return {
-            "uuid": self.id,
-            "name": self.name,
-            "address": self.address,
-            "country": self.country,
-            "department": self.department
-        }
+        return OrderedDict([
+            ("uuid", self.id),
+            ("name", self.name),
+            ("address", self.address),
+            ("country", self.country),
+            ("department", self.department)
+        ])
 
     def save(self, *args, **kwargs):
         if not self.name:
@@ -65,15 +66,15 @@ class ServiceOwner(models.Model):
         super(ServiceOwner, self).save(*args, **kwargs)
 
     def as_json(self):
-        return {
-            "uuid": self.id,
-            "first_name": self.first_name,
-            "last_name": self.last_name,
-            "email": self.email,
-            "phone": self.phone,
-            "institution": self.id_service_owner.as_json() if self.id_service_owner is not None else None,
-            "account_id": self.id_account_id
-        }
+        return OrderedDict([
+            ("uuid", self.id),
+            ("email", self.email),
+            ("first_name", self.first_name),
+            ("last_name", self.last_name),
+            ("phone", self.phone),
+            ("institution", self.id_service_owner.as_json() if self.id_service_owner is not None else None),
+            ("account_id", self.id_account_id)
+        ])
 
 
 class ContactInformation(models.Model):
@@ -91,14 +92,14 @@ class ContactInformation(models.Model):
 
     def get_internal(self):
 
-        return {
-            "uuid": self.id,
-            "first_name": self.first_name,
-            "last_name": self.last_name,
-            "email": self.email,
-            "phone": self.phone,
-            "url": self.url,
-        }
+        return OrderedDict([
+            ("uuid", self.id),
+            ("url", self.url),
+            ("email", self.email),
+            ("first_name", self.first_name),
+            ("last_name", self.last_name),
+            ("phone", self.phone),
+        ])
 
 
     def get_external(self):
