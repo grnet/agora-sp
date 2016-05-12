@@ -137,7 +137,8 @@ ERROR_MESSAGES = {
     SERVICE_OPTION_NAME_EXISTS: "A service option with the provided name already exists",
     SLA_NAME_EXISTS: "A SLA with the provided name already exists",
     PARAMETER_NAME_EXISTS: "A parameter with the provided name already exists",
-    EXTERNAL_SERVICE_NAME_EXISTS: "An external service with the provided name already exists"
+    EXTERNAL_SERVICE_NAME_EXISTS: "An external service with the provided name already exists",
+    CONTACT_INFORMATION_EXISTS: "The provided email or URL already exists"
 }
 
 

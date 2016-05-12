@@ -131,7 +131,7 @@ def insert_institution(request):
 
     op_type = helper.get_last_url_part(request)
     params = helper.get_request_data(request)
-    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$")
     uuid, name, institution = None, None, None
 
     if "name" not in params and op_type == "add":
@@ -220,7 +220,7 @@ def insert_contact_information(request):
     op_type = helper.get_last_url_part(request)
     uuid, contact_information = None, None
     params = helper.get_request_data(request)
-    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$")
 
     condition = False
 
@@ -289,7 +289,12 @@ def insert_contact_information(request):
     if uuid is not None:
         contact_information.id = uuid
 
-    contact_information.save()
+    try:
+        contact_information.save()
+    except IntegrityError:
+        return JsonResponse(helper.get_error_response(strings.CONTACT_INFORMATION_EXISTS, status=strings.REJECTED_406),
+                            status=406)
+
     data = contact_information.as_json()
 
     msg = strings.CONTACT_INFORMATION_INSERTED if op_type == "add" else strings.CONTACT_INFORMATION_UPDATED
@@ -321,7 +326,7 @@ def insert_service_owner(request):
 
     op_type = helper.get_last_url_part(request)
     params = helper.get_request_data(request)
-    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$")
 
 
     if "email" not in params:
