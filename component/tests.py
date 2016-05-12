@@ -296,8 +296,8 @@ class ComponentTestCase(TestCase):
 
     def test_insert_service_component_implementation_details_no_version(self):
         post_data = {
-            "component_uuid": "af2f812b-eda6-497a-9d22-534f885b70334",
-            "component_implementation_uuid": "e01dcee5-eb04-4147-9bb0-54ed81567494"
+            "component_uuid": "af2f812b-eda6-497a-9d22-534f885b7034",
+            "component_implementation_uuid": "bac1cb25-f24e-4cea-a2e8-d94b27a2e169"
         }
         response = self.client_stub.post("/api/v1/component/service_component_implementation_detail/add", post_data)
 
@@ -309,7 +309,7 @@ class ComponentTestCase(TestCase):
             "version": "",
             "configuration_parameters": "",
             "component_uuid": "af2f812b-eda6-497a-9d22-534f885b7034",
-            "component_implementation_uuid": "e01dcee5-eb04-4147-9bb0-54ed81567494"
+            "component_implementation_uuid": "bac1cb25-f24e-4cea-a2e8-d94b27a2e169"
         }
         response = self.client_stub.post("/api/v1/component/service_component_implementation_detail/add", post_data)
         expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_VERSION_EMPTY, status=strings.REJECTED_406)
@@ -365,7 +365,7 @@ class ComponentTestCase(TestCase):
             "configuration_parameters": "<xml>Test configuration</xml>",
             "uuid": "G",
             "component_uuid": "af2f812b-eda6-497a-9d22-534f885b7034",
-            "component_implementation_uuid": "e01dcee5-eb04-4147-9bb0-54ed81567494"
+            "component_implementation_uuid": "bac1cb25-f24e-4cea-a2e8-d94b27a2e169"
         }
         response = self.client_stub.post("/api/v1/component/service_component_implementation_detail/add", post_data)
         expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_INVALID_UUID, status=strings.REJECTED_406)
@@ -377,7 +377,7 @@ class ComponentTestCase(TestCase):
             "configuration_parameters": "<xml>Test configuration</xml>",
             "uuid": "309ffba9-dc3f-45c5-8a2e-150cd2e62c92",
             "component_uuid": "af2f812b-eda6-497a-9d22-534f885b7034",
-            "component_implementation_uuid": "e01dcee5-eb04-4147-9bb0-54ed81567494"
+            "component_implementation_uuid": "bac1cb25-f24e-4cea-a2e8-d94b27a2e169"
         }
         response = self.client_stub.post("/api/v1/component/service_component_implementation_detail/add", post_data)
         expected_response = helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UUID_EXISTS, status=strings.CONFLICT_409)
@@ -406,7 +406,7 @@ class ComponentTestCase(TestCase):
             "configuration_parameters": "<xml>Test configuration</xml>",
             "uuid": "309ffba9-dc3f-45c5-8a2e-150cd2e62c93",
             "component_uuid": "af2f812b-eda6-497a-9d22-534f885b7034",
-            "component_implementation_uuid": "e01dcee5-eb04-4147-9bb0-54ed81567494"
+            "component_implementation_uuid": "bac1cb25-f24e-4cea-a2e8-d94b27a2e169"
         }
 
         response = self.client_stub.post("/api/v1/component/service_component_implementation_detail/edit", post_data)
@@ -418,7 +418,7 @@ class ComponentTestCase(TestCase):
             "version": "0.1.2",
             "configuration_parameters": "<xml>Test configuration</xml>",
             "component_uuid": "af2f812b-eda6-497a-9d22-534f885b7034",
-            "component_implementation_uuid": "e01dcee5-eb04-4147-9bb0-54ed81567494"
+            "component_implementation_uuid": "bac1cb25-f24e-4cea-a2e8-d94b27a2e169"
         }
 
         response = self.client_stub.post("/api/v1/component/service_component_implementation_detail/edit", post_data)

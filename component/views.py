@@ -124,7 +124,7 @@ def insert_service_component(request):
     if "uuid" in params:
         uuid = params.get("uuid")
 
-        prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+        prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$")
         result = prog.match(uuid)
 
         if result is None:
@@ -305,20 +305,30 @@ def insert_service_component_implementation(request):
 
     op_type = helper.get_last_url_part(request)
     params = helper.get_request_data(request)
-    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
-    uuid, name, service_component_implementation = None, None, None
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$")
+    uuid, name, service_component_implementation, service_component = None, None, None, None
 
-    if "component_uuid" not in params:
+    if "component_uuid" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_UUID_NOT_PROVIDED,
                                                       status=strings.REJECTED_406), status=406)
+    elif "component_uuid" in params:
 
-    comp_uuid = params.get("component_uuid")
+        comp_uuid = params.get("component_uuid")
 
-    result = prog.match(comp_uuid)
+        result = prog.match(comp_uuid)
 
-    if result is None:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_INVALID_UUID,
-                                                      status=strings.REJECTED_406), status=406)
+        if result is None:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_INVALID_UUID,
+                                                          status=strings.REJECTED_406), status=406)
+
+        try:
+            service_component = component_models.ServiceComponent.objects.get(id=comp_uuid)
+        except component_models.ServiceComponent.DoesNotExist:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_NOT_FOUND), status=404)
+
+    elif op_type == "edit":
+        service_component = None
+
 
     if "name" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_NAME_NOT_PROVIDED,
@@ -361,16 +371,14 @@ def insert_service_component_implementation(request):
     elif op_type == "add":
         service_component_implementation = component_models.ServiceComponentImplementation()
 
-    try:
-        service_component = component_models.ServiceComponent.objects.get(id=comp_uuid)
-    except component_models.ServiceComponent.DoesNotExist:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_NOT_FOUND), status=404)
+
 
     if name is not None:
         service_component_implementation.name = name
     if "description" in params:
         service_component_implementation.description = params.get('description')
-    service_component_implementation.component_id = service_component
+    if service_component is not None:
+        service_component_implementation.component_id = service_component
     if uuid is not None:
         service_component_implementation.id = uuid
 
@@ -507,32 +515,54 @@ def insert_service_component_implementation_details(request):
 
     op_type = helper.get_last_url_part(request)
     params = helper.get_request_data(request)
-    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
-    uuid, version, service_component_implementation_details = None, None, None
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$")
+    uuid, version, service_component_implementation_details, service_component, service_component_implementation = \
+        None, None, None, None, None
 
-    if "component_uuid" not in params:
+    if "component_uuid" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_UUID_NOT_PROVIDED,
                                                       status=strings.REJECTED_406), status=406)
+    elif "component_uuid" in params:
 
-    comp_uuid = params.get("component_uuid")
+        comp_uuid = params.get("component_uuid")
 
-    result = prog.match(comp_uuid)
+        result = prog.match(comp_uuid)
 
-    if result is None:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_INVALID_UUID,
-                                                      status=strings.REJECTED_406), status=406)
+        if result is None:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_INVALID_UUID,
+                                                          status=strings.REJECTED_406), status=406)
 
-    if "component_implementation_uuid" not in params:
+        try:
+            service_component = component_models.ServiceComponent.objects.get(id=comp_uuid)
+        except component_models.ServiceComponent.DoesNotExist:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_NOT_FOUND), status=404)
+
+    elif op_type == "edit":
+        service_component = None
+
+
+    if "component_implementation_uuid" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_UUID_NOT_PROVIDED,
                                                       status=strings.REJECTED_406), status=406)
+    elif "component_implementation_uuid" in params:
 
-    imp_uuid = params.get("component_implementation_uuid")
 
-    result = prog.match(imp_uuid)
+        imp_uuid = params.get("component_implementation_uuid")
 
-    if result is None:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_INVALID_UUID,
-                                                      status=strings.REJECTED_406), status=406)
+        result = prog.match(imp_uuid)
+
+        if result is None:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_INVALID_UUID,
+                                                          status=strings.REJECTED_406), status=406)
+
+        try:
+            service_component_implementation = component_models.ServiceComponentImplementation.objects.get(id=imp_uuid)
+        except component_models.ServiceComponentImplementation.DoesNotExist:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_NOT_FOUND), status=404)
+
+    elif op_type == "edit":
+        service_component_implementation = None
+
 
     if "version" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_VERSION_NOT_PROVIDED,
@@ -575,15 +605,7 @@ def insert_service_component_implementation_details(request):
     elif op_type == "add":
         service_component_implementation_details = component_models.ServiceComponentImplementationDetail()
 
-    try:
-        service_component = component_models.ServiceComponent.objects.get(id=comp_uuid)
-        service_component_implementation = component_models.ServiceComponentImplementation.objects.get(id=imp_uuid)
 
-    except component_models.ServiceComponent.DoesNotExist:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_NOT_FOUND), status=404)
-
-    except component_models.ServiceComponentImplementation.DoesNotExist:
-        return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_NOT_FOUND), status=404)
 
     if version is not None:
         service_component_implementation_details.version = version
@@ -591,8 +613,10 @@ def insert_service_component_implementation_details(request):
     if "configuration_parameters" in params:
         service_component_implementation_details.configuration_parameters = params.get('configuration_parameters')
 
-    service_component_implementation_details.component_id = service_component
-    service_component_implementation_details.component_implementation_id = service_component_implementation
+    if service_component is not None:
+        service_component_implementation_details.component_id = service_component
+    if service_component_implementation is not None:
+        service_component_implementation_details.component_implementation_id = service_component_implementation
 
     if uuid is not None:
         service_component_implementation_details.id = uuid
@@ -716,7 +740,7 @@ def edit_service_details_component_implementation_details(request):
     """
 
     comp = helper.get_request_data(request)
-    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$")
     uuid, parsed_name, new_uuid, new_parsed_name = None, None, None, None
 
     if "component_implementation_details_uuid" not in comp:
@@ -840,7 +864,7 @@ def insert_service_details_component_implementation_details(request):
     """
 
     comp = helper.get_request_data(request)
-    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$")
     uuid, parsed_name = None, None
 
     if "component_implementation_details_uuid" not in comp:
