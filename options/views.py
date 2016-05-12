@@ -217,7 +217,7 @@ def insert_service_option(request):
     op_type = helper.get_last_url_part(request)
     uuid, name, service_option = None, None, None
     params = helper.get_request_data(request)
-    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$")
 
     if "name" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_NAME_NOT_PROVIDED,
@@ -271,7 +271,7 @@ def insert_service_option(request):
         return JsonResponse(helper.get_error_response(strings.SERVICE_OPTION_NAME_EXISTS, status=strings.REJECTED_406),
                             status=406)
 
-    data = service_option.as_json()
+    data = service_option.as_short()
     msg = strings.SERVICE_OPTION_INSERTED if op_type == "add" else strings.SERVICE_OPTION_UPDATED
     status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
     response = helper.get_response_info(msg, data, status=status)
@@ -301,7 +301,7 @@ def insert_SLA(request):
     op_type = helper.get_last_url_part(request)
     uuid, name, SLA, service_option = None, None, None, None
     params = helper.get_request_data(request)
-    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$")
 
     if "name" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.SLA_NAME_NOT_PROVIDED,
@@ -407,7 +407,7 @@ def insert_parameter(request):
     op_type = helper.get_last_url_part(request)
     uuid, name, type, parameter = None, None, None, None
     params = helper.get_request_data(request)
-    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$")
 
     if "name" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.PARAMETER_NAME_NOT_PROVIDED,
@@ -503,7 +503,7 @@ def insert_SLA_parameter(request):
 
     op_type = helper.get_last_url_part(request)
     params = helper.get_request_data(request)
-    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$")
     uuid, sla_parameter = None, None
 
     if "parameter_uuid" not in params:
@@ -627,7 +627,7 @@ def edit_service_details_option(request):
     """
 
     params = helper.get_request_data(request)
-    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$")
 
     if "service_uuid" not in params:
         return JsonResponse(helper.get_error_response(strings.SERVICE_UUID_NOT_PROVIDED,
@@ -749,7 +749,7 @@ def insert_service_details_option(request):
     """
 
     params = helper.get_request_data(request)
-    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$")
 
 
     uuid, service_details_option = None, None

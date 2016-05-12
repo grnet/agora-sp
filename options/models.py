@@ -17,6 +17,29 @@ class ServiceOption(models.Model):
     def __unicode__(self):
         return str(self.name)
 
+    def as_short(self):
+        sla = SLA.objects.filter(service_option_id=self.pk)
+
+        if len(sla) > 0:
+            return OrderedDict([
+                    ("uuid", self.id),
+                    ("name", self.name),
+                    ("description", self.description),
+                    ("pricing", self.pricing),
+                    ("SLA", {
+                        "name": sla[0].name,
+                        "uuid": sla[0].id
+                    })
+                ])
+        else:
+            return OrderedDict([
+                    ("uuid", self.id),
+                    ("name", self.name),
+                    ("description", self.description),
+                    ("pricing", self.pricing),
+                    ("SLA", None)
+                ])
+
     def as_json(self, service_name, service_details_version):
         sla = SLA.objects.filter(service_option_id=self.pk)
 
@@ -39,21 +62,12 @@ class ServiceOption(models.Model):
                  )
             ])
         else:
-            sla_url = ""
             return OrderedDict([
                 ("uuid", self.id),
                 ("name", self.name),
                 ("description", self.description),
                 ("pricing", self.pricing),
-                ("SLA", {
-                    "name": "",
-                    "link": {
-                        "href": sla_url,
-                        "meta": {
-                            "desc": "A link to the SLA for this service."
-                        }
-                    }}
-                )
+                ("SLA", None)
             ])
 
 
