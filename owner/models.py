@@ -84,7 +84,7 @@ class ContactInformation(models.Model):
     last_name = models.CharField(max_length=255, default=None, blank=True, null=True)
     email = models.EmailField(default=None, blank=True, null=True, unique=True)
     phone = models.CharField(max_length=255, default=None, blank=True, null=True)
-    url = models.CharField(max_length=255, default=None, blank=True, null=True, unique=True)
+    url = models.CharField(max_length=255, default=None, blank=True, null=True)
 
     def __unicode__(self):
         return str(self.first_name) + " " + str(self.last_name)
