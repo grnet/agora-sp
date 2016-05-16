@@ -1258,7 +1258,7 @@ def merge_service_components(service_details):
         if len(components) > 0:
             data["service_components_list"] = {
                 "count": len(components),
-                "service_components_link":{
+                "links":{
                     "related": {
                         "href":  helper.current_site_url()+"/v1/portfolio/services/" + str(service_details.id_service.name) + "/service_details/"
                                          + service_details.version + "/service_components",
@@ -1280,7 +1280,7 @@ def merge_service_components(service_details):
         options = [so.as_json() for so in serv_options]
         data["service_options_list"] = {
             "count": len(options),
-            "service_options_link": {
+            "links": {
                 "related": {
                     "href": helper.current_site_url() + "/v1/portfolio/services/" + service_details.id_service.name.replace(" ", "_")
                             + "/service_details/" + service_details.version + "/service_options",

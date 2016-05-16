@@ -159,7 +159,7 @@ class Service(models.Model):
             }),
             ("dependencies", {
                 "count": len(service_dependencies),
-                "service_dependencies_link": {
+                "links": {
                     "related": {
                         "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
                                 + "/service_dependencies",
@@ -173,7 +173,7 @@ class Service(models.Model):
             }),
             ("external", {
                 "count": len(external_services),
-               "external_services_link": {
+               "links": {
                     "related": {
                         "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/service_external_dependencies",
                         "meta": {
@@ -366,7 +366,7 @@ class ServiceDetails(models.Model):
             ("features_future", self.features_future),
             ("dependencies", {
                 "count": len(service_dependencies),
-                "service_dependencies_link": {
+                "links": {
                     "related": {
                         "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name).replace(" ", "_")
                                 + "/service_dependencies",
@@ -427,7 +427,7 @@ class ServiceDetails(models.Model):
                     }
                 }}),
             ("disaster_recovery_plan_has", self.disaster_recovery_plan_has),
-            ("disaster_recovery_plan_url", {
+            ("disaster_recovery_plan_link", {
                 "related": {
                     "href": self.disaster_recovery_plan_url,
                     "meta": {
@@ -435,7 +435,7 @@ class ServiceDetails(models.Model):
                     }
                 }}),
             ("decommissioning_procedure_has", self.decommissioning_procedure_has),
-            ("decommissioning_procedure_url",  {
+            ("decommissioning_procedure_link",  {
                 "related": {
                     "href": self.decommissioning_procedure_url,
                     "meta": {
@@ -450,12 +450,12 @@ class ServiceDetails(models.Model):
 
 
         if url:
-            details.update({"service_details_link": {
+            details.update({
                 "links": {
                     "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name).
                             replace(" ", "_") + "/service_details/" + self.version,
                 }
-            }})
+            })
 
         return details
 
