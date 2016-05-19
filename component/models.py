@@ -35,14 +35,15 @@ class ServiceComponent(models.Model):
         service = Service.objects.get(id=service_id)
 
         return {
-            "component_implementation": OrderedDict([
+            "component": OrderedDict([
                 ("uuid", str(self.id)),
                 ("name", self.name),
                 ("description", self.description),
-                ("links", {
-                    "self":helper.current_site_url() + "/v1/portfolio/services/" + str(service.name).replace(" ", "_")
+                ("href", {
+                    "related":helper.current_site_url() + "/v1/portfolio/services/" + str(service.name).replace(" ", "_")
                         + "/service_details/" + str(service_details_version) + "/service_components/" + str(self.pk)
                         + "/service_component_implementations",
+                    "meta": "A link to se service component implementations list"
                 })
             ])
         }
@@ -84,19 +85,23 @@ class ServiceComponentImplementation(models.Model):
 
         service = Service.objects.get(id=service_id)
 
+        component_implementation_details = [scid.as_json() for scid in ServiceComponentImplementationDetail.objects.
+                                filter(component_id=self.component_id.pk, component_implementation_id=self.pk)]
+
         return OrderedDict([
             ("uuid", str(self.id)),
             ("name", self.name),
             ("description", self.description),
             ("component_implementation_details_link", {
-                "related": {
-                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(service.name).replace(" ", "_")
+               "links": {
+                "self":  helper.current_site_url() + "/v1/portfolio/services/" + str(service.name).replace(" ", "_")
                            + "/service_details/" + str(service_details_version) + "/service_components/"
                            + str(self.component_id.pk) + "/service_component_implementations/" + str(self.pk)
                                                     + "/service_component_implementation_detail",
-                    "meta": {
-                        "desc": "Link to the concrete service component implementation details."
-                    }}})
+                                           "meta": {
+                            "desc": "A list of the service component implementation details."
+                        }
+                    }})
         ])
 
 
@@ -144,7 +149,7 @@ class ServiceDetailsComponent(models.Model):
 
     def __unicode__(self):
         return str(self.service_id.name) + " "  + str(self.service_details_id.version) + " " + \
-               str(self.service_component_implementation_detail_id.version)
+               str(self.service_component_implementation_detail_id)
 
     def as_json(self):
         return {

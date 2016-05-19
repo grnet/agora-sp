@@ -157,18 +157,18 @@ class Service(models.Model):
                 "count": len(users_customers),
                 "user_customers": users_customers
             }),
-            ("dependencies", {
+            ("dependencies_list", {
                 "count": len(service_dependencies),
-                "links": {
-                    "related": {
-                        "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
-                                + "/service_dependencies",
-                        "meta": {
-                            "desc": "A list of links to the service dependencies"
-                        }
-                    }
-
-                },
+                # "links": {
+                #     "related": {
+                #         "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
+                #                 + "/service_dependencies",
+                #         "meta": {
+                #             "desc": "A list of links to the service dependencies"
+                #         }
+                #     }
+                #
+                # },
                 "services": service_dependencies
             }),
             ("external", {
@@ -333,6 +333,25 @@ class ServiceDetails(models.Model):
             self.cost_to_build = None
         if not self.use_cases:
             self.use_cases = None
+
+        if not self.usage_policy_has:
+            self.usage_policy_url = None
+        if not self.user_documentation_has:
+            self.user_documentation_url = None
+        if not self.operations_documentation_has:
+            self.operations_documentation_url = None
+        if not self.monitoring_has:
+            self.monitoring_url = None
+        if not self.accounting_has:
+            self.accounting_url = None
+        if not self.business_continuity_plan_has:
+            self.business_continuity_plan_url = None
+        if not self.disaster_recovery_plan_has:
+            self.disaster_recovery_plan_url = None
+        if not self.decommissioning_procedure_has:
+            self.decommissioning_procedure_url = None
+
+
         super(ServiceDetails, self).save(*args, **kwargs)
 
     def as_short(self):
@@ -364,18 +383,18 @@ class ServiceDetails(models.Model):
             ("use_cases", self.use_cases),
             ("features_current", self.features_current),
             ("features_future", self.features_future),
-            ("dependencies", {
+            ("dependencies_list", {
                 "count": len(service_dependencies),
-                "links": {
-                    "related": {
-                        "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name).replace(" ", "_")
-                                + "/service_dependencies",
-                        "meta": {
-                            "desc": "A list of links to the service dependencies"
-                        }
-                    }
-
-                },
+                # "links": {
+                #     "related": {
+                #         "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name).replace(" ", "_")
+                #                 + "/service_dependencies",
+                #         "meta": {
+                #             "desc": "A list of links to the service dependencies"
+                #         }
+                #     }
+                #
+                # },
                 "services": service_dependencies
             }),
             ("usage_policy_has", self.usage_policy_has),
@@ -551,7 +570,7 @@ class UserCustomer(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, choices=USER_TYPES, blank=True)
-    role = models.CharField(max_length=255, default=None, blank=True)
+    role = models.TextField(default=None, blank=True, null=True)
     service_id = models.ForeignKey(Service)
 
     def __unicode__(self):
@@ -563,3 +582,8 @@ class UserCustomer(models.Model):
             ("name", self.name),
             ("role", self.role)
         ])
+
+    def save(self, *args, **kwargs):
+        if not self.role:
+            self.role = None
+        super(UserCustomer, self).save(*args, **kwargs)
