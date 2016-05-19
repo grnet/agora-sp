@@ -39,12 +39,13 @@ class ServiceComponent(models.Model):
                 ("uuid", str(self.id)),
                 ("name", self.name),
                 ("description", self.description),
-                ("href", {
-                    "related":helper.current_site_url() + "/v1/portfolio/services/" + str(service.name).replace(" ", "_")
-                        + "/service_details/" + str(service_details_version) + "/service_components/" + str(self.pk)
-                        + "/service_component_implementations",
-                    "meta": "A link to se service component implementations list"
-                })
+                ({
+                    "related": {
+                        "href": helper.current_site_url() + "/v1/portfolio/services/" + str(service.name).replace(" ", "_")
+                            + "/service_details/" + str(service_details_version) + "/service_components/" + str(self.pk)
+                            + "/service_component_implementations",
+                        "meta": "A link to se service component implementations list"
+                }})
             ])
         }
 
