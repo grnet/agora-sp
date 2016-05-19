@@ -153,7 +153,7 @@ class ServiceDetailsComponent(models.Model):
 
     def __unicode__(self):
         return str(self.service_id.name) + " "  + str(self.service_details_id.version) + " " + \
-               str(self.service_component_implementation_detail_id.version)
+               str(self.service_component_implementation_detail_id)
 
     def as_json(self):
         return {
