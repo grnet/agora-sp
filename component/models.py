@@ -39,13 +39,12 @@ class ServiceComponent(models.Model):
                 ("uuid", str(self.id)),
                 ("name", self.name),
                 ("description", self.description),
-                ({
-                    "related": {
-                        "href": helper.current_site_url() + "/v1/portfolio/services/" + str(service.name).replace(" ", "_")
-                            + "/service_details/" + str(service_details_version) + "/service_components/" + str(self.pk)
-                            + "/service_component_implementations",
-                        "meta": "A link to se service component implementations list"
-                }})
+                ("href", {
+                    "related":helper.current_site_url() + "/v1/portfolio/services/" + str(service.name).replace(" ", "_")
+                        + "/service_details/" + str(service_details_version) + "/service_components/" + str(self.pk)
+                        + "/service_component_implementations",
+                    "meta": "A link to se service component implementations list"
+                })
             ])
         }
 
@@ -150,7 +149,7 @@ class ServiceDetailsComponent(models.Model):
 
     def __unicode__(self):
         return str(self.service_id.name) + " "  + str(self.service_details_id.version) + " " + \
-               str(self.service_component_implementation_detail_id)
+               str(self.service_component_implementation_detail_id.version)
 
     def as_json(self):
         return {
