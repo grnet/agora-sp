@@ -93,12 +93,15 @@ class ServiceComponentImplementation(models.Model):
             ("name", self.name),
             ("description", self.description),
             ("component_implementation_details_link", {
-               "links": {
-                "self":  helper.current_site_url() + "/v1/portfolio/services/" + str(service.name).replace(" ", "_")
+
+               "related": {
+
+                "href":  helper.current_site_url() + "/v1/portfolio/services/" + str(service.name).replace(" ", "_")
                            + "/service_details/" + str(service_details_version) + "/service_components/"
                            + str(self.component_id.pk) + "/service_component_implementations/" + str(self.pk)
                                                     + "/service_component_implementation_detail",
-                                           "meta": {
+
+                "meta": {
                             "desc": "A list of the service component implementation details."
                         }
                     }})
