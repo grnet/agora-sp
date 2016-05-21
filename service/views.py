@@ -63,6 +63,49 @@ def show_service_list_view(request):
 def show_service_details(request, uuid):
     return render(request, 'service/service_portfolio_view.html', { "uuid": uuid })
 
+def get_service_catalogue_view(request, service):
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    result = prog.match(service)
+    parsed_name, uuid = None, None
+
+    if result is None:
+        parsed_name = service.replace("_", " ").strip()
+    else:
+        uuid = service
+
+    try:
+        if result is None:
+            service = models.Service.objects.get(name=parsed_name)
+        else:
+            service = models.Service.objects.get(id=uuid)
+
+    except models.Service.DoesNotExist:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_NOT_FOUND), status=404)
+
+    try:
+        service_details = models.ServiceDetails.objects.get(id_service=service, status="Active")
+    except models.ServiceDetails.DoesNotExist:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_NOT_FOUND), status=404)
+    # except:
+    #     return JsonResponse({"error": "Multiple active service versions"})
+
+
+    users = models.UserCustomer.objects.filter(service_id=service)
+    service.users = users
+
+    features = service_details.features_current
+    if service.name == "B2DROP":
+        features = features.strip('"B2DROP offers an intuitive user-interface via the web; ').strip().lstrip('Features :').strip().split("\n")
+    else:
+        features = features.strip('"').lstrip('"Features:').strip().split("\n")
+    features = [f.strip().lstrip("-").strip().capitalize() for f in features]
+    service_details.features_current = features
+
+    service_options = ServiceDetailsOption.objects.filter(service_id=service, service_details_id=service_details)
+    service.options = [so.service_options_id for so in service_options]
+
+    return render(request, 'service.html', {"service": service, "service_details": service_details})
+
 # Returns all service object
 @api_view(['GET'])
 def list_service_objects(request, api_version):
