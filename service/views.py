@@ -63,6 +63,28 @@ def show_service_list_view(request):
 def show_service_details(request, uuid):
     return render(request, 'service/service_portfolio_view.html', { "uuid": uuid })
 
+
+def get_catalogue_main_page(request):
+
+    service_areas = models.Service.objects.values('service_area').distinct()
+
+    services = {}
+    name_help = {}
+
+    for area in service_areas:
+        services_buffer  = models.Service.objects.filter(service_area=area['service_area']).values_list('name', flat=True)
+        for service in services_buffer:
+            name_help[service] = service.replace(" ","_").strip()
+
+
+
+    for area in service_areas:
+        services_buffer  = models.Service.objects.filter(service_area=area['service_area']).values_list('name', flat=True)
+        services[area['service_area']] = services_buffer
+
+
+    return render(request, 'catalogue.html', {"areas": service_areas, "services": services, "names": name_help})
+
 def get_service_catalogue_view(request, service):
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     result = prog.match(service)

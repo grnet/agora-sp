@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-
+from service import views
 
 urlpatterns = [
     url(r'^api/admin/?', admin.site.urls),
@@ -24,6 +24,7 @@ urlpatterns = [
     url(r'^api/v1/(portfolio|catalogue)/services/(?P<search_type>[0-9a-zA-Z\-\_]+)/service_details/(?P<version>[0-9a-zA-Z\.]+)/service_options/?', include('options.urls')),
     url(r'^api/v1/(portfolio|catalogue)/services/(?P<service_name_or_uuid>[0-9a-zA-Z\-\_]+)/service_owner/?', include('owner.urls')),
     url(r'^api/v1/(portfolio|catalogue)/services/?', include('service.urls')),
+    url(r'^api/v1/catalogue/view/?', views.get_catalogue_main_page),
     url(r'^api/v1/services/?', include('service.insert_urls')),
     url(r'^api/v1/owner/?', include('owner.insert_urls')),
     url(r'^api/v1/options/?', include('options.insert_urls')),
