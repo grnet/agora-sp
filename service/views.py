@@ -63,6 +63,34 @@ def show_service_list_view(request):
 def show_service_details(request, uuid):
     return render(request, 'service/service_portfolio_view.html', { "uuid": uuid })
 
+# Returns the service logo
+def get_service_logo(request, service_name_or_uuid):
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    result = prog.match(service_name_or_uuid)
+    parsed_name, uuid = None, None
+
+    response = {}
+
+    if result is None:
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
+    else:
+        uuid = service_name_or_uuid
+
+    try:
+        if result is None:
+            service = models.Service.objects.get(name=parsed_name)
+        else:
+            service = models.Service.objects.get(id=uuid)
+
+    except models.Service.DoesNotExist:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_NOT_FOUND), status=404)
+
+    response["status"] = "200 OK"
+    response["data"] = {
+            "logo": service.get_service_logo()
+        }
+
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 def get_catalogue_main_page(request):
 

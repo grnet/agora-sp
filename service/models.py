@@ -1,5 +1,7 @@
 from __future__ import unicode_literals
 
+import os
+from agora import  settings
 from django.db import models
 import uuid
 from owner.models import ServiceOwner, ContactInformation, Institution
@@ -22,6 +24,8 @@ class Service(models.Model):
     competitors = models.TextField(default=None, blank=True, null=True)
     id_service_owner = models.ForeignKey(ServiceOwner, null=True)
     id_contact_information = models.ForeignKey(ContactInformation, null=True)
+    logo = models.ImageField(upload_to=(os.path.join(settings.BASE_DIR, "static", "img", "logos")), default=None)
+
 
     def __unicode__(self):
         return str(self.name)
@@ -47,6 +51,7 @@ class Service(models.Model):
             self.risks = None
         if not self.competitors:
             self.competitors = None
+
         super(Service, self).save(*args, **kwargs)
 
     def get_service_details(self, complete=False, url=False, catalogue=False):
@@ -109,6 +114,9 @@ class Service(models.Model):
             })
 
         return service_dependencies
+
+    def get_service_logo(self):
+        return self.logo.path
 
     def as_complete_portfolio(self):
         service_dependencies = self.get_service_dependencies()
@@ -202,7 +210,6 @@ class Service(models.Model):
                     }
                 }}),
         ])
-
 
     def as_portfolio(self):
 
