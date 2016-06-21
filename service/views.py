@@ -446,6 +446,45 @@ def get_service_dependencies(request,  service_name_or_uuid):
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
+@api_view(['GET'])
+def get_service_dependencies_with_graphics(request,  service_name_or_uuid):
+    """
+    Retrieves the service dependencies
+
+    """
+    response = {}
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    result = prog.match(service_name_or_uuid)
+    parsed_name, uuid = None, None
+
+    if result is None:
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
+    else:
+        uuid = service_name_or_uuid
+
+    try:
+        if result is None:
+            service = models.Service.objects.get(name=parsed_name)
+        else:
+            service = models.Service.objects.get(id=uuid)
+
+        dependencies = service.get_service_dependencies_with_graphics()
+        data = {
+            "count": len(dependencies),
+            "dependencies": dependencies
+        }
+        response = helper.get_response_info(strings.SERVICE_DEPENDENCIES_INFORMATION, data)
+
+    except models.Service.DoesNotExist:
+        response = helper.get_error_response(strings.SERVICE_NOT_FOUND)
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response = helper.get_error_response(strings.INVALID_UUID)
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
+
 # Updates service
 # @csrf_exempt
 # @check_service_ownership_or_superuser

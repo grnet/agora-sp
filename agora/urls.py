@@ -16,12 +16,15 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from service import views
+from component import views as component_views
+
 
 urlpatterns = [
     url(r'^api/admin/?', admin.site.urls),
     url(r'^api/docs/?', include('rest_framework_swagger.urls')),
     url(r'^api/v1/(portfolio|catalogue)/services/(?P<search_type>[0-9a-zA-Z\-\_]+)/service_details/(?P<version>[0-9a-zA-Z\.]+)/service_components/?', include('component.urls')),
     url(r'^api/v1/(portfolio|catalogue)/services/(?P<search_type>[0-9a-zA-Z\-\_]+)/service_details/(?P<version>[0-9a-zA-Z\.]+)/service_options/?', include('options.urls')),
+    url(r'^api/v1/(portfolio|catalogue)/services/(?P<search_type>[0-9a-zA-Z\-\_]+)/service_components/?', component_views.get_service_components_complete),
     url(r'^api/v1/(portfolio|catalogue)/services/(?P<service_name_or_uuid>[0-9a-zA-Z\-\_]+)/service_owner/?', include('owner.urls')),
     url(r'^api/v1/(portfolio|catalogue)/services/?', include('service.urls')),
     url(r'^api/v1/catalogue/view/?', views.get_catalogue_main_page),

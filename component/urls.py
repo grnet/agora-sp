@@ -8,6 +8,7 @@ urlpatterns = [
     url(r'^(?P<comp_uuid>[0-9a-zA-Z\-]+)/service_component_implementations/(?P<imp_uuid>[0-9a-zA-Z\-]+)'
         r'/service_component_implementation_detail/?$', views.get_service_component_implementation_detail),
     url(r'^(?P<comp_uuid>[0-9a-zA-Z\-]+)/?$', views.get_service_component),
+    # url(r'^/all$', views.get_service_components_complete),
     url(r'^$', views.get_service_components),
 
 ]

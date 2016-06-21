@@ -49,6 +49,19 @@ class ServiceComponent(models.Model):
             ])
         }
 
+    def as_view_compatible (self, version):
+
+
+        return {
+            "component": OrderedDict([
+                ("uuid", str(self.id)),
+                ("name", self.name),
+                ("version", version),
+                ("description", self.description),
+
+            ])
+        }
+
     def save(self, *args, **kwargs):
         if not self.description:
             self.description = None

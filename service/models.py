@@ -24,7 +24,7 @@ class Service(models.Model):
     competitors = models.TextField(default=None, blank=True, null=True)
     id_service_owner = models.ForeignKey(ServiceOwner, null=True)
     id_contact_information = models.ForeignKey(ContactInformation, null=True)
-    logo = models.ImageField(upload_to=(os.path.join(settings.BASE_DIR, "static", "img", "logos")), default=None)
+    logo = models.ImageField(upload_to=(os.path.join(settings.BASE_DIR, "static", "img", "logos")), default="/var/www/html/agora/static/img/logos/logo-none.jpg")
 
 
     def __unicode__(self):
@@ -125,7 +125,8 @@ class Service(models.Model):
                 "service": OrderedDict([
                     ("name", service.name),
                     ("uuid", service.id),
-                    ("logo", service.logo),
+                    ("logo", str(service.logo._get_url())),
+                    ("description", service.description_external),
                     ("links", {
                         "self":helper.current_site_url() + "/v1/portfolio/services/" + str(
                             Service.objects.get(pk=d.id_service_two.pk).name)
