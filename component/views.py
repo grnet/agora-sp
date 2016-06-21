@@ -1,5 +1,6 @@
 from collections import defaultdict
 
+import sys
 from django.http import JsonResponse, HttpResponse
 import re
 from service import models as service_models
@@ -86,75 +87,83 @@ def get_service_components_complete(request, search_type ):
     :return: list of components
     """
 
-    # response = {}
-    # prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
-    # result = prog.match(search_type)
-    #
-    # service, parsed_name, uuid = None, None, None
-    #
-    # if result is None:
-    #     parsed_name = search_type.replace("_", " ").strip()
-    # else:
-    #     uuid = search_type
-    #
-    # try:
-    #     if result is None:
-    #         service = service_models.Service.objects.get(name=parsed_name)
-    #     else:
-    #         service = service_models.Service.objects.get(id=uuid)
-    #
-    #     service_details_list = service_models.ServiceDetails.objects.filter(id_service=service.pk)
-    #
-    #
-    #
-    #     service_components_dict = defaultdict(list)
-    #
-    #     for service_details in service_details_list:
-    #
-    #         service_details_comp = component_models.ServiceDetailsComponent.objects\
-    #             .filter(service_id=service.pk, service_details_id=service_details.pk)
-    #
-    #         service_components_dict[service_details.version].append(service_details_comp)
-    #
-    #     service_components_implementation_detail = defaultdict(list)
-    #
-    #     for version, component in service_components_dict:
-    #
-    #         for sdc in component:
-    #             service_components_implementation_detail[version].append(component_models.ServiceComponentImplementationDetail.
-    #                                                             objects.get(id=sdc.
-    #                                                                         service_component_implementation_detail_id.pk))
-    #
-    #     # return JsonResponse({"len": len(service_details_list)})
-    #     # service_components = []
-    #
-    #     seen = set()
-    #
-    #     for version, component_implementation in service_components_implementation_detail:
-    #         if component_implementation.component_id.pk in seen:
-    #             continue
-    #
-    #         service_components.append(component_implementation.component_id.as_view_compatible(version))
-    #
-    #         seen.add(component_implementation.component_id.pk)
-    #
-    #     data = helper.build_list_object("service_components", service_components)
-    #     response = helper.get_response_info(strings.SERVICE_COMPONENTS_INFORMATION, data)
-    #
-    #
-    #
-    # except service_models.Service.DoesNotExist:
-    #     response = helper.get_error_response(strings.SERVICE_NOT_FOUND)
-    #
-    # except ValueError as v:
-    #     if str(v) == "badly formed hexadecimal UUID string":
-    #         response = helper.get_error_response(strings.INVALID_UUID)
-    #
-    # except service_models.ServiceDetails.DoesNotExist:
-    #     response = helper.get_error_response(strings.SERVICE_DETAILS_NOT_FOUND)
-    #
-    # return JsonResponse({"len": len(service_components_implementation_detail)})
-    pass
+    response = {}
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    result = prog.match(search_type)
+
+    service, parsed_name, uuid = None, None, None
+
+    if result is None:
+        parsed_name = search_type.replace("_", " ").strip()
+    else:
+        uuid = search_type
+
+    try:
+        if result is None:
+            service = service_models.Service.objects.get(name=parsed_name)
+        else:
+            service = service_models.Service.objects.get(id=uuid)
+
+        service_details_list = service_models.ServiceDetails.objects.filter(id_service=service.pk)
+        service_components_dict = defaultdict(list)
+
+        for service_details in service_details_list:
+
+            service_details_comp = component_models.ServiceDetailsComponent.objects\
+                .filter(service_id=service.pk, service_details_id=service_details.pk)
+
+            service_components_dict[service_details.version].append(service_details_comp)
+
+        service_components_implementation_detail = defaultdict(list)
+
+        for version in service_components_dict:
+            # print >>sys.stderr, service_components_dict[version]
+
+
+            for component_list in service_components_dict[version]:
+                for service_details_component in component_list:
+                    # print >>sys.stderr, service_details_component
+
+                    service_components_implementation_detail[version].append(component_models.ServiceComponentImplementationDetail.
+                                                                objects.get(id=service_details_component.
+                                                                            service_component_implementation_detail_id.pk))
+
+        # print >>sys.stderr, service_components_implementation_detail
+
+        service_components = []
+
+        seen = set()
+
+        for version in service_components_implementation_detail:
+
+            print >>sys.stderr, service_components_implementation_detail[version]
+
+            for concrete_implementation in service_components_implementation_detail[version]:
+
+                # if concrete_implementation.component_id.pk in seen:
+                #     continue
+
+                service_components.append(concrete_implementation.component_id.as_view_compatible(version))
+
+                # seen.add(concrete_implementation.component_id.pk)
+
+        data = helper.build_list_object("service_components", service_components)
+        response = helper.get_response_info(strings.SERVICE_COMPONENTS_INFORMATION, data)
+
+
+    except service_models.Service.DoesNotExist:
+        response = helper.get_error_response(strings.SERVICE_NOT_FOUND)
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response = helper.get_error_response(strings.INVALID_UUID)
+
+    except service_models.ServiceDetails.DoesNotExist:
+        response = helper.get_error_response(strings.SERVICE_DETAILS_NOT_FOUND)
+
+    # print >>sys.stderr,  service_components_dict
+
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 
 
