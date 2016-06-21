@@ -57,6 +57,7 @@ class ServiceComponent(models.Model):
                 ("uuid", str(self.id)),
                 ("name", self.name),
                 ("version", version),
+                ("logo", "/var/www/html/agora//static/img/logos/logo-none.jpg"),
                 ("description", self.description),
 
             ])
