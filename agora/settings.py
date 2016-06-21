@@ -29,6 +29,8 @@ DEBUG = True
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'agora-dev.vi-seem.eu', 'agora-dev.aris.grnet.gr', 'snf-708131.vm.okeanos.grnet.gr', 'spmt.eudat.eu'  ]
 
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -43,6 +45,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework_swagger',
     'rest_framework',
+    'corsheaders',
     'reversion',
     'component',
     'options',
@@ -67,6 +70,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 
@@ -132,7 +136,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-
+MEDIA_ROOT = '/var/www/html/agora/static/img'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/

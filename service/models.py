@@ -115,6 +115,26 @@ class Service(models.Model):
 
         return service_dependencies
 
+    def get_service_dependencies_with_graphics(self):
+        dependencies = Service_DependsOn_Service.objects.filter(id_service_one=self.pk)
+        service_dependencies = []
+
+        for d in dependencies:
+            service = Service.objects.get(id=d.id_service_two.pk)
+            service_dependencies.append({
+                "service": OrderedDict([
+                    ("name", service.name),
+                    ("uuid", service.id),
+                    ("logo", service.logo),
+                    ("links", {
+                        "self":helper.current_site_url() + "/v1/portfolio/services/" + str(
+                            Service.objects.get(pk=d.id_service_two.pk).name)
+                    }),
+                ])
+            })
+
+        return service_dependencies
+
     def get_service_logo(self):
         return self.logo.path
 
@@ -303,6 +323,8 @@ class ServiceDetails(models.Model):
     features_future = models.TextField( default=None, blank=True, null=True)
     usage_policy_has = models.BooleanField(default=False, blank=True)
     usage_policy_url = models.CharField(max_length=255, default=None, blank=True, null=True)
+    privacy_policy_has = models.BooleanField(default=False, blank=True)
+    privacy_policy_url = models.CharField(max_length=255, default=None, blank=True, null=True)
     user_documentation_has = models.BooleanField(default=False, blank=True)
     user_documentation_url = models.CharField(max_length=255, default=None, blank=True, null=True)
     operations_documentation_has = models.BooleanField(default=False, blank=True)
@@ -357,17 +379,32 @@ class ServiceDetails(models.Model):
             self.disaster_recovery_plan_url = None
         if not self.decommissioning_procedure_has:
             self.decommissioning_procedure_url = None
-
+        if not self.privacy_policy_has:
+            self.privacy_policy_url = None
 
         super(ServiceDetails, self).save(*args, **kwargs)
 
     def as_short(self):
+
+        features = self.features_current
+        features = features.strip('"').lstrip('"Features:').strip().split("\n")
+        features = [f.strip().lstrip("-").strip().capitalize() for f in features]
+
         return OrderedDict([
             ("uuid", self.id),
             ("version", self.version),
             ("service_status", self.status),
             ("features_current", self.features_current),
             ("features_future", self.features_future),
+            ("features_list", features),
+            ("privacy_policy_has", self.privacy_policy_has),
+            ("privacy_policy_link", {
+                "related": {
+                    "href": self.privacy_policy_url,
+                    "meta": {
+                        "desc": "A link to the privacy policy for this service."
+                    }
+                }}),
             ("service_details", {
                 "version": self.version,
                 "status": self.status,
@@ -382,6 +419,9 @@ class ServiceDetails(models.Model):
     def as_complete(self, url=False):
 
         service_dependencies = self.id_service.get_service_dependencies()
+        features = self.features_current
+        features = features.strip('"').lstrip('"Features:').strip().split("\n")
+        features = [f.strip().lstrip("-").strip().capitalize() for f in features]
 
         details = OrderedDict([
             ("uuid", self.id),
@@ -390,6 +430,7 @@ class ServiceDetails(models.Model):
             ("use_cases", self.use_cases),
             ("features_current", self.features_current),
             ("features_future", self.features_future),
+            ("features_list", features),
             ("dependencies_list", {
                 "count": len(service_dependencies),
                 # "links": {
@@ -410,6 +451,14 @@ class ServiceDetails(models.Model):
                     "href": self.usage_policy_url,
                     "meta": {
                         "desc": "A link to the usage policy for this service."
+                    }
+                }}),
+            ("privacy_policy_has", self.privacy_policy_has),
+            ("privacy_policy_link", {
+                "related": {
+                    "href": self.privacy_policy_url,
+                    "meta": {
+                        "desc": "A link to the privacy policy for this service."
                     }
                 }}),
             ("user_documentation_has", self.user_documentation_has),
