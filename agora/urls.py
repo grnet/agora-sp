@@ -33,7 +33,8 @@ urlpatterns = [
     url(r'^api/v1/options/?', include('options.insert_urls')),
     url(r'^api/v1/component/?', include('component.insert_urls')),
     url(r'^api/v1/accounts/?', include('accounts.urls')),
-    url(r'^accounts/?', include('django.contrib.auth.urls'))
+    url(r'^accounts/?', include('django.contrib.auth.urls')),
+    url(r'^ui/service/?', include('service.view_urls'))
 ]
 
 handler404 = "agora.views.error404"

@@ -170,7 +170,7 @@ class Service(models.Model):
                 ("uuid", service_owner.id),
                 ("email", service_owner.email),
                 ("links", {
-                    "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_"),
+                    "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/service_owner",
                 })
             ])
 
@@ -252,7 +252,7 @@ class Service(models.Model):
                 ("uuid", service_owner.id),
                 ("email", service_owner.email),
                 ("links", {
-                    "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_"),
+                    "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/service_owner",
                 })
             ])
 
@@ -387,17 +387,12 @@ class ServiceDetails(models.Model):
 
     def as_short(self):
 
-        features = self.features_current
-        features = features.strip('"').lstrip('"Features:').strip().split("\n")
-        features = [f.strip().lstrip("-").strip().capitalize() for f in features]
-
         return OrderedDict([
             ("uuid", self.id),
             ("version", self.version),
             ("service_status", self.status),
             ("features_current", self.features_current),
             ("features_future", self.features_future),
-            ("features_list", features),
             ("privacy_policy_has", self.privacy_policy_has),
             ("privacy_policy_link", {
                 "related": {
@@ -420,9 +415,6 @@ class ServiceDetails(models.Model):
     def as_complete(self, url=False):
 
         service_dependencies = self.id_service.get_service_dependencies()
-        features = self.features_current
-        features = features.strip('"').lstrip('"Features:').strip().split("\n")
-        features = [f.strip().lstrip("-").strip().capitalize() for f in features]
 
         details = OrderedDict([
             ("uuid", self.id),
@@ -431,7 +423,6 @@ class ServiceDetails(models.Model):
             ("use_cases", self.use_cases),
             ("features_current", self.features_current),
             ("features_future", self.features_future),
-            ("features_list", features),
             ("dependencies_list", {
                 "count": len(service_dependencies),
                 # "links": {

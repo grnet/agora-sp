@@ -1,0 +1,102 @@
+
+
+body:before {
+    background: white;
+}
+
+#content {
+    margin-top: 100px;
+}
+
+#service-name {
+}
+
+h1, h2 {
+    font-weight: 400 !important;
+}
+
+#service-short-desc {
+    margin-top: 20px;
+}
+
+#description {
+    text-align: justify;
+    font-size: 16px;
+    margin-top: 40px;
+}
+
+.separator {
+    border-width: 1px;
+    border-color: #6D92AF;
+}
+
+p {
+    text-align: justify;
+    font-size: 16px;
+}
+
+.paragraph {
+    margin-top: 40px;
+}
+
+#versions {
+    margin-top: 40px;
+}
+
+.wrapper {
+    margin-top: 40px;
+    font-size: 14px;
+}
+
+.options {
+    margin-top: 30px;
+    padding-left: 0;
+}
+
+.center-features {
+    align-items: center;
+    justify-content: center;
+}
+
+.features {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.features:first-letter {
+    text-transform: capitalize;
+}
+
+.links {
+    font-size: 14px;
+}
+
+.option-name {
+    padding-top: 0;
+    margin-top: 0;
+}
+
+.logo {
+    text-align: center;
+}
+@media screen and (max-width: 750px) {
+    .center-text-xs {
+        text-align: center;
+    }
+}
+
+.padding-left-0{
+    padding-left: 0;
+}
+
+.evenAttribute {
+    background-color: #E4EBF0;
+    padding: 4px 0px 4px 4px;
+}
+.oddAttribute {
+    padding: 4px 0px 4px 4px;
+}
+
+.active-status {
+    color: #4e7d0e;
+}

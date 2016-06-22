@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'secret-key'
 
 # SECURITY WARNING don't run with debug turned on in production!
-DEBUG = True
+DEBUG = Debug
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'agora-dev.vi-seem.eu', 'agora-dev.aris.grnet.gr', 'snf-708131.vm.okeanos.grnet.gr', 'spmt.eudat.eu'  ]
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'agora-dev.vi-seem.eu', 'agora-dev.aris.grnet.gr', 'snf-708131.vm.okeanos.grnet.gr', 'spmt.eudat.eu', 'sp.eudat.eu']
 
 
 CORS_ORIGIN_ALLOW_ALL = True

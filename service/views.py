@@ -52,6 +52,15 @@ def list_services(request,  type):
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
+def service_view_catalogue(request, service):
+
+    return render(request, "service/catalogue.html", {"service_name": service})
+
+def service_view_portfolio(request, service):
+
+    return render(request, "service/portfolio.html", {"service_name": service})
+
+
 # Renders the list service view
 @api_view(['GET'])
 def show_service_list_view(request):
