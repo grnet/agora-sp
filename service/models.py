@@ -230,6 +230,7 @@ class Service(models.Model):
                         "desc": "Portfolio level details about this service."
                     }
                 }}),
+            ("logo", self.logo.name.split("/")[-1])
         ])
 
     def as_portfolio(self):
@@ -285,7 +286,8 @@ class Service(models.Model):
                     "meta": {
                         "desc": "Portfolio level details about this service."
                     }
-                }})
+                }}),
+            ("logo", self.logo.name.split("/")[-1])
         ])
 
     def as_catalogue(self):
@@ -307,7 +309,8 @@ class Service(models.Model):
             ("service_details_list", {
                 "count": len(service_details),
                 "service_details": service_details
-            })
+            }),
+            ("logo", self.logo.name.split("/")[-1])
         ])
 
 
