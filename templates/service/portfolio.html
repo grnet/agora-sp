@@ -372,8 +372,21 @@
             }
         });
 
+
+
         var OptionWrapper = React.createClass({
+
+            getInitialState: function(){
+                return {
+                    data: {
+                        name: "",
+                        description: ""
+                    }
+                }
+            },
+
            render: function () {
+
                return (
                    <div className="options col-lg-12 col-md-12 col-sm-12 col-xs-12">
                        <img src="/static/assets/images/logos/logo-b2safe.png" className="col-lg-1 col-md-1 col-sm-1 col-xs-6 col-xs-offset-3 col-sm-offset-0" />
@@ -381,7 +394,7 @@
                            <h3 className="col-lg-12 option-name">{this.props.data.name}</h3>
                            <div className="features col-xs-12">
                                <p className="col-lg-9 col-md-9 col-sm-9 center-text-xs padding-left-0">{this.props.data.description}</p>
-                               <span className="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-sm-2 col-sm-offset-1">{this.props.data.pricing}</span>
+                       <span className="col-lg-2 col-lg-offset-1 col-md-2 col-md-offset-1 col-sm-2 col-sm-offset-1">{this.props.data.pricing}</span>
                            </div>
                        </div>
                    </div>
@@ -392,29 +405,41 @@
         var Options = React.createClass({
            getInitialState: function () {
                return {
-                   data: {
                        serviceOptions: [
-                           {
-                               name: "Standard",
-                               description: "Standard options",
-                               pricing: "Not specified yet"
-                           },
-                           {
-                               name: "With Data Policy Manager",
-                               description: "If we consider the DPM as part of the B2SAFE, then it would be more clear to define an explicit option which include it",
-                               pricing: "Not specified yet"
-                           }
+
                        ]
-                   }
+
                }
            },
+
+            componentDidMount: function(){
+        		this.serverRequest = $.ajax({
+					url: this.props.source + "/service_options",
+					dataType: "json",
+					crossDomain: true,
+					type: "GET",
+					cache: false,
+					success: function(data){
+{#                        debugger;#}
+						this.setState({serviceOptions: data.data.options});
+
+					}.bind(this),
+					error: function(xhr, status, err){
+						console.log(this.props.source, status, err.toString());
+					}.bind(this)
+				});
+        	},
+
+        	componentWillUnmount: function(){
+				this.serverRequest.abort();
+			},
 
             render: function () {
                 return (
                     <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <h2>Service options</h2>
                         <div className="wrapper">
-                            {this.state.data.serviceOptions.map(function(option){
+                            {this.state.serviceOptions.map(function(option){
                                 return <OptionWrapper key={option.name} data={option} />
                             })}
                         </div>
@@ -641,7 +666,7 @@
                             <Separator />
                             <ServiceVersions serviceDetails={this.state.data.service_details_list.service_details} serviceName={this.state.data.name} />
                             <Separator />
-                            <Options />
+                            <Options source={this.props.source} />
                             <Separator />
                             <RequestProcedures requestProcedures={this.state.data.request_procedures} />
                             <Separator />
@@ -666,7 +691,7 @@
 
 
         ReactDOM.render(
-                <ServicePage source="http://agora-dev.aris.grnet.gr/api/v1/portfolio/services/{{ service_name }}/" />,
+                <ServicePage source="http://localhost/api/v1/portfolio/services/{{ service_name }}/" />,
                 document.getElementById('content')
         );
 
