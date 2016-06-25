@@ -54,6 +54,11 @@ class Service(models.Model):
 
         super(Service, self).save(*args, **kwargs)
 
+    def get_distinct_service_area(self):
+
+        return self.service_area
+
+
     def get_service_details(self, complete=False, url=False, catalogue=False):
 
         services = []

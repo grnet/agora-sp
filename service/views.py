@@ -11,7 +11,7 @@ from django.views.decorators.csrf import csrf_exempt
 from common.decorators import check_service_ownership_or_superuser
 from django.db import IntegrityError
 import re
-
+import sys
 
 @api_view(['GET'])
 def list_services(request,  type):
@@ -49,6 +49,27 @@ def list_services(request,  type):
             "services": services
         }
         response = helper.get_response_info(strings.SERVICE_LIST, data)
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
+def get_services_landing(request):
+    '''
+    Retrieves a JSON list of all services for the service landing page.
+    :return:
+    '''
+
+    services = [s for s in models.Service.objects.all()]
+    areas = models.Service.objects.values_list('service_area', flat=True).distinct()
+    response = {}
+
+    for area in areas:
+        for service in services:
+          response[area] = service.as_catalogue()
+
+    data = {
+        "areas" : response
+    }
+    response = helper.get_response_info(strings.SERVICE_LIST, data)
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
