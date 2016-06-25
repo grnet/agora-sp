@@ -52,7 +52,7 @@ def list_services(request,  type):
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
-def get_services_landing(request):
+def get_services_by_area(request):
     '''
     Retrieves a JSON list of all services for the service landing page.
     :return:
@@ -72,6 +72,14 @@ def get_services_landing(request):
     response = helper.get_response_info(strings.SERVICE_LIST, data)
 
     return JsonResponse(response, status=int(response["status"][:3]))
+
+
+def service_picker(request):
+
+
+
+    # return render(request, "service/picker.html")
+    pass
 
 def service_view_catalogue(request, service):
 
