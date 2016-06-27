@@ -58,7 +58,6 @@ class Service(models.Model):
 
         return self.service_area
 
-
     def get_service_details(self, complete=False, url=False, catalogue=False):
 
         services = []
@@ -143,6 +142,18 @@ class Service(models.Model):
 
     def get_service_logo(self):
         return self.logo.path
+
+    def as_service_picker_compliant(self):
+        return OrderedDict([
+            ("uuid", self.id),
+            ("name", self.name),
+            ("description_external", self.description_external),
+            ("service_area", self.service_area),
+            ("value_to_customer", self.value_to_customer),
+            ("service_type", self.service_type),
+            ("logo",  "/static/img/logos/"+self.logo.name.split("/")[-1])
+        ])
+
 
     def as_complete_portfolio(self):
         service_dependencies = self.get_service_dependencies()

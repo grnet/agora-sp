@@ -10,6 +10,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from common.decorators import check_service_ownership_or_superuser
 from django.db import IntegrityError
+from collections import defaultdict
 import re
 import sys
 
@@ -62,24 +63,27 @@ def get_services_by_area(request):
     areas = models.Service.objects.values_list('service_area', flat=True).distinct()
     response = {}
 
+    response = defaultdict(list)
+    data = defaultdict(list)
+
+
     for area in areas:
+        if not response[area]:
+            response[area] = []
+
         for service in services:
-          response[area] = service.as_catalogue()
 
-    data = {
-        "areas" : response
-    }
+          if area == service.service_area:
+            response[area].append(service.as_service_picker_compliant())
+
+        data["areas"].append(response[area])
+
     response = helper.get_response_info(strings.SERVICE_LIST, data)
-
     return JsonResponse(response, status=int(response["status"][:3]))
-
 
 def service_picker(request):
 
-
-
-    # return render(request, "service/picker.html")
-    pass
+    return render(request, "service/picker.html")
 
 def service_view_catalogue(request, service):
 
@@ -88,7 +92,6 @@ def service_view_catalogue(request, service):
 def service_view_portfolio(request, service):
 
     return render(request, "service/portfolio.html", {"service_name": service})
-
 
 # Renders the list service view
 @api_view(['GET'])
