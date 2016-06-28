@@ -120,7 +120,6 @@
 					type: "GET",
 					cache: false,
 					success: function(data){
-
                         this.setState({data: data.data.areas});
                         console.log(this.state.data);
 					}.bind(this),
@@ -149,7 +148,7 @@
 
 
         ReactDOM.render(
-                <PickerPage source="http://localhost/api/v1/service_picker/" />,
+                <PickerPage source="http://localhost/api/v1/{{ view_type }}/service_picker/" />,
                 document.getElementById('content')
         );
 

@@ -27,7 +27,7 @@ urlpatterns = [
     url(r'^api/v1/(portfolio|catalogue)/services/(?P<search_type>[0-9a-zA-Z\-\_]+)/service_components/?', component_views.get_service_components_complete),
     url(r'^api/v1/(portfolio|catalogue)/services/(?P<service_name_or_uuid>[0-9a-zA-Z\-\_]+)/service_owner/?', include('owner.urls')),
     url(r'^api/v1/(portfolio|catalogue)/services/?', include('service.urls')),
-    url(r'^api/v1/service_picker/?', views.get_services_by_area),
+    url(r'^api/v1/(portfolio|catalogue)/service_picker/?', views.get_services_by_area),
     url(r'^api/v1/catalogue/view/?', views.get_catalogue_main_page),
     url(r'^api/v1/services/?', include('service.insert_urls')),
     url(r'^api/v1/owner/?', include('owner.insert_urls')),

@@ -42,7 +42,6 @@ def list_services(request,  type):
             if s["service_details_list"]["count"] == 0:
                 continue
             services.append(s)
-        # services = [s.as_catalogue() for s in serv_models]
 
     if len(services) > 0:
         data = {
@@ -53,37 +52,43 @@ def list_services(request,  type):
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
-def get_services_by_area(request):
+def get_services_by_area(request, type):
     '''
     Retrieves a JSON list of all services for the service landing page.
     :return:
     '''
+    serv_models = [s for s in models.Service.objects.all()]
+    services = []
 
-    services = [s for s in models.Service.objects.all()]
+    for s in serv_models:
+        if type == "catalogue":
+            s1 = s.as_catalogue()
+            if s1["service_details_list"]["count"] == 0:
+                continue
+            services.append(s)
+        elif type == "portfolio":
+            services.append(s)
+
     areas = models.Service.objects.values_list('service_area', flat=True).distinct()
-    response = {}
 
     response = defaultdict(list)
     data = defaultdict(list)
 
-
     for area in areas:
-        if not response[area]:
-            response[area] = []
-
         for service in services:
 
           if area == service.service_area:
             response[area].append(service.as_service_picker_compliant())
 
-        data["areas"].append(response[area])
+        if response[area] != []:
+            data["areas"].append(response[area])
 
     response = helper.get_response_info(strings.SERVICE_LIST, data)
     return JsonResponse(response, status=int(response["status"][:3]))
 
-def service_picker(request):
+def service_picker(request, view_type):
 
-    return render(request, "service/picker.html")
+    return render(request, "service/picker.html", {"view_type": view_type})
 
 def service_view_catalogue(request, service):
 
