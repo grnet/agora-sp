@@ -81,7 +81,13 @@ def get_services_by_area(request, type):
             response[area].append(service.as_service_picker_compliant())
 
         if response[area] != []:
-            data["areas"].append(response[area])
+            icon = None
+            try:
+                icon = models.ServiceArea.objects.get(name=area).icon.name.split("/")[-1]
+            except:
+                pass
+            data["areas"].append((response[area], icon))
+
 
     response = helper.get_response_info(strings.SERVICE_LIST, data)
     return JsonResponse(response, status=int(response["status"][:3]))

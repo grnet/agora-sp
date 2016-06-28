@@ -7,9 +7,9 @@ var ServiceWrapper = React.createClass({
         }},
     render: function () {
 
-        console.log("Datata e tuka...");
+
         return (
-                <a href={"http://localhost/ui/portfolio/services/"+ this.props.data.name.split(' ').join('_')}> <div className="service-pick col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <a href={"http://localhost/ui/" + view_type + "/services/"+ this.props.data.name.split(' ').join('_')}> <div className="service-pick col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div className="service-tile col-lg-12 col-md-12 col-sm-12 col-xs-12 center-text-xs">
                          <img src= { this.props.data.logo }  className="service-logo col-lg-1 col-md-1 col-sm-2 col-xs-2" />
                         <h3 className="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-xs-offset-1">{this.props.data.name}</h3>
@@ -23,6 +23,7 @@ var ServiceAreas = React.createClass({
     getInitialState: function(){
         return {
             service_area: "",
+            service_area_icon: "",
             services: [   ]
         }
 
@@ -62,9 +63,7 @@ var PickerPage = React.createClass({
 
     getInitialState: function(){
         return {
-
-                    data: [ ],
-
+            data: [ ]
         };
     },
 
@@ -95,7 +94,7 @@ var PickerPage = React.createClass({
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div className="wrapper">
                         {this.state.data.map(function(servicesInArea){
-                                 return <ServiceAreas services={servicesInArea} service_area={servicesInArea[0].service_area}/>
+                                 return <ServiceAreas services={servicesInArea[0]} service_area_icon={servicesInArea[1]} service_area={servicesInArea[0][0].service_area}/>
                             })}
                     </div>
                 </div>
@@ -104,7 +103,16 @@ var PickerPage = React.createClass({
 });
 
 
+var view_type = window.location.href.split("/");
+if(view_type[view_type.length - 1] != "catalogue" || view_type[view_type.length - 1] != "portfolio")
+    view_type = view_type[view_type.length - 2];
+else
+    view_type = view_type[view_type.length - 1];
+
+var source = "http://localhost/api/v1/" + view_type + "/service_picker/";
+
+
 ReactDOM.render(
-        <PickerPage source="http://localhost/api/v1/{{ view_type }}/service_picker/" />,
+        <PickerPage source={source} />,
         document.getElementById('content')
 );

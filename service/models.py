@@ -190,6 +190,7 @@ class Service(models.Model):
                 })
             ])
 
+
         return OrderedDict([
             ("uuid", self.id),
             ("name", self.name),
@@ -654,3 +655,13 @@ class UserCustomer(models.Model):
         if not self.role:
             self.role = None
         super(UserCustomer, self).save(*args, **kwargs)
+
+
+class ServiceArea(models.Model):
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, default=None, blank=True, null=True)
+    icon = models.ImageField(upload_to=(os.path.join(settings.BASE_DIR, "static", "img", "logos")), default="/var/www/html/agora/static/img/logos/logo-none.jpg")
+
+    def __unicode__(self):
+        return str(self.name)
