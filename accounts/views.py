@@ -58,7 +58,6 @@ def login_screen(request):
                       "APPLICATION_NAME" : agora.settings.APPLICATION_NAME,
                       "AUTHENTICATION" : request.user.is_authenticated()})
 
-
 def save_avatar(backend, user, response, *args, **kwargs):
     if isinstance(backend, GoogleOAuth2):
         if response.get('image') and response['image'].get('url'):

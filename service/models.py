@@ -1,5 +1,4 @@
 from __future__ import unicode_literals
-
 import os
 from agora import  settings
 from django.db import models
@@ -7,7 +6,7 @@ import uuid
 from owner.models import ServiceOwner, ContactInformation, Institution
 from common import helper
 from collections import OrderedDict
-
+from accounts.models import User
 
 class Service(models.Model):
 
@@ -665,3 +664,9 @@ class ServiceArea(models.Model):
 
     def __unicode__(self):
         return str(self.name)
+
+class Roles(models.Model):
+
+    id_user = models.ForeignKey(User)
+    id_service = models.ForeignKey(Service)
+    role = models.CharField(('role'), max_length=90, unique=True, default="spectator")
