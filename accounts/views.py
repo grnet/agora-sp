@@ -1,8 +1,13 @@
+import hashlib
+import os
+import agora.settings
 from access_tokens import scope, tokens
 from django.http import JsonResponse
 from rest_framework.authtoken.models import Token
 from accounts.models import User
 from component.models import *
+from django.shortcuts import render
+
 
 def check_if_admin_or_owner():
     pass
@@ -27,3 +32,15 @@ def generate_access_tokens_for_all_users(request):
         Token.objects.get_or_create(user=user)
 
     pass
+
+def login_screen(request):
+
+    state = hashlib.sha256(os.urandom(1024)).hexdigest()
+
+    request.session['state'] = state
+
+    return render(request, "accounts/login.html",
+                  {   "CLIENT_ID" : agora.settings.CLIENT_ID,
+                      "STATE" : state,
+                      "APPLICATION_NAME" : agora.settings.APPLICATION_NAME,
+                      "AUTHENTICATION" : request.user.is_authenticated()})
