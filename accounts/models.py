@@ -3,7 +3,8 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 from django.utils import timezone
 from django.utils.http import urlquote
 from django.core.mail import send_mail
-import uuid
+from social.apps.django_app.default.models import UserSocialAuth
+from agora.settings import AVATAR_LOCATION
 
 class UserManager(BaseUserManager):
 
@@ -54,7 +55,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         help_text=('Designates whether this user should be treated as '
                     'active. Unselect this instead of deleting accounts.'))
     date_joined = models.DateTimeField(('date joined'), default=timezone.now)
-
+    avatar = models.ImageField(upload_to= AVATAR_LOCATION, blank=True)
     objects = UserManager()
 
     USERNAME_FIELD = 'username'
@@ -83,3 +84,8 @@ class User(AbstractBaseUser, PermissionsMixin):
         Sends an email to this User.
         """
         send_mail(subject, message, from_email, [self.email])
+
+    def retrieve_complete_social_info(self):
+        social_user = UserSocialAuth.objects.get({"Uid": self.email})
+
+        return social_user

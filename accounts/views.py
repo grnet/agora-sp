@@ -1,5 +1,7 @@
 import hashlib
 import os
+import urllib2
+from django.core.files.base import ContentFile
 import agora.settings
 from access_tokens import scope, tokens
 from django.http import JsonResponse
@@ -7,7 +9,7 @@ from rest_framework.authtoken.models import Token
 from accounts.models import User
 from component.models import *
 from django.shortcuts import render
-
+from social.backends.google import GoogleOAuth2
 
 def check_if_admin_or_owner():
     pass
@@ -39,8 +41,34 @@ def login_screen(request):
 
     request.session['state'] = state
 
-    return render(request, "accounts/login.html",
+    if request.user.is_authenticated():
+
+        return render(request, "accounts/login.html",
+          {   "CLIENT_ID" : agora.settings.CLIENT_ID,
+              "STATE" : state,
+              "APPLICATION_NAME" : agora.settings.APPLICATION_NAME,
+              "AUTHENTICATION" : request.user.is_authenticated(),
+              "USER": request.user
+              })
+
+    else:
+        return render(request, "accounts/login.html",
                   {   "CLIENT_ID" : agora.settings.CLIENT_ID,
                       "STATE" : state,
                       "APPLICATION_NAME" : agora.settings.APPLICATION_NAME,
                       "AUTHENTICATION" : request.user.is_authenticated()})
+
+
+def save_avatar(backend, user, response, *args, **kwargs):
+    if isinstance(backend, GoogleOAuth2):
+        if response.get('image') and response['image'].get('url'):
+            url = response['image'].get('url')
+
+            if user.avatar == "":
+                ext = url.split('.')[-1][-5]
+                user.avatar.save(
+                   '{0}_{1}.jpg'.format('avatar',str(user.id)),
+                   ContentFile(urllib2.urlopen(url).read()),
+                   save=False
+                )
+                user.save()
