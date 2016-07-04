@@ -10,6 +10,8 @@ from accounts.models import User
 from component.models import *
 from django.shortcuts import render
 from social.backends.google import GoogleOAuth2
+from social.apps.django_app.default.models import UserSocialAuth
+
 
 def check_if_admin_or_owner():
     pass
@@ -71,3 +73,15 @@ def save_avatar(backend, user, response, *args, **kwargs):
                    save=False
                 )
                 user.save()
+
+def retrieve_social_auth_users(request):
+
+
+    user = UserSocialAuth.objects.all()[0]
+
+    # response = {}
+    #
+    # for user in users:
+    #     response[str(user.uid)] = str(user.extra_data)
+
+    return JsonResponse({"access_token": user.extra_data['access_token']})

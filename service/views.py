@@ -452,6 +452,7 @@ def get_all_service_details(request, service_name_or_uuid):
 
 # Returns the service institution
 @api_view(['GET'])
+@login_required()
 def get_service_institution(request, service_name_or_uuid):
     """
     Retrieves a the service institution

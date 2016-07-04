@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'secret-key'
 
 # SECURITY WARNING don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'agora-dev.vi-seem.eu', 'agora-dev.aris.grnet.gr', 'snf-708131.vm.okeanos.grnet.gr', 'spmt.eudat.eu', 'sp.eudat.eu']
 
@@ -56,7 +56,8 @@ INSTALLED_APPS = [
 ]
 
 AUTH_USER_MODEL = "accounts.User"
-LOGIN_REDIRECT_URL = "/api/v1/portfolio/services/"
+LOGIN_URL= '/api/v1/accounts/login/'
+LOGIN_REDIRECT_URL = "/api/v1/accounts/retrieve_tokens"
 
 PROJECT_APPS = ['component', 'options', 'owner', 'service']
 
