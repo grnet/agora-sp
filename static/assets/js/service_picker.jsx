@@ -104,12 +104,12 @@ var PickerPage = React.createClass({
 
 
 var view_type = window.location.href.split("/");
-if(view_type[view_type.length - 1] != "catalogue" || view_type[view_type.length - 1] != "portfolio")
-    view_type = view_type[view_type.length - 2];
+if(view_type[view_type.length - 2] != "catalogue" || view_type[view_type.length - 2] != "portfolio")
+    view_type = view_type[view_type.length - 3];
 else
-    view_type = view_type[view_type.length - 1];
+    view_type = view_type[view_type.length - 2];
 
-var source = "http://localhost/api/v1/" + view_type + "/service_picker/";
+var source = "http://agora-dev.vi-seem.eu/api/v1/" + view_type + "/service_picker/";
 
 
 ReactDOM.render(
