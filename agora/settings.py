@@ -26,7 +26,7 @@ SECRET_KEY = 'secret-key'
 # SECURITY WARNING don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'agora-dev.vi-seem.eu', 'agora-dev.aris.grnet.gr', 'snf-708131.vm.okeanos.grnet.gr', 'spmt.eudat.eu', 'sp.eudat.eu']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'agora-dev.vi-seem.eu', 'agora-dev.aris.grnet.gr', 'snf-708131.vm.okeanos.grnet.gr', 'spmt.eudat.eu', 'sp.eudat.eu', 'snf-715140.vm.okeanos.grnet.gr']
 
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django_jenkins',
-    'social.apps.django_app.default',
+    # 'social.apps.django_app.default',
     'rest_framework.authtoken',
     'rest_framework_swagger',
     'rest_framework',
@@ -61,7 +61,7 @@ LOGIN_REDIRECT_URL = "/api/v1/accounts/retrieve_tokens"
 
 PROJECT_APPS = ['component', 'options', 'owner', 'service']
 
-SITE_ID = 3
+SITE_ID = 7
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',

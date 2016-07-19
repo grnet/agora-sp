@@ -41,3 +41,7 @@ h1, h2 {
     height: auto;
 
 }
+
+.collapse {
+    visibility: collapse;
+}

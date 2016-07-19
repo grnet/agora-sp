@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 from django.utils import timezone
 from django.utils.http import urlquote
 from django.core.mail import send_mail
-from social.apps.django_app.default.models import UserSocialAuth
+# from social.apps.django_app.default.models import UserSocialAuth
 from agora.settings import AVATAR_LOCATION
 
 class UserManager(BaseUserManager):
@@ -86,6 +86,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         send_mail(subject, message, from_email, [self.email])
 
     def retrieve_complete_social_info(self):
-        social_user = UserSocialAuth.objects.get({"Uid": self.email})
+        # social_user = UserSocialAuth.objects.get({"Uid": self.email})
 
+        return None
         return social_user

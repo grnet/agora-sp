@@ -437,7 +437,7 @@ var ServiceHeadline = React.createClass({
         else
             service_name = service_name[service_name.length - 1];
 
-        var source = "http://agora-dev.vi-seem.eu/api/v1/portfolio/services/" + service_name;
+        var source = "http://localhost/api/v1/portfolio/services/" + service_name;
 
         ReactDOM.render(
                 <ServicePage source={source} />,
