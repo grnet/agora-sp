@@ -45,3 +45,31 @@ h1, h2 {
 .collapse {
     visibility: collapse;
 }
+
+.menu-text{
+    margin-left: 10px;
+}
+
+.submenu {
+    list-style: none;
+    display: none;
+}
+
+.menu-compact {
+    display: block !important;
+    position: absolute;
+    left: 15px;
+    z-index: 1;
+    background: white;
+    height: 20000px;
+    box-shadow: 5px 5px 5px #888888;
+
+}
+
+
+
+.sidebar-collapse {
+    margin-left: 10px;
+    z-index: 2;
+    position: relative;
+}

@@ -422,7 +422,8 @@ componentWillUnmount: function(){
 
 
                 return (
-                       <div>
+                       <div className="col-md-10 col-lg-8" id="service-content">
+
                            <ServiceHeadline title={this.state.data.name} serviceArea={this.state.data.service_area} shortDescription="Sample short description" logo={this.state.data.logo} />
                             <hr className="separator col-lg-12 col-md-12 col-sm-12 col-xs-12" />
                             <ServiceDescription descriptionExternal={this.state.data.description_external} />
@@ -460,16 +461,9 @@ var ServiceWrapper = React.createClass({
 		window.location.hash += newUrl;
 		window.location.reload();
 
-
-
-
-
-
 	},
 
-
     render: function () {
-
 
         return (
                 <a href={"#"+ this.props.data.name.split(' ').join('_')} id={this.props.data.name.split(' ').join('_')}   onClick={this.onServiceClick} > <div className="service-pick col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -522,6 +516,191 @@ var ServiceAreas = React.createClass({
     }
 });
 
+
+var MenuItemIcon = React.createClass({
+    render: function() {
+        return (
+            <a href={"#" + this.props.name}>
+                <img width="30" src={"http://snf-715140.vm.okeanos.grnet.gr" + this.props.icon} />
+                <span className="menu-text">{this.props.name}</span>
+            </a>
+        );
+     }
+});
+
+var MenuItem = React.createClass({
+    render: function() {
+        return (
+            <a href="{this.props.href}">
+                <span className="menu-text">{this.props.text}</span>
+            </a>
+        );
+     }
+});
+
+var ParentMenuIcon = React.createClass({
+    render: function() {
+        return (
+            <a className="menu-dropdown">
+                <img width="30" src={"http://snf-715140.vm.okeanos.grnet.gr/static/img/logos/" + this.props.icon} />
+                <span className="menu-text">{this.props.name}</span>
+                <i className="menu-expand"></i>
+            </a>
+        );
+     }
+});
+
+var ParentMenu = React.createClass({
+    render: function() {
+        return (
+            <a href="#" className="menu-dropdown">
+                <span className="menu-text">{this.props.text}</span>
+                <i className="menu-expand"></i>
+            </a>
+        );
+     }
+});
+
+
+
+var NavbarBrand = React.createClass({
+    render: function() {
+        return (
+          <div className="navbar-header pull-left">
+                <a href="#" className="navbar-brand">
+                    <small>
+                        <img src="assets/img/logo.png" alt="" />
+                    </small>
+                </a>
+            </div>
+        );
+     }
+});
+
+var SideBar = React.createClass({
+    handleClick: function (e) {
+
+        var b = $("#sidebar").hasClass("menu-compact");
+        //if (!$('#sidebar').is(':visible'))
+        //    $("#sidebar").toggleClass("hide");
+        $("#sidebar").toggleClass("menu-compact");
+        $("#service-content").toggleClass("col-lg-offset-2");
+        $(".sidebar-collapse").toggleClass("active");
+        b = $("#sidebar").hasClass("menu-compact");
+
+        if ($(".sidebar-menu").closest("div").hasClass("slimScrollDiv")) {
+            $(".sidebar-menu").slimScroll({ destroy: true });
+            $(".sidebar-menu").attr('style', '');
+        }
+        if (b) {
+            $(".open > .submenu").removeClass("open");
+        } else {
+            if ($('.page-sidebar').hasClass('sidebar-fixed')) {
+                var position = (readCookie("rtl-support") || location.pathname == "/index-rtl-fa.html" || location.pathname == "/index-rtl-ar.html") ? 'right' : 'left';
+                $('.sidebar-menu').slimscroll({
+                    height: 'auto',
+                    position: position,
+                    size: '3px',
+                    color: themeprimary
+                });
+            }
+        }
+    },
+    render: function() {
+        return (
+          <div className="sidebar-collapse hidden-md hidden-lg" id="sidebar-collapse" onClick={this.handleClick}>
+                <i className="collapse-icon fa fa-bars"></i>
+            </div>
+        );
+     }
+});
+
+
+var PageSidebar = React.createClass({
+    bodyClickHandler: function (e) {
+
+        var b = $("#sidebar").hasClass(".page-sidebar");
+        var menuLink = $(e.target).closest("a");
+        if (!menuLink || menuLink.length == 0)
+            return;
+        if (!menuLink.hasClass("menu-dropdown")) {
+            if (b && menuLink.get(0).parentNode.parentNode == this) {
+                var menuText = menuLink.find(".menu-text").get(0);
+                if (e.target != menuText && !$.contains(menuText, e.target)) {
+                    return false;
+                }
+            }
+            return;
+        }
+        var submenu = menuLink.next().get(0);
+        if (!$(submenu).is(":visible")) {
+            var c = $(submenu.parentNode).closest("ul");
+            if (b && c.hasClass("sidebar-menu"))
+                return;
+            c.find("> .open > .submenu")
+                .each(function () {
+                    if (this != submenu && !$(this.parentNode).hasClass("active"))
+                        $(this).slideUp(200).parent().removeClass("open");
+                });
+        }
+        if (b && $(submenu.parentNode.parentNode).hasClass("sidebar-menu"))
+            return false;
+        $(submenu).slideToggle(200).parent().toggleClass("open");
+        return false;
+    },
+    getInitialState: function(){
+        return {
+            areas: []
+        }
+    },
+
+    componentDidMount: function(){
+            jQuery.support.cors = true;
+            this.serverRequest = $.ajax({
+                    url: this.props.source,
+                    dataType: "json",
+                    crossDomain: true,
+                    type: "GET",
+                    cache: false,
+                    success: function(data){
+                        console.log(data);
+                            this.setState({areas: data.data.areas});
+                    }.bind(this),
+                    error: function(xhr, status, err){
+                    }.bind(this)
+            });
+    },
+    componentWillUnmount: function(){
+            this.serverRequest.abort();
+    },
+
+    render: function() {
+        return (
+            <div className="page-sidebar col-md-2 hidden-sm hidden-xs" id="sidebar">
+
+                <ul className="nav sidebar-menu" onClick={this.bodyClickHandler}>
+
+                    {this.state.areas.map(function(area){
+                        if(area[1] == null)
+                            area[1] = "service.png";
+                        return (
+                            <li>
+                                <ParentMenuIcon name={area[0][0].service_area} icon={area[1]} />
+                                <ul className="submenu">
+                                    {area[0].map(function(service){
+                                        return <li><MenuItemIcon name={service.name} icon={service.logo} /></li>
+                                    })}
+                                </ul>
+                            </li> )
+                    })}
+                </ul>
+            </div>
+        );
+     }
+});
+
+
+
 var PickerPage = React.createClass({
 
     getInitialState: function(){
@@ -555,7 +734,7 @@ var PickerPage = React.createClass({
    render: function () {
 
        return (
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div className="col-xs-12 col-md-8 col-md-offset-2">
                     <div className="wrapper">
                         {this.state.data.map(function(servicesInArea){
                                 if(servicesInArea[1] == null)
@@ -566,6 +745,19 @@ var PickerPage = React.createClass({
                 </div>
         );
    }
+});
+
+var WholePage = React.createClass({
+
+    render: function(){
+        return (
+            <div>
+                <PageSidebar source={source_areas} />
+                <SideBar />
+                <ServicePage source={source} />
+            </div>
+        );
+    }
 });
 
 
@@ -607,29 +799,24 @@ if(window.location.href.indexOf("#") > -1){
 
 
         var source = "http://snf-715140.vm.okeanos.grnet.gr/api/v1/" + type +  "/services/" + service_name;
+        var source_areas = "http://snf-715140.vm.okeanos.grnet.gr/api/v1/" + type +  "/service_picker/";
+
+
 
 
 
     ReactDOM.render(
 
-                <ServicePage source={source} />,
-
-                document.getElementById('content')
-
+            <WholePage />,
+            document.getElementById('content')
         );
-
-
 
 }
 
 else {
 
 
-
-
-
     var view_type = window.location.href.split("/");
-
 
 
     if(view_type[view_type.length - 1] == "")
@@ -647,19 +834,12 @@ else {
         view_type = view_type[view_type.length - 2];
 
 
-
     var source = "http://snf-715140.vm.okeanos.grnet.gr/api/v1/" + view_type + "/service_picker/";
 
-
-
     ReactDOM.render(
-
         <PickerPage source={source} />,
-
         document.getElementById('content')
-
     );
-
 }
 
 
