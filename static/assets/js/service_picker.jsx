@@ -175,7 +175,7 @@ var RequestProcedures = React.createClass({
         return (
             <div
                 className={type == 'catalogue' && (this.props.requestProcedures == null || this.props.requestProcedures.length < 0) ? 'collapse' : ''}>
-                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div id="service-request" className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <h2>Request procedures</h2>
                     <p className="paragraph">{this.props.requestProcedures}</p>
                 </div>
@@ -323,7 +323,7 @@ var ServiceOwner = React.createClass({
 var FundersForService = React.createClass({
     render: function () {
         return (
-            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="service-funders">
                 <h2>Funders for Service</h2>
                 <div className="wrapper">
                     <span>{this.props.funders_for_service}</span>
@@ -607,11 +607,11 @@ var PortfolioHeader = React.createClass({
         return (
             <div>
                 <ul className="service-header">
-                    <li><a id="basic">Basic</a></li>
-                    <li><a id="description">Description</a></li>
+                    <li id="li-basic"><a>Basic</a></li>
+                    <li id="li-description"><a>Description</a></li>
                     {/* <li>SLA</li> */}
-                    <li id="business">Business</li>
-                    <li id="extra">Extra</li>
+                    <li id="li-business"><a>Business</a></li>
+                    <li id="li-extra"><a>Extra</a></li>
                 </ul>
             </div>
         )
@@ -620,21 +620,34 @@ var PortfolioHeader = React.createClass({
 
 
 $(document).ready(function(){
-    $("#basic").click(function () {
-        console.log("deafa");
+    console.log("deaeageag");
+    $("body").on("click", "#li-basic", function(){
+
+        console.log("deadaef");
         $('html, body').animate({
             scrollTop: $("#service-headline").offset().top
         }, 2000);
     });
-
-    $("#description").on('click', 'a', function () {
-        event.preventDefault();
-        console.log("deaf");
+    $("body").on("click", "#li-description", function(){
         $('html, body').animate({
             scrollTop: $("#service-components").offset().top
         }, 2000);
     });
+
+    $("body").on("click", "#li-business", function(){
+        $('html, body').animate({
+            scrollTop: $("#service-funders").offset().top
+        }, 2000);
+    });
+
+    $("body").on("click", "#li-extra", function(){
+        console.log("da");
+        $('html, body').animate({
+            scrollTop: $("#service-request").offset().top
+        }, 2000);
+    });
 });
+
 
 var CatalogueServicePage = React.createClass({
 
@@ -879,9 +892,16 @@ var ServiceAreas = React.createClass({
 
 
 var MenuItemIcon = React.createClass({
+
+    onMenuItemClick: function (event) {
+        console.log("dedae");
+        window.location.reload();
+
+    },
+
     render: function () {
         return (
-            <a href={"#" + this.props.name}>
+            <a href={"#" + this.props.name.split(' ').join('_')} onClick={this.onMenuItemClick}>
                 <img width="30" src={"http://snf-715140.vm.okeanos.grnet.gr" + this.props.icon}/>
                 <span className="menu-text">{this.props.name}</span>
             </a>
