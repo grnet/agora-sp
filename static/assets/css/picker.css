@@ -66,10 +66,14 @@ h1, h2 {
 
 }
 
-
-
 .sidebar-collapse {
     margin-left: 10px;
     z-index: 2;
     position: relative;
+}
+
+.service-header li{
+    list-style-type: none;
+    display: inline-block;
+    margin: 10px;
 }
