@@ -24,9 +24,17 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'secret-key'
 
 # SECURITY WARNING don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'agora-dev.vi-seem.eu', 'agora-dev.aris.grnet.gr', 'snf-708131.vm.okeanos.grnet.gr', 'spmt.eudat.eu', 'sp.eudat.eu', 'snf-715140.vm.okeanos.grnet.gr', 'snf-714484.vm.okeanos.grnet.gr']
+ALLOWED_HOSTS = ['127.0.0.1',
+                 'localhost',
+                 'agora-dev.vi-seem.eu',
+                 'agora-dev.aris.grnet.gr',
+                 'snf-708131.vm.okeanos.grnet.gr',
+                 'spmt.eudat.eu',
+                 'sp.eudat.eu',
+                 'snf-715140.vm.okeanos.grnet.gr',
+                 'snf-714484.vm.okeanos.grnet.gr']
 
 
 CORS_ORIGIN_ALLOW_ALL = True
@@ -41,8 +49,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
-    # 'django_jenkins',
-    # 'social.apps.django_app.default',
+    'django_jenkins',
+    'social.apps.django_app.default',
     'rest_framework.authtoken',
     'rest_framework_swagger',
     'rest_framework',
@@ -61,7 +69,7 @@ LOGIN_REDIRECT_URL = "/api/v1/accounts/retrieve_tokens"
 
 PROJECT_APPS = ['component', 'options', 'owner', 'service']
 
-SITE_ID = 7
+SITE_ID = 1
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
