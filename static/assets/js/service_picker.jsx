@@ -11,7 +11,7 @@ var ServiceHeadline = React.createClass({
 
     render: function () {
 
-        var logo = "http://agora-dev.vi-seem.eu/static/img/logos/" + this.props.logo;
+        var logo = "http://snf-715140.vm.okeanos.grnet.gr/static/img/logos/" + this.props.logo;
 
         return (
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" id="service-headline">
@@ -836,7 +836,7 @@ var ServiceWrapper = React.createClass({
                 <div className="service-pick col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div className="service-tile col-lg-12 col-md-12 col-sm-12 col-xs-12 center-text-xs"
                          id={this.props.data.name.split(' ').join('_')}>
-                        <img src={"http://agora-dev.vi-seem.eu/" + this.props.data.logo }
+                        <img src={"http://snf-715140.vm.okeanos.grnet.gr/" + this.props.data.logo }
                              className="service-logo col-lg-1 col-md-1 col-sm-2 col-xs-2"
                              id={this.props.data.name.split(' ').join('_')}/>
                         <h3 className="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-xs-offset-1"
@@ -873,7 +873,7 @@ var ServiceAreas = React.createClass({
         return (
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h2 className="area-header"><img width="40"
-                                                 src={"http://agora-dev.vi-seem.eu/static/img/logos/" + this.props.service_area_icon}/>
+                                                 src={"http://snf-715140.vm.okeanos.grnet.gr/static/img/logos/" + this.props.service_area_icon}/>
                     <span >{this.props.service_area}</span></h2>
                 <div className="wrapper">
 
@@ -902,7 +902,7 @@ var MenuItemIcon = React.createClass({
     render: function () {
         return (
             <a href={"#" + this.props.name.split(' ').join('_')} onClick={this.onMenuItemClick}>
-                <img width="30" src={"http://agora-dev.vi-seem.eu" + this.props.icon}/>
+                <img width="30" src={"http://snf-715140.vm.okeanos.grnet.gr" + this.props.icon}/>
                 <span className="menu-text">{this.props.name}</span>
             </a>
         );
@@ -923,7 +923,7 @@ var ParentMenuIcon = React.createClass({
     render: function () {
         return (
             <a className="menu-dropdown">
-                <img width="30" src={"http://agora-dev.vi-seem.eu/static/img/logos/" + this.props.icon}/>
+                <img width="30" src={"http://snf-715140.vm.okeanos.grnet.gr/static/img/logos/" + this.props.icon}/>
                 <span className="menu-text">{this.props.name}</span>
                 <i className="menu-expand"></i>
             </a>
@@ -1180,8 +1180,8 @@ if (window.location.href.indexOf("#") > -1) {
     var type = url_parts;
 
 
-    var source = "http://agora-dev.vi-seem.eu/api/v1/" + type + "/services/" + service_name;
-    var source_areas = "http://agora-dev.vi-seem.eu/api/v1/" + type + "/service_picker/";
+    var source = "http://snf-715140.vm.okeanos.grnet.gr/api/v1/" + type + "/services/" + service_name;
+    var source_areas = "http://snf-715140.vm.okeanos.grnet.gr/api/v1/" + type + "/service_picker/";
 
 
     if (type == "catalogue") {
@@ -1220,7 +1220,7 @@ else {
         view_type = view_type[view_type.length - 2];
 
 
-    var source = "http://agora-dev.vi-seem.eu/api/v1/" + view_type + "/service_picker/";
+    var source = "http://snf-715140.vm.okeanos.grnet.gr/api/v1/" + view_type + "/service_picker/";
 
     ReactDOM.render(
         <PickerPage source={source}/>,
@@ -1247,7 +1247,7 @@ var view_type = window.location.href.split("/");
 //else
 //    view_type = view_type[view_type.length - 2];
 
-//var source = "http://agora-dev.vi-seem.eu/api/v1/" + view_type + "/service_picker/";
+//var source = "http://snf-715140.vm.okeanos.grnet.gr/api/v1/" + view_type + "/service_picker/";
 
 
 //ReactDOM.render(
