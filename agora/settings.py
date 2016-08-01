@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'secret-key'
 
 # SECURITY WARNING don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1',
                  'localhost',
@@ -42,6 +42,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 # Application definition
 
 INSTALLED_APPS = [
+    'suit',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -62,6 +63,39 @@ INSTALLED_APPS = [
     'service',
     'accounts',
 ]
+
+SUIT_CONFIG = {
+    # header
+    'ADMIN_NAME': 'Agora Write Beta 1.0',
+    'HEADER_DATE_FORMAT': 'l, j. F Y',
+    'HEADER_TIME_FORMAT': 'H:i',
+
+    # forms
+    'SHOW_REQUIRED_ASTERISK': True,  # Default True
+    'CONFIRM_UNSAVED_CHANGES': True, # Default True
+
+    # menu
+    'SEARCH_URL': '/admin/auth/user/',
+    'MENU_ICONS': {
+       'service': 'icon-leaf',
+       'component': 'icon-leaf',
+       'owner': 'icon-leaf',
+       'sites': 'icon-leaf',
+       'auth': 'icon-lock',
+    },
+    'MENU_OPEN_FIRST_CHILD': True, # Default True
+    'MENU_EXCLUDE': ('auth.group',),
+    'MENU': (
+       'service',
+       'component',
+       'owner',
+       'options',
+       'sites',
+    ),
+
+    # misc
+    'LIST_PER_PAGE': 15
+ }
 
 AUTH_USER_MODEL = "accounts.User"
 LOGIN_URL= '/api/v1/accounts/login/'
