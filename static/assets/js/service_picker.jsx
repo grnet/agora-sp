@@ -102,6 +102,8 @@ var FeatureWrapper = React.createClass({
 
 var ServiceVersionWrapper = React.createClass({
     render: function () {
+
+
         return (
             <div className="col-lg-12">
                 <h3 className="col-lg-12 col-md-12 col-sm-12 col-xs-12">{this.props.data.serviceName} {this.props.data.version}</h3>
@@ -119,12 +121,61 @@ var ServiceVersionWrapper = React.createClass({
                  </div> */}
 
                 <div className="wrapper col-lg-12  col-md-12 links">
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 evenAttribute"> Usage policy <a
-                        target="blank" href={this.props.data.usage_policy_link.related.href}>here</a></div>
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 oddAttribute"> User documentation <a
-                        target="blank" href={this.props.data.user_documentation_link.related.href}>here</a></div>
-                    <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 oddAttribute"> Privacy policy <a
-                        target="blank" href={this.props.data.privacy_policy_link.related.href}>here</a></div>
+
+
+                    <div className={!this.props.data.usage_policy_has && type == 'catalogue' ? 'collapse' : ''}>
+                        Usage policy
+                        <a className={!this.props.data.usage_policy_has ? 'collapse' : ''} target="blank" href={this.props.data.usage_policy_link.related.href}> here</a>
+                        <span className={this.props.data.usage_policy_has ? 'collapse' : ''}> not available</span>
+                    </div>
+
+                    <div className={!this.props.data.privacy_policy_has && type == 'catalogue' ? 'collapse' : ''}>
+                        Privacy policy
+                        <a className={!this.props.data.privacy_policy_has ? 'collapse' : ''} target="blank" href={this.props.data.privacy_policy_link.related.href}> here</a>
+                        <span className={this.props.data.privacy_policy_has ? 'collapse' : ''}> not available</span>
+                    </div>
+
+                    <div className={!this.props.data.user_documentation_has && type == 'catalogue' ? 'collapse' : ''}>
+                        User documentation
+                        <a className={!this.props.data.user_documentation_has ? 'collapse' : ''} target="blank" href={this.props.data.user_documentation_link.related.href}> here</a>
+                        <span className={this.props.data.user_documentation_has ? 'collapse' : ''}> not available</span>
+                    </div>
+
+                    <div className={!this.props.data.operations_documentation_has && type == 'catalogue' ? 'collapse' : ''}>
+                        Operations documentation
+                        <a className={!this.props.data.operations_documentation_has ? 'collapse' : ''} target="blank" href={this.props.data.operations_documentation_link.related.href}> here</a>
+                        <span className={this.props.data.operations_documentation_has ? 'collapse' : ''}> not available</span>
+                    </div>
+
+                    <div className={!this.props.data.monitoring_has && type == 'catalogue' ? 'collapse' : ''}>
+                        Monitoring
+                        <a className={!this.props.data.monitoring_has ? 'collapse' : ''} target="blank" href={this.props.data.monitoring_link.related.href}> here</a>
+                        <span className={this.props.data.monitoring_has ? 'collapse' : ''}> not available</span>
+                    </div>
+
+                    <div className={!this.props.data.accounting_has && type == 'catalogue' ? 'collapse' : ''}>
+                        Accounting
+                        <a className={!this.props.data.accounting_has ? 'collapse' : ''} target="blank" href={this.props.data.accounting_link.related.href}> here</a>
+                        <span className={this.props.data.accounting_has ? 'collapse' : ''}> not available</span>
+                    </div>
+
+                    <div className={!this.props.data.business_continuity_plan_has && type == 'catalogue' ? 'collapse' : ''}>
+                        Business continuity plan
+                        <a className={!this.props.data.business_continuity_plan_has ? 'collapse' : ''} target="blank" href={this.props.data.business_continuity_plan_link.related.href}> here</a>
+                        <span className={this.props.data.business_continuity_plan_has ? 'collapse' : ''}> not available</span>
+                    </div>
+
+                    <div className={!this.props.data.disaster_recovery_plan_has && type == 'catalogue' ? 'collapse' : ''}>
+                        Disaster recovery plan
+                        <a className={!this.props.data.disaster_recovery_plan_has ? 'collapse' : ''} target="blank" href={this.props.data.disaster_recovery_plan_link.related.href}> here</a>
+                        <span className={this.props.data.disaster_recovery_plan_has ? 'collapse' : ''}> not available</span>
+                    </div>
+
+                    <div className={!this.props.data.decommissioning_procedure_has && type == 'catalogue' ? 'collapse' : ''}>
+                        Decommissioning procedure
+                        <a className={!this.props.data.decommissioning_procedure_has ? 'collapse' : ''} target="blank" href={this.props.data.decommissioning_procedure_link.related.href}> here</a>
+                        <span className={this.props.data.decommissioning_procedure_has ? 'collapse' : ''}> not available</span>
+                    </div>
 
 
                     {/* <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 evenAttribute"> Monitoring link  <a target="blank" href={this.props.data.monitoring}>here</a></div>
@@ -499,9 +550,11 @@ var DependencyWrapper = React.createClass({
 
     render: function () {
 
+        var logo = "http://snf-715140.vm.okeanos.grnet.gr/static/img/logos/" + this.props.data.service.logo;
+
         return (
             <div className="options col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <img src={ this.props.data.service.logo}
+                <img src={logo}
                      className="col-lg-1 col-md-1 col-sm-1 col-xs-6 col-xs-offset-3 col-sm-offset-0"/>
                 <div className="col-lg-11 col-md-11 col-sm-11 col-xs-12 center-text-xs">
                     <h3 className="col-lg-12 option-name">{this.props.data.service.name}</h3>
@@ -601,50 +654,80 @@ var ServiceComponents = React.createClass({
     }
 });
 
-var PortfolioHeader = React.createClass({
+var Header = React.createClass({
 
-    render: function(){
+    render: function () {
         return (
             <div>
-                <ul className="service-header">
-                    <li id="li-basic"><a>Basic</a></li>
-                    <li id="li-description"><a>Description</a></li>
-                    {/* <li>SLA</li> */}
-                    <li id="li-business"><a>Business</a></li>
-                    <li id="li-extra"><a>Extra</a></li>
-                </ul>
+
+                <nav id="nav_bar" className="navbar navbar-default navbar-fixed-top">
+                    <div className="col-md-2">
+                        <img src="http://snf-715140.vm.okeanos.grnet.gr/static/img/logos/logo_240p-84d8f1c276459514871468b2aab2d777.png"
+                                height="50"/>
+                    </div>
+                    <div className={type == 'catalogue' || window.location.href.indexOf("#") == -1 ? 'collapse' : ''}>
+                        <ul className="service-header nav_links">
+                            <li id="li-basic"><a>Basic Info</a></li>
+                            <li id="li-versions"><a>Versions</a></li>
+                            <li id="li-description"><a>Description</a></li>
+                            {/* <li>SLA</li> */}
+                            <li id="li-business"><a>Business Info</a></li>
+                            <li id="li-extra"><a>Extra Info</a></li>
+                        </ul>
+                    </div>
+                </nav>
             </div>
         )
     }
 });
 
 
-$(document).ready(function(){
-    console.log("deaeageag");
-    $("body").on("click", "#li-basic", function(){
+$(document).ready(function () {
 
-        console.log("deadaef");
+    var offset = 60;
+
+    $("body").on("click", "#li-basic", function () {
         $('html, body').animate({
-            scrollTop: $("#service-headline").offset().top
-        }, 2000);
-    });
-    $("body").on("click", "#li-description", function(){
-        $('html, body').animate({
-            scrollTop: $("#service-components").offset().top
+            scrollTop: $("#basic-info-sect").offset().top - offset - 60
         }, 2000);
     });
 
-    $("body").on("click", "#li-business", function(){
+    $("body").on("click", "#li-versions", function () {
         $('html, body').animate({
-            scrollTop: $("#service-funders").offset().top
+            scrollTop: $("#versions-sect").offset().top - offset
         }, 2000);
     });
 
-    $("body").on("click", "#li-extra", function(){
+    $("body").on("click", "#li-description", function () {
+        $('html, body').animate({
+            scrollTop: $("#description-sect").offset().top - offset
+        }, 2000);
+    });
+
+    $("body").on("click", "#li-business", function () {
+        $('html, body').animate({
+            scrollTop: $("#business-info-sect").offset().top - offset
+        }, 2000);
+    });
+
+    $("body").on("click", "#li-extra", function () {
         console.log("da");
         $('html, body').animate({
-            scrollTop: $("#service-request").offset().top
+            scrollTop: $("#extra-info-sect").offset().top - offset
         }, 2000);
+    });
+
+    $(window).scroll(function () {
+        //if you hard code, then use console
+        //.log to determine when you want the
+        //nav bar to stick.
+        //console.log($(window).scrollTop());
+        if ($(window).scrollTop() > 120) {
+            $('#nav_bar').addClass('navbar-shrink', 200);
+        }
+        if ($(window).scrollTop() < 121) {
+            $('#nav_bar').removeClass('navbar-shrink', 200);
+        }
     });
 });
 
@@ -702,6 +785,7 @@ var CatalogueServicePage = React.createClass({
                     {/* <Separator /> */}
                     {/*  <UserCustomers userCustomers={this.state.data.user_customers_list.user_customers} /> */}
                     {/*    <Separator /> */}
+                    <RequestProcedures requestProcedures={this.state.data.request_procedures}/>
                     <ValueToCustomer valueToCustomer={this.state.data.value_to_customer}/>
                     {/* <Separator /> */}
                     <ServiceVersions serviceDetails={this.state.data.service_details_list.service_details}
@@ -709,7 +793,7 @@ var CatalogueServicePage = React.createClass({
                     {/*       <Separator /> */}
                     <Options source={this.props.source}/>
                     {/*       <Separator /> */}
-                    <RequestProcedures requestProcedures={this.state.data.request_procedures}/>
+
                     {/*  <Separator /> */}
                     <Contact source={this.props.source}/>
                     {/*       <Separator /> */}
@@ -767,42 +851,45 @@ var PortfolioServicePage = React.createClass({
     render: function () {
         return (
             <div className="col-md-10 col-lg-8" id="service-content">
-                <PortfolioHeader />
+
 
                 {/* BASIC */}
-                <ServiceHeadline title={this.state.data.name} serviceArea={this.state.data.service_area}
-                                 shortDescription="Sample short description" logo={this.state.data.logo}/>
-                <ServiceDescription descriptionExternal={this.state.data.description_external}/>
-                <UserCustomers userCustomers={this.state.data.user_customers_list.user_customers}/>
-                <ServiceVersions serviceDetails={this.state.data.service_details_list.service_details}
-                                 serviceName={this.state.data.name}/>
-                <ServiceOwner source={this.props.source}/>
-                <Contact source={this.props.source}/>
+                <div id="basic-info-sect" className="col-xs-12">
+                    <ServiceHeadline title={this.state.data.name} serviceArea={this.state.data.service_area}
+                                     shortDescription="Sample short description" logo={this.state.data.logo}/>
+                    <ServiceDescription descriptionExternal={this.state.data.description_external}/>
+                    <UserCustomers userCustomers={this.state.data.user_customers_list.user_customers}/>
+                    <ServiceOwner source={this.props.source}/>
+                    <Contact source={this.props.source}/>
+                </div>
 
+                <div id="versions-sect" className="col-xs-12">
+                    <ServiceVersions serviceDetails={this.state.data.service_details_list.service_details}
+                                     serviceName={this.state.data.name}/>
+                </div>
 
                 {/* DETAIL */}
-                <ServiceComponents source={this.props.source}/>
-                <Options source={this.props.source}/>
-                <ServiceDependencies source={this.props.source}/>
-
+                <div id="description-sect" className="col-xs-12">
+                    <ServiceComponents source={this.props.source}/>
+                    <Options source={this.props.source}/>
+                    <ServiceDependencies source={this.props.source}/>
+                </div>
 
                 {/* SLA */}
 
 
-
                 {/* BUSINESS */}
-                <FundersForService fundersForService={this.state.data.funders_for_service}/>
-                <Risks risks={this.state.data.risks}/>
-                <Competitors competitors={this.state.data.competitors}/>
-                <ValueToCustomer valueToCustomer={this.state.data.value_to_customer}/>
-
+                <div id="business-info-sect" className="col-xs-12">
+                    <FundersForService fundersForService={this.state.data.funders_for_service}/>
+                    <Risks risks={this.state.data.risks}/>
+                    <Competitors competitors={this.state.data.competitors}/>
+                    <ValueToCustomer valueToCustomer={this.state.data.value_to_customer}/>
+                </div>
 
                 {/* EXTRA */}
-                <RequestProcedures requestProcedures={this.state.data.request_procedures}/>
-
-
-
-
+                <div id="extra-info-sect" className="col-xs-12">
+                    <RequestProcedures requestProcedures={this.state.data.request_procedures}/>
+                </div>
 
 
             </div>
@@ -1112,7 +1199,8 @@ var PickerPage = React.createClass({
 
         return (
             <div className="col-xs-12 col-md-8 col-md-offset-2">
-                <div className="wrapper">
+                <Header />
+                <div className="wrapper area-content">
                     {this.state.data.map(function (servicesInArea) {
                         if (servicesInArea[1] == null)
                             servicesInArea[1] = "service.png";
@@ -1130,7 +1218,9 @@ var CataloguePage = React.createClass({
     render: function () {
         return (
             <div>
-                <div className="col-md-2 hidden-sm hidden-xs"></div>
+                <Header />
+                <PageSidebar source={source_areas}/>
+                <SideBar />
                 <CatalogueServicePage source={source}/>
             </div>
         );
@@ -1142,6 +1232,7 @@ var PortfolioPage = React.createClass({
     render: function () {
         return (
             <div>
+                <Header />
                 <PageSidebar source={source_areas}/>
                 <SideBar />
                 <PortfolioServicePage source={source}/>
@@ -1180,7 +1271,7 @@ if (window.location.href.indexOf("#") > -1) {
     var type = url_parts;
 
 
-    var source = "http://snf-715140.vm.okeanos.grnet.gr/api/v1/" + type + "/services/" + service_name;
+    var source = "http://localhost/api/v1/" + type + "/services/" + service_name;
     var source_areas = "http://snf-715140.vm.okeanos.grnet.gr/api/v1/" + type + "/service_picker/";
 
 

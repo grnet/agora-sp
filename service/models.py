@@ -128,7 +128,7 @@ class Service(models.Model):
                 "service": OrderedDict([
                     ("name", service.name),
                     ("uuid", service.id),
-                    ("logo", str(service.logo._get_url())),
+                    ("logo", str(service.logo.name.split("/")[-1])),
                     ("description", service.description_external),
                     ("links", {
                         "self":helper.current_site_url() + "/v1/portfolio/services/" + str(
@@ -316,6 +316,7 @@ class Service(models.Model):
             ("description_external", self.description_external),
             ("service_area", self.service_area),
             ("value_to_customer", self.value_to_customer),
+            ("request_procedures", self.request_procedures),
             ("service_type", self.service_type),
             ("service", {
                 "name": self.name,

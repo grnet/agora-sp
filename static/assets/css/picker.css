@@ -5,7 +5,7 @@ body:before {
 }
 
 #content {
-    margin-top: 100px;
+    margin-top: 20px;
 }
 
 
@@ -40,6 +40,18 @@ h1, h2 {
     width: auto;
     height: auto;
 
+}
+
+.page-sidebar {
+    margin-top: 100px;
+}
+
+#service-content {
+    margin-top: 100px;
+}
+
+.area-content {
+    margin-top: 100px;
 }
 
 .collapse {
@@ -81,4 +93,32 @@ h1, h2 {
 
 a:hover {
     cursor: pointer;
+}
+
+
+#versions-sect {
+    background: #F6F6F6;
+}
+
+#business-info-sect {
+    background: #F6F6F6;
+}
+
+/*.navbar-fixed {*/
+    /*top: 0;*/
+    /*z-index: 100;*/
+  /*position: fixed;*/
+    /*width: 100%;*/
+/*}*/
+
+.navbar-default {
+    padding: 25px;
+}
+
+.navbar-shrink {
+    padding: 10px;
+}
+
+.links {
+    margin-top: 10px;
 }
