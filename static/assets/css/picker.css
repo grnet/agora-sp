@@ -1,6 +1,6 @@
 
 
-body:before {
+#content body:before {
     background: white;
 }
 
@@ -9,27 +9,27 @@ body:before {
 }
 
 
-h1, h2 {
+#content h1, h2 {
     font-weight: 400 !important;
 }
 
-.service-tile {
+#content .service-tile {
     position:relative;
     display:inline-block;
     overflow:hidden;
 }
 
-.service-pick {
+#content .service-pick {
     height: 20% !important;
     margin-bottom: 10px;
 }
 
-.area-header {
+#content .area-header {
     background: #ecf2f9;
     padding: 5px;
 }
 
-.service-logo {
+#content .service-logo {
     position:absolute;
     top:50%;
     left:5%;
@@ -42,32 +42,32 @@ h1, h2 {
 
 }
 
-.page-sidebar {
+#content .page-sidebar {
     margin-top: 100px;
 }
 
-#service-content {
+#content #service-content {
     margin-top: 100px;
 }
 
-.area-content {
+#content .area-content {
     margin-top: 100px;
 }
 
-.collapse {
+#content .collapse {
     visibility: collapse;
 }
 
-.menu-text{
+#content .menu-text{
     margin-left: 10px;
 }
 
-.submenu {
+#content .submenu {
     list-style: none;
     display: none;
 }
 
-.menu-compact {
+#content .menu-compact {
     display: block !important;
     position: absolute;
     left: 15px;
@@ -78,29 +78,29 @@ h1, h2 {
 
 }
 
-.sidebar-collapse {
+#content .sidebar-collapse {
     margin-left: 10px;
     z-index: 2;
     position: relative;
 }
 
-.service-header li{
+#content .service-header li{
     list-style-type: none;
     display: inline-block;
     margin: 10px;
     font-size: 20px;
 }
 
-a:hover {
+#content a:hover {
     cursor: pointer;
 }
 
 
-#versions-sect {
+#content #versions-sect {
     background: #F6F6F6;
 }
 
-#business-info-sect {
+#content #business-info-sect {
     background: #F6F6F6;
 }
 
@@ -111,14 +111,31 @@ a:hover {
     /*width: 100%;*/
 /*}*/
 
-.navbar-default {
+#content .navbar-default {
     padding: 25px;
 }
 
-.navbar-shrink {
+#content .navbar-shrink {
     padding: 10px;
 }
 
-.links {
+#content .links {
     margin-top: 10px;
+}
+
+#content .nav-focus {
+    background: #e1e1e1;
+}
+
+#content .service-header a {
+    padding: 20px;
+}
+
+#content .service-header li {
+    margin: 0;
+    padding: 5px;
+}
+
+#content #nav_bar {
+    margin-bottom: 0;
 }

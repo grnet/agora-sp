@@ -681,37 +681,82 @@ var Header = React.createClass({
     }
 });
 
+function toggleNavigationFocus(element){
+
+    $("#li-basic").removeClass("nav-focus");
+    $("#li-versions").removeClass("nav-focus");
+    $("#li-description").removeClass("nav-focus");
+    $("#li-business").removeClass("nav-focus");
+    $("#li-extra").removeClass("nav-focus");
+
+    if(element == "li-basic")
+        $("#li-basic").addClass("nav-focus");
+    else if(element == "li-versions")
+        $("#li-versions").addClass("nav-focus");
+    else if(element == "li-description")
+        $("#li-description").addClass("nav-focus");
+    else if(element == "li-business")
+        $("#li-business").addClass("nav-focus");
+    else if(element == "li-extra")
+        $("#li-extra").addClass("nav-focus");
+}
 
 $(document).ready(function () {
+
+
+    $("body").on("mouseover", "#basic-info-sect", function () {
+        toggleNavigationFocus("li-basic");
+    });
+
+    $("body").on("mouseover", "#versions-sect", function () {
+        toggleNavigationFocus("li-versions");
+    });
+
+    $("body").on("mouseover", "#description-sect", function () {
+        toggleNavigationFocus("li-description");
+    });
+
+    $("body").on("mouseover", "#business-info-sect", function () {
+        toggleNavigationFocus("li-business");
+    });
+
+    $("body").on("mouseover", "#extra-info-sect", function () {
+        toggleNavigationFocus("li-extra");
+    });
+
 
     var offset = 60;
 
     $("body").on("click", "#li-basic", function () {
+        toggleNavigationFocus("li-basic");
         $('html, body').animate({
             scrollTop: $("#basic-info-sect").offset().top - offset - 60
         }, 2000);
     });
 
     $("body").on("click", "#li-versions", function () {
+        toggleNavigationFocus("li-versions");
         $('html, body').animate({
             scrollTop: $("#versions-sect").offset().top - offset
         }, 2000);
     });
 
     $("body").on("click", "#li-description", function () {
+        toggleNavigationFocus("li-description");
         $('html, body').animate({
             scrollTop: $("#description-sect").offset().top - offset
         }, 2000);
     });
 
     $("body").on("click", "#li-business", function () {
+        toggleNavigationFocus("li-business");
         $('html, body').animate({
             scrollTop: $("#business-info-sect").offset().top - offset
         }, 2000);
     });
 
     $("body").on("click", "#li-extra", function () {
-        console.log("da");
+        toggleNavigationFocus("li-extra");
         $('html, body').animate({
             scrollTop: $("#extra-info-sect").offset().top - offset
         }, 2000);
@@ -908,11 +953,10 @@ var ServiceWrapper = React.createClass({
     },
     onServiceClick: function (event) {
 
-
-        var newUrl = event.nativeEvent.srcElement.id;
+        //debugger;
+        var newUrl = event.nativeEvent.target.id;
         window.location.hash += newUrl;
         window.location.reload();
-
     },
 
     render: function () {
@@ -981,8 +1025,11 @@ var ServiceAreas = React.createClass({
 var MenuItemIcon = React.createClass({
 
     onMenuItemClick: function (event) {
-        console.log("dedae");
+        //console.log("dedae");
+        window.location.href = "#" + this.props.name.split(" ").join("_");
         window.location.reload();
+        //window.location = window.location.href;
+        //document.location.reload();
 
     },
 
@@ -1271,7 +1318,7 @@ if (window.location.href.indexOf("#") > -1) {
     var type = url_parts;
 
 
-    var source = "http://localhost/api/v1/" + type + "/services/" + service_name;
+    var source = "http://snf-715140.vm.okeanos.grnet.gr/api/v1/" + type + "/services/" + service_name;
     var source_areas = "http://snf-715140.vm.okeanos.grnet.gr/api/v1/" + type + "/service_picker/";
 
 
