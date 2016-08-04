@@ -193,8 +193,6 @@ SAML_CONFIG = {
 }
 
 
-
-
 SITE_ID = 1
 
 MIDDLEWARE_CLASSES = [
@@ -258,28 +256,6 @@ AUTHENTICATION_BACKENDS = (
     'social.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
     'djangosaml2.backends.Saml2Backend',)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
