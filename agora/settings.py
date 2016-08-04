@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 import logging
 import accounts
+from os import path
+import saml2
+from saml2.saml import NAMEID_FORMAT_PERSISTENT
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -62,6 +65,7 @@ INSTALLED_APPS = [
     'owner',
     'service',
     'accounts',
+    'djangosaml2'
 ]
 
 SUIT_CONFIG = {
@@ -98,10 +102,98 @@ SUIT_CONFIG = {
  }
 
 AUTH_USER_MODEL = "accounts.User"
-LOGIN_URL= '/api/v1/accounts/login/'
-LOGIN_REDIRECT_URL = "/api/v1/accounts/retrieve_tokens"
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
+LOGIN_URL= '/saml2/login/'
+
+LOGIN_REDIRECT_URL = "/api/admin/"
 
 PROJECT_APPS = ['component', 'options', 'owner', 'service']
+
+
+SAML_CONFIG = {
+ # full path to the xmlsec1 binary programm
+  'xmlsec_binary': '/usr/bin/xmlsec1',
+
+  # your entity id, usually your subdomain plus the url to the metadata view
+  'entityid': 'http://localhost:8000/saml2/metadata/',
+
+  # directory with attribute mapping
+  'attribute_map_dir': path.join(BASE_DIR, 'attribute-maps'),
+
+
+  'service': {
+        'sp' : {
+                  'name': 'Federated Django sample SP',
+                  'name_id_format': NAMEID_FORMAT_PERSISTENT,
+                  'authn_requests_signed': True,
+                  'endpoints' : {
+
+                  'assertion_consumer_service': [ ('http://localhost:8000/saml2/acs/', saml2.BINDING_HTTP_POST) ],
+                  'single_logout_service': [ ('http://localhost:8000/saml2/ls/',  saml2.BINDING_HTTP_REDIRECT),
+                                           ('http://localhost:8000/saml2/ls/post', saml2.BINDING_HTTP_POST) ],
+
+
+
+                  },
+
+                   # attributes that this project need to identify a user
+                  'required_attributes': ['uid'],
+
+                   # attributes that may be useful to have but not required
+                  'optional_attributes': ['eduPersonAffiliation'],
+
+
+                  'idp': {
+                          # we do not need a WAYF service since there is
+                          # only an IdP defined here. This IdP should be
+                          # present in our metadata
+
+                          # the keys of this dictionary are entity ids
+                          'https://localhost/simplesaml/saml2/idp/metadata.php': {
+                              'single_sign_on_service': {
+                                  saml2.BINDING_HTTP_REDIRECT: 'https://localhost/simplesaml/saml2/idp/SSOService.php',
+                                  },
+                              'single_logout_service': {
+                                  saml2.BINDING_HTTP_REDIRECT: 'https://localhost/simplesaml/saml2/idp/SingleLogoutService.php',
+                                  },
+                              },
+                          },
+        }
+    },
+        # where the remote metadata is stored
+          'metadata': {
+              'local': [path.join(BASE_DIR, 'grnet-metadata.xml')],
+              },
+
+          # set to 1 to output debugging information
+          'debug': 1,
+
+          # certificate
+          'key_file': path.join(BASE_DIR, 'mycert.key'),  # private part
+          'cert_file': path.join(BASE_DIR, 'mycert.pem'),  # public part
+
+          # own metadata settings
+          'contact_person': [
+              {'given_name': 'Ioannis',
+               'sur_name': 'Liabotis',
+               'company': 'Greek Research and Technology Network (GRNET)',
+               'email_address': 'iliaboti@grnet.gr',
+               'contact_type': 'technical'},
+              ],
+          # you can set multilanguage information here
+          'organization': {
+              'name': [('Yaco Systems', 'en')],
+              'display_name': [('Greek Research and Technology Network', 'en')],
+              'url': [('https://grnet.gr', 'en'),],
+              },
+          'valid_for': 24,  # how long is our metadata valid
+
+}
+
+
+
 
 SITE_ID = 1
 
@@ -164,7 +256,30 @@ DATABASES = {
 
 AUTHENTICATION_BACKENDS = (
     'social.backends.google.GoogleOAuth2',
-    'django.contrib.auth.backends.ModelBackend')
+    'django.contrib.auth.backends.ModelBackend',
+    'djangosaml2.backends.Saml2Backend',)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -286,3 +401,5 @@ LOGGING = {
         },
     },
 }
+
+
