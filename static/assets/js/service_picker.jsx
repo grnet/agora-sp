@@ -656,6 +656,11 @@ var ServiceComponents = React.createClass({
 
 var Header = React.createClass({
 
+    onLogoClick: function (event) {
+        window.location.href =  window.location.href.split('#')[0];
+        window.location.reload();
+    },
+
     render: function () {
 
         var logoSrc = host + "/static/img/logos/logo_240p-84d8f1c276459514871468b2aab2d777.png";
@@ -665,8 +670,10 @@ var Header = React.createClass({
 
                 <nav id="nav_bar" className="navbar navbar-default navbar-fixed-top">
                     <div className="col-md-2">
+                        <a href="" onClick={this.onLogoClick}>
                         <img src={logoSrc}
                                 height="50"/>
+                            </a>
                     </div>
                     <div className={type == 'catalogue' || window.location.href.indexOf("#") == -1 ? 'collapse' : ''}>
                         <ul className="service-header nav_links">
