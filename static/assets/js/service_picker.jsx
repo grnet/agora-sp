@@ -663,7 +663,11 @@ var Header = React.createClass({
 
     render: function () {
 
-        var logoSrc = host + "/static/img/logos/logo_240p-84d8f1c276459514871468b2aab2d777.png";
+        var logoSrc;
+        if(host.indexOf("sp.eudat.eu") <= -1)
+            logoSrc = host + "/static/img/logos/logo_240p-84d8f1c276459514871468b2aab2d777.png";
+        else
+            logoSrc = "https://eudat.eu/sites/default/files/EUDAT-logo_3.png";
 
         return (
             <div>
@@ -1300,6 +1304,7 @@ var PortfolioPage = React.createClass({
 
 
 var host = "http://snf-715140.vm.okeanos.grnet.gr";
+//var host = "http://sp.eudat.eu";
 
 var view_type = window.location.href.split("/");
 

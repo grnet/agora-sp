@@ -54,7 +54,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django_jenkins',
-    # 'social.apps.django_app.default',
+    'social.apps.django_app.default',
     'rest_framework.authtoken',
     'rest_framework_swagger',
     'rest_framework',
