@@ -27,6 +27,7 @@ class ServiceComponent(models.Model):
             ("uuid", str(self.id)),
             ("name", self.name),
             ("description", self.description),
+            ("logo",  "/static/img/logos/"+self.logo.name.split("/")[-1]),
             ("component_implementations_list", {
                 "count": len(component_implementations),
                 "component_implementations": component_implementations
@@ -42,6 +43,7 @@ class ServiceComponent(models.Model):
                 ("uuid", str(self.id)),
                 ("name", self.name),
                 ("description", self.description),
+                ("logo",  "/static/img/logos/"+self.logo.name.split("/")[-1]),
                 ("service_component_implementations_link", {
                   "related": {
                     "href":helper.current_site_url() + "/v1/portfolio/services/" + str(service.name).replace(" ", "_")
@@ -60,7 +62,7 @@ class ServiceComponent(models.Model):
                 ("uuid", str(self.id)),
                 ("name", self.name),
                 ("version", version),
-                ("logo", "/var/www/html/agora//static/img/logos/logo-none.jpg"),
+                ("logo",  "/static/img/logos/"+self.logo.name.split("/")[-1]),
                 ("description", self.description),
 
             ])
