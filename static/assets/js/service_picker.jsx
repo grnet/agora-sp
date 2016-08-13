@@ -71,7 +71,7 @@ var ValueToCustomer = React.createClass({
     render: function () {
         return (
             <div
-                className={type == 'catalogue' && (this.props.valueToCustomer == null || this.props.valueToCustomer.length < 0) ? 'collapse' : ''}>
+                className={type == 'catalogue' && (this.props.valueToCustomer == null || this.props.valueToCustomer.length <= 0) ? 'collapse' : ''}>
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <h2>Value to customers</h2>
                     <p className="paragraph">
@@ -141,42 +141,43 @@ var ServiceVersionWrapper = React.createClass({
                         <span className={this.props.data.user_documentation_has ? 'collapse' : ''}> not available</span>
                     </div>
 
-                    <div className={!this.props.data.operations_documentation_has && type == 'catalogue' ? 'collapse' : ''}>
-                        Operations documentation
-                        <a className={!this.props.data.operations_documentation_has ? 'collapse' : ''} target="blank" href={this.props.data.operations_documentation_link.related.href}> here</a>
-                        <span className={this.props.data.operations_documentation_has ? 'collapse' : ''}> not available</span>
-                    </div>
+                    <div className={type == 'catalogue' ? 'collapse' : ''}>
+                        <div className={!this.props.data.operations_documentation_has && type == 'catalogue' ? 'collapse' : ''}>
+                            Operations documentation
+                            <a className={!this.props.data.operations_documentation_has ? 'collapse' : ''} target="blank" href={this.props.data.operations_documentation_link.related.href}> here</a>
+                            <span className={this.props.data.operations_documentation_has ? 'collapse' : ''}> not available</span>
+                        </div>
 
-                    <div className={!this.props.data.monitoring_has && type == 'catalogue' ? 'collapse' : ''}>
-                        Monitoring
-                        <a className={!this.props.data.monitoring_has ? 'collapse' : ''} target="blank" href={this.props.data.monitoring_link.related.href}> here</a>
-                        <span className={this.props.data.monitoring_has ? 'collapse' : ''}> not available</span>
-                    </div>
+                        <div className={!this.props.data.monitoring_has && type == 'catalogue' ? 'collapse' : ''}>
+                            Monitoring
+                            <a className={!this.props.data.monitoring_has ? 'collapse' : ''} target="blank" href={this.props.data.monitoring_link.related.href}> here</a>
+                            <span className={this.props.data.monitoring_has ? 'collapse' : ''}> not available</span>
+                        </div>
 
-                    <div className={!this.props.data.accounting_has && type == 'catalogue' ? 'collapse' : ''}>
-                        Accounting
-                        <a className={!this.props.data.accounting_has ? 'collapse' : ''} target="blank" href={this.props.data.accounting_link.related.href}> here</a>
-                        <span className={this.props.data.accounting_has ? 'collapse' : ''}> not available</span>
-                    </div>
+                        <div className={!this.props.data.accounting_has && type == 'catalogue' ? 'collapse' : ''}>
+                            Accounting
+                            <a className={!this.props.data.accounting_has ? 'collapse' : ''} target="blank" href={this.props.data.accounting_link.related.href}> here</a>
+                            <span className={this.props.data.accounting_has ? 'collapse' : ''}> not available</span>
+                        </div>
 
-                    <div className={!this.props.data.business_continuity_plan_has && type == 'catalogue' ? 'collapse' : ''}>
-                        Business continuity plan
-                        <a className={!this.props.data.business_continuity_plan_has ? 'collapse' : ''} target="blank" href={this.props.data.business_continuity_plan_link.related.href}> here</a>
-                        <span className={this.props.data.business_continuity_plan_has ? 'collapse' : ''}> not available</span>
-                    </div>
+                        <div className={!this.props.data.business_continuity_plan_has && type == 'catalogue' ? 'collapse' : ''}>
+                            Business continuity plan
+                            <a className={!this.props.data.business_continuity_plan_has ? 'collapse' : ''} target="blank" href={this.props.data.business_continuity_plan_link.related.href}> here</a>
+                            <span className={this.props.data.business_continuity_plan_has ? 'collapse' : ''}> not available</span>
+                        </div>
 
-                    <div className={!this.props.data.disaster_recovery_plan_has && type == 'catalogue' ? 'collapse' : ''}>
-                        Disaster recovery plan
-                        <a className={!this.props.data.disaster_recovery_plan_has ? 'collapse' : ''} target="blank" href={this.props.data.disaster_recovery_plan_link.related.href}> here</a>
-                        <span className={this.props.data.disaster_recovery_plan_has ? 'collapse' : ''}> not available</span>
-                    </div>
+                        <div className={!this.props.data.disaster_recovery_plan_has && type == 'catalogue' ? 'collapse' : ''}>
+                            Disaster recovery plan
+                            <a className={!this.props.data.disaster_recovery_plan_has ? 'collapse' : ''} target="blank" href={this.props.data.disaster_recovery_plan_link.related.href}> here</a>
+                            <span className={this.props.data.disaster_recovery_plan_has ? 'collapse' : ''}> not available</span>
+                        </div>
 
-                    <div className={!this.props.data.decommissioning_procedure_has && type == 'catalogue' ? 'collapse' : ''}>
-                        Decommissioning procedure
-                        <a className={!this.props.data.decommissioning_procedure_has ? 'collapse' : ''} target="blank" href={this.props.data.decommissioning_procedure_link.related.href}> here</a>
-                        <span className={this.props.data.decommissioning_procedure_has ? 'collapse' : ''}> not available</span>
+                        <div className={!this.props.data.decommissioning_procedure_has && type == 'catalogue' ? 'collapse' : ''}>
+                            Decommissioning procedure
+                            <a className={!this.props.data.decommissioning_procedure_has ? 'collapse' : ''} target="blank" href={this.props.data.decommissioning_procedure_link.related.href}> here</a>
+                            <span className={this.props.data.decommissioning_procedure_has ? 'collapse' : ''}> not available</span>
+                        </div>
                     </div>
-
 
                     {/* <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 evenAttribute"> Monitoring link  <a target="blank" href={this.props.data.monitoring}>here</a></div>
                      <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12 oddAttribute"> Operations documentaion link  <a target="blank" href={this.props.data.usage_policy}>here</a></div>*/}
@@ -199,16 +200,18 @@ var ServiceVersions = React.createClass({
 
         var name = this.props.serviceName;
         return (
-            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h2>Service versions</h2>
-                <div id="versions">
-                    {this.props.serviceDetails.map(function (serviceVersion) {
-                        return <ServiceVersionWrapper key={serviceVersion.version} data={serviceVersion}
-                                                      serviceName={name}/>
-                    })}
-                </div>
+            <div className={type == 'catalogue' && this.props.serviceDetails.length == 0 ? 'collapse' : ''}>
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h2>Service versions</h2>
+                    <div id="versions">
+                        {this.props.serviceDetails.map(function (serviceVersion) {
+                            return <ServiceVersionWrapper key={serviceVersion.version} data={serviceVersion}
+                                                          serviceName={name}/>
+                        })}
+                    </div>
 
-                <hr className="separator col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
+                    <hr className="separator col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
+                </div>
             </div>
         )
     }
@@ -225,7 +228,7 @@ var RequestProcedures = React.createClass({
     render: function () {
         return (
             <div
-                className={type == 'catalogue' && (this.props.requestProcedures == null || this.props.requestProcedures.length < 0) ? 'collapse' : ''}>
+                className={type == 'catalogue' && (this.props.requestProcedures == null || this.props.requestProcedures.length <= 0) ? 'collapse' : ''}>
                 <div id="service-request" className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <h2>Request procedures</h2>
                     <p className="paragraph">{this.props.requestProcedures}</p>
@@ -277,10 +280,10 @@ var Contact = React.createClass({
                 <h2>Contact information</h2>
                 <div className="wrapper">
                     <span
-                        className={type == 'catalogue' && (this.state.url == null || this.state.url.length) < 0 ? 'collapse' : ''}>URL: <a
+                        className={type == 'catalogue' && (this.state.url == null || this.state.url.length) <= 0 ? 'collapse' : ''}>URL: <a
                         target="blank" href={this.state.url}>{this.state.url}</a></span><br/>
                     <span
-                        className={type == 'catalogue' && (this.state.email == null || this.state.email.length < 0) ? 'collapse' : ''}>Email: {this.state.email}</span>
+                        className={type == 'catalogue' && (this.state.email == null || this.state.email.length <= 0) ? 'collapse' : ''}>Email: {this.state.email}</span>
                 </div>
                 <hr className="separator col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
             </div>
