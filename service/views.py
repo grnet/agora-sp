@@ -13,6 +13,7 @@ from django.db import IntegrityError
 from collections import defaultdict
 import re
 import sys
+from django.views.decorators.clickjacking import xframe_options_exempt
 
 @api_view(['GET'])
 def list_services(request,  type):
@@ -92,6 +93,7 @@ def get_services_by_area(request, type):
     response = helper.get_response_info(strings.SERVICE_LIST, data)
     return JsonResponse(response, status=int(response["status"][:3]))
 
+@xframe_options_exempt
 def service_picker(request, view_type):
 
     return render(request, "service/picker.html", {"view_type": view_type})
