@@ -103,6 +103,25 @@ var FeatureWrapper = React.createClass({
 var ServiceVersionWrapper = React.createClass({
     render: function () {
 
+        var operations_documentation_link, monitoring_link, accounting_link, business_continuity_plan_link,
+            disaster_recovery_plan_link, decommissioning_procedure_link;
+
+        if(type == 'catalogue'){
+            operations_documentation_link = "";
+            monitoring_link = "";
+            accounting_link = "";
+            business_continuity_plan_link = "";
+            disaster_recovery_plan_link = "";
+            decommissioning_procedure_link = "";
+        }
+        else {
+            operations_documentation_link = this.props.data.operations_documentation_link.related.href;
+            monitoring_link = this.props.data.monitoring_link.related.href;
+            accounting_link = this.props.data.accounting_link.related.href;
+            business_continuity_plan_link = this.props.data.business_continuity_plan_link.related.href;
+            disaster_recovery_plan_link = this.props.data.disaster_recovery_plan_link.related.href;
+            decommissioning_procedure_link = this.props.data.decommissioning_procedure_link.related.href;
+        }
 
         return (
             <div className="col-lg-12">
@@ -144,37 +163,37 @@ var ServiceVersionWrapper = React.createClass({
                     <div className={type == 'catalogue' ? 'collapse' : ''}>
                         <div className={!this.props.data.operations_documentation_has && type == 'catalogue' ? 'collapse' : ''}>
                             Operations documentation
-                            <a className={!this.props.data.operations_documentation_has ? 'collapse' : ''} target="blank" href={this.props.data.operations_documentation_link.related.href}> here</a>
+                            <a className={!this.props.data.operations_documentation_has ? 'collapse' : ''} target="blank" href={operations_documentation_link}> here</a>
                             <span className={this.props.data.operations_documentation_has ? 'collapse' : ''}> not available</span>
                         </div>
 
                         <div className={!this.props.data.monitoring_has && type == 'catalogue' ? 'collapse' : ''}>
                             Monitoring
-                            <a className={!this.props.data.monitoring_has ? 'collapse' : ''} target="blank" href={this.props.data.monitoring_link.related.href}> here</a>
+                            <a className={!this.props.data.monitoring_has ? 'collapse' : ''} target="blank" href={monitoring_link}> here</a>
                             <span className={this.props.data.monitoring_has ? 'collapse' : ''}> not available</span>
                         </div>
 
                         <div className={!this.props.data.accounting_has && type == 'catalogue' ? 'collapse' : ''}>
                             Accounting
-                            <a className={!this.props.data.accounting_has ? 'collapse' : ''} target="blank" href={this.props.data.accounting_link.related.href}> here</a>
+                            <a className={!this.props.data.accounting_has ? 'collapse' : ''} target="blank" href={accounting_link}> here</a>
                             <span className={this.props.data.accounting_has ? 'collapse' : ''}> not available</span>
                         </div>
 
                         <div className={!this.props.data.business_continuity_plan_has && type == 'catalogue' ? 'collapse' : ''}>
                             Business continuity plan
-                            <a className={!this.props.data.business_continuity_plan_has ? 'collapse' : ''} target="blank" href={this.props.data.business_continuity_plan_link.related.href}> here</a>
+                            <a className={!this.props.data.business_continuity_plan_has ? 'collapse' : ''} target="blank" href={business_continuity_plan_link}> here</a>
                             <span className={this.props.data.business_continuity_plan_has ? 'collapse' : ''}> not available</span>
                         </div>
 
                         <div className={!this.props.data.disaster_recovery_plan_has && type == 'catalogue' ? 'collapse' : ''}>
                             Disaster recovery plan
-                            <a className={!this.props.data.disaster_recovery_plan_has ? 'collapse' : ''} target="blank" href={this.props.data.disaster_recovery_plan_link.related.href}> here</a>
+                            <a className={!this.props.data.disaster_recovery_plan_has ? 'collapse' : ''} target="blank" href={disaster_recovery_plan_link}> here</a>
                             <span className={this.props.data.disaster_recovery_plan_has ? 'collapse' : ''}> not available</span>
                         </div>
 
                         <div className={!this.props.data.decommissioning_procedure_has && type == 'catalogue' ? 'collapse' : ''}>
                             Decommissioning procedure
-                            <a className={!this.props.data.decommissioning_procedure_has ? 'collapse' : ''} target="blank" href={this.props.data.decommissioning_procedure_link.related.href}> here</a>
+                            <a className={!this.props.data.decommissioning_procedure_has ? 'collapse' : ''} target="blank" href={decommissioning_procedure_link}> here</a>
                             <span className={this.props.data.decommissioning_procedure_has ? 'collapse' : ''}> not available</span>
                         </div>
                     </div>
@@ -231,7 +250,10 @@ var RequestProcedures = React.createClass({
                 className={type == 'catalogue' && (this.props.requestProcedures == null || this.props.requestProcedures.length <= 0) ? 'collapse' : ''}>
                 <div id="service-request" className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <h2>Request procedures</h2>
-                    <p className="paragraph">{this.props.requestProcedures}</p>
+
+                    <p className="paragraph"
+                         dangerouslySetInnerHTML={{__html: this.props.requestProcedures}}>
+                    </p>
                 </div>
 
                 <hr className="separator col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
@@ -1306,8 +1328,9 @@ var PortfolioPage = React.createClass({
 });
 
 
-var host = "http://snf-715140.vm.okeanos.grnet.gr";
+//var host = "http://snf-715140.vm.okeanos.grnet.gr";
 //var host = "http://sp.eudat.eu";
+var host = "http://localhost";
 
 var view_type = window.location.href.split("/");
 
