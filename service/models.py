@@ -25,6 +25,8 @@ class Service(models.Model):
     id_contact_information = models.ForeignKey(ContactInformation, null=True)
     logo = models.ImageField(upload_to=(os.path.join(settings.BASE_DIR, "static", "img", "logos")), default="/var/www/html/agora/static/img/logos/logo-none.jpg")
 
+    class Meta:
+        verbose_name_plural = "1. Services"
 
     def __unicode__(self):
         return str(self.name)
@@ -338,6 +340,7 @@ class ServiceDetails(models.Model):
 
     class Meta:
         unique_together = (("id_service", "version"))
+        verbose_name_plural = "2. Service Versions"
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
     id_service = models.ForeignKey(Service)
@@ -634,6 +637,9 @@ class ExternalService(models.Model):
     service = models.CharField(max_length=255, default=None, blank=True, null=True)
     details = models.CharField(max_length=255, default=None, blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "4. External Services"
+
     def __unicode__(self):
         return str(self.name)
 
@@ -653,8 +659,10 @@ class ExternalService(models.Model):
 
 
 class Service_DependsOn_Service(models.Model):
+
     class Meta:
         unique_together = (('id_service_one', 'id_service_two'),)
+        verbose_name_plural = "3. Internal Dependencies"
 
     id_service_one = models.ForeignKey(Service, related_name='service_one')
     id_service_two = models.ForeignKey(Service, related_name='service_two')
@@ -676,8 +684,10 @@ class Service_DependsOn_Service(models.Model):
 
 
 class Service_ExternalService(models.Model):
+
     class Meta:
         unique_together = (('id_service', 'id_external_service'),)
+        verbose_name_plural = "5. External Services"
 
     id_service = models.ForeignKey(Service)
     id_external_service = models.ForeignKey(ExternalService)
@@ -707,6 +717,9 @@ class UserCustomer(models.Model):
         ("Data Project Principle Investigator (PI)", "Data Project Principle Investigator (PI)")
     )
 
+    class Meta:
+        verbose_name_plural = "7. Users / Customers of a Service"
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, choices=USER_TYPES, blank=True)
     role = models.TextField(default=None, blank=True, null=True)
@@ -733,6 +746,9 @@ class ServiceArea(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, blank=True, null=True)
     icon = models.ImageField(upload_to=(os.path.join(settings.BASE_DIR, "static", "img", "logos")), default="/var/www/html/agora/static/img/logos/logo-none.jpg")
+
+    class Meta:
+        verbose_name_plural = "6. Service Areas"
 
     def __unicode__(self):
         return str(self.name)

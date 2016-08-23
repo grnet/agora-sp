@@ -14,6 +14,9 @@ class ServiceOption(models.Model):
     description = models.TextField(default=None, blank=True, null=True)
     pricing = models.CharField(max_length=255, default=None, blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "1. Service Options"
+
     def __unicode__(self):
         return str(self.name)
 
@@ -86,6 +89,9 @@ class SLA(models.Model):
     service_option_id = models.ForeignKey(ServiceOption, null=True)
     name = models.CharField(max_length=255, default=None, blank=True, unique=True)
 
+    class Meta:
+        verbose_name_plural = "3. SLAs"
+
     def __unicode__(self):
         return str(self.name)
 
@@ -115,6 +121,9 @@ class Parameter(models.Model):
     name = models.CharField(max_length=255, default=None, blank=True, unique=True)
     type = models.CharField(max_length=255, default=None, blank=True, null=True)
     expression = models.CharField(max_length=255, default=None, blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "4. Parameters"
 
     def __unicode__(self):
         return str(self.name)
@@ -151,8 +160,10 @@ class Parameter(models.Model):
 
 
 class SLAParameter(models.Model):
+
     class Meta:
         unique_together = (('parameter_id', 'sla_id', 'service_option_id'),)
+        verbose_name_plural = "5. SLA Parameters"
 
     parameter_id = models.ForeignKey(Parameter)
     sla_id = models.ForeignKey(SLA)
@@ -172,6 +183,7 @@ class SLAParameter(models.Model):
 class ServiceDetailsOption(models.Model):
     class Meta:
         unique_together = (('service_id', 'service_details_id', 'service_options_id'),)
+        verbose_name_plural = "2. Service Options and Service Details Link"
 
     service_id = models.ForeignKey(Service)
     service_details_id = models.ForeignKey(ServiceDetails)

@@ -13,6 +13,10 @@ class Institution(models.Model):
     country = models.CharField(max_length=255, default=None, blank=True, null=True)
     department = models.CharField(max_length=255, default=None, blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "5. Institutions"
+
+
     def __unicode__(self):
         return str(self.name)
 
@@ -46,6 +50,9 @@ class ServiceOwner(models.Model):
     id_service_owner = models.ForeignKey(Institution, null=True)
 
     id_account = models.ForeignKey(CustomUser, null=True, blank=True, default=None)
+
+    class Meta:
+        verbose_name_plural = "1. Service Owners"
 
     def __unicode__(self):
         return str(self.first_name) + " " + str(self.last_name)
@@ -85,6 +92,9 @@ class ContactInformation(models.Model):
     email = models.EmailField(default=None, blank=True, null=True, unique=True)
     phone = models.CharField(max_length=255, default=None, blank=True, null=True)
     url = models.CharField(max_length=255, default=None, blank=True, null=True, unique=True)
+
+    class Meta:
+        verbose_name_plural = "2. Contact Informations"
 
     def __unicode__(self):
         return str(self.first_name) + " " + str(self.last_name)
@@ -133,6 +143,9 @@ class ContactInformation(models.Model):
 class Internal(models.Model):
     id_contact_info = models.ForeignKey(ContactInformation)
 
+    class Meta:
+        verbose_name_plural = "2. Internal Contacts"
+
     def __unicode__(self):
         cont_info = ContactInformation.objects.get(pk=self.id_contact_info.pk)
         return str(cont_info)
@@ -145,6 +158,9 @@ class Internal(models.Model):
 
 class External(models.Model):
     id_contact_info = models.ForeignKey(ContactInformation)
+
+    class Meta:
+        verbose_name_plural = "3. External Contacts"
 
     def __unicode__(self):
         cont_info = ContactInformation.objects.get(pk=self.id_contact_info.pk)

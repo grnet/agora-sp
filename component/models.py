@@ -16,6 +16,9 @@ class ServiceComponent(models.Model):
     description = models.TextField(default=None, blank=True, null=True)
     logo = models.ImageField(upload_to=(os.path.join(settings.BASE_DIR, "static", "img", "logos")), default="/var/www/html/agora/static/img/logos/logo-none.jpg")
 
+    class Meta:
+        verbose_name_plural = "1. Service Components"
+
     def __unicode__(self):
         return str(self.name)
 
@@ -84,6 +87,9 @@ class ServiceComponentImplementation(models.Model):
     name = models.CharField(max_length=255, default=None, blank=True)
     description = models.TextField(default=None, blank=True, null=True)
 
+    class Meta:
+        verbose_name_plural = "2. Service Components Implementations"
+
     def __unicode__(self):
         return str(self.name)
 
@@ -137,12 +143,15 @@ class ServiceComponentImplementationDetail(models.Model):
 
     class Meta:
         unique_together = (('component_implementation_id', 'version'))
+        verbose_name_plural = "3. Service Components Implementations Details"
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     component_id = models.ForeignKey(ServiceComponent)
     component_implementation_id = models.ForeignKey(ServiceComponentImplementation, on_delete=models.CASCADE)
     version = models.CharField(max_length=255, default=None, blank=True)
     configuration_parameters = models.TextField(default=None, blank=True, null=True)
+
+
     def __unicode__(self):
         return str(self.component_implementation_id.name) + " " +  str(self.version)
 
@@ -164,6 +173,7 @@ class ServiceDetailsComponent(models.Model):
 
     class Meta:
         unique_together = (('service_id', 'service_details_id', 'service_component_implementation_detail_id'),)
+        verbose_name_plural = "5. Service Components Implementations Details Link"
 
     service_id = models.ForeignKey(Service)
     service_details_id = models.ForeignKey(ServiceDetails)
