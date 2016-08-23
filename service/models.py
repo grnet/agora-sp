@@ -687,7 +687,7 @@ class Service_ExternalService(models.Model):
 
     class Meta:
         unique_together = (('id_service', 'id_external_service'),)
-        verbose_name_plural = "5. External Services"
+        verbose_name_plural = "5. External Dependencies"
 
     id_service = models.ForeignKey(Service)
     id_external_service = models.ForeignKey(ExternalService)
