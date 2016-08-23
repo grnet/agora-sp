@@ -65,10 +65,13 @@ class Service(models.Model):
         else:
             servs = ServiceDetails.objects.filter(id_service=self.pk, is_in_catalogue=True)
         for s in servs:
-            if complete:
-                services.append(s.as_complete(url=url))
+            if catalogue:
+                services.append(s.as_catalogue())
             else:
-                services.append(s.as_short())
+                if complete:
+                    services.append(s.as_complete(url=url))
+                else:
+                    services.append(s.as_short())
 
         return services
 
@@ -431,6 +434,74 @@ class ServiceDetails(models.Model):
                 }
             })
         ])
+
+
+    def as_catalogue(self, url=False):
+
+        service_dependencies = self.id_service.get_service_dependencies()
+
+        details = OrderedDict([
+            ("uuid", self.id),
+            ("version", self.version),
+            ("service_status", self.status),
+            ("use_cases", self.use_cases),
+            ("features_current", self.features_current),
+            ("features_future", self.features_future),
+            ("dependencies_list", {
+                "count": len(service_dependencies),
+                # "links": {
+                #     "related": {
+                #         "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name).replace(" ", "_")
+                #                 + "/service_dependencies",
+                #         "meta": {
+                #             "desc": "A list of links to the service dependencies"
+                #         }
+                #     }
+                #
+                # },
+                "services": service_dependencies
+            }),
+            ("usage_policy_has", self.usage_policy_has),
+            ("usage_policy_link", {
+                "related": {
+                    "href": self.usage_policy_url,
+                    "meta": {
+                        "desc": "A link to the usage policy for this service."
+                    }
+                }}),
+            ("privacy_policy_has", self.privacy_policy_has),
+            ("privacy_policy_link", {
+                "related": {
+                    "href": self.privacy_policy_url,
+                    "meta": {
+                        "desc": "A link to the privacy policy for this service."
+                    }
+                }}),
+            ("user_documentation_has", self.user_documentation_has),
+            ("user_documentation_link",  {
+                "related": {
+                    "href": self.user_documentation_url,
+                    "meta": {
+                        "desc": "A link to the user documentation for this service."
+                    }
+                }}),
+            ("cost_to_run", self.cost_to_run),
+            ("cost_to_build", self.cost_to_build),
+            ("service_details_type", "Catalogue" if self.is_in_catalogue else "Portfolio"),
+            ("in_catalogue", self.is_in_catalogue)
+        ])
+
+
+        if url:
+            details.update({
+                "links": {
+                    "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name).
+                            replace(" ", "_") + "/service_details/" + self.version,
+                }
+            })
+
+        return details
+
 
     def as_complete(self, url=False):
 
