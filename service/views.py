@@ -208,6 +208,9 @@ def get_catalogue_main_page(request):
 
     return render(request, 'catalogue.html', {"areas": service_areas, "services": services, "names": name_help})
 
+def service_write(request, type):
+    return render(request, 'write/service.html')
+
 def get_service_catalogue_view(request, service):
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
     result = prog.match(service)
