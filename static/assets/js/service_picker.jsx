@@ -690,7 +690,7 @@ var Header = React.createClass({
 
         var logoSrc;
         if(host.indexOf("sp.eudat.eu") <= -1)
-            logoSrc = host + "/static/img/logos/logo_240p-84d8f1c276459514871468b2aab2d777.png";
+            logoSrc = host + "/static/img/logos/spmt-vi-seem-logo.png";
         else
             logoSrc = "https://eudat.eu/sites/default/files/EUDAT-logo_3.png";
 

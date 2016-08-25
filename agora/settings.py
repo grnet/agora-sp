@@ -37,7 +37,8 @@ ALLOWED_HOSTS = ['127.0.0.1',
                  'spmt.eudat.eu',
                  'sp.eudat.eu',
                  'snf-715140.vm.okeanos.grnet.gr',
-                 'snf-714484.vm.okeanos.grnet.gr']
+                 'snf-714484.vm.okeanos.grnet.gr',
+                 'services.vi-seem.eu']
 
 
 CORS_ORIGIN_ALLOW_ALL = True
