@@ -701,7 +701,7 @@ var Header = React.createClass({
                     <div className="col-md-2">
                         <a href="" onClick={this.onLogoClick}>
                         <img src={logoSrc}
-                                height="50"/>
+                                height="70"/>
                             </a>
                     </div>
                     <div className={type == 'catalogue' || window.location.href.indexOf("#") == -1 ? 'collapse' : ''}>
