@@ -1459,9 +1459,10 @@ def get_service_contact_information(request, service_name_or_uuid):
             }
         return JsonResponse(response, status=int(response["status"][:3]))
 
-
     response["status"] = "200 OK"
-    response["data"] = serv.get_service_contact_information()
+    response["data"] = {}
+    response["data"].update(serv.get_service_contact_information_internal())
+    response["data"].update(serv.get_service_contact_information())
     response["info"] = "service contact information"
 
     return JsonResponse(response, status=int(response["status"][:3]))

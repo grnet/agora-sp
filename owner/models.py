@@ -102,7 +102,7 @@ class ContactInformation(models.Model):
 
     def get_internal(self):
 
-        return OrderedDict([
+        response =  OrderedDict([
             ("uuid", self.id),
             ("url", self.url),
             ("email", self.email),
@@ -111,14 +111,16 @@ class ContactInformation(models.Model):
             ("phone", self.phone),
         ])
 
+        return { "internal_contact_information": response }
+
 
     def get_external(self):
 
-        return {
+        response = {
             "email": self.email,
             "url": self.url,
         }
-
+        return { "external_contact_information": response }
 
     def save(self, *args, **kwargs):
         if not self.phone:

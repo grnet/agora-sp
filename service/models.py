@@ -22,7 +22,10 @@ class Service(models.Model):
     risks = models.TextField(default=None, blank=True, null=True)
     competitors = models.TextField(default=None, blank=True, null=True)
     id_service_owner = models.ForeignKey(ServiceOwner, null=True)
-    id_contact_information = models.ForeignKey(ContactInformation, null=True)
+    #This is the id of the external contact information
+    id_contact_information = models.ForeignKey(ContactInformation, null=True, related_name="external_contact_info")
+    #This is the id of the internal contact information
+    id_contact_information_internal = models.ForeignKey(ContactInformation, null=True, related_name="internal_contact_info")
     logo = models.ImageField(upload_to=(os.path.join(settings.BASE_DIR, "static", "img", "logos")), default="/var/www/html/agora/static/img/logos/logo-none.jpg")
 
     class Meta:
@@ -97,11 +100,22 @@ class Service(models.Model):
         return [ExternalService.objects.get(id=dependency.id_external_service.pk).as_json()
                 for dependency in Service_ExternalService.objects.filter(id_service=self.id)]
 
+    # This method acquires the external contact information
     def get_service_contact_information(self):
-        return ContactInformation.objects.get(id=self.id_contact_information.pk).as_json()
+        return ContactInformation.objects.get(id=self.id_contact_information.pk).get_external()
 
+    # This method acquires the external contact information object
     def get_service_contact_information_object(self):
         return ContactInformation.objects.get(id=self.id_contact_information.pk) if self.id_contact_information is \
+                                                                                    not None else None
+
+    # This method acquires the internal contact information
+    def get_service_contact_information_internal(self):
+        return ContactInformation.objects.get(id=self.id_contact_information.pk).get_internal()
+
+    # This method acquires the internal contact information object
+    def get_service_contact_information_object_internal(self):
+        return ContactInformation.objects.get(id=self.id_contact_information_internal.pk) if self.id_contact_information is \
                                                                                     not None else None
 
     def get_service_dependencies(self):
@@ -158,7 +172,6 @@ class Service(models.Model):
             ("logo",  "/static/img/logos/"+self.logo.name.split("/")[-1])
         ])
 
-
     def as_complete_portfolio(self):
         service_dependencies = self.get_service_dependencies()
 
@@ -175,7 +188,7 @@ class Service(models.Model):
         users_customers = self.get_user_customers()
         service_details = self.get_service_details(complete=True, url=True)
 
-        contact_information = self.get_service_contact_information_object()
+        contact_information = self.get_service_contact_information_object_internal()
         if contact_information is not None:
             contact_information = OrderedDict([
                 ("uuid", contact_information.id),
@@ -259,7 +272,7 @@ class Service(models.Model):
         users_customers = self.get_user_customers()
         service_details = self.get_service_details(complete=True, url=True)
 
-        contact_information = self.get_service_contact_information_object()
+        contact_information = self.get_service_contact_information_object_internal()
         if contact_information is not None:
             contact_information = OrderedDict([
                 ("uuid", contact_information.id),
