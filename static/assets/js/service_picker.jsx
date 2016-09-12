@@ -129,8 +129,12 @@ var ServiceVersionWrapper = React.createClass({
                 <h4 className="col-lg-12 col-md-12 col-sm-12 col-xs-12">Status: <span
                     className='active-status'> {this.props.data.service_status} </span></h4>
 
-                <div className="col-lg-12" id="description"
-                     dangerouslySetInnerHTML={{__html: this.props.data.features_current}}>
+
+                <div className={this.props.data.features_current == null || this.props.data.features_current.length == 0 ? 'collapse' : ''}>
+                    <h4 className="col-xs-12">Features</h4>
+                    <div className="col-lg-12" id="description"
+                         dangerouslySetInnerHTML={{__html: this.props.data.features_current}}>
+                    </div>
                 </div>
 
                 {/*<div className="wrapper col-lg-12">
@@ -267,8 +271,10 @@ var Contact = React.createClass({
 
     getInitialState: function () {
         return {
-            url: "",
-            email: ""
+            externalUrl: "",
+            externalEmail: "",
+            internalUrl: "",
+            internalEmail: ""
         }
     },
 
@@ -281,8 +287,10 @@ var Contact = React.createClass({
             cache: false,
             success: function (data) {
                 this.setState({
-                    url: data.data.external_contact_information.url,
-                    email: data.data.external_contact_information.email
+                    externalUrl: data.data.external_contact_information.url,
+                    externalEmail: data.data.external_contact_information.email,
+                    internalUrl: data.data.internal_contact_information.url,
+                    internalEmail: data.data.internal_contact_information.email
                 });
 
             }.bind(this),
@@ -297,19 +305,46 @@ var Contact = React.createClass({
     },
 
     render: function () {
-        return (
-            <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h2>Contact information</h2>
-                <div className="wrapper">
-                    <span
-                        className={type == 'catalogue' && (this.state.url == null || this.state.url.length) <= 0 ? 'collapse' : ''}>URL: <a
-                        target="blank" href={this.state.url}>{this.state.url}</a></span><br/>
-                    <span
-                        className={type == 'catalogue' && (this.state.email == null || this.state.email.length <= 0) ? 'collapse' : ''}>Email: {this.state.email}</span>
+
+        if(type == "catalogue") {
+            return (
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h2>Contact information</h2>
+                    <div className="wrapper">
+                        <span
+                            className={type == 'catalogue' && (this.state.externalUrl == null || this.state.externalUrl.length) <= 0 ? 'collapse' : ''}>URL: <a
+                            target="blank" href={this.state.externalUrl}>{this.state.externalUrl}</a></span><br/>
+                        <span
+                            className={type == 'catalogue' && (this.state.externalEmail == null || this.state.externalEmail.length <= 0) ? 'collapse' : ''}>Email: {this.state.externalEmail}</span>
+                    </div>
+                    <hr className="separator col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
                 </div>
-                <hr className="separator col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
-            </div>
-        )
+            )
+        }
+        else {
+            return (
+                <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h2>Contact information</h2>
+                    <div className="wrapper">
+                        <h4 className="margin-top-40">External</h4>
+                        <span
+                            className={type == 'catalogue' && (this.state.externalUrl == null || this.state.externalUrl.length) <= 0 ? 'collapse' : ''}>URL: <a
+                            target="blank" href={this.state.externalUrl}>{this.state.externalUrl}</a></span><br/>
+                        <span
+                            className={type == 'catalogue' && (this.state.externalEmail == null || this.state.externalEmail.length <= 0) ? 'collapse' : ''}>Email: {this.state.externalEmail}</span>
+                    </div>
+                    <div className="wrapper">
+                        <h4 className="margin-top-40">Internal</h4>
+                        <span
+                            className={type == 'catalogue' && (this.state.internalUrl == null || this.state.internalUrl.length) <= 0 ? 'collapse' : ''}>URL: <a
+                            target="blank" href={this.state.internalUrl}>{this.state.internalUrl}</a></span><br/>
+                        <span
+                            className={type == 'catalogue' && (this.state.internalEmail == null || this.state.internalEmail.length <= 0) ? 'collapse' : ''}>Email: {this.state.internalEmail}</span>
+                    </div>
+                    <hr className="separator col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
+                </div>
+            )
+        }
     }
 });
 
