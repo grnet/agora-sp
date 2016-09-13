@@ -730,7 +730,7 @@ var Header = React.createClass({
             logoSrc = "https://eudat.eu/sites/default/files/EUDAT-logo_3.png";
 
         return (
-            <div>
+            <div className="col-xs-12">
 
                 <nav id="nav_bar" className="navbar navbar-default navbar-fixed-top">
                     <div className="col-md-2">
@@ -1287,6 +1287,21 @@ var PageSidebar = React.createClass({
 });
 
 
+var IntroductionText = React.createClass({
+
+    render: function(){
+        return (
+            <div className="col-xs-12 introduction">
+                <h2>VI-SEEM Service Catalogue</h2><br/>
+
+                <p>VI-SEEM offers a broad set of generic as well as application specific services in the region of  Southeastern Europe and Eastern Mediterranean, with special focus on the scientific communities of Life Sciences, Climatology and Digital Cultural Heritage. Such services are in the areas of Compute resource provisioning (HPC, Grid and Cloud), Storage and Data services provisioning, Data Set provisioning, Software and Scientific Workflow provisioning as well as Application Specific service provisioning. These services creating a unique Virtual Research Environment (VRE), thus improving research productivity and competitiveness on the pan-European level.</p>
+
+            </div>
+        )
+    }
+});
+
+
 var PickerPage = React.createClass({
 
     getInitialState: function () {
@@ -1305,6 +1320,8 @@ var PickerPage = React.createClass({
             cache: false,
             success: function (data) {
                 this.setState({data: data.data.areas});
+                $("#loader").hide();
+                //$("#area-content").show();
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
@@ -1321,7 +1338,11 @@ var PickerPage = React.createClass({
         return (
             <div className="col-xs-12 col-md-8 col-md-offset-2">
                 <Header />
-                <div className="wrapper area-content">
+                <IntroductionText />
+
+                <div id="loader" className="loader col-xs-12 col-xs-offset-5">Loading...</div>
+
+                <div id="area-content" className="col-xs-12 wrapper area-content">
                     {this.state.data.map(function (servicesInArea) {
                         if (servicesInArea[1] == null)
                             servicesInArea[1] = "service.png";
