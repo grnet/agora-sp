@@ -881,6 +881,8 @@ var CatalogueServicePage = React.createClass({
                 cache: false,
                 success: function (data) {
                     this.setState({data: data.data});
+                    $("#service-content-main").show();
+                    $("#loader").hide();
                 }.bind(this),
                 error: function (xhr, status, err) {
                     console.log(this.props.source, status, err.toString());
@@ -897,25 +899,31 @@ var CatalogueServicePage = React.createClass({
             return (
                 <div className="col-md-10 col-lg-8" id="service-content">
 
-                    <ServiceHeadline title={this.state.data.name} serviceArea={this.state.data.service_area}
-                                     shortDescription="Sample short description" logo={this.state.data.logo}/>
+                    <div id="loader" className="loader col-xs-12 col-xs-offset-5">Loading...</div>
 
-                    <ServiceDescription descriptionExternal={this.state.data.description_external}/>
-                    {/* <Separator /> */}
-                    {/*  <UserCustomers userCustomers={this.state.data.user_customers_list.user_customers} /> */}
-                    {/*    <Separator /> */}
-                    <RequestProcedures requestProcedures={this.state.data.request_procedures}/>
-                    <ValueToCustomer valueToCustomer={this.state.data.value_to_customer}/>
-                    {/* <Separator /> */}
-                    <ServiceVersions serviceDetails={this.state.data.service_details_list.service_details}
-                                     serviceName={this.state.data.name}/>
-                    {/*       <Separator /> */}
-                    <Options source={this.props.source}/>
-                    {/*       <Separator /> */}
+                    <div id="service-content-main">
 
-                    {/*  <Separator /> */}
-                    <Contact source={this.props.source}/>
-                    {/*       <Separator /> */}
+                        <ServiceHeadline title={this.state.data.name} serviceArea={this.state.data.service_area}
+                                         shortDescription="Sample short description" logo={this.state.data.logo}/>
+
+                        <ServiceDescription descriptionExternal={this.state.data.description_external}/>
+                        {/* <Separator /> */}
+                        {/*  <UserCustomers userCustomers={this.state.data.user_customers_list.user_customers} /> */}
+                        {/*    <Separator /> */}
+                        <RequestProcedures requestProcedures={this.state.data.request_procedures}/>
+                        <ValueToCustomer valueToCustomer={this.state.data.value_to_customer}/>
+                        {/* <Separator /> */}
+                        <ServiceVersions serviceDetails={this.state.data.service_details_list.service_details}
+                                         serviceName={this.state.data.name}/>
+                        {/*       <Separator /> */}
+                        <Options source={this.props.source}/>
+                        {/*       <Separator /> */}
+
+                        {/*  <Separator /> */}
+                        <Contact source={this.props.source}/>
+                        {/*       <Separator /> */}
+
+                    </div>
                 </div>
             );
         }
@@ -956,6 +964,8 @@ var PortfolioServicePage = React.createClass({
             cache: false,
             success: function (data) {
                 this.setState({data: data.data});
+                $("#service-content-main").show();
+                $("#loader").hide();
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
@@ -968,49 +978,54 @@ var PortfolioServicePage = React.createClass({
     },
 
     render: function () {
+
         return (
             <div className="col-md-10 col-lg-8" id="service-content">
 
 
-                {/* BASIC */}
-                <div id="basic-info-sect" className="col-xs-12">
-                    <ServiceHeadline title={this.state.data.name} serviceArea={this.state.data.service_area}
-                                     shortDescription="Sample short description" logo={this.state.data.logo}/>
-                    <ServiceDescription descriptionExternal={this.state.data.description_external}/>
-                    <UserCustomers userCustomers={this.state.data.user_customers_list.user_customers}/>
-                    <ServiceOwner source={this.props.source}/>
-                    <Contact source={this.props.source}/>
+                <div id="loader" className="loader col-xs-12 col-xs-offset-5">Loading...</div>
+
+                <div id="service-content-main">
+
+                    {/* BASIC */}
+                    <div id="basic-info-sect" className="col-xs-12">
+                        <ServiceHeadline title={this.state.data.name} serviceArea={this.state.data.service_area}
+                                         shortDescription="Sample short description" logo={this.state.data.logo}/>
+                        <ServiceDescription descriptionExternal={this.state.data.description_external}/>
+                        <UserCustomers userCustomers={this.state.data.user_customers_list.user_customers}/>
+                        <ServiceOwner source={this.props.source}/>
+                        <Contact source={this.props.source}/>
+                    </div>
+
+                    <div id="versions-sect" className="col-xs-12">
+                        <ServiceVersions serviceDetails={this.state.data.service_details_list.service_details}
+                                         serviceName={this.state.data.name}/>
+                    </div>
+
+                    {/* DETAIL */}
+                    <div id="description-sect" className="col-xs-12">
+                        <ServiceComponents source={this.props.source}/>
+                        <Options source={this.props.source}/>
+                        <ServiceDependencies source={this.props.source}/>
+                    </div>
+
+                    {/* SLA */}
+
+
+                    {/* BUSINESS */}
+                    <div id="business-info-sect" className="col-xs-12">
+                        <FundersForService fundersForService={this.state.data.funders_for_service}/>
+                        <Risks risks={this.state.data.risks}/>
+                        <Competitors competitors={this.state.data.competitors}/>
+                        <ValueToCustomer valueToCustomer={this.state.data.value_to_customer}/>
+                    </div>
+
+                    {/* EXTRA */}
+                    <div id="extra-info-sect" className="col-xs-12">
+                        <RequestProcedures requestProcedures={this.state.data.request_procedures}/>
+                    </div>
+
                 </div>
-
-                <div id="versions-sect" className="col-xs-12">
-                    <ServiceVersions serviceDetails={this.state.data.service_details_list.service_details}
-                                     serviceName={this.state.data.name}/>
-                </div>
-
-                {/* DETAIL */}
-                <div id="description-sect" className="col-xs-12">
-                    <ServiceComponents source={this.props.source}/>
-                    <Options source={this.props.source}/>
-                    <ServiceDependencies source={this.props.source}/>
-                </div>
-
-                {/* SLA */}
-
-
-                {/* BUSINESS */}
-                <div id="business-info-sect" className="col-xs-12">
-                    <FundersForService fundersForService={this.state.data.funders_for_service}/>
-                    <Risks risks={this.state.data.risks}/>
-                    <Competitors competitors={this.state.data.competitors}/>
-                    <ValueToCustomer valueToCustomer={this.state.data.value_to_customer}/>
-                </div>
-
-                {/* EXTRA */}
-                <div id="extra-info-sect" className="col-xs-12">
-                    <RequestProcedures requestProcedures={this.state.data.request_procedures}/>
-                </div>
-
-
             </div>
         );
     }

@@ -223,3 +223,8 @@
     transform: rotate(360deg);
   }
 }
+
+
+#service-content-main {
+    display: none;
+}
