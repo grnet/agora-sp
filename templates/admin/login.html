@@ -53,8 +53,17 @@
   {% endif %}
   <div class="submit-row">
     <label>&nbsp;</label><input type="submit" value="{% trans 'Log in' %}" />
-    <label>&nbsp;</label><input type="button" value="{% trans 'Log in with B2ACCESS' %}" />
-    <label>&nbsp;</label><input type="button" value="{% trans 'Log in with VI-SEEM' %}" />
+      {% if request.build_absolute_uri == 'http://agora-dev.vi-seem.eu/api/adminlogin/?next=/api/admin' %}
+          <label>&nbsp;</label><input type="button" value="{% trans 'Log in with VI-SEEM' %}" />
+      {% endif %}
+      {% if request.build_absolute_uri == 'http://sp.eudat.eu/api/adminlogin/?next=/api/sadmin' %}
+          <label>&nbsp;</label><input type="button" value="{% trans 'Log in with B2-ACCESS' %}" />
+      {% endif %}
+        {% if request.build_absolute_uri == 'http://localhost/api/adminlogin/?next=/api/admin' %}
+          <label>&nbsp;</label><input type="button" value="{% trans 'Log in with B2-ACCESS' %}" />
+          <label>&nbsp;</label><input type="button" value="{% trans 'Log in with VI-SEEM' %}" />
+      {% endif %}
+        <h4>[DEBUG] SAML settings for: {{ request.build_absolute_uri }}</h4>
   </div>
 </form>
 
