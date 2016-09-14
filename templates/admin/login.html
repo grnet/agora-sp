@@ -56,6 +56,9 @@
       {% if request.build_absolute_uri == 'http://agora-dev.vi-seem.eu/api/adminlogin/?next=/api/admin' %}
           <label>&nbsp;</label><input type="button" value="{% trans 'Log in with VI-SEEM' %}" />
       {% endif %}
+      {% if request.build_absolute_uri == 'http://services.vi-seem.eu/api/adminlogin/?next=/api/admin' %}
+          <label>&nbsp;</label><input type="button" value="{% trans 'Log in with VI-SEEM' %}" />
+      {% endif %}
       {% if request.build_absolute_uri == 'http://sp.eudat.eu/api/adminlogin/?next=/api/sadmin' %}
           <label>&nbsp;</label><input type="button" value="{% trans 'Log in with B2-ACCESS' %}" />
       {% endif %}
