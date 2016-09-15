@@ -112,7 +112,7 @@ LOGIN_REDIRECT_URL = "/api/admin/"
 
 PROJECT_APPS = ['component', 'options', 'owner', 'service']
 
-SITE_ID = 1
+SITE_ID = 2
 
 SAML_CONFIG = {
   'xmlsec_binary': '/usr/bin/xmlsec1',
@@ -148,8 +148,7 @@ SAML_CONFIG = {
          'cert_file' : path.join(BASE_DIR, 'cert.pem'),
 
         'metadata': {
-              'local': [path.join(BASE_DIR, 'viseem-metadata.xml')],
-              'remote': 'https://aai.vi-seem.eu/proxy/module.php/saml/sp/metadata.php/sso'
+              'local': [path.join(BASE_DIR, 'idp-metadata.xml')],
                 },
         'debug': 1,
 }
