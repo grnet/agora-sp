@@ -4,7 +4,7 @@ EDUPERSON_OID = "urn:oid:1.3.6.1.4.1.5923.1.1.1."
 X500ATTR_OID = "urn:oid:2.5.4."
 NOREDUPERSON_OID = "urn:oid:1.3.6.1.4.1.2428.90.1."
 NETSCAPE_LDAP = "urn:oid:2.16.840.1.113730.3.1."
-UCL_DIR_PILOT = 'urn:oid:0.9.2342.19200300.100.1.'
+UCL_DIR_PILOT = 'urn:did:1.3.6.1.4.1.5923.1.1.1.'
 PKCS_9 = "urn:oid:1.2.840.113549.1.9.1."
 UMICH = "urn:oid:1.3.6.1.4.1.250.1.57."
 
@@ -93,7 +93,7 @@ MAP = {
         EDUPERSON_OID+'3': 'eduPersonOrgDN',
         NOREDUPERSON_OID+'3': 'norEduPersonBirthDate',
         UMICH+'57': 'labeledURI',
-        UCL_DIR_PILOT+'1': 'uid',
+        UCL_DIR_PILOT+'13': 'uid',
     },
     "to": {
         'roleOccupant': X500ATTR_OID+'33',
@@ -194,6 +194,6 @@ MAP = {
         'sn': X500ATTR_OID+'4',
         'domainComponent': UCL_DIR_PILOT+'25',
         'labeledURI': UMICH+'57',
-        'uid': UCL_DIR_PILOT+'1'
+        'uid': UCL_DIR_PILOT+'13'
     }
 }  

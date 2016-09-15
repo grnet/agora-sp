@@ -129,7 +129,7 @@ SAML_CONFIG = {
                                 'single_logout_service': [ ('http://'+ALLOWED_HOSTS[SITE_ID]+'/saml2/ls/',saml2.BINDING_HTTP_REDIRECT),
                                                          ('http://'+ALLOWED_HOSTS[SITE_ID]+'/saml2/ls/post',saml2.BINDING_HTTP_POST),  ],
                                 },
-                  'required_attributes': ['userid'],
+                  'required_attributes': ['uid'],
 
                   'idp': {
                           # the keys of this dictionary are entity ids
