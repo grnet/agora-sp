@@ -129,7 +129,7 @@ SAML_CONFIG = {
                                 'single_logout_service': [ ('http://'+ALLOWED_HOSTS[SITE_ID]+'/saml2/ls/',saml2.BINDING_HTTP_REDIRECT),
                                                          ('http://'+ALLOWED_HOSTS[SITE_ID]+'/saml2/ls/post',saml2.BINDING_HTTP_POST),  ],
                                 },
-                  'required_attributes': ['uid'],
+                  'required_attributes': ['userid'],
 
                   'idp': {
                           # the keys of this dictionary are entity ids
@@ -144,9 +144,12 @@ SAML_CONFIG = {
                           },
         }
     },
+         'key_file' : path.join(BASE_DIR, 'key.pem'),
+         'cert_file' : path.join(BASE_DIR, 'cert.pem'),
 
         'metadata': {
               'local': [path.join(BASE_DIR, 'viseem-metadata.xml')],
+              'remote': 'https://aai.vi-seem.eu/proxy/module.php/saml/sp/metadata.php/sso'
                 },
         'debug': 1,
 }
