@@ -38,6 +38,7 @@ urlpatterns = [
     url(r'^api/v1/accounts/?', include('django.contrib.auth.urls')),
     url(r'^ui/?', include('service.view_urls')),
     url(r'^saml2/', include('djangosaml2.urls')),
+    url(r'^test/', 'djangosaml2.views.echo_attributes'),
 ]
 
 handler404 = "agora.views.error404"
