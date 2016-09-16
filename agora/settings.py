@@ -41,7 +41,7 @@ ALLOWED_HOSTS = ['127.0.0.1',
                  'services.vi-seem.eu']
 
 
-CORS_ORIGIN_ALLOW_ALL = True
+# CORS_ORIGIN_ALLOW_ALL = True
 
 # Application definition
 
@@ -135,7 +135,7 @@ SAML_CONFIG = {
                           # the keys of this dictionary are entity ids
                           'https://aai.vi-seem.eu/proxy/saml2/idp/metadata.php': {
                               'single_sign_on_service': {
-                                  saml2.BINDING_HTTP_REDIRECT: 'https://aai.vi-seem.eu/proxy/module.php/saml/sp/metadata.php/sso',
+                                  saml2.BINDING_HTTP_REDIRECT: 'https://aai.vi-seem.eu/proxy/saml2/idp/SSOService.php',
                                   },
                               'single_logout_service': {
                                   saml2.BINDING_HTTP_REDIRECT: 'https://aai.vi-seem.eu/proxy/saml2/idp/SingleLogoutService.php',
