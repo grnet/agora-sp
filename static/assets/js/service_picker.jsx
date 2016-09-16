@@ -286,11 +286,27 @@ var Contact = React.createClass({
             type: "GET",
             cache: false,
             success: function (data) {
+
+                var externalUrl = null;
+                var externalEmail = null;
+                var internalUrl = null;
+                var internalEmail = null;
+
+                if(data.data.external_contact_information != null){
+                    externalUrl = data.data.external_contact_information.url;
+                    externalEmail = data.data.external_contact_information.email;
+                }
+
+                if(data.data.internal_contact_information != null){
+                    internalUrl = data.data.internal_contact_information.url;
+                    internalEmail = data.data.internal_contact_information.email;
+                }
+
                 this.setState({
-                    externalUrl: data.data.external_contact_information.url,
-                    externalEmail: data.data.external_contact_information.email,
-                    internalUrl: data.data.internal_contact_information.url,
-                    internalEmail: data.data.internal_contact_information.email
+                    externalUrl: externalUrl,
+                    externalEmail: externalEmail,
+                    internalUrl: internalUrl,
+                    internalEmail: internalEmail
                 });
 
             }.bind(this),
@@ -1399,9 +1415,9 @@ var PortfolioPage = React.createClass({
 });
 
 
-var host = "http://snf-715140.vm.okeanos.grnet.gr";
+//var host = "http://snf-715140.vm.okeanos.grnet.gr";
 //var host = "http://sp.eudat.eu";
-//var host = "http://localhost";
+var host = "http://localhost";
 
 var view_type = window.location.href.split("/");
 
