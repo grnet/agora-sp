@@ -102,7 +102,7 @@ class Service(models.Model):
 
     # This method acquires the external contact information
     def get_service_contact_information(self):
-        return ContactInformation.objects.get(id=self.id_contact_information.pk).get_external()
+        return self.id_contact_information.get_external() if self.id_contact_information is not None else None
 
     # This method acquires the external contact information object
     def get_service_contact_information_object(self):
@@ -111,8 +111,7 @@ class Service(models.Model):
 
     # This method acquires the internal contact information
     def get_service_contact_information_internal(self):
-        return ContactInformation.objects.get(id=self.id_contact_information_internal.pk) if self.id_contact_information_internal is \
-                                                                                            not None else None
+        return self.id_contact_information_internal.get_internal() if self.id_contact_information_internal is not None else None
 
     # This method acquires the internal contact information object
     def get_service_contact_information_object_internal(self):

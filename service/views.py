@@ -1450,6 +1450,7 @@ def get_service_contact_information(request, service_name_or_uuid):
         response["errors"] = {
             "detail": "The requested service was not found"
         }
+        return JsonResponse(response, status=int(response["status"][:3]))
 
     except ValueError as v:
         if str(v) == "badly formed hexadecimal UUID string":
