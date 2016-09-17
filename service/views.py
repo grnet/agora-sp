@@ -210,6 +210,19 @@ def get_catalogue_main_page(request):
 
     return render(request, 'catalogue.html', {"areas": service_areas, "services": services, "names": name_help})
 
+
+def service_write_ui(request):
+    return render(request, 'service/write.html', {"type": "service"})
+
+def external_service_write_ui(request):
+    return render(request, 'service/write.html', {"type": "external_service"})
+
+def service_area_write_ui(request):
+    return render(request, 'service/write.html', {"type": "service_area"})
+
+def service_details_write_ui(request):
+    return render(request, 'service/write.html', {"type": "service_details"})
+
 def service_write(request, type):
     return render(request, 'write/service.html')
 

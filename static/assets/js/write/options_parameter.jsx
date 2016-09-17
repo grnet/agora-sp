@@ -1,4 +1,5 @@
-var formName = 'Service Form'
+
+var formName = 'Options Parametar Form'
 
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
@@ -7,20 +8,9 @@ var optionsData = [
 ];
 
 var resourceObject = [
-	{ tag: 'input', type: 'text', name: 'name', placeholder: 'Enter name', label: 'Name', required: true },
-	{ tag: 'textarea', type: 'textarea', name: 'description_external', label: 'External Description', required: true, onChange: 'textareaHTMLValidation' },
-	{ tag: 'textarea', type: 'textarea', name: 'description_internal', label: 'Internal Description', required: true, onChange: 'textareaHTMLValidation' },
-	{ tag: 'input', type: 'text', name: 'service_area', placeholder: 'Enter service area', label: 'Service Area', required: true },
-	{ tag: 'input', type: 'text', name: 'service_type', placeholder: 'Enter service type', label: 'Service Type', required: true },
-	{ tag: 'textarea', type: 'textarea', name: 'request_procedures', label: 'Request Procedures', required: true, onChange: 'textareaHTMLValidation' },
-	{ tag: 'textarea', type: 'textarea', name: 'funders_for_service', label: 'Funders for Service', required: true, onChange: 'textareaHTMLValidation' },
-	{ tag: 'textarea', type: 'textarea', name: 'value_to_customer', label: 'Value to customer', required: true, onChange: 'textareaHTMLValidation' },
-	{ tag: 'textarea', type: 'textarea', name: 'risks', label: 'Risks', required: true, onChange: 'textareaHTMLValidation' },
-	{ tag: 'textarea', type: 'textarea', name: 'competitors', label: 'Competitors', required: true, onChange: 'textareaHTMLValidation' },
-	// todo: how to fill the data for the options (should be done before rendering)
-	{ tag: 'select', type: 'select', name: 'service_owner', label: 'Service Owner', required: true, optionsData: optionsData },
-	{ tag: 'select', type: 'select', name: 'contact_information_external', label: 'Contact Information External', required: true, optionsData: optionsData },
-	{ tag: 'select', type: 'select', name: 'contact_information_internal', label: 'Contact Information Internal', required: true, optionsData: optionsData }
+	{ tag: 'input', type: 'text', name: 'name', placeholder: 'Enter name', label: 'Name' },
+	{ tag: 'input', type: 'text', name: 'type', placeholder: 'Enter type', label: 'Type' },
+	{ tag: 'input', type: 'text', name: 'expression', placeholder: 'Enter expression', label: 'Expression' }
 ];
 
 var OptionsComponent = React.createClass({
@@ -57,7 +47,7 @@ var FormWrapper = React.createClass({
 				return(
 					<div className="form-group">
 					    <label htmlFor={field.name}>{field.label}</label>
-					    <textarea className="form-control" id={field.name} name={field.name} rows="6" onChange={this[field.onChange]}></textarea>
+					    <textarea className="form-control" id={field.name} name={field.name} rows="6"></textarea>
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
 					</div>
 				);				
@@ -90,45 +80,27 @@ var FormWrapper = React.createClass({
 		$('body').find('.validation-message').addClass('sr-only');
 	},
 
-	textareaHTMLValidation: function(e){
-		var div = document.createElement('div');
-		div.innerHTML = $(e.target).val();
-		if($(div).find('script').length > 0 || $(div).find('link').length){
-			div = null;
-			this.markInvalid($(e.target).attr('name'), 'This HTML content must not have script or css tags');
-		}
-		else{	
-			$(e.target).parent().removeClass('has-error');
-			$(e.target).parent().find('.validation-message').addClass('sr-only');
-		}
-		div = null
-	},
-
 	validateForm: function(e){
 		this.clearValidations();
 		var validationObjects = [];
 		var validationMessage = ''
 
 		// --- validation code goes here ---
-
 		if($('#name').val() == ''){
 			validationMessage = "The name is required"
 			validationObjects.push( { field: 'name', message: validationMessage } );
 		}
-
 		if($('#name').val().length > 255){
 			validationMessage = "Content exceeds max length of 255 characters."
 			validationObjects.push( { field: 'name', message: validationMessage } );			
 		}
-
-		if($('#service_area').val().length > 255){
+		if($('#type').val().length > 255){
 			validationMessage = "Content exceeds max length of 255 characters."
-			validationObjects.push( { field: 'service_area', message: validationMessage } );			
+			validationObjects.push( { field: 'type', message: validationMessage } );	
 		}
-
-		if($('#service_type').val().length > 255){
+		if($('#expression').val().length > 255){
 			validationMessage = "Content exceeds max length of 255 characters."
-			validationObjects.push( { field: 'service_type', message: validationMessage } );
+			validationObjects.push( { field: 'expression', message: validationMessage } );			
 		}
 
 		if(validationObjects.length > 0){
@@ -147,8 +119,7 @@ var FormWrapper = React.createClass({
 		// ajax url call + redirect
 		e.preventDefault();
 
-		if(this.validateForm()){
-			this.clearValidations();
+		if(this.validateForm()){			
 			var formValues = JSON.stringify($("#service-form").serializeJSON());
 			console.log("The form values are ->", formValues);
 		}
@@ -175,7 +146,7 @@ var FormWrapper = React.createClass({
 	}
 });
 
-ReactDOM.render(  
+ReactDOM.render(
   <FormWrapper resourceObject={resourceObject} formName={formName}/>,
   document.getElementById('write-content')
 );

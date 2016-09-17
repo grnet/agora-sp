@@ -6,6 +6,7 @@ from rest_framework.decorators import *
 from common import helper, strings
 from django.db import IntegrityError
 import re
+from django.shortcuts import render
 
 
 # Returns the selected service details options information
@@ -194,6 +195,15 @@ def get_service_options(request, search_type, version):
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
+
+def options_sla_write_ui(request):
+    return render(request, 'service/write.html', {"type": "options_sla"})
+
+def options_parameter_write_ui(request):
+    return render(request, 'service/write.html', {"type": "options_parameter"})
+
+def service_options_write_ui(request):
+    return render(request, 'service/write.html', {"type": "service_option"})
 
 # Updates a Service Option object
 @api_view(['POST'])

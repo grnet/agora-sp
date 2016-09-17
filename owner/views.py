@@ -3,6 +3,7 @@ from owner import models
 from service import models as service_models
 from rest_framework.decorators import *
 from common import helper, strings
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 import re
 from django.db import IntegrityError
@@ -105,6 +106,17 @@ def get_service_owner_institution(request, service_name_or_uuid, service_owner):
         response = helper.get_response_info(strings.SERVICE_OWNER_INSTITUTION, owner.get_institution())
 
     return JsonResponse(response, status=int(response["status"][:3]))
+
+
+def contact_information_write_ui(request):
+    return render(request, 'service/write.html', {"type": "contact_information"})
+
+def owner_write_ui(request):
+    return render(request, 'service/write.html', {"type": "service_owner"})
+
+def institution_write_ui(request):
+    return render(request, 'service/write.html', {"type": "owner_institution"})
+
 
 
 # Updates an Institution object

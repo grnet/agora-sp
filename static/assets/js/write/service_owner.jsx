@@ -1,4 +1,5 @@
-var formName = 'Service Form'
+
+var formName = 'Service Owner Form'
 
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
@@ -6,21 +7,17 @@ var optionsData = [
 	{id: 3, value: 3, text: "option 3"}
 ];
 
+var booleanData = [
+  {id: 1, value: 1, text: "yes"},
+  {id: 0, value: 0, text: "no"}
+];
+
 var resourceObject = [
-	{ tag: 'input', type: 'text', name: 'name', placeholder: 'Enter name', label: 'Name', required: true },
-	{ tag: 'textarea', type: 'textarea', name: 'description_external', label: 'External Description', required: true, onChange: 'textareaHTMLValidation' },
-	{ tag: 'textarea', type: 'textarea', name: 'description_internal', label: 'Internal Description', required: true, onChange: 'textareaHTMLValidation' },
-	{ tag: 'input', type: 'text', name: 'service_area', placeholder: 'Enter service area', label: 'Service Area', required: true },
-	{ tag: 'input', type: 'text', name: 'service_type', placeholder: 'Enter service type', label: 'Service Type', required: true },
-	{ tag: 'textarea', type: 'textarea', name: 'request_procedures', label: 'Request Procedures', required: true, onChange: 'textareaHTMLValidation' },
-	{ tag: 'textarea', type: 'textarea', name: 'funders_for_service', label: 'Funders for Service', required: true, onChange: 'textareaHTMLValidation' },
-	{ tag: 'textarea', type: 'textarea', name: 'value_to_customer', label: 'Value to customer', required: true, onChange: 'textareaHTMLValidation' },
-	{ tag: 'textarea', type: 'textarea', name: 'risks', label: 'Risks', required: true, onChange: 'textareaHTMLValidation' },
-	{ tag: 'textarea', type: 'textarea', name: 'competitors', label: 'Competitors', required: true, onChange: 'textareaHTMLValidation' },
-	// todo: how to fill the data for the options (should be done before rendering)
-	{ tag: 'select', type: 'select', name: 'service_owner', label: 'Service Owner', required: true, optionsData: optionsData },
-	{ tag: 'select', type: 'select', name: 'contact_information_external', label: 'Contact Information External', required: true, optionsData: optionsData },
-	{ tag: 'select', type: 'select', name: 'contact_information_internal', label: 'Contact Information Internal', required: true, optionsData: optionsData }
+	{ tag: 'input', type: 'text', name: 'first_name', placeholder: 'Enter first name', label: 'First Name' },
+	{ tag: 'input', type: 'text', name: 'last_name', placeholder: 'Enter last name', label: 'Last Name' },
+	{ tag: 'input', type: 'text', name: 'email', placeholder: 'Enter email', label: 'Email' },
+	{ tag: 'input', type: 'text', name: 'phone', placeholder: 'Enter phone', label: 'Phone' },
+	{ tag: 'select', type: 'select', name: 'account_id', label: 'Account', optionsData: optionsData }
 ];
 
 var OptionsComponent = React.createClass({
@@ -57,7 +54,7 @@ var FormWrapper = React.createClass({
 				return(
 					<div className="form-group">
 					    <label htmlFor={field.name}>{field.label}</label>
-					    <textarea className="form-control" id={field.name} name={field.name} rows="6" onChange={this[field.onChange]}></textarea>
+					    <textarea className="form-control" id={field.name} name={field.name} rows="6"></textarea>
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
 					</div>
 				);				
@@ -90,18 +87,14 @@ var FormWrapper = React.createClass({
 		$('body').find('.validation-message').addClass('sr-only');
 	},
 
-	textareaHTMLValidation: function(e){
-		var div = document.createElement('div');
-		div.innerHTML = $(e.target).val();
-		if($(div).find('script').length > 0 || $(div).find('link').length){
-			div = null;
-			this.markInvalid($(e.target).attr('name'), 'This HTML content must not have script or css tags');
-		}
-		else{	
-			$(e.target).parent().removeClass('has-error');
-			$(e.target).parent().find('.validation-message').addClass('sr-only');
-		}
-		div = null
+	validateEmail: function(email) {
+	    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	    return re.test(email);
+	},
+
+	validatePhone: function(phone) {
+		var re = /^\d+$/
+		return re.test(phone)
 	},
 
 	validateForm: function(e){
@@ -110,25 +103,31 @@ var FormWrapper = React.createClass({
 		var validationMessage = ''
 
 		// --- validation code goes here ---
-
-		if($('#name').val() == ''){
-			validationMessage = "The name is required"
-			validationObjects.push( { field: 'name', message: validationMessage } );
+		if($('#email').val() == ''){
+			validationMessage = "The email is required"
+			validationObjects.push( { field: 'email', message: validationMessage } );
+		}
+		if(!this.validateEmail($('#email').val())){
+			validationMessage = "Content is not a valid email"
+			validationObjects.push( { field: 'email', message: validationMessage } );
+		}
+		if($('#first_name').val().length > 255){
+			validationMessage = "Content exceeds max length of 255 characters."
+			validationObjects.push( { field: 'first_name', message: validationMessage } );			
+		}
+		if($('#last_name').val().length > 255){
+			validationMessage = "Content exceeds max length of 255 characters."
+			validationObjects.push( { field: 'last_name', message: validationMessage } );
 		}
 
-		if($('#name').val().length > 255){
-			validationMessage = "Content exceeds max length of 255 characters."
-			validationObjects.push( { field: 'name', message: validationMessage } );			
+		if(!this.validatePhone($('#phone').val())){
+			validationMessage = "Phone field must contain numbers only."
+			validationObjects.push( { field: 'phone', message: validationMessage } );
 		}
 
-		if($('#service_area').val().length > 255){
+		if($('#phone').val().length > 255){
 			validationMessage = "Content exceeds max length of 255 characters."
-			validationObjects.push( { field: 'service_area', message: validationMessage } );			
-		}
-
-		if($('#service_type').val().length > 255){
-			validationMessage = "Content exceeds max length of 255 characters."
-			validationObjects.push( { field: 'service_type', message: validationMessage } );
+			validationObjects.push( { field: 'phone', message: validationMessage } );
 		}
 
 		if(validationObjects.length > 0){
@@ -145,14 +144,14 @@ var FormWrapper = React.createClass({
 	handleSubmit: function(e) {
 		// some validation
 		// ajax url call + redirect
+		console.log("handling submit")
 		e.preventDefault();
 
-		if(this.validateForm()){
-			this.clearValidations();
+		if(this.validateForm()){			
 			var formValues = JSON.stringify($("#service-form").serializeJSON());
 			console.log("The form values are ->", formValues);
 		}
-		else{			
+		else{	
 			console.log("The form is not valid");
 		}	
 	},
@@ -175,7 +174,7 @@ var FormWrapper = React.createClass({
 	}
 });
 
-ReactDOM.render(  
+ReactDOM.render(
   <FormWrapper resourceObject={resourceObject} formName={formName}/>,
   document.getElementById('write-content')
 );

@@ -8,6 +8,7 @@ from component import models as component_models
 from rest_framework.decorators import *
 from common import helper, strings
 from django.db import IntegrityError
+from django.shortcuts import render
 from common.decorators import check_service_ownership_or_superuser
 # Create your views here.
 
@@ -371,6 +372,17 @@ def get_service_component(request, search_type, version, comp_uuid):
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
+
+def service_component_write_ui(request):
+    return render(request, 'service/write.html', {"type": "service_component"})
+
+
+def service_component_implementation_write_ui(request):
+    return render(request, 'service/write.html', {"type": "service_component_implementation"})
+
+
+def service_component_implementation_detail_write_ui(request):
+    return render(request, 'service/write.html', {"type": "service_component_implementation_detail"})
 
 # Updates the provided service component implementation
 @api_view(['POST'])

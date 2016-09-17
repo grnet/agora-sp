@@ -37,6 +37,10 @@ urlpatterns = [
     url(r'^api/v1/auth/', include("social.apps.django_app.urls", namespace="social")),
     url(r'^api/v1/accounts/?', include('django.contrib.auth.urls')),
     url(r'^ui/?', include('service.view_urls')),
+    url(r'^ui/component/?', include('component.ui_urls')),
+    url(r'^ui/owner/?', include('owner.ui_urls')),
+    url(r'^ui/service/?', include('service.ui_urls')),
+    url(r'^ui/options/?', include('options.ui_urls')),
     url(r'^saml2/', include('djangosaml2.urls')),
     url(r'^test/', 'djangosaml2.views.echo_attributes'),
 ]

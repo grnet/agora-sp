@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="shortcut icon" href="../static/assets/img/favicon.png" type="image/x-icon">
+
+    <link href="/static/assets/css/bootstrap.min.css" rel="stylesheet" />
+    <link id="bootstrap-rtl-link" href="" rel="stylesheet" />
+    <link href="/static/assets/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/static/assets/css/weather-icons.min.css" rel="stylesheet" />
+
+    <!--Fonts-->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300" rel="stylesheet" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300' rel='stylesheet' type='text/css'>
+    <!--Beyond styles-->
+    <link href="/static/assets/css/beyond.min.css" rel="stylesheet" />
+    <link href="/static/assets/css/demo.min.css" rel="stylesheet" />
+    <link href="/static/assets/css/typicons.min.css" rel="stylesheet" />
+    <link href="/static/assets/css/animate.min.css" rel="stylesheet" />
+    <link id="skin-link" href="" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="/static/assets/css/service.css" type="text/css" />
+    <link rel="stylesheet" href="/static/assets/css/picker.css" type="text/css" />
+
+    <!--Skin Script: Place this script in head to load scripts for skins and rtl support-->
+    <script src="/static/assets/js/skins.min.js"></script>
+
+    <script src="/static/assets/js/react/react.js"></script>
+    <script src="/static/assets/js/react/react-dom.js"></script>
+    <script src="/static/assets/js/react/browser.min.js"></script>
+
+</head>
+<body>
+
+    <div id="content">
+        <div id="header" class="col-xs-12"></div>
+        <div id="sidebar" class="page-sidebar col-md-2 hidden-sm hidden-xs">
+        </div>
+        <div id="write-content" class="col-xs-12 col-md-8 col-md-offset-2"></div>
+
+    </div>
+
+
+
+    <script type="text/babel">
+
+
+        var host = "http://snf-715140.vm.okeanos.grnet.gr";
+        //var host = "http://sp.eudat.eu";
+
+        var view_type = window.location.href.split("/");
+
+        if (window.location.href.indexOf("#") > -1) {
+
+
+            var url_parts = window.location.href.split("/");
+
+
+            if (view_type[view_type.length - 1] == "")
+
+                url_parts.splice(-1, 1);
+
+
+            if (view_type[view_type.length - 3] == "wordpress")
+
+                url_parts = view_type[view_type.length - 2];
+
+            else
+
+                url_parts = view_type[view_type.length - 3];
+
+
+            var url_parts2 = window.location.href.split("#");
+
+            var service_name = url_parts2[1];
+
+            var type = url_parts;
+
+
+            var source = host + "/api/v1/" + type + "/services/" + service_name;
+            var source_areas = host + "/api/v1/" + type + "/service_picker/";
+
+
+
+
+        }
+
+        else {
+
+
+            var view_type = window.location.href.split("/");
+
+
+            if (view_type[view_type.length - 1] == "")
+
+                view_type.splice(-1, 1);
+
+
+            if (view_type[view_type.length - 2] == "wordpress")
+
+                view_type = view_type[view_type.length - 1];
+
+            else
+
+                view_type = view_type[view_type.length - 2];
+
+
+            var source = host + "/api/v1/" + view_type + "/service_picker/";
+;
+        }
+
+        var Header = React.createClass({
+
+            onLogoClick: function (event) {
+                window.location.href =  window.location.href.split('#')[0];
+                window.location.reload();
+            },
+
+            render: function () {
+
+                var logoSrc;
+                if(host.indexOf("sp.eudat.eu") <= -1)
+                    logoSrc = host + "/static/img/logos/spmt-vi-seem-logo.png";
+                else
+                    logoSrc = "https://eudat.eu/sites/default/files/EUDAT-logo_3.png";
+
+                return (
+                    <div className="col-xs-12">
+
+                        <nav id="nav_bar" className="navbar navbar-default navbar-fixed-top">
+                            <div className="col-md-2">
+                                <a href="" onClick={this.onLogoClick}>
+                                <img src={logoSrc}
+                                        height="70"/>
+                                    </a>
+                            </div>
+                            <div className={type == 'catalogue' || window.location.href.indexOf("#") == -1 ? 'collapse' : ''}>
+                                <ul className="service-header nav_links">
+                                    <li id="li-basic"><a>Basic Info</a></li>
+                                    <li id="li-versions"><a>Versions</a></li>
+                                    <li id="li-description"><a>Description</a></li>
+                                    {/* <li>SLA</li> */}
+                                    <li id="li-business"><a>Business Info</a></li>
+                                    <li id="li-extra"><a>Extra Info</a></li>
+                                </ul>
+                            </div>
+                        </nav>
+                    </div>
+                )
+            }
+        });
+
+        var ParentMenuIcon = React.createClass({
+            render: function () {
+                return (
+                    <a className="menu-dropdown">
+                        <span className="menu-text">{this.props.name}</span>
+                    </a>
+                );
+            }
+        });
+
+        var PageSidebar = React.createClass({
+            bodyClickHandler: function (e) {
+
+                var b = $("#sidebar").hasClass(".page-sidebar");
+                var menuLink = $(e.target).closest("a");
+                if (!menuLink || menuLink.length == 0)
+                    return;
+                if (!menuLink.hasClass("menu-dropdown")) {
+                    if (b && menuLink.get(0).parentNode.parentNode == this) {
+                        var menuText = menuLink.find(".menu-text").get(0);
+                        if (e.target != menuText && !$.contains(menuText, e.target)) {
+                            return false;
+                        }
+                    }
+                    return;
+                }
+                var submenu = menuLink.next().get(0);
+                if (!$(submenu).is(":visible")) {
+                    var c = $(submenu.parentNode).closest("ul");
+                    if (b && c.hasClass("sidebar-menu"))
+                        return;
+                    c.find("> .open > .submenu")
+                        .each(function () {
+                            if (this != submenu && !$(this.parentNode).hasClass("active"))
+                                $(this).slideUp(200).parent().removeClass("open");
+                        });
+                }
+                if (b && $(submenu.parentNode.parentNode).hasClass("sidebar-menu"))
+                    return false;
+                $(submenu).slideToggle(200).parent().toggleClass("open");
+                return false;
+            },
+            getInitialState: function () {
+                return {
+                    areas: []
+                }
+            },
+
+            render: function () {
+
+                return (
+                    <div>
+
+                        <ul className="nav sidebar-menu" onClick={this.bodyClickHandler}>
+
+                            {this.props.areas.map(function (area) {
+                                return (
+                                    <li>
+                                        <ParentMenuIcon name={area}/>
+                                    </li>
+                                )
+                            })}
+                        </ul>
+                    </div>
+                );
+            }
+        });
+
+
+        var leftMenu = ["Home", "Services", "Components", "Service Owners"];
+
+        ReactDOM.render(
+            <Header />,
+            document.getElementById('header')
+        );
+
+        ReactDOM.render(
+            <PageSidebar areas={leftMenu}/>,
+            document.getElementById('sidebar')
+        );
+
+    </script>
+
+
+
+    {% if type == "contact_information" %}
+        <script type="text/babel" src="/static/assets/js/write/contact_information.jsx"></script>
+    {% endif %}
+
+    {% if type == "external_service" %}
+        <script type="text/babel" src="/static/assets/js/write/external_service.jsx"></script>
+    {% endif %}
+
+    {% if type == "options_parameter" %}
+        <script type="text/babel" src="/static/assets/js/write/options_parameter.jsx"></script>
+    {% endif %}
+
+    {% if type == "options_sla" %}
+        <script type="text/babel" src="/static/assets/js/write/options_sla.jsx"></script>
+    {% endif %}
+
+    {% if type == "owner_external" %}
+        <script type="text/babel" src="/static/assets/js/write/owner_external.jsx"></script>
+    {% endif %}
+
+    {% if type == "owner_institution" %}
+        <script type="text/babel" src="/static/assets/js/write/owner_institution.jsx"></script>
+    {% endif %}
+
+    {% if type == "owner_internal" %}
+        <script type="text/babel" src="/static/assets/js/write/owner_external.jsx"></script>
+    {% endif %}
+
+    {% if type == "service" %}
+        <script type="text/babel" src="/static/assets/js/write/service.jsx"></script>
+    {% endif %}
+
+    {% if type == "service_area" %}
+        <script type="text/babel" src="/static/assets/js/write/service_area.jsx"></script>
+    {% endif %}
+
+    {% if type == "service_component" %}
+        <script type="text/babel" src="/static/assets/js/write/service_component.jsx"></script>
+    {% endif %}
+
+    {% if type == "service_component_implementation" %}
+        <script type="text/babel" src="/static/assets/js/write/service_component_implementation.jsx"></script>
+    {% endif %}
+
+    {% if type == "service_component_implementation_detail" %}
+        <script type="text/babel" src="/static/assets/js/write/service_component_implementation_detail.jsx"></script>
+    {% endif %}
+
+    {% if type == "service_details" %}
+        <script type="text/babel" src="/static/assets/js/write/service_details.jsx"></script>
+    {% endif %}
+
+    {% if type == "service_option" %}
+        <script type="text/babel" src="/static/assets/js/write/service_option.jsx"></script>
+    {% endif %}
+
+    {% if type == "service_owner" %}
+        <script type="text/babel" src="/static/assets/js/write/service_owner.jsx"></script>
+    {% endif %}
+
+
+
+
+
+
+    <script src="/static/assets/js/jquery.min.js"></script>
+    <script src="/static/assets/js/bootstrap.min.js"></script>
+    <script src="/static/assets/js/serialize-json.min.js"></script>
+    <script src="/static/assets/js/jquery.validate.min.js"></script>
+    <script src="/static/assets/js/slimscroll/jquery.slimscroll.min.js"></script>
+
+    <!--Beyond Scripts-->
+    <script src="/static/assets/js/beyond.js"></script>
+
+    <script type="application/javascript">
+        $(document).ready(function () {
+            $.ajaxSetup({'cache':true});
+        });
+    </script>
+
+    <link rel="stylesheet" href="/static/assets/css/write.css" type="text/css" />
+
+</body>
+</html>
