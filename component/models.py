@@ -59,6 +59,8 @@ class ServiceComponent(models.Model):
 
     def as_view_compatible (self, version):
 
+        component_implementations = [sci.as_json() for sci in ServiceComponentImplementation.objects
+            .filter(component_id=self.pk)]
 
         return {
             "component": OrderedDict([
@@ -67,7 +69,10 @@ class ServiceComponent(models.Model):
                 ("version", version),
                 ("logo",  "/static/img/logos/"+self.logo.name.split("/")[-1]),
                 ("description", self.description),
-
+                ("component_implementations_list", {
+                    "count": len(component_implementations),
+                    "component_implementations": component_implementations
+                })
             ])
         }
 
@@ -81,14 +86,13 @@ class ServiceComponentImplementation(models.Model):
 
     class Meta:
         unique_together = (('component_id', "name"))
+        verbose_name_plural = "2. Service Components Implementations"
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     component_id = models.ForeignKey(ServiceComponent)
     name = models.CharField(max_length=255, default=None, blank=True)
     description = models.TextField(default=None, blank=True, null=True)
 
-    class Meta:
-        verbose_name_plural = "2. Service Components Implementations"
 
     def __unicode__(self):
         return str(self.name)

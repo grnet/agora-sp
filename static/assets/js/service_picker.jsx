@@ -644,6 +644,63 @@ var DependencyWrapper = React.createClass({
 });
 
 
+var ComponentImplementationDetailsWrapper = React.createClass({
+
+    getInitialState: function(){
+        return {
+            data: {
+                version: "",
+                configurationParameters: ""
+            }
+        }
+    },
+
+    render: function(){
+        return (
+            <div className="col-xs-12">
+                <h6 className="col-xs-12">{this.props.data.version}</h6>
+                <p className="col-xs-12">{this.props.data.configurationParameters}</p>
+            </div>
+        )
+    }
+
+});
+
+
+var ComponentImplementationWrapper = React.createClass({
+
+    getInitialState: function(){
+        return {
+            data: {
+                name: "",
+                description: "",
+                component_implementation_details_list: {
+                    component_implementation_details: [],
+                    count: 0
+                }
+            }
+        }
+    },
+
+    render: function(){
+
+        return (
+            <div className="col-xs-12">
+                <h5 className="col-xs-12">{this.props.data.name}</h5>
+                <p className="col-xs-12">{this.props.data.description}</p>
+                <h5 className="col-xs-12">Component Implementation Details</h5>
+                <div className="wrapper col-xs-12">
+                    {this.props.data.component_implementation_details_list.component_implementation_details.map(function (componentImplementationDetails) {
+                        return <ComponentImplementationDetailsWrapper key={componentImplementationDetails.name} data={componentImplementationDetails}/>
+                    })}
+                </div>
+            </div>
+        )
+    }
+
+});
+
+
 var ComponentWrapper = React.createClass({
     getInitialState: function () {
 
@@ -651,29 +708,62 @@ var ComponentWrapper = React.createClass({
             data: {
                 name: "",
                 description: "",
-                version: ""
+                version: "",
+                logo: "",
+                component_implementations_list: {
+                    component_implementations: [],
+                    count: 0
+                }
             }
 
         }
     },
+
     render: function () {
 
 
-        return (
-            <div className="options col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <img src={ this.props.data.component.logo }
-                     className="col-lg-1 col-md-1 col-sm-1 col-xs-6 col-xs-offset-3 col-sm-offset-0"/>
-                <div className="col-lg-11 col-md-11 col-sm-11 col-xs-12 center-text-xs">
-                    <h3 className="col-lg-12 option-name">{this.props.data.component.name}</h3>
-                    <div className="features col-xs-12">
-                        <p className="col-lg-9 col-md-9 col-sm-9 center-text-xs padding-left-0">Service
-                            version: {this.props.data.component.version}</p>
-                        <p className="col-lg-9 col-md-9 col-sm-9 center-text-xs padding-left-0">{this.props.data.component.description}</p>
+        if(type == "catalogue"){
+            return (
+                <div className="options col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <img src={ this.props.data.component.logo }
+                         className="col-lg-1 col-md-1 col-sm-1 col-xs-6 col-xs-offset-3 col-sm-offset-0"/>
+                    <div className="col-lg-11 col-md-11 col-sm-11 col-xs-12 center-text-xs">
+                        <h3 className="col-lg-12 option-name">{this.props.data.component.name}</h3>
+                        <div className="features col-xs-12">
+                            <p className="col-lg-9 col-md-9 col-sm-9 center-text-xs padding-left-0">Service
+                                version: {this.props.data.component.version}</p>
+                            <p className="col-lg-9 col-md-9 col-sm-9 center-text-xs padding-left-0">{this.props.data.component.description}</p>
+                        </div>
                     </div>
-                </div>
 
-            </div>
-        )
+                </div>
+            )
+        }
+        else {
+            return (
+                <div className="options col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <img src={ this.props.data.component.logo }
+                         className="col-lg-1 col-md-1 col-sm-1 col-xs-6 col-xs-offset-3 col-sm-offset-0"/>
+                    <div className="col-lg-11 col-md-11 col-sm-11 col-xs-12 center-text-xs">
+                        <h3 className="col-lg-12 option-name">{this.props.data.component.name}</h3>
+                        <div className="features col-xs-12">
+                            <p className="col-lg-9 col-md-9 col-sm-9 center-text-xs padding-left-0">Service
+                                version: {this.props.data.component.version}</p>
+                            <p className="col-lg-9 col-md-9 col-sm-9 center-text-xs padding-left-0">{this.props.data.component.description}</p>
+
+                            <h4 className="col-xs-12">Component implementations</h4>
+                            <div className="wrapper col-xs-12">
+                                {this.props.data.component.component_implementations_list.component_implementations.map(function (componentImplementation) {
+                                    return <ComponentImplementationWrapper key={componentImplementation.name} data={componentImplementation}/>
+                                })}
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            )
+        }
     }
 });
 
@@ -1415,9 +1505,9 @@ var PortfolioPage = React.createClass({
 });
 
 
-var host = "http://snf-715140.vm.okeanos.grnet.gr";
+//var host = "http://snf-715140.vm.okeanos.grnet.gr";
 //var host = "http://sp.eudat.eu";
-//var host = "http://localhost";
+var host = "http://localhost";
 
 var view_type = window.location.href.split("/");
 
