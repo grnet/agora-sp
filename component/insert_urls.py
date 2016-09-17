@@ -11,4 +11,5 @@ urlpatterns = [
     url(r'^add/?$', views.insert_service_component),
     url(r'^service_details_component_implementation_details/edit/?$', views.edit_service_details_component_implementation_details),
     url(r'^service_details_component_implementation_details/add/?$', views.insert_service_details_component_implementation_details),
+    url(r'^(?P<comp_uuid>[0-9a-zA-Z\-]+)/?$', views.get_service_component_single),
 ]

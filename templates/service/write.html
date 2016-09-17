@@ -277,6 +277,7 @@
     {% endif %}
 
     {% if type == "service_component" %}
+        <input type="hidden" id="source" value="{{ source }}" />
         <script type="text/babel" src="/static/assets/js/write/service_component.jsx"></script>
     {% endif %}
 
@@ -316,7 +317,7 @@
 
     <script type="application/javascript">
         $(document).ready(function () {
-            $.ajaxSetup({'cache':true});
+            $.ajaxSetup({'cache':false});
         });
     </script>
 

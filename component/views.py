@@ -265,6 +265,43 @@ def insert_service_component(request):
     return JsonResponse(response, status=int(response["status"][:3]))
 
 
+def get_service_component_single(request, comp_uuid):
+    response = {}
+
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+
+    result_comp = prog.match(comp_uuid)
+    parsed_name, uuid = None, None
+
+    if result_comp is None:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "An invalid service component UUID was supplied"
+        }
+        return JsonResponse(response, status=int(response["status"][:3]))
+
+    try:
+        service_component = component_models.ServiceComponent.objects.get(id=comp_uuid)
+
+        response["status"] = "200 OK"
+        response["data"] = service_component.as_json()
+        response["info"] = "service component information"
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response["status"] = "404 Not Found"
+            response["errors"] = {
+                "detail": "An invalid UUID was supplied"
+            }
+
+    except component_models.ServiceComponent.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The requested service component was not found"
+        }
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
 # Returns the selected service component
 # @check_service_ownership_or_superuser
 @api_view(['GET'])
@@ -375,6 +412,10 @@ def get_service_component(request, search_type, version, comp_uuid):
 
 def service_component_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_component"})
+
+def service_component_edit_ui(request, comp_uuid):
+    source = helper.current_site_url() + "/v1/component/" + comp_uuid
+    return render(request, 'service/write.html', {"type": "service_component", "source": source})
 
 
 def service_component_implementation_write_ui(request):
