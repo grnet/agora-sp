@@ -37,6 +37,12 @@ class ServiceComponent(models.Model):
             })
         ])
 
+    def as_shorter(self):
+        return OrderedDict([
+            ("uuid", str(self.id)),
+            ("name", self.name)
+        ])
+
     def as_short(self, service_id, service_details_version):
 
         service = Service.objects.get(id=service_id)
@@ -109,6 +115,15 @@ class ServiceComponentImplementation(models.Model):
                 "count": len(component_implementation_details),
                 "component_implementation_details": component_implementation_details
             })
+        ])
+
+    def as_json_up(self):
+
+        return OrderedDict([
+            ("uuid", str(self.id)),
+            ("name", self.name),
+            ("description", self.description),
+            ("component", self.component_id.as_shorter())
         ])
 
     def as_short(self, service_id, service_details_version):

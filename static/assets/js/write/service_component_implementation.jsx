@@ -166,11 +166,26 @@ var FormWrapper = React.createClass({
                 this.setState({component: data.data});
                 $("#name").val(this.state.component.name);
                 $("#description").val(this.state.component.description);
+                //$("#component_id").val(this.state.component.component.name);
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
             }.bind(this)
         });
+
+        //this.serverRequest = $.ajax({
+        //    url: this.props.source,
+        //    dataType: "json",
+        //    crossDomain: true,
+        //    type: "GET",
+        //    cache: false,
+        //    success: function (data) {
+        //
+        //    }.bind(this),
+        //    error: function (xhr, status, err) {
+        //        console.log(this.props.source, status, err.toString());
+        //    }.bind(this)
+        //});
     },
 
     componentWillUnmount: function () {

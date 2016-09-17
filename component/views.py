@@ -319,7 +319,7 @@ def get_service_component_implementation(request, comp_imp_uuid):
         service_component_imp = component_models.ServiceComponentImplementation.objects.get(id=comp_imp_uuid)
 
         response["status"] = "200 OK"
-        response["data"] = service_component_imp.as_json()
+        response["data"] = service_component_imp.as_json_up()
         response["info"] = "service component implementation information"
 
     except ValueError as v:
@@ -334,6 +334,16 @@ def get_service_component_implementation(request, comp_imp_uuid):
         response["errors"] = {
             "detail": "The requested service component implementation was not found"
         }
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
+def get_service_component_implementation_all(request):
+    response = {}
+
+    service_component_imp = component_models.ServiceComponentImplementation.objects.all()
+    response["status"] = "200 OK"
+    response["data"] = [s.as_json_up() for s in service_component_imp]
+    response["info"] = "service component implementation information"
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
