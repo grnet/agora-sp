@@ -217,6 +217,10 @@ def service_write_ui(request):
 def external_service_write_ui(request):
     return render(request, 'service/write.html', {"type": "external_service"})
 
+def external_service_edit_ui(request, service_name_or_uuid):
+    source = helper.current_site_url() + "/v1/services/external_service/" + service_name_or_uuid
+    return render(request, 'service/write.html', {"type": "external_service", "source": source})
+
 def service_area_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_area"})
 
@@ -225,6 +229,42 @@ def service_details_write_ui(request):
 
 def service_write(request, type):
     return render(request, 'write/service.html')
+
+
+def get_external_service(request, service_name_or_uuid):
+
+    response = {}
+    service, parsed_name, uuid = None, None, None
+
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    result = prog.match(service_name_or_uuid)
+
+    if result is None:
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
+    else:
+        uuid = service_name_or_uuid
+
+    try:
+        if result is None:
+            service = models.ExternalService.objects.get(name=parsed_name)
+        else:
+            service = models.ExternalService.objects.get(id=uuid)
+
+    except models.ExternalService.DoesNotExist:
+        service = None
+        response = helper.get_error_response(strings.EXTERNAL_SERVICE_NOT_FOUND)
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response = helper.get_error_response(strings.INVALID_UUID)
+
+
+    response = helper.get_response_info(strings.SERVICE_INFORMATION, service.as_json())
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
+
+
 
 def get_service_catalogue_view(request, service):
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")

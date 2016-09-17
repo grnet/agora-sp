@@ -8,7 +8,7 @@ var optionsData = [
 
 var resourceObject = [
 	{ tag: 'input', type: 'text', name: 'name', placeholder: 'Enter name', label: 'Name' },
-	{ tag: 'textarea', type: 'textarea', name: 'description', label: 'Description', onChange: 'textareaHTMLValidation' },
+	{ tag: 'textarea', type: 'textarea', name: 'description', placeholder: 'Enter description', label: 'Description', onChange: 'textareaHTMLValidation' },
 	{ tag: 'select', type: 'select', name: 'service_owner', label: 'Service', optionsData: optionsData },
 	{ tag: 'input', type: 'text', name: 'details', placeholder: 'Enter details', label: 'Details' }
 ];
@@ -47,7 +47,7 @@ var FormWrapper = React.createClass({
 				return(
 					<div className="form-group">
 					    <label htmlFor={field.name}>{field.label}</label>
-					    <textarea className="form-control" id={field.name} name={field.name} rows="6" onChange={this[field.onChange]}></textarea>
+					    <textarea className="form-control" id={field.name} name={field.name} placeholder={field.placeholder} rows="6" onChange={this[field.onChange]}></textarea>
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
 					</div>
 				);				
@@ -142,6 +142,44 @@ var FormWrapper = React.createClass({
 		}	
 	},
 
+	getInitialState: function () {
+		return {
+			external_service: {
+				name: "",
+				description: "",
+				details: ""
+			}
+		}
+	},
+
+    componentDidMount: function () {
+
+        if(this.props.source == null || this.props.source == "")
+            return;
+
+        jQuery.support.cors = true;
+        this.serverRequest = $.ajax({
+            url: this.props.source,
+            dataType: "json",
+            crossDomain: true,
+            type: "GET",
+            cache: false,
+            success: function (data) {
+                this.setState({external_service: data.data});
+                $("#name").val(this.state.external_service.name);
+                $("#description").val(this.state.external_service.description);
+                $("#details").val(this.state.external_service.details);
+            }.bind(this),
+            error: function (xhr, status, err) {
+                console.log(this.props.source, status, err.toString());
+            }.bind(this)
+        });
+    },
+
+    componentWillUnmount: function () {
+        this.serverRequest.abort();
+    },
+
 	render: function(){		
 		var formElements = this.generateFormElements(this.props.resourceObject);
 		return(
@@ -161,6 +199,6 @@ var FormWrapper = React.createClass({
 });
 
 ReactDOM.render(	
-  <FormWrapper resourceObject={resourceObject} formName={formName}/>,
+  <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
   document.getElementById('write-content')
 );

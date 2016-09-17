@@ -18,5 +18,6 @@ urlpatterns = [
     url(r'^add/?$', views.insert_service),
     url(r'^external_service/edit/?$', views.edit_external_service),
     url(r'^external_service/add/?$', views.insert_external_service),
+    url(r'^external_service/(?P<service_name_or_uuid>[0-9a-zA-Z\-\_]+)/?$', views.get_external_service),
 
 ]
