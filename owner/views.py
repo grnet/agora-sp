@@ -114,9 +114,33 @@ def contact_information_write_ui(request):
 def owner_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_owner"})
 
+def owner_edit_ui(request, owner_uuid):
+    source = helper.current_site_url() + "/v1/owner/" + owner_uuid
+    return render(request, 'service/write.html', {"type": "service_owner", "source": source})
+
 def institution_write_ui(request):
     return render(request, 'service/write.html', {"type": "owner_institution"})
 
+
+def get_service_owner_single(request, owner_uuid):
+    response = {}
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    result = prog.match(owner_uuid)
+    owner = None, None, None
+
+    try:
+        owner = models.ServiceOwner.objects.get(id=owner_uuid)
+
+    except models.ServiceOwner.DoesNotExist:
+        response = helper.get_error_response(strings.SERVICE_OWNER_NOT_FOUND)
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response = helper.get_error_response(strings.INVALID_UUID)
+
+    response = helper.get_response_info(strings.SERVICE_OWNER_INFORMATION, owner.as_json())
+
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 
 # Updates an Institution object
@@ -314,6 +338,9 @@ def insert_contact_information(request):
     response = helper.get_response_info(msg, data, status=status)
 
     return JsonResponse(response, status=int(response["status"][:3]))
+
+
+
 
 
 # Updates a Service Owner object
