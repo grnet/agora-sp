@@ -14,4 +14,5 @@ urlpatterns = [
     url(r'^SLA_paramters/add/?$', views.insert_SLA_parameter),
     url(r'^SLAs/edit/?$', views.edit_SLA),
     url(r'^SLAs/add/?$', views.insert_SLA),
+    url(r'^service_options/(?P<serv_opt_uuid>[0-9a-zA-Z\-]+)/?$', views.get_service_options_single),
 ]
