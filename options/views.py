@@ -221,9 +221,39 @@ def get_service_options_single(request, serv_opt_uuid):
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
+def get_sla(request, sla_uuid):
+    """
+    Retrieves the service options
+
+    """
+
+    service, parsed_name, uuid = None, None, None
+
+    response = {}
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    result = prog.match(sla_uuid)
+
+    try:
+        sla = options_models.SLA.objects.get(id=sla_uuid)
+        response = helper.get_response_info(strings.SERVICE_OPTIONS, sla.as_short())
+
+    except options_models.ServiceOption.DoesNotExist:
+        response = helper.get_error_response(strings.SERVICE_OPTION_NOT_FOUND)
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response = helper.get_error_response(strings.INVALID_UUID)
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
+
 
 def options_sla_write_ui(request):
     return render(request, 'service/write.html', {"type": "options_sla"})
+
+def options_sla_edit_ui(request, sla_uuid):
+    source = helper.current_site_url() + "/v1/options/sla/" + sla_uuid
+    return render(request, 'service/write.html', {"type": "options_sla", "source": source})
 
 def options_parameter_write_ui(request):
     return render(request, 'service/write.html', {"type": "options_parameter"})
