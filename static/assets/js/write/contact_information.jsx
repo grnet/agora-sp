@@ -178,6 +178,48 @@ var FormWrapper = React.createClass({
 		}	
 	},
 
+	getInitialState: function () {
+		return {
+			contact_information: {
+				first_name: "",
+				last_name: "",
+				email: "",
+				phone: "",
+				url: ""
+			}
+		}
+	},
+
+    componentDidMount: function () {
+
+        if(this.props.source == null || this.props.source == "")
+            return;
+
+        jQuery.support.cors = true;
+        this.serverRequest = $.ajax({
+            url: this.props.source,
+            dataType: "json",
+            crossDomain: true,
+            type: "GET",
+            cache: false,
+            success: function (data) {
+                this.setState({contact_information: data.data.internal_contact_information.internal_contact_information});
+                $("#first_name").val(this.state.contact_information.first_name);
+                $("#last_name").val(this.state.contact_information.last_name);
+                $("#email").val(this.state.contact_information.email);
+                $("#phone").val(this.state.contact_information.phone);
+                $("#url").val(this.state.contact_information.url);
+            }.bind(this),
+            error: function (xhr, status, err) {
+                console.log(this.props.source, status, err.toString());
+            }.bind(this)
+        });
+    },
+
+    componentWillUnmount: function () {
+        this.serverRequest.abort();
+    },
+
 	render: function(){		
 		var formElements = this.generateFormElements(this.props.resourceObject);
 		return(
@@ -197,6 +239,6 @@ var FormWrapper = React.createClass({
 });
 
 ReactDOM.render(
-  <FormWrapper resourceObject={resourceObject} formName={formName}/>,
+  <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
   document.getElementById('write-content')
 );

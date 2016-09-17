@@ -111,6 +111,10 @@ def get_service_owner_institution(request, service_name_or_uuid, service_owner):
 def contact_information_write_ui(request):
     return render(request, 'service/write.html', {"type": "contact_information"})
 
+def contact_information_edit_ui(request, contact_uuid):
+    source = helper.current_site_url() + "/v1/owner/contact_information/" + contact_uuid
+    return render(request, 'service/write.html', {"type": "contact_information", "source": source})
+
 def owner_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_owner"})
 
@@ -139,6 +143,26 @@ def get_service_owner_single(request, owner_uuid):
             response = helper.get_error_response(strings.INVALID_UUID)
 
     response = helper.get_response_info(strings.SERVICE_OWNER_INFORMATION, owner.as_json())
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
+def get_contact_information(request, contact_uuid):
+    response = {}
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    result = prog.match(contact_uuid)
+    contact_information = None, None, None
+
+    try:
+        contact_information = models.ContactInformation.objects.get(id=contact_uuid)
+
+    except models.ServiceOwner.DoesNotExist:
+        response = helper.get_error_response(strings.CONTACT_INFORMATION_NOT_FOUND)
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response = helper.get_error_response(strings.INVALID_UUID)
+
+    response = helper.get_response_info(strings.SERVICE_OWNER_INFORMATION, contact_information.as_json())
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
