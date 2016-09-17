@@ -271,7 +271,6 @@ def get_service_component_single(request, comp_uuid):
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
 
     result_comp = prog.match(comp_uuid)
-    parsed_name, uuid = None, None
 
     if result_comp is None:
         response["status"] = "404 Not Found"
@@ -298,6 +297,78 @@ def get_service_component_single(request, comp_uuid):
         response["status"] = "404 Not Found"
         response["errors"] = {
             "detail": "The requested service component was not found"
+        }
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
+def get_service_component_implementation(request, comp_imp_uuid):
+    response = {}
+
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+
+    result_comp = prog.match(comp_imp_uuid)
+
+    if result_comp is None:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "An invalid service component implementation UUID was supplied"
+        }
+        return JsonResponse(response, status=int(response["status"][:3]))
+
+    try:
+        service_component_imp = component_models.ServiceComponentImplementation.objects.get(id=comp_imp_uuid)
+
+        response["status"] = "200 OK"
+        response["data"] = service_component_imp.as_json()
+        response["info"] = "service component implementation information"
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response["status"] = "404 Not Found"
+            response["errors"] = {
+                "detail": "An invalid UUID was supplied"
+            }
+
+    except component_models.ServiceComponent.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The requested service component implementation was not found"
+        }
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
+def get_service_component_implementation_details(request, comp_imp_det_uuid):
+    response = {}
+
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+
+    result_comp = prog.match(comp_imp_det_uuid)
+
+    if result_comp is None:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "An invalid service component implementation details UUID was supplied"
+        }
+        return JsonResponse(response, status=int(response["status"][:3]))
+
+    try:
+        service_component_imp_det = component_models.ServiceComponentImplementationDetail.objects.get(id=comp_imp_det_uuid)
+
+        response["status"] = "200 OK"
+        response["data"] = service_component_imp_det.as_json()
+        response["info"] = "service component implementation details information"
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response["status"] = "404 Not Found"
+            response["errors"] = {
+                "detail": "An invalid UUID was supplied"
+            }
+
+    except component_models.ServiceComponent.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The requested service component implementation details was not found"
         }
 
     return JsonResponse(response, status=int(response["status"][:3]))
@@ -421,9 +492,18 @@ def service_component_edit_ui(request, comp_uuid):
 def service_component_implementation_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_component_implementation"})
 
+def service_component_implementation_edit_ui(request, comp_imp_uuid):
+    source = helper.current_site_url() + "/v1/component/implementation/" + comp_imp_uuid
+    return render(request, 'service/write.html', {"type": "service_component_implementation", "source": source})
+
 
 def service_component_implementation_detail_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_component_implementation_detail"})
+
+def service_component_implementation_detail_edit_ui(request, comp_imp_det_uuid):
+    source = helper.current_site_url() + "/v1/component/implementation_detail/" + comp_imp_det_uuid
+    return render(request, 'service/write.html', {"type": "service_component_implementation_detail", "source": source})
+
 
 # Updates the provided service component implementation
 @api_view(['POST'])

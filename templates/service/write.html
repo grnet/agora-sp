@@ -238,7 +238,7 @@
 
     </script>
 
-
+    <input type="hidden" id="source" value="{{ source }}" />
 
     {% if type == "contact_information" %}
         <script type="text/babel" src="/static/assets/js/write/contact_information.jsx"></script>
@@ -277,7 +277,6 @@
     {% endif %}
 
     {% if type == "service_component" %}
-        <input type="hidden" id="source" value="{{ source }}" />
         <script type="text/babel" src="/static/assets/js/write/service_component.jsx"></script>
     {% endif %}
 

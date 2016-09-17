@@ -144,7 +144,7 @@ var FormWrapper = React.createClass({
 
     componentDidMount: function () {
 
-        if(this.props.source == null)
+        if(this.props.source == null || this.props.source == "")
             return;
 
         jQuery.support.cors = true;
