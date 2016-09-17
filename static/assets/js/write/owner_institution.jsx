@@ -127,6 +127,46 @@ var FormWrapper = React.createClass({
 		}	
 	},
 
+	getInitialState: function () {
+		return {
+			institution: {
+				name: "",
+				address: "",
+				country: "",
+				department: ""
+			}
+		}
+	},
+
+    componentDidMount: function () {
+
+        if(this.props.source == null || this.props.source == "")
+            return;
+
+        jQuery.support.cors = true;
+        this.serverRequest = $.ajax({
+            url: this.props.source,
+            dataType: "json",
+            crossDomain: true,
+            type: "GET",
+            cache: false,
+            success: function (data) {
+                this.setState({institution: data.data});
+                $("#name").val(this.state.institution.name);
+                $("#address").val(this.state.institution.address);
+                $("#country").val(this.state.institution.country);
+                $("#department").val(this.state.institution.department);
+            }.bind(this),
+            error: function (xhr, status, err) {
+                console.log(this.props.source, status, err.toString());
+            }.bind(this)
+        });
+    },
+
+    componentWillUnmount: function () {
+        this.serverRequest.abort();
+    },
+
 	render: function(){		
 		var formElements = this.generateFormElements(this.props.resourceObject);
 		return(
@@ -146,6 +186,6 @@ var FormWrapper = React.createClass({
 });
 
 ReactDOM.render(
-  <FormWrapper resourceObject={resourceObject} formName={formName}/>,
+  <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
   document.getElementById('write-content')
 );
