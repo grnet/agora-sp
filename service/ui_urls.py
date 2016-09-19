@@ -13,5 +13,6 @@ urlpatterns = [
     url(r'^version/?$', views.service_details_write_ui),
     url(r'^external/(?P<service_name_or_uuid>[0-9a-zA-Z\-\_]+)/?$', views.external_service_edit_ui),
     url(r'^(?P<service_name_or_uuid>[0-9a-zA-Z\-\_]+)/?$', views.service_edit_ui),
+    url(r'^(?P<service_name_or_uuid>[0-9a-zA-Z\-\_]+)/version/(?P<version>[0-9\.]+)/?$', views.service_details_edit_ui),
 
 ]

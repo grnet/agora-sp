@@ -202,6 +202,63 @@ var FormWrapper = React.createClass({
 		}	
 	},
 
+	getInitialState: function () {
+		return {
+			service_details: {
+				version: ""
+			}
+		}
+	},
+
+    componentDidMount: function () {
+
+        if(this.props.source == null || this.props.source == "")
+            return;
+
+        jQuery.support.cors = true;
+        this.serverRequest = $.ajax({
+            url: this.props.source,
+            dataType: "json",
+            crossDomain: true,
+            type: "GET",
+            cache: false,
+            success: function (data) {
+                this.setState({service_details: data.data});
+                $("#version").val(this.state.service_details.version);
+                $("#status").val(this.state.service_details.status);
+                $("#features_current").val(this.state.service_details.features_current);
+                $("#features_future").val(this.state.service_details.features_future);
+                $("#usage_policy_has").val(this.state.service_details.usage_policy_has);
+                $("#usage_policy_url").val(this.state.service_details.usage_policy_url);
+                $("#usage_documentation_has").val(this.state.service_details.usage_documentation_has);
+                $("#usage_documentation_url").val(this.state.service_details.usage_documentation_url);
+                $("#operations_documentation_has").val(this.state.service_details.operations_documentation_has);
+                $("#operations_documentation_url").val(this.state.service_details.operations_documentation_url);
+                $("#monitoring_has").val(this.state.service_details.monitoring_has);
+                $("#monitoring_url").val(this.state.service_details.monitoring_url);
+                $("#accounting_has").val(this.state.service_details.accounting_has);
+                $("#accounting_url").val(this.state.service_details.accounting_url);
+                $("#business_continuity_plan_has").val(this.state.service_details.business_continuity_plan_has);
+                $("#business_continuity_plan_url").val(this.state.service_details.business_continuity_plan_url);
+                $("#disaster_recovery_plan_has").val(this.state.service_details.disaster_recovery_plan_has);
+                $("#disaster_recovery_plan_url").val(this.state.service_details.disaster_recovery_plan_url);
+                $("#decommissioning_procedure_has").val(this.state.service_details.decommissioning_procedure_has);
+                $("#decommissioning_procedure_url").val(this.state.service_details.decommissioning_procedure_url);
+                $("#cost_to_run").val(this.state.service_details.cost_to_run);
+                $("#cost_to_build").val(this.state.service_details.cost_to_build);
+                $("#use_cases").val(this.state.service_details.use_cases);
+                $("#is_in_catalog").val(this.state.service_details.is_in_catalog);
+            }.bind(this),
+            error: function (xhr, status, err) {
+                console.log(this.props.source, status, err.toString());
+            }.bind(this)
+        });
+    },
+
+    componentWillUnmount: function () {
+        this.serverRequest.abort();
+    },
+
 	render: function(){		
 		var formElements = this.generateFormElements(this.props.resourceObject);
 		return(
@@ -221,6 +278,6 @@ var FormWrapper = React.createClass({
 });
 
 ReactDOM.render(
-  <FormWrapper resourceObject={resourceObject} formName={formName}/>,
+  <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
   document.getElementById('write-content')
 );
