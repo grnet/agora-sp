@@ -230,6 +230,10 @@ def service_details_write_ui(request):
 def service_write(request, type):
     return render(request, 'write/service.html')
 
+def services_table(request):
+    source = helper.current_site_url() + "/v1/portfolio/services"
+    return render(request, 'service/write.html', {"type": "services_table", "source": source})
+
 
 def get_external_service(request, service_name_or_uuid):
 
@@ -262,8 +266,6 @@ def get_external_service(request, service_name_or_uuid):
     response = helper.get_response_info(strings.SERVICE_INFORMATION, service.as_json())
 
     return JsonResponse(response, status=int(response["status"][:3]))
-
-
 
 
 def get_service_catalogue_view(request, service):

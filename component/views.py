@@ -498,6 +498,9 @@ def service_component_edit_ui(request, comp_uuid):
     source = helper.current_site_url() + "/v1/component/" + comp_uuid
     return render(request, 'service/write.html', {"type": "service_component", "source": source})
 
+def service_component_table(request):
+    source = helper.current_site_url() + "/v1/component/all"
+    return render(request, 'service/write.html', {"type": "service_component_table", "source": source})
 
 def service_component_implementation_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_component_implementation"})

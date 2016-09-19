@@ -50,8 +50,9 @@
     <script type="text/babel">
 
 
-        var host = "http://snf-715140.vm.okeanos.grnet.gr";
+{#        var host = "http://snf-715140.vm.okeanos.grnet.gr";#}
         //var host = "http://sp.eudat.eu";
+        var host = "http://localhost";
 
         var view_type = window.location.href.split("/");
 
@@ -156,9 +157,36 @@
         });
 
         var ParentMenuIcon = React.createClass({
+
+
+            onMenuItemClick: function (event) {
+                //console.log("dedae");
+
+                var href = "";
+                if(this.props.name == "Add new service")
+                    href = host + "/ui/service";
+                else if(this.props.name == "Home")
+                    href = host + "/ui/";
+                else if(this.props.name == "Services")
+                    href = host + "/ui/service/all";
+                else if(this.props.name == "Components")
+                    href = host + "/ui/component/all";
+                else if(this.props.name == "Service Owners")
+                    href = host + "/ui/owner/all";
+
+{#                console.log(href);#}
+                window.location.href = href;
+{#                console.log(window.location.href);#}
+{#                window.location.reload();#}
+                //window.location = window.location.href;
+                //document.location.reload();
+
+            },
+
             render: function () {
+
                 return (
-                    <a className="menu-dropdown">
+                    <a className="menu-dropdown"  onClick={this.onMenuItemClick}>
                         <span className="menu-text">{this.props.name}</span>
                     </a>
                 );
@@ -224,7 +252,7 @@
         });
 
 
-        var leftMenu = ["Home", "Services", "Components", "Service Owners"];
+        var leftMenu = ["Add new service", "Home", "Services", "Components", "Service Owners"];
 
         ReactDOM.render(
             <Header />,
@@ -300,7 +328,17 @@
         <script type="text/babel" src="/static/assets/js/write/service_owner.jsx"></script>
     {% endif %}
 
+    {% if type == "services_table" %}
+        <script type="text/babel" src="/static/assets/js/write/services_table.jsx"></script>
+    {% endif %}
 
+    {% if type == "service_owner_table" %}
+        <script type="text/babel" src="/static/assets/js/write/service_owner_table.jsx"></script>
+    {% endif %}
+
+    {% if type == "service_component_table" %}
+        <script type="text/babel" src="/static/assets/js/write/service_component_table.jsx"></script>
+    {% endif %}
 
 
 
