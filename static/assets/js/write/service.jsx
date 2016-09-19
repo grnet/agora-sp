@@ -157,6 +157,50 @@ var FormWrapper = React.createClass({
 		}	
 	},
 
+	getInitialState: function () {
+		return {
+			service: {
+				name: "",
+				description_internal: ""
+			}
+		}
+	},
+
+    componentDidMount: function () {
+
+        if(this.props.source == null || this.props.source == "")
+            return;
+
+        jQuery.support.cors = true;
+        this.serverRequest = $.ajax({
+            url: this.props.source,
+            dataType: "json",
+            crossDomain: true,
+            type: "GET",
+            cache: false,
+            success: function (data) {
+                this.setState({service: data.data});
+                $("#name").val(this.state.service.name);
+                $("#description_internal").val(this.state.service.description_internal);
+                $("#description_external").val(this.state.service.description_external);
+                $("#service_area").val(this.state.service.service_area);
+                $("#service_type").val(this.state.service.service_type);
+                $("#request_procedures").val(this.state.service.request_procedures);
+                $("#funders_for_service").val(this.state.service.funders_for_service);
+                $("#value_to_customer").val(this.state.service.value_to_customer);
+                $("#risks").val(this.state.service.risks);
+                $("#competitors").val(this.state.service.competitors);
+            }.bind(this),
+            error: function (xhr, status, err) {
+                console.log(this.props.source, status, err.toString());
+            }.bind(this)
+        });
+    },
+
+    componentWillUnmount: function () {
+        this.serverRequest.abort();
+    },
+
 	render: function(){		
 		var formElements = this.generateFormElements(this.props.resourceObject);
 		return(
@@ -176,6 +220,6 @@ var FormWrapper = React.createClass({
 });
 
 ReactDOM.render(  
-  <FormWrapper resourceObject={resourceObject} formName={formName}/>,
+  <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
   document.getElementById('write-content')
 );
