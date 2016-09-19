@@ -214,6 +214,10 @@ def get_catalogue_main_page(request):
 def service_write_ui(request):
     return render(request, 'service/write.html', {"type": "service"})
 
+def service_edit_ui(request, service_name_or_uuid):
+    source = helper.current_site_url() + "/v1/portfolio/services/" + service_name_or_uuid
+    return render(request, 'service/write.html', {"type": "service", "source": source})
+
 def external_service_write_ui(request):
     return render(request, 'service/write.html', {"type": "external_service"})
 
