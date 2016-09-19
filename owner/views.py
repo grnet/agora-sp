@@ -134,6 +134,13 @@ def institution_edit_ui(request, institution_uuid):
     return render(request, 'service/write.html', {"type": "owner_institution", "source": source})
 
 
+def get_service_owners(request):
+    owners = [so.as_json() for so in models.ServiceOwner.objects.all()]
+    response = helper.get_response_info(strings.SERVICE_OWNER_INFORMATION, owners)
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
+
 def get_service_owner_single(request, owner_uuid):
     response = {}
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
