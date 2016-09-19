@@ -337,6 +337,17 @@ def get_service_component_implementation(request, comp_imp_uuid):
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
+
+def get_service_component_all(request):
+    response = {}
+
+    service_component = component_models.ServiceComponent.objects.all()
+    response["status"] = "200 OK"
+    response["data"] = [s.as_json() for s in service_component]
+    response["info"] = "service component information"
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
 def get_service_component_implementation_all(request):
     response = {}
 
