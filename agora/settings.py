@@ -123,6 +123,7 @@ SAML_CONFIG = {
                   'name': 'Agora Dev Service',
                   'name_id_format': NAMEID_FORMAT_PERSISTENT,
                   'authn_requests_signed': True,
+                  "allow_unsolicited": True,
                   'endpoints': {
                                 'assertion_consumer_service': [ ('http://'+ALLOWED_HOSTS[SITE_ID]+'/saml2/acs/',saml2.BINDING_HTTP_POST),  ],
 
@@ -130,6 +131,7 @@ SAML_CONFIG = {
                                                          ('http://'+ALLOWED_HOSTS[SITE_ID]+'/saml2/ls/post',saml2.BINDING_HTTP_POST),  ],
                                 },
                   'required_attributes': ['uid'],
+                  'optional_attributes': ['mail','givenName', 'sn'],
 
                   'idp': {
                           # the keys of this dictionary are entity ids
