@@ -149,6 +149,20 @@ def get_service_sla_parameter(request, search_type, version, sla_uuid, sla_param
     return JsonResponse(response, status=int(response["status"][:3]))
 
 
+def get_service_options_all(request):
+    response = {}
+
+    query = request.GET.get('search')
+    if query is not None:
+        query = query.lower()
+
+    service_options = options_models.ServiceOption.objects.all()
+    response["status"] = "200 OK"
+    response["data"] = [s.as_short() for s in service_options if (query == None or query == "") or query in s.name.lower()]
+    response["info"] = "service options information"
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
 # Returns the selected service details options information
 @api_view(['GET'])
 def get_service_options(request, search_type, version):
