@@ -48,7 +48,7 @@ var OwnerTable = React.createClass({
 										First name
 									</th>
 									<th>
-										Second name
+										Last name
 									</th>
 									<th>
 										Email
