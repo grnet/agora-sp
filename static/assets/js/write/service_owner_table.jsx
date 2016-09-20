@@ -64,7 +64,7 @@ var OwnerTable = React.createClass({
 								return (
 									<tr>
 										<td>{owner.first_name}</td>
-										<td>{owner.second_name}</td>
+										<td>{owner.last_name}</td>
 										<td>{owner.email}</td>
 										<td>{owner.phone}</td>
 										<td><a href={"/ui/owner/" + owner.uuid}>View</a></td>
