@@ -100,3 +100,42 @@ p {
 .active-status {
     color: #4e7d0e;
 }
+
+.ui-autocomplete {  
+    z-index: 100 !important;
+    display: inline !important;
+    position: absolute !important;
+    padding-right: 5px;
+    padding-left: 0;
+    background: white;
+    border: 1px;
+}
+
+.ui-menu-item {
+    /*background: black;*/
+    /*color: white;*/
+    background: white;
+    list-style-type: none;
+    text-align: left;
+    font-size: 13px;
+    padding: 5px;
+}
+.ui-menu-item:hover
+{
+    color:White;
+    background: #F47929;
+    outline:none;
+    cursor: pointer;
+}
+
+.ui-menu-item-hover
+{
+    color:White;
+    background: #F47929;
+    outline:none;
+    cursor: pointer;
+}
+
+
+
+

@@ -10,7 +10,7 @@ var optionsData = [
 var resourceObject = [
 	{ tag: 'input', type: 'text', name: 'name', placeholder: 'Enter name', label: 'Name' },
 	{ tag: 'textarea', type: 'textarea', name: 'description', label: 'Description', placeholder: "Enter description", onChange: 'textareaHTMLValidation' },
-	{ tag: 'select', type: 'select', name: 'component_id', label: 'Component', optionsData: optionsData }
+	{ tag: 'input', type: 'text', name: 'component_id', label: 'Component', placeholder: "Enter component name" }
 ];
 
 var OptionsComponent = React.createClass({
@@ -166,7 +166,7 @@ var FormWrapper = React.createClass({
                 this.setState({component: data.data});
                 $("#name").val(this.state.component.name);
                 $("#description").val(this.state.component.description);
-                //$("#component_id").val(this.state.component.component.name);
+                $("#component_id").val(this.state.component.component.name);
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
@@ -214,3 +214,48 @@ ReactDOM.render(
   <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
   document.getElementById('write-content')
 );
+
+
+$( function() {
+
+	var temp = null;
+	$(document).bind('click', function (event) {
+        // Check if we have not clicked on the search box
+        if (!($(event.target).parents().andSelf().is('#component_id'))) {
+			$(".ui-menu-item").remove();
+		}});
+
+	var getData = function(request, response){
+		$.getJSON(
+            $("#source")[0].value + "/api/v1/component/all?search=" + request.term,
+            function (data) {
+				for(var i = 0; i < data.data.length; i++) {
+					data.data[i].value = data.data[i].name;
+					data.data[i].label = data.data[i].name;
+                    data.data[i].index = i;
+				}
+                response(data.data);
+            });
+	};
+
+    $( "#component_id" ).autocomplete({
+      source: getData,
+      minLength: 2,
+      select: function( event, ui ) {
+		this.value = ui.item.name;
+		$(".ui-autocomplete").hide();
+		$(".ui-menu-item").remove();
+      },
+	  focus: function(event, ui){
+          console.log(ui.item.index);
+          var items = $(".ui-menu-item");
+		  items.removeClass("ui-menu-item-hover");
+          console.log(items[ui.item.index]);
+		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
+	  }
+    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+		return $( "<li>" )
+        .append( item.name )
+        .appendTo( ul );
+    };
+  } );
