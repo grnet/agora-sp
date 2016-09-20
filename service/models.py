@@ -357,6 +357,7 @@ class Service(models.Model):
         ])
 
 
+
 class ServiceDetails(models.Model):
 
     class Meta:
@@ -649,6 +650,15 @@ class ServiceDetails(models.Model):
             ("features_current", self.features_current),
             ("features_future", self.features_future)
         ])
+
+    def as_portfolio_view(self):
+        dict = self.as_complete()
+        dict["service"] = {
+            "name": self.id_service.name,
+            "uuid": self.id_service.pk
+        }
+
+        return dict
 
 
 class ExternalService(models.Model):

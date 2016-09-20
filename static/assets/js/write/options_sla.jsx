@@ -142,6 +142,7 @@ var FormWrapper = React.createClass({
             success: function (data) {
                 this.setState({sla: data.data});
                 $("#name").val(this.state.sla.name);
+                $("#service_option_id").val(this.state.sla.service_option.name);
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
@@ -188,8 +189,13 @@ $( function() {
 		}});
 
 	var getData = function(request, response){
-		$.getJSON(
-            $("#source")[0].value + "/api/v1/options/service_options/all?search=" + request.term,
+
+        var url = window.location.href;
+        var contents = url.split("/");
+        var host = contents[0] + "//" + contents[2];
+
+        $.getJSON(
+            host + "/api/v1/options/service_options/all?search=" + request.term,
             function (data) {
 				for(var i = 0; i < data.data.length; i++) {
 					data.data[i].value = data.data[i].name;

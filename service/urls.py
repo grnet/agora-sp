@@ -6,6 +6,7 @@ from service import views
 
 urlpatterns = [
 
+    url(r'^(?P<service_name_or_uuid>[0-9a-zA-Z\-\_]+)/service_details/(?P<version>[0-9.]+)/view/?$', views.get_service_details_for_view),
     url(r'^(?P<service_name_or_uuid>[0-9a-zA-Z\-\_]+)/service_details/(?P<version>[0-9.]+)/?$', views.get_service_details),
     url(r'^(?P<service_name_or_uuid>[0-9a-zA-Z\-\_]+)/service_details/?$', views.get_all_service_details),
     url(r'^(?P<service_name_or_uuid>[0-9a-zA-Z\-\_]+)/service_logo/?$', views.get_service_logo),

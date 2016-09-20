@@ -254,8 +254,13 @@ $( function() {
     });
 
 	var getDataServiceOwner = function(request, response){
+
+        var url = window.location.href;
+        var contents = url.split("/");
+        var host = contents[0] + "//" + contents[2];
+
 		$.getJSON(
-            $("#source")[0].value + "/api/v1/owner/all?search=" + request.term,
+            host + "/api/v1/owner/all?search=" + request.term,
             function (data) {
 				for(var i = 0; i < data.data.length; i++) {
 					data.data[i].value = data.data[i].first_name + " " + data.data[i].last_name;
@@ -267,8 +272,13 @@ $( function() {
 	};
 
     var getDataContactInformation = function(request, response){
-		$.getJSON(
-            $("#source")[0].value + "/api/v1/owner/contact_information/all?search=" + request.term,
+
+        var url = window.location.href;
+        var contents = url.split("/");
+        var host = contents[0] + "//" + contents[2];
+
+        $.getJSON(
+            host + "/api/v1/owner/contact_information/all?search=" + request.term,
             function (data) {
 				for(var i = 0; i < data.data.length; i++) {
                     data.data[i] = data.data[i].internal_contact_information.internal_contact_information;
@@ -281,8 +291,13 @@ $( function() {
 	};
 
     var getDataServiceArea = function(request, response){
-		$.getJSON(
-            $("#source")[0].value + "/api/v1/services/area/all?search=" + request.term,
+
+        var url = window.location.href;
+        var contents = url.split("/");
+        var host = contents[0] + "//" + contents[2];
+
+        $.getJSON(
+            host + "/api/v1/services/area/all?search=" + request.term,
             function (data) {
 				for(var i = 0; i < data.data.length; i++) {
                     data.data[i].value = data.data[i].area;
@@ -294,8 +309,13 @@ $( function() {
 	};
 
     var getDataServiceType = function(request, response){
-		$.getJSON(
-            $("#source")[0].value + "/api/v1/services/type/all?search=" + request.term,
+
+        var url = window.location.href;
+        var contents = url.split("/");
+        var host = contents[0] + "//" + contents[2];
+
+        $.getJSON(
+            host + "/api/v1/services/type/all?search=" + request.term,
             function (data) {
 				for(var i = 0; i < data.data.length; i++) {
                     data.data[i].value = data.data[i].type;

@@ -170,6 +170,8 @@ var FormWrapper = React.createClass({
                 this.setState({component: data.data});
                 $("#version").val(this.state.component.version);
                 $("#configuration_parameters").val(this.state.component.configuration_parameters);
+                $("#component_id").val(this.state.component.service_component.name);
+                $("#component_implementation_id").val(this.state.component.service_component_implementation.name);
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
@@ -221,8 +223,12 @@ $( function() {
 
 	var getDataComponent = function(request, response){
 
+        var url = window.location.href;
+        var contents = url.split("/");
+        var host = contents[0] + "//" + contents[2];
+
         $.getJSON(
-            $("#source")[0].value + "/api/v1/component/all?search=" + request.term,
+            host + "/api/v1/component/all?search=" + request.term,
             function (data) {
 				for(var i = 0; i < data.data.length; i++) {
 					data.data[i].value = data.data[i].name;
@@ -234,8 +240,13 @@ $( function() {
 	};
 
     var getDataComponentImplementation = function(request, response){
-		$.getJSON(
-            $("#source")[0].value + "/api/v1/component/implementation/all?search=" + request.term,
+
+        var url = window.location.href;
+        var contents = url.split("/");
+        var host = contents[0] + "//" + contents[2];
+
+        $.getJSON(
+            host + "/api/v1/component/implementation/all?search=" + request.term,
             function (data) {
 				for(var i = 0; i < data.data.length; i++) {
 					data.data[i].value = data.data[i].name;

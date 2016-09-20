@@ -249,7 +249,7 @@ def get_sla(request, sla_uuid):
 
     try:
         sla = options_models.SLA.objects.get(id=sla_uuid)
-        response = helper.get_response_info(strings.SERVICE_OPTIONS, sla.as_short())
+        response = helper.get_response_info(strings.SERVICE_OPTIONS, sla.as_full())
 
     except options_models.ServiceOption.DoesNotExist:
         response = helper.get_error_response(strings.SERVICE_OPTION_NOT_FOUND)

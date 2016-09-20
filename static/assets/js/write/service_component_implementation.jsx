@@ -226,8 +226,13 @@ $( function() {
 		}});
 
 	var getData = function(request, response){
+
+        var url = window.location.href;
+        var contents = url.split("/");
+        var host = contents[0] + "//" + contents[2];
+
 		$.getJSON(
-            $("#source")[0].value + "/api/v1/component/all?search=" + request.term,
+            host + "/api/v1/component/all?search=" + request.term,
             function (data) {
 				for(var i = 0; i < data.data.length; i++) {
 					data.data[i].value = data.data[i].name;

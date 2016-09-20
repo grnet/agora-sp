@@ -114,6 +114,16 @@ class SLA(models.Model):
             "service_option": self.service_option_id.id
         }
 
+    def as_full(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "service_option": {
+                "uuid": self.service_option_id.id,
+                "name": self.service_option_id.name
+            }
+        }
+
 
 class Parameter(models.Model):
 

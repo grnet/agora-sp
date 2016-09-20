@@ -181,6 +181,20 @@ class ServiceComponentImplementationDetail(models.Model):
             ("configuration_parameters", self.configuration_parameters)
         ])
 
+    def as_full(self):
+        return OrderedDict([
+            ("uuid", str(self.id)),
+            ("version", self.version),
+            ("configuration_parameters", self.configuration_parameters),
+            ("service_component", {
+                "uuid": self.component_id.pk,
+                "name": self.component_id.name
+            }),
+            ("service_component_implementation", {
+                "uuid": self.component_implementation_id.pk,
+                "name": self.component_implementation_id.name
+            })
+        ])
 
     def save(self, *args, **kwargs):
         if not self.configuration_parameters:

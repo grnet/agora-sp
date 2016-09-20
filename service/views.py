@@ -232,7 +232,7 @@ def service_details_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_details"})
 
 def service_details_edit_ui(request, service_name_or_uuid, version):
-    source = helper.current_site_url() + "/v1/portfolio/services/" + service_name_or_uuid + "/service_details/" + version
+    source = helper.current_site_url() + "/v1/portfolio/services/" + service_name_or_uuid + "/service_details/" + version + "/view"
     return render(request, 'service/write.html', {"type": "service_details", "source": source})
 
 def service_write(request, type):
@@ -466,6 +466,68 @@ def get_service_details(request, service_name_or_uuid, version):
             response = helper.get_error_response(strings.INVALID_UUID)
 
     return JsonResponse(response, status=int(response["status"][:3]))
+
+
+def get_service_details_for_view(request, service_name_or_uuid, version):
+    """
+    Retrieves the service details of a specific service version
+
+    ---
+
+    type:
+        service_name_or_uuid:
+            required: true
+            type: string
+        version:
+            required: true
+            type: string
+
+    responseMessages:
+    - code: 404
+    message: An invalid UUID was supplied
+    consumes:
+    - application/json
+    produces:
+    - application/json
+    """
+    params = request.GET.copy()
+    detail_level = params.get('view')
+    parsed_name, uuid = None, None
+
+    response = {}
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    result = prog.match(service_name_or_uuid)
+
+    if result is None:
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
+    else:
+        uuid = service_name_or_uuid
+
+    try:
+        if result is None:
+            service = models.Service.objects.get(name=parsed_name)
+        else:
+            service = models.Service.objects.get(id=uuid)
+
+        detail = models.ServiceDetails.objects.get(id_service=service.pk, version=version)
+
+        data = detail.as_portfolio_view()
+
+
+        response = helper.get_response_info(strings.SERVICE_DETAIL_INFORMATION, data)
+
+    except models.Service.DoesNotExist:
+        response = helper.get_error_response(strings.SERVICE_NOT_FOUND)
+
+    except models.ServiceDetails.DoesNotExist:
+        response = helper.get_error_response(strings.SERVICE_DETAILS_NOT_FOUND)
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response = helper.get_error_response(strings.INVALID_UUID)
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
 
 # Returns the list of service details for the selected service
 # @check_service_ownership_or_superuser
