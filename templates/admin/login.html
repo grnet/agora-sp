@@ -54,7 +54,7 @@
   <div class="submit-row">
     <label>&nbsp;</label><input type="submit" value="{% trans 'Log in' %}" />
       {% if request.build_absolute_uri == 'http://agora-dev.vi-seem.eu/api/adminlogin/?next=/api/admin' %}
-          <label>&nbsp;</label><input type="button" value="{% trans 'Log in with VI-SEEM' onclick="location.href='http://agora-dev.vi-seem.eu/saml2/login'" %}" />
+          <label>&nbsp;</label><input type="button" value="{% trans 'Log in with VI-SEEM' %}" onclick="location.href='http://agora-dev.vi-seem.eu/saml2/login'" />
       {% endif %}
       {% if request.build_absolute_uri == 'http://services.vi-seem.eu/api/adminlogin/?next=/api/admin' %}
           <label>&nbsp;</label><input type="button" value="{% trans 'Log in with VI-SEEM' %}" onclick="location.href='http://services.vi-seem.eu/saml2/login'" />
