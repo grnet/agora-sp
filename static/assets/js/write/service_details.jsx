@@ -19,8 +19,8 @@ var statusData = [
 var resourceObject = [
 	{ tag: 'input', type: 'text', name: 'version', placeholder: 'Enter version', label: 'Version' },	
 	{ tag: 'select', type: 'select', name: 'status', label: 'Enter status', required: true, optionsData: statusData },
-	{ tag: 'textarea', type: 'textarea', name: 'features_current', label: 'Features Current', onChange: 'textareaHTMLValidation' },
-	{ tag: 'textarea', type: 'textarea', name: 'features_future', label: 'Features Future', onChange: 'textareaHTMLValidation' },
+	{ tag: 'textarea', type: 'textarea', name: 'features_current', placeholder: "Enter current features", label: 'Features Current', onChange: 'textareaHTMLValidation' },
+	{ tag: 'textarea', type: 'textarea', name: 'features_future', placeholder: "Enter future features", label: 'Features Future', onChange: 'textareaHTMLValidation' },
 	// todo: how to fill the data for the options (should be done before rendering)
 	{ tag: 'select', type: 'select', name: 'usage_policy_has', label: 'Has Usage Policy', required: true, optionsData: booleanData },
 	{ tag: 'input', type: 'text', name: 'usage_policy_url', placeholder: 'Enter Usage Policy URL', label: 'Usage Policy URL', onChange: 'urlContentChanged' },
@@ -48,7 +48,7 @@ var resourceObject = [
 
 	{ tag: 'input', type: 'text', name: 'cost_to_run', placeholder: 'Enter cost to run', label: 'Cost to run' },
 	{ tag: 'input', type: 'text', name: 'cost_to_build', placeholder: 'Enter cost to build', label: 'Cost to build' },
-	{ tag: 'textarea', type: 'textarea', name: 'use_cases', label: 'Use Cases', onChange: 'textareaHTMLValidation' },
+	{ tag: 'textarea', type: 'textarea', name: 'use_cases', placeholder: "Enter use cases", label: 'Use Cases', onChange: 'textareaHTMLValidation' },
 	{ tag: 'select', type: 'select', name: 'is_in_catalog', label: 'Is in catalog', required: true, optionsData: booleanData },
 	{ tag: 'input', type: 'text', name: 'service_id', label: 'Service', required: true, placeholder: "Enter service name" }
 
@@ -88,7 +88,7 @@ var FormWrapper = React.createClass({
 				return(
 					<div className="form-group">
 					    <label htmlFor={field.name}>{field.label}</label>
-					    <textarea className="form-control" id={field.name} name={field.name} rows="6" onChange={this[field.onChange]}></textarea>
+					    <textarea className="form-control" id={field.name} placeholder={field.placeholder} name={field.name} rows="6" onChange={this[field.onChange]}></textarea>
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
 					</div>
 				);				
