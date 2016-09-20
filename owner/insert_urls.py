@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^edit/?$', views.edit_service_owner),
     url(r'^all/?$', views.get_service_owners),
     url(r'^(?P<owner_uuid>[0-9a-zA-Z\@\-\_]+)$', views.get_service_owner_single),
-    url(r'^contact_information/(?P<contact_uuid>[0-9a-zA-Z\@\-\_]+)$', views.get_contact_information),
+    url(r'^contact_information/all/?$', views.get_contact_information_all),
+    url(r'^contact_information/(?P<contact_uuid>[0-9a-zA-Z\@\-\_]+)/?$', views.get_contact_information),
     url(r'^institution/(?P<institution_uuid>[0-9a-zA-Z\@\-\_]+)$', views.get_institution)
 ]

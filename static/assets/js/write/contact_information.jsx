@@ -13,8 +13,7 @@ var resourceObject = [
 	{ tag: 'input', type: 'text', name: 'email', placeholder: 'Enter email', label: 'Email' },
 	{ tag: 'input', type: 'text', name: 'phone', placeholder: 'Enter phone', label: 'Phone' },
 	{ tag: 'input', type: 'text', name: 'url', placeholder: 'Enter url', label: 'URL' },
-	
-	{ tag: 'select', type: 'select', name: 'service', label: 'Service', optionsData: optionsData }
+
 ];
 
 var OptionsComponent = React.createClass({

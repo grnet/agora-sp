@@ -18,9 +18,9 @@ var resourceObject = [
 	{ tag: 'textarea', type: 'textarea', name: 'risks', label: 'Risks', required: true, onChange: 'textareaHTMLValidation' },
 	{ tag: 'textarea', type: 'textarea', name: 'competitors', label: 'Competitors', required: true, onChange: 'textareaHTMLValidation' },
 	// todo: how to fill the data for the options (should be done before rendering)
-	{ tag: 'select', type: 'select', name: 'service_owner', label: 'Service Owner', required: true, optionsData: optionsData },
-	{ tag: 'select', type: 'select', name: 'contact_information_external', label: 'Contact Information External', required: true, optionsData: optionsData },
-	{ tag: 'select', type: 'select', name: 'contact_information_internal', label: 'Contact Information Internal', required: true, optionsData: optionsData }
+	{ tag: 'input', type: 'text', name: 'service_owner', label: 'Service Owner', placeholder: "Enter service owner name" },
+	{ tag: 'input', type: 'text', name: 'contact_information_external', label: 'Contact Information External', placeholder: "Enter external contact info" },
+	{ tag: 'input', type: 'text', name: 'contact_information_internal', label: 'Contact Information Internal', placeholder: "Enter internal contact info" }
 ];
 
 var OptionsComponent = React.createClass({
@@ -223,3 +223,91 @@ ReactDOM.render(
   <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
   document.getElementById('write-content')
 );
+
+
+$( function() {
+
+	var temp = null;
+	$(document).bind('click', function (event) {
+        // Check if we have not clicked on the search box
+        if (!($(event.target).parents().andSelf().is('#service_owner'))) {
+			$(".ui-menu-item").remove();
+		}
+
+        if (!($(event.target).parents().andSelf().is('#contact_information_external'))) {
+			$(".ui-menu-item").remove();
+		}
+
+        if (!($(event.target).parents().andSelf().is('#contact_information_internal'))) {
+			$(".ui-menu-item").remove();
+		}
+
+    });
+
+	var getDataServiceOwner = function(request, response){
+		$.getJSON(
+            $("#source")[0].value + "/api/v1/owner/all?search=" + request.term,
+            function (data) {
+				for(var i = 0; i < data.data.length; i++) {
+					data.data[i].value = data.data[i].first_name + " " + data.data[i].last_name;
+					data.data[i].label = data.data[i].first_name + " " + data.data[i].last_name;
+                    data.data[i].index = i;
+				}
+                response(data.data);
+            });
+	};
+
+    var getDataContactInformation = function(request, response){
+		$.getJSON(
+            $("#source")[0].value + "/api/v1/owner/contact_information/all?search=" + request.term,
+            function (data) {
+				for(var i = 0; i < data.data.length; i++) {
+                    data.data[i] = data.data[i].internal_contact_information.internal_contact_information;
+					data.data[i].value = data.data[i].first_name + " " + data.data[i].last_name;
+					data.data[i].label = data.data[i].first_name + " " + data.data[i].last_name;
+                    data.data[i].index = i;
+				}
+                response(data.data);
+            });
+	};
+
+    $( "#service_owner" ).autocomplete({
+      source: getDataServiceOwner,
+      minLength: 2,
+      select: function( event, ui ) {
+		this.value = ui.item.first_name + " " + ui.item.last_name;
+		$(".ui-autocomplete").hide();
+		$(".ui-menu-item").remove();
+      },
+	  focus: function(event, ui){
+          var items = $(".ui-menu-item");
+		  items.removeClass("ui-menu-item-hover");
+		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
+	  }
+    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+		return $( "<li>" )
+        .append( item.first_name + " " + item.last_name )
+        .appendTo( ul );
+    };
+
+    $( "#contact_information_internal" ).autocomplete({
+      source: getDataContactInformation,
+      minLength: 2,
+      select: function( event, ui ) {
+		this.value = ui.item.first_name + " " + ui.item.last_name;
+		$(".ui-autocomplete").hide();
+		$(".ui-menu-item").remove();
+      },
+	  focus: function(event, ui){
+          var items = $(".ui-menu-item");
+		  items.removeClass("ui-menu-item-hover");
+		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
+	  }
+    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+		return $( "<li>" )
+        .append( item.first_name + " " + item.last_name )
+        .appendTo( ul );
+    };
+
+
+  } );

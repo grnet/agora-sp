@@ -135,7 +135,28 @@ def institution_edit_ui(request, institution_uuid):
 
 
 def get_service_owners(request):
-    owners = [so.as_json() for so in models.ServiceOwner.objects.all()]
+
+    query = request.GET.get('search')
+    if query is not None:
+        query = query.lower()
+
+    owners = [so.as_json() for so in models.ServiceOwner.objects.all()
+              if (query == None or query == "") or (so.first_name is not None and query in so.first_name.lower())
+              or (so.last_name is not None and query in so.last_name.lower())]
+    response = helper.get_response_info(strings.SERVICE_OWNER_INFORMATION, owners)
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
+
+def get_contact_information_all(request):
+
+    query = request.GET.get('search')
+    if query is not None:
+        query = query.lower()
+
+    owners = [so.as_json() for so in models.ContactInformation.objects.all()
+              if (query == None or query == "") or (so.first_name is not None and query in so.first_name.lower())
+              or (so.last_name is not None and query in so.last_name.lower())]
     response = helper.get_response_info(strings.SERVICE_OWNER_INFORMATION, owners)
 
     return JsonResponse(response, status=int(response["status"][:3]))
