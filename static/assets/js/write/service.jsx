@@ -242,6 +242,15 @@ $( function() {
 			$(".ui-menu-item").remove();
 		}
 
+        if (!($(event.target).parents().andSelf().is('#service_area'))) {
+			$(".ui-menu-item").remove();
+		}
+
+        if (!($(event.target).parents().andSelf().is('#service_type'))) {
+			$(".ui-menu-item").remove();
+		}
+
+
     });
 
 	var getDataServiceOwner = function(request, response){
@@ -265,6 +274,32 @@ $( function() {
                     data.data[i] = data.data[i].internal_contact_information.internal_contact_information;
 					data.data[i].value = data.data[i].first_name + " " + data.data[i].last_name;
 					data.data[i].label = data.data[i].first_name + " " + data.data[i].last_name;
+                    data.data[i].index = i;
+				}
+                response(data.data);
+            });
+	};
+
+    var getDataServiceArea = function(request, response){
+		$.getJSON(
+            $("#source")[0].value + "/api/v1/services/area/all?search=" + request.term,
+            function (data) {
+				for(var i = 0; i < data.data.length; i++) {
+                    data.data[i].value = data.data[i].area;
+					data.data[i].label = data.data[i].area;
+                    data.data[i].index = i;
+				}
+                response(data.data);
+            });
+	};
+
+    var getDataServiceType = function(request, response){
+		$.getJSON(
+            $("#source")[0].value + "/api/v1/services/type/all?search=" + request.term,
+            function (data) {
+				for(var i = 0; i < data.data.length; i++) {
+                    data.data[i].value = data.data[i].type;
+					data.data[i].label = data.data[i].type;
                     data.data[i].index = i;
 				}
                 response(data.data);
@@ -306,6 +341,44 @@ $( function() {
     }).autocomplete( "instance" )._renderItem = function( ul, item ) {
 		return $( "<li>" )
         .append( item.first_name + " " + item.last_name )
+        .appendTo( ul );
+    };
+
+    $( "#service_area" ).autocomplete({
+      source: getDataServiceArea,
+      minLength: 2,
+      select: function( event, ui ) {
+		this.value = ui.item.area;
+		$(".ui-autocomplete").hide();
+		$(".ui-menu-item").remove();
+      },
+	  focus: function(event, ui){
+          var items = $(".ui-menu-item");
+		  items.removeClass("ui-menu-item-hover");
+		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
+	  }
+    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+		return $( "<li>" )
+        .append( item.area )
+        .appendTo( ul );
+    };
+
+    $( "#service_type" ).autocomplete({
+      source: getDataServiceType,
+      minLength: 2,
+      select: function( event, ui ) {
+		this.value = ui.item.type;
+		$(".ui-autocomplete").hide();
+		$(".ui-menu-item").remove();
+      },
+	  focus: function(event, ui){
+          var items = $(".ui-menu-item");
+		  items.removeClass("ui-menu-item-hover");
+		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
+	  }
+    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+		return $( "<li>" )
+        .append( item.type )
         .appendTo( ul );
     };
 

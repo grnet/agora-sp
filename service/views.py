@@ -949,6 +949,35 @@ def get_services(request):
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
+def get_service_areas(request):
+
+    query = request.GET.get('search')
+    if query is not None:
+        query = query.lower()
+
+    areas_set = set([s.service_area for s in models.Service.objects.all() if (query == None or query == "") or
+                     (s.service_area is not None and query in s.service_area.lower())])
+
+    areas_set = [{"area": a} for a in areas_set]
+
+    response = helper.get_response_info(strings.SERVICE_OWNER_INFORMATION, areas_set)
+    return JsonResponse(response, status=int(response["status"][:3]))
+
+
+def get_service_types(request):
+
+    query = request.GET.get('search')
+    if query is not None:
+        query = query.lower()
+
+    types_set = set([s.service_type for s in models.Service.objects.all() if (query == None or query == "") or
+                     (s.service_type is not None and query in s.service_type.lower())])
+
+    types_set = [{"type": t} for t in types_set]
+
+    response = helper.get_response_info(strings.SERVICE_OWNER_INFORMATION, types_set)
+    return JsonResponse(response, status=int(response["status"][:3]))
+
 
 # Inserts service dependency
 @api_view(['POST'])
