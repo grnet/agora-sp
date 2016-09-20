@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^(?P<service_name_or_uuid>[0-9a-zA-Z\-\_]+)/user_customer/add/?$', views.insert_user_customer),
     url(r'^edit/?$', views.edit_service),
     url(r'^add/?$', views.insert_service),
+    url(r'^all/?$', views.get_services),
     url(r'^external_service/edit/?$', views.edit_external_service),
     url(r'^external_service/add/?$', views.insert_external_service),
     url(r'^external_service/(?P<service_name_or_uuid>[0-9a-zA-Z\-\_]+)/?$', views.get_external_service),

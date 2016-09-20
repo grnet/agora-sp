@@ -50,7 +50,7 @@ var resourceObject = [
 	{ tag: 'input', type: 'text', name: 'cost_to_build', placeholder: 'Enter cost to build', label: 'Cost to build' },
 	{ tag: 'textarea', type: 'textarea', name: 'use_cases', label: 'Use Cases', onChange: 'textareaHTMLValidation' },
 	{ tag: 'select', type: 'select', name: 'is_in_catalog', label: 'Is in catalog', required: true, optionsData: booleanData },
-	{ tag: 'select', type: 'select', name: 'is_service_id', label: 'Service', required: true, optionsData: optionsData }
+	{ tag: 'input', type: 'text', name: 'service_id', label: 'Service', required: true, placeholder: "Enter service name" }
 
 ];
 
@@ -281,3 +281,48 @@ ReactDOM.render(
   <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
   document.getElementById('write-content')
 );
+
+
+
+$( function() {
+
+	var temp = null;
+	$(document).bind('click', function (event) {
+        // Check if we have not clicked on the search box
+        if (!($(event.target).parents().andSelf().is('#service_id'))) {
+			$(".ui-menu-item").remove();
+		}
+    });
+
+	var getData = function(request, response){
+		$.getJSON(
+            $("#source")[0].value + "/api/v1/services/all?search=" + request.term,
+            function (data) {
+				for(var i = 0; i < data.data.length; i++) {
+					data.data[i].value = data.data[i].name;
+					data.data[i].index = i;
+				}
+                response(data.data);
+            });
+	};
+
+    $( "#service_id" ).autocomplete({
+      source: getData,
+      minLength: 2,
+      select: function( event, ui ) {
+		this.value = ui.item.name;
+		$(".ui-autocomplete").hide();
+		$(".ui-menu-item").remove();
+      },
+	  focus: function(event, ui){
+          var items = $(".ui-menu-item");
+		  items.removeClass("ui-menu-item-hover");
+		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
+	  }
+    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+		return $( "<li>" )
+        .append( item.name )
+        .appendTo( ul );
+    };
+
+  } );

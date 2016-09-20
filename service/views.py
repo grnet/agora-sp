@@ -936,6 +936,20 @@ def insert_service_dependency(request, service_name_or_uuid):
     response = helper.get_response_info(strings.SERVICE_DEPENDENCY_INSERTED, data, status=strings.CREATED_201)
     return JsonResponse(response, status=int(response["status"][:3]))
 
+
+def get_services(request):
+
+    query = request.GET.get('search')
+    if query is not None:
+        query = query.lower()
+
+    services = [s.as_catalogue() for s in models.Service.objects.all()
+              if (query == None or query == "") or query in s.name.lower()]
+    response = helper.get_response_info(strings.SERVICE_OWNER_INFORMATION, services)
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
+
 # Inserts service dependency
 @api_view(['POST'])
 def edit_service_dependency(request, service_name_or_uuid):
