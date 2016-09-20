@@ -247,10 +247,8 @@ $( function() {
 		$(".ui-menu-item").remove();
       },
 	  focus: function(event, ui){
-          console.log(ui.item.index);
           var items = $(".ui-menu-item");
 		  items.removeClass("ui-menu-item-hover");
-          console.log(items[ui.item.index]);
 		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
 	  }
     }).autocomplete( "instance" )._renderItem = function( ul, item ) {

@@ -355,9 +355,13 @@ def get_service_component_all(request):
 def get_service_component_implementation_all(request):
     response = {}
 
+    query = request.GET.get('search')
+    if query is not None:
+        query = query.lower()
+
     service_component_imp = component_models.ServiceComponentImplementation.objects.all()
     response["status"] = "200 OK"
-    response["data"] = [s.as_json_up() for s in service_component_imp]
+    response["data"] = [s.as_json_up() for s in service_component_imp if (query == None or query == "") or query in s.name.lower()]
     response["info"] = "service component implementation information"
 
     return JsonResponse(response, status=int(response["status"][:3]))
