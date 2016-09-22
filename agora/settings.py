@@ -114,6 +114,15 @@ PROJECT_APPS = ['component', 'options', 'owner', 'service']
 
 SITE_ID = 2
 
+SAML_ATTRIBUTE_MAPPING = {
+    'uid': ('username', ),
+    'mail': ('email', ),
+    'givenName': ('first_name', ),
+    'sn': ('last_name', ),
+}
+
+SAML_DJANGO_USER_MAIN_ATTRIBUTE = 'email'
+
 SAML_CONFIG = {
   'xmlsec_binary': '/usr/bin/xmlsec1',
   'entityid': 'http://'+ALLOWED_HOSTS[SITE_ID]+'/saml2/metadata/',
