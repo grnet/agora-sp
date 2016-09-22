@@ -115,7 +115,6 @@ PROJECT_APPS = ['component', 'options', 'owner', 'service']
 SITE_ID = 2
 
 SAML_ATTRIBUTE_MAPPING = {
-    'uid': ('username', ),
     'mail': ('email', ),
     'givenName': ('first_name', ),
     'sn': ('last_name', ),
