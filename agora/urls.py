@@ -17,6 +17,7 @@ from django.conf.urls import url, include
 from django.contrib import admin
 from service import views
 from component import views as component_views
+from django.views.generic import RedirectView
 
 
 urlpatterns = [
@@ -43,6 +44,7 @@ urlpatterns = [
     url(r'^ui/options/?', include('options.ui_urls')),
     url(r'^saml2/', include('djangosaml2.urls')),
     url(r'^test/', 'djangosaml2.views.echo_attributes'),
+    url(r'^/?$', RedirectView.as_view(url='/ui/catalogue/services'))
 ]
 
 handler404 = "agora.views.error404"

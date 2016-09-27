@@ -15,6 +15,9 @@ import re
 import sys
 from django.views.decorators.clickjacking import xframe_options_exempt
 
+def list_catalogue_services(request):
+    return list_services(request, "catalogue")
+
 @api_view(['GET'])
 def list_services(request,  type):
     """
@@ -92,6 +95,10 @@ def get_services_by_area(request, type):
 
     response = helper.get_response_info(strings.SERVICE_LIST, data)
     return JsonResponse(response, status=int(response["status"][:3]))
+
+@xframe_options_exempt
+def service_catalogue_picker(request):
+    return service_picker(request, "catalogue")
 
 @xframe_options_exempt
 def service_picker(request, view_type):
