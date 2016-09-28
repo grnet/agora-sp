@@ -163,6 +163,34 @@ def get_service_options_all(request):
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
+def get_parameter_all(request):
+    response = {}
+
+    query = request.GET.get('search')
+    if query is not None:
+        query = query.lower()
+
+    parameters = options_models.Parameter.objects.all()
+    response["status"] = "200 OK"
+    response["data"] = [p.as_short() for p in parameters if (query == None or query == "") or query in p.name.lower()]
+    response["info"] = "service options information"
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
+def get_sla_all(request):
+    response = {}
+
+    query = request.GET.get('search')
+    if query is not None:
+        query = query.lower()
+
+    slas = options_models.SLA.objects.all()
+    response["status"] = "200 OK"
+    response["data"] = [s.as_short() for s in slas if (query == None or query == "") or query in s.name.lower()]
+    response["info"] = "service options information"
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
 # Returns the selected service details options information
 @api_view(['GET'])
 def get_service_options(request, search_type, version):
