@@ -1,5 +1,7 @@
 
-var formName = 'Service Option Form'
+var formName = 'Service Option Form';
+
+var opType = "";
 
 var resourceObject = [
 	{ tag: 'input', type: 'text', name: 'name', placeholder: 'Enter name', label: 'Name' },
@@ -124,8 +126,51 @@ var FormWrapper = React.createClass({
 		e.preventDefault();
 
 		if(this.validateForm()){			
-			var formValues = JSON.stringify($("#service-form").serializeJSON());
-			console.log("The form values are ->", formValues);
+			//var formValues = JSON.stringify($("#service-form").serializeJSON());
+			//console.log("The form values are ->", formValues);
+
+			var params = {};
+			params["name"] = $("#name").val();
+			params["description"] = $("#description").val();
+			params["pricing"] = $("#pricing").val();
+
+
+			var parts = window.location.href.split("/");
+			var host = "http://" + parts[2];
+			var url = "";
+
+			if(this.props.source != null && this.props.source != ""){
+				params["uuid"] = parts[parts.length - 1];
+				url = host + "/api/v1/options/service_option/edit";
+				opType = "edit";
+			}
+			else {
+				url = host + "/api/v1/options/service_option/add";
+				opType = "add";
+			}
+
+
+			this.serverRequest = $.ajax({
+				url: url,
+				dataType: "json",
+				crossDomain: true,
+				type: "POST",
+				contentType:"application/json",
+				cache: false,
+				data: JSON.stringify(params),
+				success: function (data) {
+					if(opType == "add")
+						$("#modal-success-body").text("You have successfully inserted a new service option");
+					else
+						$("#modal-success-body").text("You have successfully updated the service option");
+					$("#modal-success").modal('show');
+				}.bind(this),
+				error: function (xhr, status, err) {
+					var response = JSON.parse(xhr.responseText);
+					$("#modal-body").text(response.errors.detail);
+					$("#modal-danger").modal('show');
+				}.bind(this)
+			});
 		}
 		else{			
 			console.log("The form is not valid");

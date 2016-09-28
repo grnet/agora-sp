@@ -1,5 +1,7 @@
 
-var formName = 'Options Parametar Form'
+var formName = 'Options Parametar Form';
+
+var opType;
 
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
@@ -120,8 +122,51 @@ var FormWrapper = React.createClass({
 		e.preventDefault();
 
 		if(this.validateForm()){			
-			var formValues = JSON.stringify($("#service-form").serializeJSON());
-			console.log("The form values are ->", formValues);
+			//var formValues = JSON.stringify($("#service-form").serializeJSON());
+			//console.log("The form values are ->", formValues);
+
+			var params = {};
+			params["name"] = $("#name").val();
+			params["type"] = $("#type").val();
+			params["expression"] = $("#expression").val();
+
+
+			var parts = window.location.href.split("/");
+			var host = "http://" + parts[2];
+			var url = "";
+
+			if(this.props.source != null && this.props.source != ""){
+				params["uuid"] = parts[parts.length - 1];
+				url = host + "/api/v1/options/parameter/edit";
+				opType = "edit";
+			}
+			else {
+				url = host + "/api/v1/options/parameter/add";
+				opType = "add";
+			}
+
+
+			this.serverRequest = $.ajax({
+				url: url,
+				dataType: "json",
+				crossDomain: true,
+				type: "POST",
+				contentType:"application/json",
+				cache: false,
+				data: JSON.stringify(params),
+				success: function (data) {
+					if(opType == "add")
+						$("#modal-success-body").text("You have successfully inserted a new parameter");
+					else
+						$("#modal-success-body").text("You have successfully updated the parameter");
+					$("#modal-success").modal('show');
+				}.bind(this),
+				error: function (xhr, status, err) {
+					var response = JSON.parse(xhr.responseText);
+					$("#modal-body").text(response.errors.detail);
+					$("#modal-danger").modal('show');
+				}.bind(this)
+			});
 		}
 		else{			
 			console.log("The form is not valid");

@@ -279,7 +279,7 @@ def get_sla(request, sla_uuid):
         sla = options_models.SLA.objects.get(id=sla_uuid)
         response = helper.get_response_info(strings.SERVICE_OPTIONS, sla.as_full())
 
-    except options_models.ServiceOption.DoesNotExist:
+    except options_models.SLA.DoesNotExist:
         response = helper.get_error_response(strings.SERVICE_OPTION_NOT_FOUND)
 
     except ValueError as v:
@@ -636,7 +636,7 @@ def insert_parameter(request):
     if "type" in params:
         parameter.type = params.get('type')
     if "expression" in params:
-        parameter.expression = parameter.get('expression')
+        parameter.expression = params.get('expression')
 
     if uuid is not None:
         parameter.id = uuid

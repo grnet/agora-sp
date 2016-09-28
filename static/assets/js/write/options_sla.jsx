@@ -1,5 +1,8 @@
 
-var formName = 'Options SLA Form'
+var formName = 'Options SLA Form';
+
+var serviceOptionId = null;
+var opType = "";
 
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
@@ -111,8 +114,49 @@ var FormWrapper = React.createClass({
 		e.preventDefault();
 
 		if(this.validateForm()){			
-			var formValues = JSON.stringify($("#service-form").serializeJSON());
-			console.log("The form values are ->", formValues);
+			//var formValues = JSON.stringify($("#service-form").serializeJSON());
+			//console.log("The form values are ->", formValues);
+
+			var params = {};
+			params["name"] = $("#name").val();
+			params["service_option_uuid"] = serviceOptionId;
+
+
+			var parts = window.location.href.split("/");
+			var host = "http://" + parts[2];
+			var url = "";
+
+			if(this.props.source != null && this.props.source != ""){
+				params["uuid"] = parts[parts.length - 1];
+				url = host + "/api/v1/options/SLAs/edit";
+				opType = "edit";
+			}
+			else {
+				url = host + "/api/v1/options/SLAs/add";
+				opType = "add";
+			}
+
+			this.serverRequest = $.ajax({
+				url: url,
+				dataType: "json",
+				crossDomain: true,
+				type: "POST",
+				contentType:"application/json",
+				cache: false,
+				data: JSON.stringify(params),
+				success: function (data) {
+					if(opType == "add")
+						$("#modal-success-body").text("You have successfully inserted a new SLA");
+					else
+						$("#modal-success-body").text("You have successfully updated the SLA");
+					$("#modal-success").modal('show');
+				}.bind(this),
+				error: function (xhr, status, err) {
+					var response = JSON.parse(xhr.responseText);
+					$("#modal-body").text(response.errors.detail);
+					$("#modal-danger").modal('show');
+				}.bind(this)
+			});
 		}
 		else{			
 			console.log("The form is not valid");
@@ -143,6 +187,7 @@ var FormWrapper = React.createClass({
                 this.setState({sla: data.data});
                 $("#name").val(this.state.sla.name);
                 $("#service_option_id").val(this.state.sla.service_option.name);
+				serviceOptionId = this.state.sla.service_option.uuid;
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
@@ -211,6 +256,7 @@ $( function() {
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.name;
+		serviceOptionId = ui.item.uuid;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },

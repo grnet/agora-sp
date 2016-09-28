@@ -1,5 +1,15 @@
 
-var formName = 'Service Details Options Form'
+var formName = 'Service Details Options Form';
+
+
+var serviceId = null;
+var serviceDetailsId = null;
+var serviceOptionsId = null;
+var newServiceId = null;
+var newServiceDetailsId = null;
+var newServiceOptionsId = null;
+var opType = "";
+
 
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
@@ -86,21 +96,22 @@ var FormWrapper = React.createClass({
 		var validationMessage = ''
 
 		// --- validation code goes here ---
-		if($('#name').val() == ''){
-			validationMessage = "The name is required"
-			validationObjects.push( { field: 'name', message: validationMessage } );
+		var service = $('#service_id').val();
+		if (service == '' || service == null) {
+			validationMessage = "The service is required";
+			validationObjects.push({field: 'service_id', message: validationMessage});
 		}
-		if($('#name').val().length > 255){
-			validationMessage = "Content exceeds max length of 255 characters."
-			validationObjects.push( { field: 'name', message: validationMessage } );			
+
+		var service_details = $('#service_details_id').val();
+		if (service_details == null || service_details == "") {
+			validationMessage = "The service version is required.";
+			validationObjects.push({field: 'service_details_id', message: validationMessage});
 		}
-		if($('#type').val().length > 255){
-			validationMessage = "Content exceeds max length of 255 characters."
-			validationObjects.push( { field: 'type', message: validationMessage } );	
-		}
-		if($('#expression').val().length > 255){
-			validationMessage = "Content exceeds max length of 255 characters."
-			validationObjects.push( { field: 'expression', message: validationMessage } );			
+
+		var service_option = $("#service_options_id").val();
+		if(service_option == null || service_option == ""){
+			validationMessage = "The service option is required.";
+			validationObjects.push({field: 'service_options_id', message: validationMessage});
 		}
 
 		if(validationObjects.length > 0){
@@ -120,8 +131,61 @@ var FormWrapper = React.createClass({
 		e.preventDefault();
 
 		if(this.validateForm()){			
-			var formValues = JSON.stringify($("#service-form").serializeJSON());
-			console.log("The form values are ->", formValues);
+			//var formValues = JSON.stringify($("#service-form").serializeJSON());
+			//console.log("The form values are ->", formValues);
+
+			var params = {};
+
+
+			var parts = window.location.href.split("/");
+			var host = "http://" + parts[2];
+			var url = "";
+
+			if (this.props.source != null && this.props.source != "") {
+
+				params["service_options_uuid"] = serviceOptionsId;
+				params["new_service_options_uuid"] = newServiceOptionsId;
+				params["service_uuid"] = serviceId;
+				params["new_service_uuid"] = newServiceId;
+				params["service_details_uuid"] = serviceDetailsId;
+				params["new_service_details_uuid"] = newServiceDetailsId;
+
+				url = host + "/api/v1/options/service_details_option/edit";
+				opType = "edit";
+			}
+			else {
+
+				params["service_options_uuid"] = newServiceOptionsId;
+				params["service_uuid"] = newServiceId;
+				params["service_details_uuid"] = newServiceDetailsId;
+
+				url = host + "/api/v1/options/service_details_option/add";
+				opType = "add";
+			}
+
+			console.log(params);
+
+			this.serverRequest = $.ajax({
+				url: url,
+				dataType: "json",
+				crossDomain: true,
+				type: "POST",
+				contentType: "application/json",
+				cache: false,
+				data: JSON.stringify(params),
+				success: function (data) {
+					if (opType == "add")
+						$("#modal-success-body").text("You have successfully inserted a new service details options relationship");
+					else
+						$("#modal-success-body").text("You have successfully updated the service details options relationship");
+					$("#modal-success").modal('show');
+				}.bind(this),
+				error: function (xhr, status, err) {
+					var response = JSON.parse(xhr.responseText);
+					$("#modal-body").text(response.errors.detail);
+					$("#modal-danger").modal('show');
+				}.bind(this)
+			});
 		}
 		else{			
 			console.log("The form is not valid");
@@ -274,6 +338,7 @@ $( function() {
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.name;
+		newServiceId = ui.item.uuid;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },
@@ -293,6 +358,7 @@ $( function() {
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.name;
+		newServiceDetailsId = ui.item.uuid;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },
@@ -312,6 +378,7 @@ $( function() {
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.name;
+		newServiceOptionsId = ui.item.uuid;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },

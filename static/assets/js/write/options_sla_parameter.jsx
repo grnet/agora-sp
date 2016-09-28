@@ -1,5 +1,13 @@
 
-var formName = 'Options SLA Parametar Form'
+var formName = 'Options SLA Parametar Form';
+
+var parameterId = null;
+var slaId = null;
+var serviceOptionsId = null;
+var newParameterId = null;
+var newSlaId = null;
+var newServiceOptionsId = null;
+var opType = "";
 
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
@@ -86,21 +94,26 @@ var FormWrapper = React.createClass({
 		var validationMessage = ''
 
 		// --- validation code goes here ---
-		if($('#name').val() == ''){
-			validationMessage = "The name is required"
-			validationObjects.push( { field: 'name', message: validationMessage } );
+		var param = $('#parameter_id').val();
+		if(param == '' || param == null){
+			validationMessage = "The parameter is required";
+			validationObjects.push( { field: 'parameter_id', message: validationMessage } );
 		}
-		if($('#name').val().length > 255){
-			validationMessage = "Content exceeds max length of 255 characters."
-			validationObjects.push( { field: 'name', message: validationMessage } );			
+		//if($('#name').val().length > 255){
+		//	validationMessage = "Content exceeds max length of 255 characters."
+		//	validationObjects.push( { field: 'name', message: validationMessage } );
+		//}
+
+		var sla = $('#sla_id').val();
+		if(sla == null || sla == ""){
+			validationMessage = "The SLA is required";
+			validationObjects.push( { field: 'sla_id', message: validationMessage } );
 		}
-		if($('#type').val().length > 255){
-			validationMessage = "Content exceeds max length of 255 characters."
-			validationObjects.push( { field: 'type', message: validationMessage } );	
-		}
-		if($('#expression').val().length > 255){
-			validationMessage = "Content exceeds max length of 255 characters."
-			validationObjects.push( { field: 'expression', message: validationMessage } );			
+
+		var service_option = $('#service_options_id').val();
+		if(service_option == null || service_option == ""){
+			validationMessage = "The service options are required";
+			validationObjects.push( { field: 'service_options_id', message: validationMessage } )
 		}
 
 		if(validationObjects.length > 0){
@@ -120,8 +133,62 @@ var FormWrapper = React.createClass({
 		e.preventDefault();
 
 		if(this.validateForm()){			
-			var formValues = JSON.stringify($("#service-form").serializeJSON());
-			console.log("The form values are ->", formValues);
+			//var formValues = JSON.stringify($("#service-form").serializeJSON());
+			//console.log("The form values are ->", formValues);
+
+			var params = {};
+
+
+			var parts = window.location.href.split("/");
+			var host = "http://" + parts[2];
+			var url = "";
+
+			if (this.props.source != null && this.props.source != "") {
+
+				params["parameter_uuid"] = parameterId;
+				params["new_component_implementation_details_uuid"] = newComponentImplementationDetailId;
+				params["sla_uuid"] = slaId;
+				params["new_service_id"] = newServiceId;
+				params["service_option_uuid"] = serviceOptionsId;
+				params["new_service_version"] = $("#service_details_id").val();
+
+				url = host + "/api/v1/options/SLA_paramters/edit";
+				opType = "edit";
+			}
+			else {
+
+				params["parameter_uuid"] = parameterId;
+				params["sla_uuid"] = slaId;
+				params["service_option_uuid"] = serviceOptionsId;
+
+				url = host + "/api/v1/options/SLA_paramters/add";
+				opType = "add";
+			}
+
+			console.log(slaId);
+			console.log(params);
+
+			this.serverRequest = $.ajax({
+				url: url,
+				dataType: "json",
+				crossDomain: true,
+				type: "POST",
+				contentType: "application/json",
+				cache: false,
+				data: JSON.stringify(params),
+				success: function (data) {
+					if (opType == "add")
+						$("#modal-success-body").text("You have successfully inserted a new SLA parameter");
+					else
+						$("#modal-success-body").text("You have successfully updated the SLA parameter");
+					$("#modal-success").modal('show');
+				}.bind(this),
+				error: function (xhr, status, err) {
+					var response = JSON.parse(xhr.responseText);
+					$("#modal-body").text(response.errors.detail);
+					$("#modal-danger").modal('show');
+				}.bind(this)
+			});
 		}
 		else{			
 			console.log("The form is not valid");
@@ -270,6 +337,7 @@ $( function() {
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.name;
+		  parameterId = ui.item.uuid;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },
@@ -289,6 +357,7 @@ $( function() {
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.name;
+		slaId = ui.item.id;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },
@@ -308,6 +377,7 @@ $( function() {
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.name;
+		  serviceOptionsId = ui.item.uuid;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },
