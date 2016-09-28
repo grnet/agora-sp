@@ -1,5 +1,13 @@
 
-var formName = 'Service Component Implementation Detail Form'
+var formName = 'Service Component Implementation Detail Form';
+
+var serviceId = null;
+var serviceDetailsId = null;
+var componentImplementationDetailId = null;
+var newServiceId = null;
+var newServiceDetailsId = null;
+var newComponentImplementationDetailId = null;
+var opType = "";
 
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
@@ -28,100 +36,103 @@ var OptionsComponent = React.createClass({
 	}
 });
 
-var FormWrapper = React.createClass({
+var FormWrapper;
+FormWrapper = React.createClass({
 
-	generateFormElements: function(resourceObject){
-		var formElements = resourceObject.map(function(field){
-			if(field.tag == 'input'){
-				if(field.type == 'text'){					
+	generateFormElements: function (resourceObject) {
+		var formElements = resourceObject.map(function (field) {
+			if (field.tag == 'input') {
+				if (field.type == 'text') {
 					return (
 						<div className="form-group">
-			      	        <label htmlFor={field.name}>{field.label}</label>			      	        
-			      	        <input className="form-control" id={field.name} type={field.type} name={field.name} placeholder={field.placeholder} aria-describedby={field.name + '-error'} />
-			      	        <span id={field.name + '-error'} className="validation-message sr-only"></span>
-			      	    </div>
+							<label htmlFor={field.name}>{field.label}</label>
+							<input className="form-control" id={field.name} type={field.type} name={field.name}
+								   placeholder={field.placeholder} aria-describedby={field.name + '-error'}/>
+							<span id={field.name + '-error'} className="validation-message sr-only"></span>
+						</div>
 					);
 				}
 			}
-			else if(field.tag == 'textarea'){
-				return(
+			else if (field.tag == 'textarea') {
+				return (
 					<div className="form-group">
-					    <label htmlFor={field.name}>{field.label}</label>
-					    <textarea className="form-control" id={field.name} name={field.name} placeholder={field.placeholder} rows="6" onChange={this[field.onChange]}></textarea>
-					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
+						<label htmlFor={field.name}>{field.label}</label>
+						<textarea className="form-control" id={field.name} name={field.name}
+								  placeholder={field.placeholder} rows="6" onChange={this[field.onChange]}></textarea>
+						<span id={field.name + '-error'} className="validation-message sr-only"></span>
 					</div>
-				);				
+				);
 			}
-			else if(field.tag == 'select'){
-				return(
+			else if (field.tag == 'select') {
+				return (
 					<div className="form-group">
-					    <label htmlFor={field.name}>{field.label}</label>
-					    <OptionsComponent options={field.optionsData} selectName={field.name}></OptionsComponent>
-					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
+						<label htmlFor={field.name}>{field.label}</label>
+						<OptionsComponent options={field.optionsData} selectName={field.name}></OptionsComponent>
+						<span id={field.name + '-error'} className="validation-message sr-only"></span>
 					</div>
-				);				
+				);
 			}
 		}, this);
 		return formElements;
 	},
 
-	markInvalid: function(elRef, message){
+	markInvalid: function (elRef, message) {
 		$('#' + elRef).next().removeClass('sr-only');
 		$('#' + elRef).next().html(message);
 		$('#' + elRef).parent().addClass('has-error');
 		$('html, body').animate({
-        scrollTop: $('#' + elRef).offset().top
-    	}, 800);
+			scrollTop: $('#' + elRef).offset().top
+		}, 800);
 	},
 
-	clearValidations: function(){
+	clearValidations: function () {
 		console.log("Clearing the validations");
 		$('body').find('.has-error').removeClass('has-error');
 		$('body').find('.validation-message').addClass('sr-only');
 	},
 
-	textareaHTMLValidation: function(e){
+	textareaHTMLValidation: function (e) {
 		var div = document.createElement('div');
 		div.innerHTML = $(e.target).val();
-		if($(div).find('script').length > 0 || $(div).find('link').length){
+		if ($(div).find('script').length > 0 || $(div).find('link').length) {
 			div = null;
 			this.markInvalid($(e.target).attr('name'), 'This HTML content must not have script or css tags');
 		}
-		else{
-			console.log("all is good now");
+		else {
 			$(e.target).parent().removeClass('has-error');
 			$(e.target).parent().find('.validation-message').addClass('sr-only');
 		}
 		div = null
 	},
 
-	validateForm: function(e){
+	validateForm: function (e) {
 		this.clearValidations();
 		var validationObjects = [];
 		var validationMessage = ''
 
 		// --- validation code goes here ---
-		if($('#version').val() == ''){
-			validationMessage = "The version is required"
-			validationObjects.push( { field: 'version', message: validationMessage } );
-		}
-		if($('#version').val().length > 255){
-			validationMessage = "Content exceeds max length of 255 characters."
-			validationObjects.push( { field: 'version', message: validationMessage } );			
-		}
-		if($('#component_id_id').val() == null){
-			validationMessage = "The component is required."
-			validationObjects.push( { field: 'component_id_id', message: validationMessage } );
-		}
-		if($('#component_implementation_id').val() == null){
-			validationMessage = "The component is required."
-			validationObjects.push( { field: 'component_implementation_id', message: validationMessage } );
+		var service = $('#service_id').val();
+		if (service == '' || service == null) {
+			validationMessage = "The service is required";
+			validationObjects.push({field: 'service_id', message: validationMessage});
 		}
 
-		if(validationObjects.length > 0){
+		var service_details = $('#service_details_id').val();
+		if (service_details == null || service_details == "") {
+			validationMessage = "The service version is required.";
+			validationObjects.push({field: 'service_details_id', message: validationMessage});
+		}
+
+		var comp_imp_det = $('#component_implementation_detail_id').val();
+		if (comp_imp_det == null || comp_imp_det == "") {
+			validationMessage = "The component implementation details are required.";
+			validationObjects.push({field: 'component_implementation_detail_id', message: validationMessage});
+		}
+
+		if (validationObjects.length > 0) {
 			var i = 0;
 			for (i = 0; i < validationObjects.length; i++) {
-			    this.markInvalid(validationObjects[i].field, validationObjects[i].message);
+				this.markInvalid(validationObjects[i].field, validationObjects[i].message);
 			}
 			return false;
 		}
@@ -129,19 +140,73 @@ var FormWrapper = React.createClass({
 		return true;
 	},
 
-	handleSubmit: function(e) {
+	handleSubmit: function (e) {
 		// some validation
 		// ajax url call + redirect
 		e.preventDefault();
 
-		if(this.validateForm()){			
-			var formValues = JSON.stringify($("#service-form").serializeJSON());
-			console.log("The form values are ->", formValues);
+		if (this.validateForm()) {
+			//var formValues = JSON.stringify($("#service-form").serializeJSON());
+			//console.log("The form values are ->", formValues);
+
+			var params = {};
+
+
+			var parts = window.location.href.split("/");
+			var host = "http://" + parts[2];
+			var url = "";
+
+			if (this.props.source != null && this.props.source != "") {
+
+				params["component_implementation_details_uuid"] = componentImplementationDetailId;
+				params["new_component_implementation_details_uuid"] = newComponentImplementationDetailId;
+				params["service_id"] = serviceId;
+				params["new_service_id"] = newServiceId;
+				params["service_version"] = serviceDetailsId;
+				params["new_service_version"] = $("#service_details_id").val();
+
+				url = host + "/api/v1/component/service_details_component_implementation_details/edit";
+				opType = "edit";
+			}
+			else {
+
+				params["component_implementation_details_uuid"] = newComponentImplementationDetailId;
+				params["service_id"] = newServiceId;
+				params["service_version"] = $("#service_details_id").val();
+
+				url = host + "/api/v1/component/service_details_component_implementation_details/add";
+				opType = "add";
+			}
+
+			console.log(params);
+
+
+			this.serverRequest = $.ajax({
+				url: url,
+				dataType: "json",
+				crossDomain: true,
+				type: "POST",
+				contentType: "application/json",
+				cache: false,
+				data: JSON.stringify(params),
+				success: function (data) {
+					if (opType == "add")
+						$("#modal-success-body").text("You have successfully inserted a new service details component relationship");
+					else
+						$("#modal-success-body").text("You have successfully updated the service details component relationship");
+					$("#modal-success").modal('show');
+				}.bind(this),
+				error: function (xhr, status, err) {
+					var response = JSON.parse(xhr.responseText);
+					$("#modal-body").text(response.errors.detail);
+					$("#modal-danger").modal('show');
+				}.bind(this)
+			});
 		}
-		else{			
+		else {
 			console.log("The form is not valid");
 		}
-		
+
 	},
 
 	getInitialState: function () {
@@ -153,47 +218,48 @@ var FormWrapper = React.createClass({
 		}
 	},
 
-    componentDidMount: function () {
+	componentDidMount: function () {
 
-        if(this.props.source == null || this.props.source == "")
-            return;
+		if (this.props.source == null || this.props.source == "")
+			return;
 
-        jQuery.support.cors = true;
-        this.serverRequest = $.ajax({
-            url: this.props.source,
-            dataType: "json",
-            crossDomain: true,
-            type: "GET",
-            cache: false,
-            success: function (data) {
-                this.setState({component: data.data});
-                $("#service_id").val(this.state.component.version);
-                $("#service_details_id").val(this.state.component.configuration_parameters);
-                $("#component_implementation_detail_id").val(this.state.component.service_component_implementation.name);
-            }.bind(this),
-            error: function (xhr, status, err) {
-                console.log(this.props.source, status, err.toString());
-            }.bind(this)
-        });
-    },
+		jQuery.support.cors = true;
+		this.serverRequest = $.ajax({
+			url: this.props.source,
+			dataType: "json",
+			crossDomain: true,
+			type: "GET",
+			cache: false,
+			success: function (data) {
+				this.setState({component: data.data});
+				$("#service_id").val(this.state.component.version);
+				$("#service_details_id").val(this.state.component.configuration_parameters);
+				$("#component_implementation_detail_id").val(this.state.component.service_component_implementation.name);
 
-    componentWillUnmount: function () {
-        this.serverRequest.abort();
-    },
+			}.bind(this),
+			error: function (xhr, status, err) {
+				console.log(this.props.source, status, err.toString());
+			}.bind(this)
+		});
+	},
 
-	render: function(){		
+	componentWillUnmount: function () {
+		this.serverRequest.abort();
+	},
+
+	render: function () {
 		var formElements = this.generateFormElements(this.props.resourceObject);
-		return(
+		return (
 			<div className="widget">
-					<div className="widget-header bordered-bottom bordered-blue">
-			     	<span className="widget-caption">{this.props.formName}</span>
-			    </div>
-			    <div className="widget-body">
-			    	<form role="form" onSubmit={this.handleSubmit} id="service-form">
-			    		{formElements}
-			    		<button type="submit" className="btn btn-blue">Submit</button>
-			    	</form>
-			   	</div>
+				<div className="widget-header bordered-bottom bordered-blue">
+					<span className="widget-caption">{this.props.formName}</span>
+				</div>
+				<div className="widget-body">
+					<form role="form" onSubmit={this.handleSubmit} id="service-form">
+						{formElements}
+						<button type="submit" className="btn btn-blue">Submit</button>
+					</form>
+				</div>
 			</div>
 		);
 	}
@@ -289,6 +355,7 @@ $( function() {
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.name;
+		newServiceId = ui.item.uuid;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },
@@ -308,6 +375,7 @@ $( function() {
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.name;
+		newServiceDetailsId = ui.item.uuid;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },
@@ -327,6 +395,7 @@ $( function() {
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.name;
+		newComponentImplementationDetailId = ui.item.uuid;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },

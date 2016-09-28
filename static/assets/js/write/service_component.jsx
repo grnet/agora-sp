@@ -124,8 +124,8 @@ var FormWrapper = React.createClass({
 		e.preventDefault();
 
 		if(this.validateForm()){			
-			var formValues = JSON.stringify($("#service-form").serializeJSON());
-			console.log("The form values are ->", formValues);
+			//var formValues = JSON.stringify($("#service-form").serializeJSON());
+			//console.log("The form values are ->", formValues);
 
 			var params = {};
 			params["name"] = $("#name").val();

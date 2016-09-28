@@ -1,5 +1,9 @@
 
-var formName = 'Service Component Implementation Detail Form'
+var formName = 'Service Component Implementation Detail Form';
+
+var componentId = null;
+var componentImplementationId = null;
+var opType = "";
 
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
@@ -67,6 +71,7 @@ var FormWrapper = React.createClass({
 	},
 
 	markInvalid: function(elRef, message){
+
 		$('#' + elRef).next().removeClass('sr-only');
 		$('#' + elRef).next().html(message);
 		$('#' + elRef).parent().addClass('has-error');
@@ -89,7 +94,6 @@ var FormWrapper = React.createClass({
 			this.markInvalid($(e.target).attr('name'), 'This HTML content must not have script or css tags');
 		}
 		else{
-			console.log("all is good now");
 			$(e.target).parent().removeClass('has-error');
 			$(e.target).parent().find('.validation-message').addClass('sr-only');
 		}
@@ -110,7 +114,7 @@ var FormWrapper = React.createClass({
 			validationMessage = "Content exceeds max length of 255 characters."
 			validationObjects.push( { field: 'version', message: validationMessage } );			
 		}
-		if($('#component_id_id').val() == null){
+		if($('#component_id').val() == null){
 			validationMessage = "The component is required."
 			validationObjects.push( { field: 'component_id_id', message: validationMessage } );
 		}
@@ -136,8 +140,53 @@ var FormWrapper = React.createClass({
 		e.preventDefault();
 
 		if(this.validateForm()){			
-			var formValues = JSON.stringify($("#service-form").serializeJSON());
-			console.log("The form values are ->", formValues);
+			//var formValues = JSON.stringify($("#service-form").serializeJSON());
+			//console.log("The form values are ->", formValues);
+
+			var params = {};
+			params["version"] = $("#version").val();
+			params["configuration_parameters"] = $("#configuration_parameters").val();
+			params["component_uuid"] = componentId;
+			params["component_implementation_uuid"] = componentImplementationId;
+
+
+			var parts = window.location.href.split("/");
+			var host = "http://" + parts[2];
+			var url = "";
+
+			if(this.props.source != null && this.props.source != ""){
+				params["uuid"] = parts[parts.length - 1];
+				url = host + "/api/v1/component/service_component_implementation_detail/edit";
+				opType = "edit";
+			}
+			else {
+				url = host + "/api/v1/component/service_component_implementation_detail/add";
+				opType = "add";
+			}
+
+
+			this.serverRequest = $.ajax({
+				url: url,
+				dataType: "json",
+				crossDomain: true,
+				type: "POST",
+				contentType:"application/json",
+				cache: false,
+				data: JSON.stringify(params),
+				success: function (data) {
+					if(opType == "add")
+						$("#modal-success-body").text("You have successfully inserted a new component implementation detail");
+					else
+						$("#modal-success-body").text("You have successfully updated the component implementation detail");
+					$("#modal-success").modal('show');
+				}.bind(this),
+				error: function (xhr, status, err) {
+					var response = JSON.parse(xhr.responseText);
+					$("#modal-body").text(response.errors.detail);
+					$("#modal-danger").modal('show');
+				}.bind(this)
+			});
+
 		}
 		else{			
 			console.log("The form is not valid");
@@ -172,6 +221,8 @@ var FormWrapper = React.createClass({
                 $("#configuration_parameters").val(this.state.component.configuration_parameters);
                 $("#component_id").val(this.state.component.service_component.name);
                 $("#component_implementation_id").val(this.state.component.service_component_implementation.name);
+				componentId = this.state.component.service_component.uuid;
+				componentImplementationId = this.state.component.service_component_implementation.uuid;
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
@@ -263,6 +314,7 @@ $( function() {
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.name;
+		  componentId = ui.item.uuid;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },
@@ -282,6 +334,7 @@ $( function() {
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.name;
+		componentImplementationId = ui.item.uuid;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },

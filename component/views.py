@@ -598,6 +598,10 @@ def insert_service_component_implementation(request):
 
         comp_uuid = params.get("component_uuid")
 
+        if comp_uuid is None:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_INVALID_UUID,
+                                                          status=strings.REJECTED_406), status=406)
+
         result = prog.match(comp_uuid)
 
         if result is None:
@@ -809,6 +813,10 @@ def insert_service_component_implementation_details(request):
 
         comp_uuid = params.get("component_uuid")
 
+        if comp_uuid is None:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_INVALID_UUID,
+                                                          status=strings.REJECTED_406), status=406)
+
         result = prog.match(comp_uuid)
 
         if result is None:
@@ -831,6 +839,10 @@ def insert_service_component_implementation_details(request):
 
 
         imp_uuid = params.get("component_implementation_uuid")
+
+        if imp_uuid is None:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_INVALID_UUID,
+                                                          status=strings.REJECTED_406), status=406)
 
         result = prog.match(imp_uuid)
 

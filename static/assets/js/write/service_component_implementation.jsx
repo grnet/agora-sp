@@ -1,5 +1,8 @@
 
-var formName = 'Service Component Implementation Form'
+var formName = 'Service Component Implementation Form';
+
+var componentId = null;
+var opType = "";
 
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
@@ -88,7 +91,6 @@ var FormWrapper = React.createClass({
 			this.markInvalid($(e.target).attr('name'), 'This HTML content must not have script or css tags');
 		}
 		else{
-			console.log("all is good now");
 			$(e.target).parent().removeClass('has-error');
 			$(e.target).parent().find('.validation-message').addClass('sr-only');
 		}
@@ -132,8 +134,51 @@ var FormWrapper = React.createClass({
 		e.preventDefault();
 
 		if(this.validateForm()){			
-			var formValues = JSON.stringify($("#service-form").serializeJSON());
-			console.log("The form values are ->", formValues);
+			//var formValues = JSON.stringify($("#service-form").serializeJSON());
+			//console.log("The form values are ->", formValues);
+
+
+			var params = {};
+			params["name"] = $("#name").val();
+			params["description"] = $("#description").val();
+			params["component_uuid"] = componentId;
+
+
+			var parts = window.location.href.split("/");
+			var host = "http://" + parts[2];
+			var url = "";
+
+			if(this.props.source != null && this.props.source != ""){
+				params["uuid"] = parts[parts.length - 1];
+				url = host + "/api/v1/component/service_component_implementation/edit";
+				opType = "edit";
+			}
+			else {
+				url = host + "/api/v1/component/service_component_implementation/add";
+				opType = "add";
+			}
+
+			this.serverRequest = $.ajax({
+				url: url,
+				dataType: "json",
+				crossDomain: true,
+				type: "POST",
+				contentType:"application/json",
+				cache: false,
+				data: JSON.stringify(params),
+				success: function (data) {
+					if(opType == "add")
+						$("#modal-success-body").text("You have successfully inserted a new component implementation");
+					else
+						$("#modal-success-body").text("You have successfully updated the component implementation");
+					$("#modal-success").modal('show');
+				}.bind(this),
+				error: function (xhr, status, err) {
+					var response = JSON.parse(xhr.responseText);
+					$("#modal-body").text(response.errors.detail);
+					$("#modal-danger").modal('show');
+				}.bind(this)
+			});
 		}
 		else{			
 			console.log("The form is not valid");
@@ -167,6 +212,7 @@ var FormWrapper = React.createClass({
                 $("#name").val(this.state.component.name);
                 $("#description").val(this.state.component.description);
                 $("#component_id").val(this.state.component.component.name);
+				componentId = this.state.component.component.uuid;
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
@@ -248,6 +294,7 @@ $( function() {
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.name;
+		componentId = ui.item.uuid;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },
