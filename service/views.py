@@ -241,6 +241,9 @@ def service_details_write_ui(request):
 def internal_dependency_write_ui(request):
     return render(request, 'service/write.html', {"type": "internal_service_dependencies"})
 
+def external_dependency_write_ui(request):
+    return render(request, 'service/write.html', {"type": "external_service_dependencies"})
+
 def service_details_edit_ui(request, service_name_or_uuid, version):
     source = helper.current_site_url() + "/v1/portfolio/services/" + service_name_or_uuid + "/service_details/" + version + "/view"
     return render(request, 'service/write.html', {"type": "service_details", "source": source})
@@ -1016,6 +1019,18 @@ def get_services(request):
         query = query.lower()
 
     services = [s.as_catalogue() for s in models.Service.objects.all()
+              if (query == None or query == "") or query in s.name.lower()]
+    response = helper.get_response_info(strings.SERVICE_OWNER_INFORMATION, services)
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
+def get_external_services(request):
+
+    query = request.GET.get('search')
+    if query is not None:
+        query = query.lower()
+
+    services = [s.as_json() for s in models.ExternalService.objects.all()
               if (query == None or query == "") or query in s.name.lower()]
     response = helper.get_response_info(strings.SERVICE_OWNER_INFORMATION, services)
 
