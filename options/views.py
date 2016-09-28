@@ -367,6 +367,9 @@ def service_options_edit_ui(request, serv_opt_uuid):
     source = helper.current_site_url() + "/v1/options/service_options/" + serv_opt_uuid
     return render(request, 'service/write.html', {"type": "service_option", "source": source})
 
+def service_details_options_write_ui(request):
+    return render(request, 'service/write.html', {"type": "service_details_options"})
+
 # Updates a Service Option object
 @api_view(['POST'])
 def edit_service_option(request):
