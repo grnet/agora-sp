@@ -21,7 +21,7 @@ h1, h2 {
 
 #description {
     text-align: justify;
-    font-size: 16px;
+    font-size: 13px;
     margin-top: 40px;
 }
 
@@ -136,6 +136,8 @@ p {
     cursor: pointer;
 }
 
-
+.modal-content {
+    margin-top: 15px;
+}
 
 

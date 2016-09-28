@@ -46,6 +46,23 @@
         <div id="write-content" class="col-xs-12 col-md-8 col-md-offset-2">
 
         </div>
+        <div id="modal-danger" class="modal modal-message modal-danger fade" style="display: none" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <i class="glyphicon glyphicon-fire"></i>
+                    </div>
+                    <div class="modal-title">An error has occured</div>
+
+                    <div id="modal-body" class="modal-body">You better keep it together!</div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
     </div>
 
 
@@ -368,8 +385,6 @@
     {% if type == "service_component_table" %}
         <script type="text/babel" src="/static/assets/js/write/service_component_table.jsx"></script>
     {% endif %}
-
-
 
 
     <script src="/static/assets/js/jquery.min.js"></script>
