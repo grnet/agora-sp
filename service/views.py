@@ -1018,6 +1018,24 @@ def get_services(request):
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
+def get_service_versions(request):
+
+    query = request.GET.get('search')
+    if query is not None:
+        query = query.lower()
+
+
+    service = request.GET.get('service')
+    if service is not None:
+        service = service.lower()
+
+    service_details = [s.as_portfolio_view() for s in models.ServiceDetails.objects.all()
+              if (query == None or query == "") or ((service is None or service == "" or service == s.id_service.name.lower())
+                                                    and query in s.version.lower())]
+    response = helper.get_response_info(strings.SERVICE_OWNER_INFORMATION, service_details)
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
 def get_service_areas(request):
 
     query = request.GET.get('search')

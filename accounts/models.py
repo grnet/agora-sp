@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 from django.utils import timezone
 from django.utils.http import urlquote
 from django.core.mail import send_mail
-from social.apps.django_app.default.models import UserSocialAuth
+# from social.apps.django_app.default.models import UserSocialAuth
 from agora.settings import AVATAR_LOCATION
 
 class UserManager(BaseUserManager):

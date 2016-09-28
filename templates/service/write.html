@@ -34,6 +34,8 @@
     <script src="/static/assets/js/react/react-dom.js"></script>
     <script src="/static/assets/js/react/browser.min.js"></script>
 
+
+
 </head>
 <body>
 
@@ -41,8 +43,9 @@
         <div id="header" class="col-xs-12"></div>
         <div id="sidebar" class="page-sidebar col-md-2 hidden-sm hidden-xs">
         </div>
-        <div id="write-content" class="col-xs-12 col-md-8 col-md-offset-2"></div>
+        <div id="write-content" class="col-xs-12 col-md-8 col-md-offset-2">
 
+        </div>
     </div>
 
 
@@ -318,6 +321,10 @@
         <script type="text/babel" src="/static/assets/js/write/service_component_implementation_detail.jsx"></script>
     {% endif %}
 
+    {% if type == "service_details_component" %}
+        <script type="text/babel" src="/static/assets/js/write/service_details_component.jsx"></script>
+    {% endif %}
+
     {% if type == "service_details" %}
         <script type="text/babel" src="/static/assets/js/write/service_details.jsx"></script>
     {% endif %}
@@ -351,6 +358,8 @@
     <script src="/static/assets/js/serialize-json.min.js"></script>
     <script src="/static/assets/js/jquery.validate.min.js"></script>
     <script src="/static/assets/js/slimscroll/jquery.slimscroll.min.js"></script>
+    <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
+    <script>tinymce.init({ selector:'textarea' });</script>
 
     <!--Beyond Scripts-->
     <script src="/static/assets/js/beyond.js"></script>

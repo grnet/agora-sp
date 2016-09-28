@@ -366,6 +366,21 @@ def get_service_component_implementation_all(request):
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
+def get_service_component_implementation_detail_all(request):
+    response = {}
+
+    query = request.GET.get('search')
+    if query is not None:
+        query = query.lower()
+
+    service_component_imp_det = component_models.ServiceComponentImplementationDetail.objects.all()
+    response["status"] = "200 OK"
+    response["data"] = [s.as_full() for s in service_component_imp_det if (query == None or query == "")
+                        or query in ( s.component_id.name + " " + s.component_implementation_id.name + " " + s.version).lower()]
+    response["info"] = "service component implementation detail information"
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
 def get_service_component_implementation_details(request, comp_imp_det_uuid):
     response = {}
 
@@ -528,13 +543,19 @@ def service_component_implementation_edit_ui(request, comp_imp_uuid):
     source = helper.current_site_url() + "/v1/component/implementation/" + comp_imp_uuid
     return render(request, 'service/write.html', {"type": "service_component_implementation", "source": source})
 
-
 def service_component_implementation_detail_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_component_implementation_detail"})
 
 def service_component_implementation_detail_edit_ui(request, comp_imp_det_uuid):
     source = helper.current_site_url() + "/v1/component/implementation_detail/" + comp_imp_det_uuid
     return render(request, 'service/write.html', {"type": "service_component_implementation_detail", "source": source})
+
+def service_details_component_write_ui(request):
+    return render(request, 'service/write.html', {"type": "service_details_component"})
+
+def service_details_component_edit_ui(request, serv_det_comp_uuid):
+    source = helper.current_site_url() + "/v1/component/service_details_component/" + serv_det_comp_uuid
+    return render(request, 'service/write.html', {"type": "service_details_component", "source": source})
 
 
 # Updates the provided service component implementation
