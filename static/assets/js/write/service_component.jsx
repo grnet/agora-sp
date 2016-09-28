@@ -1,5 +1,6 @@
 
 var formName = 'Service Component Form';
+var opType = "";
 
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
@@ -139,9 +140,11 @@ var FormWrapper = React.createClass({
 			if(this.props.source != null && this.props.source != ""){
 				params["uuid"] = parts[parts.length - 1];
 				url = host + "/api/v1/component/edit";
+				opType = "edit";
 			}
 			else {
 				url = host + "/api/v1/component/add";
+				opType = "add";
 			}
 
 
@@ -154,6 +157,11 @@ var FormWrapper = React.createClass({
 				cache: false,
 				data: JSON.stringify(params),
 				success: function (data) {
+					if(opType == "add")
+						$("#modal-success-body").text("You have successfully inserted a new component");
+					else
+						$("#modal-success-body").text("You have successfully updated the component");
+					$("#modal-success").modal('show');
 				}.bind(this),
 				error: function (xhr, status, err) {
 					var response = JSON.parse(xhr.responseText);

@@ -366,9 +366,17 @@ def insert_contact_information(request):
         contact_information = models.ContactInformation()
 
 
-    if ("email" not in params) and ("url" not in params):
-        return JsonResponse(helper.get_error_response(strings.OWNER_URL_OR_EMAIL_NOT_PROVIDED, status=strings.REJECTED_406))
+    # if ("email" not in params) and ("url" not in params):
+    #     return JsonResponse(helper.get_error_response(strings.OWNER_URL_OR_EMAIL_NOT_PROVIDED, status=strings.REJECTED_406))
 
+    email, url = None, None
+    if "email" in params:
+        email = params["email"]
+    if "url" in params:
+        url = params["url"]
+
+    if (email is None or email == "") and (url is None or url == ""):
+        return JsonResponse(helper.get_error_response(strings.OWNER_URL_OR_EMAIL_NOT_PROVIDED, status=strings.REJECTED_406))
 
     if "first_name" in params:
         first_name = params.get('first_name')
@@ -382,12 +390,12 @@ def insert_contact_information(request):
         #     return JsonResponse(helper.get_error_response(strings.OWNER_LAST_NAME_EMPTY, status=strings.REJECTED_406))
         contact_information.last_name = last_name
 
-    if "email" in params:
-        email = params.get('email')
-        if email is None or len(email) == 0:
-            return JsonResponse(helper.get_error_response(strings.OWNER_EMAIL_EMPTY, status=strings.REJECTED_406),
-                                status=406)
-        contact_information.email = email
+    # if "email" in params:
+    #     email = params.get('email')
+    #     if email is None or len(email) == 0:
+    #         return JsonResponse(helper.get_error_response(strings.OWNER_EMAIL_EMPTY, status=strings.REJECTED_406),
+    #                             status=406)
+    contact_information.email = email
 
     if "phone" in params:
         phone = params.get('phone')
@@ -395,12 +403,12 @@ def insert_contact_information(request):
         #     return JsonResponse(helper.get_error_response(strings.OWNER_PHONE_EMPTY, status=strings.REJECTED_406))
         contact_information.phone = phone
 
-    if "url" in params:
-        url = params.get('url')
-        if url is None or len(url) == 0:
-            return JsonResponse(helper.get_error_response(strings.OWNER_URL_EMPTY, status=strings.REJECTED_406),
-                                status=406)
-        contact_information.url = url
+    # if "url" in params:
+    #     url = params.get('url')
+    #     if url is None or len(url) == 0:
+    #         return JsonResponse(helper.get_error_response(strings.OWNER_URL_EMPTY, status=strings.REJECTED_406),
+    #                             status=406)
+    contact_information.url = url
 
     if uuid is not None:
         contact_information.id = uuid

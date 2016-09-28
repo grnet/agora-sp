@@ -1,6 +1,8 @@
 
 var formName = 'Owner Institution Form';
 
+var opType;
+
 var resourceObject = [
 	{ tag: 'input', type: 'text', name: 'name', placeholder: 'Enter name', label: 'Name' },
 	{ tag: 'input', type: 'text', name: 'address', placeholder: 'Enter address', label: 'Address' },
@@ -81,13 +83,14 @@ var FormWrapper = React.createClass({
 		var validationMessage = ''
 
 		// --- validation code goes here ---
-		if($('#name').val() == ''){
-			validationMessage = "The name is required"
+		var name = $("#name").val();
+		if(name == '' || name == null){
+			validationMessage = "The name is required";
 			validationObjects.push( { field: 'name', message: validationMessage } );
 		}
-		if($('#name').val().length > 255){
+		if(name.length > 255){
 			validationMessage = "Content exceeds max length of 255 characters."
-			validationObjects.push( { field: 'name', message: validationMessage } );			
+			validationObjects.push( { field: 'name', message: validationMessage } );
 		}
 		if($('#country').val().length > 255){
 			validationMessage = "Content exceeds max length of 255 characters."
@@ -119,8 +122,53 @@ var FormWrapper = React.createClass({
 		e.preventDefault();
 
 		if(this.validateForm()){			
-			var formValues = JSON.stringify($("#service-form").serializeJSON());
-			console.log("The form values are ->", formValues);
+			//var formValues = JSON.stringify($("#service-form").serializeJSON());
+			//console.log("The form values are ->", formValues);
+
+
+			var params = {};
+			params["name"] = $("#name").val();
+			params["address"] = $("#address").val();
+			params["country"] = $("#country").val();
+			params["department"] = $("#department").val();
+
+
+			var parts = window.location.href.split("/");
+			var host = "http://" + parts[2];
+			var url = "";
+
+			if(this.props.source != null && this.props.source != ""){
+				params["uuid"] = parts[parts.length - 1];
+				url = host + "/api/v1/owner/institution/edit";
+				opType = "edit";
+			}
+			else {
+				url = host + "/api/v1/owner/institution/add";
+				opType = "add";
+			}
+
+
+			this.serverRequest = $.ajax({
+				url: url,
+				dataType: "json",
+				crossDomain: true,
+				type: "POST",
+				contentType:"application/json",
+				cache: false,
+				data: JSON.stringify(params),
+				success: function (data) {
+					if(opType == "add")
+						$("#modal-success-body").text("You have successfully inserted a new institution");
+					else
+						$("#modal-success-body").text("You have successfully updated the institution");
+					$("#modal-success").modal('show');
+				}.bind(this),
+				error: function (xhr, status, err) {
+					var response = JSON.parse(xhr.responseText);
+					$("#modal-body").text(response.errors.detail);
+					$("#modal-danger").modal('show');
+				}.bind(this)
+			});
 		}
 		else{			
 			console.log("The form is not valid");

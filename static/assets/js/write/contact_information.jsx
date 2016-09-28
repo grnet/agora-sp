@@ -1,5 +1,7 @@
 
-var formName = 'Contact Information Form'
+var formName = 'Contact Information Form';
+
+var opType;
 
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
@@ -12,8 +14,7 @@ var resourceObject = [
 	{ tag: 'input', type: 'text', name: 'last_name', placeholder: 'Enter last name', label: 'Last Name' },
 	{ tag: 'input', type: 'text', name: 'email', placeholder: 'Enter email', label: 'Email' },
 	{ tag: 'input', type: 'text', name: 'phone', placeholder: 'Enter phone', label: 'Phone' },
-	{ tag: 'input', type: 'text', name: 'url', placeholder: 'Enter url', label: 'URL' },
-
+	{ tag: 'input', type: 'text', name: 'url', placeholder: 'Enter url', label: 'URL' }
 ];
 
 var OptionsComponent = React.createClass({
@@ -128,7 +129,8 @@ var FormWrapper = React.createClass({
 			validationObjects.push( { field: 'last_name', message: validationMessage } );
 		}
 
-		if(!this.validatePhone($('#phone').val())){
+		var phone = $("#phone").val();
+		if(phone != null && phone != "" && !this.validatePhone(phone)){
 			validationMessage = "Phone field must contain numbers only."
 			validationObjects.push( { field: 'phone', message: validationMessage } );
 		}
@@ -156,8 +158,54 @@ var FormWrapper = React.createClass({
 
 		if(this.validateForm()){
 			this.clearValidations();
-			var formValues = JSON.stringify($("#service-form").serializeJSON());
-			console.log("The form values are ->", formValues);
+			//var formValues = JSON.stringify($("#service-form").serializeJSON());
+			//console.log("The form values are ->", formValues);
+
+			var params = {};
+			params["first_name"] = $("#first_name").val();
+			params["last_name"] = $("#last_name").val();
+			params["email"] = $("#email").val();
+			params["phone"] = $("#phone").val();
+			params["url"] = $("#url").val();
+
+
+			var parts = window.location.href.split("/");
+			var host = "http://" + parts[2];
+			var url = "";
+
+			if(this.props.source != null && this.props.source != ""){
+				params["uuid"] = parts[parts.length - 1];
+				url = host + "/api/v1/owner/contact_information/edit";
+				opType = "edit";
+			}
+			else {
+				url = host + "/api/v1/owner/contact_information/add";
+				opType = "add";
+			}
+
+
+			this.serverRequest = $.ajax({
+				url: url,
+				dataType: "json",
+				crossDomain: true,
+				type: "POST",
+				contentType:"application/json",
+				cache: false,
+				data: JSON.stringify(params),
+				success: function (data) {
+					if(opType == "add")
+						$("#modal-success-body").text("You have successfully inserted a new contact information");
+					else
+						$("#modal-success-body").text("You have successfully updated the contact information");
+					$("#modal-success").modal('show');
+				}.bind(this),
+				error: function (xhr, status, err) {
+					var response = JSON.parse(xhr.responseText);
+					$("#modal-body").text(response.errors.detail);
+					$("#modal-danger").modal('show');
+				}.bind(this)
+			});
+
 		}
 		else{			
 			console.log("The form is not valid");
