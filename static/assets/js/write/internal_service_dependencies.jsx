@@ -1,5 +1,5 @@
 
-var formName = 'Service Details Options Form'
+var formName = 'Internal Service Dependencies Form';
 
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
@@ -8,9 +8,8 @@ var optionsData = [
 ];
 
 var resourceObject = [
-	{ tag: 'input', type: 'text', name: 'service_id', placeholder: 'Enter service name', label: 'Service name' },
-	{ tag: 'input', type: 'text', name: 'service_details_id', placeholder: 'Enter service version', label: 'Service version' },
-	{ tag: 'input', type: 'text', name: 'service_options_id', placeholder: 'Enter service option name', label: 'Service option' }
+	{ tag: 'input', type: 'text', name: 'service_id', placeholder: 'Enter service name', label: 'Service' },
+	{ tag: 'input', type: 'text', name: 'service_dependency_id', placeholder: 'Enter service dependency name', label: 'Service dependency' }
 ];
 
 var OptionsComponent = React.createClass({
@@ -199,13 +198,10 @@ $( function() {
 			$(".ui-menu-item").remove();
 		}
 
-		if (!($(event.target).parents().andSelf().is('#service_details_id'))) {
+		if (!($(event.target).parents().andSelf().is('#service_dependency_id'))) {
 			$(".ui-menu-item").remove();
 		}
-
-		if (!($(event.target).parents().andSelf().is('#service_options_id'))) {
-			$(".ui-menu-item").remove();
-		}});
+	});
 
 
 	var getDataService = function(request, response){
@@ -226,47 +222,6 @@ $( function() {
             });
 	};
 
-	var getDataServiceDetails = function(request, response){
-
-        var url = window.location.href;
-        var contents = url.split("/");
-        var host = contents[0] + "//" + contents[2];
-
-
-		var service = $("#service_id").val();
-		if(service == null)
-			service = "";
-
-        $.getJSON(
-            host + "/api/v1/services/version/all?search=" + request.term + "&service=" + service,
-            function (data) {
-				console.log(data);
-				for(var i = 0; i < data.data.length; i++) {
-					data.data[i].value = data.data[i].version;
-					data.data[i].label = data.data[i].version;
-                    data.data[i].index = i;
-				}
-                response(data.data);
-            });
-	};
-
-    var getDataServiceOptions = function(request, response){
-
-        var url = window.location.href;
-        var contents = url.split("/");
-        var host = contents[0] + "//" + contents[2];
-
-        $.getJSON(
-            host + "/api/v1/options/service_options/all?search=" + request.term,
-            function (data) {
-				for(var i = 0; i < data.data.length; i++) {
-					data.data[i].value = data.data[i].name;
-					data.data[i].label = data.data[i].name;
-                    data.data[i].index = i;
-				}
-                response(data.data);
-            });
-	};
 
 
     $( "#service_id" ).autocomplete({
@@ -288,8 +243,9 @@ $( function() {
         .appendTo( ul );
     };
 
-	$( "#service_details_id" ).autocomplete({
-      source: getDataServiceDetails,
+
+	$( "#service_dependency_id" ).autocomplete({
+      source: getDataService,
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.name;
@@ -303,28 +259,11 @@ $( function() {
 	  }
     }).autocomplete( "instance" )._renderItem = function( ul, item ) {
 		return $( "<li>" )
-        .append( item.service.name + " " + item.version )
+        .append( item.name )
         .appendTo( ul );
     };
 
-    $( "#service_options_id" ).autocomplete({
-      source: getDataServiceOptions,
-      minLength: 2,
-      select: function( event, ui ) {
-		this.value = ui.item.name;
-		$(".ui-autocomplete").hide();
-		$(".ui-menu-item").remove();
-      },
-	  focus: function(event, ui){
-          var items = $(".ui-menu-item");
-		  items.removeClass("ui-menu-item-hover");
-		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
-	  }
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-		return $( "<li>" )
-        .append( item.name  )
-        .appendTo( ul );
-    };
+
 
 
   } );

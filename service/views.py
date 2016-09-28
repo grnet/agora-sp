@@ -238,6 +238,9 @@ def service_area_write_ui(request):
 def service_details_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_details"})
 
+def internal_dependency_write_ui(request):
+    return render(request, 'service/write.html', {"type": "internal_service_dependencies"})
+
 def service_details_edit_ui(request, service_name_or_uuid, version):
     source = helper.current_site_url() + "/v1/portfolio/services/" + service_name_or_uuid + "/service_details/" + version + "/view"
     return render(request, 'service/write.html', {"type": "service_details", "source": source})
