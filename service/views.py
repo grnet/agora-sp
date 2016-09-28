@@ -244,6 +244,9 @@ def internal_dependency_write_ui(request):
 def external_dependency_write_ui(request):
     return render(request, 'service/write.html', {"type": "external_service_dependencies"})
 
+def users_customers_write_ui(request):
+    return render(request, 'service/write.html', {"type": "users_customers"})
+
 def service_details_edit_ui(request, service_name_or_uuid, version):
     source = helper.current_site_url() + "/v1/portfolio/services/" + service_name_or_uuid + "/service_details/" + version + "/view"
     return render(request, 'service/write.html', {"type": "service_details", "source": source})
