@@ -118,9 +118,10 @@ SAML_ATTRIBUTE_MAPPING = {
     'mail': ('email', ),
     'givenName': ('first_name', ),
     'sn': ('last_name', ),
+    'uid': ('username'),
 }
 
-SAML_DJANGO_USER_MAIN_ATTRIBUTE = 'email'
+# SAML_DJANGO_USER_MAIN_ATTRIBUTE = 'email'
 
 SAML_CONFIG = {
   'xmlsec_binary': '/usr/bin/xmlsec1',
