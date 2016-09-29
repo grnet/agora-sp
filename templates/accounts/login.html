@@ -1,8 +1,7 @@
 
 {% extends "base.html" %}
-
+{% load i18n %}
 {% block content %}
-
 
 <h4>Client Id: <span style="color: green">{{  CLIENT_ID }}</span></h4>
 <h4>Anti-theft Session Token: <span style="color: green">{{  STATE }}</span></h4>
@@ -63,6 +62,21 @@
             </g>
         </svg>
     </a>
+      {% if 'agora-dev.vi-seem.eu' in request.build_absolute_uri %}
+          <label>&nbsp;</label><input type="button" value="{% trans 'Log in with VI-SEEM' %}" onclick="location.href='http://agora-dev.vi-seem.eu/saml2/login'" />
+      {% endif %}
+      {% if 'services.vi-seem.eu' in request.build_absolute_uri %}
+          <label>&nbsp;</label><input type="button" value="{% trans 'Log in with VI-SEEM' %}" onclick="location.href='http://services.vi-seem.eu/saml2/login'" />
+      {% endif %}
+      {% if 'sp.eudat.eu' in request.build_absolute_uri %}
+          <label>&nbsp;</label><input type="button" value="{% trans 'Log in with B2-ACCESS' %}" />
+      {% endif %}
+        {% if 'localhost' in request.build_absolute_uri  %}
+          <label>&nbsp;</label><input type="button" value="{% trans 'Log in with B2-ACCESS' %}" />
+          <label>&nbsp;</label><input type="button" value="{% trans 'Log in with VI-SEEM' %}" onclick="location.href='http://localhost/saml2/login'" />
+      {% endif %}
+        <h4>[DEBUG] SAML settings for: {{ request.build_absolute_uri }}</h4>
+
     {% endif %}
 
     {% if AUTHENTICATION == True %}

@@ -107,7 +107,7 @@ def get_service_owner_institution(request, service_name_or_uuid, service_owner):
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
-
+@login_required()
 def contact_information_write_ui(request):
     return render(request, 'service/write.html', {"type": "contact_information"})
 
@@ -126,9 +126,11 @@ def owners_table(request):
     source = helper.current_site_url() + "/v1/owner/all"
     return render(request, 'service/write.html', {"type": "service_owner_table", "source": source})
 
+@login_required()
 def institution_write_ui(request):
     return render(request, 'service/write.html', {"type": "owner_institution"})
 
+@login_required()
 def institution_edit_ui(request, institution_uuid):
     source = helper.current_site_url() + "/v1/owner/institution/" + institution_uuid
     return render(request, 'service/write.html', {"type": "owner_institution", "source": source})

@@ -217,44 +217,55 @@ def get_catalogue_main_page(request):
 
     return render(request, 'catalogue.html', {"areas": service_areas, "services": services, "names": name_help})
 
-
+@login_required()
 def service_write_ui(request):
     return render(request, 'service/write.html', {"type": "service"})
 
+@login_required()
 def service_edit_ui(request, service_name_or_uuid):
     source = helper.current_site_url() + "/v1/portfolio/services/" + service_name_or_uuid + "/complete"
     return render(request, 'service/write.html', {"type": "service", "source": source})
 
+@login_required()
 def external_service_write_ui(request):
     return render(request, 'service/write.html', {"type": "external_service"})
 
+@login_required()
 def external_service_edit_ui(request, service_name_or_uuid):
     source = helper.current_site_url() + "/v1/services/external_service/" + service_name_or_uuid
     return render(request, 'service/write.html', {"type": "external_service", "source": source})
 
+@login_required()
 def service_area_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_area"})
 
+@login_required()
 def service_details_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_details"})
 
+@login_required()
 def internal_dependency_write_ui(request):
     return render(request, 'service/write.html', {"type": "internal_service_dependencies"})
 
+@login_required()
 def external_dependency_write_ui(request):
     return render(request, 'service/write.html', {"type": "external_service_dependencies"})
 
+@login_required()
 def users_customers_write_ui(request):
     return render(request, 'service/write.html', {"type": "users_customers"})
 
+@login_required()
 def users_customers_edit_ui(request, user_customer_uuid):
     source = helper.current_site_url() + "/v1/services/users_customers/" + user_customer_uuid
     return render(request, 'service/write.html', {"type": "users_customers", "source": source})
 
+@login_required()
 def service_details_edit_ui(request, service_name_or_uuid, version):
     source = helper.current_site_url() + "/v1/portfolio/services/" + service_name_or_uuid + "/service_details/" + version + "/view"
     return render(request, 'service/write.html', {"type": "service_details", "source": source})
 
+@login_required()
 def service_write(request, type):
     return render(request, 'write/service.html')
 
