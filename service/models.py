@@ -275,6 +275,101 @@ class Service(models.Model):
             ("logo", self.logo.name.split("/")[-1])
         ])
 
+
+    def as_complete_contact_portfolio(self):
+        service_dependencies = self.get_service_dependencies()
+
+        external = Service_ExternalService.objects.filter(id_service=self.pk)
+        external_services = []
+
+        for e in external:
+            external_services.append({
+                "uuid": e.id_external_service.pk,
+                "name": e.id_external_service.name
+
+            })
+
+        users_customers = self.get_user_customers()
+        service_details = self.get_service_details(complete=True, url=True)
+
+        contact_information = self.get_service_contact_information_object_internal()
+        if contact_information is not None:
+            contact_information = {
+                "internal_contact_information": self.id_contact_information_internal.as_json(),
+                "external_contact_information": self.id_contact_information.as_json()
+            }
+
+        service_owner = self.get_service_owner_object()
+        if service_owner is not None:
+            service_owner = OrderedDict([
+                ("uuid", service_owner.id),
+                ("email", service_owner.email),
+                ("links", {
+                    "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/service_owner",
+                })
+            ])
+
+
+        return OrderedDict([
+            ("uuid", self.id),
+            ("name", self.name),
+            ("description_external", self.description_external),
+            ("description_internal", self.description_internal),
+            ("service_owner", service_owner),
+            ("contact_information", contact_information),
+            ("service_area", self.service_area),
+            ("user_customers_list", {
+                "count": len(users_customers),
+                "user_customers": users_customers
+            }),
+            ("dependencies_list", {
+                "count": len(service_dependencies),
+                # "links": {
+                #     "related": {
+                #         "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
+                #                 + "/service_dependencies",
+                #         "meta": {
+                #             "desc": "A list of links to the service dependencies"
+                #         }
+                #     }
+                #
+                # },
+                "services": service_dependencies
+            }),
+            ("external", {
+                "count": len(external_services),
+               "links": {
+                    "related": {
+                        "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/service_external_dependencies",
+                        "meta": {
+                            "desc": "Links to external services that this service uses."
+                        }}
+                },
+
+                "external_services": external_services
+            }),
+            ("funders_for_service", self.funders_for_service),
+            ("value_to_customer", self.value_to_customer),
+            ("risks", self.risks),
+            ("competitors", self.competitors),
+            ("service_type", self.service_type),
+            ("request_procedures", self.request_procedures),
+            ("service_details_list", {
+                "count": len(service_details),
+                "service_details": service_details
+            }),
+            ("service_complete_link", {
+                "related": {
+                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
+                            + "?view=complete",
+                    "meta": {
+                        "desc": "Portfolio level details about this service."
+                    }
+                }}),
+            ("logo", self.logo.name.split("/")[-1])
+        ])
+
+
     def as_portfolio(self):
 
         users_customers = self.get_user_customers()
@@ -764,6 +859,17 @@ class UserCustomer(models.Model):
             ("uuid", self.pk),
             ("name", self.name),
             ("role", self.role)
+        ])
+
+    def as_full(self):
+        return OrderedDict([
+            ("uuid", self.pk),
+            ("name", self.name),
+            ("role", self.role),
+            ("service", {
+                "name": self.service_id.name,
+                "uuid": self.service_id.pk
+            })
         ])
 
     def save(self, *args, **kwargs):

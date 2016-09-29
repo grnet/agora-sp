@@ -1,6 +1,13 @@
 
 var formName = 'External Service Dependencies Form';
 
+
+var opType;
+var serviceId;
+var serviceDependency;
+var newServiceId;
+var newServiceDependency;
+
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
   {id: 2, value: 2, text: "option 2"},
@@ -84,22 +91,16 @@ var FormWrapper = React.createClass({
 		var validationObjects = [];
 		var validationMessage = ''
 
-		// --- validation code goes here ---
-		if($('#name').val() == ''){
-			validationMessage = "The name is required"
-			validationObjects.push( { field: 'name', message: validationMessage } );
+		var service = $("#service_id").val();
+		if(service == '' || service == null){
+			validationMessage = "The service is required";
+			validationObjects.push( { field: 'service_id', message: validationMessage } );
 		}
-		if($('#name').val().length > 255){
-			validationMessage = "Content exceeds max length of 255 characters."
-			validationObjects.push( { field: 'name', message: validationMessage } );			
-		}
-		if($('#type').val().length > 255){
-			validationMessage = "Content exceeds max length of 255 characters."
-			validationObjects.push( { field: 'type', message: validationMessage } );	
-		}
-		if($('#expression').val().length > 255){
-			validationMessage = "Content exceeds max length of 255 characters."
-			validationObjects.push( { field: 'expression', message: validationMessage } );			
+
+		var externalDependency = $("#service_dependency_id").val();
+		if(externalDependency == '' || externalDependency == null){
+			validationMessage = "The external dependency is required";
+			validationObjects.push( { field: 'service_dependency_id', message: validationMessage } );
 		}
 
 		if(validationObjects.length > 0){
@@ -119,8 +120,55 @@ var FormWrapper = React.createClass({
 		e.preventDefault();
 
 		if(this.validateForm()){			
-			var formValues = JSON.stringify($("#service-form").serializeJSON());
-			console.log("The form values are ->", formValues);
+			//var formValues = JSON.stringify($("#service-form").serializeJSON());
+			//console.log("The form values are ->", formValues);
+
+			var params = {};
+
+
+			var parts = window.location.href.split("/");
+			var host = "http://" + parts[2];
+			var url = "";
+
+			if (this.props.source != null && this.props.source != "") {
+
+				params["external_service_dependency"] = serviceDependency;
+				params["new_external_service_dependency"] = newServiceDependency;
+
+				url = host + "/api/v1/services/" + serviceId + "/service_external_dependencies/edit";
+				opType = "edit";
+			}
+			else {
+
+				params["external_service_dependency"] = serviceDependency;
+
+				url = host + "/api/v1/services/" + serviceId + "/service_external_dependencies/add";
+				opType = "add";
+			}
+
+
+
+			this.serverRequest = $.ajax({
+				url: url,
+				dataType: "json",
+				crossDomain: true,
+				type: "POST",
+				contentType: "application/json",
+				cache: false,
+				data: JSON.stringify(params),
+				success: function (data) {
+					if (opType == "add")
+						$("#modal-success-body").text("You have successfully inserted a new external service dependency");
+					else
+						$("#modal-success-body").text("You have successfully updated the external service dependency");
+					$("#modal-success").modal('show');
+				}.bind(this),
+				error: function (xhr, status, err) {
+					var response = JSON.parse(xhr.responseText);
+					$("#modal-body").text(response.errors.detail);
+					$("#modal-danger").modal('show');
+				}.bind(this)
+			});
 		}
 		else{			
 			console.log("The form is not valid");
@@ -247,6 +295,7 @@ $( function() {
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.name;
+		serviceId = ui.item.uuid;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },
@@ -267,6 +316,7 @@ $( function() {
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.name;
+		serviceDependency = ui.item.id;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },

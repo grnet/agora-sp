@@ -222,7 +222,7 @@ def service_write_ui(request):
     return render(request, 'service/write.html', {"type": "service"})
 
 def service_edit_ui(request, service_name_or_uuid):
-    source = helper.current_site_url() + "/v1/portfolio/services/" + service_name_or_uuid
+    source = helper.current_site_url() + "/v1/portfolio/services/" + service_name_or_uuid + "/complete"
     return render(request, 'service/write.html', {"type": "service", "source": source})
 
 def external_service_write_ui(request):
@@ -246,6 +246,10 @@ def external_dependency_write_ui(request):
 
 def users_customers_write_ui(request):
     return render(request, 'service/write.html', {"type": "users_customers"})
+
+def users_customers_edit_ui(request, user_customer_uuid):
+    source = helper.current_site_url() + "/v1/services/users_customers/" + user_customer_uuid
+    return render(request, 'service/write.html', {"type": "users_customers", "source": source})
 
 def service_details_edit_ui(request, service_name_or_uuid, version):
     source = helper.current_site_url() + "/v1/portfolio/services/" + service_name_or_uuid + "/service_details/" + version + "/view"
@@ -291,6 +295,30 @@ def get_external_service(request, service_name_or_uuid):
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
+
+def get_user_customer(request, user_customer_uuid):
+
+    response = {}
+    service, parsed_name, uuid = None, None, None
+
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    result = prog.match(user_customer_uuid)
+
+    try:
+        user_customer = models.UserCustomer.objects.get(id=user_customer_uuid)
+
+    except models.UserCustomer.DoesNotExist:
+        service = None
+        response = helper.get_error_response(strings.EXTERNAL_SERVICE_NOT_FOUND)
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response = helper.get_error_response(strings.INVALID_UUID)
+
+
+    response = helper.get_response_info(strings.SERVICE_INFORMATION, user_customer.as_full())
+
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 def get_service_catalogue_view(request, service):
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
@@ -410,6 +438,57 @@ def get_service(request,  service_name_or_uuid):
                 service = service.as_portfolio()
             elif detail_level == "complete":
                 service = service.as_complete_portfolio()
+
+        elif type == "catalogue":
+            service = service.as_catalogue()
+
+        response = helper.get_response_info(strings.SERVICE_INFORMATION, service)
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
+def get_service_contact_complete(request,  service_name_or_uuid):
+    """
+    Retrieves a specific service by name or uuid
+    """
+    type = request.get_full_path().split("/")[3]
+    params = request.GET.copy()
+    detail_level = params.get('view')
+
+    if detail_level is not None and detail_level != "short" and detail_level != "complete":
+        response = helper.get_error_response(strings.INVALID_QUERY_PARAMETER)
+        return JsonResponse(response, status=int(response["status"][:3]))
+
+    response = {}
+    service, parsed_name, uuid = None, None, None
+
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    result = prog.match(service_name_or_uuid)
+
+    if result is None:
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
+    else:
+        uuid = service_name_or_uuid
+
+    try:
+        if result is None:
+            service = models.Service.objects.get(name=parsed_name)
+        else:
+            service = models.Service.objects.get(id=uuid)
+
+    except models.Service.DoesNotExist:
+        service = None
+        response = helper.get_error_response(strings.SERVICE_NOT_FOUND)
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response = helper.get_error_response(strings.INVALID_UUID)
+
+    if service is not None:
+        if type == "portfolio":
+            if detail_level is None or detail_level == "short":
+                service = service.as_complete_contact_portfolio()
+            elif detail_level == "complete":
+                service = service.as_complete_contact_portfolio()
 
         elif type == "catalogue":
             service = service.as_catalogue()
@@ -751,7 +830,7 @@ def insert_service(request):
     op_type = helper.get_last_url_part(request)
     params = helper.get_request_data(request)
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$")
-    uuid, service, service_owner, service_contact_information, name = None, None, None, None, None
+    uuid, service, service_owner, service_contact_information, service_internal_contact_information, name = None, None, None, None, None, None
 
     if "name" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.SERVICE_NAME_NOT_PROVIDED,
@@ -795,6 +874,19 @@ def insert_service(request):
 
         try:
             service_contact_information = ContactInformation.objects.get(id=service_contact_information_uuid)
+        except ContactInformation.DoesNotExist:
+            return JsonResponse(helper.get_error_response(strings.CONTACT_INFORMATION_NOT_FOUND, status=strings.NOT_FOUND_404),
+                                status=404)
+
+    if "service_internal_contact_information_uuid" in params:
+        service_internal_contact_information_uuid = params.get('service_internal_contact_information_uuid')
+        result = prog.match(service_internal_contact_information_uuid)
+        if result is None:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_CONTACT_INFORMATION_INVALID_UUID,
+                                                          status=strings.REJECTED_406), status=406)
+
+        try:
+            service_internal_contact_information = ContactInformation.objects.get(id=service_internal_contact_information_uuid)
         except ContactInformation.DoesNotExist:
             return JsonResponse(helper.get_error_response(strings.CONTACT_INFORMATION_NOT_FOUND, status=strings.NOT_FOUND_404),
                                 status=404)
@@ -856,6 +948,7 @@ def insert_service(request):
 
     service.id_service_owner = service_owner
     service.id_contact_information = service_contact_information
+    service.id_contact_information_internal = service_internal_contact_information
 
     if uuid is not None:
         service.id = uuid

@@ -1,5 +1,9 @@
 
-var formName = 'Service Details Form'
+var formName = 'Service Details Form';
+
+var opType;
+var serviceId;
+
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
   {id: 2, value: 2, text: "option 2"},
@@ -7,8 +11,8 @@ var optionsData = [
 ];
 
 var booleanData = [
-  {id: 0, value: 0, text: "no"},
-  {id: 1, value: 1, text: "yes"}  
+  {id: 0, value: false, text: "no"},
+  {id: 1, value: true, text: "yes"}
 ];
 
 var statusData = [
@@ -18,7 +22,7 @@ var statusData = [
 
 var resourceObject = [
 	{ tag: 'input', type: 'text', name: 'version', placeholder: 'Enter version', label: 'Version' },	
-	{ tag: 'select', type: 'select', name: 'status', label: 'Enter status', required: true, optionsData: statusData },
+	{ tag: 'input', type: 'text', name: 'status', label: 'Enter status', required: true, placeholder: "Enter status" },
 	{ tag: 'textarea', type: 'textarea', name: 'features_current', placeholder: "Enter current features", label: 'Features Current', onChange: 'textareaHTMLValidation' },
 	{ tag: 'textarea', type: 'textarea', name: 'features_future', placeholder: "Enter future features", label: 'Features Future', onChange: 'textareaHTMLValidation' },
 	// todo: how to fill the data for the options (should be done before rendering)
@@ -155,12 +159,19 @@ var FormWrapper = React.createClass({
 		var validationMessage = ''
 
 		// --- validation code goes here ---
-		if($('#version').val() == ''){
-			validationMessage = "The name is required"
+		var version = $("#version").val();
+		if(version == '' || version == null){
+			validationMessage = "The version is required";
 			validationObjects.push( { field: 'version', message: validationMessage } );
 		}
 
-		if($('#version').val().length > 255){
+		var service = $("#service_id").val();
+		if(service == '' || service == null){
+			validationMessage = "The service is required";
+			validationObjects.push( { field: 'service_id', message: validationMessage } );
+		}
+
+		if(version != null && version.length > 255){
 			validationMessage = "Content exceeds max length of 255 characters."
 			validationObjects.push( { field: 'version', message: validationMessage } );			
 		}
@@ -194,8 +205,72 @@ var FormWrapper = React.createClass({
 
 		if(this.validateForm()){
 			this.clearValidations();
-			var formValues = JSON.stringify($("#service-form").serializeJSON());
-			console.log("The form values are ->", formValues);
+			//var formValues = JSON.stringify($("#service-form").serializeJSON());
+			//console.log("The form values are ->", formValues);
+
+			var params = {};
+			params["version"] = $("#version").val();
+			params["status"] = $("#status").val();
+			params["features_current"] = $("#features_current").val();
+			params["features_future"] = $("#features_future").val();
+			params["usage_policy_has"] = $("#usage_policy_has").val();
+			params["usage_policy_url"] = $("#usage_policy_url").val();
+			params["usage_documentation_has"] = $("#usage_documentation_has").val();
+			params["usage_documentation_url"] = $("#usage_documentation_url").val();
+			params["operations_documentation_has"] = $("#operations_documentation_has").val();
+			params["operations_documentation_url"] = $("#operations_documentation_url").val();
+			params["monitoring_has"] = $("#monitoring_has").val();
+			params["monitoring_url"] = $("#monitoring_url").val();
+			params["accounting_has"] = $("#accounting_has").val();
+			params["accounting_url"] = $("#accounting_url").val();
+			params["business_continuity_plan_has"] = $("#business_continuity_plan_has").val();
+			params["business_continuity_plan_url"] = $("#business_continuity_plan_url").val();
+			params["disaster_recovery_plan_has"] = $("#disaster_recovery_plan_has").val();
+			params["disaster_recovery_plan_url"] = $("#disaster_recovery_plan_url").val();
+			params["decommissioning_procedure_has"] = $("#decommissioning_procedure_has").val();
+			params["decommissioning_procedure_url"] = $("#decommissioning_procedure_url").val();
+			params["cost_to_run"] = $("#cost_to_run").val();
+			params["cost_to_build"] = $("#cost_to_build").val();
+			params["use_cases"] = $("#use_cases").val();
+			params["is_in_catalog"] = $("#is_in_catalog").val();
+			params["service_id"] = serviceId;
+
+
+			var parts = window.location.href.split("/");
+			var host = "http://" + parts[2];
+			var url = "";
+
+			if(this.props.source != null && this.props.source != ""){
+				params["uuid"] = parts[parts.length - 1];
+				url = host + "/api/v1/services/" + serviceId + "/service_details/edit";
+				opType = "edit";
+			}
+			else {
+				url = host + "/api/v1/services/" + serviceId + "/service_details/add";
+				opType = "add";
+			}
+
+			this.serverRequest = $.ajax({
+				url: url,
+				dataType: "json",
+				crossDomain: true,
+				type: "POST",
+				contentType:"application/json",
+				cache: false,
+				data: JSON.stringify(params),
+				success: function (data) {
+					if(opType == "add")
+						$("#modal-success-body").text("You have successfully inserted a new service version");
+					else
+						$("#modal-success-body").text("You have successfully updated the service version");
+					$("#modal-success").modal('show');
+				}.bind(this),
+				error: function (xhr, status, err) {
+					var response = JSON.parse(xhr.responseText);
+					$("#modal-body").text(response.errors.detail);
+					$("#modal-danger").modal('show');
+				}.bind(this)
+			});
 		}
 		else{			
 			console.log("The form is not valid");
@@ -249,6 +324,7 @@ var FormWrapper = React.createClass({
                 $("#use_cases").val(this.state.service_details.use_cases);
                 $("#is_in_catalog").val(this.state.service_details.is_in_catalog);
                 $("#service_id").val(this.state.service_details.service.name);
+				serviceId = this.state.service_details.service.uuid;
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
@@ -317,6 +393,7 @@ $( function() {
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.name;
+		serviceId = ui.item.uuid;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },

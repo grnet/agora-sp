@@ -1,5 +1,8 @@
 
-var formName = 'Service Details Options Form'
+var formName = 'Users customers Form';
+
+var serviceId;
+var opType;
 
 var optionsData = [
   {id: 1, value: "Individual Researchers", text: "Individual Researchers"},
@@ -10,7 +13,7 @@ var optionsData = [
 
 var resourceObject = [
 	{ tag: 'select', type: 'select', name: 'name', optionsData: optionsData, label: 'Name' },
-	{ tag: 'input', type: 'text', name: 'Role', placeholder: 'Enter user customer role', label: 'Role' },
+	{ tag: 'input', type: 'text', name: 'role', placeholder: 'Enter user customer role', label: 'Role' },
 	{ tag: 'input', type: 'text', name: 'service_id', placeholder: 'Enter service name', label: 'Service name' }
 ];
 
@@ -87,21 +90,33 @@ var FormWrapper = React.createClass({
 		var validationMessage = ''
 
 		// --- validation code goes here ---
-		if($('#name').val() == ''){
-			validationMessage = "The name is required"
+		var name = $("#name").val();
+		if(name == '' || name == null){
+			validationMessage = "The name is required";
 			validationObjects.push( { field: 'name', message: validationMessage } );
 		}
-		if($('#name').val().length > 255){
+		if(name.length > 255){
 			validationMessage = "Content exceeds max length of 255 characters."
 			validationObjects.push( { field: 'name', message: validationMessage } );			
 		}
-		if($('#type').val().length > 255){
-			validationMessage = "Content exceeds max length of 255 characters."
-			validationObjects.push( { field: 'type', message: validationMessage } );	
+		var role = $("#role").val();
+		if(role == '' || role == null){
+			validationMessage = "The role is required";
+			validationObjects.push( { field: 'role', message: validationMessage } );
 		}
-		if($('#expression').val().length > 255){
+		if(role != null && role.length > 255){
 			validationMessage = "Content exceeds max length of 255 characters."
-			validationObjects.push( { field: 'expression', message: validationMessage } );			
+			validationObjects.push( { field: 'role', message: validationMessage } );
+		}
+
+		var service = $("#service_id").val();
+		if(service == '' || service == null){
+			validationMessage = "The service is required";
+			validationObjects.push( { field: 'service_id', message: validationMessage } );
+		}
+		if(service != null && service.length > 255){
+			validationMessage = "Content exceeds max length of 255 characters."
+			validationObjects.push( { field: 'service_id', message: validationMessage } );
 		}
 
 		if(validationObjects.length > 0){
@@ -121,8 +136,49 @@ var FormWrapper = React.createClass({
 		e.preventDefault();
 
 		if(this.validateForm()){			
-			var formValues = JSON.stringify($("#service-form").serializeJSON());
-			console.log("The form values are ->", formValues);
+			//var formValues = JSON.stringify($("#service-form").serializeJSON());
+			//console.log("The form values are ->", formValues);
+
+			var params = {};
+			params["name"] = $("#name").val();
+			params["role"] = $("#role").val();
+
+
+			var parts = window.location.href.split("/");
+			var host = "http://" + parts[2];
+			var url = "";
+
+			if(this.props.source != null && this.props.source != ""){
+				params["uuid"] = parts[parts.length - 1];
+				url = host + "/api/v1/services/" + serviceId + "/user_customer/edit";
+				opType = "edit";
+			}
+			else {
+				url = host + "/api/v1/services/" + serviceId + "/user_customer/add";
+				opType = "add";
+			}
+
+			this.serverRequest = $.ajax({
+				url: url,
+				dataType: "json",
+				crossDomain: true,
+				type: "POST",
+				contentType:"application/json",
+				cache: false,
+				data: JSON.stringify(params),
+				success: function (data) {
+					if(opType == "add")
+						$("#modal-success-body").text("You have successfully inserted a new user customer");
+					else
+						$("#modal-success-body").text("You have successfully updated the user customer");
+					$("#modal-success").modal('show');
+				}.bind(this),
+				error: function (xhr, status, err) {
+					var response = JSON.parse(xhr.responseText);
+					$("#modal-body").text(response.errors.detail);
+					$("#modal-danger").modal('show');
+				}.bind(this)
+			});
 		}
 		else{			
 			console.log("The form is not valid");
@@ -131,10 +187,13 @@ var FormWrapper = React.createClass({
 
 	getInitialState: function () {
 		return {
-			parameter: {
+			user_customer: {
 				name: "",
-				type: "",
-				expression: ""
+				role: "",
+				service: {
+					name: "",
+					uuid: ""
+				}
 			}
 		}
 	},
@@ -152,10 +211,11 @@ var FormWrapper = React.createClass({
             type: "GET",
             cache: false,
             success: function (data) {
-                this.setState({parameter: data.data});
-                $("#name").val(this.state.parameter.name);
-                $("#type").val(this.state.parameter.type);
-                $("#expression").val(this.state.parameter.expression);
+                this.setState({user_customer: data.data});
+                $("#name").val(this.state.user_customer.name);
+                $("#role").val(this.state.user_customer.role);
+                $("#service_id").val(this.state.user_customer.service.name);
+				serviceId = this.state.user_customer.service.uuid;
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
@@ -227,6 +287,7 @@ $( function() {
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.name;
+		serviceId = ui.item.uuid;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },

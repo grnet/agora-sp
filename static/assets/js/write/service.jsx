@@ -1,4 +1,9 @@
-var formName = 'Service Form'
+var formName = 'Service Form';
+
+var opType;
+var serviceOwnerId;
+var InternalContactInformationId;
+var ExternalContactInformationId;
 
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
@@ -149,8 +154,60 @@ var FormWrapper = React.createClass({
 
 		if(this.validateForm()){
 			this.clearValidations();
-			var formValues = JSON.stringify($("#service-form").serializeJSON());
-			console.log("The form values are ->", formValues);
+			//var formValues = JSON.stringify($("#service-form").serializeJSON());
+			//console.log("The form values are ->", formValues);
+
+			var params = {};
+			params["name"] = $("#name").val();
+			params["description_external"] = $("#description_external").val();
+			params["description_internal"] = $("#description_internal").val();
+			params["service_area"] = $("#service_area").val();
+			params["service_type"] = $("#service_type").val();
+			params["request_procedures"] = $("#request_procedures").val();
+			params["funders_for_service"] = $("#funders_for_service").val();
+			params["value_to_customer"] = $("#value_to_customer").val();
+			params["risks"] = $("#risks").val();
+			params["competitors"] = $("#competitors").val();
+			params["service_owner_uuid"] = serviceOwnerId;
+			params["service_contact_information_uuid"] = ExternalContactInformationId;
+			params["service_internal_contact_information_uuid"] = InternalContactInformationId;
+
+
+			var parts = window.location.href.split("/");
+			var host = "http://" + parts[2];
+			var url = "";
+
+			if(this.props.source != null && this.props.source != ""){
+				params["uuid"] = parts[parts.length - 1];
+				url = host + "/api/v1/services/edit";
+				opType = "edit";
+			}
+			else {
+				url = host + "/api/v1/services/add";
+				opType = "add";
+			}
+
+			this.serverRequest = $.ajax({
+				url: url,
+				dataType: "json",
+				crossDomain: true,
+				type: "POST",
+				contentType:"application/json",
+				cache: false,
+				data: JSON.stringify(params),
+				success: function (data) {
+					if(opType == "add")
+						$("#modal-success-body").text("You have successfully inserted a new service version");
+					else
+						$("#modal-success-body").text("You have successfully updated the service version");
+					$("#modal-success").modal('show');
+				}.bind(this),
+				error: function (xhr, status, err) {
+					var response = JSON.parse(xhr.responseText);
+					$("#modal-body").text(response.errors.detail);
+					$("#modal-danger").modal('show');
+				}.bind(this)
+			});
 		}
 		else{			
 			console.log("The form is not valid");
@@ -190,6 +247,22 @@ var FormWrapper = React.createClass({
                 $("#value_to_customer").val(this.state.service.value_to_customer);
                 $("#risks").val(this.state.service.risks);
                 $("#competitors").val(this.state.service.competitors);
+				$("#service_owner").val(this.state.service.service_owner.email);
+				$("#contact_information_internal").val(this.state.service.contact_information.internal_contact_information
+					.internal_contact_information.internal_contact_information.first_name + " " +
+				this.state.service.contact_information.internal_contact_information
+					.internal_contact_information.internal_contact_information.last_name);
+
+				$("#contact_information_external").val(this.state.service.contact_information.external_contact_information
+					.internal_contact_information.internal_contact_information.first_name + " " +
+				this.state.service.contact_information.external_contact_information
+					.internal_contact_information.internal_contact_information.last_name);
+				serviceOwnerId = this.state.service.service_owner.uuid;
+				InternalContactInformationId = this.state.service.contact_information.internal_contact_information.
+					internal_contact_information.internal_contact_information.uuid;
+				ExternalContactInformationId = this.state.service.contact_information.external_contact_information.
+					internal_contact_information.internal_contact_information.uuid;
+
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
@@ -331,6 +404,7 @@ $( function() {
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.first_name + " " + ui.item.last_name;
+		serviceOwnerId = ui.item.uuid;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },
@@ -350,6 +424,28 @@ $( function() {
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.first_name + " " + ui.item.last_name;
+		InternalContactInformationId = ui.item.uuid;
+		$(".ui-autocomplete").hide();
+		$(".ui-menu-item").remove();
+      },
+	  focus: function(event, ui){
+          var items = $(".ui-menu-item");
+		  items.removeClass("ui-menu-item-hover");
+		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
+	  }
+    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+		return $( "<li>" )
+        .append( item.first_name + " " + item.last_name )
+        .appendTo( ul );
+    };
+
+
+	$( "#contact_information_external" ).autocomplete({
+      source: getDataContactInformation,
+      minLength: 2,
+      select: function( event, ui ) {
+		this.value = ui.item.first_name + " " + ui.item.last_name;
+		ExternalContactInformationId = ui.item.uuid;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },

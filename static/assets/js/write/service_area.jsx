@@ -80,8 +80,8 @@ var FormWrapper = React.createClass({
 		e.preventDefault();
 
 		if(this.validateForm()){
-			var formValues = JSON.stringify($("#service-form").serializeJSON());
-			console.log("The form values are ->", formValues);
+			//var formValues = JSON.stringify($("#service-form").serializeJSON());
+			//console.log("The form values are ->", formValues);
 		}
 		else{
 			console.log("The form is not valid");
