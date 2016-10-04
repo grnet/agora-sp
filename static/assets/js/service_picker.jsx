@@ -1584,6 +1584,7 @@ else {
 
         view_type = view_type[view_type.length - 2];
 
+    var type = view_type;
 
     var source = host + "/api/v1/" + view_type + "/service_picker/";
 
