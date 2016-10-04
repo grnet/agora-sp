@@ -125,7 +125,7 @@ SAML_ATTRIBUTE_MAPPING = {
 
 SAML_CONFIG = {
   'xmlsec_binary': '/usr/bin/xmlsec1',
-  'entityid': 'http://'+ALLOWED_HOSTS[SITE_ID]+'/saml2/metadata/',
+  'entityid': 'https://'+ALLOWED_HOSTS[SITE_ID]+'/saml2/metadata/',
   'attribute_map_dir': path.join(BASE_DIR, 'attribute-maps'),
   'service': {
         'sp' : {
@@ -134,10 +134,10 @@ SAML_CONFIG = {
                   'authn_requests_signed': True,
                   "allow_unsolicited": True,
                   'endpoints': {
-                                'assertion_consumer_service': [ ('http://'+ALLOWED_HOSTS[SITE_ID]+'/saml2/acs/',saml2.BINDING_HTTP_POST),  ],
+                                'assertion_consumer_service': [ ('https://'+ALLOWED_HOSTS[SITE_ID]+'/saml2/acs/',saml2.BINDING_HTTP_POST),  ],
 
-                                'single_logout_service': [ ('http://'+ALLOWED_HOSTS[SITE_ID]+'/saml2/ls/',saml2.BINDING_HTTP_REDIRECT),
-                                                         ('http://'+ALLOWED_HOSTS[SITE_ID]+'/saml2/ls/post',saml2.BINDING_HTTP_POST),  ],
+                                'single_logout_service': [ ('https://'+ALLOWED_HOSTS[SITE_ID]+'/saml2/ls/',saml2.BINDING_HTTP_REDIRECT),
+                                                         ('https://'+ALLOWED_HOSTS[SITE_ID]+'/saml2/ls/post',saml2.BINDING_HTTP_POST),  ],
                                 },
                   'required_attributes': ['uid'],
                   'optional_attributes': ['mail','givenName', 'sn'],

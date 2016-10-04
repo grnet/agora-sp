@@ -1512,7 +1512,7 @@ var PortfolioPage = React.createClass({
 });
 
 
-var host = "http://snf-715140.vm.okeanos.grnet.gr";
+var host = "https://snf-715140.vm.okeanos.grnet.gr";
 //var host = "http://sp.eudat.eu";
 //var host = "http://localhost";
 
