@@ -31,6 +31,9 @@ var resourceObject = [
 	{ tag: 'select', type: 'select', name: 'usage_policy_has', label: 'Has Usage Policy', required: true, optionsData: booleanData },
 	{ tag: 'input', type: 'text', name: 'usage_policy_url', placeholder: 'Enter Usage Policy URL', label: 'Usage Policy URL', onChange: 'urlContentChanged' },
 
+	{ tag: 'select', type: 'select', name: 'privacy_policy_has', label: 'Has Privacy Policy', required: true, optionsData: booleanData },
+	{ tag: 'input', type: 'text', name: 'privacy_policy_url', placeholder: 'Enter Privacy Policy URL', label: 'Privacy Policy URL', onChange: 'urlContentChanged' },
+
 	{ tag: 'select', type: 'select', name: 'user_documentation_has', label: 'Has Usage Documentation', required: true, optionsData: booleanData },
 	{ tag: 'input', type: 'text', name: 'user_documentation_url', placeholder: 'Enter Usage Documentation URL', label: 'Usage Documentation URL', onChange: 'urlContentChanged' },
 
@@ -187,6 +190,19 @@ var FormWrapper = React.createClass({
 			validationObjects.push( { field: 'cost_to_build', message: validationMessage } );
 		}
 
+		var privacy_policy_has = $("#privacy_policy_has").val();
+		var privacy_policy_url = $("#privacy_policy_url").val();
+
+		if(privacy_policy_has == "false" && privacy_policy_url != null && privacy_policy_url != ""){
+			validationMessage = "Privacy policy URL cannot be filled without checking the select box";
+			validationObjects.push( { field: 'privacy_policy_url', message: validationMessage } );
+		}
+
+		if(privacy_policy_has == "true" && (privacy_policy_url == null || privacy_policy_url == "")){
+			validationMessage = "Privacy policy URL cannot be empty with the select box checked";
+			validationObjects.push( { field: 'privacy_policy_url', message: validationMessage } );
+		}
+
 		var usage_policy_has = $("#usage_policy_has").val();
 		var usage_policy_url = $("#usage_policy_url").val();
 
@@ -338,6 +354,8 @@ var FormWrapper = React.createClass({
 			params["features_future"] = $("#features_future").val();
 			params["usage_policy_has"] = $("#usage_policy_has").val();
 			params["usage_policy_url"] = $("#usage_policy_url").val();
+			params["privacy_policy_has"] = $("#privacy_policy_has").val();
+			params["privacy_policy_url"] = $("#privacy_policy_url").val();
 			params["user_documentation_has"] = $("#user_documentation_has").val();
 			params["user_documentation_url"] = $("#user_documentation_url").val();
 			params["operations_documentation_has"] = $("#operations_documentation_has").val();
@@ -427,6 +445,8 @@ var FormWrapper = React.createClass({
                 $("#features_future").val(this.state.service_details.features_future);
                 $("#usage_policy_has").val(this.state.service_details.usage_policy_has);
                 $("#usage_policy_url").val(this.state.service_details.usage_policy_url);
+                $("#privacy_policy_has").val(this.state.service_details.privacy_policy_has);
+                $("#privacy_policy_url").val(this.state.service_details.privacy_policy_url);
                 $("#user_documentation_has").val(this.state.service_details.user_documentation_has);
                 $("#user_documentation_url").val(this.state.service_details.user_documentation_url);
                 $("#operations_documentation_has").val(this.state.service_details.operations_documentation_has);

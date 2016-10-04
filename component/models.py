@@ -83,7 +83,7 @@ class ServiceComponent(models.Model):
         }
 
     def save(self, *args, **kwargs):
-        if not self.description:
+        if not self.description or self.description == "":
             self.description = None
         super(ServiceComponent, self).save(*args, **kwargs)
 
@@ -154,7 +154,7 @@ class ServiceComponentImplementation(models.Model):
 
 
     def save(self, *args, **kwargs):
-        if not self.description:
+        if not self.description or self.description == "":
             self.description = None
         super(ServiceComponentImplementation, self).save(*args, **kwargs)
 
@@ -197,7 +197,7 @@ class ServiceComponentImplementationDetail(models.Model):
         ])
 
     def save(self, *args, **kwargs):
-        if not self.configuration_parameters:
+        if not self.configuration_parameters or self.configuration_parameters == "":
             self.configuration_parameters = None
         super(ServiceComponentImplementationDetail, self).save(*args, **kwargs)
 

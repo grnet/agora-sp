@@ -76,9 +76,9 @@ class ServiceOption(models.Model):
 
 
     def save(self, *args, **kwargs):
-        if not self.description:
+        if not self.description or self.description == "":
             self.description = None
-        if not self.pricing:
+        if not self.pricing or self.pricing == "":
             self.pricing = None
         super(ServiceOption, self).save(*args, **kwargs)
 
@@ -162,9 +162,9 @@ class Parameter(models.Model):
         ])
 
     def save(self, *args, **kwargs):
-        if not self.expression:
+        if not self.expression or self.expression == "":
             self.expression = None
-        if not self.type:
+        if not self.type or self.type == "":
             self.type = None
         super(Parameter, self).save(*args, **kwargs)
 
