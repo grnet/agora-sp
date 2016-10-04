@@ -10,7 +10,7 @@ from accounts.models import User
 from component.models import *
 from django.shortcuts import render
 from social.backends.google import GoogleOAuth2
-from social.apps.django_app.default.models import UserSocialAuth
+# from social.apps.django_app.default.models import UserSocialAuth
 
 
 def check_if_admin_or_owner():

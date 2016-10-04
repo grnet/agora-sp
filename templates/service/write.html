@@ -43,7 +43,7 @@
         <div id="header" class="col-xs-12"></div>
         <div id="sidebar" class="page-sidebar col-md-2 hidden-sm hidden-xs">
         </div>
-        <div id="write-content" class="col-xs-12 col-md-8 col-md-offset-2">
+        <div id="write-content" class="col-xs-12 col-md-8 col-md-offset-3 col-lg-offset-2">
 
         </div>
         <div id="modal-danger" class="modal modal-message modal-danger fade" style="display: none" aria-hidden="true">
@@ -86,9 +86,9 @@
     <script type="text/babel">
 
 
-        var host = "http://agora-dev.vi-seem.eu";
+{#        var host = "http://agora-dev.vi-seem.eu";#}
         //var host = "http://sp.eudat.eu";
-{#        var host = "http://localhost";#}
+        var host = "http://localhost";
 
         var view_type = window.location.href.split("/");
 
@@ -276,8 +276,8 @@
 
                             {this.props.areas.map(function (area) {
                                 return (
-                                    <li>
-                                        <ParentMenuIcon name={area}/>
+                                    <li key={area}>
+                                        <ParentMenuIcon name={area} key={area}/>
                                     </li>
                                 )
                             })}
