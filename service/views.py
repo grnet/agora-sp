@@ -217,6 +217,9 @@ def get_catalogue_main_page(request):
 
     return render(request, 'catalogue.html', {"areas": service_areas, "services": services, "names": name_help})
 
+def home_write_ui(request):
+    return render(request, 'service/write.html', {"type": "home"})
+
 # @login_required()
 def service_write_ui(request):
     return render(request, 'service/write.html', {"type": "service"})

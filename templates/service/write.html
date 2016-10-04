@@ -202,7 +202,7 @@
                 if(this.props.name == "Add new service")
                     href = host + "/ui/service";
                 else if(this.props.name == "Home")
-                    href = host + "/ui/";
+                    href = host + "/ui/home";
                 else if(this.props.name == "Services")
                     href = host + "/ui/service/all";
                 else if(this.props.name == "Components")
@@ -305,6 +305,10 @@
     </script>
 
     <input type="hidden" id="source" value="{{ source }}" />
+
+    {% if type == "home" %}
+        <script type="text/babel" src="/static/assets/js/write/home.jsx"></script>
+    {% endif %}
 
     {% if type == "contact_information" %}
         <script type="text/babel" src="/static/assets/js/write/contact_information.jsx"></script>
