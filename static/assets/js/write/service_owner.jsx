@@ -1,5 +1,5 @@
 
-var formName = 'Service Owner Form'
+var formName = 'Service Owner Form';
 
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
@@ -38,11 +38,11 @@ var OptionsComponent = React.createClass({
 var FormWrapper = React.createClass({
 
 	generateFormElements: function(resourceObject){
-		var formElements = resourceObject.map(function(field){
+		var formElements = resourceObject.map(function(field, i){
 			if(field.tag == 'input'){
 				if(field.type == 'text'){					
 					return (
-						<div className="form-group">
+						<div className="form-group" key={i}>
 			      	        <label htmlFor={field.name}>{field.label}</label>			      	        
 			      	        <input className="form-control" id={field.name} type={field.type} name={field.name} placeholder={field.placeholder} aria-describedby={field.name + '-error'} />
 			      	        <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -52,7 +52,7 @@ var FormWrapper = React.createClass({
 			}
 			else if(field.tag == 'textarea'){
 				return(
-					<div className="form-group">
+					<div className="form-group" key={i}>
 					    <label htmlFor={field.name}>{field.label}</label>
 					    <textarea className="form-control" id={field.name} name={field.name} rows="6"></textarea>
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -61,7 +61,7 @@ var FormWrapper = React.createClass({
 			}
 			else if(field.tag == 'select'){
 				return(
-					<div className="form-group">
+					<div className="form-group" key={i}>
 					    <label htmlFor={field.name}>{field.label}</label>
 					    <OptionsComponent options={field.optionsData} selectName={field.name}></OptionsComponent>
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -82,7 +82,6 @@ var FormWrapper = React.createClass({
 	},
 
 	clearValidations: function(){
-		console.log("Clearing the validations");
 		$('body').find('.has-error').removeClass('has-error');
 		$('body').find('.validation-message').addClass('sr-only');
 	},
@@ -144,15 +143,13 @@ var FormWrapper = React.createClass({
 	handleSubmit: function(e) {
 		// some validation
 		// ajax url call + redirect
-		console.log("handling submit")
 		e.preventDefault();
 
 		if(this.validateForm()){			
-			var formValues = JSON.stringify($("#service-form").serializeJSON());
-			console.log("The form values are ->", formValues);
+			//var formValues = JSON.stringify($("#service-form").serializeJSON());
+			//console.log("The form values are ->", formValues);
 		}
-		else{	
-			console.log("The form is not valid");
+		else{
 		}	
 	},
 

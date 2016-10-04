@@ -59,7 +59,7 @@ var ComponentTable = React.createClass({
 
 							{this.state.components.map(function (component) {
 								return (
-									<tr>
+									<tr key={component.name}>
 										<td>{component.name}</td>
 										<td>{component.description}</td>
 										<td><a href={"/ui/component/" + component.uuid}>Edit</a></td>

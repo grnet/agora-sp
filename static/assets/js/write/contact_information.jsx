@@ -35,11 +35,11 @@ var OptionsComponent = React.createClass({
 var FormWrapper = React.createClass({
 
 	generateFormElements: function(resourceObject){
-		var formElements = resourceObject.map(function(field){
+		var formElements = resourceObject.map(function(field, i){
 			if(field.tag == 'input'){
 				if(field.type == 'text'){					
 					return (
-						<div className="form-group">
+						<div className="form-group" key={i}>
 			      	        <label htmlFor={field.name}>{field.label}</label>			      	        
 			      	        <input className="form-control" id={field.name} type={field.type} name={field.name} placeholder={field.placeholder} aria-describedby={field.name + '-error'} />
 			      	        <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -49,7 +49,7 @@ var FormWrapper = React.createClass({
 			}
 			else if(field.tag == 'textarea'){
 				return(
-					<div className="form-group">
+					<div className="form-group" key={i}>
 					    <label htmlFor={field.name}>{field.label}</label>
 					    <textarea className="form-control" id={field.name} name={field.name} rows="6"></textarea>
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -79,7 +79,6 @@ var FormWrapper = React.createClass({
 	},
 
 	clearValidations: function(){
-		console.log("Clearing the validations");
 		$('body').find('.has-error').removeClass('has-error');
 		$('body').find('.validation-message').addClass('sr-only');
 	},
@@ -100,10 +99,10 @@ var FormWrapper = React.createClass({
 		var validationMessage = ''
 
 		var test = ($('#email').val() == '' && $('#url').val() == '');
-		console.log("The test value is ->", test);
+
 
 		if($('#email').val() == '' && $('#url').val() == ''){
-			validationMessage = "Either email or url should be entered."
+			validationMessage = "Either email or url should be entered.";
 			validationObjects.push( { field: 'email', message: validationMessage } );
 			validationObjects.push( { field: 'url', message: validationMessage } );
 		}
@@ -115,28 +114,28 @@ var FormWrapper = React.createClass({
 		}
 		else if($('#url').val() != ''){
 			if($('#url').val().length > 255){
-				validationMessage = "Content exceeds max length of 255 characters."
+				validationMessage = "Content exceeds max length of 255 characters.";
 				validationObjects.push( { field: 'url', message: validationMessage } );
 			}
 		}
 
 		if($('#first_name').val().length > 255){
-			validationMessage = "Content exceeds max length of 255 characters."
+			validationMessage = "Content exceeds max length of 255 characters.";
 			validationObjects.push( { field: 'first_name', message: validationMessage } );			
 		}
 		if($('#last_name').val().length > 255){
-			validationMessage = "Content exceeds max length of 255 characters."
+			validationMessage = "Content exceeds max length of 255 characters.";
 			validationObjects.push( { field: 'last_name', message: validationMessage } );
 		}
 
 		var phone = $("#phone").val();
 		if(phone != null && phone != "" && !this.validatePhone(phone)){
-			validationMessage = "Phone field must contain numbers only."
+			validationMessage = "Phone field must contain numbers only.";
 			validationObjects.push( { field: 'phone', message: validationMessage } );
 		}
 
 		if($('#phone').val().length > 255){
-			validationMessage = "Content exceeds max length of 255 characters."
+			validationMessage = "Content exceeds max length of 255 characters.";
 			validationObjects.push( { field: 'phone', message: validationMessage } );
 		}
 
@@ -207,8 +206,7 @@ var FormWrapper = React.createClass({
 			});
 
 		}
-		else{			
-			console.log("The form is not valid");
+		else{
 		}	
 	},Submit: function(e) {
 		// some validation
