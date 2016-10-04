@@ -1,4 +1,6 @@
-var formName = 'External Service Form'
+var formName = 'External Service Form';
+
+var opType;
 
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
@@ -9,7 +11,7 @@ var optionsData = [
 var resourceObject = [
 	{ tag: 'input', type: 'text', name: 'name', placeholder: 'Enter name', label: 'Name' },
 	{ tag: 'textarea', type: 'textarea', name: 'description', placeholder: 'Enter description', label: 'Description', onChange: 'textareaHTMLValidation' },
-	{ tag: 'select', type: 'select', name: 'service_owner', label: 'Service', optionsData: optionsData },
+	{ tag: 'input', type: 'text', name: 'service', label: 'Service', placeholder: "Enter service" },
 	{ tag: 'input', type: 'text', name: 'details', placeholder: 'Enter details', label: 'Details' }
 ];
 
@@ -31,11 +33,11 @@ var OptionsComponent = React.createClass({
 var FormWrapper = React.createClass({
 
 	generateFormElements: function(resourceObject){
-		var formElements = resourceObject.map(function(field){
+		var formElements = resourceObject.map(function(field, i){
 			if(field.tag == 'input'){
 				if(field.type == 'text'){
 					return (
-						<div className="form-group">
+						<div className="form-group" key={i}>
 			      	        <label htmlFor={field.name}>{field.label}</label>			      	        
 			      	        <input className="form-control" id={field.name} type={field.type} name={field.name} placeholder={field.placeholder} aria-describedby={field.name + '-error'} />
 			      	        <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -45,7 +47,7 @@ var FormWrapper = React.createClass({
 			}
 			else if(field.tag == 'textarea'){
 				return(
-					<div className="form-group">
+					<div className="form-group" key={i}>
 					    <label htmlFor={field.name}>{field.label}</label>
 					    <textarea className="form-control" id={field.name} name={field.name} placeholder={field.placeholder} rows="6" onChange={this[field.onChange]}></textarea>
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -54,7 +56,7 @@ var FormWrapper = React.createClass({
 			}
 			else if(field.tag == 'select'){
 				return(
-					<div className="form-group">
+					<div className="form-group" key={i}>
 					    <label htmlFor={field.name}>{field.label}</label>
 					    <OptionsComponent options={field.optionsData} selectName={field.name}></OptionsComponent>
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -75,7 +77,6 @@ var FormWrapper = React.createClass({
 	},
 
 	clearValidations: function(){
-		console.log("Clearing the validations");
 		$('body').find('.has-error').removeClass('has-error');
 		$('body').find('.validation-message').addClass('sr-only');
 	},
@@ -88,7 +89,6 @@ var FormWrapper = React.createClass({
 			this.markInvalid($(e.target).attr('name'), 'This HTML content must not have script or css tags');
 		}
 		else{
-			console.log("all is good now");
 			$(e.target).parent().removeClass('has-error');
 			$(e.target).parent().find('.validation-message').addClass('sr-only');
 		}
@@ -102,17 +102,17 @@ var FormWrapper = React.createClass({
 
 		// --- validation code goes here ---
 		if($('#name').val() == ''){
-			validationMessage = "The name is required"
+			validationMessage = "The name is required";
 			validationObjects.push( { field: 'name', message: validationMessage } );
 		}
 
 		if($('#name').val().length > 255){
-			validationMessage = "Content exceeds max length of 255 characters."
+			validationMessage = "Content exceeds max length of 255 characters.";
 			validationObjects.push( { field: 'name', message: validationMessage } );			
 		}
 
 		if($('#details').val().length > 255){
-			validationMessage = "Content exceeds max length of 255 characters."
+			validationMessage = "Content exceeds max length of 255 characters.";
 			validationObjects.push( { field: 'details', message: validationMessage } );			
 		}
 
@@ -134,11 +134,53 @@ var FormWrapper = React.createClass({
 
 		if(this.validateForm()){
 			this.clearValidations();
-			var formValues = JSON.stringify($("#service-form").serializeJSON());
-			console.log("The form values are ->", formValues);
+			//var formValues = JSON.stringify($("#service-form").serializeJSON());
+			//console.log("The form values are ->", formValues);
+
+			var params = {};
+			params["name"] = $("#name").val();
+			params["description"] = $("#description").val();
+			params["service"] = $("#service").val();
+			params["details"] = $("#details").val();
+
+
+			var parts = window.location.href.split("/");
+			var host = "http://" + parts[2];
+			var url = "";
+
+			if(this.props.source != null && this.props.source != ""){
+				params["uuid"] = parts[parts.length - 1];
+				url = host + "/api/v1/services/external_service/edit";
+				opType = "edit";
+			}
+			else {
+				url = host + "/api/v1/services/external_service/add";
+				opType = "add";
+			}
+
+			this.serverRequest = $.ajax({
+				url: url,
+				dataType: "json",
+				crossDomain: true,
+				type: "POST",
+				contentType:"application/json",
+				cache: false,
+				data: JSON.stringify(params),
+				success: function (data) {
+					if(opType == "add")
+						$("#modal-success-body").text("You have successfully inserted a new external service");
+					else
+						$("#modal-success-body").text("You have successfully updated the external service");
+					$("#modal-success").modal('show');
+				}.bind(this),
+				error: function (xhr, status, err) {
+					var response = JSON.parse(xhr.responseText);
+					$("#modal-body").text(response.errors.detail);
+					$("#modal-danger").modal('show');
+				}.bind(this)
+			});
 		}
-		else{			
-			console.log("The form is not valid");
+		else{
 		}	
 	},
 
@@ -168,6 +210,7 @@ var FormWrapper = React.createClass({
                 this.setState({external_service: data.data});
                 $("#name").val(this.state.external_service.name);
                 $("#description").val(this.state.external_service.description);
+                $("#service").val(this.state.external_service.service);
                 $("#details").val(this.state.external_service.details);
             }.bind(this),
             error: function (xhr, status, err) {

@@ -868,6 +868,11 @@ def insert_service(request):
 
     if "service_owner_uuid" in params:
         service_owner_uuid = params.get('service_owner_uuid')
+
+        if service_owner_uuid is None:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_INVALID_UUID,
+                                                          status=strings.REJECTED_406), status=406)
+
         result = prog.match(service_owner_uuid)
         if result is None:
             return JsonResponse(helper.get_error_response(strings.SERVICE_OWNER_INVALID_UUID,
@@ -881,6 +886,11 @@ def insert_service(request):
 
     if "service_contact_information_uuid" in params:
         service_contact_information_uuid = params.get('service_contact_information_uuid')
+
+        if service_contact_information_uuid is None:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_CONTACT_INFORMATION_INVALID_UUID,
+                                                          status=strings.REJECTED_406), status=406)
+
         result = prog.match(service_contact_information_uuid)
         if result is None:
             return JsonResponse(helper.get_error_response(strings.SERVICE_CONTACT_INFORMATION_INVALID_UUID,
@@ -894,6 +904,11 @@ def insert_service(request):
 
     if "service_internal_contact_information_uuid" in params:
         service_internal_contact_information_uuid = params.get('service_internal_contact_information_uuid')
+
+        if service_internal_contact_information_uuid is None:
+            return JsonResponse(helper.get_error_response(strings.SERVICE_CONTACT_INFORMATION_INVALID_UUID,
+                                                          status=strings.REJECTED_406), status=406)
+
         result = prog.match(service_internal_contact_information_uuid)
         if result is None:
             return JsonResponse(helper.get_error_response(strings.SERVICE_CONTACT_INFORMATION_INVALID_UUID,
