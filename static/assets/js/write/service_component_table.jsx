@@ -62,7 +62,7 @@ var ComponentTable = React.createClass({
 									<tr>
 										<td>{component.name}</td>
 										<td>{component.description}</td>
-										<td><a href={"/ui/component/" + component.uuid}>View</a></td>
+										<td><a href={"/ui/component/" + component.uuid}>Edit</a></td>
 									</tr>
 								)
 							})}
