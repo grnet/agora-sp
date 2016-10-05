@@ -8,8 +8,15 @@ var serviceOptionsId = null;
 var newServiceId = null;
 var newServiceDetailsId = null;
 var newServiceOptionsId = null;
+var newServiceName = null;
+var newServiceDetailsName = null;
+var newServiceOptionsName = null;
+var newServiceDetailsVersion = null;
+var serviceDetailsVersion = null;
 var opType = "";
-
+var globalServiceData;
+var globalServiceDetailsData;
+var globalOptionsData;
 
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
@@ -41,11 +48,11 @@ var OptionsComponent = React.createClass({
 var FormWrapper = React.createClass({
 
 	generateFormElements: function(resourceObject){
-		var formElements = resourceObject.map(function(field){
+		var formElements = resourceObject.map(function(field, i){
 			if(field.tag == 'input'){
 				if(field.type == 'text'){					
 					return (
-						<div className="form-group">
+						<div className="form-group" key={i}>
 			      	        <label htmlFor={field.name}>{field.label}</label>			      	        
 			      	        <input className="form-control" id={field.name} type={field.type} name={field.name} placeholder={field.placeholder} aria-describedby={field.name + '-error'} />
 			      	        <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -55,7 +62,7 @@ var FormWrapper = React.createClass({
 			}
 			else if(field.tag == 'textarea'){
 				return(
-					<div className="form-group">
+					<div className="form-group" key={i}>
 					    <label htmlFor={field.name}>{field.label}</label>
 					    <textarea className="form-control" id={field.name} name={field.name} rows="6"></textarea>
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -85,7 +92,6 @@ var FormWrapper = React.createClass({
 	},
 
 	clearValidations: function(){
-		console.log("Clearing the validations");
 		$('body').find('.has-error').removeClass('has-error');
 		$('body').find('.validation-message').addClass('sr-only');
 	},
@@ -134,8 +140,62 @@ var FormWrapper = React.createClass({
 			//var formValues = JSON.stringify($("#service-form").serializeJSON());
 			//console.log("The form values are ->", formValues);
 
-			var params = {};
 
+			var service_id =  $("#service_id").val();
+
+			if(newServiceName != service_id){
+				if(newServiceName != null || service_id != "")
+				{
+					newServiceName = null;
+					newServiceId = null;
+					for(var i = 0; i < globalServiceData.length; i++){
+						if(service_id == globalServiceData[i].name){
+							newServiceId = globalServiceData[i].uuid;
+							newServiceName = service_id;
+							break;
+						}
+					}
+				}
+			}
+
+			var service_details_id =  $("#service_details_id").val();
+
+			if(newServiceDetailsName != service_details_id){
+				if(newServiceDetailsName != null || service_details_id != "")
+				{
+					newServiceDetailsName = null;
+					newServiceDetailsId = null;
+					newServiceDetailsVersion = null;
+					for(var i = 0; i < globalServiceDetailsData.length; i++){
+						if(service_details_id == globalServiceDetailsData[i].service.name + " " + globalServiceDetailsData[i].version){
+							newServiceDetailsId = globalServiceDetailsData[i].uuid;
+							newServiceDetailsName = service_details_id;
+							newServiceDetailsVersion = globalServiceDetailsData[i].version;
+							break;
+						}
+					}
+				}
+			}
+
+			var service_options_id =  $("#service_options_id").val();
+
+			if(newServiceOptionsName != service_options_id){
+				if(newServiceOptionsName != null || service_options_id != "")
+				{
+					newServiceOptionsName = null;
+					newServiceOptionsId = null;
+					for(var i = 0; i < globalOptionsData.length; i++){
+						if(service_options_id == globalOptionsData[i].name){
+							newServiceOptionsId = globalOptionsData[i].uuid;
+							newServiceOptionsName = service_options_id;
+							break;
+						}
+					}
+				}
+			}
+
+
+			var params = {};
 
 			var parts = window.location.href.split("/");
 			var host = "http://" + parts[2];
@@ -163,7 +223,6 @@ var FormWrapper = React.createClass({
 				opType = "add";
 			}
 
-			console.log(params);
 
 			this.serverRequest = $.ajax({
 				url: url,
@@ -176,8 +235,12 @@ var FormWrapper = React.createClass({
 				success: function (data) {
 					if (opType == "add")
 						$("#modal-success-body").text("You have successfully inserted a new service details options relationship");
-					else
+					else {
+						serviceId = newServiceId;
+						serviceDetailsId = newServiceDetailsId;
+						serviceOptionsId = newServiceOptionsId;
 						$("#modal-success-body").text("You have successfully updated the service details options relationship");
+					}
 					$("#modal-success").modal('show');
 				}.bind(this),
 				error: function (xhr, status, err) {
@@ -187,17 +250,13 @@ var FormWrapper = React.createClass({
 				}.bind(this)
 			});
 		}
-		else{			
-			console.log("The form is not valid");
+		else{
 		}	
 	},
 
 	getInitialState: function () {
 		return {
-			parameter: {
-				name: "",
-				type: "",
-				expression: ""
+			data: {
 			}
 		}
 	},
@@ -215,10 +274,23 @@ var FormWrapper = React.createClass({
             type: "GET",
             cache: false,
             success: function (data) {
-                this.setState({parameter: data.data});
-                $("#name").val(this.state.parameter.name);
-                $("#type").val(this.state.parameter.type);
-                $("#expression").val(this.state.parameter.expression);
+                this.setState({data: data.data});
+				$("#service_id").val(this.state.data.service.name);
+				$("#service_details_id").val(this.state.data.service.name + " " + this.state.data.service_details.version);
+				$("#service_options_id").val(this.state.data.service_options.name);
+
+				serviceId = this.state.data.service.uuid;
+				serviceDetailsId = this.state.data.service_details.uuid;
+				serviceOptionsId = this.state.data.service_options.uuid;
+				newServiceId = serviceId;
+				newServiceDetailsId = serviceDetailsId;
+				newServiceOptionsId = serviceOptionsId;
+				newServiceName = this.state.data.service.name;
+				newServiceDetailsName = this.state.data.service_details.service.name + " " + this.state.data.service_details.version;
+				newServiceOptionsName = this.state.data.service_options.name;
+				serviceDetailsVersion = this.state.data.service_details.version;
+				newServiceDetailsVersion = serviceDetailsVersion;
+
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
@@ -286,6 +358,7 @@ $( function() {
 					data.data[i].label = data.data[i].name;
                     data.data[i].index = i;
 				}
+				globalServiceData = data.data;
                 response(data.data);
             });
 	};
@@ -304,12 +377,12 @@ $( function() {
         $.getJSON(
             host + "/api/v1/services/version/all?search=" + request.term + "&service=" + service,
             function (data) {
-				console.log(data);
 				for(var i = 0; i < data.data.length; i++) {
-					data.data[i].value = data.data[i].version;
+					data.data[i].value = data.data[i].service.name + " " + data.data[i].version;
 					data.data[i].label = data.data[i].version;
                     data.data[i].index = i;
 				}
+				globalServiceDetailsData = data.data;
                 response(data.data);
             });
 	};
@@ -328,6 +401,7 @@ $( function() {
 					data.data[i].label = data.data[i].name;
                     data.data[i].index = i;
 				}
+				globalOptionsData = data.data;
                 response(data.data);
             });
 	};
@@ -339,9 +413,14 @@ $( function() {
       select: function( event, ui ) {
 		this.value = ui.item.name;
 		newServiceId = ui.item.uuid;
+		newServiceName = ui.item.name;
+		$("#service_details_id").val(null);
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },
+	  change: function(event, ui){
+		$("#service_details_id").val(null);
+	  },
 	  focus: function(event, ui){
           var items = $(".ui-menu-item");
 		  items.removeClass("ui-menu-item-hover");
@@ -359,6 +438,8 @@ $( function() {
       select: function( event, ui ) {
 		this.value = ui.item.name;
 		newServiceDetailsId = ui.item.uuid;
+		newServiceDetailsName = ui.item.service.name + " " + ui.item.version;
+		newServiceDetailsVersion = ui.item.version;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },
@@ -379,6 +460,7 @@ $( function() {
       select: function( event, ui ) {
 		this.value = ui.item.name;
 		newServiceOptionsId = ui.item.uuid;
+		newServiceOptionsName = ui.item.name;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },

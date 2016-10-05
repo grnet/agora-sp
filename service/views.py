@@ -1240,7 +1240,7 @@ def get_service_versions(request):
 
     service_details = [s.as_portfolio_view() for s in models.ServiceDetails.objects.all()
               if (query == None or query == "") or ((service is None or service == "" or service == s.id_service.name.lower())
-                                                    and query in s.version.lower())]
+                                                    and query in (s.id_service.name.lower() + " " + s.version.lower()))]
     response = helper.get_response_info(strings.SERVICE_OWNER_INFORMATION, service_details)
 
     return JsonResponse(response, status=int(response["status"][:3]))

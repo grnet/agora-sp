@@ -175,6 +175,7 @@ class SLAParameter(models.Model):
         unique_together = (('parameter_id', 'sla_id', 'service_option_id'),)
         verbose_name_plural = "5. SLA Parameters"
 
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     parameter_id = models.ForeignKey(Parameter)
     sla_id = models.ForeignKey(SLA)
     service_option_id = models.ForeignKey(ServiceOption)
@@ -184,9 +185,25 @@ class SLAParameter(models.Model):
 
     def as_json(self):
         return {
-            "parameter_uuid": self.parameter_id,
-            "sla_uuid": self.sla_id,
-            "service_option_id": self.service_option_id
+            "parameter_uuid": self.parameter_id.pk,
+            "sla_uuid": self.sla_id.pk,
+            "service_option_id": self.service_option_id.pk
+        }
+
+    def as_full(self):
+        return {
+            "parameter": {
+                "uuid": self.parameter_id.pk,
+                "name": self.parameter_id.name
+            },
+            "sla": {
+                "uuid": self.sla_id.pk,
+                "name": self.sla_id.name
+            },
+            "service_options": {
+                "uuid": self.service_option_id.pk,
+                "name": self.service_option_id.name
+            }
         }
 
 
@@ -195,6 +212,7 @@ class ServiceDetailsOption(models.Model):
         unique_together = (('service_id', 'service_details_id', 'service_options_id'),)
         verbose_name_plural = "2. Service Options and Service Details Link"
 
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     service_id = models.ForeignKey(Service)
     service_details_id = models.ForeignKey(ServiceDetails)
     service_options_id = models.ForeignKey(ServiceOption)
@@ -204,5 +222,25 @@ class ServiceDetailsOption(models.Model):
 
     def as_json(self):
         return self.service_options_id.as_json(self.service_id.name, self.service_details_id.version)
+
+    def as_full(self):
+        return {
+            "service": {
+                "uuid": self.service_id.pk,
+                "name": self.service_id.name
+            },
+            "service_details": {
+                "uuid": self.service_details_id.pk,
+                "version": self.service_details_id.version,
+                "service": {
+                    "uuid": self.service_details_id.id_service.pk,
+                    "name": self.service_details_id.id_service.name,
+                }
+            },
+            "service_options": {
+                "uuid": self.service_options_id.pk,
+                "name": self.service_options_id.name
+            }
+        }
 
 
