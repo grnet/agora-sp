@@ -250,9 +250,13 @@ def service_details_write_ui(request):
 def internal_dependency_write_ui(request):
     return render(request, 'service/write.html', {"type": "internal_service_dependencies"})
 
-@login_required()
+# @login_required()
 def external_dependency_write_ui(request):
     return render(request, 'service/write.html', {"type": "external_service_dependencies"})
+
+def external_dependency_edit_ui(request, external_dep_uuid):
+    source = helper.current_site_url() + "/v1/services/external_dependency/" + external_dep_uuid
+    return render(request, 'service/write.html', {"type": "external_service_dependencies", "source": source})
 
 @login_required()
 def users_customers_write_ui(request):
@@ -309,6 +313,36 @@ def get_external_service(request, service_name_or_uuid):
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
+
+def get_external_dependency(request, external_dep_uuid):
+
+    response = {}
+    service, parsed_name, uuid = None, None, None
+
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    result = prog.match(external_dep_uuid)
+
+
+
+    try:
+        if result is None:
+            response = helper.get_error_response(strings.INVALID_UUID)
+            return JsonResponse(response, status=int(response["status"][:3]))
+        else:
+            ext_de = models.Service_ExternalService.objects.get(id=external_dep_uuid)
+
+    except models.Service_ExternalService.DoesNotExist:
+        response = helper.get_error_response(strings.EXTERNAL_SERVICE_NOT_FOUND)
+        return JsonResponse(response, status=int(response["status"][:3]))
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response = helper.get_error_response(strings.INVALID_UUID)
+            return JsonResponse(response, status=int(response["status"][:3]))
+
+    response = helper.get_response_info(strings.SERVICE_INFORMATION, ext_de.as_full())
+
+    return JsonResponse(response, status=int(response["status"][:3]))
 
 def get_user_customer(request, user_customer_uuid):
 
@@ -1546,7 +1580,7 @@ def insert_external_service_dependency(request, service_name_or_uuid):
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$")
     service, external_service_dependency, parsed_name, uuid = None, None, None, None
 
-    if "external_service_dependency" not in params:
+    if "external_service_dependency" not in params or params["external_service_dependency"] is None:
         return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_UUID_NOT_PROVIDED,
                                                       status=strings.REJECTED_406), status=406)
 
@@ -1600,16 +1634,21 @@ def edit_external_service_dependency(request, service_name_or_uuid):
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$")
     service, external_service_dependency, parsed_name, uuid = None, None, None, None
 
-    if "external_service_dependency" not in params:
+    if "external_service_dependency" not in params or params["external_service_dependency"] is None:
         return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_UUID_NOT_PROVIDED,
                                                       status=strings.REJECTED_406), status=406)
 
-    if "new_external_service_dependency" not in params:
+    if "new_external_service_dependency" not in params or params["new_external_service_dependency"] is None:
         return JsonResponse(helper.get_error_response(strings.NEW_EXTERNAL_SERVICE_DEPENDENCY_UUID_NOT_PROVIDED,
+                                                      status=strings.REJECTED_406), status=406)
+
+    if "service_id" not in params or params["service_id"] is None:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_UUID_NOT_PROVIDED,
                                                       status=strings.REJECTED_406), status=406)
 
     external_dependency_uuid = params.get("external_service_dependency")
     new_external_dependency_uuid = params.get("new_external_service_dependency")
+    old_service_uuid = params.get("service_id")
 
     result = prog.match(external_dependency_uuid)
     if result is None:
@@ -1619,6 +1658,11 @@ def edit_external_service_dependency(request, service_name_or_uuid):
     result = prog.match(new_external_dependency_uuid)
     if result is None:
         return JsonResponse(helper.get_error_response(strings.NEW_EXTERNAL_SERVICE_DEPENDENCY_INVALID_UUID,
+                                                      status=strings.REJECTED_406), status=406)
+
+    result = prog.match(old_service_uuid)
+    if result is None:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_INVALID_UUID,
                                                       status=strings.REJECTED_406), status=406)
 
     result = prog.match(service_name_or_uuid)
@@ -1640,15 +1684,21 @@ def edit_external_service_dependency(request, service_name_or_uuid):
     try:
         external_service_dependency = models.ExternalService.objects.get(id=external_dependency_uuid)
         new_external_service_dependency = models.ExternalService.objects.get(id=new_external_dependency_uuid)
+        old_service = models.Service.objects.get(id=old_service_uuid)
 
-        obj = models.Service_ExternalService.objects.get(id_service=service,
+        obj = models.Service_ExternalService.objects.get(id_service=old_service,
                                                                           id_external_service=external_service_dependency)
 
+        obj.id_service = service
         obj.id_external_service = new_external_service_dependency
         obj.save()
 
+    except models.Service.DoesNotExist:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_NOT_FOUND,
+                                                      status=strings.NOT_FOUND_404), status=404)
+
     except models.ExternalService.DoesNotExist:
-        return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_NOT_FOUND,
+        return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_NOT_FOUND,
                                                       status=strings.NOT_FOUND_404), status=404)
     except models.Service_ExternalService.DoesNotExist:
         return JsonResponse(helper.get_error_response(strings.EXTERNAL_SERVICE_DEPENDENCY_NOT_FOUND,

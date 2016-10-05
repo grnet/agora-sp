@@ -55,7 +55,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'django_jenkins',
-    'social.apps.django_app.default',
+    # 'social.apps.django_app.default',
     'rest_framework.authtoken',
     'rest_framework_swagger',
     'rest_framework',
@@ -112,7 +112,7 @@ LOGIN_REDIRECT_URL = "/api/v1/accounts/login/"
 
 PROJECT_APPS = ['component', 'options', 'owner', 'service']
 
-SITE_ID = 2
+SITE_ID = 1
 
 SAML_ATTRIBUTE_MAPPING = {
     'mail': ('email', ),

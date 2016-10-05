@@ -842,6 +842,7 @@ class Service_ExternalService(models.Model):
         unique_together = (('id_service', 'id_external_service'),)
         verbose_name_plural = "5. External Dependencies"
 
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     id_service = models.ForeignKey(Service)
     id_external_service = models.ForeignKey(ExternalService)
 
@@ -859,6 +860,18 @@ class Service_ExternalService(models.Model):
         return {
             "service": self.id_service.pk,
             "external_service": self.id_external_service.pk
+        }
+
+    def as_full(self):
+        return {
+            "service": {
+                "uuid": self.id_service.pk,
+                "name": self.id_service.name
+            },
+            "external_service": {
+                "uuid": self.id_external_service.pk,
+                "name": self.id_external_service.name
+            }
         }
 
 
