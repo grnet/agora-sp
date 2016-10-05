@@ -1074,7 +1074,7 @@ def edit_service_details_component_implementation_details(request):
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$")
     uuid, parsed_name, new_uuid, new_parsed_name = None, None, None, None
 
-    if "component_implementation_details_uuid" not in comp:
+    if "component_implementation_details_uuid" not in comp or comp["component_implementation_details_uuid"] is None:
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UUID_NOT_PROVIDED,
                                                       status=strings.REJECTED_406), status=406)
 
@@ -1085,7 +1085,7 @@ def edit_service_details_component_implementation_details(request):
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_INVALID_UUID,
                                                       status=strings.REJECTED_406), status=406)
 
-    if "new_component_implementation_details_uuid" not in comp:
+    if "new_component_implementation_details_uuid" not in comp or comp["new_component_implementation_details_uuid"] is None:
         return JsonResponse(helper.get_error_response(strings.NEW_SERVICE_COMPONENT_IMPLEMENTATION_DETAILS_UUID_NOT_PROVIDED,
                                                       status=strings.REJECTED_406), status=406)
 
@@ -1096,19 +1096,19 @@ def edit_service_details_component_implementation_details(request):
         return JsonResponse(helper.get_error_response(strings.NEW_SERVICE_COMPONENT_IMPLEMENTATION_DETAIL_INVALID_UUID,
                                                       status=strings.REJECTED_406), status=406)
 
-    if "service_id" not in comp:
+    if "service_id" not in comp or comp["service_id"] is None:
         return JsonResponse(helper.get_error_response(strings.SERVICE_UUID_NOT_PROVIDED, status=strings.REJECTED_406),
                             status=406)
 
-    if "service_version" not in comp:
+    if "service_version" not in comp or comp["service_version"] is None:
         return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_VERSION_NOT_PROVIDED,
                                                       status=strings.REJECTED_406), status=406)
 
-    if "new_service_id" not in comp:
+    if "new_service_id" not in comp or comp["new_service_id"] is None:
         return JsonResponse(helper.get_error_response(strings.NEW_SERVICE_UUID_NOT_PROVIDED, status=strings.REJECTED_406),
                             status=406)
 
-    if "new_service_version" not in comp:
+    if "new_service_version" not in comp or comp["new_service_version"] is None:
         return JsonResponse(helper.get_error_response(strings.NEW_SERVICE_DETAILS_VERSION_NOT_PROVIDED,
                                                       status=strings.REJECTED_406), status=406)
 

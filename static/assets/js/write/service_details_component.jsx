@@ -11,6 +11,7 @@ var newServiceName = null;
 var newServiceDetailsName = null;
 var newComponentImplementationDetailName = null;
 var newServiceDetailsVersion = null;
+var serviceDetailsVersion = null;
 var opType = "";
 var globalServiceData;
 var globalServiceDetailsData;
@@ -222,7 +223,7 @@ FormWrapper = React.createClass({
 				params["new_component_implementation_details_uuid"] = newComponentImplementationDetailId;
 				params["service_id"] = serviceId;
 				params["new_service_id"] = newServiceId;
-				params["service_version"] = serviceDetailsId;
+				params["service_version"] = serviceDetailsVersion;
 				params["new_service_version"] = newServiceDetailsVersion;
 
 				url = host + "/api/v1/component/service_details_component_implementation_details/edit";
@@ -238,6 +239,7 @@ FormWrapper = React.createClass({
 				opType = "add";
 			}
 
+			console.log(params);
 
 			this.serverRequest = $.ajax({
 				url: url,
@@ -253,6 +255,7 @@ FormWrapper = React.createClass({
 					else {
 						serviceId = newServiceId;
 						serviceDetailsId = newServiceDetailsId;
+						serviceDetailsVersion = newServiceDetailsVersion;
 						componentImplementationDetailId = newComponentImplementationDetailId;
 						$("#modal-success-body").text("You have successfully updated the service details component relationship");
 					}
@@ -309,7 +312,8 @@ FormWrapper = React.createClass({
 				newComponentImplementationDetailName = this.state.data.component_implementation_details.component.name +
 				 " " + this.state.data.component_implementation_details.component_implementation.name + " " +
 				this.state.data.component_implementation_details.version;
-				newServiceDetailsVersion = this.state.data.service_details.version;
+				serviceDetailsVersion = this.state.data.service_details.version;
+				newServiceDetailsVersion = serviceDetailsVersion;
 
 
 			}.bind(this),
@@ -436,9 +440,13 @@ $( function() {
 		this.value = ui.item.name;
 		newServiceId = ui.item.uuid;
 		newServiceName = ui.item.name;
+		$("#service_details_id").val(null);
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },
+	  change: function(event, ui){
+		$("#service_details_id").val(null);
+	  },
 	  focus: function(event, ui){
           var items = $(".ui-menu-item");
 		  items.removeClass("ui-menu-item-hover");
