@@ -3,9 +3,13 @@ var formName = 'Internal Service Dependencies Form';
 
 var opType;
 var serviceId;
-var serviceDependency;
+var serviceDependencyId;
 var newServiceId;
-var newServiceDependency;
+var newServiceName;
+var newServiceDependencyId;
+var newServiceDependencyName;
+var globalServiceData;
+var globalInternalServiceData;
 
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
@@ -122,8 +126,42 @@ var FormWrapper = React.createClass({
 			//var formValues = JSON.stringify($("#service-form").serializeJSON());
 			//console.log("The form values are ->", formValues);
 
-			var params = {};
 
+			var service_id =  $("#service_id").val();
+
+			if(newServiceName != service_id){
+				if(newServiceName != null || service_id != "")
+				{
+					newServiceName = null;
+					newServiceId = null;
+					for(var i = 0; i < globalServiceData.length; i++){
+						if(service_id == globalServiceData[i].name){
+							newServiceId = globalServiceData[i].uuid;
+							newServiceName = service_id;
+							break;
+						}
+					}
+				}
+			}
+
+			var service_dependency_id =  $("#service_dependency_id").val();
+
+			if(newServiceDependencyName != service_dependency_id){
+				if(newServiceDependencyName != null || service_dependency_id != "")
+				{
+					newServiceDependencyName = null;
+					newServiceDependencyId = null;
+					for(var i = 0; i < globalInternalServiceData.length; i++){
+						if(service_dependency_id == globalInternalServiceData[i].name){
+							newServiceDependencyId = globalInternalServiceData[i].uuid;
+							newServiceDependencyName = service_dependency_id;
+							break;
+						}
+					}
+				}
+			}
+
+			var params = {};
 
 			var parts = window.location.href.split("/");
 			var host = "http://" + parts[2];
@@ -131,20 +169,20 @@ var FormWrapper = React.createClass({
 
 			if (this.props.source != null && this.props.source != "") {
 
-				params["service_dependency"] = serviceDependency;
-				params["new_service_dependency"] = newServiceDependency;
+				params["service_dependency"] = serviceDependencyId;
+				params["new_service_dependency"] = newServiceDependencyId;
+				params["service_id"] = serviceId;
 
-				url = host + "/api/v1/services/" + serviceId + "/service_dependencies/edit";
+				url = host + "/api/v1/services/" + newServiceId + "/service_dependencies/edit";
 				opType = "edit";
 			}
 			else {
 
-				params["service_dependency"] = serviceDependency;
+				params["service_dependency"] = newServiceDependencyId;
 
-				url = host + "/api/v1/services/" + serviceId + "/service_dependencies/add";
+				url = host + "/api/v1/services/" + newServiceId + "/service_dependencies/add";
 				opType = "add";
 			}
-
 
 
 			this.serverRequest = $.ajax({
@@ -158,8 +196,11 @@ var FormWrapper = React.createClass({
 				success: function (data) {
 					if (opType == "add")
 						$("#modal-success-body").text("You have successfully inserted a new internal service dependency");
-					else
+					else {
+						serviceId = newServiceId;
+						serviceDependencyId = newServiceDependencyId;
 						$("#modal-success-body").text("You have successfully updated the internal service dependency");
+					}
 					$("#modal-success").modal('show');
 				}.bind(this),
 				error: function (xhr, status, err) {
@@ -175,10 +216,9 @@ var FormWrapper = React.createClass({
 
 	getInitialState: function () {
 		return {
-			parameter: {
-				name: "",
-				type: "",
-				expression: ""
+			internal_dependency: {
+				service: {},
+				external_service: {}
 			}
 		}
 	},
@@ -196,10 +236,15 @@ var FormWrapper = React.createClass({
             type: "GET",
             cache: false,
             success: function (data) {
-                this.setState({parameter: data.data});
-                $("#name").val(this.state.parameter.name);
-                $("#type").val(this.state.parameter.type);
-                $("#expression").val(this.state.parameter.expression);
+                this.setState({internal_dependency: data.data});
+				$("#service_id").val(this.state.internal_dependency.service.name);
+                $("#service_dependency_id").val(this.state.internal_dependency.service_dependency.name);
+				serviceId = this.state.internal_dependency.service.uuid;
+				newServiceName = this.state.internal_dependency.service.name;
+				serviceDependencyId = this.state.internal_dependency.service_dependency.uuid;
+				newServiceDependencyName = this.state.internal_dependency.service_dependency.name;
+				newServiceId = serviceId;
+				newServiceDependencyId = serviceDependencyId;
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
@@ -264,6 +309,27 @@ $( function() {
 					data.data[i].label = data.data[i].name;
                     data.data[i].index = i;
 				}
+				globalServiceData = data.data;
+                response(data.data);
+            });
+	};
+
+
+	var getDataServiceDependency = function(request, response){
+
+        var url = window.location.href;
+        var contents = url.split("/");
+        var host = contents[0] + "//" + contents[2];
+
+        $.getJSON(
+            host + "/api/v1/services/all?search=" + request.term,
+            function (data) {
+				for(var i = 0; i < data.data.length; i++) {
+					data.data[i].value = data.data[i].name;
+					data.data[i].label = data.data[i].name;
+                    data.data[i].index = i;
+				}
+				globalInternalServiceData = data.data;
                 response(data.data);
             });
 	};
@@ -275,7 +341,8 @@ $( function() {
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.name;
-		serviceId = ui.item.uuid;
+		newServiceId = ui.item.uuid;
+		newServiceName = ui.item.name;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },
@@ -292,11 +359,12 @@ $( function() {
 
 
 	$( "#service_dependency_id" ).autocomplete({
-      source: getDataService,
+      source: getDataServiceDependency,
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.name;
-		serviceDependency = ui.item.uuid;
+		newServiceDependencyId = ui.item.uuid;
+		newServiceDependencyName = ui.item.name;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },

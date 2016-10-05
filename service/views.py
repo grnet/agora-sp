@@ -246,9 +246,13 @@ def service_area_write_ui(request):
 def service_details_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_details"})
 
-@login_required()
+# @login_required()
 def internal_dependency_write_ui(request):
     return render(request, 'service/write.html', {"type": "internal_service_dependencies"})
+
+def internal_dependency_edit_ui(request, internal_dep_uuid):
+    source = helper.current_site_url() + "/v1/services/internal_dependency/" + internal_dep_uuid
+    return render(request, 'service/write.html', {"type": "internal_service_dependencies", "source": source})
 
 # @login_required()
 def external_dependency_write_ui(request):
@@ -341,6 +345,34 @@ def get_external_dependency(request, external_dep_uuid):
             return JsonResponse(response, status=int(response["status"][:3]))
 
     response = helper.get_response_info(strings.SERVICE_INFORMATION, ext_de.as_full())
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
+def get_internal_dependency(request, internal_dep_uuid):
+
+    response = {}
+    service, parsed_name, uuid = None, None, None
+
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    result = prog.match(internal_dep_uuid)
+
+    try:
+        if result is None:
+            response = helper.get_error_response(strings.INVALID_UUID)
+            return JsonResponse(response, status=int(response["status"][:3]))
+        else:
+            int_de = models.Service_DependsOn_Service.objects.get(id=internal_dep_uuid)
+
+    except models.Service_DependsOn_Service.DoesNotExist:
+        response = helper.get_error_response(strings.SERVICE_DEPENDENCY_NOT_FOUND)
+        return JsonResponse(response, status=int(response["status"][:3]))
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response = helper.get_error_response(strings.INVALID_UUID)
+            return JsonResponse(response, status=int(response["status"][:3]))
+
+    response = helper.get_response_info(strings.SERVICE_INFORMATION, int_de.as_full())
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
@@ -1127,7 +1159,7 @@ def insert_service_dependency(request, service_name_or_uuid):
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$")
     service, service_dependency, parsed_name, uuid = None, None, None, None
 
-    if "service_dependency" not in params:
+    if "service_dependency" not in params or params["service_dependency"] is None:
         return JsonResponse(helper.get_error_response(strings.SERVICE_DEPENDENCY_UUID_NOT_PROVIDED,
                                                       status=strings.REJECTED_406), status=406)
 
@@ -1254,16 +1286,21 @@ def edit_service_dependency(request, service_name_or_uuid):
     prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$")
     service, service_dependency, parsed_name, uuid = None, None, None, None
 
-    if "service_dependency" not in params:
+    if "service_dependency" not in params or params["service_dependency"] is None:
         return JsonResponse(helper.get_error_response(strings.SERVICE_DEPENDENCY_UUID_NOT_PROVIDED,
                                                       status=strings.REJECTED_406), status=406)
 
-    if "new_service_dependency" not in params:
+    if "new_service_dependency" not in params or params["new_service_dependency"] is None:
         return JsonResponse(helper.get_error_response(strings.NEW_SERVICE_DEPENDENCY_UUID_NOT_PROVIDED,
+                                                      status=strings.REJECTED_406), status=406)
+
+    if "service_id" not in params or params["service_id"] is None:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_UUID_NOT_PROVIDED,
                                                       status=strings.REJECTED_406), status=406)
 
     dependency_uuid = params.get("service_dependency")
     new_dependency_uuid = params.get("new_service_dependency")
+    old_service_uuid = params.get("service_id")
 
     result = prog.match(dependency_uuid)
     if result is None:
@@ -1273,6 +1310,11 @@ def edit_service_dependency(request, service_name_or_uuid):
     result = prog.match(new_dependency_uuid)
     if result is None:
         return JsonResponse(helper.get_error_response(strings.NEW_SERVICE_DEPENDENCY_INVALID_UUID,
+                                                      status=strings.REJECTED_406), status=406)
+
+    result = prog.match(old_service_uuid)
+    if result is None:
+        return JsonResponse(helper.get_error_response(strings.SERVICE_INVALID_UUID,
                                                       status=strings.REJECTED_406), status=406)
 
     result = prog.match(service_name_or_uuid)
@@ -1295,10 +1337,12 @@ def edit_service_dependency(request, service_name_or_uuid):
     try:
         service_dependency = models.Service.objects.get(id=dependency_uuid)
         new_service_dependency = models.Service.objects.get(id=new_dependency_uuid)
+        old_service = models.Service.objects.get(id=old_service_uuid)
 
-        obj = models.Service_DependsOn_Service.objects.get(id_service_one=service,
+        obj = models.Service_DependsOn_Service.objects.get(id_service_one=old_service,
                                                                           id_service_two=service_dependency)
 
+        obj.id_service_one = service
         obj.id_service_two = new_service_dependency
         obj.save()
     except models.Service.DoesNotExist:

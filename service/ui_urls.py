@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^internal_dependency/?$', views.internal_dependency_write_ui),
     url(r'^external_dependency/?$', views.external_dependency_write_ui),
     url(r'^external_dependency/(?P<external_dep_uuid>[0-9a-zA-Z\@\-\_]+)?$', views.external_dependency_edit_ui),
+    url(r'^internal_dependency/(?P<internal_dep_uuid>[0-9a-zA-Z\@\-\_]+)?$', views.internal_dependency_edit_ui),
     url(r'^users_customers/?$', views.users_customers_write_ui),
     url(r'^users_customers/(?P<user_customer_uuid>[0-9a-zA-Z\@\-\_]+)/?$', views.users_customers_edit_ui),
     url(r'^area/?$', views.service_area_write_ui),

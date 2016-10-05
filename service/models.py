@@ -817,6 +817,7 @@ class Service_DependsOn_Service(models.Model):
         unique_together = (('id_service_one', 'id_service_two'),)
         verbose_name_plural = "3. Internal Dependencies"
 
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     id_service_one = models.ForeignKey(Service, related_name='service_one')
     id_service_two = models.ForeignKey(Service, related_name='service_two')
 
@@ -833,6 +834,18 @@ class Service_DependsOn_Service(models.Model):
         return {
             "service": self.id_service_one.name,
             "dependency": self.id_service_two.name
+        }
+
+    def as_full(self):
+        return {
+            "service": {
+                "uuid": self.id_service_one.pk,
+                "name": self.id_service_one.name
+            },
+            "service_dependency": {
+                "uuid": self.id_service_two.pk,
+                "name": self.id_service_two.name
+            }
         }
 
 
