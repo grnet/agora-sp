@@ -13,8 +13,8 @@ var optionsData = [
 ];
 
 var booleanData = [
-  {id: 0, value: false, text: "no"},
-  {id: 1, value: true, text: "yes"}
+  {id: 0, value: "false", text: "no"},
+  {id: 1, value: "true", text: "yes"}
 ];
 
 var statusData = [
@@ -443,24 +443,24 @@ var FormWrapper = React.createClass({
                 $("#status").val(this.state.service_details.status);
                 $("#features_current").val(this.state.service_details.features_current);
                 $("#features_future").val(this.state.service_details.features_future);
-                $("#usage_policy_has").val(this.state.service_details.usage_policy_has);
-                $("#usage_policy_url").val(this.state.service_details.usage_policy_url);
-                $("#privacy_policy_has").val(this.state.service_details.privacy_policy_has);
-                $("#privacy_policy_url").val(this.state.service_details.privacy_policy_url);
-                $("#user_documentation_has").val(this.state.service_details.user_documentation_has);
-                $("#user_documentation_url").val(this.state.service_details.user_documentation_url);
-                $("#operations_documentation_has").val(this.state.service_details.operations_documentation_has);
-                $("#operations_documentation_url").val(this.state.service_details.operations_documentation_url);
-                $("#monitoring_has").val(this.state.service_details.monitoring_has);
-                $("#monitoring_url").val(this.state.service_details.monitoring_url);
-                $("#accounting_has").val(this.state.service_details.accounting_has);
-                $("#accounting_url").val(this.state.service_details.accounting_url);
-                $("#business_continuity_plan_has").val(this.state.service_details.business_continuity_plan_has);
-                $("#business_continuity_plan_url").val(this.state.service_details.business_continuity_plan_url);
-                $("#disaster_recovery_plan_has").val(this.state.service_details.disaster_recovery_plan_has);
-                $("#disaster_recovery_plan_url").val(this.state.service_details.disaster_recovery_plan_url);
-                $("#decommissioning_procedure_has").val(this.state.service_details.decommissioning_procedure_has);
-                $("#decommissioning_procedure_url").val(this.state.service_details.decommissioning_procedure_url);
+                $("#usage_policy_has").val(this.state.service_details.usage_policy_has.toString());
+                $("#usage_policy_url").val(this.state.service_details.usage_policy_link.related.href);
+                $("#privacy_policy_has").val(this.state.service_details.privacy_policy_has.toString());
+                $("#privacy_policy_url").val(this.state.service_details.privacy_policy_link.related.href);
+                $("#user_documentation_has").val(this.state.service_details.user_documentation_has.toString());
+                $("#user_documentation_url").val(this.state.service_details.user_documentation_link.related.href);
+                $("#operations_documentation_has").val(this.state.service_details.operations_documentation_has.toString());
+                $("#operations_documentation_url").val(this.state.service_details.operations_documentation_link.related.href);
+                $("#monitoring_has").val(this.state.service_details.monitoring_has.toString());
+                $("#monitoring_url").val(this.state.service_details.monitoring_link.related.href);
+                $("#accounting_has").val(this.state.service_details.accounting_has.toString());
+                $("#accounting_url").val(this.state.service_details.accounting_link.related.href);
+                $("#business_continuity_plan_has").val(this.state.service_details.business_continuity_plan_has.toString());
+                $("#business_continuity_plan_url").val(this.state.service_details.business_continuity_plan_link.related.href);
+                $("#disaster_recovery_plan_has").val(this.state.service_details.disaster_recovery_plan_has.toString());
+                $("#disaster_recovery_plan_url").val(this.state.service_details.disaster_recovery_plan_link.related.href);
+                $("#decommissioning_procedure_has").val(this.state.service_details.decommissioning_procedure_has.toString());
+                $("#decommissioning_procedure_url").val(this.state.service_details.decommissioning_procedure_link.related.href);
                 $("#cost_to_run").val(this.state.service_details.cost_to_run);
                 $("#cost_to_build").val(this.state.service_details.cost_to_build);
                 $("#use_cases").val(this.state.service_details.use_cases);

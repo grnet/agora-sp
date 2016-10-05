@@ -1395,49 +1395,109 @@ def insert_service_details(request, service_name_or_uuid):
         service_details.features_future = params.get('features_future')
 
     if "usage_policy_has" in params:
-        service_details.usage_policy_has = params.get('usage_policy_has')
+        uph = params.get('usage_policy_has')
+        if uph == "false":
+            service_details.usage_policy_has = False
+        elif uph == "true":
+            service_details.usage_policy_has = True
+        else:
+            service_details.usage_policy_has = uph
 
     if "usage_policy_url" in params:
         service_details.usage_policy_url = params.get('usage_policy_url')
 
+    if "privacy_policy_has" in params:
+        pph = params.get('privacy_policy_has')
+        if pph == "false":
+            service_details.privacy_policy_has = False
+        elif pph == "true":
+            service_details.privacy_policy_has = True
+        else:
+            service_details.privacy_policy_has = pph
+
+    if "privacy_policy_url" in params:
+        service_details.privacy_policy_url = params.get('privacy_policy_url')
+
     if "user_documentation_has" in params:
-        service_details.user_documentation_has = params.get('user_documentation_has')
+        udh = params.get('user_documentation_has')
+        if udh == "false":
+            service_details.user_documentation_has = False
+        elif udh == "true":
+            service_details.user_documentation_has = True
+        else:
+           service_details.user_documentation_has = udh
 
     if "user_documentation_url" in params:
         service_details.user_documentation_url = params.get('user_documentation_url')
 
     if "operations_documentation_has" in params:
-        service_details.operations_documentation_has = params.get('operations_documentation_has')
+        odh = params.get('operations_documentation_has')
+        if odh == "false":
+            service_details.operations_documentation_has = False
+        elif odh == "true":
+            service_details.operations_documentation_has = True
+        else:
+            service_details.operations_documentation_has = odh
 
     if "operations_documentation_url" in params:
         service_details.operations_documentation_url = params.get('operations_documentation_url')
 
     if "monitoring_has" in params:
-        service_details.monitoring_has = params.get('monitoring_has')
+        mh = params.get('monitoring_has')
+        if mh == "false":
+            service_details.monitoring_has = False
+        elif mh == "true":
+            service_details.monitoring_has = True
+        else:
+            service_details.monitoring_has = mh
 
     if "monitoring_url" in params:
         service_details.monitoring_url = params.get('monitoring_url')
 
     if "accounting_has" in params:
-        service_details.accounting_has = params.get('accounting_has')
+        ah = params.get('accounting_has')
+        if ah == "false":
+            service_details.accounting_has = False
+        elif ah == "true":
+            service_details.accounting_has = True
+        else:
+            service_details.accounting_has = ah
 
     if "accounting_url" in params:
         service_details.accounting_url = params.get('accounting_url')
 
     if "business_continuity_plan_has" in params:
-        service_details.business_continuity_plan_has = params.get('business_continuity_plan_has')
+        bcph = params.get('business_continuity_plan_has')
+        if bcph == "false":
+            service_details.business_continuity_plan_has = False
+        elif bcph == "true":
+            service_details.business_continuity_plan_has = True
+        else:
+            service_details.business_continuity_plan_has = bcph
 
     if "business_continuity_plan_url" in params:
         service_details.business_continuity_plan_url = params.get('business_continuity_plan_url')
 
     if "disaster_recovery_plan_has" in params:
-        service_details.disaster_recovery_plan_has = params.get('disaster_recovery_plan_has')
+        drph = params.get('disaster_recovery_plan_has')
+        if drph == "false":
+            service_details.disaster_recovery_plan_has = False
+        elif drph == "true":
+            service_details.disaster_recovery_plan_has = True
+        else:
+            service_details.disaster_recovery_plan_has = drph
 
     if "disaster_recovery_plan_url" in params:
         service_details.disaster_recovery_plan_url = params.get('disaster_recovery_plan_url')
 
     if "decommissioning_procedure_has" in params:
-        service_details.decommissioning_procedure_has = params.get('decommissioning_procedure_has')
+        dph = params.get('decommissioning_procedure_has')
+        if dph == "false":
+            service_details.decommissioning_procedure_has = False
+        elif dph == "true":
+            service_details.decommissioning_procedure_has = True
+        else:
+            service_details.decommissioning_procedure_has = dph
 
     if "decommissioning_procedure_url" in params:
         service_details.decommissioning_procedure_url = params.get('decommissioning_procedure_url')
