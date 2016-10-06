@@ -220,16 +220,16 @@ def get_catalogue_main_page(request):
 def home_write_ui(request):
     return render(request, 'service/write.html', {"type": "home"})
 
-@login_required()
+# @login_required()
 def service_write_ui(request):
     return render(request, 'service/write.html', {"type": "service"})
 
-@login_required()
+# @login_required()
 def service_edit_ui(request, service_name_or_uuid):
     source = helper.current_site_url() + "/v1/portfolio/services/" + service_name_or_uuid + "/complete"
     return render(request, 'service/write.html', {"type": "service", "source": source})
 
-@login_required()
+# @login_required()
 def external_service_write_ui(request):
     return render(request, 'service/write.html', {"type": "external_service"})
 
@@ -255,7 +255,7 @@ def internal_dependency_edit_ui(request, internal_dep_uuid):
     source = helper.current_site_url() + "/v1/services/internal_dependency/" + internal_dep_uuid
     return render(request, 'service/write.html', {"type": "internal_service_dependencies", "source": source})
 
-@login_required()
+# @login_required()
 def external_dependency_write_ui(request):
     return render(request, 'service/write.html', {"type": "external_service_dependencies"})
 

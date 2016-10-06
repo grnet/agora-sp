@@ -20,7 +20,8 @@ var optionsData = [
 
 var resourceObject = [
 	{ tag: 'input', type: 'text', name: 'service_id', placeholder: 'Enter service name', label: 'Service' },
-	{ tag: 'input', type: 'text', name: 'service_dependency_id', placeholder: 'Enter external service dependency name', label: 'Service dependency' }
+	{ tag: 'input', type: 'text', name: 'service_dependency_id', placeholder: 'Enter external service dependency name', label: 'Service dependency' },
+	{ tag: 'button', name: 'btn-service_dependency_id', value: 'Add external service' }
 ];
 
 var OptionsComponent = React.createClass({
@@ -46,9 +47,9 @@ var FormWrapper = React.createClass({
 				if(field.type == 'text'){					
 					return (
 						<div className="form-group" key={i}>
-			      	        <label htmlFor={field.name}>{field.label}</label>			      	        
+			      	        <label htmlFor={field.name}>{field.label}</label>
 			      	        <input className="form-control" id={field.name} type={field.type} name={field.name} placeholder={field.placeholder} aria-describedby={field.name + '-error'} />
-			      	        <span id={field.name + '-error'} className="validation-message sr-only"></span>
+							<span id={field.name + '-error'} className="validation-message sr-only"></span>
 			      	    </div>
 					);
 				}
@@ -70,6 +71,14 @@ var FormWrapper = React.createClass({
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
 					</div>
 				);				
+			}
+			else if(field.tag == 'button'){
+				return (
+					<div className="form-group" key={i}>
+			      	        <button value={field.value} className="btn btn-purple" id={"btn-" + field.name}>{field.value}</button>
+
+			      	    </div>
+				)
 			}
 		}, this);
 		return formElements;
@@ -279,7 +288,19 @@ ReactDOM.render(
 );
 
 
+
+
 $( function() {
+
+	$("#btn-service_dependency_id").click(function(e){
+		e.preventDefault();
+		var url = window.location.href;
+        var contents = url.split("/");
+        var host = contents[0] + "//" + contents[2];
+
+		window.open(host + "/ui/service/external", "_blank");
+	});
+
 
 	var temp = null;
 	$(document).bind('click', function (event) {
