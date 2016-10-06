@@ -1513,6 +1513,7 @@ var PortfolioPage = React.createClass({
 
 
 var host = "https://agora-dev.vi-seem.eu";
+//var host = "https://services.vi-seem.eu";
 //var host = "http://sp.eudat.eu";
 //var host = "http://localhost";
 
