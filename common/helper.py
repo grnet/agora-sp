@@ -21,7 +21,7 @@ def get_response_info(code, data, status=0):
 def current_site_url():
 
     current_site = Site.objects.get_current()
-    url = 'http://%s' % (current_site.domain+"/api")
+    url = 'https://%s' % (current_site.domain+"/api")
 
     return url
 
