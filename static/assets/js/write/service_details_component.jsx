@@ -214,7 +214,7 @@ FormWrapper = React.createClass({
 			var params = {};
 
 			var parts = window.location.href.split("/");
-			var host = "http://" + parts[2];
+			var host = "https://" + parts[2];
 			var url = "";
 
 			if (this.props.source != null && this.props.source != "") {
