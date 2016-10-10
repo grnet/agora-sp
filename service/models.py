@@ -35,25 +35,25 @@ class Service(models.Model):
         return str(self.name)
 
     def save(self, *args, **kwargs):
-        if not self.description_internal:
+        if not self.description_internal or self.description_internal == "":
             self.description_internal = None
-        if not self.description_external:
+        if not self.description_external or self.description_external == "":
             self.description_external = None
-        if not self.service_area:
+        if not self.service_area or self.service_area == "":
             self.service_area = None
-        if not self.service_type:
+        if not self.service_type or self.service_type == "":
             self.service_type = None
-        if not self.request_procedures:
+        if not self.request_procedures or self.request_procedures == "":
             self.request_procedures = None
-        if not self.funders_for_service:
+        if not self.funders_for_service or self.funders_for_service == "":
             self.funders_for_service = None
-        if not self.value_to_customer:
+        if not self.value_to_customer or self.value_to_customer == "":
             self.value_to_customer = None
-        if not self.request_procedures:
+        if not self.request_procedures or self.request_procedures == "":
             self.request_procedures = None
-        if not self.risks:
+        if not self.risks or self.risks == "":
             self.risks = None
-        if not self.competitors:
+        if not self.competitors or self.competitors == "":
             self.competitors = None
 
         super(Service, self).save(*args, **kwargs)
@@ -496,15 +496,15 @@ class ServiceDetails(models.Model):
     def save(self, *args, **kwargs):
         if not self.status:
             self.status = "Inactive"
-        if not self.features_current:
+        if not self.features_current or self.features_current == "":
             self.features_current = None
-        if not self.features_future:
+        if not self.features_future or self.features_future == "":
             self.features_future = None
-        if not self.cost_to_run:
+        if not self.cost_to_run or self.cost_to_run == "":
             self.cost_to_run = None
-        if not self.cost_to_build:
+        if not self.cost_to_build or self.cost_to_build == "":
             self.cost_to_build = None
-        if not self.use_cases:
+        if not self.use_cases or self.use_cases == "":
             self.use_cases = None
 
         if not self.usage_policy_has:
@@ -525,6 +525,33 @@ class ServiceDetails(models.Model):
             self.decommissioning_procedure_url = None
         if not self.privacy_policy_has:
             self.privacy_policy_url = None
+
+        if not self.usage_policy_url or self.usage_policy_url == "":
+            self.usage_policy_url = None
+
+        if not self.privacy_policy_url or self.privacy_policy_url == "":
+            self.privacy_policy_url = None
+
+        if not self.user_documentation_url or self.user_documentation_url == "":
+            self.user_documentation_url = None
+
+        if not self.operations_documentation_url or self.operations_documentation_url == "":
+            self.operations_documentation_url = None
+
+        if not self.monitoring_url or self.monitoring_url == "":
+            self.monitoring_url = None
+
+        if not self.accounting_url or self.accounting_url == "":
+            self.accounting_url = None
+
+        if not self.business_continuity_plan_url or self.business_continuity_plan_url == "":
+            self.business_continuity_plan_url = None
+
+        if not self.disaster_recovery_plan_url or self.disaster_recovery_plan_url == "":
+            self.disaster_recovery_plan_url = None
+
+        if not self.decommissioning_procedure_url or self.decommissioning_procedure_url == "":
+            self.decommissioning_procedure_url = None
 
         super(ServiceDetails, self).save(*args, **kwargs)
 
@@ -779,7 +806,7 @@ class ExternalService(models.Model):
         ])
 
     def save(self, *args, **kwargs):
-        if not self.description:
+        if not self.description or self.description == "":
             self.description = None
         super(ExternalService, self).save(*args, **kwargs)
 
@@ -790,6 +817,7 @@ class Service_DependsOn_Service(models.Model):
         unique_together = (('id_service_one', 'id_service_two'),)
         verbose_name_plural = "3. Internal Dependencies"
 
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     id_service_one = models.ForeignKey(Service, related_name='service_one')
     id_service_two = models.ForeignKey(Service, related_name='service_two')
 
@@ -808,6 +836,18 @@ class Service_DependsOn_Service(models.Model):
             "dependency": self.id_service_two.name
         }
 
+    def as_full(self):
+        return {
+            "service": {
+                "uuid": self.id_service_one.pk,
+                "name": self.id_service_one.name
+            },
+            "service_dependency": {
+                "uuid": self.id_service_two.pk,
+                "name": self.id_service_two.name
+            }
+        }
+
 
 class Service_ExternalService(models.Model):
 
@@ -815,6 +855,7 @@ class Service_ExternalService(models.Model):
         unique_together = (('id_service', 'id_external_service'),)
         verbose_name_plural = "5. External Dependencies"
 
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     id_service = models.ForeignKey(Service)
     id_external_service = models.ForeignKey(ExternalService)
 
@@ -832,6 +873,18 @@ class Service_ExternalService(models.Model):
         return {
             "service": self.id_service.pk,
             "external_service": self.id_external_service.pk
+        }
+
+    def as_full(self):
+        return {
+            "service": {
+                "uuid": self.id_service.pk,
+                "name": self.id_service.name
+            },
+            "external_service": {
+                "uuid": self.id_external_service.pk,
+                "name": self.id_external_service.name
+            }
         }
 
 
@@ -873,7 +926,7 @@ class UserCustomer(models.Model):
         ])
 
     def save(self, *args, **kwargs):
-        if not self.role:
+        if not self.role or self.role == "":
             self.role = None
         super(UserCustomer, self).save(*args, **kwargs)
 

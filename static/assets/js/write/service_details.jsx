@@ -3,6 +3,8 @@ var formName = 'Service Details Form';
 
 var opType;
 var serviceId;
+var serviceName;
+var globalData;
 
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
@@ -11,8 +13,8 @@ var optionsData = [
 ];
 
 var booleanData = [
-  {id: 0, value: false, text: "no"},
-  {id: 1, value: true, text: "yes"}
+  {id: 0, value: "false", text: "no"},
+  {id: 1, value: "true", text: "yes"}
 ];
 
 var statusData = [
@@ -29,8 +31,11 @@ var resourceObject = [
 	{ tag: 'select', type: 'select', name: 'usage_policy_has', label: 'Has Usage Policy', required: true, optionsData: booleanData },
 	{ tag: 'input', type: 'text', name: 'usage_policy_url', placeholder: 'Enter Usage Policy URL', label: 'Usage Policy URL', onChange: 'urlContentChanged' },
 
-	{ tag: 'select', type: 'select', name: 'usage_documentation_has', label: 'Has Usage Documentation', required: true, optionsData: booleanData },
-	{ tag: 'input', type: 'text', name: 'usage_documentation_url', placeholder: 'Enter Usage Documentation URL', label: 'Usage Documentation URL', onChange: 'urlContentChanged' },
+	{ tag: 'select', type: 'select', name: 'privacy_policy_has', label: 'Has Privacy Policy', required: true, optionsData: booleanData },
+	{ tag: 'input', type: 'text', name: 'privacy_policy_url', placeholder: 'Enter Privacy Policy URL', label: 'Privacy Policy URL', onChange: 'urlContentChanged' },
+
+	{ tag: 'select', type: 'select', name: 'user_documentation_has', label: 'Has Usage Documentation', required: true, optionsData: booleanData },
+	{ tag: 'input', type: 'text', name: 'user_documentation_url', placeholder: 'Enter Usage Documentation URL', label: 'Usage Documentation URL', onChange: 'urlContentChanged' },
 
 	{ tag: 'select', type: 'select', name: 'operations_documentation_has', label: 'Has Operation Documentation', required: true, optionsData: booleanData },
 	{ tag: 'input', type: 'text', name: 'operations_documentation_url', placeholder: 'Enter Operation Documentation URL', label: 'Operation Documentation URL', onChange: 'urlContentChanged' },
@@ -76,11 +81,11 @@ var OptionsComponent = React.createClass({
 var FormWrapper = React.createClass({
 
 	generateFormElements: function(resourceObject){
-		var formElements = resourceObject.map(function(field){
+		var formElements = resourceObject.map(function(field, i){
 			if(field.tag == 'input'){
 				if(field.type == 'text'){					
 					return (
-						<div className="form-group">
+						<div className="form-group" key={i}>
 			      	        <label htmlFor={field.name}>{field.label}</label>
 			      	        <input className="form-control" id={field.name} type={field.type} name={field.name} placeholder={field.placeholder} onChange={this[field.onChange]} aria-describedby={field.name + '-error'} />
 			      	        <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -90,7 +95,7 @@ var FormWrapper = React.createClass({
 			}
 			else if(field.tag == 'textarea'){
 				return(
-					<div className="form-group">
+					<div className="form-group" key={i}>
 					    <label htmlFor={field.name}>{field.label}</label>
 					    <textarea className="form-control" id={field.name} placeholder={field.placeholder} name={field.name} rows="6" onChange={this[field.onChange]}></textarea>
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -99,7 +104,7 @@ var FormWrapper = React.createClass({
 			}
 			else if(field.tag == 'select'){
 				return(
-					<div className="form-group">
+					<div className="form-group" key={i}>
 					    <label htmlFor={field.name}>{field.label}</label>
 					    <OptionsComponent options={field.optionsData} selectName={field.name}></OptionsComponent>
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -125,17 +130,17 @@ var FormWrapper = React.createClass({
 	},
 
 	urlContentChanged: function(e){
-		var value = $(e.target).val();
-		var nameParts = e.target.name.split("_");
-		nameParts[nameParts.length - 1] = "has";
-		var optionsField = nameParts.join('_');
-
-		if(value != ''){
-			$('#' + optionsField).val(1);
-		}
-		else{
-			$('#' + optionsField).val(0);
-		}
+		//var value = $(e.target).val();
+		//var nameParts = e.target.name.split("_");
+		//nameParts[nameParts.length - 1] = "has";
+		//var optionsField = nameParts.join('_');
+        //
+		//if(value != ''){
+		//	$('#' + optionsField).val("yes");
+		//}
+		//else{
+		//	$('#' + optionsField).val("no");
+		//}
 	},
 
 	textareaHTMLValidation: function(e){
@@ -146,7 +151,6 @@ var FormWrapper = React.createClass({
 			this.markInvalid($(e.target).attr('name'), 'This HTML content must not have script or css tags');
 		}
 		else{
-			console.log("all is good now");
 			$(e.target).parent().removeClass('has-error');
 			$(e.target).parent().find('.validation-message').addClass('sr-only');
 		}
@@ -186,6 +190,123 @@ var FormWrapper = React.createClass({
 			validationObjects.push( { field: 'cost_to_build', message: validationMessage } );
 		}
 
+		var privacy_policy_has = $("#privacy_policy_has").val();
+		var privacy_policy_url = $("#privacy_policy_url").val();
+
+		if(privacy_policy_has == "false" && privacy_policy_url != null && privacy_policy_url != ""){
+			validationMessage = "Privacy policy URL cannot be filled without checking the select box";
+			validationObjects.push( { field: 'privacy_policy_url', message: validationMessage } );
+		}
+
+		if(privacy_policy_has == "true" && (privacy_policy_url == null || privacy_policy_url == "")){
+			validationMessage = "Privacy policy URL cannot be empty with the select box checked";
+			validationObjects.push( { field: 'privacy_policy_url', message: validationMessage } );
+		}
+
+		var usage_policy_has = $("#usage_policy_has").val();
+		var usage_policy_url = $("#usage_policy_url").val();
+
+		if(usage_policy_has == "false" && usage_policy_url != null && usage_policy_url != ""){
+			validationMessage = "Usage policy URL cannot be filled without checking the select box";
+			validationObjects.push( { field: 'usage_policy_url', message: validationMessage } );
+		}
+
+		if(usage_policy_has == "true" && (usage_policy_url == null || usage_policy_url == "")){
+			validationMessage = "Usage policy URL cannot be empty with the select box checked";
+			validationObjects.push( { field: 'usage_policy_url', message: validationMessage } );
+		}
+
+		var user_documentation_has = $("#user_documentation_has").val();
+		var user_documentation_url = $("#user_documentation_url").val();
+
+		if(user_documentation_has == "false" && user_documentation_url != null && user_documentation_url != ""){
+			validationMessage = "User documentation URL cannot be filled without checking the select box";
+			validationObjects.push( { field: 'user_documentation_url', message: validationMessage } );
+		}
+
+		if(user_documentation_has == "true" && (user_documentation_url == null || user_documentation_url == "")){
+			validationMessage = "User documentation URL cannot be empty with the select box checked";
+			validationObjects.push( { field: 'user_documentation_url', message: validationMessage } );
+		}
+
+		var operations_documentation_has = $("#operations_documentation_has").val();
+		var operations_documentation_url = $("#operations_documentation_url").val();
+
+		if(operations_documentation_has == "false" && operations_documentation_url != null && operations_documentation_url != ""){
+			validationMessage = "Operations documentation URL cannot be filled without checking the select box";
+			validationObjects.push( { field: 'operations_documentation_url', message: validationMessage } );
+		}
+
+		if(operations_documentation_has == "true" && (operations_documentation_url == null || operations_documentation_url == "")){
+			validationMessage = "Operations documentation URL cannot be empty with the select box checked";
+			validationObjects.push( { field: 'operations_documentation_url', message: validationMessage } );
+		}
+
+		var monitoring_has = $("#monitoring_has").val();
+		var monitoring_url = $("#monitoring_url").val();
+
+		if(monitoring_has == "false" && monitoring_url != null && monitoring_url != ""){
+			validationMessage = "Monitoring URL cannot be filled without checking the select box";
+			validationObjects.push( { field: 'monitoring_url', message: validationMessage } );
+		}
+
+		if(monitoring_has == "true" && (monitoring_url == null || monitoring_url == "")){
+			validationMessage = "Monitoring URL cannot be empty with the select box checked";
+			validationObjects.push( { field: 'monitoring_url', message: validationMessage } );
+		}
+
+		var accounting_has = $("#accounting_has").val();
+		var accounting_url = $("#accounting_url").val();
+
+		if(accounting_has == "false" && accounting_url != null && accounting_url != ""){
+			validationMessage = "Accounting URL cannot be filled without checking the select box";
+			validationObjects.push( { field: 'accounting_url', message: validationMessage } );
+		}
+
+		if(accounting_has == "true" && (accounting_url == null || accounting_url == "")){
+			validationMessage = "Accounting URL cannot be empty with the select box checked";
+			validationObjects.push( { field: 'accounting_url', message: validationMessage } );
+		}
+
+		var business_continuity_plan_has = $("#business_continuity_plan_has").val();
+		var business_continuity_plan_url = $("#business_continuity_plan_url").val();
+
+		if(business_continuity_plan_has == "false" && business_continuity_plan_url != null && business_continuity_plan_url != ""){
+			validationMessage = "Business continuity plan URL cannot be filled without checking the select box";
+			validationObjects.push( { field: 'business_continuity_plan_url', message: validationMessage } );
+		}
+
+		if(business_continuity_plan_has == "true" && (business_continuity_plan_url == null || business_continuity_plan_url == "")){
+			validationMessage = "Business continuity plan URL cannot be empty with the select box checked";
+			validationObjects.push( { field: 'business_continuity_plan_url', message: validationMessage } );
+		}
+
+		var disaster_recovery_plan_has = $("#disaster_recovery_plan_has").val();
+		var disaster_recovery_plan_url = $("#disaster_recovery_plan_url").val();
+
+		if(disaster_recovery_plan_has == "false" && disaster_recovery_plan_url != null && disaster_recovery_plan_url != ""){
+			validationMessage = "Disaster recovery plan URL cannot be filled without checking the select box";
+			validationObjects.push( { field: 'disaster_recovery_plan_url', message: validationMessage } );
+		}
+
+		if(disaster_recovery_plan_has == "true" && (disaster_recovery_plan_url == null || disaster_recovery_plan_url == "")){
+			validationMessage = "Disaster recovery plan URL cannot be empty with the select box checked";
+			validationObjects.push( { field: 'disaster_recovery_plan_url', message: validationMessage } );
+		}
+
+		var decommissioning_procedure_has = $("#decommissioning_procedure_has").val();
+		var decommissioning_procedure_url = $("#decommissioning_procedure_url").val();
+
+		if(decommissioning_procedure_has == "false" && decommissioning_procedure_url != null && decommissioning_procedure_url != ""){
+			validationMessage = "Decommissioning procedure URL cannot be filled without checking the select box";
+			validationObjects.push( { field: 'decommissioning_procedure_url', message: validationMessage } );
+		}
+
+		if(decommissioning_procedure_has == "true" && (decommissioning_procedure_url == null || decommissioning_procedure_url == "")){
+			validationMessage = "Decommissioning procedure URL cannot be empty with the select box checked";
+			validationObjects.push( { field: 'decommissioning_procedure_url', message: validationMessage } );
+		}
+
 
 		if(validationObjects.length > 0){
 			var i = 0;
@@ -208,6 +329,24 @@ var FormWrapper = React.createClass({
 			//var formValues = JSON.stringify($("#service-form").serializeJSON());
 			//console.log("The form values are ->", formValues);
 
+
+			var service_id =  $("#service_id").val();
+
+			if(serviceName != service_id){
+				if(serviceName != null || service_id != "")
+				{
+					serviceName = null;
+					serviceId = null;
+					for(var i = 0; i < globalData.length; i++){
+						if(service_id == globalData[i].name){
+							serviceId = globalData[i].uuid;
+							serviceName = service_id;
+							break;
+						}
+					}
+				}
+			}
+
 			var params = {};
 			params["version"] = $("#version").val();
 			params["status"] = $("#status").val();
@@ -215,8 +354,10 @@ var FormWrapper = React.createClass({
 			params["features_future"] = $("#features_future").val();
 			params["usage_policy_has"] = $("#usage_policy_has").val();
 			params["usage_policy_url"] = $("#usage_policy_url").val();
-			params["usage_documentation_has"] = $("#usage_documentation_has").val();
-			params["usage_documentation_url"] = $("#usage_documentation_url").val();
+			params["privacy_policy_has"] = $("#privacy_policy_has").val();
+			params["privacy_policy_url"] = $("#privacy_policy_url").val();
+			params["user_documentation_has"] = $("#user_documentation_has").val();
+			params["user_documentation_url"] = $("#user_documentation_url").val();
 			params["operations_documentation_has"] = $("#operations_documentation_has").val();
 			params["operations_documentation_url"] = $("#operations_documentation_url").val();
 			params["monitoring_has"] = $("#monitoring_has").val();
@@ -272,8 +413,7 @@ var FormWrapper = React.createClass({
 				}.bind(this)
 			});
 		}
-		else{			
-			console.log("The form is not valid");
+		else{
 		}	
 	},
 
@@ -303,28 +443,31 @@ var FormWrapper = React.createClass({
                 $("#status").val(this.state.service_details.status);
                 $("#features_current").val(this.state.service_details.features_current);
                 $("#features_future").val(this.state.service_details.features_future);
-                $("#usage_policy_has").val(this.state.service_details.usage_policy_has);
-                $("#usage_policy_url").val(this.state.service_details.usage_policy_url);
-                $("#usage_documentation_has").val(this.state.service_details.usage_documentation_has);
-                $("#usage_documentation_url").val(this.state.service_details.usage_documentation_url);
-                $("#operations_documentation_has").val(this.state.service_details.operations_documentation_has);
-                $("#operations_documentation_url").val(this.state.service_details.operations_documentation_url);
-                $("#monitoring_has").val(this.state.service_details.monitoring_has);
-                $("#monitoring_url").val(this.state.service_details.monitoring_url);
-                $("#accounting_has").val(this.state.service_details.accounting_has);
-                $("#accounting_url").val(this.state.service_details.accounting_url);
-                $("#business_continuity_plan_has").val(this.state.service_details.business_continuity_plan_has);
-                $("#business_continuity_plan_url").val(this.state.service_details.business_continuity_plan_url);
-                $("#disaster_recovery_plan_has").val(this.state.service_details.disaster_recovery_plan_has);
-                $("#disaster_recovery_plan_url").val(this.state.service_details.disaster_recovery_plan_url);
-                $("#decommissioning_procedure_has").val(this.state.service_details.decommissioning_procedure_has);
-                $("#decommissioning_procedure_url").val(this.state.service_details.decommissioning_procedure_url);
+                $("#usage_policy_has").val(this.state.service_details.usage_policy_has.toString());
+                $("#usage_policy_url").val(this.state.service_details.usage_policy_link.related.href);
+                $("#privacy_policy_has").val(this.state.service_details.privacy_policy_has.toString());
+                $("#privacy_policy_url").val(this.state.service_details.privacy_policy_link.related.href);
+                $("#user_documentation_has").val(this.state.service_details.user_documentation_has.toString());
+                $("#user_documentation_url").val(this.state.service_details.user_documentation_link.related.href);
+                $("#operations_documentation_has").val(this.state.service_details.operations_documentation_has.toString());
+                $("#operations_documentation_url").val(this.state.service_details.operations_documentation_link.related.href);
+                $("#monitoring_has").val(this.state.service_details.monitoring_has.toString());
+                $("#monitoring_url").val(this.state.service_details.monitoring_link.related.href);
+                $("#accounting_has").val(this.state.service_details.accounting_has.toString());
+                $("#accounting_url").val(this.state.service_details.accounting_link.related.href);
+                $("#business_continuity_plan_has").val(this.state.service_details.business_continuity_plan_has.toString());
+                $("#business_continuity_plan_url").val(this.state.service_details.business_continuity_plan_link.related.href);
+                $("#disaster_recovery_plan_has").val(this.state.service_details.disaster_recovery_plan_has.toString());
+                $("#disaster_recovery_plan_url").val(this.state.service_details.disaster_recovery_plan_link.related.href);
+                $("#decommissioning_procedure_has").val(this.state.service_details.decommissioning_procedure_has.toString());
+                $("#decommissioning_procedure_url").val(this.state.service_details.decommissioning_procedure_link.related.href);
                 $("#cost_to_run").val(this.state.service_details.cost_to_run);
                 $("#cost_to_build").val(this.state.service_details.cost_to_build);
                 $("#use_cases").val(this.state.service_details.use_cases);
                 $("#is_in_catalog").val(this.state.service_details.is_in_catalog);
                 $("#service_id").val(this.state.service_details.service.name);
 				serviceId = this.state.service_details.service.uuid;
+				serviceName = this.state.service_details.service.name;
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
@@ -384,6 +527,7 @@ $( function() {
 					data.data[i].value = data.data[i].name;
 					data.data[i].index = i;
 				}
+				globalData = data.data;
                 response(data.data);
             });
 	};
@@ -394,6 +538,7 @@ $( function() {
       select: function( event, ui ) {
 		this.value = ui.item.name;
 		serviceId = ui.item.uuid;
+		serviceName = ui.item.name;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },

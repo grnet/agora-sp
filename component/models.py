@@ -83,7 +83,7 @@ class ServiceComponent(models.Model):
         }
 
     def save(self, *args, **kwargs):
-        if not self.description:
+        if not self.description or self.description == "":
             self.description = None
         super(ServiceComponent, self).save(*args, **kwargs)
 
@@ -154,7 +154,7 @@ class ServiceComponentImplementation(models.Model):
 
 
     def save(self, *args, **kwargs):
-        if not self.description:
+        if not self.description or self.description == "":
             self.description = None
         super(ServiceComponentImplementation, self).save(*args, **kwargs)
 
@@ -197,7 +197,7 @@ class ServiceComponentImplementationDetail(models.Model):
         ])
 
     def save(self, *args, **kwargs):
-        if not self.configuration_parameters:
+        if not self.configuration_parameters or self.configuration_parameters == "":
             self.configuration_parameters = None
         super(ServiceComponentImplementationDetail, self).save(*args, **kwargs)
 
@@ -208,6 +208,7 @@ class ServiceDetailsComponent(models.Model):
         unique_together = (('service_id', 'service_details_id', 'service_component_implementation_detail_id'),)
         verbose_name_plural = "5. Service Components Implementations Details Link"
 
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     service_id = models.ForeignKey(Service)
     service_details_id = models.ForeignKey(ServiceDetails)
     service_component_implementation_detail_id = models.ForeignKey(ServiceComponentImplementationDetail)
@@ -221,4 +222,33 @@ class ServiceDetailsComponent(models.Model):
             "service_uuid": self.service_id.name,
             "service_details_version": self.service_details_id.version,
             "service_component_implementation_detail_uuid": self.service_component_implementation_detail_id.pk
+        }
+
+    def as_full(self):
+        return {
+            "service": {
+                "uuid": self.service_id.pk,
+                "name": self.service_id.name
+            },
+            "service_details": {
+                "uuid": self.service_details_id.pk,
+                "version": self.service_details_id.version,
+                "service": {
+                    "uuid": self.service_details_id.id_service.pk,
+                    "name": self.service_details_id.id_service.name
+                }
+            },
+            "component_implementation_details": {
+                "uuid": self.service_component_implementation_detail_id.pk,
+                "version": self.service_component_implementation_detail_id.version,
+                "component": {
+                    "uuid": self.service_component_implementation_detail_id.component_id.pk,
+                    "name": self.service_component_implementation_detail_id.component_id.name
+                },
+                "component_implementation": {
+                    "uuid": self.service_component_implementation_detail_id.component_implementation_id.pk,
+                    "name": self.service_component_implementation_detail_id.component_implementation_id.name
+                }
+
+            }
         }

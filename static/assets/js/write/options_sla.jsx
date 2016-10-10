@@ -2,7 +2,9 @@
 var formName = 'Options SLA Form';
 
 var serviceOptionId = null;
+var serviceOptionName = null;
 var opType = "";
+var globalData;
 
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
@@ -33,11 +35,11 @@ var OptionsComponent = React.createClass({
 var FormWrapper = React.createClass({
 
 	generateFormElements: function(resourceObject){
-		var formElements = resourceObject.map(function(field){
+		var formElements = resourceObject.map(function(field, i){
 			if(field.tag == 'input'){
 				if(field.type == 'text'){					
 					return (
-						<div className="form-group">
+						<div className="form-group" key={i}>
 			      	        <label htmlFor={field.name}>{field.label}</label>			      	        
 			      	        <input className="form-control" id={field.name} type={field.type} name={field.name} placeholder={field.placeholder} aria-describedby={field.name + '-error'} />
 			      	        <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -47,7 +49,7 @@ var FormWrapper = React.createClass({
 			}
 			else if(field.tag == 'textarea'){
 				return(
-					<div className="form-group">
+					<div className="form-group" key={i}>
 					    <label htmlFor={field.name}>{field.label}</label>
 					    <textarea className="form-control" id={field.name} name={field.name} rows="6"></textarea>
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -77,7 +79,6 @@ var FormWrapper = React.createClass({
 	},
 
 	clearValidations: function(){
-		console.log("Clearing the validations");
 		$('body').find('.has-error').removeClass('has-error');
 		$('body').find('.validation-message').addClass('sr-only');
 	},
@@ -95,6 +96,12 @@ var FormWrapper = React.createClass({
 		if($('#name').val().length > 255){
 			validationMessage = "Content exceeds max length of 255 characters."
 			validationObjects.push( { field: 'name', message: validationMessage } );			
+		}
+
+		var serv_op_id = $("#service_option_id").val();
+		if(serv_op_id == null || serv_op_id == ""){
+			validationMessage = "The service option is required"
+			validationObjects.push( { field: 'service_option_id', message: validationMessage } );
 		}
 
 		if(validationObjects.length > 0){
@@ -116,6 +123,24 @@ var FormWrapper = React.createClass({
 		if(this.validateForm()){			
 			//var formValues = JSON.stringify($("#service-form").serializeJSON());
 			//console.log("The form values are ->", formValues);
+
+			var service_option_id =  $("#service_option_id").val();
+
+			if(serviceOptionName != service_option_id){
+				if(serviceOptionName != null || service_option_id != "")
+				{
+					serviceOptionName = null;
+					serviceOptionId = null;
+					for(var i = 0; i < globalData.length; i++){
+						if(service_option_id == globalData[i].name){
+							serviceOptionId = globalData[i].uuid;
+							serviceOptionName = service_option_id;
+							break;
+						}
+					}
+				}
+			}
+
 
 			var params = {};
 			params["name"] = $("#name").val();
@@ -158,8 +183,7 @@ var FormWrapper = React.createClass({
 				}.bind(this)
 			});
 		}
-		else{			
-			console.log("The form is not valid");
+		else{
 		}	
 	},
 
@@ -188,6 +212,7 @@ var FormWrapper = React.createClass({
                 $("#name").val(this.state.sla.name);
                 $("#service_option_id").val(this.state.sla.service_option.name);
 				serviceOptionId = this.state.sla.service_option.uuid;
+				serviceOptionName = this.state.sla.service_option.name;
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
@@ -247,6 +272,7 @@ $( function() {
 					data.data[i].label = data.data[i].name;
                     data.data[i].index = i;
 				}
+				globalData = data.data;
                 response(data.data);
             });
 	};
@@ -257,6 +283,7 @@ $( function() {
       select: function( event, ui ) {
 		this.value = ui.item.name;
 		serviceOptionId = ui.item.uuid;
+		serviceOptionName = ui.item.name;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },

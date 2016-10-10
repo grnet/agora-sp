@@ -2,8 +2,12 @@
 var formName = 'Service Component Implementation Detail Form';
 
 var componentId = null;
+var componentName = null;
 var componentImplementationId = null;
+var componentImplementationName = null;
 var opType = "";
+var globalComponentData;
+var globalImplementationData;
 
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
@@ -36,11 +40,11 @@ var OptionsComponent = React.createClass({
 var FormWrapper = React.createClass({
 
 	generateFormElements: function(resourceObject){
-		var formElements = resourceObject.map(function(field){
+		var formElements = resourceObject.map(function(field, i){
 			if(field.tag == 'input'){
 				if(field.type == 'text'){					
 					return (
-						<div className="form-group">
+						<div className="form-group" key={i}>
 			      	        <label htmlFor={field.name}>{field.label}</label>			      	        
 			      	        <input className="form-control" id={field.name} type={field.type} name={field.name} placeholder={field.placeholder} aria-describedby={field.name + '-error'} />
 			      	        <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -50,7 +54,7 @@ var FormWrapper = React.createClass({
 			}
 			else if(field.tag == 'textarea'){
 				return(
-					<div className="form-group">
+					<div className="form-group" key={i}>
 					    <label htmlFor={field.name}>{field.label}</label>
 					    <textarea className="form-control" id={field.name} name={field.name} placeholder={field.placeholder} rows="6" onChange={this[field.onChange]}></textarea>
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -81,7 +85,6 @@ var FormWrapper = React.createClass({
 	},
 
 	clearValidations: function(){
-		console.log("Clearing the validations");
 		$('body').find('.has-error').removeClass('has-error');
 		$('body').find('.validation-message').addClass('sr-only');
 	},
@@ -114,12 +117,14 @@ var FormWrapper = React.createClass({
 			validationMessage = "Content exceeds max length of 255 characters."
 			validationObjects.push( { field: 'version', message: validationMessage } );			
 		}
-		if($('#component_id').val() == null){
-			validationMessage = "The component is required."
-			validationObjects.push( { field: 'component_id_id', message: validationMessage } );
+		var comp_id = $('#component_id').val();
+		if(comp_id == null || comp_id == ""){
+			validationMessage = "The component is required.";
+			validationObjects.push( { field: 'component_id', message: validationMessage } );
 		}
-		if($('#component_implementation_id').val() == null){
-			validationMessage = "The component is required."
+		var comp_imp_id = $('#component_implementation_id').val();
+		if(comp_imp_id == null || comp_imp_id == ""){
+			validationMessage = "The component is required.";
 			validationObjects.push( { field: 'component_implementation_id', message: validationMessage } );
 		}
 
@@ -142,6 +147,42 @@ var FormWrapper = React.createClass({
 		if(this.validateForm()){			
 			//var formValues = JSON.stringify($("#service-form").serializeJSON());
 			//console.log("The form values are ->", formValues);
+
+
+			var component_id =  $("#component_id").val();
+
+			if(componentName != component_id){
+				if(componentName != null || component_id != "")
+				{
+					componentName = null;
+					componentId = null;
+					for(var i = 0; i < globalComponentData.length; i++){
+						if(component_id == globalComponentData[i].name){
+							componentId = globalComponentData[i].uuid;
+							componentName = component_id;
+							break;
+						}
+					}
+				}
+			}
+
+
+			var component_implementation_id =  $("#component_implementation_id").val();
+
+			if(componentImplementationName != component_implementation_id){
+				if(componentImplementationName != null || component_implementation_id != "")
+				{
+					componentImplementationName = null;
+					componentImplementationId = null;
+					for(var i = 0; i < globalImplementationData.length; i++){
+						if(component_implementation_id == globalImplementationData[i].name){
+							componentImplementationId = globalImplementationData[i].uuid;
+							componentImplementationName = component_implementation_id;
+							break;
+						}
+					}
+				}
+			}
 
 			var params = {};
 			params["version"] = $("#version").val();
@@ -188,8 +229,7 @@ var FormWrapper = React.createClass({
 			});
 
 		}
-		else{			
-			console.log("The form is not valid");
+		else{
 		}
 		
 	},
@@ -222,7 +262,9 @@ var FormWrapper = React.createClass({
                 $("#component_id").val(this.state.component.service_component.name);
                 $("#component_implementation_id").val(this.state.component.service_component_implementation.name);
 				componentId = this.state.component.service_component.uuid;
+				componentName = this.state.component.service_component.name;
 				componentImplementationId = this.state.component.service_component_implementation.uuid;
+				componentImplementationName = this.state.component.service_component_implementation.name;
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
@@ -286,6 +328,7 @@ $( function() {
 					data.data[i].label = data.data[i].name;
                     data.data[i].index = i;
 				}
+				globalComponentData = data.data;
                 response(data.data);
             });
 	};
@@ -304,6 +347,7 @@ $( function() {
 					data.data[i].label = data.data[i].name;
                     data.data[i].index = i;
 				}
+				globalImplementationData = data.data;
                 response(data.data);
             });
 	};
@@ -314,7 +358,8 @@ $( function() {
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.name;
-		  componentId = ui.item.uuid;
+		componentId = ui.item.uuid;
+		componentName = ui.item.name;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },
@@ -335,6 +380,7 @@ $( function() {
       select: function( event, ui ) {
 		this.value = ui.item.name;
 		componentImplementationId = ui.item.uuid;
+		componentImplementationName = ui.item.name;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },

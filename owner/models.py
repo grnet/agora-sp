@@ -32,11 +32,11 @@ class Institution(models.Model):
     def save(self, *args, **kwargs):
         if not self.name:
             self.name = None
-        if not self.address:
+        if not self.address or self.address == "":
             self.address = None
-        if not self.country:
+        if not self.country or self.country == "":
             self.country = None
-        if not self.department:
+        if not self.department or self.department == "":
             self.department = None
         super(Institution, self).save(*args, **kwargs)
 
@@ -62,13 +62,13 @@ class ServiceOwner(models.Model):
 
 
     def save(self, *args, **kwargs):
-        if not self.phone:
+        if not self.phone or self.phone == "":
             self.phone = None
-        if not self.first_name:
+        if not self.first_name or self.first_name == "":
             self.first_name = None
-        if not self.last_name:
+        if not self.last_name or self.last_name == "":
             self.last_name = None
-        if not self.email:
+        if not self.email or self.email == "":
             self.email = None
         super(ServiceOwner, self).save(*args, **kwargs)
 
@@ -123,15 +123,15 @@ class ContactInformation(models.Model):
         return { "external_contact_information": response }
 
     def save(self, *args, **kwargs):
-        if not self.phone:
+        if not self.phone or self.phone == "":
             self.phone = None
-        if not self.first_name:
+        if not self.first_name or self.first_name == "":
             self.first_name = None
-        if not self.last_name:
+        if not self.last_name or self.last_name == "":
             self.last_name = None
-        if not self.email:
+        if not self.email or self.email == "":
             self.email = None
-        if not self.url:
+        if not self.url or self.url == "":
             self.url = None
         super(ContactInformation, self).save(*args, **kwargs)
 

@@ -163,6 +163,18 @@ def get_contact_information_all(request):
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
+def get_institution_all(request):
+
+    query = request.GET.get('search')
+    if query is not None:
+        query = query.lower()
+
+    institutions = [i.as_json() for i in models.Institution.objects.all()
+              if (query == None or query == "") or query in i.name.lower()]
+    response = helper.get_response_info(strings.SERVICE_OWNER_INFORMATION, institutions)
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
 
 def get_service_owner_single(request, owner_uuid):
     response = {}

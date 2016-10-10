@@ -2,7 +2,9 @@
 var formName = 'Users customers Form';
 
 var serviceId;
+var serviceName;
 var opType;
+var globalData;
 
 var optionsData = [
   {id: 1, value: "Individual Researchers", text: "Individual Researchers"},
@@ -35,11 +37,11 @@ var OptionsComponent = React.createClass({
 var FormWrapper = React.createClass({
 
 	generateFormElements: function(resourceObject){
-		var formElements = resourceObject.map(function(field){
+		var formElements = resourceObject.map(function(field, i){
 			if(field.tag == 'input'){
 				if(field.type == 'text'){					
 					return (
-						<div className="form-group">
+						<div className="form-group" key={i}>
 			      	        <label htmlFor={field.name}>{field.label}</label>			      	        
 			      	        <input className="form-control" id={field.name} type={field.type} name={field.name} placeholder={field.placeholder} aria-describedby={field.name + '-error'} />
 			      	        <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -49,7 +51,7 @@ var FormWrapper = React.createClass({
 			}
 			else if(field.tag == 'textarea'){
 				return(
-					<div className="form-group">
+					<div className="form-group" key={i}>
 					    <label htmlFor={field.name}>{field.label}</label>
 					    <textarea className="form-control" id={field.name} name={field.name} rows="6"></textarea>
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -58,7 +60,7 @@ var FormWrapper = React.createClass({
 			}
 			else if(field.tag == 'select'){
 				return(
-					<div className="form-group">
+					<div className="form-group" key={i}>
 					    <label htmlFor={field.name}>{field.label}</label>
 					    <OptionsComponent options={field.optionsData} selectName={field.name}></OptionsComponent>
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -79,7 +81,6 @@ var FormWrapper = React.createClass({
 	},
 
 	clearValidations: function(){
-		console.log("Clearing the validations");
 		$('body').find('.has-error').removeClass('has-error');
 		$('body').find('.validation-message').addClass('sr-only');
 	},
@@ -139,6 +140,24 @@ var FormWrapper = React.createClass({
 			//var formValues = JSON.stringify($("#service-form").serializeJSON());
 			//console.log("The form values are ->", formValues);
 
+
+			var service_id =  $("#service_id").val();
+
+			if(serviceName != service_id){
+				if(serviceName != null || service_id != "")
+				{
+					serviceName = null;
+					serviceId = null;
+					for(var i = 0; i < globalData.length; i++){
+						if(service_id == globalData[i].name){
+							serviceId = globalData[i].uuid;
+							serviceName = service_id;
+							break;
+						}
+					}
+				}
+			}
+
 			var params = {};
 			params["name"] = $("#name").val();
 			params["role"] = $("#role").val();
@@ -180,8 +199,7 @@ var FormWrapper = React.createClass({
 				}.bind(this)
 			});
 		}
-		else{			
-			console.log("The form is not valid");
+		else{
 		}	
 	},
 
@@ -216,6 +234,7 @@ var FormWrapper = React.createClass({
                 $("#role").val(this.state.user_customer.role);
                 $("#service_id").val(this.state.user_customer.service.name);
 				serviceId = this.state.user_customer.service.uuid;
+				serviceName = this.state.user_customer.service.name;
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
@@ -275,6 +294,7 @@ $( function() {
 					data.data[i].label = data.data[i].name;
                     data.data[i].index = i;
 				}
+				globalData = data.data;
                 response(data.data);
             });
 	};
@@ -288,6 +308,7 @@ $( function() {
       select: function( event, ui ) {
 		this.value = ui.item.name;
 		serviceId = ui.item.uuid;
+		serviceName = ui.item.name;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },

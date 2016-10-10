@@ -43,7 +43,7 @@
         <div id="header" class="col-xs-12"></div>
         <div id="sidebar" class="page-sidebar col-md-2 hidden-sm hidden-xs">
         </div>
-        <div id="write-content" class="col-xs-12 col-md-8 col-md-offset-2">
+        <div id="write-content" class="col-xs-12 col-md-8 col-md-offset-3 col-lg-offset-2">
 
         </div>
         <div id="modal-danger" class="modal modal-message modal-danger fade" style="display: none" aria-hidden="true">
@@ -202,7 +202,7 @@
                 if(this.props.name == "Add new service")
                     href = host + "/ui/service";
                 else if(this.props.name == "Home")
-                    href = host + "/ui/";
+                    href = host + "/ui/home";
                 else if(this.props.name == "Services")
                     href = host + "/ui/service/all";
                 else if(this.props.name == "Components")
@@ -276,8 +276,8 @@
 
                             {this.props.areas.map(function (area) {
                                 return (
-                                    <li>
-                                        <ParentMenuIcon name={area}/>
+                                    <li key={area}>
+                                        <ParentMenuIcon name={area} key={area}/>
                                     </li>
                                 )
                             })}
@@ -305,6 +305,10 @@
     </script>
 
     <input type="hidden" id="source" value="{{ source }}" />
+
+    {% if type == "home" %}
+        <script type="text/babel" src="/static/assets/js/write/home.jsx"></script>
+    {% endif %}
 
     {% if type == "contact_information" %}
         <script type="text/babel" src="/static/assets/js/write/contact_information.jsx"></script>
@@ -419,7 +423,26 @@
         $(document).ready(function () {
             $.ajaxSetup({'cache':false});
         });
+
+
+        $(function(){
+           $(window).scroll(function () {
+                //if you hard code, then use console
+                //.log to determine when you want the
+                //nav bar to stick.
+                //console.log($(window).scrollTop());
+                if ($(window).scrollTop() > 120) {
+                    $('#nav_bar').addClass('navbar-shrink', 200);
+                }
+                if ($(window).scrollTop() < 121) {
+                    $('#nav_bar').removeClass('navbar-shrink', 200);
+                }
+            });
+        });
+
     </script>
+
+
 
     <link rel="stylesheet" href="/static/assets/css/write.css" type="text/css" />
 

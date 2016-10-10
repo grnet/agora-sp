@@ -2,7 +2,9 @@
 var formName = 'Service Component Implementation Form';
 
 var componentId = null;
+var componentName = null;
 var opType = "";
+var globalData;
 
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
@@ -34,11 +36,11 @@ var OptionsComponent = React.createClass({
 var FormWrapper = React.createClass({
 
 	generateFormElements: function(resourceObject){
-		var formElements = resourceObject.map(function(field){
+		var formElements = resourceObject.map(function(field, i){
 			if(field.tag == 'input'){
 				if(field.type == 'text'){					
 					return (
-						<div className="form-group">
+						<div className="form-group" key={i}>
 			      	        <label htmlFor={field.name}>{field.label}</label>			      	        
 			      	        <input className="form-control" id={field.name} type={field.type} name={field.name} placeholder={field.placeholder} aria-describedby={field.name + '-error'} />
 			      	        <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -48,7 +50,7 @@ var FormWrapper = React.createClass({
 			}
 			else if(field.tag == 'textarea'){
 				return(
-					<div className="form-group">
+					<div className="form-group" key={i}>
 					    <label htmlFor={field.name}>{field.label}</label>
 					    <textarea className="form-control" id={field.name} name={field.name} placeholder={field.placeholder} rows="6" onChange={this[field.onChange]}></textarea>
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -78,7 +80,6 @@ var FormWrapper = React.createClass({
 	},
 
 	clearValidations: function(){
-		console.log("Clearing the validations");
 		$('body').find('.has-error').removeClass('has-error');
 		$('body').find('.validation-message').addClass('sr-only');
 	},
@@ -111,7 +112,9 @@ var FormWrapper = React.createClass({
 			validationMessage = "Content exceeds max length of 255 characters."
 			validationObjects.push( { field: 'name', message: validationMessage } );			
 		}
-		if($('#component_id').val() == null){
+
+		var comp_id = $('#component_id').val();
+		if(comp_id == null || comp_id == ""){
 			validationMessage = "The component is required."
 			validationObjects.push( { field: 'component_id', message: validationMessage } );
 		}
@@ -136,6 +139,23 @@ var FormWrapper = React.createClass({
 		if(this.validateForm()){			
 			//var formValues = JSON.stringify($("#service-form").serializeJSON());
 			//console.log("The form values are ->", formValues);
+
+			var component_id =  $("#component_id").val();
+
+			if(componentName != component_id){
+				if(componentName != null || component_id != "")
+				{
+					componentName = null;
+					componentId = null;
+					for(var i = 0; i < globalData.length; i++){
+						if(component_id == globalData[i].name){
+							componentId = globalData[i].uuid;
+							componentName = component_id;
+							break;
+						}
+					}
+				}
+			}
 
 
 			var params = {};
@@ -180,8 +200,7 @@ var FormWrapper = React.createClass({
 				}.bind(this)
 			});
 		}
-		else{			
-			console.log("The form is not valid");
+		else{
 		}
 		
 	},
@@ -213,6 +232,7 @@ var FormWrapper = React.createClass({
                 $("#description").val(this.state.component.description);
                 $("#component_id").val(this.state.component.component.name);
 				componentId = this.state.component.component.uuid;
+				componentName = this.state.component.component.name;
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
@@ -271,6 +291,9 @@ $( function() {
 			$(".ui-menu-item").remove();
 		}});
 
+
+
+
 	var getData = function(request, response){
 
         var url = window.location.href;
@@ -285,9 +308,11 @@ $( function() {
 					data.data[i].label = data.data[i].name;
                     data.data[i].index = i;
 				}
+				globalData = data.data;
                 response(data.data);
             });
 	};
+
 
     $( "#component_id" ).autocomplete({
       source: getData,
@@ -295,9 +320,12 @@ $( function() {
       select: function( event, ui ) {
 		this.value = ui.item.name;
 		componentId = ui.item.uuid;
+		componentName = ui.item.name;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },
+	  change: function(event, ui){
+	  },
 	  focus: function(event, ui){
           var items = $(".ui-menu-item");
 		  items.removeClass("ui-menu-item-hover");

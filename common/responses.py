@@ -45,7 +45,7 @@ ERROR_MESSAGES = {
     SERVICE_DEPENDENCY_EXISTS: "The service already has the provided service dependency",
     EXTERNAL_SERVICE_DEPENDENCY_UUID_NOT_PROVIDED: "External service dependency UUID not provided",
     EXTERNAL_SERVICE_DEPENDENCY_INVALID_UUID: "An invalid external service dependency UUID was supplied",
-    EXTERNAL_SERVICE_DEPENDENCY_NOT_FOUND: "The requested external service was not found",
+    EXTERNAL_SERVICE_DEPENDENCY_NOT_FOUND: "The requested external service dependency was not found",
     EXTERNAL_SERVICE_DEPENDENCY_EXISTS: "The service already has the provided service dependency",
     USER_CUSTOMER_NAME_NOT_PROVIDED: "User customer name not provided",
     USER_CUSTOMER_ROLE_EMPTY: "The provided user customer role is empty",

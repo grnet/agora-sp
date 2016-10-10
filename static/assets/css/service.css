@@ -140,4 +140,34 @@ p {
     margin-top: 15px;
 }
 
+.ui-helper-hidden-accessible {
+    display: none;
+}
 
+#nav_bar {
+    height: 120px;
+}
+
+.navbar-shrink {
+    height: 100px !important;
+}
+
+#sidebar {
+    margin-top: 150px !important;
+}
+
+#write-content {
+    margin-top: 130px !important;
+}
+
+.col-lg-10 {
+    width: 83.333333% !important;
+}
+
+.col-lg-9 {
+    width: 75% !important;
+}
+
+.field-label {
+    padding-left: 0 !important;
+}

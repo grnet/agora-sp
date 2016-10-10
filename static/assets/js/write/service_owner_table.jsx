@@ -60,14 +60,14 @@ var OwnerTable = React.createClass({
 							</thead>
 							<tbody>
 
-							{this.state.owners.map(function (owner) {
+							{this.state.owners.map(function (owner, i) {
 								return (
-									<tr>
+									<tr key={i}>
 										<td>{owner.first_name}</td>
 										<td>{owner.last_name}</td>
 										<td>{owner.email}</td>
 										<td>{owner.phone}</td>
-										<td><a href={"/ui/owner/" + owner.uuid}>View</a></td>
+										<td><a href={"/ui/owner/" + owner.uuid}>Edit</a></td>
 									</tr>
 								)
 							})}

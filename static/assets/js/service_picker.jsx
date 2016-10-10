@@ -601,7 +601,7 @@ var ServiceDependencies = React.createClass({
                 <h2>Service dependencies</h2>
                 <div className="wrapper">
                     {this.state.dependencies.map(function (service) {
-                        return <DependencyWrapper key={service.name} data={service}/>
+                        return <DependencyWrapper key={service.service.name} data={service}/>
                     })}
                 </div>
                 <hr className="separator col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
@@ -691,7 +691,7 @@ var ComponentImplementationWrapper = React.createClass({
                 <h5 className="col-xs-12">Component Implementation Details</h5>
                 <div className="wrapper col-xs-12">
                     {this.props.data.component_implementation_details_list.component_implementation_details.map(function (componentImplementationDetails) {
-                        return <ComponentImplementationDetailsWrapper key={componentImplementationDetails.name} data={componentImplementationDetails}/>
+                        return <ComponentImplementationDetailsWrapper key={componentImplementationDetails.version} data={componentImplementationDetails}/>
                     })}
                 </div>
             </div>
@@ -809,7 +809,7 @@ var ServiceComponents = React.createClass({
                 <h2>Service components</h2>
                 <div className="wrapper">
                     {this.state.service_components.map(function (component) {
-                        return <ComponentWrapper key={component.name} data={component}/>
+                        return <ComponentWrapper key={component.component.name} data={component}/>
                     })}
                 </div>
                 <hr className="separator col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
@@ -1212,8 +1212,7 @@ var ServiceAreas = React.createClass({
 
 
                     {  this.props.services.map(function (service) {
-
-                        return <ServiceWrapper data={service}/>
+                        return <ServiceWrapper data={service} key={service.name}/>
                     })}
                 </div>
             </div>
@@ -1399,11 +1398,11 @@ var PageSidebar = React.createClass({
                         if (area[1] == null)
                             area[1] = "service.png";
                         return (
-                            <li>
-                                <ParentMenuIcon name={area[0][0].service_area} icon={area[1]}/>
+                            <li key={area[0][0].service_area}>
+                                <ParentMenuIcon name={area[0][0].service_area} key={area[0][0].service_area} icon={area[1]}/>
                                 <ul className="submenu">
                                     {area[0].map(function (service) {
-                                        return <li><MenuItemIcon name={service.name} icon={service.logo}/></li>
+                                        return <li><MenuItemIcon name={service.name} key={service.name} icon={service.logo} /></li>
                                     })}
                                 </ul>
                             </li> )
@@ -1475,7 +1474,8 @@ var PickerPage = React.createClass({
                         if (servicesInArea[1] == null)
                             servicesInArea[1] = "service.png";
                         return <ServiceAreas services={servicesInArea[0]} service_area_icon={servicesInArea[1]}
-                                             service_area={servicesInArea[0][0].service_area}/>
+                                             service_area={servicesInArea[0][0].service_area}
+                                             key={servicesInArea[0][0].service_area}/>
                     })}
                 </div>
             </div>

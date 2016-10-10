@@ -7,7 +7,15 @@ var componentImplementationDetailId = null;
 var newServiceId = null;
 var newServiceDetailsId = null;
 var newComponentImplementationDetailId = null;
+var newServiceName = null;
+var newServiceDetailsName = null;
+var newComponentImplementationDetailName = null;
+var newServiceDetailsVersion = null;
+var serviceDetailsVersion = null;
 var opType = "";
+var globalServiceData;
+var globalServiceDetailsData;
+var globalComponentData;
 
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
@@ -40,11 +48,11 @@ var FormWrapper;
 FormWrapper = React.createClass({
 
 	generateFormElements: function (resourceObject) {
-		var formElements = resourceObject.map(function (field) {
+		var formElements = resourceObject.map(function (field, i) {
 			if (field.tag == 'input') {
 				if (field.type == 'text') {
 					return (
-						<div className="form-group">
+						<div className="form-group" key={i}>
 							<label htmlFor={field.name}>{field.label}</label>
 							<input className="form-control" id={field.name} type={field.type} name={field.name}
 								   placeholder={field.placeholder} aria-describedby={field.name + '-error'}/>
@@ -55,7 +63,7 @@ FormWrapper = React.createClass({
 			}
 			else if (field.tag == 'textarea') {
 				return (
-					<div className="form-group">
+					<div className="form-group" key={i}>
 						<label htmlFor={field.name}>{field.label}</label>
 						<textarea className="form-control" id={field.name} name={field.name}
 								  placeholder={field.placeholder} rows="6" onChange={this[field.onChange]}></textarea>
@@ -86,7 +94,6 @@ FormWrapper = React.createClass({
 	},
 
 	clearValidations: function () {
-		console.log("Clearing the validations");
 		$('body').find('.has-error').removeClass('has-error');
 		$('body').find('.validation-message').addClass('sr-only');
 	},
@@ -149,8 +156,62 @@ FormWrapper = React.createClass({
 			//var formValues = JSON.stringify($("#service-form").serializeJSON());
 			//console.log("The form values are ->", formValues);
 
-			var params = {};
+			var service_id =  $("#service_id").val();
 
+			if(newServiceName != service_id){
+				if(newServiceName != null || service_id != "")
+				{
+					newServiceName = null;
+					newServiceId = null;
+					for(var i = 0; i < globalServiceData.length; i++){
+						if(service_id == globalServiceData[i].name){
+							newServiceId = globalServiceData[i].uuid;
+							newServiceName = service_id;
+							break;
+						}
+					}
+				}
+			}
+
+			var service_details_id =  $("#service_details_id").val();
+
+			if(newServiceDetailsName != service_details_id){
+				if(newServiceDetailsName != null || service_details_id != "")
+				{
+					newServiceDetailsName = null;
+					newServiceDetailsId = null;
+					newServiceDetailsVersion = null;
+					for(var i = 0; i < globalServiceDetailsData.length; i++){
+						if(service_details_id == globalServiceDetailsData[i].service.name + " " + globalServiceDetailsData[i].version){
+							newServiceDetailsId = globalServiceDetailsData[i].uuid;
+							newServiceDetailsName = service_details_id;
+							newServiceDetailsVersion = globalServiceDetailsData[i].version;
+							break;
+						}
+					}
+				}
+			}
+
+			var component_implementation_detail_id =  $("#component_implementation_detail_id").val();
+
+			if(newComponentImplementationDetailName != component_implementation_detail_id){
+				if(newComponentImplementationDetailName != null || component_implementation_detail_id != "")
+				{
+					newComponentImplementationDetailName = null;
+					newComponentImplementationDetailId = null;
+					for(var i = 0; i < globalComponentData.length; i++){
+						if(component_implementation_detail_id == globalComponentData[i].service_component.name + " " +
+						globalComponentData[i].service_component_implementation.name + " " + globalComponentData[i].version){
+							newComponentImplementationDetailId = globalComponentData[i].uuid;
+							newComponentImplementationDetailName = component_implementation_detail_id;
+							break;
+						}
+					}
+				}
+			}
+
+
+			var params = {};
 
 			var parts = window.location.href.split("/");
 			var host = "http://" + parts[2];
@@ -162,8 +223,8 @@ FormWrapper = React.createClass({
 				params["new_component_implementation_details_uuid"] = newComponentImplementationDetailId;
 				params["service_id"] = serviceId;
 				params["new_service_id"] = newServiceId;
-				params["service_version"] = serviceDetailsId;
-				params["new_service_version"] = $("#service_details_id").val();
+				params["service_version"] = serviceDetailsVersion;
+				params["new_service_version"] = newServiceDetailsVersion;
 
 				url = host + "/api/v1/component/service_details_component_implementation_details/edit";
 				opType = "edit";
@@ -172,12 +233,11 @@ FormWrapper = React.createClass({
 
 				params["component_implementation_details_uuid"] = newComponentImplementationDetailId;
 				params["service_id"] = newServiceId;
-				params["service_version"] = $("#service_details_id").val();
+				params["service_version"] = newServiceDetailsVersion;
 
 				url = host + "/api/v1/component/service_details_component_implementation_details/add";
 				opType = "add";
 			}
-
 
 
 			this.serverRequest = $.ajax({
@@ -191,8 +251,13 @@ FormWrapper = React.createClass({
 				success: function (data) {
 					if (opType == "add")
 						$("#modal-success-body").text("You have successfully inserted a new service details component relationship");
-					else
+					else {
+						serviceId = newServiceId;
+						serviceDetailsId = newServiceDetailsId;
+						serviceDetailsVersion = newServiceDetailsVersion;
+						componentImplementationDetailId = newComponentImplementationDetailId;
 						$("#modal-success-body").text("You have successfully updated the service details component relationship");
+					}
 					$("#modal-success").modal('show');
 				}.bind(this),
 				error: function (xhr, status, err) {
@@ -203,16 +268,14 @@ FormWrapper = React.createClass({
 			});
 		}
 		else {
-			console.log("The form is not valid");
 		}
 
 	},
 
 	getInitialState: function () {
 		return {
-			component: {
-				version: "",
-				configuration_parameters: ""
+			data: {
+
 			}
 		}
 	},
@@ -230,10 +293,27 @@ FormWrapper = React.createClass({
 			type: "GET",
 			cache: false,
 			success: function (data) {
-				this.setState({component: data.data});
-				$("#service_id").val(this.state.component.version);
-				$("#service_details_id").val(this.state.component.configuration_parameters);
-				$("#component_implementation_detail_id").val(this.state.component.service_component_implementation.name);
+				this.setState({data: data.data});
+				$("#service_id").val(this.state.data.service.name);
+				$("#service_details_id").val(this.state.data.service_details.service.name + " " + this.state.data.service_details.version);
+				$("#component_implementation_detail_id").val(this.state.data.component_implementation_details.component.name +
+				 " " + this.state.data.component_implementation_details.component_implementation.name + " " +
+				this.state.data.component_implementation_details.version);
+
+				serviceId = this.state.data.service.uuid;
+				serviceDetailsId = this.state.data.service_details.uuid;
+				componentImplementationDetailId = this.state.data.component_implementation_details.uuid;
+				newServiceId = serviceId;
+				newServiceDetailsId = serviceDetailsId;
+				newComponentImplementationDetailId = componentImplementationDetailId;
+				newServiceName = this.state.data.service.name;
+				newServiceDetailsName = this.state.data.service_details.service.name + " " + this.state.data.service_details.version;
+				newComponentImplementationDetailName = this.state.data.component_implementation_details.component.name +
+				 " " + this.state.data.component_implementation_details.component_implementation.name + " " +
+				this.state.data.component_implementation_details.version;
+				serviceDetailsVersion = this.state.data.service_details.version;
+				newServiceDetailsVersion = serviceDetailsVersion;
+
 
 			}.bind(this),
 			error: function (xhr, status, err) {
@@ -302,6 +382,7 @@ $( function() {
 					data.data[i].label = data.data[i].name;
                     data.data[i].index = i;
 				}
+				globalServiceData = data.data;
                 response(data.data);
             });
 	};
@@ -320,12 +401,12 @@ $( function() {
         $.getJSON(
             host + "/api/v1/services/version/all?search=" + request.term + "&service=" + service,
             function (data) {
-				console.log(data);
 				for(var i = 0; i < data.data.length; i++) {
-					data.data[i].value = data.data[i].version;
+					data.data[i].value = data.data[i].service.name + " " + data.data[i].version;
 					data.data[i].label = data.data[i].version;
                     data.data[i].index = i;
 				}
+				globalServiceDetailsData = data.data;
                 response(data.data);
             });
 	};
@@ -340,10 +421,12 @@ $( function() {
             host + "/api/v1/component/implementation_detail/all?search=" + request.term,
             function (data) {
 				for(var i = 0; i < data.data.length; i++) {
-					data.data[i].value = data.data[i].version;
+					data.data[i].value = data.data[i].service_component.name + " " +
+						data.data[i].service_component_implementation.name + " " + data.data[i].version;
 					data.data[i].label = data.data[i].version;
                     data.data[i].index = i;
 				}
+				globalComponentData = data.data;
                 response(data.data);
             });
 	};
@@ -355,9 +438,14 @@ $( function() {
       select: function( event, ui ) {
 		this.value = ui.item.name;
 		newServiceId = ui.item.uuid;
+		newServiceName = ui.item.name;
+		$("#service_details_id").val(null);
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },
+	  change: function(event, ui){
+		$("#service_details_id").val(null);
+	  },
 	  focus: function(event, ui){
           var items = $(".ui-menu-item");
 		  items.removeClass("ui-menu-item-hover");
@@ -373,8 +461,10 @@ $( function() {
       source: getDataServiceDetails,
       minLength: 2,
       select: function( event, ui ) {
-		this.value = ui.item.name;
+		this.value = ui.item.service.name + " " + ui.item.version;
 		newServiceDetailsId = ui.item.uuid;
+		newServiceDetailsName = ui.item.service.name + " " + ui.item.version;
+		newServiceDetailsVersion = ui.item.version;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },
@@ -393,8 +483,11 @@ $( function() {
       source: getDataComponentImplementationDetail,
       minLength: 2,
       select: function( event, ui ) {
-		this.value = ui.item.name;
+		this.value = ui.item.service_component.name + " " + ui.item.service_component_implementation.name + " "
+			+ ui.item.version;
 		newComponentImplementationDetailId = ui.item.uuid;
+		newComponentImplementationDetailName = ui.item.service_component.name + " " +
+			ui.item.service_component_implementation.name + " " + ui.item.version;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },

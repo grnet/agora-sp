@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^sla/(?P<sla_uuid>[0-9a-zA-Z\-]+)/?$', views.get_sla),
     url(r'^parameter/(?P<param_uuid>[0-9a-zA-Z\-]+)/?$', views.get_parameter),
     url(r'^sla_parameter/(?P<sla_param_uuid>[0-9a-zA-Z\-]+)/?$', views.get_sla_parameter),
+    url(r'^service_details_options/(?P<serv_det_option_uuid>[0-9a-zA-Z\-]+)/?$', views.get_service_details_options),
 ]

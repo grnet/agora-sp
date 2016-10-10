@@ -4,7 +4,9 @@ var ServiceTable = React.createClass({
 
 	getInitialState: function(){
 		return {
-			services: []
+			services: [],
+			count: 0,
+			selected: 0
 		}
 	},
 
@@ -17,7 +19,8 @@ var ServiceTable = React.createClass({
             cache: false,
             success: function (data) {
 				this.setState({
-                    services: data.data.services
+                    services: data.data.services,
+					count: data.data.count
                 });
 
             }.bind(this),
@@ -34,7 +37,11 @@ var ServiceTable = React.createClass({
     },
 
 	render: function() {
-		console.log(this.state.services);
+
+		var array = [];
+		for(var i = 0; i < this.state.count; i++)
+			array.push(i);
+
 		return (
 			<div className="row">
 				<div className="col-xs-12">
@@ -66,18 +73,25 @@ var ServiceTable = React.createClass({
 
 							{this.state.services.map(function (service) {
 								return (
-									<tr>
+									<tr key={service.name}>
 										<td>{service.name}</td>
 										<td>{service.description_internal}</td>
 										<td>{service.service_area}</td>
 										<td>{service.service_type}</td>
-										<td><a href={"/ui/service/" + service.uuid}>View</a></td>
+										<td><a href={"/ui/service/" + service.uuid}>Edit</a></td>
 									</tr>
 								)
 							})}
 
 							</tbody>
+
 						</table>
+						<div className="col-xs-hidden col-sm-6"></div>
+							<div className="col-xs-12 col-sm-6">
+								<div className="dataTables_paginate paging_bootstrap" id="simpledatatable_paginate">
+
+								</div>
+							</div>
 
 					</div>
 

@@ -4,9 +4,13 @@ var formName = 'External Service Dependencies Form';
 
 var opType;
 var serviceId;
-var serviceDependency;
+var serviceDependencyId;
 var newServiceId;
-var newServiceDependency;
+var newServiceName;
+var newServiceDependencyId;
+var newServiceDependencyName;
+var globalServiceData;
+var globalExternalServiceData;
 
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
@@ -16,7 +20,8 @@ var optionsData = [
 
 var resourceObject = [
 	{ tag: 'input', type: 'text', name: 'service_id', placeholder: 'Enter service name', label: 'Service' },
-	{ tag: 'input', type: 'text', name: 'service_dependency_id', placeholder: 'Enter external service dependency name', label: 'Service dependency' }
+	{ tag: 'input', type: 'text', name: 'service_dependency_id', placeholder: 'Enter external service dependency name', label: 'Service dependency' },
+	{ tag: 'button', name: 'btn-service_dependency_id', value: 'Add external service' }
 ];
 
 var OptionsComponent = React.createClass({
@@ -37,21 +42,21 @@ var OptionsComponent = React.createClass({
 var FormWrapper = React.createClass({
 
 	generateFormElements: function(resourceObject){
-		var formElements = resourceObject.map(function(field){
+		var formElements = resourceObject.map(function(field, i){
 			if(field.tag == 'input'){
 				if(field.type == 'text'){					
 					return (
-						<div className="form-group">
-			      	        <label htmlFor={field.name}>{field.label}</label>			      	        
+						<div className="form-group" key={i}>
+			      	        <label htmlFor={field.name}>{field.label}</label>
 			      	        <input className="form-control" id={field.name} type={field.type} name={field.name} placeholder={field.placeholder} aria-describedby={field.name + '-error'} />
-			      	        <span id={field.name + '-error'} className="validation-message sr-only"></span>
+							<span id={field.name + '-error'} className="validation-message sr-only"></span>
 			      	    </div>
 					);
 				}
 			}
 			else if(field.tag == 'textarea'){
 				return(
-					<div className="form-group">
+					<div className="form-group" key={i}>
 					    <label htmlFor={field.name}>{field.label}</label>
 					    <textarea className="form-control" id={field.name} name={field.name} rows="6"></textarea>
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -67,6 +72,14 @@ var FormWrapper = React.createClass({
 					</div>
 				);				
 			}
+			else if(field.tag == 'button'){
+				return (
+					<div className="form-group" key={i}>
+			      	        <button value={field.value} className="btn btn-purple" id={"btn-" + field.name}>{field.value}</button>
+
+			      	    </div>
+				)
+			}
 		}, this);
 		return formElements;
 	},
@@ -81,7 +94,6 @@ var FormWrapper = React.createClass({
 	},
 
 	clearValidations: function(){
-		console.log("Clearing the validations");
 		$('body').find('.has-error').removeClass('has-error');
 		$('body').find('.validation-message').addClass('sr-only');
 	},
@@ -123,8 +135,42 @@ var FormWrapper = React.createClass({
 			//var formValues = JSON.stringify($("#service-form").serializeJSON());
 			//console.log("The form values are ->", formValues);
 
-			var params = {};
+			var service_id =  $("#service_id").val();
 
+			if(newServiceName != service_id){
+				if(newServiceName != null || service_id != "")
+				{
+					newServiceName = null;
+					newServiceId = null;
+					for(var i = 0; i < globalServiceData.length; i++){
+						if(service_id == globalServiceData[i].name){
+							newServiceId = globalServiceData[i].uuid;
+							newServiceName = service_id;
+							break;
+						}
+					}
+				}
+			}
+
+			var service_dependency_id =  $("#service_dependency_id").val();
+
+			if(newServiceDependencyName != service_dependency_id){
+				if(newServiceDependencyName != null || service_dependency_id != "")
+				{
+					newServiceDependencyName = null;
+					newServiceDependencyId = null;
+					for(var i = 0; i < globalExternalServiceData.length; i++){
+						if(service_dependency_id == globalExternalServiceData[i].name){
+							newServiceDependencyId = globalExternalServiceData[i].id;
+							newServiceDependencyName = service_dependency_id;
+							break;
+						}
+					}
+				}
+			}
+
+
+			var params = {};
 
 			var parts = window.location.href.split("/");
 			var host = "http://" + parts[2];
@@ -132,21 +178,20 @@ var FormWrapper = React.createClass({
 
 			if (this.props.source != null && this.props.source != "") {
 
-				params["external_service_dependency"] = serviceDependency;
-				params["new_external_service_dependency"] = newServiceDependency;
+				params["external_service_dependency"] = serviceDependencyId;
+				params["new_external_service_dependency"] = newServiceDependencyId;
+				params["service_id"] = serviceId;
 
-				url = host + "/api/v1/services/" + serviceId + "/service_external_dependencies/edit";
+				url = host + "/api/v1/services/" + newServiceId + "/service_external_dependencies/edit";
 				opType = "edit";
 			}
 			else {
 
-				params["external_service_dependency"] = serviceDependency;
+				params["external_service_dependency"] = newServiceDependencyId;
 
-				url = host + "/api/v1/services/" + serviceId + "/service_external_dependencies/add";
+				url = host + "/api/v1/services/" + newServiceId + "/service_external_dependencies/add";
 				opType = "add";
 			}
-
-
 
 			this.serverRequest = $.ajax({
 				url: url,
@@ -159,8 +204,11 @@ var FormWrapper = React.createClass({
 				success: function (data) {
 					if (opType == "add")
 						$("#modal-success-body").text("You have successfully inserted a new external service dependency");
-					else
+					else {
+						serviceId = newServiceId;
+						serviceDependencyId = newServiceDependencyId;
 						$("#modal-success-body").text("You have successfully updated the external service dependency");
+					}
 					$("#modal-success").modal('show');
 				}.bind(this),
 				error: function (xhr, status, err) {
@@ -170,17 +218,15 @@ var FormWrapper = React.createClass({
 				}.bind(this)
 			});
 		}
-		else{			
-			console.log("The form is not valid");
+		else{
 		}	
 	},
 
 	getInitialState: function () {
 		return {
-			parameter: {
-				name: "",
-				type: "",
-				expression: ""
+			external_dependency: {
+				service: {},
+				external_service: {}
 			}
 		}
 	},
@@ -198,10 +244,15 @@ var FormWrapper = React.createClass({
             type: "GET",
             cache: false,
             success: function (data) {
-                this.setState({parameter: data.data});
-                $("#name").val(this.state.parameter.name);
-                $("#type").val(this.state.parameter.type);
-                $("#expression").val(this.state.parameter.expression);
+                this.setState({external_dependency: data.data});
+                $("#service_id").val(this.state.external_dependency.service.name);
+                $("#service_dependency_id").val(this.state.external_dependency.external_service.name);
+				serviceId = this.state.external_dependency.service.uuid;
+				newServiceName = this.state.external_dependency.service.name;
+				serviceDependencyId = this.state.external_dependency.external_service.uuid;
+				newServiceDependencyName = this.state.external_dependency.external_service.name;
+				newServiceId = serviceId;
+				newServiceDependencyId = serviceDependencyId;
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
@@ -237,7 +288,19 @@ ReactDOM.render(
 );
 
 
+
+
 $( function() {
+
+	$("#btn-service_dependency_id").click(function(e){
+		e.preventDefault();
+		var url = window.location.href;
+        var contents = url.split("/");
+        var host = contents[0] + "//" + contents[2];
+
+		window.open(host + "/ui/service/external", "_blank");
+	});
+
 
 	var temp = null;
 	$(document).bind('click', function (event) {
@@ -266,6 +329,7 @@ $( function() {
 					data.data[i].label = data.data[i].name;
                     data.data[i].index = i;
 				}
+				globalServiceData = data.data;
                 response(data.data);
             });
 	};
@@ -284,6 +348,7 @@ $( function() {
 					data.data[i].label = data.data[i].name;
                     data.data[i].index = i;
 				}
+				globalExternalServiceData = data.data;
                 response(data.data);
             });
 	};
@@ -295,7 +360,8 @@ $( function() {
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.name;
-		serviceId = ui.item.uuid;
+		newServiceId = ui.item.uuid;
+		newServiceName = ui.item.name;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },
@@ -316,7 +382,8 @@ $( function() {
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.name;
-		serviceDependency = ui.item.id;
+		newServiceDependencyId = ui.item.id;
+		newServiceDependencyName = ui.item.name;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },

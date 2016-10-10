@@ -2,8 +2,15 @@ var formName = 'Service Form';
 
 var opType;
 var serviceOwnerId;
-var InternalContactInformationId;
-var ExternalContactInformationId;
+var serviceOwnerName;
+var internalContactInformationId;
+var internalContactInformationName;
+var externalContactInformationId;
+var externalContactInformationName;
+
+var globalOwnerData;
+var globalInternalContactData;
+var globalExternalContactData;
 
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
@@ -46,11 +53,11 @@ var OptionsComponent = React.createClass({
 var FormWrapper = React.createClass({
 
 	generateFormElements: function(resourceObject){
-		var formElements = resourceObject.map(function(field){
+		var formElements = resourceObject.map(function(field, i){
 			if(field.tag == 'input'){
 				if(field.type == 'text'){					
 					return (
-						<div className="form-group">
+						<div className="form-group" key={i}>
 			      	        <label htmlFor={field.name}>{field.label}</label>			      	        
 			      	        <input className="form-control" id={field.name} type={field.type} name={field.name} placeholder={field.placeholder} aria-describedby={field.name + '-error'} />
 			      	        <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -60,7 +67,7 @@ var FormWrapper = React.createClass({
 			}
 			else if(field.tag == 'textarea'){
 				return(
-					<div className="form-group">
+					<div className="form-group" key={i}>
 					    <label htmlFor={field.name}>{field.label}</label>
 					    <textarea className="form-control" id={field.name} placeholder={field.placeholder} name={field.name} rows="6" onChange={this[field.onChange]}></textarea>
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -69,7 +76,7 @@ var FormWrapper = React.createClass({
 			}
 			else if(field.tag == 'select'){
 				return(
-					<div className="form-group">
+					<div className="form-group" key={i}>
 					    <label htmlFor={field.name}>{field.label}</label>
 					    <OptionsComponent options={field.optionsData} selectName={field.name}></OptionsComponent>
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
@@ -90,7 +97,6 @@ var FormWrapper = React.createClass({
 	},
 
 	clearValidations: function(){
-		console.log("Clearing the validations");
 		$('body').find('.has-error').removeClass('has-error');
 		$('body').find('.validation-message').addClass('sr-only');
 	},
@@ -112,7 +118,7 @@ var FormWrapper = React.createClass({
 	validateForm: function(e){
 		this.clearValidations();
 		var validationObjects = [];
-		var validationMessage = ''
+		var validationMessage = '';
 
 		// --- validation code goes here ---
 
@@ -157,6 +163,58 @@ var FormWrapper = React.createClass({
 			//var formValues = JSON.stringify($("#service-form").serializeJSON());
 			//console.log("The form values are ->", formValues);
 
+
+			var service_owner_id =  $("#service_owner").val();
+
+			if(serviceOwnerName != service_owner_id){
+				if(serviceOwnerName != null || service_owner_id != "")
+				{
+					serviceOwnerName = null;
+					serviceOwnerId = null;
+					for(var i = 0; i < globalOwnerData.length; i++){
+						if(service_owner_id == globalOwnerData[i].first_name + " " + globalOwnerData[i].last_name){
+							serviceOwnerId = globalOwnerData[i].uuid;
+							serviceOwnerName = service_owner_id;
+							break;
+						}
+					}
+				}
+			}
+
+			var external_contact_information =  $("#contact_information_external").val();
+
+			if(externalContactInformationName != external_contact_information){
+				if(externalContactInformationName != null || external_contact_information != "")
+				{
+					externalContactInformationName = null;
+					externalContactInformationId = null;
+					for(var i = 0; i < globalExternalContactData.length; i++){
+						if(external_contact_information == globalExternalContactData[i].first_name + " " + globalExternalContactData[i].last_name){
+							externalContactInformationId = globalExternalContactData[i].uuid;
+							externalContactInformationName = external_contact_information;
+							break;
+						}
+					}
+				}
+			}
+
+			var internal_contact_information =  $("#contact_information_internal").val();
+
+			if(internalContactInformationName != internal_contact_information){
+				if(internalContactInformationName != null || internal_contact_information != "")
+				{
+					internalContactInformationName = null;
+					internalContactInformationId = null;
+					for(var i = 0; i < globalInternalContactData.length; i++){
+						if(internal_contact_information == globalInternalContactData[i].first_name + " " + globalInternalContactData[i].last_name){
+							internalContactInformationId = globalInternalContactData[i].uuid;
+							internalContactInformationName = internal_contact_information;
+							break;
+						}
+					}
+				}
+			}
+
 			var params = {};
 			params["name"] = $("#name").val();
 			params["description_external"] = $("#description_external").val();
@@ -169,8 +227,8 @@ var FormWrapper = React.createClass({
 			params["risks"] = $("#risks").val();
 			params["competitors"] = $("#competitors").val();
 			params["service_owner_uuid"] = serviceOwnerId;
-			params["service_contact_information_uuid"] = ExternalContactInformationId;
-			params["service_internal_contact_information_uuid"] = InternalContactInformationId;
+			params["service_contact_information_uuid"] = externalContactInformationId;
+			params["service_internal_contact_information_uuid"] = internalContactInformationId;
 
 
 			var parts = window.location.href.split("/");
@@ -209,8 +267,7 @@ var FormWrapper = React.createClass({
 				}.bind(this)
 			});
 		}
-		else{			
-			console.log("The form is not valid");
+		else{
 		}	
 	},
 
@@ -258,10 +315,13 @@ var FormWrapper = React.createClass({
 				this.state.service.contact_information.external_contact_information
 					.internal_contact_information.internal_contact_information.last_name);
 				serviceOwnerId = this.state.service.service_owner.uuid;
-				InternalContactInformationId = this.state.service.contact_information.internal_contact_information.
+
+				internalContactInformationId = this.state.service.contact_information.internal_contact_information.
 					internal_contact_information.internal_contact_information.uuid;
-				ExternalContactInformationId = this.state.service.contact_information.external_contact_information.
+				internalContactInformationName = $("#contact_information_internal").val();
+				externalContactInformationId = this.state.service.contact_information.external_contact_information.
 					internal_contact_information.internal_contact_information.uuid;
+				externalContactInformationName = $("#contact_information_external").val();
 
             }.bind(this),
             error: function (xhr, status, err) {
@@ -340,11 +400,12 @@ $( function() {
 					data.data[i].label = data.data[i].first_name + " " + data.data[i].last_name;
                     data.data[i].index = i;
 				}
+				globalOwnerData = data.data;
                 response(data.data);
             });
 	};
 
-    var getDataContactInformation = function(request, response){
+    var getDataContactInformationExternal = function(request, response){
 
         var url = window.location.href;
         var contents = url.split("/");
@@ -359,6 +420,27 @@ $( function() {
 					data.data[i].label = data.data[i].first_name + " " + data.data[i].last_name;
                     data.data[i].index = i;
 				}
+				globalExternalContactData = data.data;
+                response(data.data);
+            });
+	};
+
+	var getDataContactInformationInternal = function(request, response){
+
+        var url = window.location.href;
+        var contents = url.split("/");
+        var host = contents[0] + "//" + contents[2];
+
+        $.getJSON(
+            host + "/api/v1/owner/contact_information/all?search=" + request.term,
+            function (data) {
+				for(var i = 0; i < data.data.length; i++) {
+                    data.data[i] = data.data[i].internal_contact_information.internal_contact_information;
+					data.data[i].value = data.data[i].first_name + " " + data.data[i].last_name;
+					data.data[i].label = data.data[i].first_name + " " + data.data[i].last_name;
+                    data.data[i].index = i;
+				}
+				globalInternalContactData = data.data;
                 response(data.data);
             });
 	};
@@ -405,6 +487,7 @@ $( function() {
       select: function( event, ui ) {
 		this.value = ui.item.first_name + " " + ui.item.last_name;
 		serviceOwnerId = ui.item.uuid;
+		serviceOwnerName = ui.item.first_name + " " + ui.item.last_name;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },
@@ -420,11 +503,12 @@ $( function() {
     };
 
     $( "#contact_information_internal" ).autocomplete({
-      source: getDataContactInformation,
+      source: getDataContactInformationInternal,
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.first_name + " " + ui.item.last_name;
-		InternalContactInformationId = ui.item.uuid;
+		internalContactInformationId = ui.item.uuid;
+		internalContactInformationName = ui.item.first_name + " " + ui.item.last_name;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },
@@ -441,11 +525,12 @@ $( function() {
 
 
 	$( "#contact_information_external" ).autocomplete({
-      source: getDataContactInformation,
+      source: getDataContactInformationExternal,
       minLength: 2,
       select: function( event, ui ) {
 		this.value = ui.item.first_name + " " + ui.item.last_name;
-		ExternalContactInformationId = ui.item.uuid;
+		externalContactInformationId = ui.item.uuid;
+		externalContactInformationName = ui.item.first_name + " " + ui.item.last_name;
 		$(".ui-autocomplete").hide();
 		$(".ui-menu-item").remove();
       },
