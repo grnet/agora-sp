@@ -112,7 +112,7 @@ LOGIN_REDIRECT_URL = "/api/v1/accounts/login/"
 
 PROJECT_APPS = ['component', 'options', 'owner', 'service']
 
-SITE_ID = 2
+SITE_ID = 9
 
 SAML_ATTRIBUTE_MAPPING = {
     'mail': ('email', ),

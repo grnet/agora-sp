@@ -658,7 +658,7 @@ var ComponentImplementationDetailsWrapper = React.createClass({
     render: function(){
         return (
             <div className="col-xs-12">
-                <h6 className="col-xs-12">{this.props.data.version}</h6>
+                <h6 className="col-xs-12">Component version: {this.props.data.version}</h6>
                 <p className="col-xs-12">{this.props.data.configurationParameters}</p>
             </div>
         )
@@ -855,7 +855,7 @@ var Header = React.createClass({
                             <li id="li-extra"><a>Extra Info</a></li>
                         </ul>
                     </div>
-                    <div className={type == "catalogue" ? '' : 'collapse'}>
+                    <div>
                         <ul className="service-header nav_links col-xs-offset-8 col-sm-offset-10">
                             <li id="login">
                                 <a href="/api/admin">Login</a>
@@ -1512,10 +1512,10 @@ var PortfolioPage = React.createClass({
 });
 
 
-var host = "https://agora-dev.vi-seem.eu";
+//var host = "https://agora-dev.vi-seem.eu";
 //var host = "https://services.vi-seem.eu";
 //var host = "http://sp.eudat.eu";
-//var host = "http://localhost";
+var host = "http://localhost";
 
 var view_type = window.location.href.split("/");
 
