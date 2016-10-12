@@ -138,10 +138,10 @@ def send_user_data_when_created_by_admin(sender, instance, **kwargs):
         # )
         pass
     else:
-        message = 'A new user has been created in the Agora app!\n\nEmail: '+ instance.email+'\n' +\
+        message = 'A new user has been created in the Agora app!\n\n'+\
                   'Username: '+ instance.username+\
                   '\nCreated at: '+datetime.datetime.now().strftime("%Y-%m-%d %H:%M")+\
-                  '\nDate joined: '+str(date_joined)+'\nNow:'+str(now)
+                  '\nDate joined: '+str(date_joined)
 
         send_mail(
         '[AGORA] A new user has been created!',
