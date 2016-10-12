@@ -7,12 +7,9 @@ from owner.models import ServiceOwner, ContactInformation
 from rest_framework.decorators import *
 from common import helper, strings
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.csrf import csrf_exempt
-from common.decorators import check_service_ownership_or_superuser
 from django.db import IntegrityError
 from collections import defaultdict
 import re
-import sys
 from django.views.decorators.clickjacking import xframe_options_exempt
 
 def list_catalogue_services(request):

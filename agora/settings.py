@@ -27,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'secret-key'
 
 # SECURITY WARNING don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1',
                  'localhost',
@@ -40,6 +40,13 @@ ALLOWED_HOSTS = ['127.0.0.1',
                  'snf-714484.vm.okeanos.grnet.gr',
                  'services.vi-seem.eu']
 
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'agora.notification@gmail.com'
+EMAIL_HOST_PASSWORD = 'agora2016'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+USER_CREATION_EMAIL_LIST = ['iliaboti@grnet.gr','strezoski.g@gmail.com','stojanovski.dario@gmail.com']
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -164,7 +171,7 @@ SAML_CONFIG = {
         'debug': 1,
 }
 
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',

@@ -50,3 +50,22 @@ def check_service_ownership_or_superuser(func):
             return JsonResponse({"resp": response, "user": user.is_authenticated()})
 
     return check_and_call
+
+
+def check_service_staff(func):
+
+    def check_and_call(request, *args, **kwargs):
+
+        user = request.user
+
+        if user.is_superuser:
+            return func(request, *args, **kwargs)
+
+        if user.is_staff:
+            return func(request, *args, **kwargs)
+
+        response = helper.get_error_response(strings.OPERATION_NOT_PERMITTED, strings.FORBIDDEN_403)
+
+        return JsonResponse({"resp": response, "user": user.is_authenticated()})
+
+    return check_and_call
