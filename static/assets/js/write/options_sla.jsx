@@ -163,6 +163,7 @@ var FormWrapper = React.createClass({
 
 			this.serverRequest = $.ajax({
 				url: url,
+				headers: {"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value },
 				dataType: "json",
 				crossDomain: true,
 				type: "POST",
