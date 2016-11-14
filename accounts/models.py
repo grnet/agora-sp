@@ -8,6 +8,7 @@ from django.dispatch import receiver
 from social.apps.django_app.default.models import UserSocialAuth
 from agora.settings import AVATAR_LOCATION
 from agora.settings import USER_CREATION_EMAIL_LIST
+from rest_framework.authtoken.models import Token
 import datetime
 import pytz
 

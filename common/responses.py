@@ -190,7 +190,8 @@ INFO_MESSAGES = {
     SERVICE_DETAILS_UPDATED: "Service details updated",
     USER_CUSTOMER_UPDATED: "User customer updated",
     SERVICE_DETAILS_COMPONENT_UPDATED: "Service details component updated",
-    SERVICE_DEPENDENCY_UPDATED: "Service dependency updated"
+    SERVICE_DEPENDENCY_UPDATED: "Service dependency updated",
+    USER_TOKENS_GENERATED: "New tokens have been generated for each user."
 }
 
 STATUS_CODES = {
