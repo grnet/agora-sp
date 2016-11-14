@@ -3,13 +3,23 @@
 {% load i18n %}
 {% block content %}
 
-<h4>Client Id: <span style="color: green">{{  CLIENT_ID }}</span></h4>
-<h4>Anti-theft Session Token: <span style="color: green">{{  STATE }}</span></h4>
-<h4>Remote Application Name: <span style="color: green">{{  APPLICATION_NAME }}</span></h4>
-<h4>Is authenticated: {{ AUTHENTICATION }}</h4>
-
 
     {% if AUTHENTICATION == False %}
+ <div id="login">
+
+<form action="{{ app_path }}" method="post" id="login-form">{% csrf_token %}
+      <div class="form-row">
+        {{ form.username.errors }}
+        {{ form.username.label_tag }} {{ form.username }}
+      </div>
+      <div class="form-row">
+        {{ form.password.errors }}
+        {{ form.password.label_tag }} {{ form.password }}
+        <input type="hidden" name="next" value="{{ next }}" />
+      </div>
+        </form>
+    </div>
+
         <a href="/api/v1/auth/login/google-oauth2">
         <?xml version="1.0" encoding="UTF-8" standalone="no"?>
             <svg width="46px" height="46px" viewBox="0 0 46 46" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:sketch="http://www.bohemiancoding.com/sketch/ns">
@@ -75,7 +85,6 @@
           <label>&nbsp;</label><input type="button" value="{% trans 'Log in with B2-ACCESS' %}" />
           <label>&nbsp;</label><input type="button" value="{% trans 'Log in with VI-SEEM' %}" onclick="location.href='http://localhost/saml2/login'" />
       {% endif %}
-        <h4>[DEBUG] SAML settings for: {{ request.build_absolute_uri }}</h4>
 
     {% endif %}
 

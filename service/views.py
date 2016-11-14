@@ -108,6 +108,7 @@ def service_view_catalogue(request, service):
 
     return render(request, "service/catalogue.html", {"service_name": service})
 
+@check_auth_and_type
 def service_view_portfolio(request, service):
 
     return render(request, "service/portfolio.html", {"service_name": service})

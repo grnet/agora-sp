@@ -18,6 +18,7 @@ from django.contrib import admin
 from service import views
 from component import views as component_views
 from django.views.generic import RedirectView
+from django.contrib.auth import views as auth_views
 
 
 urlpatterns = [
@@ -43,6 +44,8 @@ urlpatterns = [
     url(r'^ui/owner/?', include('owner.ui_urls')),
     url(r'^ui/service/?', include('service.ui_urls')),
     url(r'^ui/options/?', include('options.ui_urls')),
+    url(r'^login/$', auth_views.login, name='login'),
+    url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'^saml2/', include('djangosaml2.urls')),
     url(r'^test/', 'djangosaml2.views.echo_attributes'),
     url(r'^/?$', RedirectView.as_view(url='/ui/catalogue/services'))

@@ -113,9 +113,9 @@ AUTH_USER_MODEL = "accounts.User"
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
-LOGIN_URL= '/api/v1/accounts/login/'
+LOGIN_URL= '/login/'
 
-LOGIN_REDIRECT_URL = "/api/v1/accounts/login/"
+LOGIN_REDIRECT_URL = "/login/"
 
 PROJECT_APPS = ['component', 'options', 'owner', 'service']
 

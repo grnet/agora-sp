@@ -49,7 +49,7 @@ def check_service_ownership_or_superuser(func):
         else:
             response = helper.get_error_response(strings.OPERATION_NOT_PERMITTED, strings.FORBIDDEN_403)
 
-            return JsonResponse({"resp": response, "user": user.is_authenticated()})
+            return redirect(LOGIN_REDIRECT_URL+"?next="+request.path)
 
     return check_and_call
 
@@ -68,7 +68,7 @@ def check_service_staff(func):
 
         response = helper.get_error_response(strings.OPERATION_NOT_PERMITTED, strings.FORBIDDEN_403)
 
-        return JsonResponse({"resp": response, "user": user.is_authenticated()})
+        return redirect(LOGIN_REDIRECT_URL+"?next="+request.path)
 
     return check_and_call
 
@@ -85,7 +85,7 @@ def check_auth_and_type(func):
 
         response = helper.get_error_response(strings.OPERATION_NOT_PERMITTED, strings.FORBIDDEN_403)
 
-        return redirect(LOGIN_REDIRECT_URL)
+        return redirect(LOGIN_REDIRECT_URL+"?next="+request.path)
 
         # return JsonResponse({"resp": response, "user": user.is_authenticated(), "login": args})
 
