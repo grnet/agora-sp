@@ -6,6 +6,7 @@ from options.models import ServiceDetailsOption, ServiceOption
 from owner.models import ServiceOwner, ContactInformation
 from rest_framework.decorators import *
 from common import helper, strings
+from common.decorators import check_auth_and_type
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from collections import defaultdict
@@ -98,6 +99,7 @@ def service_catalogue_picker(request):
     return service_picker(request, "catalogue")
 
 @xframe_options_exempt
+@check_auth_and_type
 def service_picker(request, view_type):
 
     return render(request, "service/picker.html", {"view_type": view_type})

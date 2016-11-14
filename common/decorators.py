@@ -3,6 +3,8 @@ from django.http import JsonResponse, HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 from service.models import Service
 from common import helper, strings
+from agora.settings import LOGIN_REDIRECT_URL
+from django.shortcuts import redirect
 import re
 
 def check_service_ownership_or_superuser(func):
@@ -67,5 +69,24 @@ def check_service_staff(func):
         response = helper.get_error_response(strings.OPERATION_NOT_PERMITTED, strings.FORBIDDEN_403)
 
         return JsonResponse({"resp": response, "user": user.is_authenticated()})
+
+    return check_and_call
+
+
+def check_auth_and_type(func):
+
+    def check_and_call(request, *args, **kwargs):
+
+        user = request.user
+
+        if ('catalogue' in args) | (user.is_superuser) | (user.is_staff):
+            return func(request, *args, **kwargs)
+
+
+        response = helper.get_error_response(strings.OPERATION_NOT_PERMITTED, strings.FORBIDDEN_403)
+
+        return redirect(LOGIN_REDIRECT_URL)
+
+        # return JsonResponse({"resp": response, "user": user.is_authenticated(), "login": args})
 
     return check_and_call
