@@ -1,4 +1,5 @@
 import responses
+import datetime
 from django.contrib.sites.models import Site
 
 def get_error_response(code, status=1, additional_status_msg=None):
@@ -57,3 +58,7 @@ def get_last_url_part(request):
 
 def get_request_data(request):
     return request.data if request.META['CONTENT_TYPE'] == "application/json" else request.POST.copy()
+
+
+def set_cookie(response, key, value):
+  response.set_cookie(key, value)
