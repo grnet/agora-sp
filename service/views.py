@@ -101,8 +101,10 @@ def service_catalogue_picker(request):
 @xframe_options_exempt
 @check_auth_and_type
 def service_picker(request, view_type):
+    response =  render(request, "service/picker.html", {"view_type": view_type})
+    response.set_cookie(key="api-credentials", value=request.session['api-info'])
 
-    return render(request, "service/picker.html", {"view_type": view_type})
+    return response
 
 def service_view_catalogue(request, service):
 
@@ -110,8 +112,9 @@ def service_view_catalogue(request, service):
 
 @check_auth_and_type
 def service_view_portfolio(request, service):
-
-    return render(request, "service/portfolio.html", {"service_name": service})
+    response = render(request, "service/portfolio.html", {"service_name": service})
+    response.set_cookie(key="api-credentials", value=request.session['api-info'])
+    return response
 
 # Renders the list service view
 @api_view(['GET'])

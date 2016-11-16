@@ -79,7 +79,13 @@ def check_auth_and_type(func):
 
         user = request.user
 
-        if ('catalogue' in args) | (user.is_superuser) | (user.is_staff):
+        if ('catalogue' in args):
+            return func(request, *args, **kwargs)
+
+
+        if (user.is_superuser) | (user.is_staff):
+            token = Token.objects.get(user_id=user.id)
+            request.session['api-info'] = str(token) + "~" + str(user.email)
             return func(request, *args, **kwargs)
 
 
@@ -97,6 +103,7 @@ def check_auth_and_type(func):
 
 
             if (str(token) == str(headers['AUTH_TOKEN'])) & (str(user_search.email) == headers['EMAIL']):
+                request.session['api-info'] = str(token) + "~" + str(headers['EMAIL'])
                 return func(request, *args, **kwargs)
             else:
                 response = helper.get_error_response(strings.OPERATION_NOT_PERMITTED, strings.FORBIDDEN_403)
