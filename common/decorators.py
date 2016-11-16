@@ -1,10 +1,10 @@
-import json
-from django.http import JsonResponse, HttpResponse
-from django.views.decorators.csrf import csrf_exempt
-from service.models import Service
-from common import helper, strings
+from rest_framework.authtoken.models import Token
 from agora.settings import LOGIN_REDIRECT_URL
 from django.shortcuts import redirect
+from django.http import JsonResponse
+from service.models import Service
+from common import helper, strings
+from accounts.models import User
 import re
 
 def check_service_ownership_or_superuser(func):
@@ -83,10 +83,32 @@ def check_auth_and_type(func):
             return func(request, *args, **kwargs)
 
 
-        response = helper.get_error_response(strings.OPERATION_NOT_PERMITTED, strings.FORBIDDEN_403)
+        regex = re.compile('^HTTP_')
+        headers = dict((regex.sub('', header), value) for (header, value)
+               in request.META.items() if header.startswith('HTTP'))
 
-        return redirect(LOGIN_REDIRECT_URL+"?next="+request.path)
+        if 'AUTH_TOKEN' in headers.keys() and 'EMAIL' in headers.keys():
+            try:
+                user_search = User.objects.get(email=headers['EMAIL'])
+                token = Token.objects.get(user_id=user_search.id)
+            except:
+                response = helper.get_error_response(strings.OPERATION_NOT_PERMITTED, strings.FORBIDDEN_403)
+                return JsonResponse({"resp": response, "user": user.is_authenticated(), "type": args, "token": headers['AUTH_TOKEN'], "email": headers['EMAIL']})
 
-        # return JsonResponse({"resp": response, "user": user.is_authenticated(), "login": args})
+
+            if (str(token) == str(headers['AUTH_TOKEN'])) & (str(user_search.email) == headers['EMAIL']):
+                return func(request, *args, **kwargs)
+            else:
+                response = helper.get_error_response(strings.OPERATION_NOT_PERMITTED, strings.FORBIDDEN_403)
+                return JsonResponse({"resp": response, "user": user.is_authenticated(), "type": args, "token": headers['AUTH_TOKEN'], "email": user_search.email, "token": str(token)})
+        else:
+
+
+            response = helper.get_error_response(strings.OPERATION_NOT_PERMITTED, strings.FORBIDDEN_403)
+
+            return redirect(LOGIN_REDIRECT_URL+"?next="+request.path)
+
+            # return JsonResponse({"resp": response, "user": user.is_authenticated(), "type": args})
 
     return check_and_call
+
