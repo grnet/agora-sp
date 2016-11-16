@@ -11,6 +11,7 @@ UMICH = "urn:oid:1.3.6.1.4.1.250.1.57."
 MAP = {
     "identifier": "urn:oasis:names:tc:SAML:2.0:attrname-format:uri",
     "fro": {
+        PKCS_9: 'userName',
         EDUPERSON_OID+'2': 'eduPersonNickname',
         EDUPERSON_OID+'9': 'eduPersonScopedAffiliation',
         EDUPERSON_OID+'11': 'eduPersonAssurance',
@@ -96,6 +97,7 @@ MAP = {
         UCL_DIR_PILOT+'13': 'uid',
     },
     "to": {
+        'userName': PKCS_9,
         'roleOccupant': X500ATTR_OID+'33',
         'gn': X500ATTR_OID+'42',
         'norEduPersonNIN': NOREDUPERSON_OID+'5',
