@@ -140,7 +140,7 @@ def send_user_data_when_created_by_admin(sender, instance, **kwargs):
         pass
     else:
 
-        token = Token.objects.get(user=instance.username)
+        token = Token.objects.get_or_create(user=instance)
 
         message = 'A new user has been created in the Agora app!\n\n'+\
                   'Username: '+ instance.username+\
