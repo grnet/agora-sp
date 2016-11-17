@@ -11,7 +11,7 @@ UMICH = "urn:oid:1.3.6.1.4.1.250.1.57."
 MAP = {
     "identifier": "urn:oasis:names:tc:SAML:2.0:attrname-format:uri",
     "fro": {
-        PKCS_9: 'userName',
+        "unity:persistent": 'userName',
         EDUPERSON_OID+'2': 'eduPersonNickname',
         EDUPERSON_OID+'9': 'eduPersonScopedAffiliation',
         EDUPERSON_OID+'11': 'eduPersonAssurance',
@@ -79,8 +79,8 @@ MAP = {
         X500ATTR_OID+'46': 'dnQualifier',
         X500ATTR_OID+'47': 'enhancedSearchGuide',
         X500ATTR_OID+'48': 'protocolInformation',
-        X500ATTR_OID+'49': 'dn',
-        X500ATTR_OID+'3': 'cn',
+	    X500ATTR_OID+'49': 'dn',
+	    X500ATTR_OID+'3': 'cn',
         X500ATTR_OID+'54': 'dmdName',
         NETSCAPE_LDAP+'4': 'employeeType',
         X500ATTR_OID+'22': 'teletexTerminalIdentifier',
@@ -100,8 +100,8 @@ MAP = {
     },
     "to": {
         'dn': X500ATTR_OID+'49',
-        'cn': X500ATTR_OID+'3', 
-        'userName': PKCS_9,
+        'cn': X500ATTR_OID+'3',
+        'userName': "unity:persistent",
         'roleOccupant': X500ATTR_OID+'33',
         'gn': X500ATTR_OID+'42',
         'norEduPersonNIN': NOREDUPERSON_OID+'5',
