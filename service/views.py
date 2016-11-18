@@ -102,7 +102,9 @@ def service_catalogue_picker(request):
 @check_auth_and_type
 def service_picker(request, view_type):
     response =  render(request, "service/picker.html", {"view_type": view_type})
-    response.set_cookie(key="api-credentials", value=request.session['api-info'])
+
+    if view_type is 'portfolio':
+        response.set_cookie(key="api-credentials", value=request.session['api-info'])
 
     return response
 
