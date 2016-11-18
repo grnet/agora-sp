@@ -54,7 +54,7 @@
                     </div>
                     <div class="modal-title">An error has occured</div>
 
-                    <div id="modal-body" class="modal-body">You better keep it together!</div>
+                    <div id="modal-body" class="modal-body">We are fixing the issue!</div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal">OK</button>
                     </div>
@@ -307,6 +307,7 @@
     </script>
 
     <input type="hidden" id="source" value="{{ source }}" />
+    <input type="hidden" id="host" value="https://services.vi-seem.eu" />
 
     {% if type == "home" %}
         <script type="text/babel" src="/static/assets/js/write/home.jsx"></script>

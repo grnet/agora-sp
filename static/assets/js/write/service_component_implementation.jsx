@@ -33,6 +33,60 @@ var OptionsComponent = React.createClass({
 	}
 });
 
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+var parameter = getParameterByName("componentId", window.location);
+if(parameter != null) {
+	componentId = parameter;
+	console.log(componentId);
+	jQuery.support.cors = true;
+        $.ajax({
+            url: $("#host")[0].value + "/api/v1/component/" + componentId,
+            dataType: "json",
+            crossDomain: true,
+            type: "GET",
+            cache: false,
+            success: function (response) {
+				$("#component_id").val(response.data.name);
+				componentName = response.data.name;
+            },
+            error: function (xhr, status, err) {
+                console.log(this.props.source, status, err.toString());
+            }
+        });
+}
+
+var email;
+var token;
+
+function getCookie(cname) {
+    var name = cname + "=";
+    var ca = document.cookie.split(';');
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0)==' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length,c.length);
+        }
+    }
+    return "";
+}
+
+var t = getCookie("api-credentials");
+t = t.split("-");
+token = t[0];
+email = t[1];
+
 var FormWrapper = React.createClass({
 
 	generateFormElements: function(resourceObject){
@@ -180,7 +234,11 @@ var FormWrapper = React.createClass({
 
 			this.serverRequest = $.ajax({
 				url: url,
-				headers: {"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value },
+				headers: {
+					"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
+					"AUTH_TOKEN": token,
+					"EMAIL": email
+				},
 				dataType: "json",
 				crossDomain: true,
 				type: "POST",

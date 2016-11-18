@@ -210,6 +210,8 @@ class Service(models.Model):
             service_owner = OrderedDict([
                 ("uuid", service_owner.id),
                 ("email", service_owner.email),
+                ("first_name", service_owner.first_name),
+                ("last_name", service_owner.last_name),
                 ("links", {
                     "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/service_owner",
                 })
@@ -304,6 +306,8 @@ class Service(models.Model):
             service_owner = OrderedDict([
                 ("uuid", service_owner.id),
                 ("email", service_owner.email),
+                ("first_name", service_owner.first_name),
+                ("last_name", service_owner.last_name),
                 ("links", {
                     "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/service_owner",
                 })
@@ -389,6 +393,8 @@ class Service(models.Model):
             service_owner = OrderedDict([
                 ("uuid", service_owner.id),
                 ("email", service_owner.email),
+                ("first_name", service_owner.first_name),
+                ("last_name", service_owner.last_name),
                 ("links", {
                     "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/service_owner",
                 })

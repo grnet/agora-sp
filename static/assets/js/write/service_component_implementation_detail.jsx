@@ -37,6 +37,55 @@ var OptionsComponent = React.createClass({
 	}
 });
 
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, "\\$&");
+    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, " "));
+}
+
+var parameter = getParameterByName("componentId", window.location);
+if(parameter != null) {
+	componentId = parameter;
+	console.log(componentId);
+	jQuery.support.cors = true;
+        $.ajax({
+            url: $("#host")[0].value + "/api/v1/component/" + componentId,
+            dataType: "json",
+            crossDomain: true,
+            type: "GET",
+            cache: false,
+            success: function (response) {
+				$("#component_id").val(response.data.name);
+				componentName = response.data.name;
+            },
+            error: function (xhr, status, err) {
+            }
+        });
+}
+
+parameter = getParameterByName("componentImplementationId", window.location);
+if(parameter != null) {
+	componentImplementationId = parameter;
+	jQuery.support.cors = true;
+        $.ajax({
+            url: $("#host")[0].value + "/api/v1/component/implementation/" + componentImplementationId,
+            dataType: "json",
+            crossDomain: true,
+            type: "GET",
+            cache: false,
+            success: function (response) {
+				$("#component_implementation_id").val(response.data.name);
+				componentImplementationName = response.data.name;
+            },
+            error: function (xhr, status, err) {
+            }
+        });
+}
+
 var FormWrapper = React.createClass({
 
 	generateFormElements: function(resourceObject){

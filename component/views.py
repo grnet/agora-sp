@@ -329,7 +329,7 @@ def get_service_component_implementation(request, comp_imp_uuid):
                 "detail": "An invalid UUID was supplied"
             }
 
-    except component_models.ServiceComponent.DoesNotExist:
+    except component_models.ServiceComponentImplementation.DoesNotExist:
         response["status"] = "404 Not Found"
         response["errors"] = {
             "detail": "The requested service component implementation was not found"
