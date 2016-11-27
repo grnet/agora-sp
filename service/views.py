@@ -260,11 +260,11 @@ def internal_dependency_edit_ui(request, internal_dep_uuid):
     source = helper.current_site_url() + "/v1/services/internal_dependency/" + internal_dep_uuid
     return render(request, 'service/write.html', {"type": "internal_service_dependencies", "source": source})
 
-@login_required()
+# @login_required()
 def external_dependency_write_ui(request):
     return render(request, 'service/write.html', {"type": "external_service_dependencies"})
 
-@login_required()
+# @login_required()
 def external_dependency_edit_ui(request, external_dep_uuid):
     source = helper.current_site_url() + "/v1/services/external_dependency/" + external_dep_uuid
     return render(request, 'service/write.html', {"type": "external_service_dependencies", "source": source})

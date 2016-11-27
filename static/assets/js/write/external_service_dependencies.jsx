@@ -6,9 +6,7 @@ var opType;
 var serviceId;
 var serviceDependencyId;
 var newServiceId;
-var newServiceName;
 var newServiceDependencyId;
-var newServiceDependencyName;
 var globalServiceData;
 var globalExternalServiceData;
 

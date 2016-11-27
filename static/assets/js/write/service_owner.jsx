@@ -2,14 +2,11 @@
 var formName = 'Service Owner Form';
 
 var institutionId = null;
-var institutionName = null;
 var opType = "";
 var globalData;
 
 var optionsData = [
-  {id: 1, value: 1, text: "option 1"},
-  {id: 2, value: 2, text: "option 2"},
-	{id: 3, value: 3, text: "option 3"}
+  {id: 1, value: -1, text: "Select institution"}
 ];
 
 var booleanData = [
@@ -22,7 +19,7 @@ var resourceObject = [
 	{ tag: 'input', type: 'text', name: 'last_name', placeholder: 'Enter last name', label: 'Last Name' },
 	{ tag: 'input', type: 'text', name: 'email', placeholder: 'Enter email', label: 'Email' },
 	{ tag: 'input', type: 'text', name: 'phone', placeholder: 'Enter phone', label: 'Phone' },
-	{ tag: 'input', type: 'text', name: 'institution_id', placeholder: 'Enter institution', label: 'Institution' }
+	{ tag: 'select', type: 'text', name: 'institution_id', placeholder: 'Enter institution', label: 'Institution', optionsData: optionsData }
 	//{ tag: 'select', type: 'select', name: 'account_id', label: 'Account', optionsData: optionsData }
 ];
 
@@ -160,20 +157,17 @@ var FormWrapper = React.createClass({
 
 			var institution_id =  $("#institution_id").val();
 
-			if(institutionName != institution_id){
-				if(institutionName != null || institution_id != "")
-				{
-					institutionName = null;
-					institutionId = null;
-					for(var i = 0; i < globalData.length; i++){
-						if(institution_id == globalData[i].name){
-							institutionId = globalData[i].uuid;
-							institutionName = institution_id;
-							break;
-						}
+			if(institution_id != "")
+			{
+				institutionId = null;
+				for(var i = 0; i < globalData.length; i++){
+					if(institution_id == globalData[i].name){
+						institutionId = globalData[i].uuid;
+						break;
 					}
 				}
 			}
+
 
 			var params = {};
 			params["first_name"] = $("#first_name").val();
@@ -185,7 +179,7 @@ var FormWrapper = React.createClass({
 
 
 			var parts = window.location.href.split("/");
-			var host = "https://" + parts[2];
+			var host = "http://" + parts[2];
 			var url = "";
 
 			if(this.props.source != null && this.props.source != ""){
@@ -238,10 +232,36 @@ var FormWrapper = React.createClass({
 
     componentDidMount: function () {
 
+		jQuery.support.cors = true;
+		var url = window.location.href;
+        var contents = url.split("/");
+        var host = contents[0] + "//" + contents[2];
+
+		$.getJSON(
+            host + "/api/v1/owner/institution/all",
+            function (data) {
+				var institution_id = $("#institution_id");
+				var current = institution_id.val();
+
+				if(current != -1){
+					$("#institution_id option[value='" + current + "']").remove();
+				}
+				for(var i = 0; i < data.data.length; i++) {
+					var option = $('<option></option>').attr("value", data.data[i].name).text(data.data[i].name);
+					institution_id.append(option);
+
+				}
+				if(current != -1)
+					institution_id.val(current).change();
+
+				globalData = data.data;
+
+            });
+
+
         if(this.props.source == null || this.props.source == "")
             return;
 
-        jQuery.support.cors = true;
         this.serverRequest = $.ajax({
             url: this.props.source,
             dataType: "json",
@@ -254,9 +274,17 @@ var FormWrapper = React.createClass({
                 $("#last_name").val(this.state.service_owner.last_name);
                 $("#email").val(this.state.service_owner.email);
                 $("#phone").val(this.state.service_owner.phone);
-				$("#institution_id").val(this.state.service_owner.institution.name);
+
+				var institution = $("#institution_id");
+				var optionsCount = $("#institution_id>option").length;
+				if(optionsCount <= 1){
+					var option = $('<option></option>').attr("value", this.state.service_owner.institution.name)
+							.text(this.state.service_owner.institution.name);
+						institution.append(option);
+				}
+				institution.val(this.state.service_owner.institution.name).change();
+
 				institutionId = this.state.service_owner.institution.uuid;
-				institutionName = this.state.service_owner.institution.name;
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
@@ -290,60 +318,3 @@ ReactDOM.render(
   <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
   document.getElementById('write-content')
 );
-
-
-$( function() {
-
-	var temp = null;
-	$(document).bind('click', function (event) {
-        // Check if we have not clicked on the search box
-        if (!($(event.target).parents().andSelf().is('#institution_id'))) {
-			$(".ui-menu-item").remove();
-		}});
-
-
-
-
-	var getData = function(request, response){
-
-        var url = window.location.href;
-        var contents = url.split("/");
-        var host = contents[0] + "//" + contents[2];
-
-		$.getJSON(
-            host + "/api/v1/owner/institution/all?search=" + request.term,
-            function (data) {
-				for(var i = 0; i < data.data.length; i++) {
-					data.data[i].value = data.data[i].name;
-					data.data[i].label = data.data[i].name;
-                    data.data[i].index = i;
-				}
-				globalData = data.data;
-                response(data.data);
-            });
-	};
-
-
-    $( "#institution_id" ).autocomplete({
-      source: getData,
-      minLength: 2,
-      select: function( event, ui ) {
-		this.value = ui.item.name;
-		institutionId = ui.item.uuid;
-		institutionName = ui.item.name;
-		$(".ui-autocomplete").hide();
-		$(".ui-menu-item").remove();
-      },
-	  change: function(event, ui){
-	  },
-	  focus: function(event, ui){
-          var items = $(".ui-menu-item");
-		  items.removeClass("ui-menu-item-hover");
-		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
-	  }
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-		return $( "<li>" )
-        .append( item.name )
-        .appendTo( ul );
-    };
-  } );
