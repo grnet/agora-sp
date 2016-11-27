@@ -18,6 +18,7 @@ var optionsComponentImpData = [
 var resourceObject = [
 	{ tag: 'input', type: 'text', name: 'version', placeholder: 'Enter version', label: 'Version' },
 	{ tag: 'textarea', type: 'textarea', name: 'configuration_parameters', placeholder: "Enter configuration parameters", label: 'Configuration Parameters', onChange: 'textareaHTMLValidation' },
+	{tag: 'button', type: 'button', name: 'edit-configuration', label: 'Edit', value: "Edit"},
 	{ tag: 'select', type: 'text', name: 'component_id', label: 'Component', placeholder: "Enter component name", optionsData: optionsComponentData },
 	{ tag: 'select', type: 'text', name: 'component_implementation_id', label: 'Component implementation', placeholder: "Enter component implementation name", optionsData: optionsComponentImpData }
 ];
@@ -118,6 +119,14 @@ var FormWrapper = React.createClass({
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
 					</div>
 				);				
+			}
+			else if(field.tag == 'button'){
+				return (
+					<div className="form-group" key={i}>
+			      	        <button value={field.value} className="btn btn-purple" id={"btn-" + field.name}>{field.value}</button>
+
+			      	    </div>
+				)
 			}
 		}, this);
 		return formElements;
@@ -405,3 +414,21 @@ ReactDOM.render(
   <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
   document.getElementById('write-content')
 );
+
+$(function(){
+
+	$("#btn-edit-configuration").click(function(e){
+		e.preventDefault();
+		tinymce.init({
+			selector:'#rich-edit',
+			height: 250
+		});
+		tinymce.get('rich-edit').setContent($("#configuration_parameters").val());
+		$("#modal-rich-html").modal('show');
+	});
+
+	$("#confirm-edit").click(function () {
+		$("#configuration_parameters").val(tinymce.get('rich-edit').getContent());
+	});
+
+});

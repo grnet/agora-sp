@@ -78,6 +78,25 @@
             </div>
         </div>
 
+        <div id="modal-rich-html" class="modal modal-message modal-success fade" style="display: none" aria-hidden="true">
+            <div class="modal-dialog rich-modal">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <i class="glyphicon glyphicon-check"></i>
+                    </div>
+                    <div class="modal-title">Edit</div>
+
+                    <div id="modal-rich-html-body" class="modal-body">
+                        <div id="rich-edit"></div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="cancel-edit" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                        <button type="button" id="confirm-edit" class="btn btn-success" data-dismiss="modal">Done</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         {% csrf_token %}
 
     </div>
@@ -370,6 +389,7 @@
     {% endif %}
 
     {% if type == "service_component" %}
+        <script src="//cdn.tinymce.com/4/tinymce.min.js"></script>
         <script type="text/babel" src="/static/assets/js/write/service_component.jsx"></script>
     {% endif %}
 
