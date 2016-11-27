@@ -2,19 +2,16 @@
 var formName = 'Options SLA Form';
 
 var serviceOptionId = null;
-var serviceOptionName = null;
 var opType = "";
 var globalData;
 
 var optionsData = [
-  {id: 1, value: 1, text: "option 1"},
-  {id: 2, value: 2, text: "option 2"},
-	{id: 3, value: 3, text: "option 3"}
+  {id: 1, value: -1, text: "Select service option"}
 ];
 
 var resourceObject = [
 	{ tag: 'input', type: 'text', name: 'name', placeholder: 'Enter name', label: 'Name' },	
-	{ tag: 'input', type: 'text', name: 'service_option_id', label: 'Service Option', placeholder: "Enter service option name" }
+	{ tag: 'select', type: 'text', name: 'service_option_id', label: 'Service Option', placeholder: "Enter service option name", optionsData: optionsData }
 ];
 
 var OptionsComponent = React.createClass({
@@ -99,7 +96,7 @@ var FormWrapper = React.createClass({
 		}
 
 		var serv_op_id = $("#service_option_id").val();
-		if(serv_op_id == null || serv_op_id == ""){
+		if(serv_op_id == null || serv_op_id == "" || serv_op_id == -1){
 			validationMessage = "The service option is required"
 			validationObjects.push( { field: 'service_option_id', message: validationMessage } );
 		}
@@ -126,20 +123,17 @@ var FormWrapper = React.createClass({
 
 			var service_option_id =  $("#service_option_id").val();
 
-			if(serviceOptionName != service_option_id){
-				if(serviceOptionName != null || service_option_id != "")
-				{
-					serviceOptionName = null;
-					serviceOptionId = null;
-					for(var i = 0; i < globalData.length; i++){
-						if(service_option_id == globalData[i].name){
-							serviceOptionId = globalData[i].uuid;
-							serviceOptionName = service_option_id;
-							break;
-						}
+			if(service_option_id != "")
+			{
+				serviceOptionId = null;
+				for(var i = 0; i < globalData.length; i++){
+					if(service_option_id == globalData[i].name){
+						serviceOptionId = globalData[i].uuid;
+						break;
 					}
 				}
 			}
+
 
 
 			var params = {};
@@ -148,7 +142,7 @@ var FormWrapper = React.createClass({
 
 
 			var parts = window.location.href.split("/");
-			var host = "https://" + parts[2];
+			var host = "http://" + parts[2];
 			var url = "";
 
 			if(this.props.source != null && this.props.source != ""){
@@ -198,6 +192,33 @@ var FormWrapper = React.createClass({
 
     componentDidMount: function () {
 
+
+		jQuery.support.cors = true;
+		var url = window.location.href;
+        var contents = url.split("/");
+        var host = contents[0] + "//" + contents[2];
+
+		$.getJSON(
+            host + "/api/v1/options/service_options/all",
+            function (data) {
+				var serv_opt_id = $("#service_option_id");
+				var current = serv_opt_id.val();
+
+				if(current != -1){
+					$("#service_option_id option[value='" + current + "']").remove();
+				}
+				for(var i = 0; i < data.data.length; i++) {
+					var option = $('<option></option>').attr("value", data.data[i].name).text(data.data[i].name);
+					serv_opt_id.append(option);
+
+				}
+				if(current != -1)
+					serv_opt_id.val(current).change();
+
+				globalData = data.data;
+
+            });
+
         if(this.props.source == null || this.props.source == "")
             return;
 
@@ -211,9 +232,18 @@ var FormWrapper = React.createClass({
             success: function (data) {
                 this.setState({sla: data.data});
                 $("#name").val(this.state.sla.name);
-                $("#service_option_id").val(this.state.sla.service_option.name);
+
+				var service_option = $("#service_option_id");
+				var optionsCount = $("#service_option_id>option").length;
+				if(optionsCount <= 1){
+					var option = $('<option></option>').attr("value", this.state.sla.service_option.name)
+							.text(this.state.sla.service_option.name);
+						service_option.append(option);
+				}
+				service_option.val(this.state.sla.service_option.name).change();
+
 				serviceOptionId = this.state.sla.service_option.uuid;
-				serviceOptionName = this.state.sla.service_option.name;
+
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
@@ -247,55 +277,3 @@ ReactDOM.render(
   <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
   document.getElementById('write-content')
 );
-
-
-
-$( function() {
-
-	var temp = null;
-	$(document).bind('click', function (event) {
-        // Check if we have not clicked on the search box
-        if (!($(event.target).parents().andSelf().is('#service_option_id'))) {
-			$(".ui-menu-item").remove();
-		}});
-
-	var getData = function(request, response){
-
-        var url = window.location.href;
-        var contents = url.split("/");
-        var host = contents[0] + "//" + contents[2];
-
-        $.getJSON(
-            host + "/api/v1/options/service_options/all?search=" + request.term,
-            function (data) {
-				for(var i = 0; i < data.data.length; i++) {
-					data.data[i].value = data.data[i].name;
-					data.data[i].label = data.data[i].name;
-                    data.data[i].index = i;
-				}
-				globalData = data.data;
-                response(data.data);
-            });
-	};
-
-    $( "#service_option_id" ).autocomplete({
-      source: getData,
-      minLength: 2,
-      select: function( event, ui ) {
-		this.value = ui.item.name;
-		serviceOptionId = ui.item.uuid;
-		serviceOptionName = ui.item.name;
-		$(".ui-autocomplete").hide();
-		$(".ui-menu-item").remove();
-      },
-	  focus: function(event, ui){
-          var items = $(".ui-menu-item");
-		  items.removeClass("ui-menu-item-hover");
-		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
-	  }
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-		return $( "<li>" )
-        .append( item.name )
-        .appendTo( ul );
-    };
-  } );
