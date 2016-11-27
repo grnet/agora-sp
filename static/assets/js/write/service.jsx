@@ -9,6 +9,8 @@ var globalOwnerData;
 var globalInternalContactData;
 var globalExternalContactData;
 
+var fieldEdited = null;
+
 var optionsOwnerData = [
   {id: 1, value: -1, text: "Select service owner"}
 ];
@@ -32,14 +34,21 @@ var optionsType = [
 var resourceObject = [
 	{ tag: 'input', type: 'text', name: 'name', placeholder: 'Enter name', label: 'Name', required: true },
 	{ tag: 'textarea', type: 'textarea', name: 'description_external', placeholder: "Enter external description", label: 'External Description', required: true, onChange: 'textareaHTMLValidation' },
+	{ tag: 'button', type: 'button', name: 'edit-description-external', label: 'Edit', value: "Edit"},
 	{ tag: 'textarea', type: 'textarea', name: 'description_internal', placeholder: "Enter internal description", label: 'Internal Description', required: true, onChange: 'textareaHTMLValidation' },
+	{ tag: 'button', type: 'button', name: 'edit-description-internal', label: 'Edit', value: "Edit"},
 	{ tag: 'select', type: 'text', name: 'service_area', placeholder: 'Enter service area', label: 'Service Area', required: true, optionsData: optionsArea },
 	{ tag: 'select', type: 'text', name: 'service_type', placeholder: 'Enter service type', label: 'Service Type', required: true, optionsData: optionsType },
 	{ tag: 'textarea', type: 'textarea', name: 'request_procedures', placeholder: "Enter request procedures", label: 'Request Procedures', required: true, onChange: 'textareaHTMLValidation' },
+	{ tag: 'button', type: 'button', name: 'edit-request-procedures', label: 'Edit', value: "Edit"},
 	{ tag: 'textarea', type: 'textarea', name: 'funders_for_service', placeholder: "Enter funders for service", label: 'Funders for Service', required: true, onChange: 'textareaHTMLValidation' },
+	{ tag: 'button', type: 'button', name: 'edit-funders-for-service', label: 'Edit', value: "Edit"},
 	{ tag: 'textarea', type: 'textarea', name: 'value_to_customer', placeholder: "Enter value to customer", label: 'Value to customer', required: true, onChange: 'textareaHTMLValidation' },
+	{ tag: 'button', type: 'button', name: 'edit-value-to-customer', label: 'Edit', value: "Edit"},
 	{ tag: 'textarea', type: 'textarea', name: 'risks', placeholder: "Enter risks", label: 'Risks', required: true, onChange: 'textareaHTMLValidation' },
+	{ tag: 'button', type: 'button', name: 'edit-risks', label: 'Edit', value: "Edit"},
 	{ tag: 'textarea', type: 'textarea', name: 'competitors', placeholder: "Enter competitors", label: 'Competitors', required: true, onChange: 'textareaHTMLValidation' },
+	{ tag: 'button', type: 'button', name: 'edit-competitors', label: 'Edit', value: "Edit"},
 	// todo: how to fill the data for the options (should be done before rendering)
 	{ tag: 'select', type: 'text', name: 'service_owner', label: 'Service Owner', placeholder: "Enter service owner name", optionsData: optionsOwnerData },
 	{ tag: 'select', type: 'text', name: 'contact_information_external', label: 'Contact Information External', placeholder: "Enter external contact info", optionsData: optionsExternalContactData },
@@ -93,6 +102,14 @@ var FormWrapper = React.createClass({
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
 					</div>
 				);				
+			}
+			else if(field.tag == 'button'){
+				return (
+					<div className="form-group" key={i}>
+			      	        <button value={field.value} className="btn btn-purple" id={"btn-" + field.name}>{field.value}</button>
+
+			      	    </div>
+				)
 			}
 		}, this);
 		return formElements;
@@ -507,3 +524,114 @@ ReactDOM.render(
   <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
   document.getElementById('write-content')
 );
+
+$(function(){
+
+	$("#btn-edit-description-external").click(function(e){
+		e.preventDefault();
+		tinymce.init({
+			selector:'#rich-edit',
+			height: 250
+		});
+		tinymce.get('rich-edit').setContent($("#description_external").val());
+		$("#modal-rich-html").modal('show');
+		fieldEdited = "description_external";
+	});
+
+	$("#btn-edit-description-internal").click(function(e){
+		e.preventDefault();
+		tinymce.init({
+			selector:'#rich-edit',
+			height: 250
+		});
+		tinymce.get('rich-edit').setContent($("#description_internal").val());
+		$("#modal-rich-html").modal('show');
+		fieldEdited = "description_internal";
+	});
+
+	$("#btn-edit-request-procedures").click(function(e){
+		e.preventDefault();
+		tinymce.init({
+			selector:'#rich-edit',
+			height: 250
+		});
+		tinymce.get('rich-edit').setContent($("#request_procedures").val());
+		$("#modal-rich-html").modal('show');
+		fieldEdited = "request_procedures";
+	});
+
+	$("#btn-edit-funders-for-service").click(function(e){
+		e.preventDefault();
+		tinymce.init({
+			selector:'#rich-edit',
+			height: 250
+		});
+		tinymce.get('rich-edit').setContent($("#funders_for_service").val());
+		$("#modal-rich-html").modal('show');
+		fieldEdited = "funders_for_service";
+	});
+
+	$("#btn-edit-value-to-customer").click(function(e){
+		e.preventDefault();
+		tinymce.init({
+			selector:'#rich-edit',
+			height: 250
+		});
+		tinymce.get('rich-edit').setContent($("#value_to_customer").val());
+		$("#modal-rich-html").modal('show');
+		fieldEdited = "value_to_customer";
+	});
+
+	$("#btn-edit-risks").click(function(e){
+		e.preventDefault();
+		tinymce.init({
+			selector:'#rich-edit',
+			height: 250
+		});
+		tinymce.get('rich-edit').setContent($("#risks").val());
+		$("#modal-rich-html").modal('show');
+		fieldEdited = "risks";
+	});
+
+	$("#btn-edit-competitors").click(function(e){
+		e.preventDefault();
+		tinymce.init({
+			selector:'#rich-edit',
+			height: 250
+		});
+		tinymce.get('rich-edit').setContent($("#competitors").val());
+		$("#modal-rich-html").modal('show');
+		fieldEdited = "competitors";
+	});
+
+
+
+	$("#confirm-edit").click(function () {
+
+		if(fieldEdited == "description_external"){
+			$("#description_external").val(tinymce.get('rich-edit').getContent());
+		}
+		else if(fieldEdited == "description_internal"){
+			$("#description_internal").val(tinymce.get('rich-edit').getContent());
+		}
+		else if(fieldEdited == "request_procedures"){
+			$("#request_procedures").val(tinymce.get('rich-edit').getContent());
+		}
+		else if(fieldEdited == "funders_for_service"){
+			$("#funders_for_service").val(tinymce.get('rich-edit').getContent());
+		}
+		else if(fieldEdited == "value_to_customer"){
+			$("#value_to_customer").val(tinymce.get('rich-edit').getContent());
+		}
+		else if(fieldEdited == "risks"){
+			$("#risks").val(tinymce.get('rich-edit').getContent());
+		}
+		else if(fieldEdited == "competitors"){
+			$("#competitors").val(tinymce.get('rich-edit').getContent());
+		}
+
+		fieldEdited = null;
+
+	});
+
+});

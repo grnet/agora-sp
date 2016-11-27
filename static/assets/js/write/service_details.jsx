@@ -5,6 +5,8 @@ var opType;
 var serviceId;
 var globalData;
 
+var fieldEdited = null;
+
 var optionsData = [
   {id: 1, value: -1, text: "Select service"}
 ];
@@ -23,7 +25,9 @@ var resourceObject = [
 	{ tag: 'input', type: 'text', name: 'version', placeholder: 'Enter version', label: 'Version' },	
 	{ tag: 'input', type: 'text', name: 'status', label: 'Enter status', required: true, placeholder: "Enter status" },
 	{ tag: 'textarea', type: 'textarea', name: 'features_current', placeholder: "Enter current features", label: 'Features Current', onChange: 'textareaHTMLValidation' },
+	{ tag: 'button', type: 'button', name: 'edit-features-current', label: 'Edit', value: "Edit"},
 	{ tag: 'textarea', type: 'textarea', name: 'features_future', placeholder: "Enter future features", label: 'Features Future', onChange: 'textareaHTMLValidation' },
+	{ tag: 'button', type: 'button', name: 'edit-features-future', label: 'Edit', value: "Edit"},
 	// todo: how to fill the data for the options (should be done before rendering)
 	{ tag: 'select', type: 'select', name: 'usage_policy_has', label: 'Has Usage Policy', required: true, optionsData: booleanData },
 	{ tag: 'input', type: 'text', name: 'usage_policy_url', placeholder: 'Enter Usage Policy URL', label: 'Usage Policy URL', onChange: 'urlContentChanged' },
@@ -55,6 +59,7 @@ var resourceObject = [
 	{ tag: 'input', type: 'text', name: 'cost_to_run', placeholder: 'Enter cost to run', label: 'Cost to run' },
 	{ tag: 'input', type: 'text', name: 'cost_to_build', placeholder: 'Enter cost to build', label: 'Cost to build' },
 	{ tag: 'textarea', type: 'textarea', name: 'use_cases', placeholder: "Enter use cases", label: 'Use Cases', onChange: 'textareaHTMLValidation' },
+	{ tag: 'button', type: 'button', name: 'edit-use-cases', label: 'Edit', value: "Edit"},
 	{ tag: 'select', type: 'select', name: 'is_in_catalog', label: 'Is in catalog', required: true, optionsData: booleanData },
 	{ tag: 'select', type: 'text', name: 'service_id', label: 'Service', required: true, placeholder: "Enter service name", optionsData: optionsData }
 
@@ -107,6 +112,14 @@ var FormWrapper = React.createClass({
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
 					</div>
 				);				
+			}
+			else if(field.tag == 'button'){
+				return (
+					<div className="form-group" key={i}>
+			      	        <button value={field.value} className="btn btn-purple" id={"btn-" + field.name}>{field.value}</button>
+
+			      	    </div>
+				)
 			}
 		}, this);
 		return formElements;
@@ -531,5 +544,59 @@ ReactDOM.render(
   <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
   document.getElementById('write-content')
 );
+
+$(function() {
+
+	$("#btn-edit-features-current").click(function (e) {
+		e.preventDefault();
+		tinymce.init({
+			selector: '#rich-edit',
+			height: 250
+		});
+		tinymce.get('rich-edit').setContent($("#features_current").val());
+		$("#modal-rich-html").modal('show');
+		fieldEdited = "features_current";
+	});
+
+	$("#btn-edit-features-future").click(function (e) {
+		e.preventDefault();
+		tinymce.init({
+			selector: '#rich-edit',
+			height: 250
+		});
+		tinymce.get('rich-edit').setContent($("#features_future").val());
+		$("#modal-rich-html").modal('show');
+		fieldEdited = "features_future";
+	});
+
+	$("#btn-edit-use-cases").click(function (e) {
+		e.preventDefault();
+		tinymce.init({
+			selector: '#rich-edit',
+			height: 250
+		});
+		tinymce.get('rich-edit').setContent($("#use_cases").val());
+		$("#modal-rich-html").modal('show');
+		fieldEdited = "use_cases";
+	});
+
+	$("#confirm-edit").click(function () {
+
+		if(fieldEdited == "features_current"){
+			$("#features_current").val(tinymce.get('rich-edit').getContent());
+		}
+		else if(fieldEdited == "features_future"){
+			$("#features_future").val(tinymce.get('rich-edit').getContent());
+		}
+		else if(fieldEdited == "use_cases"){
+			$("#use_cases").val(tinymce.get('rich-edit').getContent());
+		}
+		
+
+		fieldEdited = null;
+
+	});
+
+});
 
 
