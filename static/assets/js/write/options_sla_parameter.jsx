@@ -7,27 +7,27 @@ var serviceOptionsId = null;
 var newParameterId = null;
 var newSlaId = null;
 var newServiceOptionsId = null;
-var parameterName;
-var newParameterName;
-var slaName;
-var newSlaName;
-var serviceOptionsName;
-var newServiceOptionsName;
 var opType = "";
 var globalParameterData;
 var globalSlaData;
 var globalOptionsData;
 
+var optionsParameterData = [
+  {id: 1, value: -1, text: "Select parameter"}
+];
+
+var optionsSlaData = [
+  {id: 1, value: -1, text: "Select SLA"}
+];
+
 var optionsData = [
-  {id: 1, value: 1, text: "option 1"},
-  {id: 2, value: 2, text: "option 2"},
-	{id: 3, value: 3, text: "option 3"}
+  {id: 1, value: -1, text: "Select service options"}
 ];
 
 var resourceObject = [
-	{ tag: 'input', type: 'text', name: 'parameter_id', placeholder: 'Enter parameter name', label: 'Parameter' },
-	{ tag: 'input', type: 'text', name: 'sla_id', placeholder: 'Enter SLA name', label: 'SLA' },
-	{ tag: 'input', type: 'text', name: 'service_options_id', placeholder: 'Enter service option name', label: 'Service option' }
+	{ tag: 'select', type: 'text', name: 'parameter_id', placeholder: 'Enter parameter name', label: 'Parameter', optionsData: optionsParameterData },
+	{ tag: 'select', type: 'text', name: 'sla_id', placeholder: 'Enter SLA name', label: 'SLA', optionsData: optionsSlaData },
+	{ tag: 'select', type: 'text', name: 'service_options_id', placeholder: 'Enter service option name', label: 'Service option', optionsData: optionsData }
 ];
 
 var OptionsComponent = React.createClass({
@@ -103,7 +103,7 @@ var FormWrapper = React.createClass({
 
 		// --- validation code goes here ---
 		var param = $('#parameter_id').val();
-		if(param == '' || param == null){
+		if(param == '' || param == null || param == -1){
 			validationMessage = "The parameter is required";
 			validationObjects.push( { field: 'parameter_id', message: validationMessage } );
 		}
@@ -113,13 +113,13 @@ var FormWrapper = React.createClass({
 		//}
 
 		var sla = $('#sla_id').val();
-		if(sla == null || sla == ""){
+		if(sla == null || sla == "" || sla == -1){
 			validationMessage = "The SLA is required";
 			validationObjects.push( { field: 'sla_id', message: validationMessage } );
 		}
 
 		var service_option = $('#service_options_id').val();
-		if(service_option == null || service_option == ""){
+		if(service_option == null || service_option == "" || service_option == -1){
 			validationMessage = "The service options are required";
 			validationObjects.push( { field: 'service_options_id', message: validationMessage } )
 		}
@@ -146,61 +146,52 @@ var FormWrapper = React.createClass({
 
 			var parameter_id =  $("#parameter_id").val();
 
-			if(newParameterName != parameter_id){
-				if(newParameterName != null || parameter_id != "")
-				{
-					newParameterName = null;
-					newParameterId = null;
-					for(var i = 0; i < globalParameterData.length; i++){
-						if(parameter_id == globalParameterData[i].name){
-							newParameterId = globalParameterData[i].uuid;
-							newParameterName = parameter_id;
-							break;
-						}
+			if(parameter_id != "")
+			{
+				newParameterId = null;
+				for(var i = 0; i < globalParameterData.length; i++){
+					if(parameter_id == globalParameterData[i].name){
+						newParameterId = globalParameterData[i].uuid;
+						break;
 					}
 				}
 			}
+
 
 			var sla_id =  $("#sla_id").val();
 
-			if(newSlaName != sla_id){
-				if(newSlaName != null || sla_id != "")
-				{
-					newSlaName = null;
-					newSlaId = null;
-					for(var i = 0; i < globalSlaData.length; i++){
-						if(sla_id == globalSlaData[i].name){
-							newSlaId = globalSlaData[i].id;
-							newSlaName = sla_id;
-							break;
-						}
+			if(sla_id != "")
+			{
+				newSlaId = null;
+				for(var i = 0; i < globalSlaData.length; i++){
+					if(sla_id == globalSlaData[i].name){
+						newSlaId = globalSlaData[i].id;
+						break;
 					}
 				}
 			}
+
 
 			var service_options_id =  $("#service_options_id").val();
 
-			if(newServiceOptionsName != service_options_id){
-				if(newServiceOptionsName != null || service_options_id != "")
-				{
-					newServiceOptionsName = null;
-					newServiceOptionsId = null;
-					for(var i = 0; i < globalOptionsData.length; i++){
-						if(service_options_id == globalOptionsData[i].name){
-							newServiceOptionsId = globalOptionsData[i].uuid;
-							newServiceOptionsName = service_options_id;
-							break;
-						}
+			if(service_options_id != "")
+			{
+				newServiceOptionsId = null;
+				for(var i = 0; i < globalOptionsData.length; i++){
+					if(service_options_id == globalOptionsData[i].name){
+						newServiceOptionsId = globalOptionsData[i].uuid;
+						break;
 					}
 				}
 			}
+
 
 
 			var params = {};
 
 
 			var parts = window.location.href.split("/");
-			var host = "https://" + parts[2];
+			var host = "http://" + parts[2];
 			var url = "";
 
 			if (this.props.source != null && this.props.source != "") {
@@ -267,10 +258,79 @@ var FormWrapper = React.createClass({
 
     componentDidMount: function () {
 
+
+		jQuery.support.cors = true;
+		var url = window.location.href;
+        var contents = url.split("/");
+        var host = contents[0] + "//" + contents[2];
+
+		$.getJSON(
+            host + "/api/v1/options/parameter/all",
+            function (data) {
+				var parameter = $("#parameter_id");
+				var current = parameter.val();
+
+				if(current != -1){
+					$("#parameter_id option[value='" + current + "']").remove();
+				}
+				for(var i = 0; i < data.data.length; i++) {
+					var option = $('<option></option>').attr("value", data.data[i].name).text(data.data[i].name);
+					parameter.append(option);
+
+				}
+				if(current != -1)
+					parameter.val(current).change();
+
+				globalParameterData = data.data;
+
+            });
+
+		$.getJSON(
+            host + "/api/v1/options/sla/all",
+            function (data) {
+				var sla = $("#sla_id");
+				var current = sla.val();
+
+				if(current != -1){
+					$("#sla_id option[value='" + current + "']").remove();
+				}
+				for(var i = 0; i < data.data.length; i++) {
+					var option = $('<option></option>').attr("value", data.data[i].name).text(data.data[i].name);
+					sla.append(option);
+
+				}
+				if(current != -1)
+					sla.val(current).change();
+
+				globalSlaData = data.data;
+
+            });
+
+		$.getJSON(
+            host + "/api/v1/options/service_options/all",
+            function (data) {
+				var service_options = $("#service_options_id");
+				var current = service_options.val();
+
+				if(current != -1){
+					$("#service_options_id option[value='" + current + "']").remove();
+				}
+				for(var i = 0; i < data.data.length; i++) {
+					var option = $('<option></option>').attr("value", data.data[i].name).text(data.data[i].name);
+					service_options.append(option);
+
+				}
+				if(current != -1)
+					service_options.val(current).change();
+
+				globalOptionsData = data.data;
+
+            });
+
+
         if(this.props.source == null || this.props.source == "")
             return;
 
-        jQuery.support.cors = true;
         this.serverRequest = $.ajax({
             url: this.props.source,
             dataType: "json",
@@ -280,9 +340,35 @@ var FormWrapper = React.createClass({
             success: function (data) {
                 this.setState({data: data.data});
 
-				$("#parameter_id").val(this.state.data.parameter.name);
-				$("#sla_id").val(this.state.data.sla.name);
-				$("#service_options_id").val(this.state.data.service_options.name);
+
+				var parameter = $("#parameter_id");
+				var optionsCount = $("#parameter_id>option").length;
+				if(optionsCount <= 1){
+					var option = $('<option></option>').attr("value", this.state.data.parameter.name)
+							.text(this.state.data.parameter.name);
+						parameter.append(option);
+				}
+				parameter.val(this.state.data.parameter.name).change();
+
+				var sla = $("#sla_id");
+				optionsCount = $("#sla_id>option").length;
+				if(optionsCount <= 1){
+					var option = $('<option></option>').attr("value", this.state.data.sla.name)
+							.text(this.state.data.sla.name);
+						sla.append(option);
+				}
+				sla.val(this.state.data.sla.name).change();
+
+				var service_options = $("#service_options_id");
+				optionsCount = $("#service_options_id>option").length;
+				if(optionsCount <= 1){
+					var option = $('<option></option>').attr("value", this.state.data.service_options.name)
+							.text(this.state.data.service_options.name);
+						service_options.append(option);
+				}
+				service_options.val(this.state.data.service_options.name).change();
+
+
 
 				parameterId = this.state.data.parameter.uuid;
 				slaId = this.state.data.sla.uuid;
@@ -290,12 +376,6 @@ var FormWrapper = React.createClass({
 				newParameterId = parameterId;
 				newSlaId = slaId;
 				newServiceOptionsId = serviceOptionsId;
-				parameterName = this.state.data.parameter.name;
-				slaName = this.state.data.sla.name;
-				serviceOptionsName = this.state.data.service_options.name;
-				newParameterName = parameterName;
-				newSlaName = slaName;
-				newServiceOptionsName = serviceOptionsName;
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
@@ -329,147 +409,3 @@ ReactDOM.render(
   <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
   document.getElementById('write-content')
 );
-
-
-$( function() {
-
-	var temp = null;
-	$(document).bind('click', function (event) {
-        // Check if we have not clicked on the search box
-        if (!($(event.target).parents().andSelf().is('#parameter_id'))) {
-			$(".ui-menu-item").remove();
-		}
-
-		if (!($(event.target).parents().andSelf().is('#sla_id'))) {
-			$(".ui-menu-item").remove();
-		}
-
-		if (!($(event.target).parents().andSelf().is('#service_option_id'))) {
-			$(".ui-menu-item").remove();
-		}});
-
-
-	var getDataParameter = function(request, response){
-
-        var url = window.location.href;
-        var contents = url.split("/");
-        var host = contents[0] + "//" + contents[2];
-
-        $.getJSON(
-            host + "/api/v1/options/parameter/all?search=" + request.term,
-            function (data) {
-				for(var i = 0; i < data.data.length; i++) {
-					data.data[i].value = data.data[i].name;
-					data.data[i].label = data.data[i].name;
-                    data.data[i].index = i;
-				}
-				globalParameterData = data.data;
-                response(data.data);
-            });
-	};
-
-	var getDataSla = function(request, response){
-
-        var url = window.location.href;
-        var contents = url.split("/");
-        var host = contents[0] + "//" + contents[2];
-
-
-        $.getJSON(
-            host + "/api/v1/options/sla/all?search=" + request.term,
-            function (data) {
-				for(var i = 0; i < data.data.length; i++) {
-					data.data[i].value = data.data[i].name;
-					data.data[i].label = data.data[i].name;
-                    data.data[i].index = i;
-				}
-				globalSlaData = data.data;
-                response(data.data);
-            });
-	};
-
-    var getDataServiceOptions = function(request, response){
-
-        var url = window.location.href;
-        var contents = url.split("/");
-        var host = contents[0] + "//" + contents[2];
-
-        $.getJSON(
-            host + "/api/v1/options/service_options/all?search=" + request.term,
-            function (data) {
-				for(var i = 0; i < data.data.length; i++) {
-					data.data[i].value = data.data[i].name;
-					data.data[i].label = data.data[i].name;
-                    data.data[i].index = i;
-				}
-				globalOptionsData = data.data;
-                response(data.data);
-            });
-	};
-
-
-    $( "#parameter_id" ).autocomplete({
-      source: getDataParameter,
-      minLength: 2,
-      select: function( event, ui ) {
-		this.value = ui.item.name;
-		  newParameterId = ui.item.uuid;
-		  newParameterName = ui.item.name;
-		$(".ui-autocomplete").hide();
-		$(".ui-menu-item").remove();
-      },
-	  focus: function(event, ui){
-          var items = $(".ui-menu-item");
-		  items.removeClass("ui-menu-item-hover");
-		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
-	  }
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-		return $( "<li>" )
-        .append( item.name )
-        .appendTo( ul );
-    };
-
-	$( "#sla_id" ).autocomplete({
-      source: getDataSla,
-      minLength: 2,
-      select: function( event, ui ) {
-		this.value = ui.item.name;
-		newSlaId = ui.item.id;
-		newSlaName = ui.item.name;
-		$(".ui-autocomplete").hide();
-		$(".ui-menu-item").remove();
-      },
-	  focus: function(event, ui){
-          var items = $(".ui-menu-item");
-		  items.removeClass("ui-menu-item-hover");
-		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
-	  }
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-		return $( "<li>" )
-        .append( item.name )
-        .appendTo( ul );
-    };
-
-    $( "#service_options_id" ).autocomplete({
-      source: getDataServiceOptions,
-      minLength: 2,
-      select: function( event, ui ) {
-		this.value = ui.item.name;
-		newServiceOptionsId = ui.item.uuid;
-		newServiceOptionsName = ui.item.name;
-		$(".ui-autocomplete").hide();
-		$(".ui-menu-item").remove();
-      },
-	  focus: function(event, ui){
-          var items = $(".ui-menu-item");
-		  items.removeClass("ui-menu-item-hover");
-		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
-	  }
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-		return $( "<li>" )
-        .append( item.name )
-        .appendTo( ul );
-    };
-
-
-  } );
