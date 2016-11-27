@@ -2,20 +2,17 @@
 var formName = 'Service Component Implementation Form';
 
 var componentId = null;
-var componentName = null;
 var opType = "";
 var globalData;
 
 var optionsData = [
-  {id: 1, value: 1, text: "option 1"},
-  {id: 2, value: 2, text: "option 2"},
-	{id: 3, value: 3, text: "option 3"}
+  {id: 1, value: -1, text: "Select component"}
 ];
 
 var resourceObject = [
 	{ tag: 'input', type: 'text', name: 'name', placeholder: 'Enter name', label: 'Name' },
 	{ tag: 'textarea', type: 'textarea', name: 'description', label: 'Description', placeholder: "Enter description", onChange: 'textareaHTMLValidation' },
-	{ tag: 'input', type: 'text', name: 'component_id', label: 'Component', placeholder: "Enter component name" }
+	{ tag: 'select', type: 'text', name: 'component_id', label: 'Component', placeholder: "Enter component name", optionsData: optionsData }
 ];
 
 var OptionsComponent = React.createClass({
@@ -33,59 +30,59 @@ var OptionsComponent = React.createClass({
 	}
 });
 
-function getParameterByName(name, url) {
-    if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, "\\$&");
-    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-        results = regex.exec(url);
-    if (!results) return null;
-    if (!results[2]) return '';
-    return decodeURIComponent(results[2].replace(/\+/g, " "));
-}
-
-var parameter = getParameterByName("componentId", window.location);
-if(parameter != null) {
-	componentId = parameter;
-	console.log(componentId);
-	jQuery.support.cors = true;
-        $.ajax({
-            url: $("#host")[0].value + "/api/v1/component/" + componentId,
-            dataType: "json",
-            crossDomain: true,
-            type: "GET",
-            cache: false,
-            success: function (response) {
-				$("#component_id").val(response.data.name);
-				componentName = response.data.name;
-            },
-            error: function (xhr, status, err) {
-                console.log(this.props.source, status, err.toString());
-            }
-        });
-}
-
-var email;
-var token;
-
-function getCookie(cname) {
-    var name = cname + "=";
-    var ca = document.cookie.split(';');
-    for(var i = 0; i <ca.length; i++) {
-        var c = ca[i];
-        while (c.charAt(0)==' ') {
-            c = c.substring(1);
-        }
-        if (c.indexOf(name) == 0) {
-            return c.substring(name.length,c.length);
-        }
-    }
-    return "";
-}
-
-var t = getCookie("api-credentials");
-t = t.split("-");
-token = t[0];
-email = t[1];
+//function getParameterByName(name, url) {
+//    if (!url) url = window.location.href;
+//    name = name.replace(/[\[\]]/g, "\\$&");
+//    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+//        results = regex.exec(url);
+//    if (!results) return null;
+//    if (!results[2]) return '';
+//    return decodeURIComponent(results[2].replace(/\+/g, " "));
+//}
+//
+//var parameter = getParameterByName("componentId", window.location);
+//if(parameter != null) {
+//	componentId = parameter;
+//	console.log(componentId);
+//	jQuery.support.cors = true;
+//        $.ajax({
+//            url: $("#host")[0].value + "/api/v1/component/" + componentId,
+//            dataType: "json",
+//            crossDomain: true,
+//            type: "GET",
+//            cache: false,
+//            success: function (response) {
+//				$("#component_id").val(response.data.name);
+//				componentName = response.data.name;
+//            },
+//            error: function (xhr, status, err) {
+//                console.log(this.props.source, status, err.toString());
+//            }
+//        });
+//}
+//
+//var email;
+//var token;
+//
+//function getCookie(cname) {
+//    var name = cname + "=";
+//    var ca = document.cookie.split(';');
+//    for(var i = 0; i <ca.length; i++) {
+//        var c = ca[i];
+//        while (c.charAt(0)==' ') {
+//            c = c.substring(1);
+//        }
+//        if (c.indexOf(name) == 0) {
+//            return c.substring(name.length,c.length);
+//        }
+//    }
+//    return "";
+//}
+//
+//var t = getCookie("api-credentials");
+//t = t.split("-");
+//token = t[0];
+//email = t[1];
 
 var FormWrapper = React.createClass({
 
@@ -159,17 +156,17 @@ var FormWrapper = React.createClass({
 
 		// --- validation code goes here ---
 		if($('#name').val() == ''){
-			validationMessage = "The name is required"
+			validationMessage = "The name is required";
 			validationObjects.push( { field: 'name', message: validationMessage } );
 		}
 		if($('#name').val().length > 255){
-			validationMessage = "Content exceeds max length of 255 characters."
+			validationMessage = "Content exceeds max length of 255 characters.";
 			validationObjects.push( { field: 'name', message: validationMessage } );			
 		}
 
 		var comp_id = $('#component_id').val();
-		if(comp_id == null || comp_id == ""){
-			validationMessage = "The component is required."
+		if(comp_id == null || comp_id == "" || comp_id == -1){
+			validationMessage = "The component is required.";
 			validationObjects.push( { field: 'component_id', message: validationMessage } );
 		}
 
@@ -196,20 +193,17 @@ var FormWrapper = React.createClass({
 
 			var component_id =  $("#component_id").val();
 
-			if(componentName != component_id){
-				if(componentName != null || component_id != "")
-				{
-					componentName = null;
-					componentId = null;
-					for(var i = 0; i < globalData.length; i++){
-						if(component_id == globalData[i].name){
-							componentId = globalData[i].uuid;
-							componentName = component_id;
-							break;
-						}
+			if(component_id != "")
+			{
+				componentId = null;
+				for(var i = 0; i < globalData.length; i++){
+					if(component_id == globalData[i].name){
+						componentId = globalData[i].uuid;
+						break;
 					}
 				}
 			}
+
 
 
 			var params = {};
@@ -219,7 +213,7 @@ var FormWrapper = React.createClass({
 
 
 			var parts = window.location.href.split("/");
-			var host = "https://" + parts[2];
+			var host = "http://" + parts[2];
 			var url = "";
 
 			if(this.props.source != null && this.props.source != ""){
@@ -236,8 +230,8 @@ var FormWrapper = React.createClass({
 				url: url,
 				headers: {
 					"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
-					"AUTH_TOKEN": token,
-					"EMAIL": email
+					//"AUTH_TOKEN": token,
+					//"EMAIL": email
 				},
 				dataType: "json",
 				crossDomain: true,
@@ -275,10 +269,38 @@ var FormWrapper = React.createClass({
 
     componentDidMount: function () {
 
+
+		jQuery.support.cors = true;
+		var url = window.location.href;
+        var contents = url.split("/");
+        var host = contents[0] + "//" + contents[2];
+
+		$.getJSON(
+            host + "/api/v1/component/all",
+            function (data) {
+				var component_id = $("#component_id");
+				var current = component_id.val();
+
+				if(current != -1){
+					$("#component_id option[value='" + current + "']").remove();
+				}
+				for(var i = 0; i < data.data.length; i++) {
+					var option = $('<option></option>').attr("value", data.data[i].name).text(data.data[i].name);
+					component_id.append(option);
+
+				}
+				if(current != -1)
+					component_id.val(current).change();
+
+				globalData = data.data;
+
+            });
+
+
         if(this.props.source == null || this.props.source == "")
             return;
 
-        jQuery.support.cors = true;
+		jQuery.support.cors = true;
         this.serverRequest = $.ajax({
             url: this.props.source,
             dataType: "json",
@@ -289,12 +311,18 @@ var FormWrapper = React.createClass({
                 this.setState({component: data.data});
                 $("#name").val(this.state.component.name);
                 $("#description").val(this.state.component.description);
-                $("#component_id").val(this.state.component.component.name);
+
+				var component = $("#component_id");
+				var optionsCount = $("#component_id>option").length;
+				if(optionsCount <= 1){
+					var option = $('<option></option>').attr("value", this.state.component.component.name)
+							.text(this.state.component.component.name);
+						component.append(option);
+				}
+				component.val(this.state.component.component.name).change();
 				componentId = this.state.component.component.uuid;
-				componentName = this.state.component.component.name;
             }.bind(this),
             error: function (xhr, status, err) {
-                console.log(this.props.source, status, err.toString());
             }.bind(this)
         });
 
@@ -339,60 +367,3 @@ ReactDOM.render(
   <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
   document.getElementById('write-content')
 );
-
-
-$( function() {
-
-	var temp = null;
-	$(document).bind('click', function (event) {
-        // Check if we have not clicked on the search box
-        if (!($(event.target).parents().andSelf().is('#component_id'))) {
-			$(".ui-menu-item").remove();
-		}});
-
-
-
-
-	var getData = function(request, response){
-
-        var url = window.location.href;
-        var contents = url.split("/");
-        var host = contents[0] + "//" + contents[2];
-
-		$.getJSON(
-            host + "/api/v1/component/all?search=" + request.term,
-            function (data) {
-				for(var i = 0; i < data.data.length; i++) {
-					data.data[i].value = data.data[i].name;
-					data.data[i].label = data.data[i].name;
-                    data.data[i].index = i;
-				}
-				globalData = data.data;
-                response(data.data);
-            });
-	};
-
-
-    $( "#component_id" ).autocomplete({
-      source: getData,
-      minLength: 2,
-      select: function( event, ui ) {
-		this.value = ui.item.name;
-		componentId = ui.item.uuid;
-		componentName = ui.item.name;
-		$(".ui-autocomplete").hide();
-		$(".ui-menu-item").remove();
-      },
-	  change: function(event, ui){
-	  },
-	  focus: function(event, ui){
-          var items = $(".ui-menu-item");
-		  items.removeClass("ui-menu-item-hover");
-		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
-	  }
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-		return $( "<li>" )
-        .append( item.name )
-        .appendTo( ul );
-    };
-  } );
