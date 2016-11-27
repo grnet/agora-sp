@@ -5,21 +5,21 @@ var opType;
 var serviceId;
 var serviceDependencyId;
 var newServiceId;
-var newServiceName;
 var newServiceDependencyId;
-var newServiceDependencyName;
 var globalServiceData;
 var globalInternalServiceData;
 
+var optionsServiceData = [
+  {id: 1, value: -1, text: "Select service"}
+];
+
 var optionsData = [
-  {id: 1, value: 1, text: "option 1"},
-  {id: 2, value: 2, text: "option 2"},
-	{id: 3, value: 3, text: "option 3"}
+  {id: 1, value: -1, text: "Select internal service dependency"}
 ];
 
 var resourceObject = [
-	{ tag: 'input', type: 'text', name: 'service_id', placeholder: 'Enter service name', label: 'Service' },
-	{ tag: 'input', type: 'text', name: 'service_dependency_id', placeholder: 'Enter service dependency name', label: 'Service dependency' }
+	{ tag: 'select', type: 'text', name: 'service_id', placeholder: 'Enter service name', label: 'Service', optionsData: optionsServiceData },
+	{ tag: 'select', type: 'text', name: 'service_dependency_id', placeholder: 'Enter service dependency name', label: 'Service dependency', optionsData: optionsData }
 ];
 
 var OptionsComponent = React.createClass({
@@ -95,13 +95,13 @@ var FormWrapper = React.createClass({
 
 		// --- validation code goes here ---
 		var service = $("#service_id").val();
-		if(service == '' || service == null){
+		if(service == '' || service == null || service == -1){
 			validationMessage = "The service is required";
 			validationObjects.push( { field: 'service_id', message: validationMessage } );
 		}
 
 		var internalDependency = $("#service_dependency_id").val();
-		if(internalDependency == '' || internalDependency == null){
+		if(internalDependency == '' || internalDependency == null || internalDependency == -1){
 			validationMessage = "The internal dependency is required";
 			validationObjects.push( { field: 'service_dependency_id', message: validationMessage } );
 		}
@@ -129,42 +129,36 @@ var FormWrapper = React.createClass({
 
 			var service_id =  $("#service_id").val();
 
-			if(newServiceName != service_id){
-				if(newServiceName != null || service_id != "")
-				{
-					newServiceName = null;
-					newServiceId = null;
-					for(var i = 0; i < globalServiceData.length; i++){
-						if(service_id == globalServiceData[i].name){
-							newServiceId = globalServiceData[i].uuid;
-							newServiceName = service_id;
-							break;
-						}
+			if(service_id != "")
+			{
+				newServiceId = null;
+				for(var i = 0; i < globalServiceData.length; i++){
+					if(service_id == globalServiceData[i].name){
+						newServiceId = globalServiceData[i].uuid;
+						break;
 					}
 				}
 			}
+
 
 			var service_dependency_id =  $("#service_dependency_id").val();
 
-			if(newServiceDependencyName != service_dependency_id){
-				if(newServiceDependencyName != null || service_dependency_id != "")
-				{
-					newServiceDependencyName = null;
-					newServiceDependencyId = null;
-					for(var i = 0; i < globalInternalServiceData.length; i++){
-						if(service_dependency_id == globalInternalServiceData[i].name){
-							newServiceDependencyId = globalInternalServiceData[i].uuid;
-							newServiceDependencyName = service_dependency_id;
-							break;
-						}
+			if(service_dependency_id != "")
+			{
+				newServiceDependencyId = null;
+				for(var i = 0; i < globalInternalServiceData.length; i++){
+					if(service_dependency_id == globalInternalServiceData[i].name){
+						newServiceDependencyId = globalInternalServiceData[i].uuid;
+						break;
 					}
 				}
 			}
+
 
 			var params = {};
 
 			var parts = window.location.href.split("/");
-			var host = "https://" + parts[2];
+			var host = "http://" + parts[2];
 			var url = "";
 
 			if (this.props.source != null && this.props.source != "") {
@@ -226,10 +220,57 @@ var FormWrapper = React.createClass({
 
     componentDidMount: function () {
 
+
+		jQuery.support.cors = true;
+		var url = window.location.href;
+        var contents = url.split("/");
+        var host = contents[0] + "//" + contents[2];
+
+		$.getJSON(
+            host + "/api/v1/services/all",
+            function (data) {
+				var service = $("#service_id");
+				var current = service.val();
+
+				if(current != -1){
+					$("#service_id option[value='" + current + "']").remove();
+				}
+				for(var i = 0; i < data.data.length; i++) {
+					var option = $('<option></option>').attr("value", data.data[i].name).text(data.data[i].name);
+					service.append(option);
+
+				}
+				if(current != -1)
+					service.val(current).change();
+
+				globalServiceData = data.data;
+
+            });
+
+		$.getJSON(
+            host + "/api/v1/services/all",
+            function (data) {
+				var service_dependency = $("#service_dependency_id");
+				var current = service_dependency.val();
+
+				if(current != -1){
+					$("#service_dependency_id option[value='" + current + "']").remove();
+				}
+				for(var i = 0; i < data.data.length; i++) {
+					var option = $('<option></option>').attr("value", data.data[i].name).text(data.data[i].name);
+					service_dependency.append(option);
+
+				}
+				if(current != -1)
+					service_dependency.val(current).change();
+
+				globalInternalServiceData = data.data;
+
+            });
+
         if(this.props.source == null || this.props.source == "")
             return;
 
-        jQuery.support.cors = true;
         this.serverRequest = $.ajax({
             url: this.props.source,
             dataType: "json",
@@ -238,12 +279,28 @@ var FormWrapper = React.createClass({
             cache: false,
             success: function (data) {
                 this.setState({internal_dependency: data.data});
-				$("#service_id").val(this.state.internal_dependency.service.name);
-                $("#service_dependency_id").val(this.state.internal_dependency.service_dependency.name);
+
+				var service = $("#service_id");
+				var optionsCount = $("#service_id>option").length;
+				if(optionsCount <= 1){
+					var option = $('<option></option>').attr("value", this.state.internal_dependency.service.name)
+							.text(this.state.internal_dependency.service.name);
+						service.append(option);
+				}
+				service.val(this.state.internal_dependency.service.name).change();
+
+
+				var service_dependency = $("#service_dependency_id");
+				optionsCount = $("#service_dependency_id>option").length;
+				if(optionsCount <= 1){
+					var option = $('<option></option>').attr("value", this.state.internal_dependency.service_dependency.name)
+							.text(this.state.internal_dependency.service_dependency.name);
+						service_dependency.append(option);
+				}
+				service_dependency.val(this.state.internal_dependency.service_dependency.name).change();
+
 				serviceId = this.state.internal_dependency.service.uuid;
-				newServiceName = this.state.internal_dependency.service.name;
 				serviceDependencyId = this.state.internal_dependency.service_dependency.uuid;
-				newServiceDependencyName = this.state.internal_dependency.service_dependency.name;
 				newServiceId = serviceId;
 				newServiceDependencyId = serviceDependencyId;
             }.bind(this),
@@ -279,108 +336,3 @@ ReactDOM.render(
   <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
   document.getElementById('write-content')
 );
-
-
-$( function() {
-
-	var temp = null;
-	$(document).bind('click', function (event) {
-        // Check if we have not clicked on the search box
-        if (!($(event.target).parents().andSelf().is('#service_id'))) {
-			$(".ui-menu-item").remove();
-		}
-
-		if (!($(event.target).parents().andSelf().is('#service_dependency_id'))) {
-			$(".ui-menu-item").remove();
-		}
-	});
-
-
-	var getDataService = function(request, response){
-
-        var url = window.location.href;
-        var contents = url.split("/");
-        var host = contents[0] + "//" + contents[2];
-
-        $.getJSON(
-            host + "/api/v1/services/all?search=" + request.term,
-            function (data) {
-				for(var i = 0; i < data.data.length; i++) {
-					data.data[i].value = data.data[i].name;
-					data.data[i].label = data.data[i].name;
-                    data.data[i].index = i;
-				}
-				globalServiceData = data.data;
-                response(data.data);
-            });
-	};
-
-
-	var getDataServiceDependency = function(request, response){
-
-        var url = window.location.href;
-        var contents = url.split("/");
-        var host = contents[0] + "//" + contents[2];
-
-        $.getJSON(
-            host + "/api/v1/services/all?search=" + request.term,
-            function (data) {
-				for(var i = 0; i < data.data.length; i++) {
-					data.data[i].value = data.data[i].name;
-					data.data[i].label = data.data[i].name;
-                    data.data[i].index = i;
-				}
-				globalInternalServiceData = data.data;
-                response(data.data);
-            });
-	};
-
-
-
-    $( "#service_id" ).autocomplete({
-      source: getDataService,
-      minLength: 2,
-      select: function( event, ui ) {
-		this.value = ui.item.name;
-		newServiceId = ui.item.uuid;
-		newServiceName = ui.item.name;
-		$(".ui-autocomplete").hide();
-		$(".ui-menu-item").remove();
-      },
-	  focus: function(event, ui){
-          var items = $(".ui-menu-item");
-		  items.removeClass("ui-menu-item-hover");
-		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
-	  }
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-		return $( "<li>" )
-        .append( item.name )
-        .appendTo( ul );
-    };
-
-
-	$( "#service_dependency_id" ).autocomplete({
-      source: getDataServiceDependency,
-      minLength: 2,
-      select: function( event, ui ) {
-		this.value = ui.item.name;
-		newServiceDependencyId = ui.item.uuid;
-		newServiceDependencyName = ui.item.name;
-		$(".ui-autocomplete").hide();
-		$(".ui-menu-item").remove();
-      },
-	  focus: function(event, ui){
-          var items = $(".ui-menu-item");
-		  items.removeClass("ui-menu-item-hover");
-		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
-	  }
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-		return $( "<li>" )
-        .append( item.name )
-        .appendTo( ul );
-    };
-
-
-
-
-  } );
