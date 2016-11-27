@@ -269,11 +269,11 @@ def external_dependency_edit_ui(request, external_dep_uuid):
     source = helper.current_site_url() + "/v1/services/external_dependency/" + external_dep_uuid
     return render(request, 'service/write.html', {"type": "external_service_dependencies", "source": source})
 
-@login_required()
+# @login_required()
 def users_customers_write_ui(request):
     return render(request, 'service/write.html', {"type": "users_customers"})
 
-@login_required()
+# @login_required()
 def users_customers_edit_ui(request, user_customer_uuid):
     source = helper.current_site_url() + "/v1/services/users_customers/" + user_customer_uuid
     return render(request, 'service/write.html', {"type": "users_customers", "source": source})
