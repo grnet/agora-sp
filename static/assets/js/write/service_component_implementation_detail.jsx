@@ -2,24 +2,24 @@
 var formName = 'Service Component Implementation Detail Form';
 
 var componentId = null;
-var componentName = null;
 var componentImplementationId = null;
-var componentImplementationName = null;
 var opType = "";
 var globalComponentData;
 var globalImplementationData;
 
-var optionsData = [
-  {id: 1, value: 1, text: "option 1"},
-  {id: 2, value: 2, text: "option 2"},
-	{id: 3, value: 3, text: "option 3"}
+var optionsComponentData = [
+	{id: 1, value: -1, text: "Select component"}
+];
+
+var optionsComponentImpData = [
+	{id: 1, value: -1, text: "Select component implementation"}
 ];
 
 var resourceObject = [
 	{ tag: 'input', type: 'text', name: 'version', placeholder: 'Enter version', label: 'Version' },
 	{ tag: 'textarea', type: 'textarea', name: 'configuration_parameters', placeholder: "Enter configuration parameters", label: 'Configuration Parameters', onChange: 'textareaHTMLValidation' },
-	{ tag: 'input', type: 'text', name: 'component_id', label: 'Component', placeholder: "Enter component name" },
-	{ tag: 'input', type: 'text', name: 'component_implementation_id', label: 'Component implementation', placeholder: "Enter component implementation name" }
+	{ tag: 'select', type: 'text', name: 'component_id', label: 'Component', placeholder: "Enter component name", optionsData: optionsComponentData },
+	{ tag: 'select', type: 'text', name: 'component_implementation_id', label: 'Component implementation', placeholder: "Enter component implementation name", optionsData: optionsComponentImpData }
 ];
 
 var OptionsComponent = React.createClass({
@@ -167,12 +167,12 @@ var FormWrapper = React.createClass({
 			validationObjects.push( { field: 'version', message: validationMessage } );			
 		}
 		var comp_id = $('#component_id').val();
-		if(comp_id == null || comp_id == ""){
+		if(comp_id == null || comp_id == "" || comp_id == -1){
 			validationMessage = "The component is required.";
 			validationObjects.push( { field: 'component_id', message: validationMessage } );
 		}
 		var comp_imp_id = $('#component_implementation_id').val();
-		if(comp_imp_id == null || comp_imp_id == ""){
+		if(comp_imp_id == null || comp_imp_id == "" || comp_imp_id == -1){
 			validationMessage = "The component is required.";
 			validationObjects.push( { field: 'component_implementation_id', message: validationMessage } );
 		}
@@ -200,38 +200,32 @@ var FormWrapper = React.createClass({
 
 			var component_id =  $("#component_id").val();
 
-			if(componentName != component_id){
-				if(componentName != null || component_id != "")
-				{
-					componentName = null;
-					componentId = null;
-					for(var i = 0; i < globalComponentData.length; i++){
-						if(component_id == globalComponentData[i].name){
-							componentId = globalComponentData[i].uuid;
-							componentName = component_id;
-							break;
-						}
+			if(component_id != "")
+			{
+				componentId = null;
+				for(var i = 0; i < globalComponentData.length; i++){
+					if(component_id == globalComponentData[i].name){
+						componentId = globalComponentData[i].uuid;
+						break;
 					}
 				}
 			}
+
 
 
 			var component_implementation_id =  $("#component_implementation_id").val();
 
-			if(componentImplementationName != component_implementation_id){
-				if(componentImplementationName != null || component_implementation_id != "")
-				{
-					componentImplementationName = null;
-					componentImplementationId = null;
-					for(var i = 0; i < globalImplementationData.length; i++){
-						if(component_implementation_id == globalImplementationData[i].name){
-							componentImplementationId = globalImplementationData[i].uuid;
-							componentImplementationName = component_implementation_id;
-							break;
-						}
+			if(component_implementation_id != "")
+			{
+				componentImplementationId = null;
+				for(var i = 0; i < globalImplementationData.length; i++){
+					if(component_implementation_id == globalImplementationData[i].name){
+						componentImplementationId = globalImplementationData[i].uuid;
+						break;
 					}
 				}
 			}
+
 
 			var params = {};
 			params["version"] = $("#version").val();
@@ -241,7 +235,7 @@ var FormWrapper = React.createClass({
 
 
 			var parts = window.location.href.split("/");
-			var host = "https://" + parts[2];
+			var host = "http://" + parts[2];
 			var url = "";
 
 			if(this.props.source != null && this.props.source != ""){
@@ -295,10 +289,58 @@ var FormWrapper = React.createClass({
 
     componentDidMount: function () {
 
+		jQuery.support.cors = true;
+		var url = window.location.href;
+        var contents = url.split("/");
+        var host = contents[0] + "//" + contents[2];
+
+		$.getJSON(
+            host + "/api/v1/component/all",
+            function (data) {
+				var component_id = $("#component_id");
+				var current = component_id.val();
+
+				if(current != -1){
+					$("#component_id option[value='" + current + "']").remove();
+				}
+				for(var i = 0; i < data.data.length; i++) {
+					var option = $('<option></option>').attr("value", data.data[i].name).text(data.data[i].name);
+					component_id.append(option);
+
+				}
+				if(current != -1)
+					component_id.val(current).change();
+
+				globalComponentData = data.data;
+
+            });
+
+
+		$.getJSON(
+            host + "/api/v1/component/implementation/all",
+            function (data) {
+				var component_imp_id = $("#component_implementation_id");
+				var current = component_imp_id.val();
+
+				if(current != -1){
+					$("#component_implementation_id option[value='" + current + "']").remove();
+				}
+				for(var i = 0; i < data.data.length; i++) {
+					var option = $('<option></option>').attr("value", data.data[i].name).text(data.data[i].name);
+					component_imp_id.append(option);
+
+				}
+				if(current != -1)
+					component_imp_id.val(current).change();
+
+				globalImplementationData = data.data;
+
+            });
+
+
         if(this.props.source == null || this.props.source == "")
             return;
 
-        jQuery.support.cors = true;
         this.serverRequest = $.ajax({
             url: this.props.source,
             dataType: "json",
@@ -309,12 +351,27 @@ var FormWrapper = React.createClass({
                 this.setState({component: data.data});
                 $("#version").val(this.state.component.version);
                 $("#configuration_parameters").val(this.state.component.configuration_parameters);
-                $("#component_id").val(this.state.component.service_component.name);
-                $("#component_implementation_id").val(this.state.component.service_component_implementation.name);
+
+				var component = $("#component_id");
+				var optionsCount = $("#component_id>option").length;
+				if(optionsCount <= 1){
+					var option = $('<option></option>').attr("value", this.state.component.service_component.name)
+							.text(this.state.component.service_component.name);
+						component.append(option);
+				}
+				component.val(this.state.component.service_component.name).change();
 				componentId = this.state.component.service_component.uuid;
-				componentName = this.state.component.service_component.name;
+
+				var component_imp = $("#component_implementation_id");
+				var optionsImpCount = $("#component_implementation_id>option").length;
+				if(optionsImpCount <= 1){
+					var option = $('<option></option>').attr("value", this.state.component.service_component_implementation.name)
+							.text(this.state.component.service_component_implementation.name);
+						component_imp.append(option);
+				}
+				component_imp.val(this.state.component.service_component_implementation.name).change();
 				componentImplementationId = this.state.component.service_component_implementation.uuid;
-				componentImplementationName = this.state.component.service_component_implementation.name;
+
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
@@ -348,102 +405,3 @@ ReactDOM.render(
   <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
   document.getElementById('write-content')
 );
-
-
-$( function() {
-
-	var temp = null;
-	$(document).bind('click', function (event) {
-        // Check if we have not clicked on the search box
-        if (!($(event.target).parents().andSelf().is('#component_id'))) {
-			$(".ui-menu-item").remove();
-		}
-
-		if (!($(event.target).parents().andSelf().is('#component_implementation_id'))) {
-			$(".ui-menu-item").remove();
-		}});
-
-
-	var getDataComponent = function(request, response){
-
-        var url = window.location.href;
-        var contents = url.split("/");
-        var host = contents[0] + "//" + contents[2];
-
-        $.getJSON(
-            host + "/api/v1/component/all?search=" + request.term,
-            function (data) {
-				for(var i = 0; i < data.data.length; i++) {
-					data.data[i].value = data.data[i].name;
-					data.data[i].label = data.data[i].name;
-                    data.data[i].index = i;
-				}
-				globalComponentData = data.data;
-                response(data.data);
-            });
-	};
-
-    var getDataComponentImplementation = function(request, response){
-
-        var url = window.location.href;
-        var contents = url.split("/");
-        var host = contents[0] + "//" + contents[2];
-
-        $.getJSON(
-            host + "/api/v1/component/implementation/all?search=" + request.term,
-            function (data) {
-				for(var i = 0; i < data.data.length; i++) {
-					data.data[i].value = data.data[i].name;
-					data.data[i].label = data.data[i].name;
-                    data.data[i].index = i;
-				}
-				globalImplementationData = data.data;
-                response(data.data);
-            });
-	};
-
-
-    $( "#component_id" ).autocomplete({
-      source: getDataComponent,
-      minLength: 2,
-      select: function( event, ui ) {
-		this.value = ui.item.name;
-		componentId = ui.item.uuid;
-		componentName = ui.item.name;
-		$(".ui-autocomplete").hide();
-		$(".ui-menu-item").remove();
-      },
-	  focus: function(event, ui){
-          var items = $(".ui-menu-item");
-		  items.removeClass("ui-menu-item-hover");
-		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
-	  }
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-		return $( "<li>" )
-        .append( item.name )
-        .appendTo( ul );
-    };
-
-    $( "#component_implementation_id" ).autocomplete({
-      source: getDataComponentImplementation,
-      minLength: 2,
-      select: function( event, ui ) {
-		this.value = ui.item.name;
-		componentImplementationId = ui.item.uuid;
-		componentImplementationName = ui.item.name;
-		$(".ui-autocomplete").hide();
-		$(".ui-menu-item").remove();
-      },
-	  focus: function(event, ui){
-          var items = $(".ui-menu-item");
-		  items.removeClass("ui-menu-item-hover");
-		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
-	  }
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-		return $( "<li>" )
-        .append( item.name )
-        .appendTo( ul );
-    };
-
-
-  } );
