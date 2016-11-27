@@ -6,6 +6,7 @@ var opType = "";
 var resourceObject = [
 	{ tag: 'input', type: 'text', name: 'name', placeholder: 'Enter name', label: 'Name' },
 	{ tag: 'textarea', type: 'textarea', name: 'description', placeholder: 'Enter description', label: 'Description', onChange: 'textareaHTMLValidation' },
+	{ tag: 'button', type: 'button', name: 'edit-description', label: 'Edit', value: "Edit"},
 	{ tag: 'input', type: 'text', name: 'pricing', placeholder: 'Enter pricing', label: 'Pricing' }	
 ];
 
@@ -56,6 +57,14 @@ var FormWrapper = React.createClass({
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
 					</div>
 				);				
+			}
+			else if(field.tag == 'button'){
+				return (
+					<div className="form-group" key={i}>
+			      	        <button value={field.value} className="btn btn-purple" id={"btn-" + field.name}>{field.value}</button>
+
+			      	    </div>
+				)
 			}
 		}, this);
 		return formElements;
@@ -135,7 +144,7 @@ var FormWrapper = React.createClass({
 
 
 			var parts = window.location.href.split("/");
-			var host = "https://" + parts[2];
+			var host = "http://" + parts[2];
 			var url = "";
 
 			if(this.props.source != null && this.props.source != ""){
@@ -236,3 +245,21 @@ ReactDOM.render(
   <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
   document.getElementById('write-content')
 );
+
+$(function(){
+
+	$("#btn-edit-description").click(function(e){
+		e.preventDefault();
+		tinymce.init({
+			selector:'#rich-edit',
+			height: 250
+		});
+		tinymce.get('rich-edit').setContent($("#description").val());
+		$("#modal-rich-html").modal('show');
+	});
+
+	$("#confirm-edit").click(function () {
+		$("#description").val(tinymce.get('rich-edit').getContent());
+	});
+
+});
