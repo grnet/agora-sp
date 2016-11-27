@@ -225,11 +225,11 @@ def get_catalogue_main_page(request):
 def home_write_ui(request):
     return render(request, 'service/write.html', {"type": "home"})
 
-@login_required()
+# @login_required()
 def service_write_ui(request):
     return render(request, 'service/write.html', {"type": "service"})
 
-@login_required()
+# @login_required()
 def service_edit_ui(request, service_name_or_uuid):
     source = helper.current_site_url() + "/v1/portfolio/services/" + service_name_or_uuid + "/complete"
     return render(request, 'service/write.html', {"type": "service", "source": source})

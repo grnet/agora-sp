@@ -2,37 +2,48 @@ var formName = 'Service Form';
 
 var opType;
 var serviceOwnerId;
-var serviceOwnerName;
 var internalContactInformationId;
-var internalContactInformationName;
 var externalContactInformationId;
-var externalContactInformationName;
 
 var globalOwnerData;
 var globalInternalContactData;
 var globalExternalContactData;
 
-var optionsData = [
-  {id: 1, value: 1, text: "option 1"},
-  {id: 2, value: 2, text: "option 2"},
-	{id: 3, value: 3, text: "option 3"}
+var optionsOwnerData = [
+  {id: 1, value: -1, text: "Select service owner"}
+];
+
+var optionsInternalContactData = [
+  {id: 1, value: -1, text: "Select internal contact information"}
+];
+
+var optionsExternalContactData = [
+  {id: 1, value: -1, text: "Select external contact information"}
+];
+
+var optionsArea = [
+  {id: 1, value: -1, text: "Select service area"}
+];
+
+var optionsType = [
+  {id: 1, value: -1, text: "Select service type"}
 ];
 
 var resourceObject = [
 	{ tag: 'input', type: 'text', name: 'name', placeholder: 'Enter name', label: 'Name', required: true },
 	{ tag: 'textarea', type: 'textarea', name: 'description_external', placeholder: "Enter external description", label: 'External Description', required: true, onChange: 'textareaHTMLValidation' },
 	{ tag: 'textarea', type: 'textarea', name: 'description_internal', placeholder: "Enter internal description", label: 'Internal Description', required: true, onChange: 'textareaHTMLValidation' },
-	{ tag: 'input', type: 'text', name: 'service_area', placeholder: 'Enter service area', label: 'Service Area', required: true },
-	{ tag: 'input', type: 'text', name: 'service_type', placeholder: 'Enter service type', label: 'Service Type', required: true },
+	{ tag: 'select', type: 'text', name: 'service_area', placeholder: 'Enter service area', label: 'Service Area', required: true, optionsData: optionsArea },
+	{ tag: 'select', type: 'text', name: 'service_type', placeholder: 'Enter service type', label: 'Service Type', required: true, optionsData: optionsType },
 	{ tag: 'textarea', type: 'textarea', name: 'request_procedures', placeholder: "Enter request procedures", label: 'Request Procedures', required: true, onChange: 'textareaHTMLValidation' },
 	{ tag: 'textarea', type: 'textarea', name: 'funders_for_service', placeholder: "Enter funders for service", label: 'Funders for Service', required: true, onChange: 'textareaHTMLValidation' },
 	{ tag: 'textarea', type: 'textarea', name: 'value_to_customer', placeholder: "Enter value to customer", label: 'Value to customer', required: true, onChange: 'textareaHTMLValidation' },
 	{ tag: 'textarea', type: 'textarea', name: 'risks', placeholder: "Enter risks", label: 'Risks', required: true, onChange: 'textareaHTMLValidation' },
 	{ tag: 'textarea', type: 'textarea', name: 'competitors', placeholder: "Enter competitors", label: 'Competitors', required: true, onChange: 'textareaHTMLValidation' },
 	// todo: how to fill the data for the options (should be done before rendering)
-	{ tag: 'input', type: 'text', name: 'service_owner', label: 'Service Owner', placeholder: "Enter service owner name" },
-	{ tag: 'input', type: 'text', name: 'contact_information_external', label: 'Contact Information External', placeholder: "Enter external contact info" },
-	{ tag: 'input', type: 'text', name: 'contact_information_internal', label: 'Contact Information Internal', placeholder: "Enter internal contact info" }
+	{ tag: 'select', type: 'text', name: 'service_owner', label: 'Service Owner', placeholder: "Enter service owner name", optionsData: optionsOwnerData },
+	{ tag: 'select', type: 'text', name: 'contact_information_external', label: 'Contact Information External', placeholder: "Enter external contact info", optionsData: optionsExternalContactData },
+	{ tag: 'select', type: 'text', name: 'contact_information_internal', label: 'Contact Information Internal', placeholder: "Enter internal contact info", optionsData: optionsInternalContactData }
 ];
 
 var OptionsComponent = React.createClass({
@@ -166,54 +177,47 @@ var FormWrapper = React.createClass({
 
 			var service_owner_id =  $("#service_owner").val();
 
-			if(serviceOwnerName != service_owner_id){
-				if(serviceOwnerName != null || service_owner_id != "")
-				{
-					serviceOwnerName = null;
-					serviceOwnerId = null;
-					for(var i = 0; i < globalOwnerData.length; i++){
-						if(service_owner_id == globalOwnerData[i].first_name + " " + globalOwnerData[i].last_name){
-							serviceOwnerId = globalOwnerData[i].uuid;
-							serviceOwnerName = service_owner_id;
-							break;
-						}
+			if(service_owner_id != "")
+			{
+				serviceOwnerId = null;
+				for(var i = 0; i < globalOwnerData.length; i++){
+					if(service_owner_id == globalOwnerData[i].first_name + " " + globalOwnerData[i].last_name){
+						serviceOwnerId = globalOwnerData[i].uuid;
+						break;
 					}
 				}
 			}
+
 
 			var external_contact_information =  $("#contact_information_external").val();
 
-			if(externalContactInformationName != external_contact_information){
-				if(externalContactInformationName != null || external_contact_information != "")
-				{
-					externalContactInformationName = null;
-					externalContactInformationId = null;
-					for(var i = 0; i < globalExternalContactData.length; i++){
-						if(external_contact_information == globalExternalContactData[i].first_name + " " + globalExternalContactData[i].last_name){
-							externalContactInformationId = globalExternalContactData[i].uuid;
-							externalContactInformationName = external_contact_information;
-							break;
-						}
+			if(external_contact_information != "")
+			{
+				externalContactInformationId = null;
+				for(var i = 0; i < globalExternalContactData.length; i++){
+					if(external_contact_information == globalExternalContactData[i].internal_contact_information.internal_contact_information.first_name +
+						" " + globalExternalContactData[i].internal_contact_information.internal_contact_information.last_name){
+						externalContactInformationId = globalExternalContactData[i].internal_contact_information.internal_contact_information.uuid;
+						break;
 					}
 				}
 			}
+
 
 			var internal_contact_information =  $("#contact_information_internal").val();
 
-			if(internalContactInformationName != internal_contact_information){
-				if(internalContactInformationName != null || internal_contact_information != "")
-				{
-					internalContactInformationName = null;
-					internalContactInformationId = null;
-					for(var i = 0; i < globalInternalContactData.length; i++){
-						if(internal_contact_information == globalInternalContactData[i].first_name + " " + globalInternalContactData[i].last_name){
-							internalContactInformationId = globalInternalContactData[i].uuid;
-							internalContactInformationName = internal_contact_information;
-							break;
-						}
+			if(internal_contact_information != "")
+			{
+				internalContactInformationId = null;
+				for(var i = 0; i < globalInternalContactData.length; i++){
+					if(internal_contact_information == globalInternalContactData[i].internal_contact_information.internal_contact_information.first_name + " "
+						+ globalInternalContactData[i].internal_contact_information.internal_contact_information.last_name){
+						internalContactInformationId = globalInternalContactData[i].internal_contact_information.internal_contact_information.uuid;
+						break;
 					}
 				}
 			}
+
 
 			var params = {};
 			params["name"] = $("#name").val();
@@ -232,7 +236,7 @@ var FormWrapper = React.createClass({
 
 
 			var parts = window.location.href.split("/");
-			var host = "https://" + parts[2];
+			var host = "http://" + parts[2];
 			var url = "";
 
 			if(this.props.source != null && this.props.source != ""){
@@ -256,9 +260,9 @@ var FormWrapper = React.createClass({
 				data: JSON.stringify(params),
 				success: function (data) {
 					if(opType == "add")
-						$("#modal-success-body").text("You have successfully inserted a new service version");
+						$("#modal-success-body").text("You have successfully inserted a new service");
 					else
-						$("#modal-success-body").text("You have successfully updated the service version");
+						$("#modal-success-body").text("You have successfully updated the service");
 					$("#modal-success").modal('show');
 				}.bind(this),
 				error: function (xhr, status, err) {
@@ -283,10 +287,118 @@ var FormWrapper = React.createClass({
 
     componentDidMount: function () {
 
+		jQuery.support.cors = true;
+		var url = window.location.href;
+        var contents = url.split("/");
+        var host = contents[0] + "//" + contents[2];
+
+		$.getJSON(
+            host + "/api/v1/owner/all",
+            function (data) {
+				var service_owner = $("#service_owner");
+				var current = service_owner.val();
+
+				if(current != -1){
+					$("#service_owner option[value='" + current + "']").remove();
+				}
+				for(var i = 0; i < data.data.length; i++) {
+					var option = $('<option></option>').attr("value", data.data[i].first_name + " " + data.data[i].last_name )
+						.text(data.data[i].first_name + " " + data.data[i].last_name);
+					service_owner.append(option);
+
+				}
+				if(current != -1)
+					service_owner.val(current).change();
+
+				globalOwnerData = data.data;
+
+            });
+
+
+		$.getJSON(
+            host + "/api/v1/owner/contact_information/all",
+            function (data) {
+				var contact_information_external = $("#contact_information_external");
+				var current = contact_information_external.val();
+
+				if(current != -1){
+					$("#contact_information_external option[value='" + current + "']").remove();
+				}
+				for(var i = 0; i < data.data.length; i++) {
+					var v = data.data[i].internal_contact_information.internal_contact_information.first_name + " "
+						+ data.data[i].internal_contact_information.internal_contact_information.last_name;
+					var option = $('<option></option>').attr("value",  v).text(v);
+					contact_information_external.append(option);
+
+				}
+				if(current != -1)
+					contact_information_external.val(current).change();
+
+				globalExternalContactData = data.data;
+
+
+				var contact_information_internal = $("#contact_information_internal");
+				current = contact_information_internal.val();
+
+				if(current != -1){
+					$("#contact_information_internal option[value='" + current + "']").remove();
+				}
+				for(var i = 0; i < data.data.length; i++) {
+					var v = data.data[i].internal_contact_information.internal_contact_information.first_name + " "
+						+ data.data[i].internal_contact_information.internal_contact_information.last_name;
+					var option = $('<option></option>').attr("value", v ).text(v);
+					contact_information_internal.append(option);
+
+				}
+				if(current != -1)
+					contact_information_internal.val(current).change();
+
+				globalInternalContactData = data.data;
+
+            });
+
+
+		$.getJSON(
+            host + "/api/v1/services/area/all",
+            function (data) {
+				var service_area = $("#service_area");
+				var current = service_area.val();
+
+				if(current != -1){
+					$("#service_area option[value='" + current + "']").remove();
+				}
+				for(var i = 0; i < data.data.length; i++) {
+					var option = $('<option></option>').attr("value", data.data[i].area).text(data.data[i].area);
+					service_area.append(option);
+
+				}
+				if(current != -1)
+					service_area.val(current).change();
+            });
+
+		$.getJSON(
+            host + "/api/v1/services/type/all",
+            function (data) {
+				var type = $("#service_type");
+				var current = type.val();
+
+				if(current != -1){
+					$("#service_type option[value='" + current + "']").remove();
+				}
+				for(var i = 0; i < data.data.length; i++) {
+					var option = $('<option></option>').attr("value", data.data[i].type).text(data.data[i].type);
+					type.append(option);
+
+				}
+				if(current != -1)
+					type.val(current).change();
+
+            });
+
+
         if(this.props.source == null || this.props.source == "")
             return;
 
-        jQuery.support.cors = true;
         this.serverRequest = $.ajax({
             url: this.props.source,
             dataType: "json",
@@ -298,31 +410,69 @@ var FormWrapper = React.createClass({
                 $("#name").val(this.state.service.name);
                 $("#description_internal").val(this.state.service.description_internal);
                 $("#description_external").val(this.state.service.description_external);
-                $("#service_area").val(this.state.service.service_area);
-                $("#service_type").val(this.state.service.service_type);
                 $("#request_procedures").val(this.state.service.request_procedures);
                 $("#funders_for_service").val(this.state.service.funders_for_service);
                 $("#value_to_customer").val(this.state.service.value_to_customer);
                 $("#risks").val(this.state.service.risks);
                 $("#competitors").val(this.state.service.competitors);
-				$("#service_owner").val(this.state.service.service_owner.email);
-				$("#contact_information_internal").val(this.state.service.contact_information.internal_contact_information
-					.internal_contact_information.internal_contact_information.first_name + " " +
-				this.state.service.contact_information.internal_contact_information
-					.internal_contact_information.internal_contact_information.last_name);
 
-				$("#contact_information_external").val(this.state.service.contact_information.external_contact_information
-					.internal_contact_information.internal_contact_information.first_name + " " +
-				this.state.service.contact_information.external_contact_information
-					.internal_contact_information.internal_contact_information.last_name);
+
+
+				var service_area = $("#service_area");
+				var optionsCount = $("#service_area>option").length;
+				var sa = this.state.service.service_area;
+				if(optionsCount <= 1){
+					var option = $('<option></option>').attr("value", sa).text(sa);
+						service_area.append(option);
+				}
+				service_area.val(sa).change();
+
+				var service_type = $("#service_type");
+				optionsCount = $("#service_type>option").length;
+				var st = this.state.service.service_type;
+				if(optionsCount <= 1){
+					var option = $('<option></option>').attr("value", st).text(st);
+						service_type.append(option);
+				}
+				service_type.val(st).change();
+
+				var service_owner = $("#service_owner");
+				optionsCount = $("#service_owner>option").length;
+				var so = this.state.service.service_owner.first_name + " " + this.state.service.service_owner.last_name;
+				if(optionsCount <= 1){
+					var option = $('<option></option>').attr("value", so).text(so);
+						service_owner.append(option);
+				}
+				service_owner.val(so).change();
+
+				var contact_information_internal = $("#contact_information_internal");
+				optionsCount = $("#contact_information_internal>option").length;
+				var cii = this.state.service.contact_information.internal_contact_information
+					.internal_contact_information.internal_contact_information.first_name + " " + this.state.service.contact_information.internal_contact_information
+					.internal_contact_information.internal_contact_information.last_name;
+				if(optionsCount <= 1){
+					var option = $('<option></option>').attr("value", cii).text(cii);
+						contact_information_internal.append(option);
+				}
+				contact_information_internal.val(cii).change();
+
+
+				var contact_information_external = $("#contact_information_external");
+				optionsCount = $("#contact_information_external>option").length;
+				var cie = this.state.service.contact_information.external_contact_information
+					.external_contact_information.external_contact_information.first_name + " " + this.state.service.contact_information.external_contact_information
+					.external_contact_information.external_contact_information.last_name;
+				if(optionsCount <= 1){
+					var option = $('<option></option>').attr("value", cie).text(cie);
+						contact_information_external.append(option);
+				}
+				contact_information_external.val(cie).change();
+
 				serviceOwnerId = this.state.service.service_owner.uuid;
-
 				internalContactInformationId = this.state.service.contact_information.internal_contact_information.
 					internal_contact_information.internal_contact_information.uuid;
-				internalContactInformationName = $("#contact_information_internal").val();
 				externalContactInformationId = this.state.service.contact_information.external_contact_information.
 					internal_contact_information.internal_contact_information.uuid;
-				externalContactInformationName = $("#contact_information_external").val();
 
             }.bind(this),
             error: function (xhr, status, err) {
@@ -357,232 +507,3 @@ ReactDOM.render(
   <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
   document.getElementById('write-content')
 );
-
-
-$( function() {
-
-	var temp = null;
-	$(document).bind('click', function (event) {
-        // Check if we have not clicked on the search box
-        if (!($(event.target).parents().andSelf().is('#service_owner'))) {
-			$(".ui-menu-item").remove();
-		}
-
-        if (!($(event.target).parents().andSelf().is('#contact_information_external'))) {
-			$(".ui-menu-item").remove();
-		}
-
-        if (!($(event.target).parents().andSelf().is('#contact_information_internal'))) {
-			$(".ui-menu-item").remove();
-		}
-
-        if (!($(event.target).parents().andSelf().is('#service_area'))) {
-			$(".ui-menu-item").remove();
-		}
-
-        if (!($(event.target).parents().andSelf().is('#service_type'))) {
-			$(".ui-menu-item").remove();
-		}
-
-
-    });
-
-	var getDataServiceOwner = function(request, response){
-
-        var url = window.location.href;
-        var contents = url.split("/");
-        var host = contents[0] + "//" + contents[2];
-
-		$.getJSON(
-            host + "/api/v1/owner/all?search=" + request.term,
-            function (data) {
-				for(var i = 0; i < data.data.length; i++) {
-					data.data[i].value = data.data[i].first_name + " " + data.data[i].last_name;
-					data.data[i].label = data.data[i].first_name + " " + data.data[i].last_name;
-                    data.data[i].index = i;
-				}
-				globalOwnerData = data.data;
-                response(data.data);
-            });
-	};
-
-    var getDataContactInformationExternal = function(request, response){
-
-        var url = window.location.href;
-        var contents = url.split("/");
-        var host = contents[0] + "//" + contents[2];
-
-        $.getJSON(
-            host + "/api/v1/owner/contact_information/all?search=" + request.term,
-            function (data) {
-				for(var i = 0; i < data.data.length; i++) {
-                    data.data[i] = data.data[i].internal_contact_information.internal_contact_information;
-					data.data[i].value = data.data[i].first_name + " " + data.data[i].last_name;
-					data.data[i].label = data.data[i].first_name + " " + data.data[i].last_name;
-                    data.data[i].index = i;
-				}
-				globalExternalContactData = data.data;
-                response(data.data);
-            });
-	};
-
-	var getDataContactInformationInternal = function(request, response){
-
-        var url = window.location.href;
-        var contents = url.split("/");
-        var host = contents[0] + "//" + contents[2];
-
-        $.getJSON(
-            host + "/api/v1/owner/contact_information/all?search=" + request.term,
-            function (data) {
-				for(var i = 0; i < data.data.length; i++) {
-                    data.data[i] = data.data[i].internal_contact_information.internal_contact_information;
-					data.data[i].value = data.data[i].first_name + " " + data.data[i].last_name;
-					data.data[i].label = data.data[i].first_name + " " + data.data[i].last_name;
-                    data.data[i].index = i;
-				}
-				globalInternalContactData = data.data;
-                response(data.data);
-            });
-	};
-
-    var getDataServiceArea = function(request, response){
-
-        var url = window.location.href;
-        var contents = url.split("/");
-        var host = contents[0] + "//" + contents[2];
-
-        $.getJSON(
-            host + "/api/v1/services/area/all?search=" + request.term,
-            function (data) {
-				for(var i = 0; i < data.data.length; i++) {
-                    data.data[i].value = data.data[i].area;
-					data.data[i].label = data.data[i].area;
-                    data.data[i].index = i;
-				}
-                response(data.data);
-            });
-	};
-
-    var getDataServiceType = function(request, response){
-
-        var url = window.location.href;
-        var contents = url.split("/");
-        var host = contents[0] + "//" + contents[2];
-
-        $.getJSON(
-            host + "/api/v1/services/type/all?search=" + request.term,
-            function (data) {
-				for(var i = 0; i < data.data.length; i++) {
-                    data.data[i].value = data.data[i].type;
-					data.data[i].label = data.data[i].type;
-                    data.data[i].index = i;
-				}
-                response(data.data);
-            });
-	};
-
-    $( "#service_owner" ).autocomplete({
-      source: getDataServiceOwner,
-      minLength: 2,
-      select: function( event, ui ) {
-		this.value = ui.item.first_name + " " + ui.item.last_name;
-		serviceOwnerId = ui.item.uuid;
-		serviceOwnerName = ui.item.first_name + " " + ui.item.last_name;
-		$(".ui-autocomplete").hide();
-		$(".ui-menu-item").remove();
-      },
-	  focus: function(event, ui){
-          var items = $(".ui-menu-item");
-		  items.removeClass("ui-menu-item-hover");
-		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
-	  }
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-		return $( "<li>" )
-        .append( item.first_name + " " + item.last_name )
-        .appendTo( ul );
-    };
-
-    $( "#contact_information_internal" ).autocomplete({
-      source: getDataContactInformationInternal,
-      minLength: 2,
-      select: function( event, ui ) {
-		this.value = ui.item.first_name + " " + ui.item.last_name;
-		internalContactInformationId = ui.item.uuid;
-		internalContactInformationName = ui.item.first_name + " " + ui.item.last_name;
-		$(".ui-autocomplete").hide();
-		$(".ui-menu-item").remove();
-      },
-	  focus: function(event, ui){
-          var items = $(".ui-menu-item");
-		  items.removeClass("ui-menu-item-hover");
-		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
-	  }
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-		return $( "<li>" )
-        .append( item.first_name + " " + item.last_name )
-        .appendTo( ul );
-    };
-
-
-	$( "#contact_information_external" ).autocomplete({
-      source: getDataContactInformationExternal,
-      minLength: 2,
-      select: function( event, ui ) {
-		this.value = ui.item.first_name + " " + ui.item.last_name;
-		externalContactInformationId = ui.item.uuid;
-		externalContactInformationName = ui.item.first_name + " " + ui.item.last_name;
-		$(".ui-autocomplete").hide();
-		$(".ui-menu-item").remove();
-      },
-	  focus: function(event, ui){
-          var items = $(".ui-menu-item");
-		  items.removeClass("ui-menu-item-hover");
-		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
-	  }
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-		return $( "<li>" )
-        .append( item.first_name + " " + item.last_name )
-        .appendTo( ul );
-    };
-
-    $( "#service_area" ).autocomplete({
-      source: getDataServiceArea,
-      minLength: 2,
-      select: function( event, ui ) {
-		this.value = ui.item.area;
-		$(".ui-autocomplete").hide();
-		$(".ui-menu-item").remove();
-      },
-	  focus: function(event, ui){
-          var items = $(".ui-menu-item");
-		  items.removeClass("ui-menu-item-hover");
-		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
-	  }
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-		return $( "<li>" )
-        .append( item.area )
-        .appendTo( ul );
-    };
-
-    $( "#service_type" ).autocomplete({
-      source: getDataServiceType,
-      minLength: 2,
-      select: function( event, ui ) {
-		this.value = ui.item.type;
-		$(".ui-autocomplete").hide();
-		$(".ui-menu-item").remove();
-      },
-	  focus: function(event, ui){
-          var items = $(".ui-menu-item");
-		  items.removeClass("ui-menu-item-hover");
-		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
-	  }
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-		return $( "<li>" )
-        .append( item.type )
-        .appendTo( ul );
-    };
-
-
-  } );
