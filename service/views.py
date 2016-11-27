@@ -247,7 +247,7 @@ def external_service_edit_ui(request, service_name_or_uuid):
 def service_area_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_area"})
 
-@login_required()
+# @login_required()
 def service_details_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_details"})
 
@@ -278,7 +278,7 @@ def users_customers_edit_ui(request, user_customer_uuid):
     source = helper.current_site_url() + "/v1/services/users_customers/" + user_customer_uuid
     return render(request, 'service/write.html', {"type": "users_customers", "source": source})
 
-@login_required()
+# @login_required()
 def service_details_edit_ui(request, service_name_or_uuid, version):
     source = helper.current_site_url() + "/v1/portfolio/services/" + service_name_or_uuid + "/service_details/" + version + "/view"
     return render(request, 'service/write.html', {"type": "service_details", "source": source})
