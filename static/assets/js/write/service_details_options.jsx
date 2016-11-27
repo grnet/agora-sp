@@ -8,9 +8,6 @@ var serviceOptionsId = null;
 var newServiceId = null;
 var newServiceDetailsId = null;
 var newServiceOptionsId = null;
-var newServiceName = null;
-var newServiceDetailsName = null;
-var newServiceOptionsName = null;
 var newServiceDetailsVersion = null;
 var serviceDetailsVersion = null;
 var opType = "";
@@ -18,16 +15,23 @@ var globalServiceData;
 var globalServiceDetailsData;
 var globalOptionsData;
 
+
+var optionsServiceData = [
+  {id: 1, value: -1, text: "Select service"}
+];
+
+var optionsServiceDetailsData = [
+  {id: 1, value: -1, text: "Select service version"}
+];
+
 var optionsData = [
-  {id: 1, value: 1, text: "option 1"},
-  {id: 2, value: 2, text: "option 2"},
-	{id: 3, value: 3, text: "option 3"}
+  {id: 1, value: -1, text: "Select service option"}
 ];
 
 var resourceObject = [
-	{ tag: 'input', type: 'text', name: 'service_id', placeholder: 'Enter service name', label: 'Service name' },
-	{ tag: 'input', type: 'text', name: 'service_details_id', placeholder: 'Enter service version', label: 'Service version' },
-	{ tag: 'input', type: 'text', name: 'service_options_id', placeholder: 'Enter service option name', label: 'Service option' }
+	{ tag: 'select', type: 'text', name: 'service_id', placeholder: 'Enter service name', label: 'Service name', optionsData: optionsServiceData },
+	{ tag: 'select', type: 'text', name: 'service_details_id', placeholder: 'Enter service version', label: 'Service version', optionsData: optionsServiceDetailsData },
+	{ tag: 'select', type: 'text', name: 'service_options_id', placeholder: 'Enter service option name', label: 'Service option', optionsData: optionsData }
 ];
 
 var OptionsComponent = React.createClass({
@@ -103,19 +107,19 @@ var FormWrapper = React.createClass({
 
 		// --- validation code goes here ---
 		var service = $('#service_id').val();
-		if (service == '' || service == null) {
+		if (service == '' || service == null || service == -1) {
 			validationMessage = "The service is required";
 			validationObjects.push({field: 'service_id', message: validationMessage});
 		}
 
 		var service_details = $('#service_details_id').val();
-		if (service_details == null || service_details == "") {
+		if (service_details == null || service_details == "" || service_details == -1) {
 			validationMessage = "The service version is required.";
 			validationObjects.push({field: 'service_details_id', message: validationMessage});
 		}
 
 		var service_option = $("#service_options_id").val();
-		if(service_option == null || service_option == ""){
+		if(service_option == null || service_option == "" || service_option == -1){
 			validationMessage = "The service option is required.";
 			validationObjects.push({field: 'service_options_id', message: validationMessage});
 		}
@@ -143,62 +147,53 @@ var FormWrapper = React.createClass({
 
 			var service_id =  $("#service_id").val();
 
-			if(newServiceName != service_id){
-				if(newServiceName != null || service_id != "")
-				{
-					newServiceName = null;
-					newServiceId = null;
-					for(var i = 0; i < globalServiceData.length; i++){
-						if(service_id == globalServiceData[i].name){
-							newServiceId = globalServiceData[i].uuid;
-							newServiceName = service_id;
-							break;
-						}
+			if(service_id != "")
+			{
+				newServiceId = null;
+				for(var i = 0; i < globalServiceData.length; i++){
+					if(service_id == globalServiceData[i].name){
+						newServiceId = globalServiceData[i].uuid;
+						break;
 					}
 				}
 			}
+
 
 			var service_details_id =  $("#service_details_id").val();
 
-			if(newServiceDetailsName != service_details_id){
-				if(newServiceDetailsName != null || service_details_id != "")
-				{
-					newServiceDetailsName = null;
-					newServiceDetailsId = null;
-					newServiceDetailsVersion = null;
-					for(var i = 0; i < globalServiceDetailsData.length; i++){
-						if(service_details_id == globalServiceDetailsData[i].service.name + " " + globalServiceDetailsData[i].version){
-							newServiceDetailsId = globalServiceDetailsData[i].uuid;
-							newServiceDetailsName = service_details_id;
-							newServiceDetailsVersion = globalServiceDetailsData[i].version;
-							break;
-						}
+			if(service_details_id != "")
+			{
+				newServiceDetailsId = null;
+				newServiceDetailsVersion = null;
+				for(var i = 0; i < globalServiceDetailsData.length; i++){
+					if(service_details_id == globalServiceDetailsData[i].service.name + " " + globalServiceDetailsData[i].version){
+						newServiceDetailsId = globalServiceDetailsData[i].uuid;
+						newServiceDetailsVersion = globalServiceDetailsData[i].version;
+						break;
 					}
 				}
 			}
+
 
 			var service_options_id =  $("#service_options_id").val();
 
-			if(newServiceOptionsName != service_options_id){
-				if(newServiceOptionsName != null || service_options_id != "")
-				{
-					newServiceOptionsName = null;
-					newServiceOptionsId = null;
-					for(var i = 0; i < globalOptionsData.length; i++){
-						if(service_options_id == globalOptionsData[i].name){
-							newServiceOptionsId = globalOptionsData[i].uuid;
-							newServiceOptionsName = service_options_id;
-							break;
-						}
+			if(service_options_id != "")
+			{
+				newServiceOptionsId = null;
+				for(var i = 0; i < globalOptionsData.length; i++){
+					if(service_options_id == globalOptionsData[i].name){
+						newServiceOptionsId = globalOptionsData[i].uuid;
+						break;
 					}
 				}
 			}
+
 
 
 			var params = {};
 
 			var parts = window.location.href.split("/");
-			var host = "https://" + parts[2];
+			var host = "http://" + parts[2];
 			var url = "";
 
 			if (this.props.source != null && this.props.source != "") {
@@ -264,10 +259,78 @@ var FormWrapper = React.createClass({
 
     componentDidMount: function () {
 
+		jQuery.support.cors = true;
+		var url = window.location.href;
+        var contents = url.split("/");
+        var host = contents[0] + "//" + contents[2];
+
+		$.getJSON(
+            host + "/api/v1/services/all",
+            function (data) {
+				var service = $("#service_id");
+				var current = service.val();
+
+				if(current != -1){
+					$("#service_id option[value='" + current + "']").remove();
+				}
+				for(var i = 0; i < data.data.length; i++) {
+					var option = $('<option></option>').attr("value", data.data[i].name).text(data.data[i].name);
+					service.append(option);
+
+				}
+				if(current != -1)
+					service.val(current).change();
+
+				globalServiceData = data.data;
+
+            });
+
+		$.getJSON(
+            host + "/api/v1/services/version/all",
+            function (data) {
+				var service_details = $("#service_details_id");
+				var current = service_details.val();
+
+				if(current != -1){
+					$("#service_details_id option[value='" + current + "']").remove();
+				}
+				for(var i = 0; i < data.data.length; i++) {
+					var v = data.data[i].service.name + " " + data.data[i].version;
+					var option = $('<option></option>').attr("value", v).text(v);
+					service_details.append(option);
+
+				}
+				if(current != -1)
+					service_details.val(current).change();
+
+				globalServiceDetailsData = data.data;
+
+            });
+
+		$.getJSON(
+            host + "/api/v1/options/service_options/all",
+            function (data) {
+				var service_options = $("#service_options_id");
+				var current = service_options.val();
+
+				if(current != -1){
+					$("#service_details_id option[value='" + current + "']").remove();
+				}
+				for(var i = 0; i < data.data.length; i++) {
+					var option = $('<option></option>').attr("value", data.data[i].name).text(data.data[i].name);
+					service_options.append(option);
+
+				}
+				if(current != -1)
+					service_options.val(current).change();
+
+				globalOptionsData = data.data;
+
+            });
+
         if(this.props.source == null || this.props.source == "")
             return;
 
-        jQuery.support.cors = true;
         this.serverRequest = $.ajax({
             url: this.props.source,
             dataType: "json",
@@ -276,9 +339,35 @@ var FormWrapper = React.createClass({
             cache: false,
             success: function (data) {
                 this.setState({data: data.data});
-				$("#service_id").val(this.state.data.service.name);
-				$("#service_details_id").val(this.state.data.service.name + " " + this.state.data.service_details.version);
-				$("#service_options_id").val(this.state.data.service_options.name);
+
+				var service = $("#service_id");
+				var optionsCount = $("#service_id>option").length;
+				if(optionsCount <= 1){
+					var option = $('<option></option>').attr("value", this.state.data.service.name)
+							.text(this.state.data.service.name);
+						service.append(option);
+				}
+				service.val(this.state.data.service.name).change();
+
+
+				var service_details = $("#service_details_id");
+				optionsCount = $("#service_details_id>option").length;
+				var v = this.state.data.service_details.service.name + " " + this.state.data.service_details.version;
+				if(optionsCount <= 1){
+					var option = $('<option></option>').attr("value", v).text(v);
+						service_details.append(option);
+				}
+				service_details.val(v).change();
+
+
+				var service_options = $("#service_options_id");
+				optionsCount = $("#service_options_id>option").length;
+				if(optionsCount <= 1){
+					var option = $('<option></option>').attr("value", this.state.data.service_options.name).text(this.state.data.service_options.name);
+						service_options.append(option);
+				}
+				service_options.val(this.state.data.service_options.name).change();
+
 
 				serviceId = this.state.data.service.uuid;
 				serviceDetailsId = this.state.data.service_details.uuid;
@@ -286,9 +375,6 @@ var FormWrapper = React.createClass({
 				newServiceId = serviceId;
 				newServiceDetailsId = serviceDetailsId;
 				newServiceOptionsId = serviceOptionsId;
-				newServiceName = this.state.data.service.name;
-				newServiceDetailsName = this.state.data.service_details.service.name + " " + this.state.data.service_details.version;
-				newServiceOptionsName = this.state.data.service_options.name;
 				serviceDetailsVersion = this.state.data.service_details.version;
 				newServiceDetailsVersion = serviceDetailsVersion;
 
@@ -325,156 +411,3 @@ ReactDOM.render(
   <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
   document.getElementById('write-content')
 );
-
-
-$( function() {
-
-	var temp = null;
-	$(document).bind('click', function (event) {
-        // Check if we have not clicked on the search box
-        if (!($(event.target).parents().andSelf().is('#service_id'))) {
-			$(".ui-menu-item").remove();
-		}
-
-		if (!($(event.target).parents().andSelf().is('#service_details_id'))) {
-			$(".ui-menu-item").remove();
-		}
-
-		if (!($(event.target).parents().andSelf().is('#service_options_id'))) {
-			$(".ui-menu-item").remove();
-		}});
-
-
-	var getDataService = function(request, response){
-
-        var url = window.location.href;
-        var contents = url.split("/");
-        var host = contents[0] + "//" + contents[2];
-
-        $.getJSON(
-            host + "/api/v1/services/all?search=" + request.term,
-            function (data) {
-				for(var i = 0; i < data.data.length; i++) {
-					data.data[i].value = data.data[i].name;
-					data.data[i].label = data.data[i].name;
-                    data.data[i].index = i;
-				}
-				globalServiceData = data.data;
-                response(data.data);
-            });
-	};
-
-	var getDataServiceDetails = function(request, response){
-
-        var url = window.location.href;
-        var contents = url.split("/");
-        var host = contents[0] + "//" + contents[2];
-
-
-		var service = $("#service_id").val();
-		if(service == null)
-			service = "";
-
-        $.getJSON(
-            host + "/api/v1/services/version/all?search=" + request.term + "&service=" + service,
-            function (data) {
-				for(var i = 0; i < data.data.length; i++) {
-					data.data[i].value = data.data[i].service.name + " " + data.data[i].version;
-					data.data[i].label = data.data[i].version;
-                    data.data[i].index = i;
-				}
-				globalServiceDetailsData = data.data;
-                response(data.data);
-            });
-	};
-
-    var getDataServiceOptions = function(request, response){
-
-        var url = window.location.href;
-        var contents = url.split("/");
-        var host = contents[0] + "//" + contents[2];
-
-        $.getJSON(
-            host + "/api/v1/options/service_options/all?search=" + request.term,
-            function (data) {
-				for(var i = 0; i < data.data.length; i++) {
-					data.data[i].value = data.data[i].name;
-					data.data[i].label = data.data[i].name;
-                    data.data[i].index = i;
-				}
-				globalOptionsData = data.data;
-                response(data.data);
-            });
-	};
-
-
-    $( "#service_id" ).autocomplete({
-      source: getDataService,
-      minLength: 2,
-      select: function( event, ui ) {
-		this.value = ui.item.name;
-		newServiceId = ui.item.uuid;
-		newServiceName = ui.item.name;
-		$("#service_details_id").val(null);
-		$(".ui-autocomplete").hide();
-		$(".ui-menu-item").remove();
-      },
-	  change: function(event, ui){
-		$("#service_details_id").val(null);
-	  },
-	  focus: function(event, ui){
-          var items = $(".ui-menu-item");
-		  items.removeClass("ui-menu-item-hover");
-		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
-	  }
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-		return $( "<li>" )
-        .append( item.name )
-        .appendTo( ul );
-    };
-
-	$( "#service_details_id" ).autocomplete({
-      source: getDataServiceDetails,
-      minLength: 2,
-      select: function( event, ui ) {
-		this.value = ui.item.name;
-		newServiceDetailsId = ui.item.uuid;
-		newServiceDetailsName = ui.item.service.name + " " + ui.item.version;
-		newServiceDetailsVersion = ui.item.version;
-		$(".ui-autocomplete").hide();
-		$(".ui-menu-item").remove();
-      },
-	  focus: function(event, ui){
-          var items = $(".ui-menu-item");
-		  items.removeClass("ui-menu-item-hover");
-		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
-	  }
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-		return $( "<li>" )
-        .append( item.service.name + " " + item.version )
-        .appendTo( ul );
-    };
-
-    $( "#service_options_id" ).autocomplete({
-      source: getDataServiceOptions,
-      minLength: 2,
-      select: function( event, ui ) {
-		this.value = ui.item.name;
-		newServiceOptionsId = ui.item.uuid;
-		newServiceOptionsName = ui.item.name;
-		$(".ui-autocomplete").hide();
-		$(".ui-menu-item").remove();
-      },
-	  focus: function(event, ui){
-          var items = $(".ui-menu-item");
-		  items.removeClass("ui-menu-item-hover");
-		  $(items[ui.item.index]).addClass("ui-menu-item-hover");
-	  }
-    }).autocomplete( "instance" )._renderItem = function( ul, item ) {
-		return $( "<li>" )
-        .append( item.name  )
-        .appendTo( ul );
-    };
-
-
-  } );
