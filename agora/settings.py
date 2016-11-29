@@ -27,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'secret-key'
 
 # SECURITY WARNING don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1',
                  'localhost',
@@ -115,7 +115,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 LOGIN_URL= '/login/'
 
-LOGIN_REDIRECT_URL = "/login/"
+LOGIN_REDIRECT_URL = "/api/admin/"
 
 PROJECT_APPS = ['component', 'options', 'owner', 'service']
 
