@@ -19,7 +19,8 @@ var resourceObject = [
 	{ tag: 'input', type: 'text', name: 'last_name', placeholder: 'Enter last name', label: 'Last Name' },
 	{ tag: 'input', type: 'text', name: 'email', placeholder: 'Enter email', label: 'Email' },
 	{ tag: 'input', type: 'text', name: 'phone', placeholder: 'Enter phone', label: 'Phone' },
-	{ tag: 'select', type: 'text', name: 'institution_id', placeholder: 'Enter institution', label: 'Institution', optionsData: optionsData }
+	{ tag: 'select', type: 'text', name: 'institution_id', placeholder: 'Enter institution', label: 'Institution', optionsData: optionsData },
+	{tag: 'button', type: 'button', name: 'add-institution', label: 'Add institution', value: "Add institution"}
 	//{ tag: 'select', type: 'select', name: 'account_id', label: 'Account', optionsData: optionsData }
 ];
 
@@ -70,6 +71,14 @@ var FormWrapper = React.createClass({
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
 					</div>
 				);				
+			}
+			else if(field.tag == 'button'){
+				return (
+					<div className="form-group" key={i}>
+			      	        <button value={field.value} className="btn btn-purple" id={"btn-" + field.name}>{field.value}</button>
+
+			      	    </div>
+				)
 			}
 		}, this);
 		return formElements;
@@ -318,3 +327,10 @@ ReactDOM.render(
   <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
   document.getElementById('write-content')
 );
+
+$(function(){
+	$("#btn-add-institution").click(function(e){
+		e.preventDefault();
+		window.open("/ui/owner/institution", "_blank")
+	});
+});

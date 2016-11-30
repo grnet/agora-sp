@@ -265,92 +265,6 @@ var FormWrapper = React.createClass({
 		
 	},
 
-	getInitialState: function () {
-		return {
-			component: {
-				name: "",
-				description: ""
-			}
-		}
-	},
-
-    componentDidMount: function () {
-
-
-		jQuery.support.cors = true;
-		var url = window.location.href;
-        var contents = url.split("/");
-        var host = contents[0] + "//" + contents[2];
-
-		$.getJSON(
-            host + "/api/v1/component/all",
-            function (data) {
-				var component_id = $("#component_id");
-				var current = component_id.val();
-
-				if(current != -1){
-					$("#component_id option[value='" + current + "']").remove();
-				}
-				for(var i = 0; i < data.data.length; i++) {
-					var option = $('<option></option>').attr("value", data.data[i].name).text(data.data[i].name);
-					component_id.append(option);
-
-				}
-				if(current != -1)
-					component_id.val(current).change();
-
-				globalData = data.data;
-
-            });
-
-
-        if(this.props.source == null || this.props.source == "")
-            return;
-
-		jQuery.support.cors = true;
-        this.serverRequest = $.ajax({
-            url: this.props.source,
-            dataType: "json",
-            crossDomain: true,
-            type: "GET",
-            cache: false,
-            success: function (data) {
-                this.setState({component: data.data});
-                $("#name").val(this.state.component.name);
-                $("#description").val(this.state.component.description);
-
-				var component = $("#component_id");
-				var optionsCount = $("#component_id>option").length;
-				if(optionsCount <= 1){
-					var option = $('<option></option>').attr("value", this.state.component.component.name)
-							.text(this.state.component.component.name);
-						component.append(option);
-				}
-				component.val(this.state.component.component.name).change();
-				componentId = this.state.component.component.uuid;
-            }.bind(this),
-            error: function (xhr, status, err) {
-            }.bind(this)
-        });
-
-        //this.serverRequest = $.ajax({
-        //    url: this.props.source,
-        //    dataType: "json",
-        //    crossDomain: true,
-        //    type: "GET",
-        //    cache: false,
-        //    success: function (data) {
-        //
-        //    }.bind(this),
-        //    error: function (xhr, status, err) {
-        //        console.log(this.props.source, status, err.toString());
-        //    }.bind(this)
-        //});
-    },
-
-    componentWillUnmount: function () {
-        this.serverRequest.abort();
-    },
 
 	render: function(){		
 		var formElements = this.generateFormElements(this.props.resourceObject);
@@ -455,18 +369,45 @@ var Tabs = React.createClass({
 
     componentDidMount: function () {
 
-        if(this.props.source == null || this.props.source == "")
+
+		jQuery.support.cors = true;
+		var url = window.location.href;
+        var contents = url.split("/");
+        var host = contents[0] + "//" + contents[2];
+
+		$.getJSON(
+            host + "/api/v1/component/all",
+            function (data) {
+				var component_id = $("#component_id");
+				var current = component_id.val();
+
+				if(current != -1){
+					$("#component_id option[value='" + current + "']").remove();
+				}
+				for(var i = 0; i < data.data.length; i++) {
+					var option = $('<option></option>').attr("value", data.data[i].name).text(data.data[i].name);
+					component_id.append(option);
+
+				}
+				if(current != -1)
+					component_id.val(current).change();
+
+				globalData = data.data;
+
+            });
+
+
+		if(this.props.source == null || this.props.source == "")
             return;
 
-        jQuery.support.cors = true;
-        this.serverRequest = $.ajax({
+		this.serverRequest = $.ajax({
             url: this.props.source,
             dataType: "json",
             crossDomain: true,
             type: "GET",
             cache: false,
             success: function (data) {
-                this.setState({component_implementation: data.data});
+				this.setState({component_implementation: data.data});
 				console.log(this.state);
                 $("#name").val(this.state.component_implementation.name);
                 $("#description").val(this.state.component_implementation.description);
@@ -485,7 +426,6 @@ var Tabs = React.createClass({
 				component.val(this.state.component_implementation.component.name).change();
             }.bind(this),
             error: function (xhr, status, err) {
-                console.log(this.props.source, status, err.toString());
             }.bind(this)
         });
     },

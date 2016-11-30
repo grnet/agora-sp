@@ -8,6 +8,7 @@ var externalContactInformationId;
 var globalOwnerData;
 var globalInternalContactData;
 var globalExternalContactData;
+var serviceId = null;
 
 var fieldEdited = null;
 
@@ -300,16 +301,118 @@ var FormWrapper = React.createClass({
 		}	
 	},
 
+	render: function(){		
+		var formElements = this.generateFormElements(this.props.resourceObject);
+		return(
+			<div className="widget">
+					<div className="widget-header bordered-bottom bordered-blue">
+			     	<span className="widget-caption">{this.props.formName}</span>
+			    </div>
+			    <div className="widget-body">
+			    	<form role="form" onSubmit={this.handleSubmit} id="service-form">
+			    		{formElements}
+			    		<button type="submit" className="btn btn-blue">Submit</button>
+			    	</form>
+			   	</div>
+			</div>
+		);
+	}
+});
+
+var ServiceDetailsTable = React.createClass({
+
+
+	getInitialState: function () {
+		return {
+			versions: [],
+			count: 0,
+			selected: 0,
+			service_name: ""
+		}
+	},
+
+	render: function() {
+
+		var array = [];
+		for(var i = 0; i < this.state.count; i++)
+			array.push(i);
+
+		var service_name = this.props.service_name;
+
+		return (
+			<div className="row">
+				<div className="col-xs-12">
+					<div className="well with-header  with-footer">
+						<div className="form-group">
+			      	        <button value="Add service version" id="add-version" className="btn btn-purple">Add service version</button>
+			      	    </div>
+						<table className="table table-hover">
+							<thead className="bordered-darkorange">
+								<tr>
+									<th>
+										Version
+									</th>
+									<th>
+										Status
+									</th>
+									<th>
+										In catalogue
+									</th>
+
+									<th>
+
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+
+							{this.props.versions.map(function (version) {
+								var in_catalogue = "No";
+								if(version.in_catalogue)
+									in_catalogue = "Yes";
+								return (
+									<tr key={version.version}>
+										<td>{version.version}</td>
+										<td>{version.service_status}</td>
+										<td>{in_catalogue}</td>
+										<td><a href={"/ui/service/" + service_name + "/version/" + version.version}>Edit</a></td>
+									</tr>
+								)
+							})}
+
+							</tbody>
+
+						</table>
+
+						<div className="col-xs-hidden col-sm-6"></div>
+							<div className="col-xs-12 col-sm-6">
+								<div className="dataTables_paginate paging_bootstrap" id="simpledatatable_paginate">
+
+								</div>
+							</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		);
+	}
+});
+
+
+var Tabs = React.createClass({
+
 	getInitialState: function () {
 		return {
 			service: {
-				name: "",
-				description_internal: ""
-			}
+			},
+			service_details: []
 		}
 	},
 
     componentDidMount: function () {
+
 
 		jQuery.support.cors = true;
 		var url = window.location.href;
@@ -423,7 +526,8 @@ var FormWrapper = React.createClass({
         if(this.props.source == null || this.props.source == "")
             return;
 
-        this.serverRequest = $.ajax({
+
+		this.serverRequest = $.ajax({
             url: this.props.source,
             dataType: "json",
             crossDomain: true,
@@ -440,7 +544,7 @@ var FormWrapper = React.createClass({
                 $("#risks").val(this.state.service.risks);
                 $("#competitors").val(this.state.service.competitors);
 
-
+				serviceId = this.state.service.uuid;
 
 				var service_area = $("#service_area");
 				var optionsCount = $("#service_area>option").length;
@@ -496,7 +600,9 @@ var FormWrapper = React.createClass({
 				internalContactInformationId = this.state.service.contact_information.internal_contact_information.
 					internal_contact_information.internal_contact_information.uuid;
 				externalContactInformationId = this.state.service.contact_information.external_contact_information.
-					internal_contact_information.internal_contact_information.uuid;
+					internal_contact_information.internal_contact_information.uuid
+
+				this.setState({service_details: this.state.service.service_details_list.service_details});
 
             }.bind(this),
             error: function (xhr, status, err) {
@@ -509,30 +615,62 @@ var FormWrapper = React.createClass({
         this.serverRequest.abort();
     },
 
-	render: function(){		
-		var formElements = this.generateFormElements(this.props.resourceObject);
-		return(
-			<div className="widget">
-					<div className="widget-header bordered-bottom bordered-blue">
-			     	<span className="widget-caption">{this.props.formName}</span>
-			    </div>
-			    <div className="widget-body">
-			    	<form role="form" onSubmit={this.handleSubmit} id="service-form">
-			    		{formElements}
-			    		<button type="submit" className="btn btn-blue">Submit</button>
-			    	</form>
-			   	</div>
+	render: function() {
+		return (
+			<div className="row">
+				<div>
+					<div className="widget flat radius-bordered">
+						<div className="widget-header bg-themeprimary">
+							<span className="widget-caption">Service</span>
+						</div>
+
+						<div className="widget-body">
+							<div className="widget-main ">
+								<div className="tabbable">
+									<ul className="nav nav-tabs tabs-flat" id="myTab11">
+										<li className="active">
+											<a data-toggle="tab" href="#home11">
+												Service
+											</a>
+										</li>
+										<li>
+											<a data-toggle="tab" href="#profile11">
+												Versions
+											</a>
+										</li>
+									</ul>
+									<div className="tab-content tabs-flat">
+										<div id="home11" className="tab-pane in active">
+											<FormWrapper resourceObject={resourceObject} formName={formName} source={this.props.source} />
+										</div>
+
+										<div id="profile11" className="tab-pane">
+											<ServiceDetailsTable service_name={this.state.service.name} versions={this.state.service_details} />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div className="col-lg-6 col-sm-6 col-xs-12">
+				</div>
 			</div>
 		);
 	}
 });
 
-ReactDOM.render(  
-  <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
+
+ReactDOM.render(
+  <Tabs source={$("#source")[0].value} />,
   document.getElementById('write-content')
 );
 
 $(function(){
+
+	$("#add-version").click(function () {
+		window.open("/ui/service/version?serviceId=" + serviceId, "_blank");
+	});
 
 	$("#btn-edit-description-external").click(function(e){
 		e.preventDefault();
