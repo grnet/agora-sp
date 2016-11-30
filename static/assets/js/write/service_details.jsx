@@ -591,7 +591,6 @@ $(function() {
 		else if(fieldEdited == "use_cases"){
 			$("#use_cases").val(tinymce.get('rich-edit').getContent());
 		}
-		
 
 		fieldEdited = null;
 

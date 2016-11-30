@@ -235,13 +235,20 @@ var FormWrapper = React.createClass({
 				}
 			}
 
+			var area = $("#service_area").val();
+			if(area == "-1" || area == -1)
+				area = null;
+			var type = $("#service_type").val();
+			if(type == "-1" || type == -1)
+				type = null;
+
 
 			var params = {};
 			params["name"] = $("#name").val();
 			params["description_external"] = $("#description_external").val();
 			params["description_internal"] = $("#description_internal").val();
-			params["service_area"] = $("#service_area").val();
-			params["service_type"] = $("#service_type").val();
+			params["service_area"] = area;
+			params["service_type"] = type;
 			params["request_procedures"] = $("#request_procedures").val();
 			params["funders_for_service"] = $("#funders_for_service").val();
 			params["value_to_customer"] = $("#value_to_customer").val();
