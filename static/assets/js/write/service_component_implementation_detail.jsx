@@ -60,8 +60,18 @@ if(parameter != null) {
             type: "GET",
             cache: false,
             success: function (response) {
-				$("#component_id").val(response.data.name);
-				componentName = response.data.name;
+
+				var name = response.data.name;
+
+				var component = $("#component_id");
+				var optionsCount = $("#component_id>option").length;
+				if(optionsCount <= 1){
+					var option = $('<option></option>').attr("value", name)
+							.text(name);
+						component.append(option);
+				}
+				component.val(name).change();
+
             },
             error: function (xhr, status, err) {
             }
@@ -79,8 +89,17 @@ if(parameter != null) {
             type: "GET",
             cache: false,
             success: function (response) {
-				$("#component_implementation_id").val(response.data.name);
-				componentImplementationName = response.data.name;
+
+				var name = response.data.name;
+
+				var component = $("#component_implementation_id");
+				var optionsCount = $("#component_implementation_id>option").length;
+				if(optionsCount <= 1){
+					var option = $('<option></option>').attr("value", name)
+							.text(name);
+						component.append(option);
+				}
+				component.val(name).change();
             },
             error: function (xhr, status, err) {
             }

@@ -319,7 +319,7 @@ def get_service_component_implementation(request, comp_imp_uuid):
         service_component_imp = component_models.ServiceComponentImplementation.objects.get(id=comp_imp_uuid)
 
         response["status"] = "200 OK"
-        response["data"] = service_component_imp.as_json_up()
+        response["data"] = service_component_imp.as_full()
         response["info"] = "service component implementation information"
 
     except ValueError as v:

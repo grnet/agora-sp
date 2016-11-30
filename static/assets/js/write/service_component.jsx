@@ -439,7 +439,7 @@ var Tabs = React.createClass({
 									</ul>
 									<div className="tab-content tabs-flat">
 										<div id="home11" className="tab-pane in active">
-											<FormWrapper resourceObject={resourceObject} formName={formName}  />
+											<FormWrapper resourceObject={resourceObject} formName={formName} source={this.props.source} />
 										</div>
 
 										<div id="profile11" className="tab-pane">
@@ -469,6 +469,15 @@ ReactDOM.render(
 );
 
 $(function(){
+
+	$("#add-imp").click(function () {
+		//window.location = "/ui/component/implementation?componentId=" + componentId;
+		window.open("/ui/component/implementation?componentId=" + componentId, "_blank");
+	});
+
+	$("#add-imp-det").click(function () {
+		window.open("/ui/component/implementation_detail?componentId=" + componentId, "_blank");
+	});
 
 	$("#btn-edit-description").click(function(e){
 		e.preventDefault();

@@ -103,6 +103,21 @@ class ServiceComponentImplementation(models.Model):
     def __unicode__(self):
         return str(self.name)
 
+    def as_full(self):
+        component_implementation_details = [scid.as_json() for scid in ServiceComponentImplementationDetail.objects.
+                                filter(component_id=self.component_id.pk, component_implementation_id=self.pk)]
+
+        return OrderedDict([
+            ("uuid", str(self.id)),
+            ("name", self.name),
+            ("description", self.description),
+            ("component", self.component_id.as_shorter()),
+            ("component_implementation_details_list", {
+                "count": len(component_implementation_details),
+                "component_implementation_details": component_implementation_details
+            })
+        ])
+
     def as_json(self):
         component_implementation_details = [scid.as_json() for scid in ServiceComponentImplementationDetail.objects.
                                 filter(component_id=self.component_id.pk, component_implementation_id=self.pk)]

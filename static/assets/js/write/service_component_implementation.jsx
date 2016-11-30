@@ -2,6 +2,7 @@
 var formName = 'Service Component Implementation Form';
 
 var componentId = null;
+var componentImplementationId = null;
 var opType = "";
 var globalData;
 
@@ -30,37 +31,34 @@ var OptionsComponent = React.createClass({
 		);
 	}
 });
-
-//function getParameterByName(name, url) {
-//    if (!url) url = window.location.href;
-//    name = name.replace(/[\[\]]/g, "\\$&");
-//    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-//        results = regex.exec(url);
-//    if (!results) return null;
-//    if (!results[2]) return '';
-//    return decodeURIComponent(results[2].replace(/\+/g, " "));
-//}
 //
-//var parameter = getParameterByName("componentId", window.location);
-//if(parameter != null) {
-//	componentId = parameter;
-//	console.log(componentId);
-//	jQuery.support.cors = true;
-//        $.ajax({
-//            url: $("#host")[0].value + "/api/v1/component/" + componentId,
-//            dataType: "json",
-//            crossDomain: true,
-//            type: "GET",
-//            cache: false,
-//            success: function (response) {
-//				$("#component_id").val(response.data.name);
-//				componentName = response.data.name;
-//            },
-//            error: function (xhr, status, err) {
-//                console.log(this.props.source, status, err.toString());
-//            }
-//        });
-//}
+var parameter = getParameterByName("componentId", window.location);
+if(parameter != null) {
+	componentId = parameter;
+	jQuery.support.cors = true;
+        $.ajax({
+            url: $("#host")[0].value + "/api/v1/component/" + componentId,
+            dataType: "json",
+            crossDomain: true,
+            type: "GET",
+            cache: false,
+            success: function (response) {
+
+				var name = response.data.name;
+
+				var component = $("#component_id");
+				var optionsCount = $("#component_id>option").length;
+				if(optionsCount <= 1){
+					var option = $('<option></option>').attr("value", name)
+							.text(name);
+						component.append(option);
+				}
+				component.val(name).change();
+            },
+            error: function (xhr, status, err) {
+            }
+        });
+}
 //
 //var email;
 //var token;
@@ -372,12 +370,186 @@ var FormWrapper = React.createClass({
 	}
 });
 
+var ImplementationDetailsTable = React.createClass({
+
+
+	getInitialState: function () {
+		return {
+			implementationsDetails: [],
+			count: 0,
+			selected: 0
+		}
+	},
+
+	render: function() {
+
+		var array = [];
+		for(var i = 0; i < this.state.count; i++)
+			array.push(i);
+
+		return (
+			<div className="row">
+				<div className="col-xs-12">
+					<div className="well with-header  with-footer">
+						<div className="form-group">
+			      	        <button value="Add component implementation details" id="add-imp-det" className="btn btn-purple">Add component implementation details</button>
+			      	    </div>
+						<table className="table table-hover">
+							<thead className="bordered-darkorange">
+								<tr>
+									<th>
+										Version
+									</th>
+									<th>
+										Configuration Parameters
+									</th>
+
+									<th>
+
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+
+							{this.props.implementationsDetails.map(function (implementation) {
+								return (
+									<tr key={implementation.version}>
+										<td>{implementation.version}</td>
+										<td>{implementation.configuration_parameters}</td>
+										<td><a href={"/ui/component/implementation_detail/" + implementation.uuid}>Edit</a></td>
+									</tr>
+								)
+							})}
+
+							</tbody>
+
+						</table>
+
+						<div className="col-xs-hidden col-sm-6"></div>
+							<div className="col-xs-12 col-sm-6">
+								<div className="dataTables_paginate paging_bootstrap" id="simpledatatable_paginate">
+
+								</div>
+							</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		);
+	}
+});
+
+var Tabs = React.createClass({
+
+	getInitialState: function () {
+		return {
+			component_implementation: {
+				name: "",
+				description: ""
+			},
+			implementationsDetails: []
+		}
+	},
+
+    componentDidMount: function () {
+
+        if(this.props.source == null || this.props.source == "")
+            return;
+
+        jQuery.support.cors = true;
+        this.serverRequest = $.ajax({
+            url: this.props.source,
+            dataType: "json",
+            crossDomain: true,
+            type: "GET",
+            cache: false,
+            success: function (data) {
+                this.setState({component_implementation: data.data});
+				console.log(this.state);
+                $("#name").val(this.state.component_implementation.name);
+                $("#description").val(this.state.component_implementation.description);
+				componentId = this.state.component_implementation.component.uuid;
+				componentImplementationId = this.state.component_implementation.uuid;
+
+				this.setState({implementationsDetails: this.state.component_implementation.component_implementation_details_list.component_implementation_details});
+
+				var component = $("#component_id");
+				var optionsCount = $("#component_id>option").length;
+				if(optionsCount <= 1){
+					var option = $('<option></option>').attr("value", this.state.component_implementation.component.name)
+							.text(this.state.component_implementation.component.name);
+						component.append(option);
+				}
+				component.val(this.state.component_implementation.component.name).change();
+            }.bind(this),
+            error: function (xhr, status, err) {
+                console.log(this.props.source, status, err.toString());
+            }.bind(this)
+        });
+    },
+
+    componentWillUnmount: function () {
+        this.serverRequest.abort();
+    },
+
+	render: function() {
+		return (
+			<div className="row">
+				<div>
+					<div className="widget flat radius-bordered">
+						<div className="widget-header bg-themeprimary">
+							<span className="widget-caption">Component Implementation</span>
+						</div>
+
+						<div className="widget-body">
+							<div className="widget-main ">
+								<div className="tabbable">
+									<ul className="nav nav-tabs tabs-flat" id="myTab11">
+										<li className="active">
+											<a data-toggle="tab" href="#home11">
+												Component Implementation
+											</a>
+										</li>
+										<li>
+											<a data-toggle="tab" href="#profile12">
+												Implementations Details
+											</a>
+										</li>
+									</ul>
+									<div className="tab-content tabs-flat">
+										<div id="home11" className="tab-pane in active">
+											<FormWrapper resourceObject={resourceObject} formName={formName} source={this.props.source} />
+										</div>
+
+										<div id="profile12" className="tab-pane">
+											<ImplementationDetailsTable implementationsDetails={this.state.implementationsDetails} />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div className="col-lg-6 col-sm-6 col-xs-12">
+				</div>
+			</div>
+		);
+	}
+});
+
+
 ReactDOM.render(
-  <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
+  <Tabs source={$("#source")[0].value} />,
   document.getElementById('write-content')
 );
 
 $(function(){
+
+	$("#add-imp-det").click(function () {
+		window.open("/ui/component/implementation_detail?componentId=" + componentId + "&componentImplementationId=" + componentImplementationId, "_blank");
+	});
 
 	$("#btn-edit-description").click(function(e){
 		e.preventDefault();
