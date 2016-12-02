@@ -149,6 +149,68 @@ def get_service_sla_parameter(request, search_type, version, sla_uuid, sla_param
     return JsonResponse(response, status=int(response["status"][:3]))
 
 
+def get_options_for_service_details(request, version):
+    response = {}
+
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+
+    result = prog.match(version)
+    options = []
+
+    if result is None:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "An invalid service component UUID was supplied"
+        }
+        return JsonResponse(response, status=int(response["status"][:3]))
+
+    try:
+
+        service_details = service_models.ServiceDetails.objects.get(id=version)
+
+        serv_det_opt = options_models.ServiceDetailsOption.objects.filter(service_details_id=service_details)
+
+        for o in serv_det_opt:
+            o = options_models.ServiceOption.objects.get(id=o.service_options_id.pk)
+            options.append(o.as_short())
+
+
+        # if len(serv_det_comp) <= 0:
+        #     raise component_models.ServiceDetailsComponent.DoesNotExist
+
+
+        response["status"] = "200 OK"
+        response["data"] = options
+        response["info"] = "service component information"
+
+    except service_models.ServiceDetails.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The specified service details do not exist"
+        }
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response["status"] = "404 Not Found"
+            response["errors"] = {
+                "detail": "An invalid UUID was supplied"
+            }
+
+    except options_models.ServiceOption.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The requested service options were not found"
+        }
+
+    except options_models.ServiceDetailsOption.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "A service option matching the specified service version does not exists"
+        }
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
+
 def get_service_options_all(request):
     response = {}
 

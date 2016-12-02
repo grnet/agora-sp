@@ -3,6 +3,7 @@ var formName = 'Service Details Form';
 
 var opType;
 var serviceId;
+var serviceDetailsId;
 var globalData;
 
 var fieldEdited = null;
@@ -453,11 +454,173 @@ var FormWrapper = React.createClass({
 		}	
 	},
 
+	render: function(){		
+		var formElements = this.generateFormElements(this.props.resourceObject);
+		return(
+			<div className="widget">
+					<div className="widget-header bordered-bottom bordered-blue">
+			     	<span className="widget-caption">{this.props.formName}</span>
+			    </div>
+			    <div className="widget-body">
+			    	<form role="form" onSubmit={this.handleSubmit} id="service-form">
+			    		{formElements}
+			    		<button type="submit" className="btn btn-blue">Submit</button>
+			    	</form>
+			   	</div>
+			</div>
+		);
+	}
+});
+
+var ComponentsTable = React.createClass({
+
+
+	getInitialState: function () {
+		return {
+			components: []
+		}
+	},
+
+	render: function() {
+
+		var array = [];
+		for(var i = 0; i < this.state.count; i++)
+			array.push(i);
+
+		return (
+			<div className="row">
+				<div className="col-xs-12">
+					<div className="well with-header  with-footer">
+						<div className="form-group">
+			      	        <button value="Add user customer" id="add-component-detail" className="btn btn-purple">Match related component implementation detail</button>
+			      	    </div>
+						<table className="table table-hover">
+							<thead className="bordered-darkorange">
+								<tr>
+									<th>
+										Version
+									</th>
+									<th>
+										Configuration parameters
+									</th>
+									<th>
+
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+
+							{this.props.components.map(function (component) {
+								return (
+									<tr key={component.uuid}>
+										<td>{component.version}</td>
+										<td>{component.configuration_parameters}</td>
+										<td><a href={"/ui/component/implementation_detail/" + component.uuid}>Edit</a></td>
+									</tr>
+								)
+							})}
+
+							</tbody>
+
+						</table>
+
+						<div className="col-xs-hidden col-sm-6"></div>
+							<div className="col-xs-12 col-sm-6">
+								<div className="dataTables_paginate paging_bootstrap" id="simpledatatable_paginate">
+
+								</div>
+							</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		);
+	}
+});
+
+var ServiceOptionsTable = React.createClass({
+
+
+	getInitialState: function () {
+		return {
+			options: []
+		}
+	},
+
+	render: function() {
+
+		var array = [];
+		for(var i = 0; i < this.state.count; i++)
+			array.push(i);
+
+		return (
+			<div className="row">
+				<div className="col-xs-12">
+					<div className="well with-header  with-footer">
+						<div className="form-group">
+			      	        <button value="Add user customer" id="add-options" className="btn btn-purple">Match related service options</button>
+			      	    </div>
+						<table className="table table-hover">
+							<thead className="bordered-darkorange">
+								<tr>
+									<th>
+										Name
+									</th>
+									<th>
+										Description
+									</th>
+									<th>
+										Pricing
+									</th>
+									<th>
+
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+
+							{this.props.options.map(function (option) {
+								return (
+									<tr key={option.uuid}>
+										<td>{option.name}</td>
+										<td>{option.description}</td>
+										<td>{option.pricing}</td>
+										<td><a href={"/ui/options/service_options/" + option.uuid}>Edit</a></td>
+									</tr>
+								)
+							})}
+
+							</tbody>
+
+						</table>
+
+						<div className="col-xs-hidden col-sm-6"></div>
+							<div className="col-xs-12 col-sm-6">
+								<div className="dataTables_paginate paging_bootstrap" id="simpledatatable_paginate">
+
+								</div>
+							</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		);
+	}
+});
+
+var Tabs = React.createClass({
+
 	getInitialState: function () {
 		return {
 			service_details: {
 				version: ""
-			}
+			},
+			components: [],
+			options: []
 		}
 	},
 
@@ -537,8 +700,33 @@ var FormWrapper = React.createClass({
 						service.append(option);
 				}
 				service.val(this.state.service_details.service.name).change();
-
 				serviceId = this.state.service_details.service.uuid;
+				serviceDetailsId = this.state.service_details.uuid;
+
+				var self = this;
+				$.ajax({
+					url: host + "/api/v1/component/service_details_components/" + serviceDetailsId,
+					dataType: "json",
+					crossDomain: true,
+					type: "GET",
+					cache: false,
+					success: function (data) {
+						self.setState({components: data.data});
+					}
+				});
+
+				$.ajax({
+					url: host + "/api/v1/options/options_for_service_details/" + serviceDetailsId,
+					dataType: "json",
+					crossDomain: true,
+					type: "GET",
+					cache: false,
+					success: function (data) {
+						self.setState({options: data.data});
+					}
+				});
+
+
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
@@ -550,30 +738,76 @@ var FormWrapper = React.createClass({
         this.serverRequest.abort();
     },
 
-	render: function(){		
-		var formElements = this.generateFormElements(this.props.resourceObject);
-		return(
-			<div className="widget">
-					<div className="widget-header bordered-bottom bordered-blue">
-			     	<span className="widget-caption">{this.props.formName}</span>
-			    </div>
-			    <div className="widget-body">
-			    	<form role="form" onSubmit={this.handleSubmit} id="service-form">
-			    		{formElements}
-			    		<button type="submit" className="btn btn-blue">Submit</button>
-			    	</form>
-			   	</div>
+	render: function() {
+		return (
+			<div className="row">
+				<div>
+					<div className="widget flat radius-bordered">
+						<div className="widget-header bg-themeprimary">
+							<span className="widget-caption">Service Version</span>
+						</div>
+
+						<div className="widget-body">
+							<div className="widget-main ">
+								<div className="tabbable">
+									<ul className="nav nav-tabs tabs-flat" id="myTab11">
+										<li className="active">
+											<a data-toggle="tab" href="#home11">
+												Service Version
+											</a>
+										</li>
+										<li>
+											<a data-toggle="tab" href="#profile11">
+												Components
+											</a>
+										</li>
+										<li>
+											<a data-toggle="tab" href="#profile12">
+												Options
+											</a>
+										</li>
+									</ul>
+									<div className="tab-content tabs-flat">
+										<div id="home11" className="tab-pane in active">
+											<FormWrapper resourceObject={resourceObject} formName={formName} source={this.props.source} />
+										</div>
+
+										<div id="profile11" className="tab-pane">
+											<ComponentsTable components={this.state.components} />
+										</div>
+
+										<div id="profile12" className="tab-pane">
+											<ServiceOptionsTable options={this.state.options} />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div className="col-lg-6 col-sm-6 col-xs-12">
+				</div>
 			</div>
 		);
 	}
 });
 
+
 ReactDOM.render(
-  <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
+  <Tabs source={$("#source")[0].value} />,
   document.getElementById('write-content')
 );
 
+
 $(function() {
+
+	$("#add-component-detail").click(function(){
+		window.open("/ui/component/service_details_component?serviceId=" + serviceId + "&serviceVersion=" + serviceDetailsId, "_blank")
+	});
+
+	$("#add-options").click(function(){
+		window.open("/ui/options/service_details_options?serviceId=" + serviceId + "&serviceVersion=" + serviceDetailsId, "_blank")
+	});
 
 	$("#btn-edit-features-current").click(function (e) {
 		e.preventDefault();
