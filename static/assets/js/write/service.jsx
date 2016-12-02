@@ -530,6 +530,74 @@ var InternalServiceTable = React.createClass({
 	}
 });
 
+var UsersCustomersTable = React.createClass({
+
+
+	getInitialState: function () {
+		return {
+			users: []
+		}
+	},
+
+	render: function() {
+
+		var array = [];
+		for(var i = 0; i < this.state.count; i++)
+			array.push(i);
+
+		return (
+			<div className="row">
+				<div className="col-xs-12">
+					<div className="well with-header  with-footer">
+						<div className="form-group">
+			      	        <button value="Add user customer" id="add-user" className="btn btn-purple">Add user customer</button>
+			      	    </div>
+						<table className="table table-hover">
+							<thead className="bordered-darkorange">
+								<tr>
+									<th>
+										Name
+									</th>
+									<th>
+										Role
+									</th>
+									<th>
+
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+
+							{this.props.users.map(function (user) {
+								return (
+									<tr key={user.uuid}>
+										<td>{user.name}</td>
+										<td>{user.role}</td>
+										<td><a href={"/ui/service/users_customers/" + user.uuid}>Edit</a></td>
+									</tr>
+								)
+							})}
+
+							</tbody>
+
+						</table>
+
+						<div className="col-xs-hidden col-sm-6"></div>
+							<div className="col-xs-12 col-sm-6">
+								<div className="dataTables_paginate paging_bootstrap" id="simpledatatable_paginate">
+
+								</div>
+							</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		);
+	}
+});
+
 
 var Tabs = React.createClass({
 
@@ -539,7 +607,8 @@ var Tabs = React.createClass({
 			},
 			service_details: [],
 			external_services: [],
-			internal_services: []
+			internal_services: [],
+			users_customers: []
 		}
 	},
 
@@ -737,6 +806,7 @@ var Tabs = React.createClass({
 				this.setState({service_details: this.state.service.service_details_list.service_details});
 				this.setState({external_services: this.state.service.external.external_services});
 				this.setState({internal_services: this.state.service.dependencies_list.services});
+				this.setState({users_customers: this.state.service.user_customers_list.user_customers})
 
             }.bind(this),
             error: function (xhr, status, err) {
@@ -782,6 +852,11 @@ var Tabs = React.createClass({
 												External dependencies
 											</a>
 										</li>
+										<li>
+											<a data-toggle="tab" href="#profile14">
+												Users customers
+											</a>
+										</li>
 									</ul>
 									<div className="tab-content tabs-flat">
 										<div id="home11" className="tab-pane in active">
@@ -798,6 +873,10 @@ var Tabs = React.createClass({
 
 										<div id="profile13" className="tab-pane">
 											<ExternalServiceTable services={this.state.external_services} />
+										</div>
+
+										<div id="profile14" className="tab-pane">
+											<UsersCustomersTable users={this.state.users_customers} />
 										</div>
 
 									</div>
@@ -831,6 +910,10 @@ $(function(){
 
 	$("#add-internal").click(function () {
 		window.open("/ui/service/internal_dependency?serviceId=" + serviceId, "_blank");
+	});
+
+	$("#add-user").click(function () {
+		window.open("/ui/service/users_customers?serviceId=" + serviceId, "_blank");
 	});
 
 	$("#btn-edit-description-external").click(function(e){
