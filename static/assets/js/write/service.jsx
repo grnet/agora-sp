@@ -421,7 +421,7 @@ var ExternalServiceTable = React.createClass({
 				<div className="col-xs-12">
 					<div className="well with-header  with-footer">
 						<div className="form-group">
-			      	        <button value="Add external service" id="add-external" className="btn btn-purple">Add external service</button>
+			      	        <button value="Add external service" id="add-external" className="btn btn-purple">Add external dependency</button>
 			      	    </div>
 						<table className="table table-hover">
 							<thead className="bordered-darkorange">
@@ -466,6 +466,71 @@ var ExternalServiceTable = React.createClass({
 });
 
 
+var InternalServiceTable = React.createClass({
+
+
+	getInitialState: function () {
+		return {
+			services: []
+		}
+	},
+
+	render: function() {
+
+		var array = [];
+		for(var i = 0; i < this.state.count; i++)
+			array.push(i);
+
+		return (
+			<div className="row">
+				<div className="col-xs-12">
+					<div className="well with-header  with-footer">
+						<div className="form-group">
+			      	        <button value="Add internal service" id="add-internal" className="btn btn-purple">Add internal dependency</button>
+			      	    </div>
+						<table className="table table-hover">
+							<thead className="bordered-darkorange">
+								<tr>
+									<th>
+										Name
+									</th>
+									<th>
+
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+
+							{this.props.services.map(function (service) {
+								return (
+									<tr key={service.uuid}>
+										<td>{service.service.name}</td>
+										<td><a href={"/ui/service/" + service.service.name}>Edit</a></td>
+									</tr>
+								)
+							})}
+
+							</tbody>
+
+						</table>
+
+						<div className="col-xs-hidden col-sm-6"></div>
+							<div className="col-xs-12 col-sm-6">
+								<div className="dataTables_paginate paging_bootstrap" id="simpledatatable_paginate">
+
+								</div>
+							</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		);
+	}
+});
+
+
 var Tabs = React.createClass({
 
 	getInitialState: function () {
@@ -473,7 +538,8 @@ var Tabs = React.createClass({
 			service: {
 			},
 			service_details: [],
-			external_services: []
+			external_services: [],
+			internal_services: []
 		}
 	},
 
@@ -669,6 +735,8 @@ var Tabs = React.createClass({
 					internal_contact_information.internal_contact_information.uuid
 
 				this.setState({service_details: this.state.service.service_details_list.service_details});
+				this.setState({external_services: this.state.service.external.external_services});
+				this.setState({internal_services: this.state.service.dependencies_list.services});
 
             }.bind(this),
             error: function (xhr, status, err) {
@@ -706,6 +774,11 @@ var Tabs = React.createClass({
 										</li>
 										<li>
 											<a data-toggle="tab" href="#profile12">
+												Internal dependencies
+											</a>
+										</li>
+										<li>
+											<a data-toggle="tab" href="#profile13">
 												External dependencies
 											</a>
 										</li>
@@ -720,6 +793,10 @@ var Tabs = React.createClass({
 										</div>
 
 										<div id="profile12" className="tab-pane">
+											<InternalServiceTable services={this.state.internal_services} />
+										</div>
+
+										<div id="profile13" className="tab-pane">
 											<ExternalServiceTable services={this.state.external_services} />
 										</div>
 
@@ -749,7 +826,11 @@ $(function(){
 	});
 
 	$("#add-external").click(function () {
-		window.open("/ui/service/external?serviceId=" + serviceId, "_blank");
+		window.open("/ui/service/external_dependency?serviceId=" + serviceId, "_blank");
+	});
+
+	$("#add-internal").click(function () {
+		window.open("/ui/service/internal_dependency?serviceId=" + serviceId, "_blank");
 	});
 
 	$("#btn-edit-description-external").click(function(e){
