@@ -458,9 +458,6 @@ var FormWrapper = React.createClass({
 		var formElements = this.generateFormElements(this.props.resourceObject);
 		return(
 			<div className="widget">
-					<div className="widget-header bordered-bottom bordered-blue">
-			     	<span className="widget-caption">{this.props.formName}</span>
-			    </div>
 			    <div className="widget-body">
 			    	<form role="form" onSubmit={this.handleSubmit} id="service-form">
 			    		{formElements}

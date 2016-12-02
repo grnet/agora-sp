@@ -43,6 +43,19 @@ class ServiceOption(models.Model):
                     ("SLA", None)
                 ])
 
+    def as_full_sla(self):
+        sla = SLA.objects.filter(service_option_id=self.pk)
+
+        sla = [s.as_short() for s in sla]
+
+        return OrderedDict([
+                ("uuid", self.id),
+                ("name", self.name),
+                ("description", self.description),
+                ("pricing", self.pricing),
+                ("SLA", sla)
+            ])
+
     def as_json(self, service_name, service_details_version):
         sla = SLA.objects.filter(service_option_id=self.pk)
 

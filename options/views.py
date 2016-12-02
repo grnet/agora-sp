@@ -325,6 +325,31 @@ def get_service_options_single(request, serv_opt_uuid):
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
+def get_service_options_with_sla(request, serv_opt_uuid):
+    """
+    Retrieves the service options
+
+    """
+
+    service, parsed_name, uuid = None, None, None
+
+    response = {}
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+    result = prog.match(serv_opt_uuid)
+
+    try:
+        options = options_models.ServiceOption.objects.get(id=serv_opt_uuid)
+        response = helper.get_response_info(strings.SERVICE_OPTIONS, options.as_full_sla())
+
+    except options_models.ServiceOption.DoesNotExist:
+        response = helper.get_error_response(strings.SERVICE_OPTION_NOT_FOUND)
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response = helper.get_error_response(strings.INVALID_UUID)
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
 def get_sla(request, sla_uuid):
     """
     Retrieves the service options
@@ -452,7 +477,7 @@ def service_options_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_option"})
 
 def service_options_edit_ui(request, serv_opt_uuid):
-    source = helper.current_site_url() + "/v1/options/service_options/" + serv_opt_uuid
+    source = helper.current_site_url() + "/v1/options/service_options_sla/" + serv_opt_uuid
     return render(request, 'service/write.html', {"type": "service_option", "source": source})
 
 def service_details_options_write_ui(request):
