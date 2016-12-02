@@ -401,13 +401,79 @@ var ServiceDetailsTable = React.createClass({
 });
 
 
+var ExternalServiceTable = React.createClass({
+
+
+	getInitialState: function () {
+		return {
+			services: []
+		}
+	},
+
+	render: function() {
+
+		var array = [];
+		for(var i = 0; i < this.state.count; i++)
+			array.push(i);
+
+		return (
+			<div className="row">
+				<div className="col-xs-12">
+					<div className="well with-header  with-footer">
+						<div className="form-group">
+			      	        <button value="Add external service" id="add-external" className="btn btn-purple">Add external service</button>
+			      	    </div>
+						<table className="table table-hover">
+							<thead className="bordered-darkorange">
+								<tr>
+									<th>
+										Name
+									</th>
+									<th>
+
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+
+							{this.props.services.map(function (service) {
+								return (
+									<tr key={service.uuid}>
+										<td>{service.name}</td>
+										<td><a href={"/ui/service/external/" + service.uuid}>Edit</a></td>
+									</tr>
+								)
+							})}
+
+							</tbody>
+
+						</table>
+
+						<div className="col-xs-hidden col-sm-6"></div>
+							<div className="col-xs-12 col-sm-6">
+								<div className="dataTables_paginate paging_bootstrap" id="simpledatatable_paginate">
+
+								</div>
+							</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		);
+	}
+});
+
+
 var Tabs = React.createClass({
 
 	getInitialState: function () {
 		return {
 			service: {
 			},
-			service_details: []
+			service_details: [],
+			external_services: []
 		}
 	},
 
@@ -638,6 +704,11 @@ var Tabs = React.createClass({
 												Versions
 											</a>
 										</li>
+										<li>
+											<a data-toggle="tab" href="#profile12">
+												External dependencies
+											</a>
+										</li>
 									</ul>
 									<div className="tab-content tabs-flat">
 										<div id="home11" className="tab-pane in active">
@@ -647,6 +718,11 @@ var Tabs = React.createClass({
 										<div id="profile11" className="tab-pane">
 											<ServiceDetailsTable service_name={this.state.service.name} versions={this.state.service_details} />
 										</div>
+
+										<div id="profile12" className="tab-pane">
+											<ExternalServiceTable services={this.state.external_services} />
+										</div>
+
 									</div>
 								</div>
 							</div>
@@ -670,6 +746,10 @@ $(function(){
 
 	$("#add-version").click(function () {
 		window.open("/ui/service/version?serviceId=" + serviceId, "_blank");
+	});
+
+	$("#add-external").click(function () {
+		window.open("/ui/service/external?serviceId=" + serviceId, "_blank");
 	});
 
 	$("#btn-edit-description-external").click(function(e){
