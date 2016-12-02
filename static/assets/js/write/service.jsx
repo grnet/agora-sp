@@ -53,8 +53,10 @@ var resourceObject = [
 	{ tag: 'button', type: 'button', name: 'edit-competitors', label: 'Edit', value: "Edit"},
 	// todo: how to fill the data for the options (should be done before rendering)
 	{ tag: 'select', type: 'text', name: 'service_owner', label: 'Service Owner', placeholder: "Enter service owner name", optionsData: optionsOwnerData },
+	{ tag: 'button', type: 'button', name: 'add-owner', label: 'Add', value: "Add"},
 	{ tag: 'select', type: 'text', name: 'contact_information_external', label: 'Contact Information External', placeholder: "Enter external contact info", optionsData: optionsExternalContactData },
-	{ tag: 'select', type: 'text', name: 'contact_information_internal', label: 'Contact Information Internal', placeholder: "Enter internal contact info", optionsData: optionsInternalContactData }
+	{ tag: 'select', type: 'text', name: 'contact_information_internal', label: 'Contact Information Internal', placeholder: "Enter internal contact info", optionsData: optionsInternalContactData },
+	{ tag: 'button', type: 'button', name: 'add-contact', label: 'Add', value: "Add"}
 ];
 
 var OptionsComponent = React.createClass({
@@ -917,9 +919,19 @@ $(function(){
 		window.open("/ui/service/users_customers?serviceId=" + serviceId, "_blank");
 	});
 
-	$("#btn-add-area").click(function () {
+	$("#btn-add-area").click(function (e) {
 		e.preventDefault();
 		window.open("/ui/service/area", "_blank");
+	});
+
+	$("#btn-add-owner").click(function (e) {
+		e.preventDefault();
+		window.open("/ui/owner/", "_blank");
+	});
+
+	$("#btn-add-contact").click(function (e) {
+		e.preventDefault();
+		window.open("/ui/owner/contact_information", "_blank");
 	});
 
 	$("#btn-edit-description-external").click(function(e){
