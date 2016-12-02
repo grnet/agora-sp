@@ -39,6 +39,7 @@ var resourceObject = [
 	{ tag: 'textarea', type: 'textarea', name: 'description_internal', placeholder: "Enter internal description", label: 'Internal Description', required: true, onChange: 'textareaHTMLValidation' },
 	{ tag: 'button', type: 'button', name: 'edit-description-internal', label: 'Edit', value: "Edit"},
 	{ tag: 'select', type: 'text', name: 'service_area', placeholder: 'Enter service area', label: 'Service Area', required: true, optionsData: optionsArea },
+	{ tag: 'button', type: 'button', name: 'add-area', label: 'Add', value: "Add"},
 	{ tag: 'select', type: 'text', name: 'service_type', placeholder: 'Enter service type', label: 'Service Type', required: true, optionsData: optionsType },
 	{ tag: 'textarea', type: 'textarea', name: 'request_procedures', placeholder: "Enter request procedures", label: 'Request Procedures', required: true, onChange: 'textareaHTMLValidation' },
 	{ tag: 'button', type: 'button', name: 'edit-request-procedures', label: 'Edit', value: "Edit"},
@@ -914,6 +915,11 @@ $(function(){
 
 	$("#add-user").click(function () {
 		window.open("/ui/service/users_customers?serviceId=" + serviceId, "_blank");
+	});
+
+	$("#btn-add-area").click(function () {
+		e.preventDefault();
+		window.open("/ui/service/area", "_blank");
 	});
 
 	$("#btn-edit-description-external").click(function(e){
