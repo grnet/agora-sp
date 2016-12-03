@@ -115,7 +115,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 LOGIN_URL= '/login/'
 
-LOGIN_REDIRECT_URL = "/login/"
+LOGIN_REDIRECT_URL = "/api/admin/"
 
 PROJECT_APPS = ['component', 'options', 'owner', 'service']
 
