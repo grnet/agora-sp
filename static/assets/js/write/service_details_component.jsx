@@ -47,6 +47,66 @@ var OptionsComponent = React.createClass({
 	}
 });
 
+var parameter = getParameterByName("serviceId", window.location);
+if(parameter != null) {
+	serviceId = parameter;
+	newServiceId = parameter;
+	jQuery.support.cors = true;
+        $.ajax({
+            url: $("#host")[0].value + "/api/v1/portfolio/services/" + serviceId,
+            dataType: "json",
+            crossDomain: true,
+            type: "GET",
+            cache: false,
+            success: function (response) {
+				var name = response.data.name;
+
+				var service = $("#service_id");
+				var optionsCount = $("#service_id>option").length;
+				if(optionsCount <= 1){
+					var option = $('<option></option>').attr("value", name)
+							.text(name);
+						service.append(option);
+				}
+				service.val(name).change();
+
+
+				parameter = getParameterByName("serviceVersion", window.location);
+				if(parameter != null) {
+					serviceDetailsId = parameter;
+					newServiceDetailsId = parameter;
+					jQuery.support.cors = true;
+						$.ajax({
+							url: $("#host")[0].value + "/api/v1/portfolio/services/" + serviceId + "/service_details/" + serviceDetailsId,
+							dataType: "json",
+							crossDomain: true,
+							type: "GET",
+							cache: false,
+							success: function (response) {
+								console.log(response);
+								var version = response.data.version;
+
+								var service_details = $("#service_details_id");
+								var optionsCount = $("#service_details_id>option").length;
+								var v = name + " " + version;
+								if(optionsCount <= 1){
+									var option = $('<option></option>').attr("value", v)
+											.text(v);
+										service_details.append(option);
+								}
+								service_details.val(v).change();
+							},
+							error: function (xhr, status, err) {
+							}
+							});
+				}
+
+            },
+            error: function (xhr, status, err) {
+            }
+        });
+}
+
 var FormWrapper;
 FormWrapper = React.createClass({
 

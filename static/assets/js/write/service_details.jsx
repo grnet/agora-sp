@@ -4,6 +4,7 @@ var formName = 'Service Details Form';
 var opType;
 var serviceId;
 var serviceDetailsId;
+var serviceVersion;
 var globalData;
 
 var fieldEdited = null;
@@ -699,6 +700,7 @@ var Tabs = React.createClass({
 				service.val(this.state.service_details.service.name).change();
 				serviceId = this.state.service_details.service.uuid;
 				serviceDetailsId = this.state.service_details.uuid;
+				serviceVersion = this.state.service_details.version;
 
 				var self = this;
 				$.ajax({
@@ -799,11 +801,11 @@ ReactDOM.render(
 $(function() {
 
 	$("#add-component-detail").click(function(){
-		window.open("/ui/component/service_details_component?serviceId=" + serviceId + "&serviceVersion=" + serviceDetailsId, "_blank")
+		window.open("/ui/component/service_details_component?serviceId=" + serviceId + "&serviceVersion=" + serviceVersion, "_blank")
 	});
 
 	$("#add-options").click(function(){
-		window.open("/ui/options/service_details_options?serviceId=" + serviceId + "&serviceVersion=" + serviceDetailsId, "_blank")
+		window.open("/ui/options/service_details_options?serviceId=" + serviceId + "&serviceVersion=" + serviceVersion, "_blank")
 	});
 
 	$("#btn-edit-features-current").click(function (e) {
