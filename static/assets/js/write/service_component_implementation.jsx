@@ -59,30 +59,6 @@ if(parameter != null) {
             }
         });
 }
-//
-//var email;
-//var token;
-//
-//function getCookie(cname) {
-//    var name = cname + "=";
-//    var ca = document.cookie.split(';');
-//    for(var i = 0; i <ca.length; i++) {
-//        var c = ca[i];
-//        while (c.charAt(0)==' ') {
-//            c = c.substring(1);
-//        }
-//        if (c.indexOf(name) == 0) {
-//            return c.substring(name.length,c.length);
-//        }
-//    }
-//    return "";
-//}
-//
-//var t = getCookie("api-credentials");
-//t = t.split("-");
-//token = t[0];
-//email = t[1];
-
 var FormWrapper = React.createClass({
 
 	generateFormElements: function(resourceObject){
@@ -237,8 +213,8 @@ var FormWrapper = React.createClass({
 				url: url,
 				headers: {
 					"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
-					//"AUTH_TOKEN": token,
-					//"EMAIL": email
+					"AUTH_TOKEN": localStorage.apiToken,
+					"EMAIL": localStorage.apiEmail
 				},
 				dataType: "json",
 				crossDomain: true,

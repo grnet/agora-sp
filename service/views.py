@@ -227,12 +227,20 @@ def home_write_ui(request):
 
 # @login_required()
 def service_write_ui(request):
-    return render(request, 'service/write.html', {"type": "service"})
+    response = render(request, 'service/write.html', {"type": "service"})
+    response.set_cookie(key="api-credentials", value='fdeadf768eaf9ae7-stojanovski.dario@gmail.com')
+    return response
 
 # @login_required()
 def service_edit_ui(request, service_name_or_uuid):
     source = helper.current_site_url() + "/v1/portfolio/services/" + service_name_or_uuid + "/complete"
-    return render(request, 'service/write.html', {"type": "service", "source": source})
+
+    response = render(request, 'service/write.html', {"type": "service", "source": source})
+
+    # response.set_cookie(key="api-credentials", value=request.session['api-info'])
+    response.set_cookie(key="api-credentials", value='fdeadf768eaf9ae7-stojanovski.dario@gmail.com')
+
+    return response
 
 # @login_required()
 def external_service_write_ui(request):
@@ -1255,7 +1263,7 @@ def get_service_versions(request):
 @api_view(['POST'])
 def insert_service_area(request):
     params = request.data
-    
+
     name = params.get('name')
 
     if name == "" or name is None:

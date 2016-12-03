@@ -313,6 +313,37 @@
 
         var leftMenuService = ["Home", "Basic Info", "Versions", "Internal Dependencies", "External Dependencies", "Users / Customers"];
 
+
+        var email;
+        var token;
+
+        function getCookie(cname) {
+            var name = cname + "=";
+            var ca = document.cookie.split(';');
+            for(var i = 0; i <ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0)==' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length,c.length);
+                }
+            }
+            return "";
+        }
+
+        var t = getCookie("api-credentials");
+        if(t[0] == '"')
+            t = t.substr(1);
+        if(t[t.length - 1] == '"')
+            t = t.substr(0, t.length - 1);
+        t = t.split("-");
+        var apiToken = t[0];
+        var apiEmail = t[1];
+        localStorage.setItem("apiToken", t[0]);
+        localStorage.setItem("apiEmail", t[1]);
+
+
         ReactDOM.render(
             <Header />,
             document.getElementById('header')
