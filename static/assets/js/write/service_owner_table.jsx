@@ -74,7 +74,10 @@ var OwnerTable = React.createClass({
 
 							</tbody>
 						</table>
-
+						<br/>
+						<div className="form-group">
+			      	        <button className="btn btn-purple" id="btn-add-owner">New service owner</button>
+			      	    </div>
 					</div>
 
 				</div>
@@ -88,3 +91,11 @@ ReactDOM.render(
   <OwnerTable  source={$("#source")[0].value}/>,
   document.getElementById('write-content')
 );
+
+$(function(){
+
+	$("#btn-add-owner").click(function(){
+		window.location = "/ui/owner";
+	});
+
+});

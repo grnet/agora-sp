@@ -69,7 +69,10 @@ var ComponentTable = React.createClass({
 
 							</tbody>
 						</table>
-
+						<br/>
+						<div className="form-group">
+			      	        <button className="btn btn-purple" id="btn-add-component">New component</button>
+			      	    </div>
 					</div>
 
 				</div>
@@ -83,3 +86,11 @@ ReactDOM.render(
   <ComponentTable  source={$("#source")[0].value}/>,
   document.getElementById('write-content')
 );
+
+$(function(){
+
+	$("#btn-add-component").click(function(){
+		window.location = "/ui/component";
+	});
+
+});

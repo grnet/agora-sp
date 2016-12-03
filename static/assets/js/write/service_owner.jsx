@@ -20,7 +20,8 @@ var resourceObject = [
 	{ tag: 'input', type: 'text', name: 'email', placeholder: 'Enter email', label: 'Email' },
 	{ tag: 'input', type: 'text', name: 'phone', placeholder: 'Enter phone', label: 'Phone' },
 	{ tag: 'select', type: 'text', name: 'institution_id', placeholder: 'Enter institution', label: 'Institution', optionsData: optionsData },
-	{tag: 'button', type: 'button', name: 'add-institution', label: 'Add institution', value: "Add institution"}
+	{tag: 'button', type: 'button', name: 'add-institution', label: 'Add institution', value: "Add"},
+	{tag: 'button', type: 'button', name: 'edit-institution', label: 'Edit institution', value: "Edit"}
 	//{ tag: 'select', type: 'select', name: 'account_id', label: 'Account', optionsData: optionsData }
 ];
 
@@ -332,5 +333,10 @@ $(function(){
 	$("#btn-add-institution").click(function(e){
 		e.preventDefault();
 		window.open("/ui/owner/institution", "_blank")
+	});
+
+	$("#btn-edit-institution").click(function(e){
+		e.preventDefault();
+		window.open("/ui/owner/institution/" + institutionId, "_blank");
 	});
 });
