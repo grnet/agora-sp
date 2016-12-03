@@ -294,12 +294,12 @@ class Service(models.Model):
         users_customers = self.get_user_customers()
         service_details = self.get_service_details(complete=True, url=True)
 
-        contact_information = self.get_service_contact_information_object_internal()
-        if contact_information is not None:
-            contact_information = {
-                "internal_contact_information": self.id_contact_information_internal.as_json(),
-                "external_contact_information": self.id_contact_information.as_json()
-            }
+        internal = self.id_contact_information_internal.as_json() if self.id_contact_information_internal is not None else None
+        external = self.id_contact_information.as_json() if self.id_contact_information is not None else None
+        contact_information = {
+            "internal_contact_information": internal,
+            "external_contact_information": external
+        }
 
         service_owner = self.get_service_owner_object()
         if service_owner is not None:

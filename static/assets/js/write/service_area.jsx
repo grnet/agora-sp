@@ -61,17 +61,46 @@ var FormWrapper = React.createClass({
 		return formElements;
 	},
 
-	markInvalid: function(elRef){
+	markInvalid: function(elRef, message){
 		$('#' + elRef).next().removeClass('sr-only');
+		$('#' + elRef).next().html(message);
 		$('#' + elRef).parent().addClass('has-error');
 		$('html, body').animate({
         scrollTop: $('#' + elRef).offset().top
-    }, 800);
+    	}, 800);
+	},
+
+	clearValidations: function(){
+		$('body').find('.has-error').removeClass('has-error');
+		$('body').find('.validation-message').addClass('sr-only');
 	},
 
 	validateForm: function(e){
+		this.clearValidations();
+		var validationObjects = [];
+		var validationMessage = '';
+
+		// --- validation code goes here ---
+
+		if($('#name').val() == ''){
+			validationMessage = "The name is required";
+			validationObjects.push( { field: 'name', message: validationMessage } );
+		}
+
+		if($('#name').val().length > 255){
+			validationMessage = "Content exceeds max length of 255 characters."
+			validationObjects.push( { field: 'name', message: validationMessage } );
+		}
+
+		if(validationObjects.length > 0){
+			var i = 0;
+			for (i = 0; i < validationObjects.length; i++) {
+			    this.markInvalid(validationObjects[i].field, validationObjects[i].message);
+			}
+			return false;
+		}
+
 		return true;
-		// separate validation for each view
 	},
 
 	handleSubmit: function(e) {
@@ -80,11 +109,35 @@ var FormWrapper = React.createClass({
 		e.preventDefault();
 
 		if(this.validateForm()){
-			//var formValues = JSON.stringify($("#service-form").serializeJSON());
-			//console.log("The form values are ->", formValues);
+			this.clearValidations();
+
+			var params = {};
+			params['name'] = $("#name").val();
+
+			var parts = window.location.href.split("/");
+			var host = "http://" + parts[2];
+
+			this.serverRequest = $.ajax({
+				url: host + "/api/v1/services/area/add",
+				headers: {"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value },
+				dataType: "json",
+				crossDomain: true,
+				type: "POST",
+				contentType:"application/json",
+				cache: false,
+				data: JSON.stringify(params),
+				success: function (data) {
+					$("#modal-success-body").text("You have successfully inserted a new service");
+					$("#modal-success").modal('show');
+				}.bind(this),
+				error: function (xhr, status, err) {
+					var response = JSON.parse(xhr.responseText);
+					$("#modal-body").text(response.errors.detail);
+					$("#modal-danger").modal('show');
+				}.bind(this)
+			});
 		}
 		else{
-			console.log("The form is not valid");
 		}
 		
 	},

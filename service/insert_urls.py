@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^all/?$', views.get_services),
     url(r'^external/all/?$', views.get_external_services),
     url(r'^area/all/?$', views.get_service_areas),
+    url(r'^area/add/?$', views.insert_service_area),
     url(r'^type/all/?$', views.get_service_types),
     url(r'^version/all/?$', views.get_service_versions),
     url(r'^external_service/edit/?$', views.edit_external_service),

@@ -138,7 +138,8 @@ ERROR_MESSAGES = {
     SLA_NAME_EXISTS: "A SLA with the provided name already exists",
     PARAMETER_NAME_EXISTS: "A parameter with the provided name already exists",
     EXTERNAL_SERVICE_NAME_EXISTS: "An external service with the provided name already exists",
-    CONTACT_INFORMATION_EXISTS: "The provided email or URL already exists"
+    CONTACT_INFORMATION_EXISTS: "The provided email or URL already exists",
+    EMPTY_AREA: "The area provided is empty"
 }
 
 
@@ -191,7 +192,8 @@ INFO_MESSAGES = {
     USER_CUSTOMER_UPDATED: "User customer updated",
     SERVICE_DETAILS_COMPONENT_UPDATED: "Service details component updated",
     SERVICE_DEPENDENCY_UPDATED: "Service dependency updated",
-    USER_TOKENS_GENERATED: "New tokens have been generated for each user."
+    USER_TOKENS_GENERATED: "New tokens have been generated for each user.",
+    SERVICE_AREA_INFO: "Service area inserted"
 }
 
 STATUS_CODES = {

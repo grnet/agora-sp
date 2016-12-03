@@ -54,9 +54,13 @@ var resourceObject = [
 	// todo: how to fill the data for the options (should be done before rendering)
 	{ tag: 'select', type: 'text', name: 'service_owner', label: 'Service Owner', placeholder: "Enter service owner name", optionsData: optionsOwnerData },
 	{ tag: 'button', type: 'button', name: 'add-owner', label: 'Add', value: "Add"},
+	{ tag: 'button', type: 'button', name: 'edit-owner', label: 'Add', value: "Edit"},
 	{ tag: 'select', type: 'text', name: 'contact_information_external', label: 'Contact Information External', placeholder: "Enter external contact info", optionsData: optionsExternalContactData },
+	{ tag: 'button', type: 'button', name: 'add-contact', label: 'Add', value: "Add"},
+	{ tag: 'button', type: 'button', name: 'edit-external', label: 'Add', value: "Edit"},
 	{ tag: 'select', type: 'text', name: 'contact_information_internal', label: 'Contact Information Internal', placeholder: "Enter internal contact info", optionsData: optionsInternalContactData },
-	{ tag: 'button', type: 'button', name: 'add-contact', label: 'Add', value: "Add"}
+	{ tag: 'button', type: 'button', name: 'add-int-contact', label: 'Add', value: "Add"},
+	{ tag: 'button', type: 'button', name: 'edit-internal', label: 'Add', value: "Edit"}
 ];
 
 var OptionsComponent = React.createClass({
@@ -770,44 +774,55 @@ var Tabs = React.createClass({
 				}
 				service_type.val(st).change();
 
-				var service_owner = $("#service_owner");
-				optionsCount = $("#service_owner>option").length;
-				var so = this.state.service.service_owner.first_name + " " + this.state.service.service_owner.last_name;
-				if(optionsCount <= 1){
-					var option = $('<option></option>').attr("value", so).text(so);
-						service_owner.append(option);
+
+				if(this.state.service.service_owner != null){
+					var service_owner = $("#service_owner");
+					optionsCount = $("#service_owner>option").length;
+					var so = this.state.service.service_owner.first_name + " " + this.state.service.service_owner.last_name;
+					if(optionsCount <= 1){
+						var option = $('<option></option>').attr("value", so).text(so);
+							service_owner.append(option);
+					}
+					service_owner.val(so).change();
+
+					serviceOwnerId = this.state.service.service_owner.uuid;
 				}
-				service_owner.val(so).change();
 
-				var contact_information_internal = $("#contact_information_internal");
-				optionsCount = $("#contact_information_internal>option").length;
-				var cii = this.state.service.contact_information.internal_contact_information
-					.internal_contact_information.internal_contact_information.first_name + " " + this.state.service.contact_information.internal_contact_information
-					.internal_contact_information.internal_contact_information.last_name;
-				if(optionsCount <= 1){
-					var option = $('<option></option>').attr("value", cii).text(cii);
-						contact_information_internal.append(option);
+
+
+				if(this.state.service.contact_information.internal_contact_information != null){
+					var contact_information_internal = $("#contact_information_internal");
+					optionsCount = $("#contact_information_internal>option").length;
+					var cii = this.state.service.contact_information.internal_contact_information
+						.internal_contact_information.internal_contact_information.first_name + " " + this.state.service.contact_information.internal_contact_information
+						.internal_contact_information.internal_contact_information.last_name;
+					if(optionsCount <= 1){
+						var option = $('<option></option>').attr("value", cii).text(cii);
+							contact_information_internal.append(option);
+					}
+					contact_information_internal.val(cii).change();
+
+					internalContactInformationId = this.state.service.contact_information.internal_contact_information.
+						internal_contact_information.internal_contact_information.uuid;
 				}
-				contact_information_internal.val(cii).change();
 
+				if(this.state.service.contact_information.external_contact_information != null){
+					var contact_information_external = $("#contact_information_external");
+					optionsCount = $("#contact_information_external>option").length;
+					var cie = this.state.service.contact_information.external_contact_information
+						.internal_contact_information.internal_contact_information.first_name + " " + this.state.service.contact_information.external_contact_information
+						.internal_contact_information.internal_contact_information.last_name;
+					console.log(cie);
+					if(optionsCount <= 1){
+						var option = $('<option></option>').attr("value", cie).text(cie);
+							contact_information_external.append(option);
+					}
+					contact_information_external.val(cie).change();
 
-				var contact_information_external = $("#contact_information_external");
-				optionsCount = $("#contact_information_external>option").length;
-				var cie = this.state.service.contact_information.external_contact_information
-					.internal_contact_information.internal_contact_information.first_name + " " + this.state.service.contact_information.external_contact_information
-					.internal_contact_information.internal_contact_information.last_name;
-				console.log(cie);
-				if(optionsCount <= 1){
-					var option = $('<option></option>').attr("value", cie).text(cie);
-						contact_information_external.append(option);
+					externalContactInformationId = this.state.service.contact_information.external_contact_information.
+						internal_contact_information.internal_contact_information.uuid;
 				}
-				contact_information_external.val(cie).change();
 
-				serviceOwnerId = this.state.service.service_owner.uuid;
-				internalContactInformationId = this.state.service.contact_information.internal_contact_information.
-					internal_contact_information.internal_contact_information.uuid;
-				externalContactInformationId = this.state.service.contact_information.external_contact_information.
-					internal_contact_information.internal_contact_information.uuid
 
 				this.setState({service_details: this.state.service.service_details_list.service_details});
 				this.setState({external_services: this.state.service.external.external_services});
@@ -932,9 +947,29 @@ $(function(){
 		window.open("/ui/owner/", "_blank");
 	});
 
+	$("#btn-edit-owner").click(function (e) {
+		e.preventDefault();
+		window.open("/ui/owner/" + serviceOwnerId, "_blank");
+	});
+
 	$("#btn-add-contact").click(function (e) {
 		e.preventDefault();
 		window.open("/ui/owner/contact_information", "_blank");
+	});
+
+	$("#btn-add-int-contact").click(function (e) {
+		e.preventDefault();
+		window.open("/ui/owner/contact_information", "_blank");
+	});
+
+	$("#btn-edit-internal").click(function (e) {
+		e.preventDefault();
+		window.open("/ui/owner/contact_information/" + internalContactInformationId, "_blank");
+	});
+
+	$("#btn-edit-external").click(function (e) {
+		e.preventDefault();
+		window.open("/ui/owner/contact_information/" + externalContactInformationId, "_blank");
 	});
 
 	$("#btn-edit-description-external").click(function(e){

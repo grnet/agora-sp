@@ -1252,6 +1252,24 @@ def get_service_versions(request):
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
+def insert_service_area(request):
+    params = request.data
+    p = request.POST.copy()
+    return JsonResponse({"d": params, "n": p})
+    name = params.get('name')
+
+    if name == "" or name is None:
+        return JsonResponse(helper.get_error_response(strings.EMPTY_AREA, status=strings.REJECTED_406),
+                            status=406)
+
+    area = models.ServiceArea()
+    area.name = name
+    area.save()
+
+    response = helper.get_response_info(strings.SERVICE_AREA_INFO, {})
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
 def get_service_areas(request):
 
     query = request.GET.get('search')
@@ -1261,8 +1279,12 @@ def get_service_areas(request):
     areas_set = set([s.service_area for s in models.Service.objects.all() if (query == None or query == "") or
                      (s.service_area is not None and query in s.service_area.lower())])
 
-    areas_set = [{"area": a} for a in areas_set]
+    model_areas = models.ServiceArea.objects.all()
 
+    for a in model_areas:
+        areas_set.add(a.name)
+
+    areas_set = [{"area": a} for a in areas_set]
     response = helper.get_response_info(strings.SERVICE_OWNER_INFORMATION, areas_set)
     return JsonResponse(response, status=int(response["status"][:3]))
 
