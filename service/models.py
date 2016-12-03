@@ -897,8 +897,8 @@ class Service_ExternalService(models.Model):
 class UserCustomer(models.Model):
     USER_TYPES = (
         ("Individual Researchers", "Individual Researchers"),
-        ("Community manager", "Community manager"),
-        ("Service provider", "Service provider"),
+        ("Community manager", "Community Manager"),
+        ("Service provider", "Service Provider"),
         ("Data Project Principle Investigator (PI)", "Data Project Principle Investigator (PI)")
     )
 
