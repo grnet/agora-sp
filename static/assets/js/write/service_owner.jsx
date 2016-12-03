@@ -184,7 +184,9 @@ var FormWrapper = React.createClass({
 			params["last_name"] = $("#last_name").val();
 			params["email"] = $("#email").val();
 			params["phone"] = $("#phone").val();
-			params["institution_uuid"] = institutionId;
+
+			if(institutionId != null)
+				params["institution_uuid"] = institutionId;
 
 
 
