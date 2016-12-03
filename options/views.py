@@ -210,6 +210,67 @@ def get_options_for_service_details(request, version):
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
+def get_parameters_for_sla(request, sla):
+    response = {}
+
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}")
+
+    result = prog.match(sla)
+    params = []
+
+    if result is None:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "An invalid service component UUID was supplied"
+        }
+        return JsonResponse(response, status=int(response["status"][:3]))
+
+    try:
+
+        sla = options_models.SLA.objects.get(id=sla)
+
+        sla_params = options_models.SLAParameter.objects.filter(sla_id=sla, service_option_id=sla.service_option_id)
+
+        for s in sla_params:
+            s = options_models.Parameter.objects.get(id=s.parameter_id.pk)
+            params.append(s.as_short())
+
+
+        # if len(serv_det_comp) <= 0:
+        #     raise component_models.ServiceDetailsComponent.DoesNotExist
+
+
+        response["status"] = "200 OK"
+        response["data"] = params
+        response["info"] = "service component information"
+
+    except options_models.SLA.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The specified SLA does not exist"
+        }
+
+    except ValueError as v:
+        if str(v) == "badly formed hexadecimal UUID string":
+            response["status"] = "404 Not Found"
+            response["errors"] = {
+                "detail": "An invalid UUID was supplied"
+            }
+
+    except options_models.SLAParameter.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "The requested SLA parameters were not found"
+        }
+
+    except options_models.Parameter.DoesNotExist:
+        response["status"] = "404 Not Found"
+        response["errors"] = {
+            "detail": "A parameter matching the specified SLA does not exists"
+        }
+
+    return JsonResponse(response, status=int(response["status"][:3]))
+
 
 def get_service_options_all(request):
     response = {}

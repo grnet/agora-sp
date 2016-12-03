@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^parameter/(?P<param_uuid>[0-9a-zA-Z\-]+)/?$', views.get_parameter),
     url(r'^sla_parameter/(?P<sla_param_uuid>[0-9a-zA-Z\-]+)/?$', views.get_sla_parameter),
     url(r'^service_details_options/(?P<serv_det_option_uuid>[0-9a-zA-Z\-]+)/?$', views.get_service_details_options),
-    url(r'^options_for_service_details/(?P<version>[0-9a-zA-Z\-]+)/?$', views.get_options_for_service_details)
+    url(r'^options_for_service_details/(?P<version>[0-9a-zA-Z\-]+)/?$', views.get_options_for_service_details),
+    url(r'^parameters_for_sla/(?P<sla>[0-9a-zA-Z\-]+)/?$', views.get_parameters_for_sla)
 ]

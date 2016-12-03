@@ -3,6 +3,7 @@ var formName = 'Options SLA Form';
 
 var serviceOptionId = null;
 var opType = "";
+var slaId;
 var globalData;
 
 var optionsData = [
@@ -182,11 +183,104 @@ var FormWrapper = React.createClass({
 		}	
 	},
 
+	render: function(){		
+		var formElements = this.generateFormElements(this.props.resourceObject);
+		return(
+			<div className="widget">
+			    <div className="widget-body">
+			    	<form role="form" onSubmit={this.handleSubmit} id="service-form">
+			    		{formElements}
+			    		<button type="submit" className="btn btn-blue">Submit</button>
+			    	</form>
+			   	</div>
+			</div>
+		);
+	}
+});
+
+var ParametersTable = React.createClass({
+
+
+	getInitialState: function () {
+		return {
+			parameters: [],
+			count: 0,
+			selected: 0
+		}
+	},
+
+	render: function() {
+
+		var array = [];
+		for(var i = 0; i < this.state.count; i++)
+			array.push(i);
+
+		return (
+			<div className="row">
+				<div className="col-xs-12">
+					<div className="well with-header  with-footer">
+						<div className="form-group">
+			      	        <button value="Add parameter" id="add-sla-param" className="btn btn-purple">Add SLA parameter</button>
+			      	    </div>
+						<table className="table table-hover">
+							<thead className="bordered-darkorange">
+								<tr>
+									<th>
+										Name
+									</th>
+									<th>
+										Type
+									</th>
+									<th>
+										Expression
+									</th>
+
+									<th>
+
+									</th>
+								</tr>
+							</thead>
+							<tbody>
+
+							{this.props.parameters.map(function (parameter) {
+								return (
+									<tr key={parameter.uuid}>
+										<td>{parameter.name}</td>
+										<td>{parameter.type}</td>
+										<td>{parameter.expression}</td>
+										<td><a href={"/ui/options/parameter/" + parameter.uuid}>Edit</a></td>
+									</tr>
+								)
+							})}
+
+							</tbody>
+
+						</table>
+
+						<div className="col-xs-hidden col-sm-6"></div>
+							<div className="col-xs-12 col-sm-6">
+								<div className="dataTables_paginate paging_bootstrap" id="simpledatatable_paginate">
+
+								</div>
+							</div>
+
+					</div>
+
+				</div>
+
+			</div>
+		);
+	}
+});
+
+var Tabs = React.createClass({
+
 	getInitialState: function () {
 		return {
 			sla: {
 				name: ""
-			}
+			},
+			parameters: []
 		}
 	},
 
@@ -243,6 +337,20 @@ var FormWrapper = React.createClass({
 				service_option.val(this.state.sla.service_option.name).change();
 
 				serviceOptionId = this.state.sla.service_option.uuid;
+				slaId = this.state.sla.id;
+
+				var self = this;
+				$.ajax({
+					url: host + "/api/v1/options/parameters_for_sla/" + slaId,
+					dataType: "json",
+					crossDomain: true,
+					type: "GET",
+					cache: false,
+					success: function (data) {
+						self.setState({parameters: data.data});
+					}
+				});
+
 
             }.bind(this),
             error: function (xhr, status, err) {
@@ -255,25 +363,61 @@ var FormWrapper = React.createClass({
         this.serverRequest.abort();
     },
 
-	render: function(){		
-		var formElements = this.generateFormElements(this.props.resourceObject);
-		return(
-			<div className="widget">
-					<div className="widget-header bordered-bottom bordered-blue">
-			     	<span className="widget-caption">{this.props.formName}</span>
-			    </div>
-			    <div className="widget-body">
-			    	<form role="form" onSubmit={this.handleSubmit} id="service-form">
-			    		{formElements}
-			    		<button type="submit" className="btn btn-blue">Submit</button>
-			    	</form>
-			   	</div>
+	render: function() {
+		return (
+			<div className="row">
+				<div>
+					<div className="widget flat radius-bordered">
+						<div className="widget-header bg-themeprimary">
+							<span className="widget-caption">SLA</span>
+						</div>
+
+						<div className="widget-body">
+							<div className="widget-main ">
+								<div className="tabbable">
+									<ul className="nav nav-tabs tabs-flat" id="myTab11">
+										<li className="active">
+											<a data-toggle="tab" href="#home11">
+												SLA
+											</a>
+										</li>
+										<li>
+											<a data-toggle="tab" href="#profile12">
+												Parameters
+											</a>
+										</li>
+									</ul>
+									<div className="tab-content tabs-flat">
+										<div id="home11" className="tab-pane in active">
+											<FormWrapper resourceObject={resourceObject} formName={formName} source={this.props.source} />
+										</div>
+
+										<div id="profile12" className="tab-pane">
+											<ParametersTable parameters={this.state.parameters} />
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div className="col-lg-6 col-sm-6 col-xs-12">
+				</div>
 			</div>
 		);
 	}
 });
 
+
 ReactDOM.render(
-  <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
+  <Tabs source={$("#source")[0].value} />,
   document.getElementById('write-content')
 );
+
+$(function(){
+
+	$("#add-sla-param").click(function(){
+		window.open("/ui/options/sla_parameter?slaId=" + slaId, "_blank");
+	});
+
+});
