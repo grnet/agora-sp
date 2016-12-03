@@ -415,8 +415,13 @@ var FormWrapper = React.createClass({
 			params["cost_to_run"] = $("#cost_to_run").val();
 			params["cost_to_build"] = $("#cost_to_build").val();
 			params["use_cases"] = $("#use_cases").val();
-			params["is_in_catalog"] = $("#is_in_catalog").val();
 			params["service_id"] = serviceId;
+
+			if($("#is_in_catalog").val() == true)
+				params["is_in_catalogue"] = true;
+			else
+				params["is_in_catalogue"] = false;
+			
 
 
 			var parts = window.location.href.split("/");
