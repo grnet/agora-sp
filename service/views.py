@@ -225,13 +225,13 @@ def get_catalogue_main_page(request):
 def home_write_ui(request):
     return render(request, 'service/write.html', {"type": "home"})
 
-# @login_required()
+@login_required()
 def service_write_ui(request):
     response = render(request, 'service/write.html', {"type": "service"})
     response.set_cookie(key="api-credentials", value='fdeadf768eaf9ae7-stojanovski.dario@gmail.com')
     return response
 
-# @login_required()
+@login_required()
 def service_edit_ui(request, service_name_or_uuid):
     source = helper.current_site_url() + "/v1/portfolio/services/" + service_name_or_uuid + "/complete"
 
@@ -242,51 +242,51 @@ def service_edit_ui(request, service_name_or_uuid):
 
     return response
 
-# @login_required()
+@login_required()
 def external_service_write_ui(request):
     return render(request, 'service/write.html', {"type": "external_service"})
 
-# @login_required()
+@login_required()
 def external_service_edit_ui(request, service_name_or_uuid):
     source = helper.current_site_url() + "/v1/services/external_service/" + service_name_or_uuid
     return render(request, 'service/write.html', {"type": "external_service", "source": source})
 
-# @login_required()
+@login_required()
 def service_area_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_area"})
 
-# @login_required()
+@login_required()
 def service_details_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_details"})
 
-# @login_required()
+@login_required()
 def internal_dependency_write_ui(request):
     return render(request, 'service/write.html', {"type": "internal_service_dependencies"})
 
-# @login_required()
+@login_required()
 def internal_dependency_edit_ui(request, internal_dep_uuid):
     source = helper.current_site_url() + "/v1/services/internal_dependency/" + internal_dep_uuid
     return render(request, 'service/write.html', {"type": "internal_service_dependencies", "source": source})
 
-# @login_required()
+@login_required()
 def external_dependency_write_ui(request):
     return render(request, 'service/write.html', {"type": "external_service_dependencies"})
 
-# @login_required()
+@login_required()
 def external_dependency_edit_ui(request, external_dep_uuid):
     source = helper.current_site_url() + "/v1/services/external_dependency/" + external_dep_uuid
     return render(request, 'service/write.html', {"type": "external_service_dependencies", "source": source})
 
-# @login_required()
+@login_required()
 def users_customers_write_ui(request):
     return render(request, 'service/write.html', {"type": "users_customers"})
 
-# @login_required()
+@login_required()
 def users_customers_edit_ui(request, user_customer_uuid):
     source = helper.current_site_url() + "/v1/services/users_customers/" + user_customer_uuid
     return render(request, 'service/write.html', {"type": "users_customers", "source": source})
 
-# @login_required()
+@login_required()
 def service_details_edit_ui(request, service_name_or_uuid, version):
     source = helper.current_site_url() + "/v1/portfolio/services/" + service_name_or_uuid + "/service_details/" + version + "/view"
     return render(request, 'service/write.html', {"type": "service_details", "source": source})
@@ -772,7 +772,7 @@ def get_all_service_details(request, service_name_or_uuid):
 
 # Returns the service institution
 @api_view(['GET'])
-# @login_required()
+@login_required()
 def get_service_institution(request, service_name_or_uuid):
     """
     Retrieves a the service institution

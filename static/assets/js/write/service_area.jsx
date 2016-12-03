@@ -115,7 +115,7 @@ var FormWrapper = React.createClass({
 			params['name'] = $("#name").val();
 
 			var parts = window.location.href.split("/");
-			var host = "http://" + parts[2];
+			var host = "https://" + parts[2];
 
 			this.serverRequest = $.ajax({
 				url: host + "/api/v1/services/area/add",
