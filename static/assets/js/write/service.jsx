@@ -246,7 +246,6 @@ var FormWrapper = React.createClass({
 			if(type == "-1" || type == -1)
 				type = null;
 
-
 			var params = {};
 			params["name"] = $("#name").val();
 			params["description_external"] = $("#description_external").val();
@@ -258,9 +257,14 @@ var FormWrapper = React.createClass({
 			params["value_to_customer"] = $("#value_to_customer").val();
 			params["risks"] = $("#risks").val();
 			params["competitors"] = $("#competitors").val();
-			params["service_owner_uuid"] = serviceOwnerId;
-			params["service_contact_information_uuid"] = externalContactInformationId;
-			params["service_internal_contact_information_uuid"] = internalContactInformationId;
+
+
+			if(serviceOwnerId != null)
+				params["service_owner_uuid"] = serviceOwnerId;
+			if(externalContactInformationId != null)
+				params["service_contact_information_uuid"] = externalContactInformationId;
+			if(internalContactInformationId != null)
+				params["service_internal_contact_information_uuid"] = internalContactInformationId;
 
 
 			var parts = window.location.href.split("/");
@@ -790,8 +794,9 @@ var Tabs = React.createClass({
 				var contact_information_external = $("#contact_information_external");
 				optionsCount = $("#contact_information_external>option").length;
 				var cie = this.state.service.contact_information.external_contact_information
-					.external_contact_information.external_contact_information.first_name + " " + this.state.service.contact_information.external_contact_information
-					.external_contact_information.external_contact_information.last_name;
+					.internal_contact_information.internal_contact_information.first_name + " " + this.state.service.contact_information.external_contact_information
+					.internal_contact_information.internal_contact_information.last_name;
+				console.log(cie);
 				if(optionsCount <= 1){
 					var option = $('<option></option>').attr("value", cie).text(cie);
 						contact_information_external.append(option);
