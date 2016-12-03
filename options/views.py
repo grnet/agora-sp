@@ -1053,6 +1053,7 @@ def insert_SLA_parameter(request):
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
+@api_view(['POST'])
 def edit_service_details_option(request):
     """
 

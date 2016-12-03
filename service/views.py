@@ -1252,10 +1252,10 @@ def get_service_versions(request):
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
+@api_view(['POST'])
 def insert_service_area(request):
     params = request.data
-    p = request.POST.copy()
-    return JsonResponse({"d": params, "n": p})
+    
     name = params.get('name')
 
     if name == "" or name is None:

@@ -287,6 +287,7 @@ var FormWrapper = React.createClass({
 				opType = "add";
 			}
 
+			console.log(params);
 
 			this.serverRequest = $.ajax({
 				url: url,
