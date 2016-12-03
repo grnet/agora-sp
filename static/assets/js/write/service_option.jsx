@@ -161,7 +161,11 @@ var FormWrapper = React.createClass({
 
 			this.serverRequest = $.ajax({
 				url: url,
-				headers: {"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value },
+				headers: {
+					"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
+					"AUTH_TOKEN": localStorage.apiToken,
+					"EMAIL": localStorage.apiEmail
+				},
 				dataType: "json",
 				crossDomain: true,
 				type: "POST",
@@ -240,7 +244,6 @@ var SLATable = React.createClass({
 							<tbody>
 
 							{this.props.slas.map(function (sla) {
-								console.log(sla);
 								return (
 									<tr key={sla.id}>
 										<td>{sla.name}</td>
@@ -290,6 +293,11 @@ var Tabs = React.createClass({
         jQuery.support.cors = true;
         this.serverRequest = $.ajax({
             url: this.props.source,
+			headers: {
+				"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
+				"AUTH_TOKEN": localStorage.apiToken,
+				"EMAIL": localStorage.apiEmail
+			},
             dataType: "json",
             crossDomain: true,
             type: "GET",
@@ -305,7 +313,6 @@ var Tabs = React.createClass({
 				this.setState({slas: this.state.service_options.SLA});
             }.bind(this),
             error: function (xhr, status, err) {
-                console.log(this.props.source, status, err.toString());
             }.bind(this)
         });
     },

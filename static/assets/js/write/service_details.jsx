@@ -88,6 +88,11 @@ if(parameter != null) {
 	jQuery.support.cors = true;
         $.ajax({
             url: $("#host")[0].value + "/api/v1/portfolio/services/" + serviceId,
+			headers: {
+				"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
+				"AUTH_TOKEN": localStorage.apiToken,
+				"EMAIL": localStorage.apiEmail
+			},
             dataType: "json",
             crossDomain: true,
             type: "GET",
@@ -430,7 +435,11 @@ var FormWrapper = React.createClass({
 
 			this.serverRequest = $.ajax({
 				url: url,
-				headers: {"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value },
+				headers: {
+					"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
+					"AUTH_TOKEN": localStorage.apiToken,
+					"EMAIL": localStorage.apiEmail
+				},
 				dataType: "json",
 				crossDomain: true,
 				type: "POST",
@@ -657,6 +666,11 @@ var Tabs = React.createClass({
 
         this.serverRequest = $.ajax({
             url: this.props.source,
+			headers: {
+				"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
+				"AUTH_TOKEN": localStorage.apiToken,
+				"EMAIL": localStorage.apiEmail
+			},
             dataType: "json",
             crossDomain: true,
             type: "GET",
@@ -705,6 +719,11 @@ var Tabs = React.createClass({
 				var self = this;
 				$.ajax({
 					url: host + "/api/v1/component/service_details_components/" + serviceDetailsId,
+					headers: {
+						"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
+						"AUTH_TOKEN": localStorage.apiToken,
+						"EMAIL": localStorage.apiEmail
+					},
 					dataType: "json",
 					crossDomain: true,
 					type: "GET",
@@ -716,6 +735,11 @@ var Tabs = React.createClass({
 
 				$.ajax({
 					url: host + "/api/v1/options/options_for_service_details/" + serviceDetailsId,
+					headers: {
+						"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
+						"AUTH_TOKEN": localStorage.apiToken,
+						"EMAIL": localStorage.apiEmail
+					},
 					dataType: "json",
 					crossDomain: true,
 					type: "GET",

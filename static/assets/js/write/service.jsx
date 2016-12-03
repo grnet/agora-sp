@@ -276,7 +276,7 @@ var FormWrapper = React.createClass({
 			var url = "";
 
 			if(this.props.source != null && this.props.source != ""){
-				params["uuid"] = parts[parts.length - 1];
+				params["uuid"] = serviceId;
 				url = host + "/api/v1/services/edit";
 				opType = "edit";
 			}
@@ -287,7 +287,11 @@ var FormWrapper = React.createClass({
 
 			this.serverRequest = $.ajax({
 				url: url,
-				headers: {"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value },
+				headers: {
+					"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
+					"AUTH_TOKEN": localStorage.apiToken,
+					"EMAIL": localStorage.apiEmail
+				},
 				dataType: "json",
 				crossDomain: true,
 				type: "POST",
@@ -739,6 +743,11 @@ var Tabs = React.createClass({
 
 		this.serverRequest = $.ajax({
             url: this.props.source,
+			headers: {
+				"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
+				"AUTH_TOKEN": localStorage.apiToken,
+				"EMAIL": localStorage.apiEmail
+			},
             dataType: "json",
             crossDomain: true,
             type: "GET",

@@ -54,6 +54,11 @@ if(parameter != null) {
 	jQuery.support.cors = true;
         $.ajax({
             url: $("#host")[0].value + "/api/v1/portfolio/services/" + serviceId,
+			headers: {
+				"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
+				"AUTH_TOKEN": localStorage.apiToken,
+				"EMAIL": localStorage.apiEmail
+			},
             dataType: "json",
             crossDomain: true,
             type: "GET",
@@ -78,12 +83,16 @@ if(parameter != null) {
 					jQuery.support.cors = true;
 						$.ajax({
 							url: $("#host")[0].value + "/api/v1/portfolio/services/" + serviceId + "/service_details/" + serviceDetailsId,
+							headers: {
+								"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
+								"AUTH_TOKEN": localStorage.apiToken,
+								"EMAIL": localStorage.apiEmail
+							},
 							dataType: "json",
 							crossDomain: true,
 							type: "GET",
 							cache: false,
 							success: function (response) {
-								console.log(response);
 								var version = response.data.version;
 
 								var service_details = $("#service_details_id");
@@ -296,7 +305,11 @@ FormWrapper = React.createClass({
 
 			this.serverRequest = $.ajax({
 				url: url,
-				headers: {"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value },
+				headers: {
+					"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
+					"AUTH_TOKEN": localStorage.apiToken,
+					"EMAIL": localStorage.apiEmail
+				},
 				dataType: "json",
 				crossDomain: true,
 				type: "POST",
@@ -415,6 +428,11 @@ FormWrapper = React.createClass({
 
 		this.serverRequest = $.ajax({
 			url: this.props.source,
+			headers: {
+				"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
+				"AUTH_TOKEN": localStorage.apiToken,
+				"EMAIL": localStorage.apiEmail
+			},
 			dataType: "json",
 			crossDomain: true,
 			type: "GET",
@@ -467,7 +485,6 @@ FormWrapper = React.createClass({
 
 			}.bind(this),
 			error: function (xhr, status, err) {
-				console.log(this.props.source, status, err.toString());
 			}.bind(this)
 		});
 	},

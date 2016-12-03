@@ -204,7 +204,11 @@ var FormWrapper = React.createClass({
 
 			this.serverRequest = $.ajax({
 				url: url,
-				headers: {"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value },
+				headers: {
+					"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
+					"AUTH_TOKEN": localStorage.apiToken,
+					"EMAIL": localStorage.apiEmail
+				},
 				dataType: "json",
 				crossDomain: true,
 				type: "POST",
@@ -274,6 +278,11 @@ var FormWrapper = React.createClass({
 
         this.serverRequest = $.ajax({
             url: this.props.source,
+			headers: {
+				"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
+				"AUTH_TOKEN": localStorage.apiToken,
+				"EMAIL": localStorage.apiEmail
+			},
             dataType: "json",
             crossDomain: true,
             type: "GET",

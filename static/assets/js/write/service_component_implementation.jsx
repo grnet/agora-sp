@@ -38,6 +38,11 @@ if(parameter != null) {
 	jQuery.support.cors = true;
         $.ajax({
             url: $("#host")[0].value + "/api/v1/component/" + componentId,
+			headers: {
+				"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
+				"AUTH_TOKEN": localStorage.apiToken,
+				"EMAIL": localStorage.apiEmail
+			},
             dataType: "json",
             crossDomain: true,
             type: "GET",
@@ -376,13 +381,17 @@ var Tabs = React.createClass({
 
 		this.serverRequest = $.ajax({
             url: this.props.source,
+			headers: {
+				"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
+				"AUTH_TOKEN": localStorage.apiToken,
+				"EMAIL": localStorage.apiEmail
+			},
             dataType: "json",
             crossDomain: true,
             type: "GET",
             cache: false,
             success: function (data) {
 				this.setState({component_implementation: data.data});
-				console.log(this.state);
                 $("#name").val(this.state.component_implementation.name);
                 $("#description").val(this.state.component_implementation.description);
 				componentId = this.state.component_implementation.component.uuid;

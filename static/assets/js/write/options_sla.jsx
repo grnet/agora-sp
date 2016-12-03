@@ -36,12 +36,16 @@ if(parameter != null) {
 	jQuery.support.cors = true;
         $.ajax({
             url: $("#host")[0].value + "/api/v1/options/service_options/" + serviceOptionId,
+			headers: {
+				"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
+				"AUTH_TOKEN": localStorage.apiToken,
+				"EMAIL": localStorage.apiEmail
+			},
             dataType: "json",
             crossDomain: true,
             type: "GET",
             cache: false,
             success: function (response) {
-				console.log(response);
 				var name = response.data.name;
 
 				var options = $("#service_option_id");
@@ -186,7 +190,11 @@ var FormWrapper = React.createClass({
 
 			this.serverRequest = $.ajax({
 				url: url,
-				headers: {"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value },
+				headers: {
+					"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
+					"AUTH_TOKEN": localStorage.apiToken,
+					"EMAIL": localStorage.apiEmail
+				},
 				dataType: "json",
 				crossDomain: true,
 				type: "POST",
@@ -347,6 +355,11 @@ var Tabs = React.createClass({
         jQuery.support.cors = true;
         this.serverRequest = $.ajax({
             url: this.props.source,
+			headers: {
+				"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
+				"AUTH_TOKEN": localStorage.apiToken,
+				"EMAIL": localStorage.apiEmail
+			},
             dataType: "json",
             crossDomain: true,
             type: "GET",
@@ -370,6 +383,11 @@ var Tabs = React.createClass({
 				var self = this;
 				$.ajax({
 					url: host + "/api/v1/options/parameters_for_sla/" + slaId,
+					headers: {
+						"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
+						"AUTH_TOKEN": localStorage.apiToken,
+						"EMAIL": localStorage.apiEmail
+					},
 					dataType: "json",
 					crossDomain: true,
 					type: "GET",
