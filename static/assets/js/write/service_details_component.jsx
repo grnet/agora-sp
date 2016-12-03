@@ -393,7 +393,7 @@ FormWrapper = React.createClass({
 				var current = comp_imp_det.val();
 
 				if(current != -1){
-					$("#service_details_id option[value='" + current + "']").remove();
+					$("#component_implementation_detail_id option[value='" + current + "']").remove();
 				}
 				for(var i = 0; i < data.data.length; i++) {
 					var v = data.data[i].service_component.name + " " +

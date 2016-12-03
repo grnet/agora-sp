@@ -30,6 +30,34 @@ var OptionsComponent = React.createClass({
 	}
 });
 
+var parameter = getParameterByName("serviceOptionId", window.location);
+if(parameter != null) {
+	serviceOptionId = parameter;
+	jQuery.support.cors = true;
+        $.ajax({
+            url: $("#host")[0].value + "/api/v1/options/service_options/" + serviceOptionId,
+            dataType: "json",
+            crossDomain: true,
+            type: "GET",
+            cache: false,
+            success: function (response) {
+				console.log(response);
+				var name = response.data.name;
+
+				var options = $("#service_option_id");
+				var optionsCount = $("#service_option_id>option").length;
+				if(optionsCount <= 1){
+					var option = $('<option></option>').attr("value", name)
+							.text(name);
+						options.append(option);
+				}
+				options.val(name).change();
+            },
+            error: function (xhr, status, err) {
+            }
+        });
+}
+
 var FormWrapper = React.createClass({
 
 	generateFormElements: function(resourceObject){

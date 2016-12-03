@@ -25,9 +25,10 @@ var optionsData = [
 ];
 
 var resourceObject = [
-	{ tag: 'select', type: 'text', name: 'parameter_id', placeholder: 'Enter parameter name', label: 'Parameter', optionsData: optionsParameterData },
 	{ tag: 'select', type: 'text', name: 'sla_id', placeholder: 'Enter SLA name', label: 'SLA', optionsData: optionsSlaData },
-	{ tag: 'select', type: 'text', name: 'service_options_id', placeholder: 'Enter service option name', label: 'Service option', optionsData: optionsData }
+	{ tag: 'select', type: 'text', name: 'service_options_id', placeholder: 'Enter service option name', label: 'Service option', optionsData: optionsData },
+	{ tag: 'select', type: 'text', name: 'parameter_id', placeholder: 'Enter parameter name', label: 'Parameter', optionsData: optionsParameterData },
+	{ tag: 'button', type: 'button', name: 'add-param', label: 'Edit', value: "Add"}
 ];
 
 var OptionsComponent = React.createClass({
@@ -44,6 +45,45 @@ var OptionsComponent = React.createClass({
 		);
 	}
 });
+
+var parameter = getParameterByName("slaId", window.location);
+if(parameter != null) {
+	slaId = parameter;
+	newSlaId = parameter;
+	jQuery.support.cors = true;
+        $.ajax({
+            url: $("#host")[0].value + "/api/v1/options/sla/" + slaId,
+            dataType: "json",
+            crossDomain: true,
+            type: "GET",
+            cache: false,
+            success: function (response) {
+				var name = response.data.name;
+				var sla = $("#sla_id");
+				var optionsCount = $("#sla_id>option").length;
+				if(optionsCount <= 1){
+					var option = $('<option></option>').attr("value", name)
+							.text(name);
+						sla.append(option);
+				}
+				sla.val(name).change();
+
+				var opt_name = response.data.service_option.name;
+				var options = $("#service_options_id");
+				optionsCount = $("#service_options_id>option").length;
+				if(optionsCount <= 1){
+					var option = $('<option></option>').attr("value", opt_name)
+							.text(opt_name);
+						options.append(option);
+				}
+				options.val(opt_name).change();
+				serviceOptionsId = response.data.service_option.uuid;
+				newServiceOptionsId = response.data.service_option.uuid;
+            },
+            error: function (xhr, status, err) {
+            }
+        });
+}
 
 var FormWrapper = React.createClass({
 
@@ -77,6 +117,14 @@ var FormWrapper = React.createClass({
 					    <span id={field.name + '-error'} className="validation-message sr-only"></span>
 					</div>
 				);				
+			}
+			else if(field.tag == 'button'){
+				return (
+					<div className="form-group" key={i}>
+			      	        <button value={field.value} className="btn btn-purple" id={"btn-" + field.name}>{field.value}</button>
+
+			      	    </div>
+				)
 			}
 		}, this);
 		return formElements;
@@ -409,3 +457,12 @@ ReactDOM.render(
   <FormWrapper resourceObject={resourceObject} formName={formName} source={$("#source")[0].value}/>,
   document.getElementById('write-content')
 );
+
+$(function(){
+
+	$("#btn-add-param").click(function(e){
+		e.preventDefault();
+		window.open("/ui/options/parameter", "_blank");
+	});
+
+});
