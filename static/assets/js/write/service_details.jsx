@@ -418,7 +418,7 @@ var FormWrapper = React.createClass({
 			var url = "";
 
 			if(this.props.source != null && this.props.source != ""){
-				params["uuid"] = this.state.service_details.uuid;
+				params["uuid"] = serviceDetailsId;
 				url = host + "/api/v1/services/" + serviceId + "/service_details/edit";
 				opType = "edit";
 			}
@@ -663,7 +663,7 @@ var Tabs = React.createClass({
             success: function (data) {
                 this.setState({service_details: data.data});
                 $("#version").val(this.state.service_details.version);
-                $("#status").val(this.state.service_details.status);
+                $("#status").val(this.state.service_details.service_status);
                 $("#features_current").val(this.state.service_details.features_current);
                 $("#features_future").val(this.state.service_details.features_future);
                 $("#usage_policy_has").val(this.state.service_details.usage_policy_has.toString());

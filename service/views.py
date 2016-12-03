@@ -1450,7 +1450,7 @@ def insert_service_details(request, service_name_or_uuid):
                                                           status=strings.REJECTED_406), status=406)
 
         try:
-            service_details = models.ServiceDetails.objects.get(id=uuid)
+            service_details = models.ServiceDetails.objects.get(id=manual_uuid)
             if op_type == "add":
                 return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_EXISTS,
                                                               status=strings.CONFLICT_409), status=409)
