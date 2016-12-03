@@ -107,9 +107,9 @@
 
 
 {#        var host = "https://agora-dev.vi-seem.eu";#}
-{#        var host = "https://services.vi-seem.eu";#}
+        var host = "https://services.vi-seem.eu";
         //var host = "http://sp.eudat.eu";
-        var host = "http://localhost";
+{#        var host = "http://localhost";#}
 
         var view_type = window.location.href.split("/");
 
@@ -357,7 +357,7 @@
     </script>
 
     <input type="hidden" id="source" value="{{ source }}" />
-    <input type="hidden" id="host" value="http://localhost" />
+    <input type="hidden" id="host" value="https://services.vi-seem.eu" />
 
     {% if type == "home" %}
         <script type="text/babel" src="/static/assets/js/write/home.jsx"></script>
