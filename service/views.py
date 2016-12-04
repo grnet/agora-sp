@@ -918,6 +918,7 @@ def edit_service(request):
 
 # Inserts service
 @api_view(['POST'])
+@check_auth_and_type
 def insert_service(request):
     """
     Inserts a service object
@@ -1078,7 +1079,7 @@ def insert_service(request):
     return JsonResponse(response, status=int(response["status"][:3]))
 
 # Updates external service
-@api_view(['POST'])
+# @api_view(['POST'])
 def edit_external_service(request):
     """
 
@@ -1400,7 +1401,7 @@ def edit_service_dependency(request, service_name_or_uuid):
 
 
 # Updates service details for a specific service
-@api_view(['POST'])
+# @api_view(['POST'])
 def edit_service_details(request, service_name_or_uuid):
     """
 
@@ -1796,7 +1797,7 @@ def edit_external_service_dependency(request, service_name_or_uuid):
 
 
 # Updates user customer
-@api_view(['POST'])
+# @api_view(['POST'])
 def edit_user_customer(request, service_name_or_uuid):
     """
 

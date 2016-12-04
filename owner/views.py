@@ -241,7 +241,7 @@ def get_institution(request, institution_uuid):
 
 
 # Updates an Institution object
-@api_view(['POST'])
+# @api_view(['POST'])
 def edit_institution(request):
     """
 
@@ -331,7 +331,7 @@ def insert_institution(request):
 
 
 # Updates an Contact Information object
-@api_view(['POST'])
+# @api_view(['POST'])
 def edit_contact_information(request):
     """
 
@@ -449,7 +449,7 @@ def insert_contact_information(request):
 
 
 # Updates a Service Owner object
-@api_view(['POST'])
+# @api_view(['POST'])
 def edit_service_owner(request):
     """
 

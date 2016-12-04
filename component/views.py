@@ -659,7 +659,7 @@ def service_details_component_edit_ui(request, serv_det_comp_uuid):
 
 
 # Updates the provided service component implementation
-@api_view(['POST'])
+# @api_view(['POST'])
 def edit_service_component_implementation(request):
     """
 
@@ -869,7 +869,7 @@ def get_service_component_implementations(request, search_type, version, comp_uu
     return JsonResponse(response, status=int(response["status"][:3]))
 
 # Updates the provided service component implementation details
-@api_view(['POST'])
+# @api_view(['POST'])
 def edit_service_component_implementation_details(request):
     """
 

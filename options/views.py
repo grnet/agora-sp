@@ -549,7 +549,7 @@ def service_details_options_edit_ui(request, serv_det_opt_uuid):
     return render(request, 'service/write.html', {"type": "service_details_options", "source": source}, )
 
 # Updates a Service Option object
-@api_view(['POST'])
+# @api_view(['POST'])
 def edit_service_option(request):
     """
 
@@ -633,7 +633,7 @@ def insert_service_option(request):
 
 
 # Updates a SLA object
-@api_view(['POST'])
+# @api_view(['POST'])
 def edit_SLA(request):
     """
 
@@ -739,7 +739,7 @@ def insert_SLA(request):
 
 
 # Updates a Parameter object
-@api_view(['POST'])
+# @api_view(['POST'])
 def edit_parameter(request):
     """
 
