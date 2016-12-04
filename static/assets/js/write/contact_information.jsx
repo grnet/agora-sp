@@ -187,7 +187,7 @@ var FormWrapper = React.createClass({
 				url: url,
 				headers: {
 					"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
-					"AUTH_TOKEN": localStorage.apiToken,
+					"AUTHTOKEN": localStorage.apiToken,
 					"EMAIL": localStorage.apiEmail
 				},
 				dataType: "json",
@@ -250,7 +250,7 @@ var FormWrapper = React.createClass({
             url: this.props.source,
 			headers: {
 				"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
-				"AUTH_TOKEN": localStorage.apiToken,
+				"AUTHTOKEN": localStorage.apiToken,
 				"EMAIL": localStorage.apiEmail
 			},
             dataType: "json",

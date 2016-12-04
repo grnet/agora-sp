@@ -121,7 +121,7 @@ var FormWrapper = React.createClass({
 				url: host + "/api/v1/services/area/add",
 				headers: {
 					"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
-					"AUTH_TOKEN": localStorage.apiToken,
+					"AUTHTOKEN": localStorage.apiToken,
 					"EMAIL": localStorage.apiEmail
 				},
 				dataType: "json",
