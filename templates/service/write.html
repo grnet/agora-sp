@@ -337,7 +337,7 @@
             t = t.substr(1);
         if(t[t.length - 1] == '"')
             t = t.substr(0, t.length - 1);
-        t = t.split("-");
+        t = t.split("~");
         var apiToken = t[0];
         var apiEmail = t[1];
         localStorage.setItem("apiToken", t[0]);

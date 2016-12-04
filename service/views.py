@@ -228,17 +228,18 @@ def home_write_ui(request):
 @login_required()
 def service_write_ui(request):
     response = render(request, 'service/write.html', {"type": "service"})
-    response.set_cookie(key="api-credentials", value='fdeadf768eaf9ae7-stojanovski.dario@gmail.com')
+    # response.set_cookie(key="api-credentials", value='fdeadf768eaf9ae7-stojanovski.dario@gmail.com')
     return response
 
 @login_required()
+@check_auth_and_type
 def service_edit_ui(request, service_name_or_uuid):
     source = helper.current_site_url() + "/v1/portfolio/services/" + service_name_or_uuid + "/complete"
 
     response = render(request, 'service/write.html', {"type": "service", "source": source})
 
-    # response.set_cookie(key="api-credentials", value=request.session['api-info'])
-    response.set_cookie(key="api-credentials", value='fdeadf768eaf9ae7-stojanovski.dario@gmail.com')
+    response.set_cookie(key="api-credentials", value=request.session['api-info'])
+    # response.set_cookie(key="api-credentials", value='fdeadf768eaf9ae7-stojanovski.dario@gmail.com')
 
     return response
 
@@ -904,7 +905,8 @@ def get_service_dependencies_with_graphics(request,  service_name_or_uuid):
 # Updates service
 # @csrf_exempt
 # @check_service_ownership_or_superuser
-@api_view(['POST'])
+# @api_view(['POST'])
+@check_auth_and_type
 def edit_service(request):
     """
 

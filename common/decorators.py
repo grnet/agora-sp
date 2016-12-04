@@ -88,26 +88,33 @@ def check_auth_and_type(func):
             request.session['api-info'] = str(token) + "~" + str(user.email)
             return func(request, *args, **kwargs)
 
+        if (request.method == "GET") & (user.is_authenticated()):
+            token = Token.objects.get(user_id=user.id)
+            request.session['api-info'] = str(token) + "~" + str(user.email)
+            return func(request, *args, **kwargs)
+
 
         regex = re.compile('^HTTP_')
         headers = dict((regex.sub('', header), value) for (header, value)
                in request.META.items() if header.startswith('HTTP'))
 
-        if 'AUTH_TOKEN' in headers.keys() and 'EMAIL' in headers.keys():
+#	json.dumps(request)
+
+        if 'AUTHTOKEN' in headers.keys() and 'EMAIL' in headers.keys():
             try:
                 user_search = User.objects.get(email=headers['EMAIL'])
                 token = Token.objects.get(user_id=user_search.id)
             except:
                 response = helper.get_error_response(strings.OPERATION_NOT_PERMITTED, strings.FORBIDDEN_403)
-                return JsonResponse({"resp": response, "user": user.is_authenticated(), "type": args, "token": headers['AUTH_TOKEN'], "email": headers['EMAIL']})
+                return JsonResponse({"resp": response, "user": user.is_authenticated(), "type": args, "token": headers['AUTHTOKEN'], "email": headers['EMAIL']})
 
 
-            if (str(token) == str(headers['AUTH_TOKEN'])) & (str(user_search.email) == headers['EMAIL']):
+            if (str(token) == str(headers['AUTHTOKEN'])) & (str(user_search.email) == headers['EMAIL']):
                 request.session['api-info'] = str(token) + "~" + str(headers['EMAIL'])
                 return func(request, *args, **kwargs)
             else:
                 response = helper.get_error_response(strings.OPERATION_NOT_PERMITTED, strings.FORBIDDEN_403)
-                return JsonResponse({"resp": response, "user": user.is_authenticated(), "type": args, "token": headers['AUTH_TOKEN'], "email": user_search.email, "token": str(token)})
+                return JsonResponse({"resp": response, "user": user.is_authenticated(), "type": args, "token": headers['AUTHTOKEN'], "email": user_search.email, "token": str(token)})
         else:
 
 

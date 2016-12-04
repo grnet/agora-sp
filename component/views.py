@@ -3,6 +3,7 @@ from collections import defaultdict
 import sys
 from django.http import JsonResponse, HttpResponse
 import re
+import json
 from service import models as service_models
 from component import models as component_models
 from rest_framework.decorators import *
@@ -171,7 +172,7 @@ def get_service_components_complete(request, search_type ):
 
 
 # Updates the provided service component
-@api_view(['POST'])
+# @api_view(['POST'])
 def edit_service_component(request):
     """
 
@@ -182,7 +183,7 @@ def edit_service_component(request):
     :param description: service component description
     :return: the updated service component
     """
-
+    # return JsonResponse({"tuka": request.data})
     return insert_service_component(request)
 
 # Inserts the provided service component
@@ -199,9 +200,12 @@ def insert_service_component(request):
     """
 
     op_type = helper.get_last_url_part(request)
+    t = {}
+    
+    # return JsonResponse({"tuka": request.__dict__})
     params = helper.get_request_data(request)
     uuid, name, service_component = None, None, None
-
+    # return JsonResponse({"tuka": "tuka"})
     if "name" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_NAME_NOT_PROVIDED,
                                                       status=strings.REJECTED_406), status=406)
@@ -218,7 +222,7 @@ def insert_service_component(request):
     #     return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_DESCRIPTION_NOT_PROVIDED,
     #                                                   status=strings.REJECTED_406))
 
-
+    
     if "uuid" in params:
         uuid = params.get("uuid")
 
