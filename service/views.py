@@ -225,7 +225,7 @@ def get_catalogue_main_page(request):
 def home_write_ui(request):
     return render(request, 'service/write.html', {"type": "home"})
 
-# @login_required()
+@login_required()
 def service_write_ui(request):
     response = render(request, 'service/write.html', {"type": "service"})
     # response.set_cookie(key="api-credentials", value='fdeadf768eaf9ae7-stojanovski.dario@gmail.com')
@@ -243,7 +243,7 @@ def service_edit_ui(request, service_name_or_uuid):
 
     return response
 
-# @login_required()
+@login_required()
 def external_service_write_ui(request):
     return render(request, 'service/write.html', {"type": "external_service"})
 
@@ -256,7 +256,7 @@ def external_service_edit_ui(request, service_name_or_uuid):
 def service_area_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_area"})
 
-# @login_required()
+@login_required()
 def service_details_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_details"})
 
