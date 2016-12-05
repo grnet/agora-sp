@@ -271,7 +271,8 @@ $(function(){
 		e.preventDefault();
 		tinymce.init({
 			selector:'#rich-edit',
-			height: 250
+			height: 250,
+			plugins: "advlist"
 		});
 		tinymce.get('rich-edit').setContent($("#description").val());
 		$("#modal-rich-html").modal('show');

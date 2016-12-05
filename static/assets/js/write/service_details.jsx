@@ -841,7 +841,8 @@ $(function() {
 		e.preventDefault();
 		tinymce.init({
 			selector: '#rich-edit',
-			height: 250
+			height: 250,
+			plugins: "advlist"
 		});
 		tinymce.get('rich-edit').setContent($("#features_current").val());
 		$("#modal-rich-html").modal('show');
@@ -852,7 +853,8 @@ $(function() {
 		e.preventDefault();
 		tinymce.init({
 			selector: '#rich-edit',
-			height: 250
+			height: 250,
+			plugins: "advlist"
 		});
 		tinymce.get('rich-edit').setContent($("#features_future").val());
 		$("#modal-rich-html").modal('show');
@@ -863,7 +865,8 @@ $(function() {
 		e.preventDefault();
 		tinymce.init({
 			selector: '#rich-edit',
-			height: 250
+			height: 250,
+			plugins: "advlist"
 		});
 		tinymce.get('rich-edit').setContent($("#use_cases").val());
 		$("#modal-rich-html").modal('show');

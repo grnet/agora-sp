@@ -985,7 +985,8 @@ $(function(){
 		e.preventDefault();
 		tinymce.init({
 			selector:'#rich-edit',
-			height: 250
+			height: 250,
+			plugins: "advlist"
 		});
 		tinymce.get('rich-edit').setContent($("#description_external").val());
 		$("#modal-rich-html").modal('show');
@@ -996,7 +997,8 @@ $(function(){
 		e.preventDefault();
 		tinymce.init({
 			selector:'#rich-edit',
-			height: 250
+			height: 250,
+			plugins: "advlist"
 		});
 		tinymce.get('rich-edit').setContent($("#description_internal").val());
 		$("#modal-rich-html").modal('show');
@@ -1007,7 +1009,8 @@ $(function(){
 		e.preventDefault();
 		tinymce.init({
 			selector:'#rich-edit',
-			height: 250
+			height: 250,
+			plugins: "advlist"
 		});
 		tinymce.get('rich-edit').setContent($("#request_procedures").val());
 		$("#modal-rich-html").modal('show');
@@ -1018,7 +1021,8 @@ $(function(){
 		e.preventDefault();
 		tinymce.init({
 			selector:'#rich-edit',
-			height: 250
+			height: 250,
+			plugins: "advlist"
 		});
 		tinymce.get('rich-edit').setContent($("#funders_for_service").val());
 		$("#modal-rich-html").modal('show');
@@ -1029,7 +1033,8 @@ $(function(){
 		e.preventDefault();
 		tinymce.init({
 			selector:'#rich-edit',
-			height: 250
+			height: 250,
+			plugins: "advlist"
 		});
 		tinymce.get('rich-edit').setContent($("#value_to_customer").val());
 		$("#modal-rich-html").modal('show');
@@ -1040,7 +1045,8 @@ $(function(){
 		e.preventDefault();
 		tinymce.init({
 			selector:'#rich-edit',
-			height: 250
+			height: 250,
+			plugins: "advlist"
 		});
 		tinymce.get('rich-edit').setContent($("#risks").val());
 		$("#modal-rich-html").modal('show');
@@ -1051,7 +1057,8 @@ $(function(){
 		e.preventDefault();
 		tinymce.init({
 			selector:'#rich-edit',
-			height: 250
+			height: 250,
+			plugins: "advlist"
 		});
 		tinymce.get('rich-edit').setContent($("#competitors").val());
 		$("#modal-rich-html").modal('show');
