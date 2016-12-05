@@ -72,7 +72,7 @@
 
                     <div id="modal-success-body" class="modal-body">You have done great!</div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-success" data-dismiss="modal">OK</button>
+                        <button type="button" id="confirm-success" class="btn btn-success" data-dismiss="modal">OK</button>
                     </div>
                 </div>
             </div>
@@ -105,6 +105,11 @@
 
     <script type="text/babel">
 
+        $(function(){
+           $("#confirm-success").click(function(){
+              window.history.back();
+           });
+        });
 
 {#        var host = "https://agora-dev.vi-seem.eu";#}
 {#        var host = "https://services.vi-seem.eu";#}
