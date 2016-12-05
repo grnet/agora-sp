@@ -34,7 +34,8 @@ var ServiceDescription = React.createClass({
 
     getInitialState: function () {
         return {
-            descriptionExternal: ""
+            descriptionExternal: "",
+            descriptionInternal: ""
         }
     },
 
@@ -43,6 +44,10 @@ var ServiceDescription = React.createClass({
             <div>
                 <div className="col-lg-12" id="description"
                      dangerouslySetInnerHTML={{__html: this.props.descriptionExternal}}>
+                </div>
+                <br/><br/><br/><br/>
+                <div className="col-lg-12 description-internal" id="description1"
+                     dangerouslySetInnerHTML={{__html: this.props.descriptionInternal}}>
                 </div>
                 <hr className="separator col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
             </div>
@@ -1009,7 +1014,6 @@ var CatalogueServicePage = React.createClass({
 
         render: function () {
 
-
             return (
                 <div className="col-md-10 col-lg-8" id="service-content">
 
@@ -1105,7 +1109,7 @@ var PortfolioServicePage = React.createClass({
                     <div id="basic-info-sect" className="col-xs-12">
                         <ServiceHeadline title={this.state.data.name} serviceArea={this.state.data.service_area}
                                          shortDescription="Sample short description" logo={this.state.data.logo}/>
-                        <ServiceDescription descriptionExternal={this.state.data.description_external}/>
+                        <ServiceDescription descriptionExternal={this.state.data.description_external}  descriptionInternal={this.state.data.description_internal}/>
                         <UserCustomers userCustomers={this.state.data.user_customers_list.user_customers}/>
                         <ServiceOwner source={this.props.source}/>
                         <Contact source={this.props.source}/>
