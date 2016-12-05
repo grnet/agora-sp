@@ -918,7 +918,7 @@ def get_service_dependencies_with_graphics(request,  service_name_or_uuid):
 # @csrf_exempt
 # @check_service_ownership_or_superuser
 # @api_view(['POST'])
-@check_auth_and_type
+# @check_auth_and_type
 def edit_service(request):
     """
 
@@ -930,7 +930,7 @@ def edit_service(request):
 
 # Inserts service
 @api_view(['POST'])
-@check_auth_and_type
+# @check_auth_and_type
 def insert_service(request):
     """
     Inserts a service object
