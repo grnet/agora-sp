@@ -55,7 +55,7 @@ class ServiceComponent(models.Model):
                 ("logo",  "/static/img/logos/"+self.logo.name.split("/")[-1]),
                 ("service_component_implementations_link", {
                   "related": {
-                    "href":helper.current_site_url() + "/v1/portfolio/services/" + str(service.name).replace(" ", "_")
+                    "href":helper.current_site_url() + "/v1/portfolio/services/" + str(service.name) # .replace(" ", "_")
                         + "/service_details/" + str(service_details_version) + "/service_components/" + str(self.pk)
                         + "/service_component_implementations",
                     "meta": "A link to the service component implementations list"
@@ -156,7 +156,7 @@ class ServiceComponentImplementation(models.Model):
 
                "related": {
 
-                "href":  helper.current_site_url() + "/v1/portfolio/services/" + str(service.name).replace(" ", "_")
+                "href":  helper.current_site_url() + "/v1/portfolio/services/" + str(service.name) # .replace(" ", "_")
                            + "/service_details/" + str(service_details_version) + "/service_components/"
                            + str(self.component_id.pk) + "/service_component_implementations/" + str(self.pk)
                                                     + "/service_component_implementation_detail",

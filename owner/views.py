@@ -23,7 +23,8 @@ def get_service_owner(request, service_name_or_uuid):
     service, parsed_name, uuid = None, None, None
 
     if result is None:
-        parsed_name = service_name_or_uuid.replace("_", " ").strip()
+        # parsed_name = service_name_or_uuid.replace("_", " ").strip()
+        parsed_name = service_name_or_uuid.strip()
     else:
         uuid = service_name_or_uuid
 
@@ -62,7 +63,8 @@ def get_service_owner_institution(request, service_name_or_uuid, service_owner):
     owner_match = prog.match(service_owner)
 
     if result is None:
-        parsed_name = service_name_or_uuid.replace("_", " ").strip()
+        # parsed_name = service_name_or_uuid.replace("_", " ").strip()
+        parsed_name = service_name_or_uuid.strip()
     else:
         uuid = service_name_or_uuid
 

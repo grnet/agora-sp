@@ -34,7 +34,8 @@ def get_service_components(request, search_type, version):
     service, parsed_name, uuid = None, None, None
 
     if result is None:
-        parsed_name = search_type.replace("_", " ").strip()
+        # parsed_name = search_type.replace("_", " ").strip()
+        parsed_name = search_type.strip()
     else:
         uuid = search_type
 
@@ -96,7 +97,8 @@ def get_service_components_complete(request, search_type ):
     service, parsed_name, uuid = None, None, None
 
     if result is None:
-        parsed_name = search_type.replace("_", " ").strip()
+        # parsed_name = search_type.replace("_", " ").strip()
+        parsed_name = search_type.strip()
     else:
         uuid = search_type
 
@@ -548,8 +550,8 @@ def get_service_component(request, search_type, version, comp_uuid):
         return JsonResponse(response, status=int(response["status"][:3]))
 
     if result is None:
-        parsed_name = search_type.replace("_", " ")
-        parsed_name.strip()
+        # parsed_name = search_type.replace("_", " ")
+        parsed_name = search_type.strip()
     else:
         uuid = search_type
 
@@ -809,7 +811,8 @@ def get_service_component_implementations(request, search_type, version, comp_uu
         return JsonResponse(response, status=int(response["status"][:3]))
 
     if result is None:
-        parsed_name = search_type.replace("_", " ").strip()
+        # parsed_name = search_type.replace("_", " ").strip()
+        parsed_name = search_type.strip()
     else:
         uuid = search_type
 
@@ -1061,7 +1064,8 @@ def get_service_component_implementation_detail(request, search_type, version, c
         return JsonResponse(response, status=int(response["status"][:3]))
 
     if result is None:
-        parsed_name = search_type.replace("_", " ").strip()
+        # parsed_name = search_type.replace("_", " ").strip()
+        parsed_name = search_type.strip()
     else:
         uuid = search_type
 
@@ -1184,14 +1188,16 @@ def edit_service_details_component_implementation_details(request):
     result = prog.match(search_type)
 
     if result is None:
-        parsed_name = search_type.replace("_", " ").strip()
+        # parsed_name = search_type.replace("_", " ").strip()
+        parsed_name = search_type.strip()
     else:
         uuid = search_type
 
     new_result = prog.match(new_search_type)
 
     if new_result is None:
-        new_parsed_name = new_search_type.replace("_", " ").strip()
+        # new_parsed_name = new_search_type.replace("_", " ").strip()
+        new_parsed_name = new_search_type.strip()
     else:
         new_uuid = new_search_type
 
@@ -1287,7 +1293,8 @@ def insert_service_details_component_implementation_details(request):
     result = prog.match(search_type)
 
     if result is None:
-        parsed_name = search_type.replace("_", " ").strip()
+        # parsed_name = search_type.replace("_", " ").strip()
+        parsed_name = search_type.strip()
     else:
         uuid = search_type
 

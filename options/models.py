@@ -60,7 +60,8 @@ class ServiceOption(models.Model):
         sla = SLA.objects.filter(service_option_id=self.pk)
 
         if len(sla) > 0:
-            sla_url = helper.current_site_url()+"/v1/portfolio/services/" + service_name.replace(" ", "_") + "/service_details/" + service_details_version \
+            sla_url = helper.current_site_url()+"/v1/portfolio/services/" + service_name  \
+                      + "/service_details/" + service_details_version \
                       + "/service_options/sla/" + str(sla[0].pk)
             return OrderedDict([
                 ("uuid", self.id),
@@ -109,7 +110,8 @@ class SLA(models.Model):
         return str(self.name)
 
     def as_json(self, service_name, service_details_version):
-        parameters = [sp.parameter_id.as_json(service_name.replace(" ", "_"), service_details_version, self.pk) for sp in SLAParameter.objects.
+        parameters = [sp.parameter_id.as_json(service_name, # .replace(" ", "_"),
+                                              service_details_version, self.pk) for sp in SLAParameter.objects.
                 filter(sla_id=self.pk, service_option_id=self.service_option_id.pk)]
         return {
             "id": self.id,
@@ -160,7 +162,8 @@ class Parameter(models.Model):
             ("SLA_parameter", {
                 "name": self.name,
                 "links": {
-                    "self": helper.current_site_url() + "/v1/portfolio/services/" + service_name.replace(" ", "_") + "/service_details/" + service_details_version
+                    "self": helper.current_site_url() + "/v1/portfolio/services/" + service_name # .replace(" ", "_")
+                            + "/service_details/" + service_details_version
                    + "/service_options/sla/" + str(sla_id) + "/sla_parameter/" + str(self.pk) + "/parameter",
                 }
             })

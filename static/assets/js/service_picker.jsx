@@ -416,11 +416,12 @@ var ServiceOwner = React.createClass({
             type: "GET",
             cache: false,
             success: function (data) {
-                this.setState({
-                    first_name: data.data.first_name,
-                    last_name: data.data.last_name,
-                    email: data.data.email
-                });
+                if(data.data != null)
+                    this.setState({
+                        first_name: data.data.first_name,
+                        last_name: data.data.last_name,
+                        email: data.data.email
+                    });
 
             }.bind(this),
             error: function (xhr, status, err) {
@@ -1164,16 +1165,16 @@ var ServiceWrapper = React.createClass({
     render: function () {
 
         return (
-            <a href={"#"+ this.props.data.name.split(' ').join('_')} id={this.props.data.name.split(' ').join('_')}
+            <a href={"#"+ this.props.data.name.split(' ').join(' ')} id={this.props.data.name.split(' ').join(' ')}
                onClick={this.onServiceClick}>
                 <div className="service-pick col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div className="service-tile col-lg-12 col-md-12 col-sm-12 col-xs-12 center-text-xs"
-                         id={this.props.data.name.split(' ').join('_')}>
+                         id={this.props.data.name.split(' ').join(' ')}>
                         <img src={host + "/" + this.props.data.logo }
                              className="service-logo col-lg-1 col-md-1 col-sm-2 col-xs-2"
-                             id={this.props.data.name.split(' ').join('_')}/>
+                             id={this.props.data.name.split(' ').join(' ')}/>
                         <h3 className="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-xs-offset-1"
-                            id={this.props.data.name.split(' ').join('_')}>{this.props.data.name}</h3>
+                            id={this.props.data.name.split(' ').join(' ')}>{this.props.data.name}</h3>
                     </div>
                 </div>
             </a>
@@ -1227,7 +1228,7 @@ var MenuItemIcon = React.createClass({
 
     onMenuItemClick: function (event) {
         //console.log("dedae");
-        window.location.href = "#" + this.props.name.split(" ").join("_");
+        window.location.href = "#" + this.props.name; // .split(" ").join("_");
         window.location.reload();
         //window.location = window.location.href;
         //document.location.reload();
@@ -1236,7 +1237,7 @@ var MenuItemIcon = React.createClass({
 
     render: function () {
         return (
-            <a href={"#" + this.props.name.split(' ').join('_')} onClick={this.onMenuItemClick}>
+            <a href={"#" + this.props.name} onClick={this.onMenuItemClick}>
                 <img width="30" src={host + this.props.icon}/>
                 <span className="menu-text">{this.props.name}</span>
             </a>
@@ -1513,9 +1514,9 @@ var PortfolioPage = React.createClass({
 
 
 //var host = "https://agora-dev.vi-seem.eu";
-var host = "https://services.vi-seem.eu";
+//var host = "https://services.vi-seem.eu";
 //var host = "http://sp.eudat.eu";
-//var host = "http://localhost";
+var host = "http://localhost";
 
 var view_type = window.location.href.split("/");
 

@@ -30,7 +30,8 @@ def get_service_sla(request, search_type, version, sla_uuid):
 
 
     if result is None:
-        parsed_name = search_type.replace("_", " ").strip()
+        # parsed_name = search_type.replace("_", " ").strip()
+        parsed_name = search_type.strip()
     else:
         uuid = search_type
 
@@ -99,7 +100,8 @@ def get_service_sla_parameter(request, search_type, version, sla_uuid, sla_param
         return JsonResponse(response, status=int(response["status"][:3]))
 
     if result is None:
-        parsed_name = search_type.replace("_", " ").strip()
+        # parsed_name = search_type.replace("_", " ").strip()
+        parsed_name = search_type.strip()
     else:
         uuid = search_type
 
@@ -329,7 +331,8 @@ def get_service_options(request, search_type, version):
     result = prog.match(search_type)
 
     if result is None:
-        parsed_name = search_type.replace("_", " ").strip()
+        # parsed_name = search_type.replace("_", " ").strip()
+        parsed_name = search_type.strip()
     else:
         uuid = search_type
 

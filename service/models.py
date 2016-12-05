@@ -87,7 +87,7 @@ class Service(models.Model):
         return [c.as_json() for c in UserCustomer.objects.filter(service_id=self.pk)]
 
     def get_service_owners(self):
-        return ServiceOwner.objects.get(id=self.id_service_owner.pk).as_json()
+        return ServiceOwner.objects.get(id=self.id_service_owner.pk).as_json() if self.id_service_owner is not None else None
 
     def get_service_owner_object(self):
         return ServiceOwner.objects.get(id=self.id_service_owner.pk) if self.id_service_owner is not None else None
@@ -201,7 +201,7 @@ class Service(models.Model):
             contact_information = OrderedDict([
                 ("uuid", contact_information.id),
                 ("links", {
-                    "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/contact_information",
+                    "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name) + "/contact_information" #  .replace(" ", "_") + "/contact_information",
                 })
             ])
 
@@ -213,7 +213,7 @@ class Service(models.Model):
                 ("first_name", service_owner.first_name),
                 ("last_name", service_owner.last_name),
                 ("links", {
-                    "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/service_owner",
+                    "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name) + "/service_owner" # .replace(" ", "_"),
                 })
             ])
 
@@ -248,7 +248,7 @@ class Service(models.Model):
                 "count": len(external_services),
                "links": {
                     "related": {
-                        "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/service_external_dependencies",
+                        "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name) + "/service_external_dependencies", # .replace(" ", "_"),
                         "meta": {
                             "desc": "Links to external services that this service uses."
                         }}
@@ -268,7 +268,7 @@ class Service(models.Model):
             }),
             ("service_complete_link", {
                 "related": {
-                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
+                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name) # .replace(" ", "_")
                             + "?view=complete",
                     "meta": {
                         "desc": "Portfolio level details about this service."
@@ -309,7 +309,8 @@ class Service(models.Model):
                 ("first_name", service_owner.first_name),
                 ("last_name", service_owner.last_name),
                 ("links", {
-                    "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/service_owner",
+                    "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name) # .replace(" ", "_")
+                            + "/service_owner",
                 })
             ])
 
@@ -344,7 +345,8 @@ class Service(models.Model):
                 "count": len(external_services),
                "links": {
                     "related": {
-                        "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/service_external_dependencies",
+                        "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name) # .replace(" ", "_")
+                                + "/service_external_dependencies",
                         "meta": {
                             "desc": "Links to external services that this service uses."
                         }}
@@ -364,7 +366,7 @@ class Service(models.Model):
             }),
             ("service_complete_link", {
                 "related": {
-                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
+                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name) # .replace(" ", "_")
                             + "?view=complete",
                     "meta": {
                         "desc": "Portfolio level details about this service."
@@ -384,7 +386,8 @@ class Service(models.Model):
             contact_information = OrderedDict([
                 ("uuid", contact_information.id),
                 ("links", {
-                    "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/contact_information",
+                    "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name) # .replace(" ", "_")
+                            + "/contact_information",
                 })
             ])
 
@@ -396,7 +399,8 @@ class Service(models.Model):
                 ("first_name", service_owner.first_name),
                 ("last_name", service_owner.last_name),
                 ("links", {
-                    "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_") + "/service_owner",
+                    "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name) # .replace(" ", "_")
+                            + "/service_owner",
                 })
             ])
 
@@ -424,7 +428,7 @@ class Service(models.Model):
             }),
             ("service_complete_link", {
                 "related": {
-                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name).replace(" ", "_")
+                    "href": helper.current_site_url() + "/v1/portfolio/services/" + str(self.name) # .replace(" ", "_")
                             + "?view=complete",
                     "meta": {
                         "desc": "Portfolio level details about this service."
@@ -448,7 +452,7 @@ class Service(models.Model):
             ("service", {
                 "name": self.name,
                 "links": {
-                "self": helper.current_site_url() + "/v1/catalogue/services/" + str(self.name).replace(" ", "_"),
+                "self": helper.current_site_url() + "/v1/catalogue/services/" + str(self.name), # .replace(" ", "_"),
                 }}),
             ("service_details_list", {
                 "count": len(service_details),
@@ -582,8 +586,9 @@ class ServiceDetails(models.Model):
                 "status": self.status,
                 "in_catalogue": self.is_in_catalogue,
                 "links": {
-                "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name).
-                        replace(" ", "_") + "/service_details/" + self.version,
+                "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name)
+                        # replace(" ", "_")
+                        + "/service_details/" + self.version,
                 }
             })
         ])
@@ -648,8 +653,9 @@ class ServiceDetails(models.Model):
         if url:
             details.update({
                 "links": {
-                    "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name).
-                            replace(" ", "_") + "/service_details/" + self.version,
+                    "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name)
+                            # replace(" ", "_")
+                            + "/service_details/" + self.version,
                 }
             })
 
@@ -763,8 +769,9 @@ class ServiceDetails(models.Model):
         if url:
             details.update({
                 "links": {
-                    "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name).
-                            replace(" ", "_") + "/service_details/" + self.version,
+                    "self": helper.current_site_url() + "/v1/portfolio/services/" + str(self.id_service.name)
+                            # replace(" ", "_")
+                            + "/service_details/" + self.version,
                 }
             })
 
