@@ -99,7 +99,7 @@ def service_catalogue_picker(request):
     return service_picker(request, "catalogue")
 
 @xframe_options_exempt
-# @check_auth_and_type
+@check_auth_and_type
 def service_picker(request, view_type):
     response =  render(request, "service/picker.html", {"view_type": view_type})
 
@@ -112,7 +112,7 @@ def service_view_catalogue(request, service):
 
     return render(request, "service/catalogue.html", {"service_name": service})
 
-# @check_auth_and_type
+@check_auth_and_type
 def service_view_portfolio(request, service):
     response = render(request, "service/portfolio.html", {"service_name": service})
     response.set_cookie(key="api-credentials", value=request.session['api-info'])
@@ -225,16 +225,17 @@ def get_catalogue_main_page(request):
 
     return render(request, 'catalogue.html', {"areas": service_areas, "services": services, "names": name_help})
 
+@login_required()
 def home_write_ui(request):
     return render(request, 'service/write.html', {"type": "home"})
 
-# # @login_required()
+@login_required()
 def service_write_ui(request):
     response = render(request, 'service/write.html', {"type": "service"})
     # response.set_cookie(key="api-credentials", value='fdeadf768eaf9ae7-stojanovski.dario@gmail.com')
     return response
 
-# @login_required()
+@login_required()
 # @check_auth_and_type
 def service_edit_ui(request, service_name_or_uuid):
     source = helper.current_site_url() + "/v1/portfolio/services/" + service_name_or_uuid + "/complete"
@@ -246,56 +247,56 @@ def service_edit_ui(request, service_name_or_uuid):
 
     return response
 
-# @login_required()
+@login_required()
 def external_service_write_ui(request):
     return render(request, 'service/write.html', {"type": "external_service"})
 
-# @login_required()
+@login_required()
 def external_service_edit_ui(request, service_name_or_uuid):
     source = helper.current_site_url() + "/v1/services/external_service/" + service_name_or_uuid
     return render(request, 'service/write.html', {"type": "external_service", "source": source})
 
-# @login_required()
+@login_required()
 def service_area_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_area"})
 
-# @login_required()
+@login_required()
 def service_details_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_details"})
 
-# @login_required()
+@login_required()
 def internal_dependency_write_ui(request):
     return render(request, 'service/write.html', {"type": "internal_service_dependencies"})
 
-# @login_required()
+@login_required()
 def internal_dependency_edit_ui(request, internal_dep_uuid):
     source = helper.current_site_url() + "/v1/services/internal_dependency/" + internal_dep_uuid
     return render(request, 'service/write.html', {"type": "internal_service_dependencies", "source": source})
 
-# @login_required()
+@login_required()
 def external_dependency_write_ui(request):
     return render(request, 'service/write.html', {"type": "external_service_dependencies"})
 
-# @login_required()
+@login_required()
 def external_dependency_edit_ui(request, external_dep_uuid):
     source = helper.current_site_url() + "/v1/services/external_dependency/" + external_dep_uuid
     return render(request, 'service/write.html', {"type": "external_service_dependencies", "source": source})
 
-# @login_required()
+@login_required()
 def users_customers_write_ui(request):
     return render(request, 'service/write.html', {"type": "users_customers"})
 
-# @login_required()
+@login_required()
 def users_customers_edit_ui(request, user_customer_uuid):
     source = helper.current_site_url() + "/v1/services/users_customers/" + user_customer_uuid
     return render(request, 'service/write.html', {"type": "users_customers", "source": source})
 
-# @login_required()
+@login_required()
 def service_details_edit_ui(request, service_name_or_uuid, version):
     source = helper.current_site_url() + "/v1/portfolio/services/" + service_name_or_uuid + "/service_details/" + version + "/view"
     return render(request, 'service/write.html', {"type": "service_details", "source": source})
 
-# @login_required()
+@login_required()
 def service_write(request, type):
     return render(request, 'write/service.html')
 
@@ -918,7 +919,7 @@ def get_service_dependencies_with_graphics(request,  service_name_or_uuid):
 # @csrf_exempt
 # @check_service_ownership_or_superuser
 # @api_view(['POST'])
-# @check_auth_and_type
+@check_auth_and_type
 def edit_service(request):
     """
 
@@ -930,7 +931,7 @@ def edit_service(request):
 
 # Inserts service
 @api_view(['POST'])
-# @check_auth_and_type
+@check_auth_and_type
 def insert_service(request):
     """
     Inserts a service object
@@ -1092,6 +1093,7 @@ def insert_service(request):
 
 # Updates external service
 # @api_view(['POST'])
+@check_auth_and_type
 def edit_external_service(request):
     """
 
@@ -1103,6 +1105,7 @@ def edit_external_service(request):
 
 # Inserts external service
 @api_view(['POST'])
+@check_auth_and_type
 def insert_external_service(request):
     """
     Inserts an external service object
@@ -1180,6 +1183,7 @@ def insert_external_service(request):
 
 # Inserts service dependency
 @api_view(['POST'])
+@check_auth_and_type
 def insert_service_dependency(request, service_name_or_uuid):
     """
     Inserts a service dependency object
@@ -1277,6 +1281,7 @@ def get_service_versions(request):
     return JsonResponse(response, status=int(response["status"][:3]))
 
 @api_view(['POST'])
+@check_auth_and_type
 def insert_service_area(request):
     params = request.data
 
@@ -1330,6 +1335,7 @@ def get_service_types(request):
 
 # Inserts service dependency
 @api_view(['POST'])
+@check_auth_and_type
 def edit_service_dependency(request, service_name_or_uuid):
     """
     Inserts a service dependency object
@@ -1416,6 +1422,7 @@ def edit_service_dependency(request, service_name_or_uuid):
 
 # Updates service details for a specific service
 # @api_view(['POST'])
+@check_auth_and_type
 def edit_service_details(request, service_name_or_uuid):
     """
 
@@ -1428,6 +1435,7 @@ def edit_service_details(request, service_name_or_uuid):
 
 # Inserts service details for a specific service
 @api_view(['POST'])
+@check_auth_and_type
 def insert_service_details(request, service_name_or_uuid):
     """
     Inserts a service details object
@@ -1670,6 +1678,7 @@ def insert_service_details(request, service_name_or_uuid):
 
 # Inserts external service dependency
 @api_view(['POST'])
+@check_auth_and_type
 def insert_external_service_dependency(request, service_name_or_uuid):
     """
     Inserts a external service details object
@@ -1725,6 +1734,7 @@ def insert_external_service_dependency(request, service_name_or_uuid):
 
 # Inserts external service dependency
 @api_view(['POST'])
+@check_auth_and_type
 def edit_external_service_dependency(request, service_name_or_uuid):
     """
     Inserts a external service details object
@@ -1815,6 +1825,7 @@ def edit_external_service_dependency(request, service_name_or_uuid):
 
 # Updates user customer
 # @api_view(['POST'])
+@check_auth_and_type
 def edit_user_customer(request, service_name_or_uuid):
     """
 
@@ -1827,6 +1838,7 @@ def edit_user_customer(request, service_name_or_uuid):
 
 # Inserts user customer
 @api_view(['POST'])
+@check_auth_and_type
 def insert_user_customer(request, service_name_or_uuid):
     """
     Inserts an user customer object

@@ -7,6 +7,8 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 import re
 from django.db import IntegrityError
+from common.decorators import check_auth_and_type
+from django.contrib.auth.decorators import login_required
 
 
 # Returns a list of the service owners
@@ -244,6 +246,7 @@ def get_institution(request, institution_uuid):
 
 # Updates an Institution object
 # @api_view(['POST'])
+@check_auth_and_type
 def edit_institution(request):
     """
 
@@ -256,6 +259,7 @@ def edit_institution(request):
 # Inserts an Institution object
 # @login_required
 @api_view(['POST'])
+@check_auth_and_type
 def insert_institution(request):
     """
     Inserts an institution object
@@ -334,6 +338,7 @@ def insert_institution(request):
 
 # Updates an Contact Information object
 # @api_view(['POST'])
+@check_auth_and_type
 def edit_contact_information(request):
     """
 
@@ -346,6 +351,7 @@ def edit_contact_information(request):
 # Inserts an Contact Information object
 # @login_required
 @api_view(['POST'])
+@check_auth_and_type
 def insert_contact_information(request):
     """
     Inserts a contact information object
@@ -452,6 +458,7 @@ def insert_contact_information(request):
 
 # Updates a Service Owner object
 # @api_view(['POST'])
+@check_auth_and_type
 def edit_service_owner(request):
     """
 
@@ -464,6 +471,7 @@ def edit_service_owner(request):
 # Inserts an Service Owner object
 # @login_required
 @api_view(['POST'])
+@check_auth_and_type
 def insert_service_owner(request):
     """
     Inserts a service owner object

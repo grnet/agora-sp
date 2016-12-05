@@ -7,6 +7,8 @@ from common import helper, strings
 from django.db import IntegrityError
 import re
 from django.shortcuts import render
+from common.decorators import check_auth_and_type
+from django.contrib.auth.decorators import login_required
 
 
 # Returns the selected service details options information
@@ -516,43 +518,54 @@ def get_service_details_options(request, serv_det_option_uuid):
     return JsonResponse(response, status=int(response["status"][:3]))
 
 
+@login_required()
 def options_sla_write_ui(request):
     return render(request, 'service/write.html', {"type": "options_sla"})
 
+@login_required()
 def options_sla_edit_ui(request, sla_uuid):
     source = helper.current_site_url() + "/v1/options/sla/" + sla_uuid
     return render(request, 'service/write.html', {"type": "options_sla", "source": source})
 
+@login_required()
 def options_parameter_write_ui(request):
     return render(request, 'service/write.html', {"type": "options_parameter"})
 
+@login_required()
 def options_parameter_edit_ui(request, param_uuid):
     source = helper.current_site_url() + "/v1/options/parameter/" + param_uuid
     return render(request, 'service/write.html', {"type": "options_parameter", "source": source})
 
+@login_required()
 def options_sla_parameter_write_ui(request):
     return render(request, 'service/write.html', {"type": "options_sla_parameter"})
 
+@login_required()
 def options_sla_parameter_edit_ui(request, sla_param_uuid):
     source = helper.current_site_url() + "/v1/options/sla_parameter/" + sla_param_uuid
     return render(request, 'service/write.html', {"type": "options_sla_parameter", "source": source})
 
+@login_required()
 def service_options_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_option"})
 
+@login_required()
 def service_options_edit_ui(request, serv_opt_uuid):
     source = helper.current_site_url() + "/v1/options/service_options_sla/" + serv_opt_uuid
     return render(request, 'service/write.html', {"type": "service_option", "source": source})
 
+@login_required()
 def service_details_options_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_details_options"})
 
+@login_required()
 def service_details_options_edit_ui(request, serv_det_opt_uuid):
     source = helper.current_site_url() + "/v1/options/service_details_options/" + serv_det_opt_uuid
     return render(request, 'service/write.html', {"type": "service_details_options", "source": source}, )
 
 # Updates a Service Option object
 # @api_view(['POST'])
+@check_auth_and_type
 def edit_service_option(request):
     """
 
@@ -564,6 +577,7 @@ def edit_service_option(request):
 
 # Inserts a Service Option object
 @api_view(['POST'])
+@check_auth_and_type
 def insert_service_option(request):
     """
     Inserts a service option object
@@ -637,6 +651,7 @@ def insert_service_option(request):
 
 # Updates a SLA object
 # @api_view(['POST'])
+@check_auth_and_type
 def edit_SLA(request):
     """
 
@@ -648,6 +663,7 @@ def edit_SLA(request):
 
 # Inserts an SLA object
 @api_view(['POST'])
+@check_auth_and_type
 def insert_SLA(request):
     """
     Inserts a SLA object
@@ -743,6 +759,7 @@ def insert_SLA(request):
 
 # Updates a Parameter object
 # @api_view(['POST'])
+@check_auth_and_type
 def edit_parameter(request):
     """
 
@@ -754,6 +771,7 @@ def edit_parameter(request):
 
 # Inserts a Parameter object
 @api_view(['POST'])
+@check_auth_and_type
 def insert_parameter(request):
     """
     Inserts a paramater object
@@ -840,6 +858,7 @@ def insert_parameter(request):
 
 # Updates a SLA parameter object
 @api_view(['POST'])
+@check_auth_and_type
 def edit_SLA_parameter(request):
     """
 
@@ -963,6 +982,7 @@ def edit_SLA_parameter(request):
 
 # Inserts an SLA parameter object
 @api_view(['POST'])
+@check_auth_and_type
 def insert_SLA_parameter(request):
     """
     Inserts a SLA parameter object
@@ -1057,6 +1077,7 @@ def insert_SLA_parameter(request):
     return JsonResponse(response, status=int(response["status"][:3]))
 
 @api_view(['POST'])
+@check_auth_and_type
 def edit_service_details_option(request):
     """
 
@@ -1180,6 +1201,7 @@ def edit_service_details_option(request):
 
 # Inserts an service details option object
 @api_view(['POST'])
+@check_auth_and_type
 def insert_service_details_option(request):
     """
     Inserts a service details object

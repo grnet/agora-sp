@@ -10,6 +10,8 @@ from rest_framework.decorators import *
 from common import helper, strings
 from django.db import IntegrityError
 from django.shortcuts import render
+from common.decorators import check_auth_and_type
+from django.contrib.auth.decorators import login_required
 from common.decorators import check_service_ownership_or_superuser
 # Create your views here.
 
@@ -175,6 +177,8 @@ def get_service_components_complete(request, search_type ):
 
 # Updates the provided service component
 # @api_view(['POST'])
+# @login_required()
+@check_auth_and_type
 def edit_service_component(request):
     """
 
@@ -189,6 +193,7 @@ def edit_service_component(request):
     return insert_service_component(request)
 
 # Inserts the provided service component
+@check_auth_and_type
 @api_view(['POST'])
 def insert_service_component(request):
     """
@@ -626,35 +631,43 @@ def get_service_component(request, search_type, version, comp_uuid):
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
-
+@login_required()
 def service_component_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_component"})
 
+@login_required()
 def service_component_edit_ui(request, comp_uuid):
     source = helper.current_site_url() + "/v1/component/" + comp_uuid
     return render(request, 'service/write.html', {"type": "service_component", "source": source})
 
+@login_required()
 def service_component_table(request):
     source = helper.current_site_url() + "/v1/component/all"
     return render(request, 'service/write.html', {"type": "service_component_table", "source": source})
 
+@login_required()
 def service_component_implementation_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_component_implementation"})
 
+@login_required()
 def service_component_implementation_edit_ui(request, comp_imp_uuid):
     source = helper.current_site_url() + "/v1/component/implementation/" + comp_imp_uuid
     return render(request, 'service/write.html', {"type": "service_component_implementation", "source": source})
 
+@login_required()
 def service_component_implementation_detail_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_component_implementation_detail"})
 
+@login_required()
 def service_component_implementation_detail_edit_ui(request, comp_imp_det_uuid):
     source = helper.current_site_url() + "/v1/component/implementation_detail/" + comp_imp_det_uuid
     return render(request, 'service/write.html', {"type": "service_component_implementation_detail", "source": source})
 
+@login_required()
 def service_details_component_write_ui(request):
     return render(request, 'service/write.html', {"type": "service_details_component"})
 
+@login_required()
 def service_details_component_edit_ui(request, serv_det_comp_uuid):
     source = helper.current_site_url() + "/v1/component/service_details_component/" + serv_det_comp_uuid
     return render(request, 'service/write.html', {"type": "service_details_component", "source": source})
@@ -662,6 +675,7 @@ def service_details_component_edit_ui(request, serv_det_comp_uuid):
 
 # Updates the provided service component implementation
 # @api_view(['POST'])
+@check_auth_and_type
 def edit_service_component_implementation(request):
     """
 
@@ -676,6 +690,7 @@ def edit_service_component_implementation(request):
 
 # Inserts the provided service component implementation
 @api_view(['POST'])
+@check_auth_and_type
 def insert_service_component_implementation(request):
     """
 
@@ -873,6 +888,7 @@ def get_service_component_implementations(request, search_type, version, comp_uu
 
 # Updates the provided service component implementation details
 # @api_view(['POST'])
+@check_auth_and_type
 def edit_service_component_implementation_details(request):
     """
 
@@ -890,6 +906,7 @@ def edit_service_component_implementation_details(request):
 
 # Inserts the provided service component implementation details
 @api_view(['POST'])
+@check_auth_and_type
 def insert_service_component_implementation_details(request):
     """
 
@@ -1124,6 +1141,7 @@ def get_service_component_implementation_detail(request, search_type, version, c
 
 # Updates the provided service component implementation details and service details relationship
 @api_view(['POST'])
+@check_auth_and_type
 def edit_service_details_component_implementation_details(request):
     """
 
@@ -1253,6 +1271,7 @@ def edit_service_details_component_implementation_details(request):
 
 # Inserts the provided service component implementation details and service details relationship
 @api_view(['POST'])
+@check_auth_and_type
 def insert_service_details_component_implementation_details(request):
     """
 
