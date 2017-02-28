@@ -129,6 +129,7 @@ def owner_edit_ui(request, owner_uuid):
     source = helper.current_site_url() + "/v1/owner/" + owner_uuid
     return render(request, 'service/write.html', {"type": "service_owner", "source": source})
 
+@login_required()
 def owners_table(request):
     source = helper.current_site_url() + "/v1/owner/all"
     return render(request, 'service/write.html', {"type": "service_owner_table", "source": source})

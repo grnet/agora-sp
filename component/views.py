@@ -36,8 +36,7 @@ def get_service_components(request, search_type, version):
     service, parsed_name, uuid = None, None, None
 
     if result is None:
-        # parsed_name = search_type.replace("_", " ").strip()
-        parsed_name = search_type.strip()
+        parsed_name = search_type.replace("_", " ").strip()
     else:
         uuid = search_type
 
@@ -99,8 +98,7 @@ def get_service_components_complete(request, search_type ):
     service, parsed_name, uuid = None, None, None
 
     if result is None:
-        # parsed_name = search_type.replace("_", " ").strip()
-        parsed_name = search_type.strip()
+        parsed_name = search_type.replace("_", " ").strip()
     else:
         uuid = search_type
 
@@ -176,9 +174,8 @@ def get_service_components_complete(request, search_type ):
 
 
 # Updates the provided service component
-# @api_view(['POST'])
-# @login_required()
 @check_auth_and_type
+# @api_view(['POST'])
 def edit_service_component(request):
     """
 
@@ -189,7 +186,7 @@ def edit_service_component(request):
     :param description: service component description
     :return: the updated service component
     """
-    # return JsonResponse({"tuka": request.data})
+
     return insert_service_component(request)
 
 # Inserts the provided service component
@@ -207,12 +204,9 @@ def insert_service_component(request):
     """
 
     op_type = helper.get_last_url_part(request)
-    t = {}
-    
-    # return JsonResponse({"tuka": request.__dict__})
     params = helper.get_request_data(request)
     uuid, name, service_component = None, None, None
-    # return JsonResponse({"tuka": "tuka"})
+
     if "name" not in params and op_type == "add":
         return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_NAME_NOT_PROVIDED,
                                                       status=strings.REJECTED_406), status=406)
@@ -229,7 +223,7 @@ def insert_service_component(request):
     #     return JsonResponse(helper.get_error_response(strings.SERVICE_COMPONENT_DESCRIPTION_NOT_PROVIDED,
     #                                                   status=strings.REJECTED_406))
 
-    
+
     if "uuid" in params:
         uuid = params.get("uuid")
 
@@ -330,7 +324,7 @@ def get_service_component_implementation(request, comp_imp_uuid):
         service_component_imp = component_models.ServiceComponentImplementation.objects.get(id=comp_imp_uuid)
 
         response["status"] = "200 OK"
-        response["data"] = service_component_imp.as_full()
+        response["data"] = service_component_imp.as_json_up()
         response["info"] = "service component implementation information"
 
     except ValueError as v:
@@ -340,7 +334,7 @@ def get_service_component_implementation(request, comp_imp_uuid):
                 "detail": "An invalid UUID was supplied"
             }
 
-    except component_models.ServiceComponentImplementation.DoesNotExist:
+    except component_models.ServiceComponent.DoesNotExist:
         response["status"] = "404 Not Found"
         response["errors"] = {
             "detail": "The requested service component implementation was not found"
@@ -555,8 +549,8 @@ def get_service_component(request, search_type, version, comp_uuid):
         return JsonResponse(response, status=int(response["status"][:3]))
 
     if result is None:
-        # parsed_name = search_type.replace("_", " ")
-        parsed_name = search_type.strip()
+        parsed_name = search_type.replace("_", " ")
+        parsed_name.strip()
     else:
         uuid = search_type
 
@@ -630,6 +624,7 @@ def get_service_component(request, search_type, version, comp_uuid):
     #     }
 
     return JsonResponse(response, status=int(response["status"][:3]))
+
 
 @login_required()
 def service_component_write_ui(request):
@@ -826,8 +821,7 @@ def get_service_component_implementations(request, search_type, version, comp_uu
         return JsonResponse(response, status=int(response["status"][:3]))
 
     if result is None:
-        # parsed_name = search_type.replace("_", " ").strip()
-        parsed_name = search_type.strip()
+        parsed_name = search_type.replace("_", " ").strip()
     else:
         uuid = search_type
 
@@ -1081,8 +1075,7 @@ def get_service_component_implementation_detail(request, search_type, version, c
         return JsonResponse(response, status=int(response["status"][:3]))
 
     if result is None:
-        # parsed_name = search_type.replace("_", " ").strip()
-        parsed_name = search_type.strip()
+        parsed_name = search_type.replace("_", " ").strip()
     else:
         uuid = search_type
 
@@ -1206,16 +1199,14 @@ def edit_service_details_component_implementation_details(request):
     result = prog.match(search_type)
 
     if result is None:
-        # parsed_name = search_type.replace("_", " ").strip()
-        parsed_name = search_type.strip()
+        parsed_name = search_type.replace("_", " ").strip()
     else:
         uuid = search_type
 
     new_result = prog.match(new_search_type)
 
     if new_result is None:
-        # new_parsed_name = new_search_type.replace("_", " ").strip()
-        new_parsed_name = new_search_type.strip()
+        new_parsed_name = new_search_type.replace("_", " ").strip()
     else:
         new_uuid = new_search_type
 
@@ -1312,8 +1303,7 @@ def insert_service_details_component_implementation_details(request):
     result = prog.match(search_type)
 
     if result is None:
-        # parsed_name = search_type.replace("_", " ").strip()
-        parsed_name = search_type.strip()
+        parsed_name = search_type.replace("_", " ").strip()
     else:
         uuid = search_type
 

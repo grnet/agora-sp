@@ -101,12 +101,8 @@ def service_catalogue_picker(request):
 @xframe_options_exempt
 @check_auth_and_type
 def service_picker(request, view_type):
-    response =  render(request, "service/picker.html", {"view_type": view_type})
 
-    if view_type is 'portfolio':
-        response.set_cookie(key="api-credentials", value=request.session['api-info'])
-
-    return response
+    return render(request, "service/picker.html", {"view_type": view_type})
 
 def service_view_catalogue(request, service):
 
@@ -114,9 +110,8 @@ def service_view_catalogue(request, service):
 
 @check_auth_and_type
 def service_view_portfolio(request, service):
-    response = render(request, "service/portfolio.html", {"service_name": service})
-    response.set_cookie(key="api-credentials", value=request.session['api-info'])
-    return response
+
+    return render(request, "service/portfolio.html", {"service_name": service})
 
 # Renders the list service view
 @api_view(['GET'])
@@ -138,8 +133,7 @@ def get_service_options(request, service_name_or_uuid):
     response = {}
 
     if result is None:
-        # parsed_name = service_name_or_uuid.replace("_", " ").strip()
-        parsed_name = service_name_or_uuid.strip()
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
     else:
         uuid = service_name_or_uuid
 
@@ -182,8 +176,7 @@ def get_service_logo(request, service_name_or_uuid):
     response = {}
 
     if result is None:
-        # parsed_name = service_name_or_uuid.replace("_", " ").strip()
-        parsed_name = service_name_or_uuid.strip()
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
     else:
         uuid = service_name_or_uuid
 
@@ -213,8 +206,7 @@ def get_catalogue_main_page(request):
     for area in service_areas:
         services_buffer  = models.Service.objects.filter(service_area=area['service_area']).values_list('name', flat=True)
         for service in services_buffer:
-            # name_help[service] = service.replace(" ","_").strip()
-            name_help[service] = service.strip()
+            name_help[service] = service.replace(" ","_").strip()
 
 
 
@@ -231,21 +223,12 @@ def home_write_ui(request):
 
 @login_required()
 def service_write_ui(request):
-    response = render(request, 'service/write.html', {"type": "service"})
-    # response.set_cookie(key="api-credentials", value='fdeadf768eaf9ae7-stojanovski.dario@gmail.com')
-    return response
+    return render(request, 'service/write.html', {"type": "service"})
 
 @login_required()
-# @check_auth_and_type
 def service_edit_ui(request, service_name_or_uuid):
     source = helper.current_site_url() + "/v1/portfolio/services/" + service_name_or_uuid + "/complete"
-
-    response = render(request, 'service/write.html', {"type": "service", "source": source})
-
-    # response.set_cookie(key="api-credentials", value=request.session['api-info'])
-    # response.set_cookie(key="api-credentials", value='fdeadf768eaf9ae7-stojanovski.dario@gmail.com')
-
-    return response
+    return render(request, 'service/write.html', {"type": "service", "source": source})
 
 @login_required()
 def external_service_write_ui(request):
@@ -314,8 +297,7 @@ def get_external_service(request, service_name_or_uuid):
     result = prog.match(service_name_or_uuid)
 
     if result is None:
-        # parsed_name = service_name_or_uuid.replace("_", " ").strip()
-        parsed_name = service_name_or_uuid.strip()
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
     else:
         uuid = service_name_or_uuid
 
@@ -427,8 +409,7 @@ def get_service_catalogue_view(request, service):
     parsed_name, uuid = None, None
 
     if result is None:
-        # parsed_name = service.replace("_", " ").strip()
-        parsed_name = service.strip()
+        parsed_name = service.replace("_", " ").strip()
     else:
         uuid = service
 
@@ -516,8 +497,7 @@ def get_service(request,  service_name_or_uuid):
     result = prog.match(service_name_or_uuid)
 
     if result is None:
-        # parsed_name = service_name_or_uuid.replace("_", " ").strip()
-        parsed_name = service_name_or_uuid.strip()
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
     else:
         uuid = service_name_or_uuid
 
@@ -568,8 +548,7 @@ def get_service_contact_complete(request,  service_name_or_uuid):
     result = prog.match(service_name_or_uuid)
 
     if result is None:
-        # parsed_name = service_name_or_uuid.replace("_", " ").strip()
-        parsed_name = service_name_or_uuid.strip()
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
     else:
         uuid = service_name_or_uuid
 
@@ -635,8 +614,7 @@ def get_service_details(request, service_name_or_uuid, version):
     result = prog.match(service_name_or_uuid)
 
     if result is None:
-        # parsed_name = service_name_or_uuid.replace("_", " ").strip()
-        parsed_name = service_name_or_uuid.strip()
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
     else:
         uuid = service_name_or_uuid
 
@@ -699,8 +677,7 @@ def get_service_details_for_view(request, service_name_or_uuid, version):
     result = prog.match(service_name_or_uuid)
 
     if result is None:
-        # parsed_name = service_name_or_uuid.replace("_", " ").strip()
-        parsed_name = service_name_or_uuid.strip()
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
     else:
         uuid = service_name_or_uuid
 
@@ -752,8 +729,7 @@ def get_all_service_details(request, service_name_or_uuid):
     result = prog.match(service_name_or_uuid)
 
     if result is None:
-        # parsed_name = service_name_or_uuid.replace("_", " ").strip()
-        parsed_name = service_name_or_uuid.strip()
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
     else:
         uuid = service_name_or_uuid
 
@@ -802,8 +778,8 @@ def get_service_institution(request, service_name_or_uuid):
     result = prog.match(service_name_or_uuid)
 
     if result is None:
-        # parsed_name = service_name_or_uuid.replace("_", " ")
-        parsed_name = service_name_or_uuid.strip()
+        parsed_name = service_name_or_uuid.replace("_", " ")
+        parsed_name.strip()
     else:
         uuid = service_name_or_uuid
 
@@ -848,8 +824,7 @@ def get_service_dependencies(request,  service_name_or_uuid):
     parsed_name, uuid = None, None
 
     if result is None:
-        # parsed_name = service_name_or_uuid.replace("_", " ").strip()
-        parsed_name = service_name_or_uuid.strip()
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
     else:
         uuid = service_name_or_uuid
 
@@ -887,8 +862,7 @@ def get_service_dependencies_with_graphics(request,  service_name_or_uuid):
     parsed_name, uuid = None, None
 
     if result is None:
-        # parsed_name = service_name_or_uuid.replace("_", " ").strip()
-        parsed_name = service_name_or_uuid.strip()
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
     else:
         uuid = service_name_or_uuid
 
@@ -1206,8 +1180,7 @@ def insert_service_dependency(request, service_name_or_uuid):
     result = prog.match(service_name_or_uuid)
 
     if result is None:
-        # parsed_name = service_name_or_uuid.replace("_", " ").strip()
-        parsed_name = service_name_or_uuid.strip()
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
     else:
         uuid = service_name_or_uuid
 
@@ -1308,12 +1281,8 @@ def get_service_areas(request):
     areas_set = set([s.service_area for s in models.Service.objects.all() if (query == None or query == "") or
                      (s.service_area is not None and query in s.service_area.lower())])
 
-    model_areas = models.ServiceArea.objects.all()
-
-    for a in model_areas:
-        areas_set.add(a.name)
-
     areas_set = [{"area": a} for a in areas_set]
+
     response = helper.get_response_info(strings.SERVICE_OWNER_INFORMATION, areas_set)
     return JsonResponse(response, status=int(response["status"][:3]))
 
@@ -1379,8 +1348,7 @@ def edit_service_dependency(request, service_name_or_uuid):
     result = prog.match(service_name_or_uuid)
 
     if result is None:
-        # parsed_name = service_name_or_uuid.replace("_", " ").strip()
-        parsed_name = service_name_or_uuid.strip()
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
     else:
         uuid = service_name_or_uuid
 
@@ -1471,8 +1439,7 @@ def insert_service_details(request, service_name_or_uuid):
 
     try:
         if result is None:
-            # parsed_name = service_uuid_name.replace("_", " ").strip()
-            parsed_name = service_uuid_name.strip()
+            parsed_name = service_uuid_name.replace("_", " ").strip()
             service = models.Service.objects.get(name=parsed_name)
 
         else:
@@ -1506,7 +1473,7 @@ def insert_service_details(request, service_name_or_uuid):
                                                           status=strings.REJECTED_406), status=406)
 
         try:
-            service_details = models.ServiceDetails.objects.get(id=manual_uuid)
+            service_details = models.ServiceDetails.objects.get(id=uuid)
             if op_type == "add":
                 return JsonResponse(helper.get_error_response(strings.SERVICE_DETAILS_EXISTS,
                                                               status=strings.CONFLICT_409), status=409)
@@ -1701,8 +1668,7 @@ def insert_external_service_dependency(request, service_name_or_uuid):
     result = prog.match(service_name_or_uuid)
 
     if result is None:
-        # parsed_name = service_name_or_uuid.replace("_", " ").strip()
-        parsed_name = service_name_or_uuid.strip()
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
     else:
         uuid = service_name_or_uuid
 
@@ -1778,8 +1744,7 @@ def edit_external_service_dependency(request, service_name_or_uuid):
     result = prog.match(service_name_or_uuid)
 
     if result is None:
-        # parsed_name = service_name_or_uuid.replace("_", " ").strip()
-        parsed_name = service_name_or_uuid.strip()
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
     else:
         uuid = service_name_or_uuid
 
@@ -1925,7 +1890,8 @@ def insert_user_customer(request, service_name_or_uuid):
         return JsonResponse(helper.get_error_response(strings.USER_CUSTOMER_NAME_NOT_PROVIDED,
                                                       status=strings.REJECTED_406), status=406)
     elif "name" in params:
-        if len(models.UserRole.objects.filter(name=name)) == 0:
+        name = params.get('name')
+        if (name, name) not in models.UserCustomer.USER_TYPES:
             return JsonResponse(helper.get_error_response(strings.USER_CUSTOMER_NAME_INVALID,
                                                           status=strings.REJECTED_406), status=406)
     elif op_type == "edit":
@@ -1971,8 +1937,7 @@ def insert_user_customer(request, service_name_or_uuid):
     result = prog.match(service_name_or_uuid)
 
     if result is None:
-        # parsed_name = service_name_or_uuid.replace("_", " ").strip()
-        parsed_name = service_name_or_uuid.strip()
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
     else:
         service_uuid = service_name_or_uuid
 
@@ -2021,8 +1986,7 @@ def get_service_external_dependencies(request,  service_name_or_uuid):
     result = prog.match(service_name_or_uuid)
 
     if result is None:
-        # parsed_name = service_name_or_uuid.replace("_", " ").strip()
-        parsed_name = service_name_or_uuid.strip()
+        parsed_name = service_name_or_uuid.replace("_", " ").strip()
     else:
         uuid = service_name_or_uuid
 
@@ -2065,8 +2029,7 @@ def get_service_contact_information(request, service_name_or_uuid):
     result = prog.match(service_name_or_uuid)
 
     if result is None:
-        # parsed_name = service_name_or_uuid.replace("_", " ")
-        parsed_name = service_name_or_uuid.strip()
+        parsed_name = service_name_or_uuid.replace("_", " ")
         parsed_name.strip()
     else:
         uuid = service_name_or_uuid
@@ -2149,7 +2112,7 @@ def merge_service_components(service_details):
             "count": len(options),
             "links": {
                 "related": {
-                    "href": helper.current_site_url() + "/v1/portfolio/services/" + service_details.id_service.name   # .replace(" ", "_")
+                    "href": helper.current_site_url() + "/v1/portfolio/services/" + service_details.id_service.name.replace(" ", "_")
                             + "/service_details/" + service_details.version + "/service_options",
                     "meta": {
                         "desc": "Link to the service options"
