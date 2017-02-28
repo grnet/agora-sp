@@ -875,7 +875,8 @@ var Header = React.createClass({
                     <div>
                         <ul className="service-header nav_links col-xs-offset-8 col-sm-offset-10">
                             <li id="login">
-                                <a href="/api/admin">Login</a>
+                                <a className={type == 'portfolio' ? 'collapse' : ''} href="/ui/portfolio/services">Portfolio</a>
+                                <a className={type == 'catalogue' ? 'collapse' : ''} href="/api/admin">Edit</a>
                             </li>
                         </ul>
                     </div>
