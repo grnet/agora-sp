@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 from django.utils import timezone
 from django.utils.http import urlquote
 from django.core.mail import send_mail
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, pre_save
 from django.dispatch import receiver
 from social.apps.django_app.default.models import UserSocialAuth
 from rest_framework.authtoken.models import Token
@@ -36,28 +36,10 @@ class UserManager(BaseUserManager):
         user.set_password(password)
         user.save(using=self._db)
 
-        message = 'Email: '+email+', Username: '+username+' . Created at: '+datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
-
-        send_mail(
-        '[AGORA] A new user has been created!',
-        message,
-        'agora.notification@gmail.com',
-        ['strezoski.g@gmail.com'],
-        fail_silently=False,
-    )
-
         return user
 
     def create_user(self, username, email, password=None, **extra_fields):
-        message = 'Email: '+email+', Username: '+username+' . Created at: '+datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
 
-        send_mail(
-        '[AGORA] A new user has been created!',
-        message,
-        'agora.notification@gmail.com',
-        ['strezoski.g@gmail.com'],
-        fail_silently=False,
-    )
         return self._create_user( username, email, password, False, False,
                                  **extra_fields)
 
@@ -118,6 +100,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
         return social_user
 
+    def __unicode__(self):
+        return  str(self.email)
+
+
 @receiver(post_save,sender=User)
 def send_user_data_when_created_by_admin(sender, instance, **kwargs):
 
@@ -127,33 +113,6 @@ def send_user_data_when_created_by_admin(sender, instance, **kwargs):
     now = datetime.datetime.now().replace(tzinfo=utc).replace(microsecond=0)
 
     if date_joined < now:
-        # Keeping this for diagnostics later
-        # string = str(date_joined)
-        # string2 = str(now)
-        #
-        # send_mail(
-        # '[AGORA] A new user has not been created!',
-        # 'A mail shall not be sent\n\nJoined: '+string+'\nNow: '+string2,
-        # 'agora.notification@gmail.com',
-        # USER_CREATION_EMAIL_LIST,
-        # fail_silently=False,
-        # )
         pass
     else:
-
         token = Token.objects.get_or_create(user=instance)
-
-        message = 'A new user has been created in the Agora app!\n\n'+\
-                  'Username: '+ instance.username+\
-                  'Token: ' + str(token)+\
-                  '\nCreated at: '+datetime.datetime.now().strftime("%Y-%m-%d %H:%M")+\
-                  '\nDate joined: '+str(date_joined)
-
-        send_mail(
-        '[AGORA] A new user has been created!',
-        message,
-        'agora.notification@gmail.com',
-        USER_CREATION_EMAIL_LIST,
-        fail_silently=False,
-        )
-
