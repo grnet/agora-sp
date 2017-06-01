@@ -27,7 +27,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'secret-key'
 
 # SECURITY WARNING don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1',
                  'localhost',
@@ -38,6 +38,7 @@ ALLOWED_HOSTS = ['127.0.0.1',
                  'sp.eudat.eu',
                  'snf-715140.vm.okeanos.grnet.gr',
                  'snf-714484.vm.okeanos.grnet.gr',
+                 '83.212.105.109',
                  'services.vi-seem.eu']
 
 EMAIL_HOST = 'smtp.gmail.com'
@@ -343,7 +344,7 @@ LOGGING = {
         'file': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': '/var/www/html/agora/logs/debug.log',
+            'filename': os.path.join(BASE_DIR, 'logs/debug.log'),
         },
 
     },

@@ -1174,7 +1174,7 @@ var ServiceWrapper = React.createClass({
                 <div className="service-pick col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div className="service-tile col-lg-12 col-md-12 col-sm-12 col-xs-12 center-text-xs"
                          id={this.props.data.name.split(' ').join(' ')}>
-                        <img src={host + "/" + this.props.data.logo }
+                        <img src={host + "" + this.props.data.logo }
                              className="service-logo col-lg-1 col-md-1 col-sm-2 col-xs-2"
                              id={this.props.data.name.split(' ').join(' ')}/>
                         <h3 className="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-xs-offset-1"
@@ -1518,7 +1518,7 @@ var PortfolioPage = React.createClass({
 
 
 //var host = "https://agora-dev.vi-seem.eu";
-var host = "https://services.vi-seem.eu";
+var host = "";
 //var host = "http://sp.eudat.eu";
 //var host = "http://localhost";
 
