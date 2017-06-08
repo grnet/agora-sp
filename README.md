@@ -73,18 +73,25 @@ This installation guide requires the following prerequisites:
 
 - Debian OS
 - User with sudo privileges
-- Python 2.7.9
-- [pip](https://packaging.python.org/installing/)
-- [Virtual Environments](https://virtualenvwrapper.readthedocs.io/en/latest/)
 
-## Get the code
+## Requirements
 
-Since it is a security risk to add ssh keys in a vm in order to clone a private repo, you can use the local git clone on your machine to push the code to the vm.
+**NOTE:**
+In the following commands, use sudo where needed
 
-- Inside the vm, create a directory inside the home folder, e.g. `mkdir agora && cd agora` (e.g. in `/home/<user>/agora`, and run `git init`.
-- On your host machine, first run `git clone git@code.vi-seem.eu:stdario/agora.git && cd agora` to get the code, then use the command `git remote add <name> <user@vm-name>:<path-to-vm-git-directory>` (e.g. `git remote add vm me@vm-ip:/home/<user>/agora`) to add the remote vm in your local git repo and then `git push <name> <branch-name>` to upload the code.
+The following packages are required for this project to work. You can install them with the following command:
 
-Alternatively, you can use ssh/https to clone the code inside the vm, more information [here](https://code.vi-seem.eu/stdario/agora)
+```
+apt-get install git python mysql-server mysql-client libmysqlclient-dev build-essential libssl-dev libffi-dev python-dev apache2 apache2-doc apache2-utils
+``` 
+
+You should install pip from [here](https://packaging.python.org/installing/)
+
+You should also virtualenvwrapper from [here](https://virtualenvwrapper.readthedocs.io/en/latest/)
+
+**NOTE**
+
+Since this project uses mysql, with the above command, you will be prompted to provide mysql credentials, so check the section below with the current mysql credentials of the project.
 
 ## Database
 
@@ -104,22 +111,19 @@ DATABASES = {
 
 It also requires a database with name `agora` to be created.
 
-- Run `mysql -u<username> -p<password>` in order to connect to the mysql db
+- Run `mysql -u<username> -p<password>` in order to connect to the mysql db (with the credentials you entered before)
 - Run `create database agora;` in order to create a new and empty database named `agora`
 
 All the tables will be created from the django migrations.
 
-## Requirements
+## Get the code
 
-The following packages are required for this project to work. You can install them with the following command:
+Since it is a security risk to add ssh keys in a vm in order to clone a private repo, you can use the local git clone on your machine to push the code to the vm.
 
-```
-apt-get install python mysql-server mysql-client libmysqlclient-dev build-essential libssl-dev libffi-dev python-dev apache2 apache2-doc apache2-utils
-```
+- Inside the vm, create a directory inside the home folder, e.g. `mkdir agora && cd agora` (e.g. in `/home/<user>/agora`, and run `git init`.
+- On your host machine, first run `git clone git@code.vi-seem.eu:stdario/agora.git && cd agora` to get the code, then use the command `git remote add <name> <user@vm-name>:<path-to-vm-git-directory>` (e.g. `git remote add vm me@vm-ip:/home/<user>/agora`) to add the remote vm in your local git repo and then `git push <name> <branch-name>` to upload the code.
 
-You should have pip installed, if not you can find documentation [here](https://packaging.python.org/installing/)
-
-You should have virtualenvwrapper installed, if not you can find documentation [here](https://virtualenvwrapper.readthedocs.io/en/latest/)
+Alternatively, you can use ssh/https to clone the code inside the vm, more information [here](https://code.vi-seem.eu/stdario/agora)
 
 ## Installation
 
