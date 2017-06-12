@@ -82,7 +82,7 @@ In the following commands, use sudo where needed
 The following packages are required for this project to work. You can install them with the following command:
 
 ```
-apt-get install git python mysql-server mysql-client libmysqlclient-dev build-essential libssl-dev libffi-dev python-dev apache2 apache2-doc apache2-utils
+apt-get install git python mysql-server mysql-client libmysqlclient-dev build-essential libssl-dev libffi-dev python-dev apache2 apache2-doc apache2-utils libapache2-mod-wsgi
 ``` 
 
 You should install pip from [here](https://packaging.python.org/installing/)
@@ -131,7 +131,14 @@ Create a new virtual environment by running `mkvirtualenv agora`
 
 Inside the project directory, run `pip install -r requirements.txt --no-cache-dir` to install all the required python packages (the requirements.txt is in the root directory of the project)
 
-To run the databse migrations, run the command `python manage.py migrate` to update the database.
+**NOTE**
+Due to a missing migration, you should first run: 
+
+```
+python manage.py makemigrations accounts
+```
+
+And then, to run the databse migrations, run the command `python manage.py migrate` to update the database.
 
 ### URL Configuration
 
