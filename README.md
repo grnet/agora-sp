@@ -135,8 +135,10 @@ Inside the project directory, run `pip install -r requirements.txt --no-cache-di
 Due to a missing migration, you should first run: 
 
 ```
+python manage.py makemigrations
 python manage.py makemigrations accounts
 ```
+**NOTE:** The second command above might not be needed.
 
 And then, to run the databse migrations, run the command `python manage.py migrate` to update the database.
 
@@ -199,6 +201,8 @@ NameVirtualHost 83.212.105.109:80
 </VirtualHost>
 ```
 
+Where `<path-to-root-project-dir>` is the root directory of the project, `<path-to-venv>` is the path to where your virtual environments are stored (by default is in `~/Envs/agora`)
+
 **NOTE**
 
 In order for apache to be able o write logs, you should give permissions to apache in order to write the logs. Inside the root directory of the project, run `chmod -R 777 logs`.
@@ -206,6 +210,10 @@ In order for apache to be able o write logs, you should give permissions to apac
 ## Run the project
 
 If all the above steps are done, just restart your apache server using the command `service apache2 restart` and go to the vm ip and you're ready!
+
+## Creating an admin account
+
+In order to create a django admin account, you should follow the instruction provided [in this link](https://docs.djangoproject.com/en/1.11/intro/tutorial02/#creating-an-admin-user).
 
 ## SAML2 Integration
 
