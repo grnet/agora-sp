@@ -1,0 +1,23 @@
+---
+- file:
+    state: absent
+    path: "{{ install_root }}/{{ project_name }}"
+
+- file:
+    state: absent
+    path: "{{ install_root }}/{{zip_name}}"
+
+- file:
+    state: directory
+    path: "{{ install_root }}/{{ project_name }}"
+
+- copy:
+    src: "{{ tmp_zip_root }}/{{ zip_name }}"
+    dest: "{{ install_root }}/{{ zip_name }}"
+    owner: "{{ user_name }}"
+    mode: 0644
+
+- unarchive:
+    src: "{{ install_root }}/{{ zip_name }}"
+    dest: "{{ install_root }}/{{ project_name}}"
+    remote_src: True

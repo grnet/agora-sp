@@ -1,0 +1,5 @@
+---
+- archive:
+    path: "{{ repo_root }}/*"
+    format: "gz"
+    dest: "{{ tmp_zip_root }}/{{ zip_name }}"
