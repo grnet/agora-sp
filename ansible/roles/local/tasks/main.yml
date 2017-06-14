@@ -1,5 +1,16 @@
 ---
+
+- file:
+    state: absent
+    path: "{{ tmp_zip_root }}/{{ project_name }}"
+
+- git:
+    repo: "{{repo_root}}/.git"
+    version: "dev"
+    dest: "{{ tmp_zip_root }}/{{ project_name }}"
+
 - archive:
-    path: "{{ repo_root }}/*"
+    path: "{{ tmp_zip_root }}/{{ project_name }}/*"
     format: "gz"
     dest: "{{ tmp_zip_root }}/{{ zip_name }}"
+
