@@ -1,0 +1,12 @@
+---
+- copy:
+    src: "../files/.my.cnf"
+    dest: "/root/"
+    owner: root
+    group: root
+    mode: 0600
+- mysql_user:
+    name: root
+    password: anex
+    priv: '*.*:ALL'
+    state: present

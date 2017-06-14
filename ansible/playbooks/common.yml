@@ -1,0 +1,5 @@
+---
+
+- hosts: agora-ansible
+  roles:
+    - common
