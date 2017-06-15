@@ -1,0 +1,28 @@
+---
+
+- pip:
+    name: pip
+    extra_args: --upgrade
+
+- pip:
+    requirements: "{{ install_root }}/{{ project_name }}/requirements.txt"
+    extra_args: --no-cache-dir
+
+- django_manage:
+    command: makemigrations
+    app_path: "{{ django_dir }}"
+
+- django_manage:
+    command: makemigrations accounts
+    app_path: "{{ django_dir }}"
+
+- django_manage:
+    command: migrate
+    app_path: "{{ django_dir }}"
+
+- django_manage:
+    command: loaddata
+    app_path: "{{ django_dir }}"
+    fixtures: "sites.json"
+  notify:
+    - restart apache

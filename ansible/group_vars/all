@@ -12,3 +12,5 @@ install_root: '/home/agora'
 repo_root: '/media/sf_grnet/agora'
 tmp_zip_root: '/tmp'
 zip_name: 'agora.tgz'
+
+django_dir: '/home/agora/agora'
