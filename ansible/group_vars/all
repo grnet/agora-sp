@@ -14,3 +14,9 @@ tmp_zip_root: '/tmp'
 zip_name: 'agora.tgz'
 
 django_dir: '/home/agora/agora'
+
+server_ip: 83.212.101.52
+
+admin_user: admin
+admin_pass: test123456
+admin_email: admin@vi-seem.eu

@@ -222,10 +222,10 @@ IncludeOptional sites-enabled/*.conf
 
 WSGIPythonPath /home/agora/agora:/usr/local/lib/python2.7/site-packages
 
-NameVirtualHost 83.212.105.182:80
+NameVirtualHost {{ server_ip }}:80
 <VirtualHost *:80>
 
-        ServerName 83.212.105.182
+        ServerName {{ server_ip }}
         Alias /static/ /home/agora/agora/static/
 
         <Directory /home/agora/agora/static>

@@ -1,0 +1,6 @@
+---
+
+- name: change password
+  shell: echo "from accounts.models import User; User.objects.create_superuser('{{ admin_user }}', '{{ admin_email }}', '{{ admin_pass }}')" | python manage.py shell
+  args:
+    chdir: "{{ django_dir }}"

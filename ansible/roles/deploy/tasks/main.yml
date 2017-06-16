@@ -22,12 +22,12 @@
     dest: "{{ install_root }}/{{ project_name}}"
     remote_src: True
 
-- copy:
-    src: ../files/apache2.conf
+- template:
+    src: ../templates/apache2.conf.j2
     dest: /etc/apache2/apache2.conf
     owner: root
     group: root
-    mode : 0644
+    mode: 0644
 
 - file:
     path: "{{ install_root }}/{{ project_name }}/logs"

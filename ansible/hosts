@@ -1,4 +1,4 @@
-agora-ansible ansible_ssh_host=83.212.105.182 ansible_ssh_user=root
+agora-ansible ansible_ssh_host=83.212.101.52 ansible_ssh_user=root
 
 [webservers]
 agora-ansible
