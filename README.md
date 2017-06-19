@@ -47,7 +47,7 @@ admin_email: admin@vi-seem.eu
 
 ```
 
-Where <local-agora-repo-root> is the git repository root directory of the `agora` repository. We will use this codebase for the time being to update the remote vm with the latest commit.
+Where `<local-agora-repo-root>` is the git repository root directory of the `agora` repository. We will use the above repository to update the remote vm with the latest commit.
 
 You can also change the default credentials of the django admin superuser, as shown above.
 
@@ -73,12 +73,12 @@ Below is a brief explanation of all the playbooks inside the `playbooks` directo
 
 With this playbook, everything will be installed automatically, and the project will be available on the `<vm-ip>` address. It includes all the roles:
 
-  - common
-  - agora
-  - local
-  - deploy
-  - django
-  - django_admin
+  - common.yml
+  - agora.yml
+  - local.yml
+  - deploy.yml
+  - django.yml
+  - django_admin.yml
 
 It also restarts the apache2 service.
 
@@ -93,9 +93,9 @@ This playbook prepares the whole environment for the code to be deployed. It agg
 
 This playbook aggregates the roles required to take the latest commit of the `dev` branch, and deploy it in the vm, without touching the database. It also restarts the apache2 server. It aggregates the following roles:
 
-  - local
-  - deploy
-  - django
+  - local.yml
+  - deploy.yml
+  - django.yml
 
 **The following roles are listed in the order of execution:**
 
@@ -134,4 +134,10 @@ The default command to execute all is:
 
 ```
 ansible-playbook playbooks/run_all.yml
+```
+
+In order to deliver a new version and update the codebase, run: 
+
+```
+ansible-playbook playbooks/deploy_code.yml
 ```
