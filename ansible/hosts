@@ -1,7 +1,5 @@
-agora-ansible ansible_ssh_host=83.212.101.52 ansible_ssh_user=root
+agora-ansible ansible_ssh_host=83.212.98.135 ansible_ssh_user=root
 
 [webservers]
 agora-ansible
 
-[local]
-localhost ansible_python_interpreter=/Library/Python/2.7/site-packages
