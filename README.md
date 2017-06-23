@@ -132,11 +132,12 @@ Create a new virtual environment by running `mkvirtualenv agora`
 Inside the project directory, run `pip install -r requirements.txt --no-cache-dir` to install all the required python packages (the requirements.txt is in the root directory of the project)
 
 **NOTE**
-Due to a missing migration, you should first run: 
+Due to some missing migrations, you should first run: 
 
 ```
 python manage.py makemigrations
 python manage.py makemigrations accounts
+python manage.py makemigrations component
 ```
 **NOTE:** The second command above might not be needed.
 

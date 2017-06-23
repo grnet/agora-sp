@@ -17,6 +17,10 @@
     app_path: "{{ django_dir }}"
 
 - django_manage:
+    command: makemigrations component
+    app_path: "{{ django_dir }}"
+
+- django_manage:
     command: migrate
     app_path: "{{ django_dir }}"
 
