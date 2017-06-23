@@ -368,12 +368,32 @@ LOGGING = {
 CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Custom',
+        'width': '100%',
         'toolbar_Custom': [
-            ['Bold', 'Italic', 'Underline'],
-            ['Table', 'Font', 'FontSize', 'Undo', 'Redo'],
-            ['Cut', 'Copy', 'Paste', 'Anchor'],
-            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
-            ['Link', 'Unlink'],
+            {
+                'name': 'basic styles',
+                'items': ['Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat']
+            },
+            {
+                'name': 'font',
+                'items': ['Font', 'FontSize', 'Format', 'TextColor', 'BGColor']
+            },
+            {
+                'name': 'general',
+                'items': ['Table', 'Undo', 'Redo', 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord',  'Anchor']
+            },
+            {
+                'name': 'paragraph',
+                'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']
+            },
+            {
+                'name': 'link',
+                'items': ['Link', 'Unlink']
+            },
+            {
+                'name': 'rest',
+                'items': ['Source']
+            }
         ]
     }
 }

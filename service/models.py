@@ -7,20 +7,21 @@ from owner.models import ServiceOwner, ContactInformation, Institution
 from common import helper
 from collections import OrderedDict
 from accounts.models import User
+from ckeditor.fields import RichTextField
 
 class Service(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
     name = models.CharField(max_length=255, default=None, blank=True, unique=True)
-    description_external = models.TextField(default=None, blank=True, null=True)
-    description_internal = models.TextField(default=None, blank=True, null=True)
+    description_external = RichTextField()
+    description_internal = RichTextField()
     service_area = models.CharField(max_length=255, default=None, blank=True, null=True)
     service_type = models.CharField(max_length=255, default=None, blank=True, null=True)
-    request_procedures = models.TextField( default=None, blank=True, null=True)
-    funders_for_service = models.TextField(default=None, blank=True, null=True)
-    value_to_customer = models.TextField(default=None, blank=True, null=True)
-    risks = models.TextField(default=None, blank=True, null=True)
-    competitors = models.TextField(default=None, blank=True, null=True)
+    request_procedures = RichTextField()
+    funders_for_service = RichTextField()
+    value_to_customer = RichTextField()
+    risks = RichTextField()
+    competitors = RichTextField()
     id_service_owner = models.ForeignKey(ServiceOwner, null=True)
     #This is the id of the external contact information
     id_contact_information = models.ForeignKey(ContactInformation, null=True, related_name="external_contact_info")
@@ -473,8 +474,8 @@ class ServiceDetails(models.Model):
     id_service = models.ForeignKey(Service)
     version = models.CharField(max_length=255, default=None, blank=True)
     status = models.CharField(max_length=255, default="Inactive", blank=True, null=True)
-    features_current = models.TextField(default=None, blank=True, null=True)
-    features_future = models.TextField( default=None, blank=True, null=True)
+    features_current = RichTextField()
+    features_future = RichTextField()
     usage_policy_has = models.BooleanField(default=False, blank=True)
     usage_policy_url = models.CharField(max_length=255, default=None, blank=True, null=True)
     privacy_policy_has = models.BooleanField(default=False, blank=True)
@@ -495,7 +496,7 @@ class ServiceDetails(models.Model):
     decommissioning_procedure_url = models.CharField(max_length=255, default=None, blank=True, null=True)
     cost_to_run = models.CharField(max_length=255, default=None, blank=True, null=True)
     cost_to_build = models.CharField(max_length=255, default=None, blank=True, null=True)
-    use_cases = models.TextField(default=None, blank=True, null=True)
+    use_cases = RichTextField()
     is_in_catalogue = models.BooleanField(default=False)
 
     def __unicode__(self):
@@ -799,7 +800,7 @@ class ServiceDetails(models.Model):
 class ExternalService(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, blank=True, unique=True)
-    description = models.TextField(default=None, blank=True, null=True)
+    description = RichTextField()
     service = models.CharField(max_length=255, default=None, blank=True, null=True)
     details = models.CharField(max_length=255, default=None, blank=True, null=True)
 
@@ -914,7 +915,7 @@ class UserCustomer(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, choices=USER_TYPES, blank=True)
-    role = models.TextField(default=None, blank=True, null=True)
+    role = RichTextField()
     service_id = models.ForeignKey(Service)
 
     def __unicode__(self):
