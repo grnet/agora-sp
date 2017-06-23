@@ -81,7 +81,8 @@ INSTALLED_APPS = [
     'owner',
     'service',
     'accounts',
-    'djangosaml2'
+    'djangosaml2',
+    'ckeditor'
 ]
 
 SUIT_CONFIG = {
@@ -364,4 +365,16 @@ LOGGING = {
     },
 }
 
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold', 'Italic', 'Underline'],
+            ['Table', 'Font', 'FontSize', 'Undo', 'Redo'],
+            ['Cut', 'Copy', 'Paste', 'Anchor'],
+            ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock'],
+            ['Link', 'Unlink'],
+        ]
+    }
+}
 
