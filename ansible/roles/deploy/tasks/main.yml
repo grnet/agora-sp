@@ -30,6 +30,14 @@
     mode: 0644
 
 - file:
+    path: "{{ install_root }}/{{ project_name }}/static/img"
+    owner: www-data
+    group: www-data
+    state: directory
+    mode: 0777
+    recurse: yes
+
+- file:
     path: "{{ install_root }}/{{ project_name }}/logs"
     owner: www-data
     group: www-data
