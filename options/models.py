@@ -6,13 +6,13 @@ from service.models import Service, ServiceDetails
 from django.contrib.sites.models import Site
 from common import helper
 from collections import OrderedDict
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 class ServiceOption(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, blank=True, unique=True)
-    description = RichTextField()
+    description = RichTextUploadingField()
     pricing = models.CharField(max_length=255, default=None, blank=True, null=True)
 
     class Meta:

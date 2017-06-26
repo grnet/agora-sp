@@ -19,6 +19,8 @@ from service import views
 from component import views as component_views
 from django.views.generic import RedirectView
 from django.contrib.auth import views as auth_views
+from django.conf import settings
+from django.conf.urls.static import static
 
 
 urlpatterns = [
@@ -48,8 +50,9 @@ urlpatterns = [
     url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'^saml2/', include('djangosaml2.urls')),
     url(r'^test/', 'djangosaml2.views.echo_attributes'),
-    url(r'^/?$', RedirectView.as_view(url='/ui/catalogue/services'))
-]
+    url(r'^/?$', RedirectView.as_view(url='/ui/catalogue/services')),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = "agora.views.error404"
 handler400 = "agora.views.error400"

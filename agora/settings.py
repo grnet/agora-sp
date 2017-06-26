@@ -82,7 +82,8 @@ INSTALLED_APPS = [
     'service',
     'accounts',
     'djangosaml2',
-    'ckeditor'
+    'ckeditor',
+    'ckeditor_uploader'
 ]
 
 SUIT_CONFIG = {
@@ -284,7 +285,11 @@ SOCIAL_AUTH_PIPELINE = (
 )
 
 
-MEDIA_ROOT = '/var/www/html/agora/static/img'
+#MEDIA_ROOT = '/var/www/html/agora/static/img'
+MEDIA_ROOT = os.path.join(BASE_DIR, "static/img")
+MEDIA_URL = '/static/img/'
+
+CKEDITOR_UPLOAD_PATH = "uploads/"
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/API-Client
@@ -380,7 +385,7 @@ CKEDITOR_CONFIGS = {
             },
             {
                 'name': 'general',
-                'items': ['Table', 'Undo', 'Redo', 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord',  'Anchor']
+                'items': ['Image', 'ImageButton', 'Table', 'Undo', 'Redo', 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord',  'Anchor']
             },
             {
                 'name': 'paragraph',

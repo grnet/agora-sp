@@ -7,13 +7,13 @@ from django.db import models
 from service.models import Service, ServiceDetails
 from common import helper
 from collections import OrderedDict
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 class ServiceComponent(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, blank=True, unique=True)
-    description = RichTextField()
+    description = RichTextUploadingField()
     logo = models.ImageField(upload_to=(os.path.join(settings.BASE_DIR, "static", "img", "logos")), default="/var/www/html/agora/static/img/logos/logo-none.jpg")
 
     class Meta:
@@ -97,7 +97,7 @@ class ServiceComponentImplementation(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     component_id = models.ForeignKey(ServiceComponent)
     name = models.CharField(max_length=255, default=None, blank=True)
-    description = RichTextField()
+    description = RichTextUploadingField()
 
 
     def __unicode__(self):
@@ -183,7 +183,7 @@ class ServiceComponentImplementationDetail(models.Model):
     component_id = models.ForeignKey(ServiceComponent)
     component_implementation_id = models.ForeignKey(ServiceComponentImplementation, on_delete=models.CASCADE)
     version = models.CharField(max_length=255, default=None, blank=True)
-    configuration_parameters = RichTextField()
+    configuration_parameters = RichTextUploadingField()
 
 
     def __unicode__(self):
