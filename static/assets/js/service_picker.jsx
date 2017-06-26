@@ -79,9 +79,9 @@ var ValueToCustomer = React.createClass({
                 className={type == 'catalogue' && (this.props.valueToCustomer == null || this.props.valueToCustomer.length <= 0) ? 'collapse' : ''}>
                 <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <h2>Value to customers</h2>
-                    <p className="paragraph">
-                        {this.props.valueToCustomer}
-                    </p>
+                    <div className="paragraph">
+                      <span dangerouslySetInnerHTML={{__html: this.props.valueToCustomer}} />
+                    </div>
                 </div>
 
                 <hr className="separator col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
@@ -375,7 +375,9 @@ var UserCustomerWrapper = React.createClass({
         return (
             <div>
                 <span className="col-lg-6 col-xs-6 oddAttribute">{this.props.data.name}</span> <span
-                className="col-lg-6 col-xs-6 evenAttribute">{this.props.data.role}</span>
+                className="col-lg-6 col-xs-6 evenAttribute">
+                  <span dangerouslySetInnerHTML={{__html: this.props.data.role}}></span>
+                </span>
             </div>
         )
     }
@@ -472,7 +474,7 @@ var Risks = React.createClass({
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h2>Risks</h2>
                 <div className="wrapper">
-                    <span>{this.props.risks}</span>
+                  <span dangerouslySetInnerHTML={{__html: this.props.risks}}></span>
                 </div>
                 <hr className="separator col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
             </div>
@@ -486,7 +488,7 @@ var Competitors = React.createClass({
             <div className="col-lg-12">
                 <h2>Competitors</h2>
                 <div className="wrapper">
-                    <span>{this.props.competitors}</span>
+                  <span dangerouslySetInnerHTML={{__html: this.props.competitors}}></span>
                 </div>
                 <hr className="separator col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
             </div>
@@ -513,7 +515,9 @@ var OptionWrapper = React.createClass({
                 <div className="col-lg-11 col-md-11 col-sm-11 col-xs-12 center-text-xs">
                     <h3 className="col-lg-12 option-name">{this.props.data.name}</h3>
                     <div className="features col-xs-12">
-                        <p className="col-lg-9 col-md-9 col-sm-9 center-text-xs padding-left-0">{this.props.data.description}</p>
+                        <div className="col-lg-9 col-md-9 col-sm-9 center-text-xs padding-left-0">
+                          <div dangerouslySetInnerHTML={{__html: this.props.data.description}}></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -665,7 +669,9 @@ var ComponentImplementationDetailsWrapper = React.createClass({
         return (
             <div className="col-xs-12">
                 <h6 className="col-xs-12">Component version: {this.props.data.version}</h6>
-                <p className="col-xs-12">{this.props.data.configurationParameters}</p>
+                <div className="col-xs-12">
+                  <span dangerouslySetInnerHTML={{__html: this.props.data.configurationParameters}}></span>
+                </div>
             </div>
         )
     }
@@ -693,7 +699,9 @@ var ComponentImplementationWrapper = React.createClass({
         return (
             <div className="col-xs-12">
                 <h5 className="col-xs-12">{this.props.data.name}</h5>
-                <p className="col-xs-12">{this.props.data.description}</p>
+                <div className="col-xs-12">
+                  <span dangerouslySetInnerHTML={{__html: this.props.data.description}}></span>
+                </div>
                 <h5 className="col-xs-12">Component Implementation Details</h5>
                 <div className="wrapper col-xs-12">
                     {this.props.data.component_implementation_details_list.component_implementation_details.map(function (componentImplementationDetails) {
@@ -738,7 +746,9 @@ var ComponentWrapper = React.createClass({
                         <div className="features col-xs-12">
                             <p className="col-lg-9 col-md-9 col-sm-9 center-text-xs padding-left-0">Service
                                 version: {this.props.data.component.version}</p>
-                            <p className="col-lg-9 col-md-9 col-sm-9 center-text-xs padding-left-0">{this.props.data.component.description}</p>
+                            <div className="col-lg-9 col-md-9 col-sm-9 center-text-xs padding-left-0">
+                              <span dangerouslySetInnerHTML={{__html: this.props.data.component.description}}></span>
+                            </div>
                         </div>
                     </div>
 
@@ -755,8 +765,9 @@ var ComponentWrapper = React.createClass({
                         <div className="features col-xs-12">
                             <p className="col-lg-9 col-md-9 col-sm-9 center-text-xs padding-left-0">Service
                                 version: {this.props.data.component.version}</p>
-                            <p className="col-lg-9 col-md-9 col-sm-9 center-text-xs padding-left-0">{this.props.data.component.description}</p>
-
+                            <div className="col-lg-9 col-md-9 col-sm-9 center-text-xs padding-left-0">
+                              <span dangerouslySetInnerHTML={{__html: this.props.data.component.description}}></span>
+                            </div>
                             <h4 className="col-xs-12">Component implementations</h4>
                             <div className="wrapper col-xs-12">
                                 {this.props.data.component.component_implementations_list.component_implementations.map(function (componentImplementation) {
