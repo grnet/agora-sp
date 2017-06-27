@@ -5,3 +5,4 @@ agora/*.pyc
 test1.json
 logs/debug.log
 *.retry
+static/img/uploads/*

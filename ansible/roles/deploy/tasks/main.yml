@@ -1,39 +1,55 @@
 ---
+- stat:
+    path: "{{ install_root }}/{{ project_name }}"
+  register: current_inst
 
+- stat:
+    path: "{{ install_root }}/{{ project_name }}_old/static/img/uploads"
+  register: static_files
+
+# remove old backup folder
 - file:
     state: absent
     path: "{{ install_root }}/{{ project_name }}_old"
 
-- copy:
-    src: "{{ install_root }}/{{ project_name }}"
-    dest: "{{ install_root }}/{{ project_name }}_old"
-    owner: "{{ user_name }}"
-    mode: 0644
-    remote_src: True
+# create a new backup folder
+- name: create backup folder
+  command: cp -r "{{ install_root }}/{{ project_name }}" "{{ install_root }}/{{ project_name }}_old"
+  when: current_inst.stat.isdir is defined and current_inst.stat.isdir
 
+# remove project folder
 - file:
     state: absent
     path: "{{ install_root }}/{{ project_name }}"
 
+# remove old zip file
 - file:
     state: absent
     path: "{{ install_root }}/{{zip_name}}"
 
+# create a new project folder
 - file:
     state: directory
     path: "{{ install_root }}/{{ project_name }}"
 
+# copy new zip file to server
 - copy:
     src: "{{ tmp_zip_root }}/{{ zip_name }}"
     dest: "{{ install_root }}/{{ zip_name }}"
     owner: "{{ user_name }}"
     mode: 0644
 
+# open the tar file
 - unarchive:
     src: "{{ install_root }}/{{ zip_name }}"
     dest: "{{ install_root }}/{{ project_name}}"
     remote_src: True
 
+- name: restore static files
+  command: cp -r "{{ install_root }}/{{ project_name }}_old/static/img/uploads" "{{ install_root }}/{{ project_name }}/static/img"
+  when: static_files.stat.isdir is defined and static_files.stat.isdir
+
+# update the apache2.conf file
 - template:
     src: ../templates/apache2.conf.j2
     dest: /etc/apache2/apache2.conf
@@ -41,6 +57,7 @@
     group: root
     mode: 0644
 
+# set correct permissions to static folder
 - file:
     path: "{{ install_root }}/{{ project_name }}/static/img"
     owner: www-data
@@ -49,6 +66,7 @@
     mode: 0777
     recurse: yes
 
+# set correct permissions to log folder
 - file:
     path: "{{ install_root }}/{{ project_name }}/logs"
     owner: www-data
