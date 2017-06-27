@@ -1,4 +1,16 @@
 ---
+
+- file:
+    state: absent
+    path: "{{ install_root }}/{{ project_name }}_old"
+
+- copy:
+    src: "{{ install_root }}/{{ project_name }}"
+    dest: "{{ install_root }}/{{ project_name }}_old"
+    owner: "{{ user_name }}"
+    mode: 0644
+    remote_src: True
+
 - file:
     state: absent
     path: "{{ install_root }}/{{ project_name }}"
