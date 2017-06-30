@@ -7,6 +7,8 @@ from service.models import *
 class ServiceAdmin(VersionAdmin):
     list_display = ['id', 'name', ]
 
+class ServiceStatusAdmin(VersionAdmin):
+    pass
 
 class ServiceDetailsAdmin(VersionAdmin):
     list_display = ['id', 'id_service', 'version']
@@ -31,6 +33,7 @@ class ServiceAreaAdmin(VersionAdmin):
     pass
 
 admin.site.register(Service, ServiceAdmin)
+admin.site.register(ServiceStatus, ServiceStatusAdmin)
 admin.site.register(ServiceDetails, ServiceDetailsAdmin)
 admin.site.register(ExternalService, ExternalServiceAdmin)
 admin.site.register(Service_DependsOn_Service, Service_DependsOn_ServiceAdmin)

@@ -473,7 +473,7 @@ class ServiceDetails(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
     id_service = models.ForeignKey(Service)
     version = models.CharField(max_length=255, default=None, blank=True)
-    status = models.CharField(max_length=255, default="Inactive", blank=True, null=True)
+    status = models.ForeignKey(ServiceStatus)
     features_current = RichTextUploadingField()
     features_future = RichTextUploadingField()
     usage_policy_has = models.BooleanField(default=False, blank=True)
@@ -505,8 +505,6 @@ class ServiceDetails(models.Model):
         return str(srv.name) + " " + str(self.version)
 
     def save(self, *args, **kwargs):
-        if not self.status:
-            self.status = "Inactive"
         if not self.features_current or self.features_current == "":
             self.features_current = None
         if not self.features_future or self.features_future == "":
@@ -571,7 +569,7 @@ class ServiceDetails(models.Model):
         return OrderedDict([
             ("uuid", self.id),
             ("version", self.version),
-            ("service_status", self.status),
+            ("service_status", self.status.value),
             ("features_current", self.features_current),
             ("features_future", self.features_future),
             ("privacy_policy_has", self.privacy_policy_has),
@@ -602,7 +600,7 @@ class ServiceDetails(models.Model):
         details = OrderedDict([
             ("uuid", self.id),
             ("version", self.version),
-            ("service_status", self.status),
+            ("service_status", self.status.value),
             ("use_cases", self.use_cases),
             ("features_current", self.features_current),
             ("features_future", self.features_future),
@@ -670,7 +668,7 @@ class ServiceDetails(models.Model):
         details = OrderedDict([
             ("uuid", self.id),
             ("version", self.version),
-            ("service_status", self.status),
+            ("service_status", self.status.value),
             ("use_cases", self.use_cases),
             ("features_current", self.features_current),
             ("features_future", self.features_future),
@@ -782,7 +780,7 @@ class ServiceDetails(models.Model):
         return OrderedDict([
             ("uuid", self.id),
             ("version", self.version),
-            ("service_status", self.status),
+            ("service_status", self.status.value),
             ("features_current", self.features_current),
             ("features_future", self.features_future)
         ])
@@ -821,8 +819,8 @@ class ExternalService(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.description or self.description == "":
-            self.description = None
-        super(ExternalService, self).save(*args, **kwargs)
+            self.description = none
+        super(externalservice, self).save(*args, **kwargs)
 
 
 class Service_DependsOn_Service(models.Model):
@@ -962,3 +960,27 @@ class Roles(models.Model):
     id_user = models.ForeignKey(User)
     id_service = models.ForeignKey(Service)
     role = models.CharField(('role'), max_length=90, unique=True, default="spectator")
+
+
+class ServiceStatus(models.Model):
+
+    class Meta:
+        verbose_name_plural = "8. Settings"
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
+    value = models.CharField(max_length=255, default=None, blank=False)
+    order = models.IntegerField(default=None, blank=False)
+
+    def __unicode__(self):
+        return str(self.value)
+
+    def as_json(self):
+        return OrderedDict([
+            ("uuid", self.id),
+            ("value", self.value),
+            ("order", self.order),
+        ])
+
+    def save(self, *args, **kwargs):
+        super(ServiceStatus, self).save(*args, **kwargs)
+

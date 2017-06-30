@@ -79,6 +79,7 @@ INSTALLED_APPS = [
     'component',
     'options',
     'owner',
+    'common',
     'service',
     'accounts',
     'djangosaml2',
@@ -230,7 +231,13 @@ WSGI_APPLICATION = 'agora.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
-DATABASES = {
+SQLITE = {
+       'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': '/home/thanasis/agora/db.agora.sqlite3'
+    }
+}
+MYSQL = {
        'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'agora',
@@ -239,6 +246,11 @@ DATABASES = {
         'HOST': '127.0.0.1',
     }
 }
+
+if DEBUG:
+    DATABASES = MYSQL
+else:
+    DATABASES = MYSQL
 
 AUTHENTICATION_BACKENDS = (
     'social.backends.google.GoogleOAuth2',
