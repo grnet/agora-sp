@@ -87,6 +87,37 @@ INSTALLED_APPS = [
     'ckeditor_uploader'
 ]
 
+def generate_service_menu():
+    import service
+    import inspect
+
+    MEMBER_NAME = 0
+    MEMBER_MODULE = 1
+
+    def is_service_model(member):
+        return member[MEMBER_MODULE].__module__ == 'service.models'
+
+    def is_not_blacklisted(member):
+        blacklist = [
+            'ServiceStatus',
+            'ServiceTrl',
+        ]
+        return member[MEMBER_NAME] not in blacklist
+
+    def to_menu_structure(member):
+        return {
+            'url': '/api/adminservice/' + member[MEMBER_NAME].lower(),
+        }
+
+    members_all = inspect.getmembers(getattr(service, 'models'), inspect.isclass)
+    members_valid = []
+    for m in members_all:
+        if is_service_model(m) and is_not_blacklisted(m):
+            members_valid.append(to_menu_structure(m))
+
+    return tuple(members_valid)
+
+SERVICE_MENU = () # FIXME generate_service_menu()
 SUIT_CONFIG = {
     # header
     'ADMIN_NAME': 'Agora Write Beta 1.0',
@@ -109,10 +140,18 @@ SUIT_CONFIG = {
     'MENU_OPEN_FIRST_CHILD': True, # Default True
     'MENU_EXCLUDE': ('auth.group',),
     'MENU': (
+       #{
+       #    'label': 'Service',
+       #    'models': SERVICE_MENU
+       #},
        'service',
        'component',
        'owner',
        'options',
+       #{'label': 'Settings', 'models': (
+       #    { 'url': '/api/adminservice/servicestatus', 'label': 'Service Status'},
+       #    { 'url': '/api/adminservice/servicetrl', 'label': 'Service TRL'},
+       #)},
        'sites',
     ),
 

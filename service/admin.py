@@ -3,6 +3,8 @@ from reversion.admin import VersionAdmin
 from service.models import *
 # Register your models here.
 
+class ServiceTrlAdmin(VersionAdmin):
+    pass
 
 class ServiceAdmin(VersionAdmin):
     list_display = ['id', 'name', ]
@@ -12,7 +14,6 @@ class ServiceStatusAdmin(VersionAdmin):
 
 class ServiceDetailsAdmin(VersionAdmin):
     list_display = ['id', 'id_service', 'version']
-
 
 class ExternalServiceAdmin(VersionAdmin):
     pass
@@ -32,6 +33,7 @@ class UserCustomerAdmin(VersionAdmin):
 class ServiceAreaAdmin(VersionAdmin):
     pass
 
+admin.site.register(ServiceTrl, ServiceTrlAdmin)
 admin.site.register(Service, ServiceAdmin)
 admin.site.register(ServiceStatus, ServiceStatusAdmin)
 admin.site.register(ServiceDetails, ServiceDetailsAdmin)

@@ -9,6 +9,32 @@ from collections import OrderedDict
 from accounts.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
 
+
+class ServiceTrl(models.Model):
+
+    class Meta:
+        verbose_name_plural = "9. Service Technology Readiness Level"
+        ordering = [
+            "order",
+        ]
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
+    value = models.CharField(max_length=255, default=None, blank=False)
+    order = models.IntegerField(default=None, blank=False)
+
+    def __unicode__(self):
+        return str(self.value)
+
+    def as_json(self):
+        return OrderedDict([
+            ("uuid", self.id),
+            ("value", self.value),
+            ("order", self.order),
+        ])
+
+    def save(self, *args, **kwargs):
+        super(ServiceTrl, self).save(*args, **kwargs)
+
 class Service(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
@@ -17,6 +43,7 @@ class Service(models.Model):
     description_internal = RichTextUploadingField()
     service_area = models.CharField(max_length=255, default=None, blank=True, null=True)
     service_type = models.CharField(max_length=255, default=None, blank=True, null=True)
+    service_trl = models.ForeignKey(ServiceTrl, null=True)
     request_procedures = RichTextUploadingField()
     funders_for_service = RichTextUploadingField()
     value_to_customer = RichTextUploadingField()
@@ -461,6 +488,32 @@ class Service(models.Model):
             }),
             ("logo", self.logo.name.split("/")[-1])
         ])
+
+
+class ServiceStatus(models.Model):
+
+    class Meta:
+        verbose_name_plural = "8. Service Status"
+        ordering = [
+            "order",
+        ]
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
+    value = models.CharField(max_length=255, default=None, blank=False)
+    order = models.IntegerField(default=None, blank=False)
+
+    def __unicode__(self):
+        return str(self.value)
+
+    def as_json(self):
+        return OrderedDict([
+            ("uuid", self.id),
+            ("value", self.value),
+            ("order", self.order),
+        ])
+
+    def save(self, *args, **kwargs):
+        super(ServiceStatus, self).save(*args, **kwargs)
 
 
 
@@ -961,26 +1014,4 @@ class Roles(models.Model):
     id_service = models.ForeignKey(Service)
     role = models.CharField(('role'), max_length=90, unique=True, default="spectator")
 
-
-class ServiceStatus(models.Model):
-
-    class Meta:
-        verbose_name_plural = "8. Settings"
-
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
-    value = models.CharField(max_length=255, default=None, blank=False)
-    order = models.IntegerField(default=None, blank=False)
-
-    def __unicode__(self):
-        return str(self.value)
-
-    def as_json(self):
-        return OrderedDict([
-            ("uuid", self.id),
-            ("value", self.value),
-            ("order", self.order),
-        ])
-
-    def save(self, *args, **kwargs):
-        super(ServiceStatus, self).save(*args, **kwargs)
 
