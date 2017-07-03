@@ -13,7 +13,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 class ServiceTrl(models.Model):
 
     class Meta:
-        verbose_name_plural = "9. Service Technology Readiness Level"
+        verbose_name_plural = "9. Service Technology Readiness Level (settings)"
         ordering = [
             "order",
         ]
@@ -493,7 +493,7 @@ class Service(models.Model):
 class ServiceStatus(models.Model):
 
     class Meta:
-        verbose_name_plural = "8. Service Status"
+        verbose_name_plural = "8. Service Status (settings)"
         ordering = [
             "order",
         ]
@@ -1003,7 +1003,7 @@ class ServiceArea(models.Model):
     icon = models.ImageField(upload_to=(os.path.join(settings.BASE_DIR, "static", "img", "logos")), default="/var/www/html/agora/static/img/logos/logo-none.jpg")
 
     class Meta:
-        verbose_name_plural = "6. Service Areas"
+        verbose_name_plural = "6. Service Areas (settings)"
 
     def __unicode__(self):
         return str(self.name)
