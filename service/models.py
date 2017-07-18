@@ -39,6 +39,7 @@ class Service(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
     name = models.CharField(max_length=255, default=None, blank=True, unique=True)
+    short_description = RichTextUploadingField(blank=True)
     description_external = RichTextUploadingField()
     description_internal = RichTextUploadingField()
     service_area = models.CharField(max_length=255, default=None, blank=True, null=True)
@@ -184,6 +185,7 @@ class Service(models.Model):
                     ("name", service.name),
                     ("uuid", service.id),
                     ("logo", str(service.logo.name.split("/")[-1])),
+                    ("short_description", service.short_description),
                     ("description", service.description_external),
                     ("links", {
                         "self":helper.current_site_url() + "/v1/portfolio/services/" + str(
@@ -201,6 +203,7 @@ class Service(models.Model):
         return OrderedDict([
             ("uuid", self.id),
             ("name", self.name),
+            ("short_description", self.short_description),
             ("description_external", self.description_external),
             ("service_area", self.service_area),
             ("value_to_customer", self.value_to_customer),
@@ -249,6 +252,7 @@ class Service(models.Model):
         return OrderedDict([
             ("uuid", self.id),
             ("name", self.name),
+            ("short_description", self.short_description),
             ("description_external", self.description_external),
             ("description_internal", self.description_internal),
             ("service_owner", service_owner),
@@ -346,6 +350,7 @@ class Service(models.Model):
         return OrderedDict([
             ("uuid", self.id),
             ("name", self.name),
+            ("short_description", self.short_description),
             ("description_external", self.description_external),
             ("description_internal", self.description_internal),
             ("service_owner", service_owner),
@@ -435,6 +440,7 @@ class Service(models.Model):
         return OrderedDict([
             ("uuid", self.id),
             ("name", self.name),
+            ("short_description", self.short_description),
             ("description_external", self.description_external),
             ("description_internal", self.description_internal),
             ("service_owner", service_owner),
@@ -472,6 +478,7 @@ class Service(models.Model):
         return OrderedDict([
             ("uuid", self.id),
             ("name", self.name),
+            ("short_description", self.short_description),
             ("description_external", self.description_external),
             ("service_area", self.service_area),
             ("value_to_customer", self.value_to_customer),
