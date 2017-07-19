@@ -15,7 +15,7 @@ zip_name: 'agora.tgz'
 
 django_dir: '/home/agora/agora'
 
-server_ip: 83.212.98.135
+server_ip: agora-dev.vi-seem.eu
 
 admin_user: admin
 admin_pass: test123456
