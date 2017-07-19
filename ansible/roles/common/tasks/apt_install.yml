@@ -6,3 +6,6 @@
   with_items: "{{ apt_packages }}"
   tags:
     - common
+- apache2_module:
+    state: present
+    name: ssl
