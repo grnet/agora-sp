@@ -255,3 +255,37 @@ NameVirtualHost {{ server_ip }}:80
 
         WSGIScriptAlias / /home/agora/agora/agora/wsgi.py
 </VirtualHost>
+
+NameVirtualHost {{ server_ip }}:443
+<VirtualHost *:443>
+
+        ServerName {{ server_ip }}:443
+        Alias /static/ /home/agora/agora/static/
+
+        <Directory /home/agora/agora/static>
+            Order deny,allow
+            Allow from all
+            Require all granted
+        </Directory>
+
+        <Directory /home/agora/agora/agora>
+            Order deny,allow
+            Allow from all
+            Require all granted
+        </Directory>
+
+        <Directory /home/agora/agora/agora>
+        <Files wsgi.py>
+            Order deny,allow
+            Allow from all
+            Require all granted
+        </Files>
+        </Directory>
+
+        SSLEngine on
+        SSLCertificateFile /root/agora/agora-dev_vi-seem_eu.crt
+        SSLCertificateKeyFile /root/agora/private.key
+        SSLCertificateChainFile /root/agora/DigiCertCA.crt
+
+        WSGIScriptAlias / /home/agora/agora/agora/wsgi.py
+</VirtualHost>
