@@ -126,6 +126,19 @@ admin_email: admin@vi-seem.eu
 
 ```
 
+## SSL Cerificate
+
+Inside the `apache.conf` file, the virtualhost specifies the location of the `.crt` and `.key` files in order for SSL to function properly, as listed below:
+
+```
+SSLEngine on
+SSLCertificateFile /root/agora/agora-dev_vi-seem_eu.crt
+SSLCertificateKeyFile /root/agora/private.key
+SSLCertificateChainFile /root/agora/DigiCertCA.crt
+```
+
+The corresponding files must be deployed manually inside the `/root/agora` directory of the server with the specific names mentioned above, and then manually restart apache with `sudo service apache2 restart` or run the `deploy_code.yml` playbook.
+
 ## Run
 
 Just run `ansible-playbook playbooks/<playbook-name>` to run a playbook.
