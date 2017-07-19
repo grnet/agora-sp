@@ -248,5 +248,10 @@ NameVirtualHost {{ server_ip }}:80
         </Files>
         </Directory>
 
+        SSLEngine on
+        SSLCertificateFile /root/agora/agora-dev_vi-seem_eu.crt
+        SSLCertificateKeyFile /root/agora/private.key
+        SSLCertificateChainFile /root/agora/DigiCertCA.crt
+
         WSGIScriptAlias / /home/agora/agora/agora/wsgi.py
 </VirtualHost>
