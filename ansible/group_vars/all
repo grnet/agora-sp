@@ -1,4 +1,4 @@
-apt_packages: [ 'sudo', 'git', 'python', 'mysql-server', 'mysql-client', 'libmysqlclient-dev', 'build-essential', 'libssl-dev', 'libffi-dev', 'python-dev', 'apache2', 'apache2-doc', 'apache2-utils', 'libapache2-mod-wsgi', 'python-pip' ]
+apt_packages: [ 'sudo', 'git', 'python', 'mysql-server', 'mysql-client', 'libmysqlclient-dev', 'build-essential', 'libssl-dev', 'libffi-dev', 'python-dev', 'apache2', 'apache2-doc', 'apache2-utils', 'libapache2-mod-wsgi', 'python-pip', 'openssl' ]
 
 user_name: 'agora'
 user_state: present
