@@ -13,7 +13,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 class ServiceTrl(models.Model):
 
     class Meta:
-        verbose_name_plural = "9. Service Technology Readiness Level (settings)"
+        verbose_name_plural = "10. Service Technology Readiness Level (settings)"
         ordering = [
             "order",
         ]
@@ -58,7 +58,7 @@ class Service(models.Model):
     logo = models.ImageField(upload_to=(os.path.join(settings.BASE_DIR, "static", "img", "logos")), default="/var/www/html/agora/static/img/logos/logo-none.jpg")
 
     class Meta:
-        verbose_name_plural = "1. Services"
+        verbose_name_plural = "01. Services"
 
     def __unicode__(self):
         return str(self.name)
@@ -473,6 +473,7 @@ class Service(models.Model):
 
     def as_catalogue(self):
 
+        users_customers = self.get_user_customers()
         service_details = self.get_service_details(complete=True, url=True, catalogue=True)
 
         return OrderedDict([
@@ -484,6 +485,10 @@ class Service(models.Model):
             ("value_to_customer", self.value_to_customer),
             ("request_procedures", self.request_procedures),
             ("service_type", self.service_type),
+            ("user_customers_list", {
+                "count": len(users_customers),
+                "user_customers": users_customers
+            }),
             ("service", {
                 "name": self.name,
                 "links": {
@@ -500,7 +505,7 @@ class Service(models.Model):
 class ServiceStatus(models.Model):
 
     class Meta:
-        verbose_name_plural = "8. Service Status (settings)"
+        verbose_name_plural = "09. Service Status (settings)"
         ordering = [
             "order",
         ]
@@ -528,7 +533,7 @@ class ServiceDetails(models.Model):
 
     class Meta:
         unique_together = (("id_service", "version"))
-        verbose_name_plural = "2. Service Versions"
+        verbose_name_plural = "02. Service Versions"
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
     id_service = models.ForeignKey(Service)
@@ -863,7 +868,7 @@ class ExternalService(models.Model):
     details = models.CharField(max_length=255, default=None, blank=True, null=True)
 
     class Meta:
-        verbose_name_plural = "4. External Services"
+        verbose_name_plural = "04. External Services"
 
     def __unicode__(self):
         return str(self.name)
@@ -887,7 +892,7 @@ class Service_DependsOn_Service(models.Model):
 
     class Meta:
         unique_together = (('id_service_one', 'id_service_two'),)
-        verbose_name_plural = "3. Internal Dependencies"
+        verbose_name_plural = "03. Internal Dependencies"
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     id_service_one = models.ForeignKey(Service, related_name='service_one')
@@ -925,7 +930,7 @@ class Service_ExternalService(models.Model):
 
     class Meta:
         unique_together = (('id_service', 'id_external_service'),)
-        verbose_name_plural = "5. External Dependencies"
+        verbose_name_plural = "05. External Dependencies"
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     id_service = models.ForeignKey(Service)
@@ -960,19 +965,34 @@ class Service_ExternalService(models.Model):
         }
 
 
-class UserCustomer(models.Model):
-    USER_TYPES = (
-        ("Individual Researchers", "Individual Researchers"),
-        ("Community Manager", "Community Manager"),
-        ("Service Provider", "Service Provider"),
-        ("Data Project Principle Investigator (PI)", "Data Project Principle Investigator (PI)")
-    )
+class UserRole(models.Model):
 
     class Meta:
-        verbose_name_plural = "7. Users / Customers of a Service"
+        verbose_name_plural = "07. User Roles (settings)"
+
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
+    name = models.CharField(max_length=255, default=None, unique=True)
+
+    def __unicode__(self):
+        return str(self.name)
+
+    def as_json(self):
+        return OrderedDict([
+            ("uuid", self.id),
+            ("name", self.value)
+        ])
+
+    def save(self, *args, **kwargs):
+        super(UserRole, self).save(*args, **kwargs)
+
+
+class UserCustomer(models.Model):
+
+    class Meta:
+        verbose_name_plural = "08. Users / Customers of a Service"
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255, default=None, choices=USER_TYPES, blank=True)
+    name = models.ForeignKey(UserRole)
     role = RichTextUploadingField()
     service_id = models.ForeignKey(Service)
 
@@ -982,14 +1002,14 @@ class UserCustomer(models.Model):
     def as_json(self):
         return OrderedDict([
             ("uuid", self.pk),
-            ("name", self.name),
+            ("name", self.name.name),
             ("role", self.role)
         ])
 
     def as_full(self):
         return OrderedDict([
             ("uuid", self.pk),
-            ("name", self.name),
+            ("name", self.name.name),
             ("role", self.role),
             ("service", {
                 "name": self.service_id.name,
@@ -1010,7 +1030,7 @@ class ServiceArea(models.Model):
     icon = models.ImageField(upload_to=(os.path.join(settings.BASE_DIR, "static", "img", "logos")), default="/var/www/html/agora/static/img/logos/logo-none.jpg")
 
     class Meta:
-        verbose_name_plural = "6. Service Areas (settings)"
+        verbose_name_plural = "06. Service Areas (settings)"
 
     def __unicode__(self):
         return str(self.name)

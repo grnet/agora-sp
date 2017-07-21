@@ -6,6 +6,9 @@ from service.models import *
 class ServiceTrlAdmin(VersionAdmin):
     pass
 
+class UserRoleAdmin(VersionAdmin):
+    pass
+
 class ServiceAdmin(VersionAdmin):
     list_display = ['id', 'name', ]
 
@@ -34,6 +37,7 @@ class ServiceAreaAdmin(VersionAdmin):
     pass
 
 admin.site.register(ServiceTrl, ServiceTrlAdmin)
+admin.site.register(UserRole, UserRoleAdmin)
 admin.site.register(Service, ServiceAdmin)
 admin.site.register(ServiceStatus, ServiceStatusAdmin)
 admin.site.register(ServiceDetails, ServiceDetailsAdmin)
