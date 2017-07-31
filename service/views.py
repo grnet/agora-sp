@@ -1823,6 +1823,77 @@ def edit_external_service_dependency(request, service_name_or_uuid):
     return JsonResponse(response, status=int(response["status"][:3]))
 
 
+# Returns all available user roles
+@api_view(['GET'])
+def get_user_roles(request,  service_name_or_uuid):
+    """
+    Retrieves the user roles
+
+    """
+
+    response = {}
+    user_roles = [ obj.as_json() for obj in models.UserRole.objects.all() ]
+    data = {
+        "count": len(user_roles),
+        "user_roles": user_roles
+    }
+    response = helper.get_response_info(strings.USER_ROLE_INFORMATION, data)
+    return JsonResponse(response, status=int(response["status"][:3]))
+
+# Inserts/Updates a user role
+@api_view(['POST'])
+@check_auth_and_type
+def insert_user_role(request, service_name_or_uuid):
+    """
+    Inserts a user role object
+    """
+    op_type = helper.get_last_url_part(request)
+    params = helper.get_request_data(request)
+    prog = re.compile("[a-fA-F0-9]{8}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{4}-[a-fA-F0-9]{12}$")
+
+    if "user_role" not in params:
+        return JsonResponse(helper.get_error_response(strings.USER_ROLE_NOT_PROVIDED,
+                                            status=strings.REJECTED_406), status=406)
+
+    name = params.get("user_role")
+
+    if op_type == "add":
+        user_role, created = models.UserRole.objects.get_or_create(name=name)
+        if not created:
+            # Notify that the user role already exists
+            return JsonResponse(helper.get_error_response(strings.USER_ROLE_EXISTS,
+                                            status=strings.REJECTED_406), status=406)
+
+    if op_type == "edit":
+        if "uuid" not in params:
+            return JsonResponse(helper.get_error_response(strings.USER_ROLE_ID_NOT_PROVIDED,
+                                                status=strings.REJECTED_406), status=406)
+        elif "user_role" not in params:
+            return JsonResponse(helper.get_error_response(strings.USER_ROLE_NOT_PROVIDED,
+                                                status=strings.REJECTED_406), status=406)
+
+        role_uuid = params.get("uuid")
+        match_uuid = prog.match(role_uuid)
+        if match_uuid is None:
+            return JsonResponse(helper.get_error_response(strings.USER_ROLE_INVALID_UUID,
+                                                status=strings.REJECTED_406), status=406)
+
+        try:
+            user_role = models.UserRole.objects.get(id=role_uuid)
+        except models.UserRole.DoesNotExist:
+            # If uuid not found raise not found error
+            return JsonResponse(helper.get_error_response(strings.USER_ROLE_NOT_FOUND,
+                                                          status=strings.NOT_FOUND_404), status=404)
+
+        user_role.name = name
+        user_role.save()
+
+    data = user_role.as_json()
+    msg = strings.USER_ROLE_INSERTED if op_type == "add" else strings.USER_ROLE_UPDATED
+    status = strings.CREATED_201 if op_type == "add" else strings.UPDATED_202
+    response = helper.get_response_info(msg, data, status=status)
+    return JsonResponse(response, status=int(response["status"][:3]))
+
 # Updates user customer
 # @api_view(['POST'])
 @check_auth_and_type
@@ -1854,8 +1925,7 @@ def insert_user_customer(request, service_name_or_uuid):
         return JsonResponse(helper.get_error_response(strings.USER_CUSTOMER_NAME_NOT_PROVIDED,
                                                       status=strings.REJECTED_406), status=406)
     elif "name" in params:
-        name = params.get('name')
-        if (name, name) not in models.UserCustomer.USER_TYPES:
+        if len(models.UserRole.objects.filter(name=name)) == 0:
             return JsonResponse(helper.get_error_response(strings.USER_CUSTOMER_NAME_INVALID,
                                                           status=strings.REJECTED_406), status=406)
     elif op_type == "edit":

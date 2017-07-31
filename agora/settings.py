@@ -30,6 +30,7 @@ SECRET_KEY = 'secret-key'
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1',
+                 '127.0.0.1:8080',
                  'localhost',
                  'agora-dev.vi-seem.eu',
                  'agora-dev.aris.grnet.gr',

@@ -139,7 +139,12 @@ ERROR_MESSAGES = {
     PARAMETER_NAME_EXISTS: "A parameter with the provided name already exists",
     EXTERNAL_SERVICE_NAME_EXISTS: "An external service with the provided name already exists",
     CONTACT_INFORMATION_EXISTS: "The provided email or URL already exists",
-    EMPTY_AREA: "The area provided is empty"
+    EMPTY_AREA: "The area provided is empty",
+    USER_ROLE_NOT_PROVIDED: "The user role provided is empty",
+    USER_ROLE_EXISTS: "The user role provided already exists",
+    USER_ROLE_ID_NOT_PROVIDED: "The user role id not provided or is empty",
+    USER_ROLE_INVALID_UUID: "The user role UUID provided is invalid",
+    USER_ROLE_NOT_FOUND: "The user role was not found",
 }
 
 
@@ -193,7 +198,10 @@ INFO_MESSAGES = {
     SERVICE_DETAILS_COMPONENT_UPDATED: "Service details component updated",
     SERVICE_DEPENDENCY_UPDATED: "Service dependency updated",
     USER_TOKENS_GENERATED: "New tokens have been generated for each user.",
-    SERVICE_AREA_INFO: "Service area inserted"
+    SERVICE_AREA_INFO: "Service area inserted",
+    USER_ROLE_INSERTED: "User role created",
+    USER_ROLE_UPDATED: "User role updated",
+    USER_ROLE_INFORMATION: "User role list"
 }
 
 STATUS_CODES = {

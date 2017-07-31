@@ -6,6 +6,7 @@ from service import views
 
 urlpatterns = [
 
+    url(r'^user_role/?$', views.get_user_roles),
     url(r'^(?P<service_name_or_uuid>[0-9a-zA-Z\-\_\ \.]+)/service_details/(?P<version>[0-9.]+)/view/?$', views.get_service_details_for_view),
     url(r'^(?P<service_name_or_uuid>[0-9a-zA-Z\-\_\ \.]+)/service_details/(?P<version>[0-9.]+)/?$', views.get_service_details),
     url(r'^(?P<service_name_or_uuid>[0-9a-zA-Z\-\_\ \.]+)/service_details/?$', views.get_all_service_details),
@@ -19,6 +20,8 @@ urlpatterns = [
     url(r'^(?P<service>[0-9a-zA-Z\-\_\ \.]+)/view?$', views.get_service_catalogue_view),
     url(r'^(?P<service_name_or_uuid>[0-9a-zA-Z\-\_\ \.]+)/complete?$', views.get_service_contact_complete),
     url(r'^(?P<service_name_or_uuid>[0-9a-zA-Z\-\ \.\_]+)/?$', views.get_service),
+    url(r'^user_role/add/?$', views.insert_user_role),
+    url(r'^user_role/edit/?$', views.insert_user_role),
     url(r'^$', views.list_services),
 
 ]

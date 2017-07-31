@@ -511,7 +511,7 @@ class ServiceStatus(models.Model):
         ]
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
-    value = models.CharField(max_length=255, default=None, blank=False)
+    value = models.CharField(max_length=255, default=None, blank=False, unique=True)
     order = models.IntegerField(default=None, blank=False)
 
     def __unicode__(self):
@@ -979,7 +979,7 @@ class UserRole(models.Model):
     def as_json(self):
         return OrderedDict([
             ("uuid", self.id),
-            ("name", self.value)
+            ("name", self.name)
         ])
 
     def save(self, *args, **kwargs):
