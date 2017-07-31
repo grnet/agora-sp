@@ -39,17 +39,17 @@ class Service(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
     name = models.CharField(max_length=255, default=None, blank=True, unique=True)
-    short_description = RichTextUploadingField(blank=True)
-    description_external = RichTextUploadingField()
-    description_internal = RichTextUploadingField()
+    short_description = RichTextUploadingField(default=None, blank=True, null=True)
+    description_external = RichTextUploadingField(default=None, blank=True, null=True)
+    description_internal = RichTextUploadingField(default=None, blank=True, null=True)
     service_area = models.CharField(max_length=255, default=None, blank=True, null=True)
     service_type = models.CharField(max_length=255, default=None, blank=True, null=True)
     service_trl = models.ForeignKey(ServiceTrl, null=True)
-    request_procedures = RichTextUploadingField()
-    funders_for_service = RichTextUploadingField()
-    value_to_customer = RichTextUploadingField()
-    risks = RichTextUploadingField()
-    competitors = RichTextUploadingField()
+    request_procedures = RichTextUploadingField(default=None, blank=True, null=True)
+    funders_for_service = RichTextUploadingField(default=None, blank=True, null=True)
+    value_to_customer = RichTextUploadingField(default=None, blank=True, null=True)
+    risks = RichTextUploadingField(default=None, blank=True, null=True)
+    competitors = RichTextUploadingField(default=None, blank=True, null=True)
     id_service_owner = models.ForeignKey(ServiceOwner, null=True)
     #This is the id of the external contact information
     id_contact_information = models.ForeignKey(ContactInformation, null=True, related_name="external_contact_info")
@@ -539,8 +539,8 @@ class ServiceDetails(models.Model):
     id_service = models.ForeignKey(Service)
     version = models.CharField(max_length=255, default=None, blank=True)
     status = models.ForeignKey(ServiceStatus)
-    features_current = RichTextUploadingField()
-    features_future = RichTextUploadingField()
+    features_current = RichTextUploadingField(default=None, blank=True, null=True)
+    features_future = RichTextUploadingField(default=None, blank=True, null=True)
     usage_policy_has = models.BooleanField(default=False, blank=True)
     usage_policy_url = models.CharField(max_length=255, default=None, blank=True, null=True)
     privacy_policy_has = models.BooleanField(default=False, blank=True)
@@ -561,7 +561,7 @@ class ServiceDetails(models.Model):
     decommissioning_procedure_url = models.CharField(max_length=255, default=None, blank=True, null=True)
     cost_to_run = models.CharField(max_length=255, default=None, blank=True, null=True)
     cost_to_build = models.CharField(max_length=255, default=None, blank=True, null=True)
-    use_cases = RichTextUploadingField()
+    use_cases = RichTextUploadingField(default=None, blank=True, null=True)
     is_in_catalogue = models.BooleanField(default=False)
 
     def __unicode__(self):
@@ -863,7 +863,7 @@ class ServiceDetails(models.Model):
 class ExternalService(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, blank=True, unique=True)
-    description = RichTextUploadingField()
+    description = RichTextUploadingField(default=None, blank=True, null=True)
     service = models.CharField(max_length=255, default=None, blank=True, null=True)
     details = models.CharField(max_length=255, default=None, blank=True, null=True)
 
@@ -993,7 +993,7 @@ class UserCustomer(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.ForeignKey(UserRole)
-    role = RichTextUploadingField()
+    role = RichTextUploadingField(default=None, blank=True, null=True)
     service_id = models.ForeignKey(Service)
 
     def __unicode__(self):

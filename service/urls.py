@@ -22,6 +22,5 @@ urlpatterns = [
     url(r'^(?P<service_name_or_uuid>[0-9a-zA-Z\-\ \.\_]+)/?$', views.get_service),
     url(r'^user_role/add/?$', views.insert_user_role),
     url(r'^user_role/edit/?$', views.insert_user_role),
-    url(r'^$', views.list_services),
-
+    url(r'^$', views.list_services)
 ]

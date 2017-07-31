@@ -12,7 +12,7 @@ class ServiceOption(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, blank=True, unique=True)
-    description = RichTextUploadingField()
+    description = RichTextUploadingField(default=None, blank=True, null=True)
     pricing = models.CharField(max_length=255, default=None, blank=True, null=True)
 
     class Meta:
