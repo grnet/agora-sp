@@ -170,7 +170,8 @@ LOGIN_REDIRECT_URL = "/api/admin/"
 
 PROJECT_APPS = ['component', 'options', 'owner', 'service']
 
-SITE_ID = 9
+SITE_ID = 1
+ALLOWED_HOST = 'agora-dev.grnet.gr';
 
 SAML_ATTRIBUTE_MAPPING = {
     'mail': ('email', ),
@@ -183,7 +184,7 @@ SAML_ATTRIBUTE_MAPPING = {
 
 SAML_CONFIG = {
   'xmlsec_binary': '/usr/bin/xmlsec1',
-  'entityid': 'https://'+ALLOWED_HOSTS[SITE_ID]+'/saml2/metadata/',
+  'entityid': 'https://'+ALLOWED_HOST+'/saml2/metadata/',
   'attribute_map_dir': path.join(BASE_DIR, 'attribute-maps'),
   'service': {
         'sp' : {
@@ -192,10 +193,10 @@ SAML_CONFIG = {
                   'authn_requests_signed': True,
                   "allow_unsolicited": True,
                   'endpoints': {
-                                'assertion_consumer_service': [ ('https://'+ALLOWED_HOSTS[SITE_ID]+'/saml2/acs/',saml2.BINDING_HTTP_POST),  ],
+                                'assertion_consumer_service': [ ('https://'+ALLOWED_HOST+'/saml2/acs/',saml2.BINDING_HTTP_POST),  ],
 
-                                'single_logout_service': [ ('https://'+ALLOWED_HOSTS[SITE_ID]+'/saml2/ls/',saml2.BINDING_HTTP_REDIRECT),
-                                                         ('https://'+ALLOWED_HOSTS[SITE_ID]+'/saml2/ls/post',saml2.BINDING_HTTP_POST),  ],
+                                'single_logout_service': [ ('https://'+ALLOWED_HOST+'/saml2/ls/',saml2.BINDING_HTTP_REDIRECT),
+                                                         ('https://'+ALLOWED_HOST+'/saml2/ls/post',saml2.BINDING_HTTP_POST),  ],
                                 },
                   'required_attributes': ['uid'],
                   'optional_attributes': ['mail','givenName', 'sn'],
@@ -372,7 +373,7 @@ STATICFILES_DIRS = (
 SWAGGER_SETTINGS = {
     'exclude_namespaces': [],
     'api_version': '1.0',
-    'api_path': str(ALLOWED_HOSTS[SITE_ID])+'/api',
+    'api_path': str(ALLOWED_HOST)+'/api',
     'enabled_methods': [
         'get',
         'post',
@@ -380,7 +381,7 @@ SWAGGER_SETTINGS = {
         'patch',
         'delete'
     ],
-    'host': 'str(ALLOWED_HOSTS[SITE_ID])',
+    'host': 'str(ALLOWED_HOST)',
      'info': {
         'contact': 'admin@agora.com',
         'description': 'This is a demonstration of the API documentation engine. '
@@ -397,7 +398,7 @@ SWAGGER_SETTINGS = {
     'is_superuser': False,
     'permission_denied_handler': None,
     'resource_access_handler': None,
-    'base_path':str(ALLOWED_HOSTS[SITE_ID])+'/api/docs',
+    'base_path':str(ALLOWED_HOST)+'/api/docs',
     'doc_expansion': 'list',
     'operationsSorter' : 'method'
 

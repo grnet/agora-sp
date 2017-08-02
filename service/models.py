@@ -476,6 +476,16 @@ class Service(models.Model):
         users_customers = self.get_user_customers()
         service_details = self.get_service_details(complete=True, url=True, catalogue=True)
 
+        contact_information = self.get_service_contact_information_object()
+        if contact_information is not None:
+            contact_information = OrderedDict([
+                ("uuid", contact_information.id),
+                ("links", {
+                    "self": helper.current_site_url() + "/v1/catalogue/services/" + str(self.name) # .replace(" ", "_")
+                            + "/contact_information",
+                })
+            ])
+
         return OrderedDict([
             ("uuid", self.id),
             ("name", self.name),
@@ -485,6 +495,7 @@ class Service(models.Model):
             ("value_to_customer", self.value_to_customer),
             ("request_procedures", self.request_procedures),
             ("service_type", self.service_type),
+            ("contact_information", contact_information),
             ("user_customers_list", {
                 "count": len(users_customers),
                 "user_customers": users_customers

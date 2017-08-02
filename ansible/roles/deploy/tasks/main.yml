@@ -57,6 +57,11 @@
     group: root
     mode: 0644
 
+- copy:
+    src: ../files/sites.json
+    dest: "{{ install_root }}/{{ project_name }}/sites.json"
+    remote_src: True
+
 # set correct permissions to static folder
 - file:
     path: "{{ install_root }}/{{ project_name }}/static/img"

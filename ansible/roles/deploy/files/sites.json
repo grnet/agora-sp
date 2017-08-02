@@ -1,16 +1,16 @@
 [
     {
         "fields": {
-            "domain": "localhost",
-            "name": "Local development url"
+            "domain": "agora-dev.vi-seem.eu",
+            "name": "vi-seem domain"
         },
         "model": "sites.site",
         "pk": 1
     },
     {
         "fields": {
-            "domain": "agora-dev.vi-seem.eu",
-            "name": "vi-seem domain"
+            "domain": "localhost",
+            "name": "Local development url"
         },
         "model": "sites.site",
         "pk": 2
