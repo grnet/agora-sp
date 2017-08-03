@@ -46,7 +46,7 @@
     remote_src: True
 
 - name: restore static files
-  command: cp -r "{{ install_root }}/{{ project_name }}_old/static/img/uploads" "{{ install_root }}/{{ project_name }}/static/img"
+  command: cp -r "{{ install_root }}/{{ project_name }}_old/static/img" "{{ install_root }}/{{ project_name }}/static"
   when: static_files.stat.isdir is defined and static_files.stat.isdir
 
 # update the apache2.conf file
@@ -64,7 +64,7 @@
 
 # set correct permissions to static folder
 - file:
-    path: "{{ install_root }}/{{ project_name }}/static/img"
+    path: "{{ install_root }}/{{ project_name }}/static"
     owner: www-data
     group: www-data
     state: directory
