@@ -29,26 +29,9 @@ SECRET_KEY = 'secret-key'
 # SECURITY WARNING don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1',
-                 '127.0.0.1:8080',
-                 'localhost',
-                 'agora-dev.vi-seem.eu',
-                 'agora-dev.aris.grnet.gr',
-                 'snf-708131.vm.okeanos.grnet.gr',
-                 'spmt.eudat.eu',
-                 'sp.eudat.eu',
-                 'snf-715140.vm.okeanos.grnet.gr',
-                 'snf-714484.vm.okeanos.grnet.gr',
-                 '83.212.105.109',
-                 '83.212.105.182',
-                 '83.212.100.220',
-                 '83.212.100.11',
-                 '83.212.101.41',
-                 '83.212.101.45',
-                 '83.212.101.52',
-                 '83.212.98.135',
-                 'services.vi-seem.eu']
-
+ALLOWED_HOSTS = ['snf-774347.vm.okeanos.grnet.gr',
+		 'snf-774347.vm.okeanos.grnet.gr'
+		]
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'agora.notification@gmail.com'
 EMAIL_HOST_PASSWORD = 'agora2016'
@@ -170,7 +153,7 @@ LOGIN_REDIRECT_URL = "/api/admin/"
 
 PROJECT_APPS = ['component', 'options', 'owner', 'service']
 
-SITE_ID = 1
+SITE_ID = 2
 ALLOWED_HOST = 'agora-dev.grnet.gr';
 
 SAML_ATTRIBUTE_MAPPING = {
