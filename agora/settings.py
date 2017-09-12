@@ -186,12 +186,12 @@ SAML_CONFIG = {
 
                   'idp': {
                           # the keys of this dictionary are entity ids
-                          'https://aai.vi-seem.eu/proxy/saml2/idp/metadata.php': {
+                          'https://unity.eudat-aai.fz-juelich.de:8443/saml-idp/metadata': {
                               'single_sign_on_service': {
-                                  saml2.BINDING_HTTP_REDIRECT: 'https://aai.vi-seem.eu/proxy/saml2/idp/SSOService.php',
+                                  saml2.BINDING_HTTP_REDIRECT: 'https://unity.eudat-aai.fz-juelich.de:8443/saml-idp/saml2idp-web',
                                   },
                               'single_logout_service': {
-                                  saml2.BINDING_HTTP_REDIRECT: 'https://aai.vi-seem.eu/proxy/saml2/idp/SingleLogoutService.php',
+                                  saml2.BINDING_HTTP_REDIRECT: 'https://unity.eudat-aai.fz-juelich.de:8443/saml-idp/SLO-SOAP',
                                   },
                               },
                           },
@@ -201,7 +201,7 @@ SAML_CONFIG = {
          'cert_file' : path.join(BASE_DIR, 'cert.pem'),
 
         'metadata': {
-              'local': [path.join(BASE_DIR, 'idp-metadata.xml')],
+              'local': [path.join(BASE_DIR, 'b2access-idp-staging.xml')],
                 },
         'debug': 1,
 }
