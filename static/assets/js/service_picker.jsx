@@ -1481,7 +1481,6 @@ var PickerPage = React.createClass({
         return (
             <div className="col-xs-12 col-md-8 col-md-offset-2">
                 <Header />
-                <IntroductionText />
 
                 <div id="loader" className="loader col-xs-12 col-xs-offset-5">Loading...</div>
 
@@ -1530,7 +1529,6 @@ var PortfolioPage = React.createClass({
 
 //var host = "https://agora-dev.vi-seem.eu";
 var host = "http://sp.eudat.eu";
-//var host = "http://sp.eudat.eu";
 //var host = "http://localhost";
 
 var view_type = window.location.href.split("/");

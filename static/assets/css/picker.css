@@ -53,7 +53,7 @@
 }
 
 #content .area-content {
-    margin-top: 50px;
+    margin-top: 200px;
     margin-bottom: 50px;
 }
 
@@ -189,7 +189,7 @@
   color: #f47929;
   font-size: 11px;
   text-indent: -99999em;
-  margin-top: 55px;
+  margin-top: 155px;
   position: relative;
   width: 10em;
   height: 10em;
@@ -235,3 +235,4 @@
 #service-content-main {
     display: none;
 }
+
