@@ -149,7 +149,7 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 LOGIN_URL= '/login/'
 
-LOGIN_REDIRECT_URL = "/api/admin/"
+LOGIN_REDIRECT_URL = "/login/"
 
 PROJECT_APPS = ['component', 'options', 'owner', 'service']
 
@@ -157,8 +157,10 @@ SITE_ID = 6
 ALLOWED_HOST = 'agora-dev.grnet.gr';
 
 SAML_ATTRIBUTE_MAPPING = {
-    'dn':('username', ),
+    'dn':('last_name', ),
     'cn': ('first_name', ),
+    'mail': ('email', ),
+    'userName': ('username', )
 }
 
 # SAML_DJANGO_USER_MAIN_ATTRIBUTE = 'email'
@@ -179,7 +181,7 @@ SAML_CONFIG = {
                                 'single_logout_service': [ ('https://'+ALLOWED_HOST+'/saml2/ls/',saml2.BINDING_HTTP_REDIRECT),
                                                          ('https://'+ALLOWED_HOST+'/saml2/ls/post',saml2.BINDING_HTTP_POST),  ],
                                 },
-                  'required_attributes': ['dn'],
+                  'required_attributes': ['dn', 'mail', 'userName'],
                   'optional_attributes': ['cn'],
 
                   'idp': {
