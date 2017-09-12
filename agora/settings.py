@@ -154,7 +154,7 @@ LOGIN_REDIRECT_URL = "/api/admin/"
 PROJECT_APPS = ['component', 'options', 'owner', 'service']
 
 SITE_ID = 2
-ALLOWED_HOST = 'agora-dev.grnet.gr';
+ALLOWED_HOST = 'snf-774347.vm.okeanos.grnet.gr';
 
 SAML_ATTRIBUTE_MAPPING = {
     'dn':('last_name', ),
