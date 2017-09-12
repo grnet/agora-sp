@@ -157,10 +157,8 @@ SITE_ID = 6
 ALLOWED_HOST = 'agora-dev.grnet.gr';
 
 SAML_ATTRIBUTE_MAPPING = {
-    'mail': ('email', ),
-    'givenName': ('first_name', ),
-    'sn': ('last_name', ),
-    'uid': ('username'),
+    'dn':('username', ),
+    'cn': ('first_name', ),
 }
 
 # SAML_DJANGO_USER_MAIN_ATTRIBUTE = 'email'
@@ -172,7 +170,7 @@ SAML_CONFIG = {
   'service': {
         'sp' : {
                   'name': 'Agora Dev Service',
-                  'name_id_format': NAMEID_FORMAT_PERSISTENT,
+                  'name_id_format': 'unity:persistent',
                   'authn_requests_signed': True,
                   "allow_unsolicited": True,
                   'endpoints': {
@@ -181,8 +179,8 @@ SAML_CONFIG = {
                                 'single_logout_service': [ ('https://'+ALLOWED_HOST+'/saml2/ls/',saml2.BINDING_HTTP_REDIRECT),
                                                          ('https://'+ALLOWED_HOST+'/saml2/ls/post',saml2.BINDING_HTTP_POST),  ],
                                 },
-                  'required_attributes': ['uid'],
-                  'optional_attributes': ['mail','givenName', 'sn'],
+                  'required_attributes': ['dn'],
+                  'optional_attributes': ['cn'],
 
                   'idp': {
                           # the keys of this dictionary are entity ids
@@ -395,6 +393,11 @@ LOGGING = {
             'class': 'logging.FileHandler',
             'filename': os.path.join(BASE_DIR, 'logs/debug.log'),
         },
+        'file_saml': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': '/var/www/html/agora/logs/debug_saml2.log',
+        },
 
     },
     'loggers': {
@@ -403,6 +406,11 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
+        'djangosaml': {
+            'handlers' : ['file_saml'],
+            'level' : 'DEBUG',
+            'propagate' : True
+        }
     },
 }
 

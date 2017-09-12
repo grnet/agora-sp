@@ -79,6 +79,8 @@ MAP = {
         X500ATTR_OID+'46': 'dnQualifier',
         X500ATTR_OID+'47': 'enhancedSearchGuide',
         X500ATTR_OID+'48': 'protocolInformation',
+        X500ATTR_OID+'49': 'dn',
+        X500ATTR_OID+'3': 'cn',
         X500ATTR_OID+'54': 'dmdName',
         NETSCAPE_LDAP+'4': 'employeeType',
         X500ATTR_OID+'22': 'teletexTerminalIdentifier',
@@ -97,6 +99,8 @@ MAP = {
         UCL_DIR_PILOT+'13': 'uid',
     },
     "to": {
+        'dn': X500ATTR_OID+'49',
+        'cn': X500ATTR_OID+'3', 
         'userName': PKCS_9,
         'roleOccupant': X500ATTR_OID+'33',
         'gn': X500ATTR_OID+'42',
