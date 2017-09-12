@@ -159,8 +159,8 @@ ALLOWED_HOST = 'agora-dev.grnet.gr';
 SAML_ATTRIBUTE_MAPPING = {
     'dn':('last_name', ),
     'cn': ('first_name', ),
-    'mail': ('email', 'username'),
-    'userName': ('first_name', )
+    'mail': ('email', ),
+    'userName': ('username', )
 }
 
 # SAML_DJANGO_USER_MAIN_ATTRIBUTE = 'email'
