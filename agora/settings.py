@@ -38,7 +38,7 @@ EMAIL_HOST_PASSWORD = 'agora2016'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-USER_CREATION_EMAIL_LIST = ['iliaboti@grnet.gr','strezoski.g@gmail.com','stojanovski.dario@gmail.com']
+USER_CREATION_EMAIL_LIST = ['nikoloutsa@admin.grnet.gr']
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -163,7 +163,7 @@ SAML_ATTRIBUTE_MAPPING = {
     'userName': ('username', )
 }
 
-# SAML_DJANGO_USER_MAIN_ATTRIBUTE = 'email'
+SAML_DJANGO_USER_MAIN_ATTRIBUTE = 'email'
 
 SAML_CONFIG = {
   'xmlsec_binary': '/usr/bin/xmlsec1',
@@ -186,12 +186,12 @@ SAML_CONFIG = {
 
                   'idp': {
                           # the keys of this dictionary are entity ids
-                          'https://unity.eudat-aai.fz-juelich.de:8443/saml-idp/metadata': {
+                          'https://b2access.eudat.eu:8443/saml-idp/metadata': {
                               'single_sign_on_service': {
-                                  saml2.BINDING_HTTP_REDIRECT: 'https://unity.eudat-aai.fz-juelich.de:8443/saml-idp/saml2idp-web',
+                                  saml2.BINDING_HTTP_REDIRECT: 'https://b2access.eudat.eu:8443/saml-idp/saml2idp-web',
                                   },
                               'single_logout_service': {
-                                  saml2.BINDING_HTTP_REDIRECT: 'https://unity.eudat-aai.fz-juelich.de:8443/saml-idp/SLO-SOAP',
+                                  saml2.BINDING_HTTP_REDIRECT: 'https://b2access.eudat.eu:8443/saml-idp/SLO-WEB',
                                   },
                               },
                           },
@@ -201,7 +201,7 @@ SAML_CONFIG = {
          'cert_file' : path.join(BASE_DIR, 'cert.pem'),
 
         'metadata': {
-              'local': [path.join(BASE_DIR, 'b2access-idp-staging.xml')],
+              'local': [path.join(BASE_DIR, 'b2access-idp-production.xml')],
                 },
         'debug': 1,
 }
