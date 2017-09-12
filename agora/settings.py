@@ -153,7 +153,7 @@ LOGIN_REDIRECT_URL = "/api/admin/"
 
 PROJECT_APPS = ['component', 'options', 'owner', 'service']
 
-SITE_ID = 6
+SITE_ID = 2
 ALLOWED_HOST = 'agora-dev.grnet.gr';
 
 SAML_ATTRIBUTE_MAPPING = {
@@ -398,7 +398,7 @@ LOGGING = {
         'file_saml': {
             'level': 'DEBUG',
             'class': 'logging.FileHandler',
-            'filename': '/var/www/html/agora/logs/debug_saml2.log',
+            'filename': os.path.join(BASE_DIR, 'logs/debug_saml2.log'),
         },
 
     },
