@@ -147,9 +147,9 @@ AUTH_USER_MODEL = "accounts.User"
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
-LOGIN_URL= '/login/'
+LOGIN_URL= '/api/v1/accounts/login/'
 
-LOGIN_REDIRECT_URL = "/login/"
+LOGIN_REDIRECT_URL = "/api/admin/"
 
 PROJECT_APPS = ['component', 'options', 'owner', 'service']
 
@@ -159,8 +159,8 @@ ALLOWED_HOST = 'agora-dev.grnet.gr';
 SAML_ATTRIBUTE_MAPPING = {
     'dn':('last_name', ),
     'cn': ('first_name', ),
-    'mail': ('email', ),
-    'userName': ('username', )
+    'mail': ('email', 'username'),
+    'userName': ('first_name', )
 }
 
 # SAML_DJANGO_USER_MAIN_ATTRIBUTE = 'email'

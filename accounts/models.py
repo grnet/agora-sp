@@ -6,6 +6,7 @@ from django.core.mail import send_mail
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from social.apps.django_app.default.models import UserSocialAuth
+from rest_framework.authtoken.models import Token
 from agora.settings import AVATAR_LOCATION
 from agora.settings import USER_CREATION_EMAIL_LIST
 from rest_framework.authtoken.models import Token
