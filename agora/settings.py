@@ -153,7 +153,7 @@ LOGIN_REDIRECT_URL = "/api/admin/"
 
 PROJECT_APPS = ['component', 'options', 'owner', 'service']
 
-SITE_ID = 2
+SITE_ID = 6
 ALLOWED_HOST = 'agora-dev.grnet.gr';
 
 SAML_ATTRIBUTE_MAPPING = {
