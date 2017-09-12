@@ -82,7 +82,7 @@ In the following commands, use sudo where needed
 The following packages are required for this project to work. You can install them with the following command:
 
 ```
-apt-get install git python mysql-server mysql-client libmysqlclient-dev build-essential libssl-dev libffi-dev python-dev apache2 apache2-doc apache2-utils libapache2-mod-wsgi
+apt-get install git python mysql-server mysql-client libmysqlclient-dev build-essential libssl-dev libffi-dev python-dev apache2 apache2-doc apache2-utils libapache2-mod-wsgi xmlsec1
 ``` 
 
 You should install pip from [here](https://packaging.python.org/installing/)
