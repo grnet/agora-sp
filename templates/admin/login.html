@@ -64,7 +64,7 @@
       {% if request.build_absolute_uri == 'https://services.vi-seem.eu/api/adminlogin/?next=/api/admin' %}
           <label>&nbsp;</label><input type="button" value="{% trans 'Log in with VI-SEEM' %}" onclick="location.href='https://services.vi-seem.eu/saml2/login'" />
       {% endif %}
-      <label>&nbsp;</label><input type="button" value="{% trans 'Log in with B2ACCESS' %}" onclick="location.href='http://snf-774347.vm.okeanos.grnet.gr/saml2/login'"  />
+      <label>&nbsp;</label><input type="button" value="{% trans 'Log in with B2ACCESS' %}" onclick="location.href='https://sp.eudat.eu/saml2/login'"  />
         {% if request.build_absolute_uri == 'http://localhost/api/adminlogin/?next=/api/admin' %}
           <label>&nbsp;</label><input type="button" value="{% trans 'Log in with B2ACCESS' %}" />
           <label>&nbsp;</label><input type="button" value="{% trans 'Log in with VI-SEEM' %}" onclick="location.href='http://localhost/saml2/login'" />

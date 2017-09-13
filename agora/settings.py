@@ -29,8 +29,8 @@ SECRET_KEY = 'secret-key'
 # SECURITY WARNING don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['snf-774347.vm.okeanos.grnet.gr',
-		 'snf-774347.vm.okeanos.grnet.gr'
+ALLOWED_HOSTS = ['sp.eudat.eu',
+		 'sp.eudat.eu'
 		]
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'agora.notification@gmail.com'
@@ -154,7 +154,7 @@ LOGIN_REDIRECT_URL = "/api/admin/"
 PROJECT_APPS = ['component', 'options', 'owner', 'service']
 
 SITE_ID = 2
-ALLOWED_HOST = 'snf-774347.vm.okeanos.grnet.gr';
+ALLOWED_HOST = 'sp.eudat.eu';
 
 SAML_ATTRIBUTE_MAPPING = {
     'dn':('last_name', ),
@@ -264,7 +264,7 @@ SQLITE = {
 MYSQL = {
        'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'agora',
+        'NAME': 'agora2',
         'USER': 'root',
         'PASSWORD': 'password',
         'HOST': '127.0.0.1',
