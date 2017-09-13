@@ -57,6 +57,43 @@ module.exports = function(environment) {
               }
             }
           }
+        },
+        "users": {
+          "retrieve": {
+            "*": {
+              "*": {
+                "*": "*"
+              }
+            }
+          },
+          "list": {
+            "*": {
+              "*": {
+                "*": "*"
+              }
+            }
+          },
+          "create": {
+            "*": {
+              "*": {
+                "*": "*"
+              }
+            }
+          },
+          "update": {
+            "*": {
+              "*": {
+                "*": "*"
+              }
+            }
+          },
+          "delete": {
+            "*": {
+              "*": {
+                "*": "*"
+              }
+            }
+          }
         }
       }
       // Here you can pass flags/options to your application instance
