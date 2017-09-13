@@ -38,7 +38,7 @@ EMAIL_HOST_PASSWORD = 'agora2016'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-USER_CREATION_EMAIL_LIST = ['nikoloutsa@admin.grnet.gr']
+USER_CREATION_EMAIL_LIST = ['iliaboti@grnet.gr','nikoloutsa@admin.grnet.gr']
 
 CORS_ORIGIN_ALLOW_ALL = True
 
