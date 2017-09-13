@@ -896,7 +896,7 @@ class ExternalService(models.Model):
     def save(self, *args, **kwargs):
         if not self.description or self.description == "":
             self.description = none
-        super(externalservice, self).save(*args, **kwargs)
+        super(ExternalService, self).save(*args, **kwargs)
 
 
 class Service_DependsOn_Service(models.Model):

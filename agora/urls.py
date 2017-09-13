@@ -23,6 +23,23 @@ from django.conf import settings
 from django.conf.urls.static import static
 from djangosaml2.views import echo_attributes
 
+from os import path
+import yaml
+from apimas.django.adapter import DjangoAdapter
+
+SITE_ROOT = path.dirname(path.realpath(__file__))
+BASE_DIR = path.dirname(SITE_ROOT)
+APIMAS_PATH = path.join(BASE_DIR, 'agora/spec.apimas')
+
+with open(APIMAS_PATH, 'r') as apimasfile:
+        spec = yaml.load(apimasfile)
+
+
+adapter = DjangoAdapter()
+adapter.construct(spec)
+
+api_urls = adapter.get_urlpatterns()
+
 urlpatterns = [
     url(r'^api/admin/?', admin.site.urls),
     url(r'^api/docs/?', include('rest_framework_swagger.urls')),
@@ -52,7 +69,7 @@ urlpatterns = [
     url(r'^test/', echo_attributes),
     url(r'^/?$', RedirectView.as_view(url='/ui/catalogue/services')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + api_urls + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = "agora.views.error404"
 handler400 = "agora.views.error400"
