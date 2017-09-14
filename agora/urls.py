@@ -73,7 +73,8 @@ urlpatterns = [
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^api/v2/auth/', include('djoser.urls')),
     url(r'^api/v2/auth/login/$',
-                djoser_views.UserView, name='login'),
+                djoser_views.LoginView.as_view(), name='login'),
+    url(r'^api/v2/auth/', include('djoser.urls.authtoken')),
 ] + api_urls + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = "agora.views.error404"

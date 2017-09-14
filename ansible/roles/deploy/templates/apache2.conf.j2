@@ -221,6 +221,7 @@ IncludeOptional sites-enabled/*.conf
 # vim: syntax=apache ts=4 sw=4 sts=4 sr noet
 
 WSGIPythonPath /home/agora/agora:/usr/local/lib/python2.7/site-packages
+WSGIPassAuthorization On
 
 NameVirtualHost {{ server_ip }}:80
 <VirtualHost *:80>

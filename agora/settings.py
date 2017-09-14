@@ -42,6 +42,10 @@ USER_CREATION_EMAIL_LIST = ['iliaboti@grnet.gr','nikoloutsa@admin.grnet.gr']
 
 CORS_ORIGIN_ALLOW_ALL = True
 
+CORS_EXPOSE_HEADERS = [
+    'authorization',
+]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -58,6 +62,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework_swagger',
     'rest_framework',
+    'djoser',
     'corsheaders',
     'reversion',
     'component',
@@ -213,7 +218,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -227,8 +232,8 @@ MIDDLEWARE_CLASSES = [
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
+        #'rest_framework.authentication.BasicAuthentication',
+        #'rest_framework.authentication.SessionAuthentication',
     ),
       'EXCEPTION_HANDLER': 'agora.views.custom_exception_handler'}
 
