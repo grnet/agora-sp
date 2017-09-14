@@ -27,6 +27,8 @@ from os import path
 import yaml
 from apimas.django.adapter import DjangoAdapter
 
+from djoser import views as djoser_views
+
 SITE_ROOT = path.dirname(path.realpath(__file__))
 BASE_DIR = path.dirname(SITE_ROOT)
 APIMAS_PATH = path.join(BASE_DIR, 'agora/spec.apimas')
@@ -69,6 +71,9 @@ urlpatterns = [
     url(r'^test/', echo_attributes),
     url(r'^/?$', RedirectView.as_view(url='/ui/catalogue/services')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    url(r'^api/v2/auth/', include('djoser.urls')),
+    url(r'^api/v2/auth/login/$',
+                djoser_views.UserView, name='login'),
 ] + api_urls + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 handler404 = "agora.views.error404"
