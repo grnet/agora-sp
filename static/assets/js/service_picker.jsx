@@ -1529,8 +1529,8 @@ var PortfolioPage = React.createClass({
 
 
 //var host = "https://agora-dev.vi-seem.eu";
-//var host = "http://sp.eudat.eu";
-var host = "http://snf-774347.vm.okeanos.grnet.gr";
+var host = "https://sp.eudat.eu";
+//var host = "http://snf-774347.vm.okeanos.grnet.gr";
 //var host = "http://localhost";
 
 var view_type = window.location.href.split("/");
