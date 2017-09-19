@@ -11,14 +11,21 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
-import logging
-import accounts
-from os import path
 import saml2
 from saml2.saml import NAMEID_FORMAT_PERSISTENT
+
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+DIR_RESOURCES = 'resources'
+PATH_RESOURCES = os.path.join(BASE_DIR, DIR_RESOURCES)
+
+FILE_PERMISSIONS = 'permissions.json'
+FILEPATH_PERMISSIONS = os.path.join(PATH_RESOURCES, FILE_PERMISSIONS)
+
+FILE_SPEC = 'agora.spec'
+FILEPATH_SPEC = os.path.join(PATH_RESOURCES, FILE_SPEC)
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/

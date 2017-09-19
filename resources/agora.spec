@@ -1,3 +1,5 @@
+.meta:
+  get_rules: agora.utils.get_rules
 api/v2:
   .endpoint: {}
   users:

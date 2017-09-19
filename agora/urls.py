@@ -13,27 +13,25 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+import yaml
+
 from django.conf.urls import url, include
 from django.contrib import admin
-from service import views
-from component import views as component_views
 from django.views.generic import RedirectView
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
 from djangosaml2.views import echo_attributes
 
-from os import path
-import yaml
+from service import views
+from component import views as component_views
+
 from apimas.django.adapter import DjangoAdapter
 
 from djoser import views as djoser_views
 
-SITE_ROOT = path.dirname(path.realpath(__file__))
-BASE_DIR = path.dirname(SITE_ROOT)
-APIMAS_PATH = path.join(BASE_DIR, 'agora/spec.apimas')
 
-with open(APIMAS_PATH, 'r') as apimasfile:
+with open(settings.FILEPATH_SPEC, 'r') as apimasfile:
         spec = yaml.load(apimasfile)
 
 
