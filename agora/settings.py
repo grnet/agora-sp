@@ -38,7 +38,11 @@ EMAIL_HOST_PASSWORD = 'agora2016'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 
-USER_CREATION_EMAIL_LIST = ['iliaboti@grnet.gr','nikoloutsa@admin.grnet.gr']
+USER_CREATION_EMAIL_LIST = [
+    'iliaboti@grnet.gr',
+    'strezoski.g@gmail.com',
+    'stojanovski.dario@gmail.com',
+]
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -73,8 +77,9 @@ INSTALLED_APPS = [
     'accounts',
     'djangosaml2',
     'ckeditor',
-    'ckeditor_uploader'
+    'ckeditor_uploader',
 ]
+
 
 def generate_service_menu():
     import service
@@ -98,7 +103,9 @@ def generate_service_menu():
             'url': '/api/adminservice/' + member[MEMBER_NAME].lower(),
         }
 
-    members_all = inspect.getmembers(getattr(service, 'models'), inspect.isclass)
+    members_all = inspect.getmembers(
+            getattr(service, 'models'),
+            inspect.isclass)
     members_valid = []
     for m in members_all:
         if is_service_model(m) and is_not_blacklisted(m):
@@ -106,7 +113,7 @@ def generate_service_menu():
 
     return tuple(members_valid)
 
-SERVICE_MENU = () # FIXME generate_service_menu()
+
 SUIT_CONFIG = {
     # header
     'ADMIN_NAME': 'Agora Write Beta 1.0',
@@ -114,8 +121,8 @@ SUIT_CONFIG = {
     'HEADER_TIME_FORMAT': 'H:i',
 
     # forms
-    'SHOW_REQUIRED_ASTERISK': True,  # Default True
-    'CONFIRM_UNSAVED_CHANGES': True, # Default True
+    'SHOW_REQUIRED_ASTERISK': True,
+    'CONFIRM_UNSAVED_CHANGES': True,
 
     # menu
     'SEARCH_URL': '/admin/auth/user/',
@@ -126,25 +133,15 @@ SUIT_CONFIG = {
        'sites': 'icon-leaf',
        'auth': 'icon-lock',
     },
-    'MENU_OPEN_FIRST_CHILD': True, # Default True
+    'MENU_OPEN_FIRST_CHILD': True,
     'MENU_EXCLUDE': ('auth.group',),
     'MENU': (
-       #{
-       #    'label': 'Service',
-       #    'models': SERVICE_MENU
-       #},
        'service',
        'component',
        'owner',
        'options',
-       #{'label': 'Settings', 'models': (
-       #    { 'url': '/api/adminservice/servicestatus', 'label': 'Service Status'},
-       #    { 'url': '/api/adminservice/servicetrl', 'label': 'Service TRL'},
-       #)},
        'sites',
     ),
-
-    # misc
     'LIST_PER_PAGE': 15
  }
 
@@ -152,8 +149,7 @@ AUTH_USER_MODEL = "accounts.User"
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
-#LOGIN_URL= '/api/v1/accounts/login/'
-LOGIN_URL= '/login/'
+LOGIN_URL = '/login/'
 
 LOGIN_REDIRECT_URL = "/api/admin/"
 
@@ -218,7 +214,7 @@ MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    #'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
@@ -226,16 +222,14 @@ MIDDLEWARE_CLASSES = [
     'corsheaders.middleware.CorsMiddleware',
 ]
 
-
-
-
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
-        #'rest_framework.authentication.BasicAuthentication',
-        #'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
     ),
-      'EXCEPTION_HANDLER': 'agora.views.custom_exception_handler'}
+    'EXCEPTION_HANDLER': 'agora.views.custom_exception_handler'
+}
 
 ROOT_URLCONF = 'agora.urls'
 
@@ -251,24 +245,24 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
-       },
+        },
     },
 ]
 
 WSGI_APPLICATION = 'agora.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.9/ref/settings/#databases
 
 SQLITE = {
-       'default': {
+    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': '/home/thanasis/agora/db.agora.sqlite3'
     }
 }
+
 MYSQL = {
-       'default': {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'agora2',
         'USER': 'root',
@@ -304,6 +298,7 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
 CLIENT_ID = ''
 APPLICATION_NAME = 'API-Client'
 
@@ -327,7 +322,7 @@ SOCIAL_AUTH_PIPELINE = (
 )
 
 
-#MEDIA_ROOT = '/var/www/html/agora/static/img'
+# MEDIA_ROOT = '/var/www/html/agora/static/img'
 MEDIA_ROOT = os.path.join(BASE_DIR, "static/img")
 MEDIA_URL = '/static/img/'
 
@@ -371,12 +366,16 @@ SWAGGER_SETTINGS = {
         'delete'
     ],
     'host': 'str(ALLOWED_HOST)',
-     'info': {
+    'info': {
         'contact': 'admin@agora.com',
-        'description': 'This is a demonstration of the API documentation engine. '
-                       'The full Git repository is availible at <a href="https://code.vi-seem.eu/stdario/agora">'
-                       'Agora Git</a> where the current development version is availible in the DEV branch.'
-                       'The current stable version is availible at the MASTER branch.',
+        'description': (
+            'This is a demonstration of the API documentation engine. '
+            'The full Git repository is availible at '
+            '<a href="https://code.vi-seem.eu/stdario/agora">Agora Git</a> '
+            'where the current development version is availible '
+            ' in the DEV branch. '
+            'The current stable version is availible at the MASTER branch.'
+        ),
         'license': 'Apache 2.0',
         'licenseUrl': 'http://www.apache.org/licenses/LICENSE-2.0.html',
         'termsOfServiceUrl': '/',
@@ -387,11 +386,11 @@ SWAGGER_SETTINGS = {
     'is_superuser': False,
     'permission_denied_handler': None,
     'resource_access_handler': None,
-    'base_path':str(ALLOWED_HOST)+'/api/docs',
+    'base_path': '{}/api/docs'.format(ALLOWED_HOST),
     'doc_expansion': 'list',
-    'operationsSorter' : 'method'
-
+    'operationsSorter': 'method'
 }
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,
@@ -434,29 +433,68 @@ CKEDITOR_CONFIGS = {
         'toolbar_Custom': [
             {
                 'name': 'basic styles',
-                'items': ['Bold', 'Italic', 'Underline', 'Strike', 'RemoveFormat']
+                'items': [
+                    'Bold',
+                    'Italic',
+                    'Underline',
+                    'Strike',
+                    'RemoveFormat',
+                ]
             },
             {
                 'name': 'font',
-                'items': ['Font', 'FontSize', 'Format', 'TextColor', 'BGColor']
+                'items': [
+                    'Font',
+                    'FontSize',
+                    'Format',
+                    'TextColor',
+                    'BGColor',
+                ]
             },
             {
                 'name': 'general',
-                'items': ['Image', 'ImageButton', 'Table', 'Undo', 'Redo', 'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord',  'Anchor']
+                'items': [
+                    'Image',
+                    'ImageButton',
+                    'Table',
+                    'Undo',
+                    'Redo',
+                    'Cut',
+                    'Copy',
+                    'Paste',
+                    'PasteText',
+                    'PasteFromWord',
+                    'Anchor',
+                ]
             },
             {
                 'name': 'paragraph',
-                'items': ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock']
+                'items': [
+                    'NumberedList',
+                    'BulletedList',
+                    '-',
+                    'Outdent',
+                    'Indent',
+                    '-',
+                    'JustifyLeft',
+                    'JustifyCenter',
+                    'JustifyRight',
+                    'JustifyBlock',
+                ]
             },
             {
                 'name': 'link',
-                'items': ['Link', 'Unlink']
+                'items': [
+                    'Link',
+                    'Unlink',
+                ]
             },
             {
                 'name': 'rest',
-                'items': ['Source']
+                'items': [
+                    'Source',
+                ]
             }
         ]
     }
 }
-
