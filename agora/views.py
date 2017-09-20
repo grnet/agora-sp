@@ -1,5 +1,23 @@
+import logging
+
 from django.http import JsonResponse
 from rest_framework.views import exception_handler
+
+from agora import utils
+
+
+logger = logging.getLogger(__name__)
+
+
+def config(request):
+    permissions = utils.get_permissions()
+
+    json_data = {
+        'permissions': permissions,
+    }
+
+    return JsonResponse(json_data)
+
 
 def error400(request):
     return JsonResponse({

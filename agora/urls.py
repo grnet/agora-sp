@@ -17,14 +17,15 @@ import yaml
 
 from django.conf.urls import url, include
 from django.contrib import admin
-from django.views.generic import RedirectView
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.views.generic import RedirectView
 from djangosaml2.views import echo_attributes
 
 from service import views
 from component import views as component_views
+from agora import views as agora_views
 
 from apimas.django.adapter import DjangoAdapter
 
@@ -73,7 +74,14 @@ urlpatterns = [
     url(r'^api/v2/auth/login/$',
         djoser_views.LoginView.as_view(), name='login'),
     url(r'^api/v2/auth/', include('djoser.urls.authtoken')),
-] + api_urls + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    url(r'^api/v2/config.json$', agora_views.config, name='config'),
+]
+
+urlpatterns.extend(api_urls)
+
+urls_static = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urlpatterns.extend(urls_static)
+
 
 handler404 = "agora.views.error404"
 handler400 = "agora.views.error400"
