@@ -147,7 +147,8 @@ AUTH_USER_MODEL = "accounts.User"
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
-LOGIN_URL= '/api/v1/accounts/login/'
+#LOGIN_URL= '/api/v1/accounts/login/'
+LOGIN_URL= '/login/'
 
 LOGIN_REDIRECT_URL = "/api/admin/"
 
@@ -157,10 +158,10 @@ SITE_ID = 2
 ALLOWED_HOST = 'sp.eudat.eu';
 
 SAML_ATTRIBUTE_MAPPING = {
-    'dn':('last_name', ),
-    'cn': ('first_name', ),
-    'mail': ('email', ),
-    'userName': ('username', )
+    'dn':('last_name',),
+    'cn': ('first_name',),
+    'mail': ('email',),
+    'userName': ('username',)
 }
 
 SAML_DJANGO_USER_MAIN_ATTRIBUTE = 'email'
@@ -181,7 +182,7 @@ SAML_CONFIG = {
                                 'single_logout_service': [ ('https://'+ALLOWED_HOST+'/saml2/ls/',saml2.BINDING_HTTP_REDIRECT),
                                                          ('https://'+ALLOWED_HOST+'/saml2/ls/post',saml2.BINDING_HTTP_POST),  ],
                                 },
-                  'required_attributes': ['dn', 'mail', 'userName'],
+                  'required_attributes': ['dn', 'mail','userName'],
                   'optional_attributes': ['cn'],
 
                   'idp': {
@@ -408,10 +409,10 @@ LOGGING = {
             'level': 'DEBUG',
             'propagate': True,
         },
-        'djangosaml': {
+        'djangosaml2': {
             'handlers' : ['file_saml'],
             'level' : 'DEBUG',
-            'propagate' : True
+            'propagate' : True,
         }
     },
 }
