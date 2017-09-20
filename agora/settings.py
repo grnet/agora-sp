@@ -422,7 +422,7 @@ LOGGING = {
         },
         'django': {
             'handlers': ['file'],
-            'level': 'DEBUG',
+            'level': 'DEBUG' if DEBUG else 'INFO',
             'propagate': True,
         },
         'djangosaml2': {
