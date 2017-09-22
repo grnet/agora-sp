@@ -111,8 +111,8 @@ def generate_service_menu():
         }
 
     members_all = inspect.getmembers(
-            getattr(service, 'models'),
-            inspect.isclass)
+        getattr(service, 'models'),
+        inspect.isclass)
     members_valid = []
     for m in members_all:
         if is_service_model(m) and is_not_blacklisted(m):
@@ -134,23 +134,23 @@ SUIT_CONFIG = {
     # menu
     'SEARCH_URL': '/admin/auth/user/',
     'MENU_ICONS': {
-       'service': 'icon-leaf',
-       'component': 'icon-leaf',
-       'owner': 'icon-leaf',
-       'sites': 'icon-leaf',
-       'auth': 'icon-lock',
+        'service': 'icon-leaf',
+        'component': 'icon-leaf',
+        'owner': 'icon-leaf',
+        'sites': 'icon-leaf',
+        'auth': 'icon-lock',
     },
     'MENU_OPEN_FIRST_CHILD': True,
     'MENU_EXCLUDE': ('auth.group',),
     'MENU': (
-       'service',
-       'component',
-       'owner',
-       'options',
-       'sites',
+        'service',
+        'component',
+        'owner',
+        'options',
+        'sites',
     ),
     'LIST_PER_PAGE': 15
- }
+}
 
 AUTH_USER_MODEL = "accounts.User"
 
@@ -277,11 +277,20 @@ MYSQL = {
         'HOST': '127.0.0.1',
     }
 }
-
+POSTGRES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'agora',
+        'USER': 'agora_user',
+        'PASSWORD': 'agora',
+        'HOST': 'localhost',
+        'PORT': '',
+    }
+}
 if DEBUG:
-    DATABASES = MYSQL
+    DATABASES = POSTGRES
 else:
-    DATABASES = MYSQL
+    DATABASES = POSTGRES
 
 AUTHENTICATION_BACKENDS = (
     'social.backends.google.GoogleOAuth2',
@@ -353,18 +362,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+STATIC_ROOT = os.path.join(BASE_DIR, "assets/")
 
 STATICFILES_DIRS = (
-   os.path.join(BASE_DIR, "static", "admin"),
-   os.path.join(BASE_DIR, "static", "rest_framework_swagger"),
+    os.path.join(BASE_DIR, "static"),
 )
 
 
 SWAGGER_SETTINGS = {
     'exclude_namespaces': [],
     'api_version': '1.0',
-    'api_path': str(ALLOWED_HOST)+'/api',
+    'api_path': str(ALLOWED_HOST) + '/api',
     'enabled_methods': [
         'get',
         'post',

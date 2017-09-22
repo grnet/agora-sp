@@ -80,7 +80,10 @@ urlpatterns = [
 urlpatterns.extend(api_urls)
 
 urls_static = static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+urls_static_files = static(settings.STATIC_URL,
+                           document_root=settings.STATIC_ROOT)
 urlpatterns.extend(urls_static)
+urlpatterns.extend(urls_static_files)
 
 
 handler404 = "agora.views.error404"
