@@ -2,19 +2,34 @@ from __future__ import unicode_literals
 
 import uuid
 import os
-from agora import  settings
+from agora import settings
 from django.db import models
 from service.models import Service, ServiceDetails
 from common import helper
 from collections import OrderedDict
 from ckeditor_uploader.fields import RichTextUploadingField
 
+
 class ServiceComponent(models.Model):
 
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255, default=None, blank=True, unique=True)
+    id = models.UUIDField(
+            primary_key=True,
+            default=uuid.uuid4,
+            editable=False
+    )
+    name = models.CharField(
+            max_length=255,
+            default=None,
+            blank=True,
+            unique=True
+    )
     description = RichTextUploadingField(default=None, blank=True, null=True)
-    logo = models.ImageField(upload_to=(os.path.join(settings.BASE_DIR, "static", "img", "logos")), default="/var/www/html/agora/static/img/logos/logo-none.jpg")
+    logo = models.ImageField(
+            upload_to=(
+                os.path.join(settings.BASE_DIR, "static", "img", "logos")
+            ),
+            default="/var/www/html/agora/static/img/logos/logo-none.jpg"
+    )
 
     class Meta:
         verbose_name_plural = "1. Service Components"
@@ -23,8 +38,10 @@ class ServiceComponent(models.Model):
         return str(self.name)
 
     def as_json(self):
-        component_implementations = [sci.as_json() for sci in ServiceComponentImplementation.objects
-            .filter(component_id=self.pk)]
+        component_implementations = [
+            sci.as_json() for sci in ServiceComponentImplementation.objects
+            .filter(component_id=self.pk)
+        ]
 
         return OrderedDict([
             ("uuid", str(self.id)),
@@ -55,18 +72,24 @@ class ServiceComponent(models.Model):
                 ("logo",  "/static/img/logos/"+self.logo.name.split("/")[-1]),
                 ("service_component_implementations_link", {
                   "related": {
-                    "href":helper.current_site_url() + "/v1/portfolio/services/" + str(service.name) # .replace(" ", "_")
-                        + "/service_details/" + str(service_details_version) + "/service_components/" + str(self.pk)
-                        + "/service_component_implementations",
-                    "meta": "A link to the service component implementations list"
-                }})
+                    "href": helper.current_site_url()
+                    + "/v1/portfolio/services/" + str(service.name)
+                    + "/service_details/" + str(service_details_version)
+                    + "/service_components/" + str(self.pk)
+                    + "/service_component_implementations",
+                    "meta": "A link to the service component "
+                    + "implementations list"
+                  }
+                })
             ])
         }
 
-    def as_view_compatible (self, version):
+    def as_view_compatible(self, version):
 
-        component_implementations = [sci.as_json() for sci in ServiceComponentImplementation.objects
-            .filter(component_id=self.pk)]
+        component_implementations = [
+            sci.as_json() for sci in ServiceComponentImplementation.objects
+            .filter(component_id=self.pk)
+        ]
 
         return {
             "component": OrderedDict([
@@ -99,13 +122,14 @@ class ServiceComponentImplementation(models.Model):
     name = models.CharField(max_length=255, default=None, blank=True)
     description = RichTextUploadingField(default=None, blank=True, null=True)
 
-
     def __unicode__(self):
         return str(self.name)
 
     def as_full(self):
-        component_implementation_details = [scid.as_json() for scid in ServiceComponentImplementationDetail.objects.
-                                filter(component_id=self.component_id.pk, component_implementation_id=self.pk)]
+        component_implementation_details = [
+            scid.as_json() for scid in ServiceComponentImplementationDetail.objects
+                .filter(component_id=self.component_id.pk, component_implementation_id=self.pk)
+        ]
 
         return OrderedDict([
             ("uuid", str(self.id)),
@@ -119,8 +143,10 @@ class ServiceComponentImplementation(models.Model):
         ])
 
     def as_json(self):
-        component_implementation_details = [scid.as_json() for scid in ServiceComponentImplementationDetail.objects.
-                                filter(component_id=self.component_id.pk, component_implementation_id=self.pk)]
+        component_implementation_details = [
+            scid.as_json() for scid in ServiceComponentImplementationDetail.objects
+                .filter(component_id=self.component_id.pk, component_implementation_id=self.pk)
+        ]
 
         return OrderedDict([
             ("uuid", str(self.id)),
@@ -145,8 +171,10 @@ class ServiceComponentImplementation(models.Model):
 
         service = Service.objects.get(id=service_id)
 
-        component_implementation_details = [scid.as_json() for scid in ServiceComponentImplementationDetail.objects.
-                                filter(component_id=self.component_id.pk, component_implementation_id=self.pk)]
+        component_implementation_details = [
+            scid.as_json() for scid in ServiceComponentImplementationDetail.objects
+                .filter(component_id=self.component_id.pk, component_implementation_id=self.pk)
+        ]
 
         return OrderedDict([
             ("uuid", str(self.id)),
@@ -156,22 +184,28 @@ class ServiceComponentImplementation(models.Model):
 
                "related": {
 
-                "href":  helper.current_site_url() + "/v1/portfolio/services/" + str(service.name) # .replace(" ", "_")
-                           + "/service_details/" + str(service_details_version) + "/service_components/"
-                           + str(self.component_id.pk) + "/service_component_implementations/" + str(self.pk)
-                                                    + "/service_component_implementation_detail",
-
+                "href":  helper.current_site_url()
+                + "/v1/portfolio/services/"
+                + str(service.name)  # .replace(" ", "_")
+                + "/service_details/"
+                + str(service_details_version)
+                + "/service_components/"
+                + str(self.component_id.pk)
+                + "/service_component_implementations/"
+                + str(self.pk)
+                + "/service_component_implementation_detail",
                 "meta": {
-                            "desc": "A list of the service component implementation details."
-                        }
+                    "desc": "A list of the service component"
+                    + " implementation details."
+                }
                     }})
         ])
-
 
     def save(self, *args, **kwargs):
         if not self.description or self.description == "":
             self.description = None
         super(ServiceComponentImplementation, self).save(*args, **kwargs)
+
 
 class ServiceComponentImplementationDetail(models.Model):
 
@@ -181,13 +215,17 @@ class ServiceComponentImplementationDetail(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     component_id = models.ForeignKey(ServiceComponent)
-    component_implementation_id = models.ForeignKey(ServiceComponentImplementation, on_delete=models.CASCADE)
+    component_implementation_id = models.ForeignKey(
+        ServiceComponentImplementation, on_delete=models.CASCADE
+    )
     version = models.CharField(max_length=255, default=None, blank=True)
     configuration_parameters = RichTextUploadingField(default=None, blank=True, null=True)
 
 
     def __unicode__(self):
-        return str(self.component_implementation_id.name) + " " +  str(self.version)
+        return str(self.component_implementation_id.name)
+        + " "
+        + str(self.version)
 
     def as_json(self):
         return OrderedDict([
@@ -220,13 +258,21 @@ class ServiceComponentImplementationDetail(models.Model):
 class ServiceDetailsComponent(models.Model):
 
     class Meta:
-        unique_together = (('service_id', 'service_details_id', 'service_component_implementation_detail_id'),)
+        unique_together = (
+            (
+                'service_id',
+                'service_details_id',
+                'service_component_implementation_detail_id'
+            ),
+        )
         verbose_name_plural = "5. Service Components Implementations Details Link"
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     service_id = models.ForeignKey(Service)
     service_details_id = models.ForeignKey(ServiceDetails)
-    service_component_implementation_detail_id = models.ForeignKey(ServiceComponentImplementationDetail)
+    service_component_implementation_detail_id = models.ForeignKey(
+        ServiceComponentImplementationDetail
+    )
 
     def __unicode__(self):
         return str(self.service_id.name) + " "  + str(self.service_details_id.version) + " " + \
@@ -236,7 +282,7 @@ class ServiceDetailsComponent(models.Model):
         return {
             "service_uuid": self.service_id.name,
             "service_details_version": self.service_details_id.version,
-            "service_component_implementation_detail_uuid": self.service_component_implementation_detail_id.pk
+            "service_component_implementation_detail_uuid": self.service_component_implementation_detail_id.pk,
         }
 
     def as_full(self):
@@ -262,8 +308,7 @@ class ServiceDetailsComponent(models.Model):
                 },
                 "component_implementation": {
                     "uuid": self.service_component_implementation_detail_id.component_implementation_id.pk,
-                    "name": self.service_component_implementation_detail_id.component_implementation_id.name
+                    "name": self.service_component_implementation_detail_id.component_implementation_id.name,
                 }
-
             }
         }
