@@ -24,14 +24,48 @@ api/v2:
         .readonly: {}
       name:
         .string: {}
-      service-trls:
+        .filterable: {}
+        .searchable: {}
+        .sortable: {}
+      short_description:
+        .string: {}
+        .searchable: {}
+      description_external:
+        .string: {}
+      description_internal:
+        .string: {}
+      service_area:
+        .string: {}
+        .filterable: {}
+      service_type:
+        .string: {}
+        .filterable: {}
+      service_trl:
         .ref: {'to': '/api/v2/service-trls'}
-      id_service_owner:
-        .ref: {'to': '/api/v2/service_owner'}
+      request_procedures:
+        .string: {}
+      funders_for_service:
+        .string: {}
+      value_to_customer:
+        .string: {}
+      risks:
+        .string: {}
+      competitors:
+        .string: {}
       id_contact_information:
         .ref: {'to': '/api/v2/contact_information'}
       id_contact_information_internal:
-        .ref: {'to': '/api/v2/contact_information_internal'}
+        .ref: {'to': '/api/v2/contact_information'}
+      logo:
+        .file: {}
+      .actions=:
+        .retrieve: {}
+        .update: {}
+    .actions=:
+      .list: {}
+      .create: {}
+      .delete: {}
+      .update: {}
   service_details:
     .collection:
       model: service.models.ServiceDetails
@@ -190,10 +224,26 @@ api/v2:
       id:
         .uuid: {}
         .readonly: {}
+      first_name:
+        .string: {}
+      last_name:
+        .string: {}
+      email:
+        .email: {}
+      phone:
+        .string: {}
       id_service_owner:
         .ref: {'to': '/api/v2/institution'}
       id_account:
-        .ref: {'to': '/api/v2/custom_user'}
+      .ref: {'to': '/api/v2/custom_user'}
+      .actions=:
+        .retrieve: {}
+        .update: {}
+    .actions=:
+      .list: {}
+      .create: {}
+      .delete: {}
+      .update: {}
   institution:
     .collection:
       model: owner.models.Institution
@@ -203,6 +253,48 @@ api/v2:
         .readonly: {}
       name:
         .string: {}
+      address:
+        .string: {}
+      country:
+        .string: {}
+      department:
+        .string: {}
+      .actions=:
+        .retrieve: {}
+        .update: {}
+    .actions=:
+      .list: {}
+      .create: {}
+      .delete: {}
+      .update: {}
+  custom_user:
+    .collection:
+      model: accounts.models.User
+    '*':
+      username:
+        .string: {}
+      email:
+        .email: {}
+      first_name:
+        .string: {}
+      last_name:
+        .string: {}
+      is_staff:
+        .boolean: {}
+      is_active:
+        .boolean: {}
+      date_joined:
+        .datetime: {format: ['%Y-%m-%dT%H:%M']}
+      avatar:
+        .file: {}
+      .actions=:
+        .retrieve: {}
+        .update: {}
+    .actions=:
+      .list: {}
+      .create: {}
+      .delete: {}
+      .update: {}
   contact_information:
     .collection:
       model: owner.models.ContactInformation
@@ -214,3 +306,17 @@ api/v2:
         .string: {}
       last_name:
         .string: {}
+      email:
+        .email: {}
+      phone:
+        .string: {}
+      url:
+        .string: {}
+      .actions=:
+        .retrieve: {}
+        .update: {}
+    .actions=:
+      .list: {}
+      .create: {}
+      .delete: {}
+      .update: {}
