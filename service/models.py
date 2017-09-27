@@ -37,7 +37,7 @@ class ServiceTrl(models.Model):
 
 class Service(models.Model):
 
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, blank=True, unique=True)
     short_description = RichTextUploadingField(default=None, blank=True, null=True)
     description_external = RichTextUploadingField(default=None, blank=True, null=True)
