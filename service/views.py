@@ -13,8 +13,10 @@ from collections import defaultdict
 import re
 from django.views.decorators.clickjacking import xframe_options_exempt
 
+
 def list_catalogue_services(request):
     return list_services(request, "catalogue")
+
 
 @api_view(['GET'])
 def list_services(request,  type):
@@ -44,6 +46,7 @@ def list_services(request,  type):
             if s["service_details_list"]["count"] == 0:
                 continue
             services.append(s)
+
 
     if len(services) > 0:
         data = {

@@ -219,26 +219,30 @@ class ServiceComponentImplementationDetail(models.Model):
         ServiceComponentImplementation, on_delete=models.CASCADE
     )
     version = models.CharField(max_length=255, default=None, blank=True)
-    configuration_parameters = RichTextUploadingField(default=None, blank=True, null=True)
-
 
     def __unicode__(self):
         return str(self.component_implementation_id.name)
         + " "
         + str(self.version)
 
+    def get_configuration_parameters_list(self):
+        return self.servicedetailscomponent_set.first().configuration_parameters
+        # return map(
+        #         lambda sdc: sdc.configuration_parameters,
+        #         self.servicedetailscomponent_set.all())
+
     def as_json(self):
         return OrderedDict([
             ("uuid", str(self.id)),
             ("version", self.version),
-            ("configuration_parameters", self.configuration_parameters)
+            ("configuration_parameters", self.get_configuration_parameters_list()),
         ])
 
     def as_full(self):
         return OrderedDict([
             ("uuid", str(self.id)),
             ("version", self.version),
-            ("configuration_parameters", self.configuration_parameters),
+            ("configuration_parameters", self.get_configuration_parameters_list()),
             ("service_component", {
                 "uuid": self.component_id.pk,
                 "name": self.component_id.name
@@ -250,8 +254,6 @@ class ServiceComponentImplementationDetail(models.Model):
         ])
 
     def save(self, *args, **kwargs):
-        if not self.configuration_parameters or self.configuration_parameters == "":
-            self.configuration_parameters = None
         super(ServiceComponentImplementationDetail, self).save(*args, **kwargs)
 
 
@@ -262,7 +264,8 @@ class ServiceDetailsComponent(models.Model):
             (
                 'service_id',
                 'service_details_id',
-                'service_component_implementation_detail_id'
+                'service_component_implementation_detail_id',
+                'configuration_parameters'
             ),
         )
         verbose_name_plural = "5. Service Components Implementations Details Link"
@@ -272,6 +275,11 @@ class ServiceDetailsComponent(models.Model):
     service_details_id = models.ForeignKey(ServiceDetails)
     service_component_implementation_detail_id = models.ForeignKey(
         ServiceComponentImplementationDetail
+    )
+    configuration_parameters = RichTextUploadingField(
+        default=None,
+        blank=True,
+        null=True
     )
 
     def __unicode__(self):
@@ -283,6 +291,7 @@ class ServiceDetailsComponent(models.Model):
             "service_uuid": self.service_id.name,
             "service_details_version": self.service_details_id.version,
             "service_component_implementation_detail_uuid": self.service_component_implementation_detail_id.pk,
+            "configuration_parameters": self.configuration_parameters,
         }
 
     def as_full(self):
@@ -302,6 +311,7 @@ class ServiceDetailsComponent(models.Model):
             "component_implementation_details": {
                 "uuid": self.service_component_implementation_detail_id.pk,
                 "version": self.service_component_implementation_detail_id.version,
+                "configuration_parameters": self.configuration_parameters,
                 "component": {
                     "uuid": self.service_component_implementation_detail_id.component_id.pk,
                     "name": self.service_component_implementation_detail_id.component_id.name
@@ -309,6 +319,7 @@ class ServiceDetailsComponent(models.Model):
                 "component_implementation": {
                     "uuid": self.service_component_implementation_detail_id.component_implementation_id.pk,
                     "name": self.service_component_implementation_detail_id.component_implementation_id.name,
+                    "configuration_parameters": self.configuration_parameters,
                 }
             }
         }

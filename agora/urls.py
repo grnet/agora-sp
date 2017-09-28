@@ -21,7 +21,7 @@ from django.views.generic import RedirectView
 from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
-
+from djangosaml2.views import echo_attributes
 
 urlpatterns = [
     url(r'^api/admin/?', admin.site.urls),
@@ -49,7 +49,7 @@ urlpatterns = [
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'^saml2/', include('djangosaml2.urls')),
-    url(r'^test/', 'djangosaml2.views.echo_attributes'),
+    url(r'^test/', echo_attributes),
     url(r'^/?$', RedirectView.as_view(url='/ui/catalogue/services')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
