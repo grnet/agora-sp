@@ -15,7 +15,7 @@ api/v2:
         .string: {}
     .actions=:
       .list: {}
-  service:
+  services:
     .collection:
       model: service.models.Service
     '*':
@@ -25,11 +25,9 @@ api/v2:
       name:
         .string: {}
         .filterable: {}
-        .searchable: {}
         .sortable: {}
       short_description:
         .string: {}
-        .searchable: {}
       description_external:
         .string: {}
       description_internal:
@@ -66,7 +64,7 @@ api/v2:
       .create: {}
       .delete: {}
       .update: {}
-  service_details:
+  service_versions:
     .collection:
       model: service.models.ServiceDetails
     '*':
@@ -79,6 +77,62 @@ api/v2:
         .ref: {'to': '/api/v2/service_status'}
       version:
         .string: {}
+      features_current:
+        .string: {}
+      usage_policy_has:
+        .boolean: {}
+      usage_policy_url:
+        .string: {}
+      privacy_policy_has:
+        .boolean: {}
+      privacy_policy_url:
+        .string: {}
+      user_documentation_has:
+        .boolean: {}
+      user_documentation_url:
+        .blankable: {}
+        .nullable: {}
+        .string: {}
+      operations_documentation_has:
+        .boolean: {}
+      operations_documentation_url:
+        .string: {}
+      monitoring_has:
+        .boolean: {}
+      monitoring_url:
+        .string: {}
+      accounting_has:
+        .boolean: {}
+      accounting_url:
+        .string: {}
+      business_continuity_plan_has:
+        .boolean: {}
+      business_continuity_plan_url:
+        .string: {}
+      disaster_recovery_plan_has:
+        .boolean: {}
+      disaster_recovery_plan_url:
+        .string: {}
+      decommissioning_procedure_has:
+        .boolean: {}
+      decommissioning_procedure_url:
+        .string: {}
+      cost_to_run:
+        .string: {}
+      cost_to_build:
+        .string: {}
+      use_cases:
+        .string: {}
+      is_in_catalogue:
+        .boolean: {}
+      .actions=:
+        .retrieve: {}
+        .update: {}
+    .actions=:
+      .list: {}
+      .create: {}
+      .delete: {}
+      .update: {}
   service_dependsOn_service:
     .collection:
       model: service.models.Service_DependsOn_Service
@@ -110,6 +164,8 @@ api/v2:
         .readonly: {}
       value:
         .string: {}
+        .sortable: {}
+        .filterable: {}
       order:
         .integer: {}
       .actions=:
@@ -129,7 +185,6 @@ api/v2:
       value:
         .string: {}
         .filterable: {}
-        .searchable: {}
         .sortable: {}
       order:
         .integer: {}
