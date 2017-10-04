@@ -1,9 +1,14 @@
 import gen from 'ember-gen/lib/gen';
 import { field } from 'ember-gen';
 
+const {
+  get
+} = Ember;
+
 export default gen.CRUDGen.extend({
   modelName: 'service-trl',
   auth: true,
+  order: 100,
   path: 'service-trls',
   resourceName: 'service-trls',
   list: {

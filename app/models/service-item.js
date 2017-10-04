@@ -16,4 +16,7 @@ export default DS.Model.extend({
   short_description: DS.attr(),
   logo: DS.attr(),
   request_procedures: DS.attr(),
+  __api__: {
+    path: 'services'
+  }
 });

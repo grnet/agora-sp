@@ -19,7 +19,7 @@ export default AuthGen.extend({
     },
     routeMixins: [{
       handleTokenLogin(token) {
-        if (get(this, 'session.isAutneticated')) {
+        if (get(this, 'session.isAuthenticated')) {
           //resetHash(window);
           return;
         }
