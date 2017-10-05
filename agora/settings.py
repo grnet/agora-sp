@@ -21,9 +21,6 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DIR_RESOURCES = 'resources'
 PATH_RESOURCES = os.path.join(BASE_DIR, DIR_RESOURCES)
 
-FILE_PERMISSIONS = 'permissions.json'
-FILEPATH_PERMISSIONS = os.path.join(PATH_RESOURCES, FILE_PERMISSIONS)
-
 FILE_SPEC = 'agora.spec'
 FILEPATH_SPEC = os.path.join(PATH_RESOURCES, FILE_SPEC)
 
