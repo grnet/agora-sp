@@ -18,7 +18,7 @@ export default gen.CRUDGen.extend({
       fields: [
         //'id',
         'version',
-        'status',
+        'status.value',
         'is_in_catalogue',
         'id_service.name'
       ],

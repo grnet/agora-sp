@@ -26,5 +26,5 @@ export default DS.Model.extend({
   cost_to_build: DS.attr(),
   use_cases: DS.attr(),
   is_in_catalogue: DS.attr(),
-  //status: DS.attr(),
+  status: DS.belongsTo('service-status'),
 });
