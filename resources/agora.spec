@@ -1,4 +1,5 @@
 .meta:
+  root_url: http://localhost:8080
   get_rules: agora.utils.get_rules
 api/v2:
   .endpoint: {}
@@ -92,7 +93,7 @@ api/v2:
           to: /api/v2/service
       status:
         .ref:
-          to: /api/v2/service_status
+          to: /api/v2/service-status
       version:
         .string: {}
       features_current:
@@ -184,7 +185,7 @@ api/v2:
         .ref: {'to': '/api/v2/service'}
       id_external_service:
         .ref: {'to': '/api/v2/external_service'}
-  service_status:
+  service-status:
     .collection:
       model: service.models.ServiceStatus
     '*':
