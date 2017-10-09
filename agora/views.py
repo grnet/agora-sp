@@ -11,21 +11,12 @@ from django.http import HttpResponse
 logger = logging.getLogger(__name__)
 
 
-def _strip_api_version(permissions):
-    perms = {}
-
-    for (key, value) in permissions.items():
-        perms[key.replace('api/v2/', '')] = value
-
-    return perms
-
-
 def config(request):
 
     permissions = load_permissions()
 
     config_data = {
-        'permissions': _strip_api_version(permissions),
+        'permissions': permissions,
     }
     return HttpResponse(json.dumps(config_data),
                         content_type='application/json')
