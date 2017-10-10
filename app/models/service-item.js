@@ -21,6 +21,11 @@ export default DS.Model.extend({
       optionLabelAttr: 'value'
     }
   }),
+  id_service_owner: DS.belongsTo('service-owner', {
+    formAttrs: {
+      optionLabelAttr: 'name'
+    }
+  }),
   __api__: {
     path: 'services'
   }

@@ -17,7 +17,8 @@ export default AgoraGen.extend({
         'name',
         'service_area',
         'short_description',
-        'service_trl.value'
+        'service_trl.value',
+        'id_service_owner.first_name'
       ]
     }
   }
