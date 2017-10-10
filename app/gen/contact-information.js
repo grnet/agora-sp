@@ -1,10 +1,9 @@
-import gen from 'ember-gen/lib/gen';
+import { AgoraGen } from '../lib/common';
 
-export default gen.CRUDGen.extend({
+export default AgoraGen.extend({
   modelName: 'contact-information',
-  auth: true,
   path: 'contact-information',
-  resourceName: 'contact-information',
+  resourceName: 'api/v2/contact-information',
   list: {
     layout: 'table',
     page: {

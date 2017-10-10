@@ -1,11 +1,10 @@
-import gen from 'ember-gen/lib/gen';
+import { AgoraGen } from '../lib/common';
 
-export default gen.CRUDGen.extend({
-  modelName: 'service-version',
-  auth: true,
+export default AgoraGen.extend({
+  modelName: 'service_version',
   order: 100,
   path: 'service-versions',
-  resourceName: 'service-versions',
+  resourceName: 'api/v2/service-versions',
   list: {
     layout: 'table',
     page: {

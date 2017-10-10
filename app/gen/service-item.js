@@ -1,9 +1,8 @@
-import gen from 'ember-gen/lib/gen';
+import { AgoraGen } from '../lib/common';
 
-export default gen.CRUDGen.extend({
+export default AgoraGen.extend({
   modelName: 'service-item',
-  resourceName: 'services',
-  auth: true,
+  resourceName: 'api/v2/services',
   path: 'services',
   list: {
     layout: 'table',

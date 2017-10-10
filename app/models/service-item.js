@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import Ember from 'ember';
 
 export default DS.Model.extend({
   service_type: DS.attr(),
@@ -7,7 +8,6 @@ export default DS.Model.extend({
   description_external: DS.attr(),
   value_to_customer: DS.attr(),
   service_area: DS.attr(),
-  service_trl: DS.belongsTo('service-trl'),
   competitors: DS.attr(),
   id_contact_information: DS.attr(),
   id_contact_information_internal: DS.attr(),
@@ -16,6 +16,11 @@ export default DS.Model.extend({
   short_description: DS.attr(),
   logo: DS.attr(),
   request_procedures: DS.attr(),
+  service_trl: DS.belongsTo('service-trl', {
+    formAttrs: {
+      optionLabelAttr: 'value'
+    }
+  }),
   __api__: {
     path: 'services'
   }
