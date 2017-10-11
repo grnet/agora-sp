@@ -1,5 +1,5 @@
 .meta:
-  root_url: http://localhost:8080
+  root_url: http://127.0.0.1:8080
   get_rules: agora.utils.get_rules
 api/v2:
   .endpoint: {}
@@ -14,8 +14,26 @@ api/v2:
         .string: {}
       email:
         .string: {}
+      first_name:
+        .string: {}
+      last_name:
+        .string: {}
+      is_staff:
+        .boolean: {}
+      is_active:
+        .boolean: {}
+      date_joined:
+        .string: {}
+      avatar:
+        .file: {}
+      .actions=:
+        .retrieve: {}
+        .update: {}
     .actions=:
       .list: {}
+      .create: {}
+      .delete: {}
+      .update: {}
   services:
     .collection:
       model: service.models.Service
@@ -90,7 +108,7 @@ api/v2:
         .readonly: {}
       id_service:
         .ref:
-          to: /api/v2/service
+          to: /api/v2/services
       status:
         .ref:
           to: /api/v2/service-status
@@ -153,6 +171,7 @@ api/v2:
         .nullable: {}
       use_cases:
         .string: {}
+        .nullable: {}
       is_in_catalogue:
         .boolean: {}
       .actions=:
@@ -326,6 +345,9 @@ api/v2:
     .collection:
       model: accounts.models.User
     '*':
+      id:
+        .uuid: {}
+        .readonly: {}
       username:
         .string: {}
       email:
@@ -339,7 +361,7 @@ api/v2:
       is_active:
         .boolean: {}
       date_joined:
-        .datetime: {format: ['%Y-%m-%dT%H:%M']}
+        .datetime: {format: '%Y-%m-%dT%H:%M'}
       avatar:
         .file: {}
       .actions=:

@@ -23,6 +23,12 @@ RULES = [
     ('api/v2/custom-users', 'update', '*', '*', '*', '*'),
     ('api/v2/custom-users', 'destroy', '*', '*', '*', '*'),
 
+    ('api/v2/service-owners', 'list', '*', '*', '*', '*'),
+    ('api/v2/service-owners', 'retrieve', '*', '*', '*', '*'),
+    ('api/v2/service-owners', 'create', '*', '*', '*', '*'),
+    ('api/v2/service-owners', 'update', '*', '*', '*', '*'),
+    ('api/v2/service-owners', 'destroy', '*', '*', '*', '*'),
+
     ('api/v2/contact-information', 'list', '*', '*', '*', '*'),
     ('api/v2/contact-information', 'retrieve', '*', '*', '*', '*'),
     ('api/v2/contact-information', 'create', '*', '*', '*', '*'),
