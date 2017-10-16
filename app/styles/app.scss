@@ -1,7 +1,10 @@
-//$primary: "indigo" !default;
+$primary: "blue" !default;
 //$accent: "pink" !default;
 //$warn: "red" !default;
 //$background: "grey" !default;
 //$link: "light-blue" !default;
 
 @import "ember-gen";
+
+.site-header {
+}

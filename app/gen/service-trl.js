@@ -19,6 +19,7 @@ export default AgoraGen.extend({
       label: 'Service Technology Readiness Levels'
     },
     row: {
+      actions: ['gen:details', 'gen:edit', 'remove'],
       fields: [
         //'id',
         'value',
@@ -33,7 +34,8 @@ export default AgoraGen.extend({
         fields: [
           field(
             'value', {
-              type: 'text'
+              type: 'text',
+              label: 'service_trl.fields.value'
             }
           ),
           field(

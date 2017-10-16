@@ -4,6 +4,9 @@ module.exports = function(environment) {
   var ENV = {
     modulePrefix: 'agora-admin',
     environment: environment,
+    i18n: {
+      defaultLocale: 'en'
+    },
     rootURL: '/',
     locationType: 'auto',
     appURL: 'http://127.0.0.1:8080/api/v2/',

@@ -9,8 +9,16 @@ export default DS.Model.extend({
   value_to_customer: DS.attr(),
   service_area: DS.attr(),
   competitors: DS.attr(),
-  id_contact_information: DS.attr(),
-  id_contact_information_internal: DS.attr(),
+  id_contact_information: DS.belongsTo('contact-information', {
+    formAttrs: {
+      optionLabelAttr: 'first_name'
+    }
+  }),
+  id_contact_information_internal: DS.belongsTo('contact-information', {
+    formAttrs: {
+      optionLabelAttr: 'first_name'
+    }
+  }),
   risks: DS.attr(),
   description_internal: DS.attr(),
   short_description: DS.attr(),
@@ -23,7 +31,7 @@ export default DS.Model.extend({
   }),
   id_service_owner: DS.belongsTo('service-owner', {
     formAttrs: {
-      optionLabelAttr: 'name'
+      optionLabelAttr: 'full_name'
     }
   }),
   __api__: {
