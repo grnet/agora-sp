@@ -45,6 +45,7 @@ api/v2:
         .string: {}
         .filterable: {}
         .sortable: {}
+        .required: {}
       short_description:
         .string: {}
         .nullable: {}
@@ -55,7 +56,8 @@ api/v2:
         .string: {}
         .nullable: {}
       service_area:
-        .string: {}
+        .ref:
+          to: /api/v2/service-areas
         .nullable: {}
         .filterable: {}
       service_type:
@@ -107,9 +109,11 @@ api/v2:
         .uuid: {}
         .readonly: {}
       id_service:
+        .filterable: {}
         .ref:
           to: /api/v2/services
       status:
+        .filterable: {}
         .ref:
           to: /api/v2/service-status
       version:
@@ -295,7 +299,7 @@ api/v2:
         .ref: {'to': '/api/v2/service'}
       role:
         .string: {}
-  service_areas:
+  service-areas:
     .collection:
       model: service.models.ServiceArea
     '*':
@@ -307,11 +311,14 @@ api/v2:
       icon:
         .file: {}
       .actions=:
+        .retrieve: {}
         .update: {}
         .delete: {}
     .actions=:
       .list: {}
       .create: {}
+      .delete: {}
+      .update: {}
   service-owners:
     .collection:
       model: owner.models.ServiceOwner

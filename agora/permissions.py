@@ -11,6 +11,12 @@ RULES = [
     ('api/v2/service-trls', 'update', '*', '*', '*', '*'),
     ('api/v2/service-trls', 'destroy', '*', '*', '*', '*'),
 
+    ('api/v2/service-areas', 'list', '*', '*', '*', '*'),
+    ('api/v2/service-areas', 'retrieve', '*', '*', '*', '*'),
+    ('api/v2/service-areas', 'create', '*', '*', '*', '*'),
+    ('api/v2/service-areas', 'update', '*', '*', '*', '*'),
+    ('api/v2/service-areas', 'destroy', '*', '*', '*', '*'),
+
     ('api/v2/institutions', 'list', '*', '*', '*', '*'),
     ('api/v2/institutions', 'retrieve', '*', '*', '*', '*'),
     ('api/v2/institutions', 'create', '*', '*', '*', '*'),

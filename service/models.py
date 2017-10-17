@@ -10,6 +10,18 @@ from accounts.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
 
 
+class ServiceArea(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, default=None, blank=True, null=True)
+    icon = models.ImageField(upload_to=(os.path.join(settings.BASE_DIR, "static", "img", "logos")), default="/var/www/html/agora/static/img/logos/logo-none.jpg")
+
+    class Meta:
+        verbose_name_plural = "06. Service Areas (settings)"
+
+    def __unicode__(self):
+        return str(self.name)
+
+
 class ServiceTrl(models.Model):
 
     class Meta:
@@ -42,7 +54,7 @@ class Service(models.Model):
     short_description = RichTextUploadingField(default=None, blank=True, null=True)
     description_external = RichTextUploadingField(default=None, blank=True, null=True)
     description_internal = RichTextUploadingField(default=None, blank=True, null=True)
-    service_area = models.CharField(max_length=255, default=None, blank=True, null=True)
+    service_area = models.ForeignKey(ServiceArea, blank=False, null=True)
     service_type = models.CharField(max_length=255, default=None, blank=True, null=True)
     service_trl = models.ForeignKey(ServiceTrl, null=True)
     request_procedures = RichTextUploadingField(default=None, blank=True, null=True)
@@ -1033,18 +1045,6 @@ class UserCustomer(models.Model):
             self.role = None
         super(UserCustomer, self).save(*args, **kwargs)
 
-
-class ServiceArea(models.Model):
-
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255, default=None, blank=True, null=True)
-    icon = models.ImageField(upload_to=(os.path.join(settings.BASE_DIR, "static", "img", "logos")), default="/var/www/html/agora/static/img/logos/logo-none.jpg")
-
-    class Meta:
-        verbose_name_plural = "06. Service Areas (settings)"
-
-    def __unicode__(self):
-        return str(self.name)
 
 class Roles(models.Model):
 
