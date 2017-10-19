@@ -34,5 +34,10 @@ export default AgoraGen.extend({
   },
   details: {
     fieldsets: DETAILS_FIELDSETS,
+    page: {
+      title: Ember.computed('model.name', function() {
+        return Ember.get(this, 'model.name');
+      })
+    }
   }
 });

@@ -47,5 +47,26 @@ export default AgoraGen.extend({
         'id_service.name'
       ],
     }
+  },
+  create: {
+    //provide url params with this magic trick
+    routeMixins: {
+      queryParams: {'service': { refreshModel: true }}
+    },
+    //prepopulate a field from a query param
+    getModel(params) {
+      const store = Ember.get(this, 'store');
+      //prepopulate field only if query param exists
+      if(params.service) {
+        //get the service item from the id provided from query param
+        let service = store.findRecord('service-item', params.service);
+        return service.then(function(service){
+          //create a record with the model field prepopulated
+          return store.createRecord('service-version', {
+            id_service: service
+          });
+        })
+      }
+    }
   }
 });

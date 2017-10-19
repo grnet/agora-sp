@@ -5,6 +5,7 @@ $primary: "blue" !default;
 //$link: "light-blue" !default;
 
 @import "ember-gen";
+@import "_buttons";
 
 .site-header {
 }

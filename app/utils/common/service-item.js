@@ -30,6 +30,9 @@ const DETAILS_FIELDSETS = [
   },
   {
     label: 'service_version.belongs.cards.title',
+    layout: {
+      flex: [ 100, 100 ]
+    },
     fields: [
       field('versions', {
         modelName: 'service_version',
@@ -41,6 +44,27 @@ const DETAILS_FIELDSETS = [
         },
         modelMeta: {
           row: {
+            actions: ['goToDetails', 'goToEdit'],
+            actionsMap: {
+              goToDetails: {
+                label: 'details',
+                icon: 'remove red eye',
+                action(route, model) {
+                  let resource = model.get('_internalModel.modelName'),
+                    dest_route = `${resource}.record.index`;
+                  route.transitionTo(dest_route, model)
+                }
+              },
+              goToEdit: {
+                label: 'edit',
+                icon: 'edit',
+                action(route, model) {
+                  let resource = model.get('_internalModel.modelName'),
+                    dest_route = `${resource}.record.edit.index`;
+                  route.transitionTo(dest_route, model)
+                }
+              }
+            },
             fields: [
               field(
                 'version', {
@@ -78,49 +102,57 @@ const DETAILS_FIELDSETS = [
       field(
         'short_description', {
           type: 'text',
-          label: 'service_item.fields.short_description'
+          label: 'service_item.fields.short_description',
+          htmlSafe: true
         }
       ),
       field(
         'description_external', {
           type: 'text',
-          label: 'service_item.fields.description_external'
+          label: 'service_item.fields.description_external',
+          htmlSafe: true
         }
       ),
       field(
         'description_internal', {
           type: 'text',
-          label: 'service_item.fields.description_external'
+          label: 'service_item.fields.description_external',
+          htmlSafe: true
         }
       ),
       field(
         'funders_for_service', {
           type: 'text',
-          label: 'service_item.fields.funders'
+          label: 'service_item.fields.funders',
+          htmlSafe: true
         }
       ),
       field(
         'value_to_customer', {
           type: 'text',
-          label: 'service_item.fields.customer_value'
+          label: 'service_item.fields.customer_value',
+          htmlSafe: true
         }
       ),
       field(
         'competitors', {
           type: 'text',
-          label: 'service_item.fields.competitors'
+          label: 'service_item.fields.competitors',
+          htmlSafe: true
         }
       ),
       field(
         'risks', {
           type: 'text',
-          label: 'service_item.fields.risks'
+          label: 'service_item.fields.risks',
+          htmlSafe: true
         }
       ),
       field(
         'request_procedures', {
           type: 'text',
-          label: 'service_item.fields.procedures'
+          label: 'service_item.fields.procedures',
+          htmlSafe: true
         }
       ),
       field(
