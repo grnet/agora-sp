@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import { AgoraGen } from '../lib/common';
 import { field } from 'ember-gen';
 

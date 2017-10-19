@@ -1,3 +1,4 @@
+import Ember from 'ember';
 import { AgoraGen } from '../lib/common';
 import validate from 'ember-gen/validate';
 import { DETAILS_FIELDSETS } from '../utils/common/service-item';
@@ -24,7 +25,7 @@ export default AgoraGen.extend({
       actions: ['gen:details', 'gen:edit', 'remove'],
       fields: [
         'name',
-        'service_area',
+        'service_area.name',
         'short_description',
         'service_trl.value',
         'id_service_owner.full_name'

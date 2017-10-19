@@ -12,7 +12,7 @@ const DETAILS_FIELDSETS = [
         }
       ),
       field(
-        'service_area', {
+        'service_area.name', {
           type: 'text',
           label: 'service_item.fields.service_area'
         }
