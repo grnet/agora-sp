@@ -55,7 +55,15 @@ const DETAILS_FIELDSETS = [
             ]
           }
         }
-      })
+      }),
+      field('service_version_url', {
+        displayComponent: 'cta-btn',
+        displayAttrs: {
+          hideLabel: true,
+          //classNames: ['cta-btn cta-btn--text-right']
+        },
+        label: 'service_item.links.create_service_version',
+      }),
     ]
   },
   {

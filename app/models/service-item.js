@@ -8,6 +8,9 @@ export default DS.Model.extend({
   description_external: DS.attr(),
   value_to_customer: DS.attr(),
   service_area: DS.attr(),
+  service_version_url: Ember.computed('id', function() {
+    return `/service-versions/create?service=${Ember.get(this, 'id')}`;
+  }),
   competitors: DS.attr(),
   id_contact_information: DS.belongsTo('contact-information', {
     formAttrs: {
