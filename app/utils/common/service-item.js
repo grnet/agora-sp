@@ -1,33 +1,58 @@
 import { field } from 'ember-gen';
 
-const DETAILS_FIELDSETS = [
-  //this creates a new referenced table inside another gen
-  {
-    label: 'service_item.cards.basic_information',
-    fields: [
-      field(
-        'name', {
-          type: 'text',
-          label: 'service_item.fields.name'
-        }
-      ),
-      field(
-        'service_area.name', {
-          type: 'text',
-          label: 'service_item.fields.service_area'
-        }
-      ),
-      field(
-        'service_trl.value', {
-          type: 'text',
-          label: 'service_trl.belongs.value'
-        }
-      ),
-    ],
-    layout: {
-      flex: [ 100, 100, 100 ]
+const SORT_FIELDS = [
+  'name',
+  'service_area.name',
+  'service_trl.value'
+];
+
+const BASIC_INFO_FIELDS =  [
+  field(
+    'name', {
+      type: 'text',
+      label: 'service_item.fields.name'
     }
-  },
+  ),
+  field(
+    'service_area.name', {
+      type: 'text',
+      label: 'service_item.fields.service_area'
+    }
+  ),
+  field(
+    'service_trl.value', {
+      type: 'text',
+      label: 'service_trl.belongs.value'
+    }
+  ),
+  field(
+    'service_type', {
+      type: 'text',
+      label: 'service_item.fields.service_type'
+    }
+  ),
+];
+
+const TABLE_FIELDS = BASIC_INFO_FIELDS.concat([
+  field(
+    'id_service_owner.full_name', {
+      type: 'text',
+      label: 'service_owner.belongs.full_name'
+    }
+  ),
+]);
+
+const DETAILS_BASIC_INFO_FIELDSET = {
+  label: 'service_item.cards.basic_information',
+  fields: BASIC_INFO_FIELDS,
+  layout: {
+    flex: [ 100, 100, 100, 100 ]
+  }
+};
+
+const DETAILS_FIELDSETS = [
+  DETAILS_BASIC_INFO_FIELDSET,
+  //this creates a new referenced table inside another gen
   {
     label: 'service_version.belongs.cards.title',
     layout: {
@@ -52,7 +77,7 @@ const DETAILS_FIELDSETS = [
                 action(route, model) {
                   let resource = model.get('_internalModel.modelName'),
                     dest_route = `${resource}.record.index`;
-                  route.transitionTo(dest_route, model)
+                  route.transitionTo(dest_route, model);
                 }
               },
               goToEdit: {
@@ -61,7 +86,7 @@ const DETAILS_FIELDSETS = [
                 action(route, model) {
                   let resource = model.get('_internalModel.modelName'),
                     dest_route = `${resource}.record.edit.index`;
-                  route.transitionTo(dest_route, model)
+                  route.transitionTo(dest_route, model);
                 }
               }
             },
@@ -93,12 +118,6 @@ const DETAILS_FIELDSETS = [
   {
     label: 'service_item.cards.details',
     fields: [
-      field(
-        'service_type', {
-          type: 'text',
-          label: 'service_item.fields.service_type'
-        }
-      ),
       field(
         'short_description', {
           type: 'text',
@@ -174,4 +193,4 @@ const DETAILS_FIELDSETS = [
   },
 ];
 
-export { DETAILS_FIELDSETS };
+export { TABLE_FIELDS, SORT_FIELDS, DETAILS_FIELDSETS, BASIC_INFO_FIELDS };

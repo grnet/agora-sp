@@ -1,6 +1,13 @@
 import Ember from 'ember';
 import { AgoraGen } from '../lib/common';
 import { field } from 'ember-gen';
+import {
+  CREATE_FIELDSETS,
+  TABLE_FIELDS,
+  SORT_FIELDS,
+  DETAILS_FIELDSETS,
+  BASIC_INFO_FIELDS
+} from '../utils/common/service-version';
 
 export default AgoraGen.extend({
   modelName: 'service_version',
@@ -25,7 +32,6 @@ export default AgoraGen.extend({
             'id_service', {
               modelName:'service_item',
               type: 'model',
-              displayAttr: 'name'
             }
           ),
           field(
@@ -39,13 +45,8 @@ export default AgoraGen.extend({
       }
     },
     row: {
-      fields: [
-        //'id',
-        'version',
-        'status.value',
-        'is_in_catalogue',
-        'id_service.name'
-      ],
+      actions: ['gen:details', 'gen:edit', 'remove'],
+      fields: TABLE_FIELDS,
     }
   },
   create: {
@@ -67,6 +68,23 @@ export default AgoraGen.extend({
           });
         })
       }
+
+      return store.createRecord('service-version', {});
+    },
+    fieldsets: CREATE_FIELDSETS,
+  },
+  edit: {
+    fieldsets: CREATE_FIELDSETS
+  },
+  details: {
+    preloadModels: ['service-item'],
+    fieldsets: DETAILS_FIELDSETS,
+    page: {
+      title: Ember.computed('model.version', 'model.id_service.name', function() {
+        const service_name = Ember.get(this, 'model.id_service.name');
+        const service_version = Ember.get(this,'model.version');
+        return `${service_name} - v${service_version}`;
+      })
     }
   }
 });

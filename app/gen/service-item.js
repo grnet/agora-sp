@@ -1,7 +1,8 @@
 import Ember from 'ember';
 import { AgoraGen } from '../lib/common';
 import validate from 'ember-gen/validate';
-import { DETAILS_FIELDSETS } from '../utils/common/service-item';
+import { field } from 'ember-gen';
+import { TABLE_FIELDS, SORT_FIELDS, DETAILS_FIELDSETS, BASIC_INFO_FIELDS } from '../utils/common/service-item';
 
 export default AgoraGen.extend({
   modelName: 'service-item',
@@ -23,13 +24,39 @@ export default AgoraGen.extend({
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],
-      fields: [
-        'name',
-        'service_area.name',
-        'short_description',
-        'service_trl.value',
-        'id_service_owner.full_name'
-      ]
+      fields: TABLE_FIELDS
+    },
+    filter: {
+      active: true,
+      serverSide: true,
+      search: false,
+      meta: {
+        fields: [
+          field(
+            'name', {
+              type: 'text',
+              label: 'Name'
+            }
+          ),
+          field(
+            'service_trl', {
+              modelName:'service_trl',
+              type: 'model',
+              displayAttr: 'value'
+            }
+          )
+        ]
+      }
+    },
+    sort: {
+      serverSide: true,
+      active: true,
+      fields: SORT_FIELDS
+    },
+    paginate: {
+      limits: [ 10, 50, 100 ],
+      serverSide: true,
+      active: true
     }
   },
   details: {

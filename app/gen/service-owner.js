@@ -2,6 +2,7 @@ import gen from 'ember-gen/lib/gen';
 
 export default gen.CRUDGen.extend({
   modelName: 'service-owner',
+  auth: true,
   order: 100,
   path: 'service-owners',
   resourceName: 'api/v2/service-owners',
