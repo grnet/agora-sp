@@ -5,3 +5,5 @@ test1.json
 logs/*
 *.retry
 static/img/uploads/*
+*~
+*.swp
