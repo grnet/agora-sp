@@ -59,6 +59,7 @@ api/v2:
         .ref:
           to: /api/v2/service-areas
         .nullable: {}
+        .sortable: {}
         .filterable: {}
       service_type:
         .string: {}
@@ -67,6 +68,8 @@ api/v2:
       service_trl:
         .ref:
           to: /api/v2/service-trls
+        .sortable: {}
+        .filterable: {}
       request_procedures:
         .string: {}
         .nullable: {}
@@ -95,6 +98,7 @@ api/v2:
         .file: {}
       .actions=:
         .retrieve: {}
+        .delete: {}
         .update: {}
     .actions=:
       .list: {}
@@ -119,6 +123,9 @@ api/v2:
       version:
         .string: {}
       features_current:
+        .string: {}
+        .nullable: {}
+      features_future:
         .string: {}
         .nullable: {}
       usage_policy_has:
@@ -181,6 +188,7 @@ api/v2:
       .actions=:
         .retrieve: {}
         .update: {}
+        .delete: {}
     .actions=:
       .list: {}
       .create: {}
