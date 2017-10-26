@@ -2,11 +2,17 @@ import DS from 'ember-data';
 import Ember from 'ember';
 
 export default DS.Model.extend({
+  name: DS.attr(),
   service_type: DS.attr(),
   funders_for_service: DS.attr(),
-  name: DS.attr(),
   description_external: DS.attr(),
   value_to_customer: DS.attr(),
+  risks: DS.attr(),
+  description_internal: DS.attr(),
+  short_description: DS.attr(),
+  competitors: DS.attr(),
+  logo: DS.attr(),
+  request_procedures: DS.attr(),
   service_version_url: Ember.computed('id', function() {
     return `/service-versions/create?service=${Ember.get(this, 'id')}`;
   }),
@@ -15,22 +21,16 @@ export default DS.Model.extend({
       optionLabelAttr: 'name'
     }
   }),
-  competitors: DS.attr(),
   id_contact_information: DS.belongsTo('contact-information', {
     formAttrs: {
-      optionLabelAttr: 'first_name'
+      optionLabelAttr: 'full_name'
     }
   }),
   id_contact_information_internal: DS.belongsTo('contact-information', {
     formAttrs: {
-      optionLabelAttr: 'first_name'
+      optionLabelAttr: 'full_name'
     }
   }),
-  risks: DS.attr(),
-  description_internal: DS.attr(),
-  short_description: DS.attr(),
-  logo: DS.attr(),
-  request_procedures: DS.attr(),
   service_trl: DS.belongsTo('service-trl', {
     formAttrs: {
       optionLabelAttr: 'value'

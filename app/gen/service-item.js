@@ -2,7 +2,13 @@ import Ember from 'ember';
 import { AgoraGen } from '../lib/common';
 import validate from 'ember-gen/validate';
 import { field } from 'ember-gen';
-import { TABLE_FIELDS, SORT_FIELDS, DETAILS_FIELDSETS, BASIC_INFO_FIELDS } from '../utils/common/service-item';
+import {
+  CREATE_FIELDSETS,
+  TABLE_FIELDS,
+  SORT_FIELDS,
+  DETAILS_FIELDSETS,
+  BASIC_INFO_FIELDS
+} from '../utils/common/service-item';
 
 export default AgoraGen.extend({
   modelName: 'service-item',
@@ -66,5 +72,11 @@ export default AgoraGen.extend({
         return Ember.get(this, 'model.name');
       })
     }
+  },
+  edit: {
+    fieldsets: CREATE_FIELDSETS
+  },
+  create: {
+    fieldsets: CREATE_FIELDSETS
   }
 });
