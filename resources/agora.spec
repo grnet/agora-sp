@@ -465,3 +465,71 @@ api/v2:
       .create: {}
       .delete: {}
       .update: {}
+  service-components:
+    .collection:
+      model: component.models.ServiceComponent
+    '*':
+      id:
+        .uuid: {}
+        .readonly: {}
+      name:
+        .string: {}
+        .nullable: {}
+      description:
+        .string: {}
+        .nullable: {}
+      logo:
+        .file: {}
+      .actions=:
+        .retrieve: {}
+        .update: {}
+    .actions=:
+      .list: {}
+      .create: {}
+      .delete: {}
+      .update: {}
+  service-component-implementations:
+    .collection:
+      model: component.models.ServiceComponentImplementation
+    '*':
+      id:
+        .uuid: {}
+        .readonly: {}
+      component_id:
+        .ref: {'to': '/api/v2/service-components'}
+      name:
+        .string: {}
+        .nullable: {}
+      description:
+        .string: {}
+        .nullable: {}
+      .actions=:
+        .retrieve: {}
+        .update: {}
+    .actions=:
+      .list: {}
+      .create: {}
+      .delete: {}
+      .update: {}
+  service-component-implementation-details:
+    .collection:
+      model: component.models.ServiceComponentImplementationDetail
+    '*':
+      id:
+        .uuid: {}
+        .readonly: {}
+      component_id:
+        .ref: {'to': '/api/v2/service-components'}
+      component_implementation_id:
+        .ref: {'to': '/api/v2/service-component-implementations'}
+      version:
+        .string: {}
+        .nullable: {}
+      .actions=:
+        .retrieve: {}
+        .update: {}
+    .actions=:
+      .list: {}
+      .create: {}
+      .delete: {}
+      .update: {}

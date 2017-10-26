@@ -64,4 +64,22 @@ RULES = [
     ('api/v2/service-status', 'create', '*', '*', '*', '*'),
     ('api/v2/service-status', 'update', '*', '*', '*', '*'),
     ('api/v2/service-status', 'destroy', '*', '*', '*', '*'),
+
+    ('api/v2/service-components', 'list', '*', '*', '*', '*'),
+    ('api/v2/service-components', 'retrieve', '*', '*', '*', '*'),
+    ('api/v2/service-components', 'create', '*', '*', '*', '*'),
+    ('api/v2/service-components', 'update', '*', '*', '*', '*'),
+    ('api/v2/service-components', 'destroy', '*', '*', '*', '*'),
+
+    ('api/v2/service-component-implementations', 'list', '*', '*', '*', '*'),
+    ('api/v2/service-component-implementations', 'retrieve', '*', '*', '*', '*'),
+    ('api/v2/service-component-implementations', 'create', '*', '*', '*', '*'),
+    ('api/v2/service-component-implementations', 'update', '*', '*', '*', '*'),
+    ('api/v2/service-component-implementations', 'destroy', '*', '*', '*', '*'),
+
+    ('api/v2/service-component-implementation-details', 'list', '*', '*', '*', '*'),
+    ('api/v2/service-component-implementation-details', 'retrieve', '*', '*', '*', '*'),
+    ('api/v2/service-component-implementation-details', 'create', '*', '*', '*', '*'),
+    ('api/v2/service-component-implementation-details', 'update', '*', '*', '*', '*'),
+    ('api/v2/service-component-implementation-details', 'destroy', '*', '*', '*', '*'),
 ]
