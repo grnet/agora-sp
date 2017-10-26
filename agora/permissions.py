@@ -23,6 +23,18 @@ RULES = [
     ('api/v2/institutions', 'update', '*', '*', '*', '*'),
     ('api/v2/institutions', 'destroy', '*', '*', '*', '*'),
 
+    ('api/v2/user-roles', 'list', '*', '*', '*', '*'),
+    ('api/v2/user-roles', 'retrieve', '*', '*', '*', '*'),
+    ('api/v2/user-roles', 'create', '*', '*', '*', '*'),
+    ('api/v2/user-roles', 'update', '*', '*', '*', '*'),
+    ('api/v2/user-roles', 'destroy', '*', '*', '*', '*'),
+
+    ('api/v2/user-customers', 'list', '*', '*', '*', '*'),
+    ('api/v2/user-customers', 'retrieve', '*', '*', '*', '*'),
+    ('api/v2/user-customers', 'create', '*', '*', '*', '*'),
+    ('api/v2/user-customers', 'update', '*', '*', '*', '*'),
+    ('api/v2/user-customers', 'destroy', '*', '*', '*', '*'),
+
     ('api/v2/custom-users', 'list', '*', '*', '*', '*'),
     ('api/v2/custom-users', 'retrieve', '*', '*', '*', '*'),
     ('api/v2/custom-users', 'create', '*', '*', '*', '*'),

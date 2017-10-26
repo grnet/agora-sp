@@ -194,6 +194,31 @@ api/v2:
       .create: {}
       .delete: {}
       .update: {}
+  user-customers:
+    .collection:
+      model: service.models.UserCustomer
+    '*':
+      id:
+        .uuid: {}
+        .readonly: {}
+      name:
+        .ref:
+          to: api/v2/user-roles
+      role:
+        .string: {}
+        .nullable: {}
+      service_id:
+        .ref:
+          to: api/v2/services
+      .actions=:
+        .retrieve: {}
+        .delete: {}
+        .update: {}
+    .actions=:
+      .list: {}
+      .create: {}
+      .delete: {}
+      .update: {}
   service_dependsOn_services:
     .collection:
       model: service.models.Service_DependsOn_Service
@@ -278,7 +303,7 @@ api/v2:
     .actions=:
       .list: {}
       .create: {}
-  user_roles:
+  user-roles:
     .collection:
       model: service.models.UserRole
     '*':
@@ -294,6 +319,8 @@ api/v2:
     .actions=:
       .list: {}
       .create: {}
+      .delete: {}
+      .update: {}
   user_customers:
     .collection:
       model: service.models.UserCustomer
