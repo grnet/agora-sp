@@ -465,7 +465,7 @@ api/v2:
       .create: {}
       .delete: {}
       .update: {}
-  service-components:
+  components:
     .collection:
       model: component.models.ServiceComponent
     '*':
@@ -488,7 +488,7 @@ api/v2:
       .create: {}
       .delete: {}
       .update: {}
-  service-component-implementations:
+  component-implementations:
     .collection:
       model: component.models.ServiceComponentImplementation
     '*':
@@ -496,7 +496,7 @@ api/v2:
         .uuid: {}
         .readonly: {}
       component_id:
-        .ref: {'to': '/api/v2/service-components'}
+        .ref: {'to': '/api/v2/components'}
       name:
         .string: {}
         .nullable: {}
@@ -511,7 +511,7 @@ api/v2:
       .create: {}
       .delete: {}
       .update: {}
-  service-component-implementation-details:
+  component-implementation-details:
     .collection:
       model: component.models.ServiceComponentImplementationDetail
     '*':
@@ -519,10 +519,34 @@ api/v2:
         .uuid: {}
         .readonly: {}
       component_id:
-        .ref: {'to': '/api/v2/service-components'}
+        .ref: {'to': '/api/v2/components'}
       component_implementation_id:
-        .ref: {'to': '/api/v2/service-component-implementations'}
+        .ref: {'to': '/api/v2/component-implementations'}
       version:
+        .string: {}
+        .nullable: {}
+      .actions=:
+        .retrieve: {}
+        .update: {}
+    .actions=:
+      .list: {}
+      .create: {}
+      .delete: {}
+      .update: {}
+  component-implementation-detail-link:
+    .collection:
+      model: component.models.ServiceDetailsComponent
+    '*':
+      id:
+        .uuid: {}
+        .readonly: {}
+      service_id:
+        .ref: {'to': '/api/v2/services'}
+      service_details_id:
+        .ref: {'to': '/api/v2/services-versions'}
+      service_component_implementation_detail_id:
+        .ref: {'to': '/api/v2/service-versions'}
+      configuration_parameters:
         .string: {}
         .nullable: {}
       .actions=:
