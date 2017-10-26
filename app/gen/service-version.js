@@ -72,6 +72,12 @@ export default AgoraGen.extend({
       return store.createRecord('service-version', {});
     },
     fieldsets: CREATE_FIELDSETS,
+    onSubmit(model) {
+      const params = Ember.getOwner(this).lookup('router:main').get('currentState.routerJsState.fullQueryParams');
+      if('service' in params) {
+        this.transitionTo(`/services/${params.service}`);
+      }
+    }
   },
   edit: {
     fieldsets: CREATE_FIELDSETS

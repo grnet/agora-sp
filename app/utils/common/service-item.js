@@ -89,8 +89,24 @@ const CUSTOM_VERSIONS_FIELDSET = {
       },
       modelMeta: {
         row: {
-          actions: ['goToDetails', 'goToEdit'],
+          actions: ['goToDetails', 'goToEdit', 'remove'],
           actionsMap: {
+            remove: {
+              label: 'remove',
+              icon: 'delete',
+              confirm: true,
+              warn: true,
+              prompt: {
+                title: 'Remove service version',
+                message: 'Are you sure you want to remove this service version?',
+                cancel: 'Cancel',
+                ok: 'Confirm'
+              },
+              action(route, model) {
+                model.destroyRecord();
+                model.save();
+              }
+            },
             goToDetails: {
               label: 'details',
               icon: 'remove red eye',
