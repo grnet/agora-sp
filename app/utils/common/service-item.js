@@ -14,9 +14,21 @@ const BASIC_INFO_FIELDS =  [
     }
   ),
   field(
+    'logo', {
+      type: 'text',
+      label: 'service_item.fields.logo'
+    }
+  ),
+  field(
     'service_area.name', {
       type: 'text',
       label: 'service_item.fields.service_area'
+    }
+  ),
+  field(
+    'service_type', {
+      type: 'text',
+      label: 'service_item.fields.service_type'
     }
   ),
   field(
@@ -26,9 +38,10 @@ const BASIC_INFO_FIELDS =  [
     }
   ),
   field(
-    'service_type', {
+    'short_description', {
       type: 'text',
-      label: 'service_item.fields.service_type'
+      label: 'service_item.fields.short_description',
+      htmlSafe: true
     }
   ),
 ];
@@ -37,6 +50,11 @@ const BASIC_INFO_FORM_FIELDS =  [
   field(
     'name', {
       label: 'service_item.fields.name'
+    }
+  ),
+  field(
+    'logo', {
+      label: 'service_item.fields.logo'
     }
   ),
   field(
@@ -69,7 +87,7 @@ const DETAILS_BASIC_INFO_FIELDSET = {
   label: 'service_item.cards.basic_information',
   fields: BASIC_INFO_FIELDS,
   layout: {
-    flex: [ 100, 100, 100, 100 ]
+    flex: [ 100, 100, 100, 100, 100, 100 ]
   }
 };
 
@@ -153,13 +171,6 @@ const CUSTOM_VERSIONS_FIELDSET = {
 };
 
 const TEXT_FIELDS = [
-  field(
-    'short_description', {
-      type: 'text',
-      label: 'service_item.fields.short_description',
-      htmlSafe: true
-    }
-  ),
   field(
     'description_external', {
       type: 'text',

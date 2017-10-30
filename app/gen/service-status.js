@@ -11,7 +11,12 @@ export default AgoraGen.extend({
       title: 'Service Status'
     },
     menu: {
-      label: 'Service Status'
+      label: 'Service Status',
+      group: {
+        name: 'settings',
+        label: 'Settings',
+        order: 999
+      }
     },
     row: {
       fields: [

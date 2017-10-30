@@ -1,27 +1,26 @@
 import gen from 'ember-gen/lib/gen';
 
 export default gen.CRUDGen.extend({
-  modelName: 'service-area',
-  auth: true,
-  order: 100,
-  path: 'service-areas',
-  resourceName: 'api/v2/service-areas',
+  modelName: 'user-customer',
+  order: 2,
+  path: 'user-customers',
+  resourceName: 'api/v2/user-customers',
   list: {
     layout: 'table',
     page: {
-      title: 'Service Areas'
+      title: 'User Customers'
     },
     menu: {
-      label: 'Service Areas',
+      label: 'User Customers',
       group: 'settings'
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],
       fields: [
-        //'id',
-        'name',
-        'icon'
+        'name.name',
+        'role',
+        'service_id.name'
       ]
-    },
+    }
   }
 });

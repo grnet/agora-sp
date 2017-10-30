@@ -11,7 +11,8 @@ export default AgoraGen.extend({
       title: 'Users'
     },
     menu: {
-      label: 'Users'
+      label: 'Users',
+      group: 'user-information'
     },
   }
 });

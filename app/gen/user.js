@@ -7,5 +7,8 @@ export default gen.CRUDGen.extend({
   resourceName: 'users',
   list: {
     layout: 'table',
+    menu: {
+      label: 'Users',
+    }
   }
 });

@@ -16,7 +16,8 @@ export default AgoraGen.extend({
       title: 'Service Technology Readiness Levels'
     },
     menu: {
-      label: 'Service Technology Readiness Levels'
+      label: 'Service Technology Readiness Levels',
+      group: 'settings'
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],

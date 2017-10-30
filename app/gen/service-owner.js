@@ -12,7 +12,12 @@ export default gen.CRUDGen.extend({
       title: 'Service Owners'
     },
     menu: {
-      label: 'Service Owners'
+      label: 'Service Owners',
+      group: {
+        name: 'user-information',
+        label: 'User Information',
+        order: 1000
+      }
     },
     row: {
       fields: [

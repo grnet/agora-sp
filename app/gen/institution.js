@@ -10,7 +10,8 @@ export default AgoraGen.extend({
       title: 'Institutions'
     },
     menu: {
-      label: 'Institutions'
+      label: 'Institutions',
+      group: 'user-information'
     },
   }
 });

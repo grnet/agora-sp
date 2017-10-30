@@ -5,6 +5,7 @@ const service_item = {
   },
   'fields': {
     'name': 'Name',
+    'logo': 'Logo',
     'value': 'Value',
     'service_area': 'Service Area',
     'service_type': 'Service Type',

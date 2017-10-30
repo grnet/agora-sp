@@ -10,7 +10,8 @@ export default AgoraGen.extend({
       title: 'Contact Information'
     },
     menu: {
-      label: 'Contact Information'
+      label: 'Contact Information',
+      group: 'user-information'
     },
   }
 });
