@@ -44,6 +44,18 @@ const BASIC_INFO_FIELDS =  [
       htmlSafe: true
     }
   ),
+  field(
+    'id_service_owner.full_name', {
+      type: 'text',
+      label: 'service_owner.belongs.full_name'
+    }
+  ),
+  field(
+    'id_contact_information.first_name', {
+      type: 'text',
+      label: 'Contact Information'
+    }
+  ),
 ];
 
 const BASIC_INFO_FORM_FIELDS =  [
@@ -75,19 +87,13 @@ const BASIC_INFO_FORM_FIELDS =  [
 ];
 
 const TABLE_FIELDS = BASIC_INFO_FIELDS.concat([
-  field(
-    'id_service_owner.full_name', {
-      type: 'text',
-      label: 'service_owner.belongs.full_name'
-    }
-  ),
 ]);
 
 const DETAILS_BASIC_INFO_FIELDSET = {
   label: 'service_item.cards.basic_information',
   fields: BASIC_INFO_FIELDS,
   layout: {
-    flex: [ 100, 100, 100, 100, 100, 100 ]
+    flex: [ 100, 100, 100, 100, 100, 100, 100, 100 ]
   }
 };
 
@@ -151,8 +157,13 @@ const CUSTOM_VERSIONS_FIELDSET = {
               }
             ),
             field(
-              'id_service.name', {
-                label: 'service_item.belongs.name'
+              'status.value', {
+                label: 'service_status.belongs.value'
+              }
+            ),
+            field(
+              'is_in_catalogue', {
+                label: 'service_version.fields.in_catalogue'
               }
             ),
           ]
@@ -170,7 +181,85 @@ const CUSTOM_VERSIONS_FIELDSET = {
   ]
 };
 
+const USER_CUSTOMERS_FIELDSET = {
+  label: 'User Customers',
+  layout: {
+    flex: [ 100, 100 ]
+  },
+  fields: [
+    field('customers', {
+      modelName: 'user_customer',
+      displayComponent: 'gen-display-field-table',
+      valueQuery: (store, params, model, value) => {
+        if(model.get('id')) {
+          return store.query('user_customer', { id_service: model.get('id') });
+        }
+      },
+      modelMeta: {
+        row: {
+          actions: ['goToDetails', 'goToEdit', 'remove'],
+          actionsMap: {
+            remove: {
+              label: 'remove',
+              icon: 'delete',
+              confirm: true,
+              warn: true,
+              prompt: {
+                title: 'Remove user customer',
+                message: 'Are you sure you want to remove this user customer?',
+                cancel: 'Cancel',
+                ok: 'Confirm'
+              },
+              action(route, model) {
+                model.destroyRecord();
+                model.save();
+              }
+            },
+            goToDetails: {
+              label: 'details',
+              icon: 'remove red eye',
+              action(route, model) {
+                let resource = model.get('_internalModel.modelName'),
+                  dest_route = `${resource}.record.index`;
+                route.transitionTo(dest_route, model);
+              }
+            },
+            goToEdit: {
+              label: 'edit',
+              icon: 'edit',
+              action(route, model) {
+                let resource = model.get('_internalModel.modelName'),
+                  dest_route = `${resource}.record.edit.index`;
+                route.transitionTo(dest_route, model);
+              }
+            }
+          },
+          fields: [
+            field(
+              'name.name', {
+                label: 'Name'
+              }
+            ),
+            field(
+              'role', {
+                label: 'role'
+              }
+            ),
+          ]
+        }
+      }
+    })
+  ]
+};
+
 const TEXT_FIELDS = [
+  field(
+    'description_internal', {
+      type: 'text',
+      label: 'service_item.fields.description_internal',
+      htmlSafe: true
+    }
+  ),
   field(
     'description_external', {
       type: 'text',
@@ -179,12 +268,25 @@ const TEXT_FIELDS = [
     }
   ),
   field(
-    'description_internal', {
+    'request_procedures', {
       type: 'text',
-      label: 'service_item.fields.description_external',
+      label: 'service_item.fields.procedures',
       htmlSafe: true
     }
   ),
+];
+
+const MORE_INFO_FIELDSET = {
+  label: 'service_item.cards.details',
+  fields: TEXT_FIELDS,
+  layout: {
+    flex: [ 100, 100, 100 ]
+  }
+};
+
+const BUSINESS_INFO_FIELDSET = {
+  label: 'service_item.cards.business_info',
+  fields: [
   field(
     'funders_for_service', {
       type: 'text',
@@ -200,13 +302,6 @@ const TEXT_FIELDS = [
     }
   ),
   field(
-    'competitors', {
-      type: 'text',
-      label: 'service_item.fields.competitors',
-      htmlSafe: true
-    }
-  ),
-  field(
     'risks', {
       type: 'text',
       label: 'service_item.fields.risks',
@@ -214,40 +309,25 @@ const TEXT_FIELDS = [
     }
   ),
   field(
-    'request_procedures', {
+    'competitors', {
       type: 'text',
-      label: 'service_item.fields.procedures',
+      label: 'service_item.fields.competitors',
       htmlSafe: true
     }
   ),
-];
-
-const MORE_INFO_FIELDSET = {
-  label: 'service_item.cards.details',
-  fields: TEXT_FIELDS.concat([
-    field(
-      'id_service_owner.full_name', {
-        type: 'text',
-        label: 'service_owner.belongs.full_name'
-      }
-    ),
-    field(
-      'id_contact_information.first_name', {
-        type: 'text',
-        label: 'Contact Information'
-      }
-    ),
-  ]),
+  ],
   layout: {
-    flex: [ 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100 ]
+    flex: [ 100, 100, 100, 100 ]
   }
-};
+}
 
 const DETAILS_FIELDSETS = [
   DETAILS_BASIC_INFO_FIELDSET,
+  USER_CUSTOMERS_FIELDSET,
   //this creates a new referenced table inside another gen
   CUSTOM_VERSIONS_FIELDSET,
-  MORE_INFO_FIELDSET
+  MORE_INFO_FIELDSET,
+  BUSINESS_INFO_FIELDSET
 ];
 
 const CREATE_FIELDSETS = [
@@ -281,4 +361,10 @@ const CREATE_FIELDSETS = [
   }
 ];
 
-export { TABLE_FIELDS, SORT_FIELDS, DETAILS_FIELDSETS, BASIC_INFO_FIELDS, CREATE_FIELDSETS };
+export {
+  TABLE_FIELDS,
+  SORT_FIELDS,
+  DETAILS_FIELDSETS,
+  BASIC_INFO_FIELDS,
+  CREATE_FIELDSETS
+};
