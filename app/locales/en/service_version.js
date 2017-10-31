@@ -7,7 +7,7 @@ const service_version = {
   'cards': {
     'basic_information': 'Basic information',
     'more_information': 'More information',
-    'resources': 'Resources'
+    'resources': 'Prerequisites'
   },
   'fields': {
     'version': 'Version',
