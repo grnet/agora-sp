@@ -6,8 +6,7 @@ import {
   CREATE_FIELDSETS,
   TABLE_FIELDS,
   SORT_FIELDS,
-  DETAILS_FIELDSETS,
-  BASIC_INFO_FIELDS
+  DETAILS_FIELDSETS
 } from '../utils/common/service-item';
 
 export default AgoraGen.extend({
@@ -39,29 +38,30 @@ export default AgoraGen.extend({
       meta: {
         fields: [
           field(
-            'name', {
-              type: 'text',
-              label: 'Name'
-            }
-          ),
-          field(
             'service_trl', {
               modelName:'service_trl',
               type: 'model',
               displayAttr: 'value'
+            }
+          ),
+          field(
+            'service_area', {
+              modelName:'service_area',
+              type: 'model',
+              displayAttr: 'name'
             }
           )
         ]
       }
     },
     sort: {
-      serverSide: true,
+      serverSide: false,
       active: true,
       fields: SORT_FIELDS
     },
     paginate: {
       limits: [ 10, 50, 100 ],
-      serverSide: true,
+      serverSide: false,
       active: true
     }
   },
