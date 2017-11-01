@@ -22,6 +22,11 @@ export default AgoraGen.extend({
     menu: {
       label: 'Service Versions'
     },
+    sort: {
+      serverSide: false,
+      active: true,
+      fields: SORT_FIELDS
+    },
     filter: {
       active: true,
       serverSide: true,
@@ -32,12 +37,14 @@ export default AgoraGen.extend({
             'id_service', {
               modelName:'service_item',
               type: 'model',
+              label: 'Service Name'
             }
           ),
           field(
             'status', {
               modelName:'service_status',
               type: 'model',
+              label: 'Service Status',
               displayAttr: 'value'
             }
           ),

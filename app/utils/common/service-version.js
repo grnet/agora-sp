@@ -1,6 +1,9 @@
 import { field } from 'ember-gen';
 
 const SORT_FIELDS = [
+  'status.value',
+  'id_service.name',
+  'version'
 ];
 
 const TABLE_FIELDS = [
