@@ -139,7 +139,7 @@ const BASIC_INFO_FIELDSET = {
   field(
     'features_current', {
       label: 'service_version.fields.features_current',
-      type: 'text',
+      formComponent: 'text-editor',
       htmlSafe: true
     }
   ),
@@ -147,6 +147,7 @@ const BASIC_INFO_FIELDSET = {
     'features_future', {
       label: 'service_version.fields.features_future',
       type: 'text',
+      formComponent: 'text-editor',
       htmlSafe: true
     }
   ),
@@ -154,6 +155,7 @@ const BASIC_INFO_FIELDSET = {
     'use_cases', {
       label: 'service_version.fields.use_cases',
       type: 'text',
+      formComponent: 'text-editor',
       htmlSafe: true
     }
   ),

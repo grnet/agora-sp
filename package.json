@@ -49,6 +49,8 @@
     "loader.js": "^4.0.10"
   },
   "dependencies": {
+    "ember-font-awesome": "^4.0.0-alpha.13",
+    "ember-froala-editor": "^2.7.1",
     "ember-simple-auth-token": "^2.1.0"
   }
 }

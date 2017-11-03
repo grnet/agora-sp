@@ -41,7 +41,8 @@ const BASIC_INFO_FIELDS =  [
     'short_description', {
       type: 'text',
       label: 'service_item.fields.short_description',
-      htmlSafe: true
+      htmlSafe: true,
+      formComponent: 'text-editor',
     }
   ),
   field(
@@ -75,13 +76,30 @@ const BASIC_INFO_FORM_FIELDS =  [
     }
   ),
   field(
+    'service_type', {
+      label: 'service_item.fields.service_type'
+    }
+  ),
+  field(
     'service_trl', {
       label: 'service_trl.belongs.value'
     }
   ),
   field(
-    'service_type', {
-      label: 'service_item.fields.service_type'
+    'short_description', {
+      label: 'service_item.fields.short_description',
+      htmlSafe: true,
+      formComponent: 'text-editor',
+    }
+  ),
+  field(
+    'id_service_owner', {
+      label: 'service_owner.belongs.full_name'
+    }
+  ),
+  field(
+    'id_contact_information', {
+      label: 'Contact Information'
     }
   ),
 ];
@@ -104,6 +122,7 @@ const CUSTOM_VERSIONS_FIELDSET = {
   },
   fields: [
     field('versions', {
+      label: '',
       modelName: 'service_version',
       displayComponent: 'gen-display-field-table',
       valueQuery: (store, params, model, value) => {
@@ -188,6 +207,7 @@ const USER_CUSTOMERS_FIELDSET = {
   },
   fields: [
     field('customers', {
+      label: '',
       modelName: 'user_customer',
       displayComponent: 'gen-display-field-table',
       valueQuery: (store, params, model, value) => {
@@ -242,7 +262,8 @@ const USER_CUSTOMERS_FIELDSET = {
             ),
             field(
               'role', {
-                label: 'role'
+                label: 'role',
+                htmlSafe: true
               }
             ),
           ]
@@ -257,6 +278,7 @@ const TEXT_FIELDS = [
     'description_internal', {
       type: 'text',
       label: 'service_item.fields.description_internal',
+      formComponent: 'text-editor',
       htmlSafe: true
     }
   ),
@@ -264,6 +286,7 @@ const TEXT_FIELDS = [
     'description_external', {
       type: 'text',
       label: 'service_item.fields.description_external',
+      formComponent: 'text-editor',
       htmlSafe: true
     }
   ),
@@ -271,6 +294,7 @@ const TEXT_FIELDS = [
     'request_procedures', {
       type: 'text',
       label: 'service_item.fields.procedures',
+      formComponent: 'text-editor',
       htmlSafe: true
     }
   ),
@@ -291,6 +315,7 @@ const BUSINESS_INFO_FIELDSET = {
     'funders_for_service', {
       type: 'text',
       label: 'service_item.fields.funders',
+      formComponent: 'text-editor',
       htmlSafe: true
     }
   ),
@@ -298,6 +323,7 @@ const BUSINESS_INFO_FIELDSET = {
     'value_to_customer', {
       type: 'text',
       label: 'service_item.fields.customer_value',
+      formComponent: 'text-editor',
       htmlSafe: true
     }
   ),
@@ -305,6 +331,7 @@ const BUSINESS_INFO_FIELDSET = {
     'risks', {
       type: 'text',
       label: 'service_item.fields.risks',
+      formComponent: 'text-editor',
       htmlSafe: true
     }
   ),
@@ -312,6 +339,7 @@ const BUSINESS_INFO_FIELDSET = {
     'competitors', {
       type: 'text',
       label: 'service_item.fields.competitors',
+      formComponent: 'text-editor',
       htmlSafe: true
     }
   ),
@@ -335,30 +363,8 @@ const CREATE_FIELDSETS = [
     label: 'service_item.cards.basic_information',
     fields: BASIC_INFO_FORM_FIELDS
   },
-  {
-    label: 'service_item.cards.details',
-    fields: TEXT_FIELDS
-  },
-  {
-    label: 'Contact information',
-    fields: [
-    field(
-      'id_service_owner', {
-        label: 'service_owner.belongs.full_name'
-      }
-    ),
-    field(
-      'id_contact_information', {
-        label: 'contact_information.belongs.full_name'
-      }
-    ),
-    field(
-      'id_contact_information_internal', {
-        label: 'contact_information.belongs.full_name'
-      }
-    ),
-    ]
-  }
+  MORE_INFO_FIELDSET,
+  BUSINESS_INFO_FIELDSET
 ];
 
 export {
