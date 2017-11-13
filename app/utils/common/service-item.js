@@ -6,6 +6,67 @@ const SORT_FIELDS = [
   'service_trl.value'
 ];
 
+/********************************************
+                LIST VIEW
+********************************************/
+
+const TABLE_FIELDS = [
+  field(
+    'name', {
+      type: 'text',
+      label: 'service_item.fields.name'
+    }
+  ),
+  /*field(
+    'logo', {
+      type: 'text',
+      label: 'service_item.fields.logo'
+    }
+  ),*/
+  field(
+    'service_area.name', {
+      type: 'text',
+      label: 'service_item.fields.service_area'
+    }
+  ),
+  field(
+    'service_type', {
+      type: 'text',
+      label: 'service_item.fields.service_type'
+    }
+  ),
+  field(
+    'service_trl.value', {
+      type: 'text',
+      label: 'service_trl.belongs.value'
+    }
+  ),
+  field(
+    'short_description', {
+      type: 'text',
+      label: 'service_item.fields.short_description',
+      htmlSafe: true,
+      formComponent: 'text-editor',
+    }
+  ),
+  field(
+    'id_service_owner.full_name', {
+      type: 'text',
+      label: 'service_owner.belongs.full_name'
+    }
+  ),
+  field(
+    'id_contact_information.first_name', {
+      type: 'text',
+      label: 'Contact Information'
+    }
+  ),
+];
+
+/********************************************
+                DETAILS VIEW
+********************************************/
+
 const BASIC_INFO_FIELDS =  [
   field(
     'name', {
@@ -103,9 +164,6 @@ const BASIC_INFO_FORM_FIELDS =  [
     }
   ),
 ];
-
-const TABLE_FIELDS = BASIC_INFO_FIELDS.concat([
-]);
 
 const DETAILS_BASIC_INFO_FIELDSET = {
   label: 'service_item.cards.basic_information',
@@ -357,6 +415,10 @@ const DETAILS_FIELDSETS = [
   MORE_INFO_FIELDSET,
   BUSINESS_INFO_FIELDSET
 ];
+
+/********************************************
+            CREATE VIEW/EDIT VIEW
+********************************************/
 
 const CREATE_FIELDSETS = [
   {

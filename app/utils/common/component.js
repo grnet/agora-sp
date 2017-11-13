@@ -49,8 +49,7 @@ const DETAILS_FIELDSETS = [
 ];
 
 /********************************************
-                 EDIT VIEW
-                CREATE VIEW
+            EDIT VIEW/CREATE VIEW
 ********************************************/
 
 const CREATE_FIELDSETS = [
