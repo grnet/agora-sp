@@ -56,7 +56,13 @@ const TABLE_FIELDS = [
     }
   ),
   field(
-    'id_contact_information.first_name', {
+    'id_contact_information.full_name', {
+      type: 'text',
+      label: 'Contact Information'
+    }
+  ),
+  field(
+    'id_contact_information_internal.full_name', {
       type: 'text',
       label: 'Contact Information'
     }
@@ -113,7 +119,13 @@ const BASIC_INFO_FIELDS =  [
     }
   ),
   field(
-    'id_contact_information.first_name', {
+    'id_contact_information.full_name', {
+      type: 'text',
+      label: 'Contact Information'
+    }
+  ),
+  field(
+    'id_contact_information_internal.full_name', {
       type: 'text',
       label: 'Contact Information'
     }
@@ -160,7 +172,12 @@ const BASIC_INFO_FORM_FIELDS =  [
   ),
   field(
     'id_contact_information', {
-      label: 'Contact Information'
+      label: 'contact_information.belongs.external'
+    }
+  ),
+  field(
+    'id_contact_information_internal', {
+      label: 'contact_information.belongs.internal'
     }
   ),
 ];
@@ -169,7 +186,7 @@ const DETAILS_BASIC_INFO_FIELDSET = {
   label: 'service_item.cards.basic_information',
   fields: BASIC_INFO_FIELDS,
   layout: {
-    flex: [ 100, 100, 100, 100, 100, 100, 100, 100 ]
+    flex: [ 100, 100, 100, 100, 100, 100, 100, 100, 100 ]
   }
 };
 

@@ -14,6 +14,7 @@ export default {
   'service_version': service_version,
   'service_owner': service_owner,
   'service_status': service_status,
+  'contact_information': contact_information,
   'component': component,
   'component_implementation': component_implementation,
   'component_implementation_detail': component_implementation_detail,

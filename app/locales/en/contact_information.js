@@ -7,7 +7,9 @@ const contact_information = {
     'full_name': 'Full Name'
   },
   'belongs': {
-    'full_name': 'Full Name'
+    'full_name': 'Full Name',
+    'internal': 'Internal contact information',
+    'external': 'External contact information',
   }
 };
 
