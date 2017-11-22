@@ -12,7 +12,9 @@ const component = {
   },
   'links': {
     //'create_service_version': 'Create a new service version'
-  }
+  },
+  'menu': 'Components',
+  'menu_group': 'Service Components'
 };
 
 export { component };

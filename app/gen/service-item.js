@@ -22,10 +22,10 @@ export default AgoraGen.extend({
   list: {
     layout: 'table',
     page: {
-      title: 'Services'
+      title: 'service_item.menu'
     },
     menu: {
-      label: 'Services'
+      label: 'service_item.menu'
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],

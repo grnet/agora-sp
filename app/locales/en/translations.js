@@ -7,6 +7,7 @@ import { contact_information } from './contact_information';
 import { component } from './component';
 import { component_implementation } from './component_implementation';
 import { component_implementation_detail } from './component_implementation_detail';
+import { cidl } from './component_implementation_detail_link';
 
 export default {
   'service_item': service_item,
@@ -18,5 +19,6 @@ export default {
   'component': component,
   'component_implementation': component_implementation,
   'component_implementation_detail': component_implementation_detail,
+  'cidl': cidl,
 };
 

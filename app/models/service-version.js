@@ -27,8 +27,10 @@ export default DS.Model.extend({
   cost_to_build: DS.attr(),
   use_cases: DS.attr(),
   is_in_catalogue: DS.attr({ type: 'boolean' }),
-  cidl_url: Ember.computed('id', function() {
-    return `/component-implementation-detail-links/create?service_version=${Ember.get(this, 'id')}`;
+  cidl_url: Ember.computed('id', 'id_service.id', function() {
+    const service =  Ember.get(this, 'id_service.id');
+    const service_version = Ember.get(this, 'id');
+    return `/component-implementation-detail-links/create?service=${service}&service_version=${service_version}`;
   }),
   //the object resembles the value to be printed in the create/update page of this referenced model
   //e.g. name is a key from the service-item model

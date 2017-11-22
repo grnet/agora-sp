@@ -222,7 +222,6 @@ const CUSTOM_VERSIONS_FIELDSET = {
               },
               action(route, model) {
                 model.destroyRecord();
-                model.save();
               }
             },
             goToDetails: {
@@ -307,7 +306,6 @@ const USER_CUSTOMERS_FIELDSET = {
               },
               action(route, model) {
                 model.destroyRecord();
-                model.save();
               }
             },
             goToDetails: {

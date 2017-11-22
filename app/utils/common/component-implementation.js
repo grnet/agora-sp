@@ -45,7 +45,10 @@ const DETAILS_FIELDSETS = [
         type: 'text',
         label: 'component.belongs.name'
       }),
-    ]
+    ],
+    layout: {
+      flex: [100, 100, 100]
+    }
   }
 ];
 

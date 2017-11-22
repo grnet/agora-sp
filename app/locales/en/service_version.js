@@ -2,7 +2,8 @@ const service_version = {
   'belongs': {
     'cards': {
       'title': 'Service Versions'
-    }
+    },
+    'version': 'Service Version'
   },
   'cards': {
     'basic_information': 'Basic information',
@@ -29,7 +30,8 @@ const service_version = {
     'business_continuity': 'Business Continuity',
     'disaster_recovery_plan': 'Disaster Recovery Plan',
     'usage_policy': 'Usage Policy'
-  }
+  },
+  'menu': 'Service Versions'
 };
 
 export { service_version };

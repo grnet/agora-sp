@@ -162,8 +162,98 @@ const BASIC_INFO_FIELDSET = {
   ]
 };
 
+const COMPONENT_LINKS_FIELDSET = {
+  label: 'cidl.belongs.cards.title',
+  layout: {
+    flex: [ 100, 100 ]
+  },
+  fields: [
+    field('cidl', {
+      label: '',
+      modelName: 'component_implementation_detail_link',
+      displayComponent: 'gen-display-field-table',
+      valueQuery: (store, params, model, value) => {
+        if(model.get('id')) {
+          return store.query('component_implementation_detail_link', { service_details_id: model.get('id') });
+        }
+      },
+      modelMeta: {
+        row: {
+          actions: ['goToEdit', 'remove'],
+          actionsMap: {
+            remove: {
+              label: 'remove',
+              icon: 'delete',
+              confirm: true,
+              warn: true,
+              prompt: {
+                title: 'Remove service version component',
+                message: 'Are you sure you want to remove this service version component?',
+                cancel: 'Cancel',
+                ok: 'Confirm'
+              },
+              action(route, model) {
+                model.destroyRecord();
+                //model.save();
+              }
+            },
+            /*goToDetails: {
+              label: 'details',
+              icon: 'remove red eye',
+              action(route, model) {
+                let resource = model.get('_internalModel.modelName'),
+                  dest_route = `${resource}.record.index`;
+                route.transitionTo(dest_route, model);
+              }
+            },*/
+            goToEdit: {
+              label: 'edit',
+              icon: 'edit',
+              action(route, model) {
+                let resource = model.get('_internalModel.modelName'),
+                  dest_route = `${resource}.record.edit.index`,
+                  queryParams = {
+                    service_version: route.currentModel.id
+                  };
+                route.transitionTo(dest_route, model, { queryParams });
+              }
+            }
+          },
+          fields: [
+            field('service_component_implementation_detail_id.component_id.name', {
+              type: 'text',
+              label: 'component.belongs.name'
+            }),
+            field('service_component_implementation_detail_id.component_implementation_id.name', {
+              type: 'text',
+              label: 'component_implementation.belongs.name'
+            }),
+            field('service_component_implementation_detail_id.version', {
+              type: 'text',
+              label: 'component_implementation_detail.belongs.name'
+            }),
+            field('configuration_parameters', {
+              type: 'text',
+              label: 'cidl.fields.configuration_parameters'
+            }),
+          ]
+        }
+      }
+    }),
+    field('cidl_url', {
+      displayComponent: 'cta-btn',
+      displayAttrs: {
+        hideLabel: true,
+        //classNames: ['cta-btn cta-btn--text-right']
+      },
+      label: 'cidl.links.create_cidl',
+    }),
+  ]
+};
+
 const DETAILS_FIELDSETS = [
   BASIC_INFO_FIELDSET,
+  COMPONENT_LINKS_FIELDSET,
   URLS_FIELDSET,
   FINANCIAL_FIELDSET
 ];

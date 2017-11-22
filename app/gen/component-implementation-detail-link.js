@@ -32,6 +32,9 @@ export default gen.CRUDGen.extend({
     fieldsets: DETAILS_FIELDSETS
   },
   edit: {
+    routeMixins: {
+      queryParams: {'service_version': { refreshModel: true }}
+    },
     preloadModels: [
       'component',
       'component-implementation',
@@ -47,6 +50,11 @@ export default gen.CRUDGen.extend({
        * `component_implementation_id`, and then set the default values to each
        * field of the model. Lastly, we return the model.
       */
+
+      if(params && 'service_version' in params) {
+        model.set('param_service_version', params.service_version);
+      }
+
       return model.get('service_component_implementation_detail_id').then(function(resp) {
         let promises = [
           resp.get('component_id'),
@@ -63,9 +71,61 @@ export default gen.CRUDGen.extend({
         });
       });
     },
-    fieldsets: EDIT_FIELDSETS
+    fieldsets: EDIT_FIELDSETS,
+    onSubmit(model) {
+      //const params = Ember.getOwner(this).lookup('router:main').get('currentState.routerJsState.fullQueryParams');
+      const param = model.get('param_service_version');
+      if(param) {
+        this.transitionTo(`/service-versions/${param}`);
+      }
+    },
   },
   create: {
+    //provide url params with this magic trick
+    routeMixins: {
+      queryParams: {
+        'service': {
+          refreshModel: true
+        },
+        'service_version': {
+          refreshModel: true
+        }
+      }
+    },
+    //prepopulate a field from a query param
+    getModel(params) {
+      const store = Ember.get(this, 'store');
+      //prepopulate field only if query param exists
+      if(params.service_version && params.service) {
+        //get the service & service version from the id provided from query param
+        let data = {};
+
+        //save the service version in order to redirect onsubmit
+        data.param_service_version = params.service_version;
+
+        let promises = [
+          store.findRecord('service-item', params.service),
+          store.findRecord('service-version', params.service_version)
+        ];
+
+        var promise = Ember.RSVP.all(promises).then((res) => {
+          data.service_id = res[0];
+          data.service_details_id = res[1];
+        });
+
+        return promise.then(function() {
+          return store.createRecord('component_implementation_detail_link', data);
+        });
+      }
+
+      return store.createRecord('service-version', {});
+    },
+    onSubmit(model) {
+      const param = model.get('param_service_version');
+      if(param) {
+        this.transitionTo(`/service-versions/${param}`);
+      }
+    },
     fieldsets: CREATE_FIELDSETS
   }
 });

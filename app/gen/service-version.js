@@ -17,10 +17,10 @@ export default AgoraGen.extend({
   list: {
     layout: 'table',
     page: {
-      title: 'Service Versions'
+      title: 'service_version.menu'
     },
     menu: {
-      label: 'Service Versions'
+      label: 'service_version.menu'
     },
     sort: {
       serverSide: false,
@@ -66,6 +66,8 @@ export default AgoraGen.extend({
       const store = Ember.get(this, 'store');
       //prepopulate field only if query param exists
       if(params.service) {
+        //save the service id in order to use it in onSubmit
+        model.set('param_service', params.service);
         //get the service item from the id provided from query param
         let service = store.findRecord('service-item', params.service);
         return service.then(function(service){
@@ -80,8 +82,8 @@ export default AgoraGen.extend({
     },
     fieldsets: CREATE_FIELDSETS,
     onSubmit(model) {
-      const params = Ember.getOwner(this).lookup('router:main').get('currentState.routerJsState.fullQueryParams');
-      if('service' in params) {
+      const param = model.get('param_service');
+      if(param) {
         this.transitionTo(`/services/${params.service}`);
       }
     }
@@ -96,7 +98,7 @@ export default AgoraGen.extend({
       title: Ember.computed('model.version', 'model.id_service.name', function() {
         const service_name = Ember.get(this, 'model.id_service.name');
         const service_version = Ember.get(this,'model.version');
-        return `${service_name} - v${service_version}`;
+        return `${service_name} > ${service_version}`;
       })
     }
   }
