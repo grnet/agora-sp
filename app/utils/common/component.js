@@ -13,14 +13,14 @@ const TABLE_FIELDS = [
     type: 'text',
     label: 'component.fields.name'
   }),
-  field('description', {
+  field('desc', {
     type: 'text',
     label: 'component.fields.description'
   }),
-  field('logo', {
+  /*field('logo', {
     type: 'text',
     label: 'component.fields.logo'
-  }),
+  }),*/
 ];
 
 /********************************************
@@ -40,10 +40,10 @@ const DETAILS_FIELDSETS = [
         label: 'component.fields.description',
         htmlSafe: true
       }),
-      field('logo', {
+      /*field('logo', {
         type: 'text',
         label: 'component.fields.logo'
-      }),
+      }),*/
     ]
   }
 ];
@@ -62,12 +62,13 @@ const CREATE_FIELDSETS = [
       }),
       field('description', {
         type: 'text',
+        formComponent: 'text-editor',
         label: 'component.fields.description'
       }),
-      field('logo', {
+      /*field('logo', {
         type: 'text',
         label: 'component.fields.logo'
-      }),
+      }),*/
     ]
   }
 ];

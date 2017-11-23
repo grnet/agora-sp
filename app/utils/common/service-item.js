@@ -42,7 +42,7 @@ const TABLE_FIELDS = [
     }
   ),
   field(
-    'short_description', {
+    'short_desc', {
       type: 'text',
       label: 'service_item.fields.short_description',
       htmlSafe: true,
@@ -334,7 +334,7 @@ const USER_CUSTOMERS_FIELDSET = {
               }
             ),
             field(
-              'role', {
+              '__role', {
                 label: 'role',
                 htmlSafe: true
               }

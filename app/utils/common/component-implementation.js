@@ -14,7 +14,7 @@ const TABLE_FIELDS = [
     type: 'text',
     label: 'component_implementation.fields.name'
   }),
-  field('description', {
+  field('desc', {
     type: 'text',
     label: 'component_implementation.fields.description'
   }),
@@ -66,6 +66,7 @@ const CREATE_FIELDSETS = [
       }),
       field('description', {
         type: 'text',
+        formComponent: 'text-editor',
         label: 'component_implementation.fields.description'
       }),
       field('component_id', {

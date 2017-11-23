@@ -1,4 +1,6 @@
+import Ember from 'ember';
 import DS from 'ember-data';
+import { shorten } from '../utils/common/common';
 
 export default DS.Model.extend({
   name: DS.attr(),
@@ -8,4 +10,8 @@ export default DS.Model.extend({
       optionLabelAttr: 'name'
     }
   }),
+  // computed fields
+  desc: Ember.computed('description', function() {
+    return shorten(Ember.get(this, 'description'));
+  })
 });

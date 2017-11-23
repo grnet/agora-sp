@@ -1,5 +1,6 @@
 import DS from 'ember-data';
 import Ember from 'ember';
+import { shorten } from '../utils/common/common';
 
 export default DS.Model.extend({
   name: DS.attr(),
@@ -40,6 +41,10 @@ export default DS.Model.extend({
     formAttrs: {
       optionLabelAttr: 'full_name'
     }
+  }),
+  //computed
+  short_desc: Ember.computed('short_description', function() {
+    return shorten(Ember.get(this, 'short_description'));
   }),
   __api__: {
     path: 'services'

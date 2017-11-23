@@ -1,4 +1,6 @@
+import Ember from 'ember';
 import DS from 'ember-data';
+import { strip } from '../utils/common/common';
 
 export default DS.Model.extend({
   name: DS.belongsTo('user-role', {
@@ -11,5 +13,9 @@ export default DS.Model.extend({
     formAttrs: {
       optionLabelAttr: 'name'
     }
+  }),
+  //computed
+  __role: Ember.computed('role', function() {
+    return strip(Ember.get(this, 'role'));
   })
 });
