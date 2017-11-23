@@ -1,4 +1,5 @@
 import gen from 'ember-gen/lib/gen';
+import { field } from 'ember-gen';
 import {
   CREATE_FIELDSETS,
   TABLE_FIELDS,
@@ -33,7 +34,43 @@ export default gen.CRUDGen.extend({
       limits: [ 10, 50, 100 ],
       serverSide: false,
       active: true
-    }
+    },
+    filter: {
+      active: true,
+      serverSide: true,
+      search: false,
+      meta: {
+        fields: [
+          field(
+            'component_id', {
+              modelName:'component',
+              type: 'model',
+              label: 'component.belongs.name',
+              displayAttr: 'name'
+            }
+          ),
+          field(
+            'component_implementation_id', {
+              disabled: Ember.computed('model.changeset.component_id.id', function() {
+                return !Ember.get(this, 'model.changeset.component_id');
+              }),
+              label: 'component_implementation.belongs.name',
+              modelName:'component-implementation',
+              type: 'model',
+              displayAttr: 'name',
+              query: Ember.computed('model.changeset.component_id.id', function() {
+                let comp = Ember.get(this, 'model.changeset.component_id.id');
+                return function(select, store, field, params) {
+                  params = params || {};
+                  params.component_id = comp;
+                  return store.query('component-implementation', params);
+                }
+              })
+            }
+          ),
+        ]
+      }
+    },
   },
   details: {
     page: {

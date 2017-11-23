@@ -1,4 +1,5 @@
 import gen from 'ember-gen/lib/gen';
+import { field } from 'ember-gen';
 import {
   CREATE_FIELDSETS,
   TABLE_FIELDS,
@@ -33,7 +34,23 @@ export default gen.CRUDGen.extend({
       limits: [ 10, 50, 100 ],
       serverSide: false,
       active: true
-    }
+    },
+    filter: {
+      active: true,
+      serverSide: true,
+      search: false,
+      meta: {
+        fields: [
+          field(
+            'component_id', {
+              modelName:'component',
+              type: 'model',
+              displayAttr: 'name'
+            }
+          ),
+        ]
+      }
+    },
   },
   details: {
     page: {
