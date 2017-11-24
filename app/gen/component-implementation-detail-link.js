@@ -1,12 +1,12 @@
 import gen from 'ember-gen/lib/gen';
 import { field } from 'ember-gen';
 import {
-  CREATE_FIELDSETS,
-  EDIT_FIELDSETS,
   TABLE_FIELDS,
   SORT_FIELDS,
   DETAILS_FIELDSETS,
-  BASIC_INFO_FIELDS
+  CREATE_FIELDSETS,
+  EDIT_FIELDSETS,
+  TABLE_FILTERS
 } from '../utils/common/component-implementation-detail-link';
 
 export default gen.CRUDGen.extend({
@@ -26,6 +26,14 @@ export default gen.CRUDGen.extend({
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],
       fields: TABLE_FIELDS
+    },
+    filter: {
+      active: true,
+      serverSide: true,
+      search: false,
+      meta: {
+        fields: TABLE_FILTERS
+      }
     },
   },
   details: {

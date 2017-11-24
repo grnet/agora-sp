@@ -1,4 +1,5 @@
 import { field } from 'ember-gen';
+import { TABLE_FILTERS } from './component-implementation-detail-link';
 
 const SORT_FIELDS = [
   'status.value',
@@ -178,6 +179,14 @@ const COMPONENT_LINKS_FIELDSET = {
         }
       },
       modelMeta: {
+        /*filter: {
+          active: true,
+          serverSide: true,
+          search: false,
+          meta: {
+            fields: TABLE_FILTERS
+          }
+        },*/
         row: {
           actions: ['goToEdit', 'remove'],
           actionsMap: {

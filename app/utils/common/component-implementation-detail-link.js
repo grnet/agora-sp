@@ -164,10 +164,44 @@ const EDIT_FIELDSETS = [
   }
 ];
 
+/********************************************
+                  FILTERS
+********************************************/
+const TABLE_FILTERS = [
+  field(
+    'service_id', {
+      modelName:'service_item',
+      type: 'model',
+      label: 'service_item.belongs.name',
+      displayAttr: 'name'
+    }
+  ),
+  field(
+    'service_details_id', {
+      disabled: Ember.computed('model.changeset.service_id.id', function() {
+        return !Ember.get(this, 'model.changeset.service_id');
+      }),
+      label: 'service_version.belongs.version',
+      modelName:'service_version',
+      type: 'model',
+      displayAttr: 'version',
+      query: Ember.computed('model.changeset.service_id.id', function() {
+        let comp = Ember.get(this, 'model.changeset.service_id.id');
+        return function(select, store, field, params) {
+          params = params || {};
+          params.id_service = comp;
+          return store.query('service-version', params);
+        }
+      })
+    }
+  ),
+];
+
 export {
   TABLE_FIELDS,
   SORT_FIELDS,
   DETAILS_FIELDSETS,
   CREATE_FIELDSETS,
-  EDIT_FIELDSETS
+  EDIT_FIELDSETS,
+  TABLE_FILTERS
 };
