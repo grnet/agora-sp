@@ -3,6 +3,7 @@ import { service_item } from './service_item';
 import { service_version } from './service_version';
 import { service_owner } from './service_owner';
 import { service_status } from './service_status';
+import { service_area } from './service_area';
 import { contact_information } from './contact_information';
 import { component } from './component';
 import { component_implementation } from './component_implementation';
@@ -15,6 +16,7 @@ export default {
   'service_version': service_version,
   'service_owner': service_owner,
   'service_status': service_status,
+  'service_area': service_area,
   'contact_information': contact_information,
   'component': component,
   'component_implementation': component_implementation,
