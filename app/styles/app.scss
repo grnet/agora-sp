@@ -9,3 +9,8 @@ $primary: "blue" !default;
 
 .site-header {
 }
+
+
+.model-form .model-form-field:last-child .md-input-hint {
+  top: -19px;
+}
