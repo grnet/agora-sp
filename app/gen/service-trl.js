@@ -1,51 +1,51 @@
 import { AgoraGen } from '../lib/common';
 import { field } from 'ember-gen';
 
-const {
-  get
-} = Ember;
+const COMMON_FIELDSETS = [{
+  label: 'service_trl.cards.basic_information',
+  text: 'service_trl.cards.basic_hint',
+  layout: {
+    flex: [50, 50]
+  },
+  fields: [
+    field(
+      'value', {
+        'label': 'service_trl.fields.value'
+      }
+    ),
+    field(
+      'order', {
+        'label': 'service_trl.fields.order',
+        'hint': 'service_trl.hints.order'
+      }
+    )
+  ]
+}]
+
 
 export default AgoraGen.extend({
   modelName: 'service-trl',
-  order: 100,
+  order: 200,
   path: 'service-trls',
   resourceName: 'api/v2/service-trls',
+  common: {
+    fieldsets: COMMON_FIELDSETS,
+  },
   list: {
     layout: 'table',
     page: {
-      title: 'Service Technology Readiness Levels'
+      title: 'service_trl.menu'
     },
     menu: {
-      label: 'Service Technology Readiness Levels',
+      label: 'service_trl.menu',
       group: 'settings'
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],
       fields: [
-        //'id',
         'value',
         'order'
       ]
-    },
-    filter: {
-      active: true,
-      serverSide: true,
-      search: false,
-      meta: {
-        fields: [
-          field(
-            'value', {
-              type: 'text',
-              label: 'service_trl.fields.value'
-            }
-          ),
-          field(
-            'order', {
-              type: 'text'
-            }
-          )
-        ]
-      }
     },
     sort: {
       serverSide: true,
