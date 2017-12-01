@@ -6,7 +6,6 @@ export default AgoraGen.extend({
   path: 'custom-users',
   resourceName: 'api/v2/custom-users',
   list: {
-    layout: 'table',
     page: {
       title: 'Users'
     },

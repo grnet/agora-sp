@@ -1,12 +1,11 @@
-import gen from 'ember-gen/lib/gen';
+import { AgoraGen } from '../lib/common';
 
-export default gen.CRUDGen.extend({
+export default AgoraGen.extend({
   modelName: 'user-role',
   order: 2,
   path: 'user-roles',
   resourceName: 'api/v2/user-roles',
   list: {
-    layout: 'table',
     page: {
       title: 'User Roles'
     },

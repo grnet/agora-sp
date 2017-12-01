@@ -1,5 +1,6 @@
-import gen from 'ember-gen/lib/gen';
+import { AgoraGen } from '../lib/common';
 import { field } from 'ember-gen';
+
 import {
   CREATE_FIELDSETS,
   TABLE_FIELDS,
@@ -7,13 +8,12 @@ import {
   DETAILS_FIELDSETS
 } from '../utils/common/component-implementation';
 
-export default gen.CRUDGen.extend({
+export default AgoraGen.extend({
   modelName: 'component-implementation',
   resourceName: 'api/v2/component-implementations',
   path: 'component-implementations',
   order: 2,
   list: {
-    layout: 'table',
     page: {
       title: 'Component Implementations'
     },
@@ -29,11 +29,6 @@ export default gen.CRUDGen.extend({
       serverSide: false,
       active: true,
       fields: SORT_FIELDS
-    },
-    paginate: {
-      limits: [ 10, 50, 100 ],
-      serverSide: false,
-      active: true
     },
     filter: {
       active: true,

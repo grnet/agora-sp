@@ -15,7 +15,6 @@ export default AgoraGen.extend({
   path: 'service-versions',
   resourceName: 'api/v2/service-versions',
   list: {
-    layout: 'table',
     page: {
       title: 'service_version.menu'
     },

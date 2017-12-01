@@ -1,4 +1,4 @@
-import gen from 'ember-gen/lib/gen';
+import { AgoraGen } from '../lib/common';
 import { field } from 'ember-gen';
 import {
   TABLE_FIELDS,
@@ -9,13 +9,12 @@ import {
   TABLE_FILTERS
 } from '../utils/common/component-implementation-detail-link';
 
-export default gen.CRUDGen.extend({
+export default AgoraGen.extend({
   modelName: 'component-implementation-detail-link',
   resourceName: 'api/v2/component-implementation-detail-links',
   path: 'component-implementation-detail-links',
   order: 4,
   list: {
-    layout: 'table',
     page: {
       title: 'Component Implementation Detail Links'
     },

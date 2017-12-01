@@ -5,7 +5,6 @@ export default AgoraGen.extend({
   path: 'institutions',
   resourceName: 'api/v2/institutions',
   list: {
-    layout: 'table',
     page: {
       title: 'Institutions'
     },

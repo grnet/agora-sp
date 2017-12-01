@@ -1,12 +1,11 @@
-import gen from 'ember-gen/lib/gen';
+import { AgoraGen } from '../lib/common';
 
-export default gen.CRUDGen.extend({
+export default AgoraGen.extend({
   modelName: 'user-customer',
   order: 2,
   path: 'user-customers',
   resourceName: 'api/v2/user-customers',
   list: {
-    layout: 'table',
     page: {
       title: 'User Customers'
     },

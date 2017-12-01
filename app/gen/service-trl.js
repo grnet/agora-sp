@@ -32,7 +32,6 @@ export default AgoraGen.extend({
     fieldsets: COMMON_FIELDSETS,
   },
   list: {
-    layout: 'table',
     page: {
       title: 'service_trl.menu'
     },

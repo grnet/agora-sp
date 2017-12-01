@@ -1,4 +1,4 @@
-import gen from 'ember-gen/lib/gen';
+import { AgoraGen } from '../lib/common';
 import { field } from 'ember-gen';
 
 const COMMON_FIELDSETS = [{
@@ -23,9 +23,8 @@ const COMMON_FIELDSETS = [{
 }]
 
 
-export default gen.CRUDGen.extend({
+export default AgoraGen.extend({
   modelName: 'service-area',
-  auth: true,
   order: 100,
   path: 'service-areas',
   resourceName: 'api/v2/service-areas',
@@ -33,7 +32,6 @@ export default gen.CRUDGen.extend({
     fieldsets: COMMON_FIELDSETS,
   },
   list: {
-    layout: 'table',
     page: {
       title: 'service_area.menu'
     },

@@ -20,7 +20,6 @@ export default AgoraGen.extend({
     }
   },
   list: {
-    layout: 'table',
     page: {
       title: 'service_item.menu'
     },

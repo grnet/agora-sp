@@ -5,7 +5,6 @@ export default AgoraGen.extend({
   path: 'contact-information',
   resourceName: 'api/v2/contact-information',
   list: {
-    layout: 'table',
     page: {
       title: 'Contact Information'
     },

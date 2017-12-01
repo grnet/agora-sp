@@ -1,4 +1,4 @@
-import gen from 'ember-gen/lib/gen';
+import { AgoraGen } from '../lib/common';
 import {
   CREATE_FIELDSETS,
   TABLE_FIELDS,
@@ -6,13 +6,12 @@ import {
   DETAILS_FIELDSETS
 } from '../utils/common/component';
 
-export default gen.CRUDGen.extend({
+export default AgoraGen.extend({
   modelName: 'component',
   resourceName: 'api/v2/components',
   path: 'components',
   order: 1,
   list: {
-    layout: 'table',
     page: {
       title: 'Components'
     },
