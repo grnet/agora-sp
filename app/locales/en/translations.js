@@ -9,6 +9,7 @@ import { component } from './component';
 import { component_implementation } from './component_implementation';
 import { component_implementation_detail } from './component_implementation_detail';
 import { cidl } from './component_implementation_detail_link';
+import { common } from './common';
 
 export default {
   'service_item': service_item,
@@ -22,5 +23,7 @@ export default {
   'component_implementation': component_implementation,
   'component_implementation_detail': component_implementation_detail,
   'cidl': cidl,
+  'file': common.file,
+  'message': common.message,
 };
 

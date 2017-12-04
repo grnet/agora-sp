@@ -7,10 +7,20 @@ $primary: "blue" !default;
 @import "ember-gen";
 @import "_buttons";
 
-.site-header {
-}
-
 
 .model-form .model-form-field:last-child .md-input-hint {
   top: -19px;
+}
+
+.fullwidth {
+  width: 100%;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+td img {
+  max-height: 100px;
+  margin: 10px 0;
 }
