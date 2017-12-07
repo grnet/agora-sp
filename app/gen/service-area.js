@@ -1,26 +1,10 @@
 import { AgoraGen } from '../lib/common';
 import { field } from 'ember-gen';
-
-const COMMON_FIELDSETS = [{
-  label: 'service_area.cards.basic_information',
-  text: 'service_area.cards.basic_hint',
-  layout: {
-    flex: [100, 100]
-  },
-  fields: [
-    field(
-      'name', {
-        'label': 'service_area.fields.name',
-        'hint': 'service_area.hints.name'
-      }
-    ),
-    field(
-      'icon', {
-        'label': 'service_area.fields.icon',
-      }
-    )
-  ]
-}]
+import {
+  CREATE_FIELDSETS,
+  EDIT_FIELDSETS,
+  DETAILS_FIELDSETS
+} from '../utils/common/service-area';
 
 
 export default AgoraGen.extend({
@@ -28,9 +12,6 @@ export default AgoraGen.extend({
   order: 100,
   path: 'service-areas',
   resourceName: 'api/v2/service-areas',
-  common: {
-    fieldsets: COMMON_FIELDSETS,
-  },
   list: {
     page: {
       title: 'service_area.menu'
@@ -51,7 +32,19 @@ export default AgoraGen.extend({
       active: true,
       fields: ['name']
     },
-
+  },
+  details: {
+    fieldsets: DETAILS_FIELDSETS,
+  },
+  edit: {
+    fieldsets: EDIT_FIELDSETS,
+  },
+  create: {
+    fieldsets: CREATE_FIELDSETS,
+    onSubmit(model) {
+      this.transitionTo('service-area.record.edit', model);
+    },
 
   }
+
 });
