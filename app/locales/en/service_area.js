@@ -12,7 +12,7 @@ const service_area = {
   },
   'hints': {
     'name': 'A short description of the service area',
-    'icon': ''
+    'icon': 'Recomended size: 100px * 20px'
   },
   'menu': 'Service Areas'
 };

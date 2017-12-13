@@ -13,10 +13,18 @@ const {
 } = Ember;
 
 export default AuthGen.extend({
+  routeMixins: {
+    actions: {
+      shibbolethLogin() {
+        window.location = ENV.APP.shibboleth_login_url + '?login=1'
+      }
+    }
+  },
   login: {
     config: {
       authenticator: 'agora'
     },
+    templateName: 'agora-login',
     routeMixins: [{
       handleTokenLogin(token) {
         if (get(this, 'session.isAuthenticated')) {

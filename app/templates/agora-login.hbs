@@ -1,0 +1,57 @@
+{{#gen-page classNames=(if gen.nested 'nested' '') as |page|}}
+  {{page.toolbar
+    pageTitle=(t gen.page.title model)
+    breadcrumbs=gen.breadcrumbs
+    toolbarActions=gen.toolbarActions
+    model=model
+    tabs=gen.tabs
+  }}
+
+
+<md-content class="flex layout-row">
+  <md-card class="flex-50">
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-title">{{t 'login.default.title'}}</span>
+        <p class="md-subhead">{{t 'login.default.description' }}</p>
+      </md-card-title-text>
+    </md-card-title>
+    <md-card-content>
+      {{ component gen.component
+        model
+
+        fieldsetFieldsComponent='paper-content'
+        flat=true
+
+        modelMeta=(readonly gen.resource)
+        validators=(readonly gen.resource.validators)
+        messages=(readonly gen.messages)
+        labels=(readonly gen.labels)
+        beforeFormComponent=(readonly gen.components.beforeForm)
+        _controller=this
+        extraActions=(readonly gen.extraActions)
+
+        onInvalid=(route-action 'onFormInvalid')
+        onSubmit=(route-action 'onFormSubmit')
+      }}
+    </md-card-content>
+  </md-card>
+  <md-card class="flex-50">
+    <md-card-title>
+      <md-card-title-text>
+        <span class="md-title">{{t 'login.domestic.title'}}</span>
+        <p class="md-subhead">{{t 'login.domestic.description' }}</p>
+      </md-card-title-text>
+    </md-card-title>
+    <md-card-content>
+      {{#paper-button
+        class="no-margin"
+        onClick=(route-action 'shibbolethLogin')
+        raised=true primary=true}}{{paper-icon 'person'}}{{t 'login.domestic.label' }}{{/paper-button}}
+    </md-card-content>
+  </md-card>
+</md-content>
+<md-content class="flex layout-row md-padding">
+</md-content>
+
+{{/gen-page}}

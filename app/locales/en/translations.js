@@ -11,6 +11,7 @@ import { component_implementation_detail } from './component_implementation_deta
 import { cidl } from './component_implementation_detail_link';
 import { custom_user } from './custom_user';
 import { common } from './common';
+import { login } from './login';
 
 export default {
   'service_item': service_item,
@@ -27,5 +28,7 @@ export default {
   'file': common.file,
   'message': common.message,
   'custom_user': custom_user,
+  'form': common.form,
+  'login': login,
 };
 
