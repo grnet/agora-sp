@@ -12,6 +12,23 @@ const {
     merge
 } = Ember;
 
+function extractToken(loc) {
+  let token = loc.hash && loc.hash.split("token=")[1];
+  if (token) { resetHash(window) };
+  return token;
+};
+
+
+function resetHash(win, replace='') {
+  if (win.history.replaceState) {
+    win.history.replaceState(null, null, '#' + replace);
+  } else {
+    win.location.hash = replace;
+  }
+}
+
+
+
 export default AuthGen.extend({
   routeMixins: {
     actions: {
