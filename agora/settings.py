@@ -511,6 +511,9 @@ CKEDITOR_CONFIGS = {
     }
 }
 
+AAI_ID_KEY = 'edupersonuniqueid'
+TOKEN_LOGIN_URL = '/auth/login'
+
 SETTINGS_DIR = os.environ.get('AGORA_SETTINGS_DIR', '/etc/agora')
 SETTINGS_FILE = 'settings.conf'
 SETTINGS_PATH = os.path.join(SETTINGS_DIR, SETTINGS_FILE)

@@ -67,6 +67,7 @@ urlpatterns = [
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'^saml2/', include('djangosaml2.urls')),
+    url(r'^api/shibboleth$', agora_views.shibboleth_login, name='shibboleth_login'),
     url(r'^test/', echo_attributes),
     url(r'^/?$', RedirectView.as_view(url='/ui/catalogue/services')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
