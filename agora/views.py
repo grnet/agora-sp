@@ -24,9 +24,11 @@ AAI_ID_KEY = getattr(settings, 'AAI_ID_KEY', 'id')
 def config(request):
 
     permissions = load_permissions()
+    shibboleth_endpoint = reverse('shibboleth_login')
 
     config_data = {
         'permissions': permissions,
+        'shibboleth_login_url': shibboleth_endpoint
     }
     return HttpResponse(json.dumps(config_data),
                         content_type='application/json')
