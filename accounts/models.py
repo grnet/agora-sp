@@ -66,6 +66,8 @@ class User(AbstractBaseUser, PermissionsMixin):
                     'active. Unselect this instead of deleting accounts.'))
     date_joined = models.DateTimeField(('date joined'), default=timezone.now)
     avatar = models.ImageField(upload_to= AVATAR_LOCATION, blank=True)
+    shibboleth_id = models.CharField(
+                    max_length=255, unique=True, null=True, default=None)
     objects = UserManager()
 
     USERNAME_FIELD = 'username'
