@@ -103,6 +103,11 @@ class Service(models.Model):
 
         return self.service_area
 
+    def get_service_area_name(self):
+        if self.service_area:
+            return self.service_area.name
+        return None
+
     def get_service_details(self, complete=False, url=False, catalogue=False):
 
         services = []
@@ -217,7 +222,7 @@ class Service(models.Model):
             ("name", self.name),
             ("short_description", self.short_description),
             ("description_external", self.description_external),
-            ("service_area", self.service_area),
+            ("service_area", self.get_service_area_name()),
             ("value_to_customer", self.value_to_customer),
             ("service_type", self.service_type),
             ("logo",  "/static/img/logos/"+self.logo.name.split("/")[-1])
@@ -269,7 +274,7 @@ class Service(models.Model):
             ("description_internal", self.description_internal),
             ("service_owner", service_owner),
             ("contact_information", contact_information),
-            ("service_area", self.service_area),
+            ("service_area", self.get_service_area_name()),
             ("user_customers_list", {
                 "count": len(users_customers),
                 "user_customers": users_customers
@@ -367,7 +372,7 @@ class Service(models.Model):
             ("description_internal", self.description_internal),
             ("service_owner", service_owner),
             ("contact_information", contact_information),
-            ("service_area", self.service_area),
+            ("service_area", self.get_service_area_name()),
             ("user_customers_list", {
                 "count": len(users_customers),
                 "user_customers": users_customers
@@ -457,7 +462,7 @@ class Service(models.Model):
             ("description_internal", self.description_internal),
             ("service_owner", service_owner),
             ("contact_information", contact_information),
-            ("service_area", self.service_area),
+            ("service_area", self.get_service_area_name()),
             ("user_customers_list", {
                 "count": len(users_customers),
                 "user_customers": users_customers
@@ -503,7 +508,7 @@ class Service(models.Model):
             ("name", self.name),
             ("short_description", self.short_description),
             ("description_external", self.description_external),
-            ("service_area", self.service_area),
+            ("service_area", self.get_service_area_name()),
             ("value_to_customer", self.value_to_customer),
             ("request_procedures", self.request_procedures),
             ("service_type", self.service_type),
