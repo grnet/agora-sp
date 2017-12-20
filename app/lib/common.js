@@ -21,7 +21,23 @@ const AgoraGen = CRUDGen.extend({
       serverSide: false,
       active: true
     }
+  },
+  create: {
+    onSubmit(model) {
+      let modelName = get(this, 'modelName');
+      let index = `${modelName}.record.index`;
+      this.transitionTo(index, model);
+    },
+  },
+  edit: {
+    onSubmit(model) {
+      let modelName = get(this, 'modelName');
+      let index = `${modelName}.record.index`;
+      this.transitionTo(index, model);
+    },
   }
+
+
 });
 
 function fileField(key, path, kind, attrs, formAttrs) {
