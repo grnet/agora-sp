@@ -439,6 +439,7 @@ api/v2:
       .actions=:
         .retrieve: {}
         .update: {}
+        .delete: {}
     .actions=:
       .list: {}
       .create: {}

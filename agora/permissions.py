@@ -59,8 +59,8 @@ RULES = [
     ('api/v2/contact-information', 'retrieve', '*', '*', '*', '*'),
     ('api/v2/contact-information', 'create', '*', '*', '*', '*'),
     ('api/v2/contact-information', 'update', '*', '*', '*', '*'),
-    ('api/v2/contact-information', 'destroy', '*', '*', '*', '*'),
-    ('api/v2/contact-information', 'delete', '*', '*', '*', '*'),
+    # ('api/v2/contact-information', 'destroy', '*', '*', '*', '*'),
+    # ('api/v2/contact-information', 'delete', '*', '*', '*', '*'),
 
     ('api/v2/contact_information_internal', 'list', '*', '*', '*', '*'),
     ('api/v2/contact_information_internal', 'retrieve', '*', '*', '*', '*'),
