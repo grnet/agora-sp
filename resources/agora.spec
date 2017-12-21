@@ -396,8 +396,10 @@ api/v2:
         .email: {}
       first_name:
         .string: {}
+        .nullable: {}
       last_name:
         .string: {}
+        .nullable: {}
       is_staff:
         .boolean: {}
       is_active:
@@ -409,6 +411,7 @@ api/v2:
       shibboleth_id:
         .string: {}
         .readonly: {}
+        .nullable: {}
       .actions=:
         .retrieve: {}
         .update: {}
