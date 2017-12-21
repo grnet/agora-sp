@@ -9,6 +9,7 @@ import { component } from './component';
 import { component_implementation } from './component_implementation';
 import { component_implementation_detail } from './component_implementation_detail';
 import { cidl } from './component_implementation_detail_link';
+import { custom_user } from './custom_user';
 import { common } from './common';
 
 export default {
@@ -25,5 +26,6 @@ export default {
   'cidl': cidl,
   'file': common.file,
   'message': common.message,
+  'custom_user': custom_user,
 };
 
