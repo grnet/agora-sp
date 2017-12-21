@@ -14,7 +14,10 @@ const DETAILS_FIELDSETS = [{
   fields: [
     'username',
     'full_name',
-    'date_joined',
+    field('date_joined_format', {
+      label: 'custom_user.fields.date_joined',
+      hint: 'custom_user.hints.date_joined'
+    }),
     'shibboleth_id',
     'email',
     'is_active',

@@ -24,6 +24,7 @@ module.exports = function(environment) {
     APP: {
       backend_host: 'http://127.0.0.1:8080/api/v2',
       backend_media_root: 'http://127.0.0.1:8080/static/img/',
+      date_format: 'DD/MM/YYYY',
       // Here you can pass flags/options to your application instance
       // when it is created
     }

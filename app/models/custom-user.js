@@ -1,4 +1,8 @@
 import DS from 'ember-data';
+import moment from 'moment';
+import ENV from '../config/environment';
+
+const DATE_FORMAT = ENV.APP.date_format;
 
 export default DS.Model.extend({
   username: DS.attr({
@@ -34,6 +38,10 @@ export default DS.Model.extend({
   shibboleth_id: DS.attr({
     label: 'custom_user.fields.shibboleth_id',
     hint: 'custom_user.hint.shibboleth_id'
+  }),
+  date_joined_format: Ember.computed('date_joined', function(){
+    const date = this.get('date_joined');
+    return date ? moment(date).format(DATE_FORMAT) : '-';
   }),
   full_name: Ember.computed('first_name', 'last_name', function() {
     const first_name = this.get('first_name');
