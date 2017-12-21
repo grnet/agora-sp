@@ -406,6 +406,9 @@ api/v2:
         .datetime: {format: '%Y-%m-%dT%H:%M'}
       avatar:
         .file: {}
+      shibboleth_id:
+        .string: {}
+        .readonly: {}
       .actions=:
         .retrieve: {}
         .update: {}
