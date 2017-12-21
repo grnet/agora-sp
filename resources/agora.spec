@@ -393,7 +393,7 @@ api/v2:
       username:
         .string: {}
       email:
-        .email: {}
+        .string: {}
       first_name:
         .string: {}
         .nullable: {}
@@ -434,7 +434,7 @@ api/v2:
         .string: {}
         .nullable: {}
       email:
-        .email: {}
+        .string: {}
         .nullable: {}
       phone:
         .string: {}
