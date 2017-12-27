@@ -1,5 +1,5 @@
 .meta:
-  root_url: http://127.0.0.1:8080
+  root_url: https://snf-789670.vm.okeanos.grnet.gr
   get_rules: agora.utils.get_rules
 api/v2:
   .endpoint: {}
@@ -70,6 +70,7 @@ api/v2:
           to: /api/v2/service-trls
         .sortable: {}
         .filterable: {}
+        .nullable: {}
       request_procedures:
         .string: {}
         .nullable: {}
@@ -86,12 +87,15 @@ api/v2:
         .string: {}
         .nullable: {}
       id_service_owner:
+        .nullable: {}
         .ref:
           to: /api/v2/service-owners
       id_contact_information:
+        .nullable: {}
         .ref:
           to: /api/v2/contact-information
       id_contact_information_internal:
+        .nullable: {}
         .ref:
           to: /api/v2/contact-information
       logo:
