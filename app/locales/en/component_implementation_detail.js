@@ -6,7 +6,7 @@ const component_implementation_detail = {
     'version': 'Version',
   },
   'belongs': {
-    'name': 'Component Version'
+    'name': 'Component Implementation Detail'
   },
   'links': {
     //'create_service_version': 'Create a new service version'

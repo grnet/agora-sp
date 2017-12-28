@@ -8,7 +8,7 @@ const component = {
     'description': 'Description',
   },
   'belongs': {
-    'name': 'Component Category'
+    'name': 'Component'
   },
   'links': {
     //'create_service_version': 'Create a new service version'
