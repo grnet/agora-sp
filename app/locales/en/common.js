@@ -15,6 +15,11 @@ const common = {
   },
   'message': {
     'close': 'close',
+  },
+  'form': {
+    'save': {
+      'label': 'save'
+    }
   }
 
 };

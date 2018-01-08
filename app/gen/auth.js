@@ -12,15 +12,40 @@ const {
     merge
 } = Ember;
 
+function extractToken(loc) {
+  let token = loc.hash && loc.hash.split("token=")[1];
+  if (token) { resetHash(window) };
+  return token;
+};
+
+
+function resetHash(win, replace='') {
+  if (win.history.replaceState) {
+    win.history.replaceState(null, null, '#' + replace);
+  } else {
+    win.location.hash = replace;
+  }
+}
+
+
+
 export default AuthGen.extend({
+  routeMixins: {
+    actions: {
+      shibbolethLogin() {
+        window.location = ENV.APP.shibboleth_login_url + '?login=1'
+      }
+    }
+  },
   login: {
     config: {
       authenticator: 'agora'
     },
+    templateName: 'agora-login',
     routeMixins: [{
       handleTokenLogin(token) {
         if (get(this, 'session.isAuthenticated')) {
-          //resetHash(window);
+          resetHash(window);
           return;
         }
         let url = ENV.APP.backend_host + '/auth/me/';
@@ -37,13 +62,22 @@ export default AuthGen.extend({
           }
           return resp.json().then((user) => {
             let session = get(this, 'session');
-            user.auth_token = token;
-            //resetHash(window);
+            let authData = { auth_token: token, user: user }
+            resetHash(window);
             this.get('messageService').setSuccess('login.success');
-            return session.authenticate('authenticator:agora', user);
+            return session.authenticate('authenticator:agora', authData);
           });
         })
       },
+      beforeModel(transition) {
+        let token = extractToken(window.location);
+        if (token) {
+          return this.handleTokenLogin(decodeURI(token));
+        }
+        return this._super(transition);
+      },
+
+
     }]
   }
 });

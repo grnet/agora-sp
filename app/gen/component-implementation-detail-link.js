@@ -125,7 +125,7 @@ export default AgoraGen.extend({
         });
       }
 
-      return store.createRecord('service-version', {});
+      return store.createRecord('component_implementation_detail_link', {});
     },
     onSubmit(model) {
       const param = model.get('param_service_version');

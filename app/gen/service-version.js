@@ -66,13 +66,14 @@ export default AgoraGen.extend({
       //prepopulate field only if query param exists
       if(params.service) {
         //save the service id in order to use it in onSubmit
-        model.set('param_service', params.service);
+        //model.set('param_service', params.service);
         //get the service item from the id provided from query param
         let service = store.findRecord('service-item', params.service);
         return service.then(function(service){
           //create a record with the model field prepopulated
           return store.createRecord('service-version', {
-            id_service: service
+            id_service: service,
+            param_service: params.service
           });
         })
       }
@@ -83,7 +84,7 @@ export default AgoraGen.extend({
     onSubmit(model) {
       const param = model.get('param_service');
       if(param) {
-        this.transitionTo(`/services/${params.service}`);
+        this.transitionTo(`/services/${param}`);
       }
     }
   },
