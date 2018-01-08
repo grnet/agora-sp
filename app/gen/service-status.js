@@ -39,7 +39,7 @@ export default AgoraGen.extend({
       group: {
         name: 'settings',
         label: 'Settings',
-        order: 999
+        order: 500
       }
     },
     row: {

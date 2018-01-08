@@ -8,7 +8,7 @@ import {
 
 export default AgoraGen.extend({
   modelName: 'custom-user',
-  order: 100,
+  order: 600,
   path: 'custom-users',
   resourceName: 'api/v2/custom-users',
   common: {
@@ -34,7 +34,6 @@ export default AgoraGen.extend({
     },
     menu: {
       label: 'custom_user.menu',
-      group: 'user-information'
     },
     sort: {
       serverside: false,

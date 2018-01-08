@@ -20,6 +20,9 @@ const common = {
     'save': {
       'label': 'save'
     }
+  },
+  'group_menu': {
+    'user_information': 'Owners & Contact',
   }
 
 };
