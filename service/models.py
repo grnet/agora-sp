@@ -566,7 +566,7 @@ class ServiceDetails(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
     id_service = models.ForeignKey(Service)
     version = models.CharField(max_length=255, default=None, blank=True)
-    status = models.ForeignKey(ServiceStatus)
+    status = models.ForeignKey(ServiceStatus, default=None, blank=True) # allow empty field
     features_current = RichTextUploadingField(default=None, blank=True, null=True)
     features_future = RichTextUploadingField(default=None, blank=True, null=True)
     usage_policy_has = models.BooleanField(default=False, blank=True)

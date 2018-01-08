@@ -122,6 +122,7 @@ api/v2:
           to: /api/v2/services
       status:
         .filterable: {}
+        .nullable: {}
         .ref:
           to: /api/v2/service-status
       version:
