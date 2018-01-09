@@ -23,6 +23,12 @@ const common = {
   },
   'group_menu': {
     'user_information': 'Owners & Contact',
+  },
+  'confirm': {
+    'message': 'Are you sure you want to delete this item?<br> The action cannot be undone',
+    'title': 'Delete item',
+    'ok': 'OK',
+    'cancel': 'CANCEL',
   }
 
 };

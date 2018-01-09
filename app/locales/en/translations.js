@@ -37,5 +37,6 @@ export default {
   'form': common.form,
   'login': login,
   'group_menu': common.group_menu,
+  'confirm': common.confirm,
 };
 
