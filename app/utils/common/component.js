@@ -30,6 +30,9 @@ const TABLE_FIELDS = [
 const DETAILS_FIELDSETS = [
   {
     label: 'component.cards.basic_information',
+    layout: {
+      flex: [100, 100]
+    },
     fields: [
       field('name', {
         type: 'text',
@@ -58,12 +61,14 @@ const CREATE_FIELDSETS = [
     fields: [
       field('name', {
         type: 'text',
-        label: 'component.fields.name'
+        label: 'component.fields.name',
+        hint: 'component.hints.name',
       }),
       field('description', {
         type: 'text',
         formComponent: 'text-editor',
-        label: 'component.fields.description'
+        label: 'component.fields.description',
+        hint: 'component.hints.description',
       }),
       /*field('logo', {
         type: 'text',

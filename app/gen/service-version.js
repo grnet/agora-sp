@@ -94,12 +94,5 @@ export default AgoraGen.extend({
   details: {
     preloadModels: ['service-item'],
     fieldsets: DETAILS_FIELDSETS,
-    page: {
-      title: Ember.computed('model.version', 'model.id_service.name', function() {
-        const service_name = Ember.get(this, 'model.id_service.name');
-        const service_version = Ember.get(this,'model.version');
-        return `${service_name} > ${service_version}`;
-      })
-    }
   }
 });

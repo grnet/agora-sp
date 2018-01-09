@@ -7,6 +7,11 @@ const component = {
     'logo': 'Logo',
     'description': 'Description',
   },
+  'hints': {
+    'name': 'A descriptive name for the component category',
+    'description': '',
+    'logo': ''
+  },
   'belongs': {
     'name': 'Component'
   },

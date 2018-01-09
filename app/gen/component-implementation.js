@@ -1,5 +1,6 @@
 import { AgoraGen } from '../lib/common';
 import { field } from 'ember-gen';
+import validate from 'ember-gen/validate';
 
 import {
   CREATE_FIELDSETS,
@@ -13,6 +14,12 @@ export default AgoraGen.extend({
   resourceName: 'api/v2/component-implementations',
   path: 'component-implementations',
   order: 2,
+  common: {
+    validators: {
+      name: [validate.presence(true)],
+      component_id: [validate.presence(true)],
+    }
+  },
   list: {
     page: {
       title: 'Component Implementations'
@@ -39,6 +46,7 @@ export default AgoraGen.extend({
           field(
             'component_id', {
               modelName:'component',
+              label: 'component.belongs.name',
               type: 'model',
               displayAttr: 'name'
             }

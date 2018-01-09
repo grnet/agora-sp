@@ -1,7 +1,7 @@
 const service_item = {
   'cards': {
-    'basic_information': 'Basic information',
-    'details': 'Description',
+    'basic_information': 'Basic Service Information',
+    'details': 'Service Description',
     'business_info': 'Business Information'
   },
   'fields': {
@@ -15,7 +15,7 @@ const service_item = {
     'description_internal': 'Description internal',
     'short_description': 'Short description',
     'funders': 'Funders for Service',
-    'procedures': 'Procedures',
+    'procedures': 'Request procedures',
     'risks': 'Risks',
     'competitors': 'Competitors',
     'customer_value': 'Value to Customer',

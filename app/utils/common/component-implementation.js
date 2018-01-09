@@ -64,13 +64,13 @@ const CREATE_FIELDSETS = [
         type: 'text',
         label: 'component_implementation.fields.name'
       }),
+      field('component_id', {
+        label: 'component.belongs.name'
+      }),
       field('description', {
         type: 'text',
         formComponent: 'text-editor',
         label: 'component_implementation.fields.description'
-      }),
-      field('component_id', {
-        label: 'component.belongs.name'
       }),
     ]
   }

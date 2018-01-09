@@ -1,5 +1,6 @@
 import { AgoraGen } from '../lib/common';
 import { field } from 'ember-gen';
+import validate from 'ember-gen/validate';
 import {
   TABLE_FIELDS,
   SORT_FIELDS,
@@ -14,6 +15,13 @@ export default AgoraGen.extend({
   resourceName: 'api/v2/component-implementation-detail-links',
   path: 'component-implementation-detail-links',
   order: 4,
+  common: {
+    validators: {
+      service_component_implementation_detail_id: [validate.presence(true)],
+      service_details_id: [validate.presence(true)],
+      service_id: [validate.presence(true)],
+    }
+  },
   list: {
     page: {
       title: 'Component Implementation Detail Links'

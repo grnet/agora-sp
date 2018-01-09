@@ -1,5 +1,6 @@
 import { AgoraGen } from '../lib/common';
 import { field } from 'ember-gen';
+import validate from 'ember-gen/validate';
 import {
   CREATE_FIELDSETS,
   TABLE_FIELDS,
@@ -12,6 +13,13 @@ export default AgoraGen.extend({
   resourceName: 'api/v2/component-implementation-details',
   path: 'component-implementation-details',
   order: 3,
+  common: {
+    validators: {
+      version: [validate.presence(true)],
+      component_id: [validate.presence(true)],
+      component_implementation_id: [validate.presence(true)],
+    },
+  },
   list: {
     page: {
       title: 'Component Implementation Details'
@@ -72,11 +80,6 @@ export default AgoraGen.extend({
     },
   },
   details: {
-    page: {
-      title: Ember.computed('model.name', function() {
-        return Ember.get(this, 'model.name');
-      })
-    },
     fieldsets: DETAILS_FIELDSETS,
   },
   edit: {
