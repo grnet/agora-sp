@@ -411,7 +411,7 @@ api/v2:
       is_active:
         .boolean: {}
       date_joined:
-        .datetime: {format: '%Y-%m-%dT%H:%M'}
+        .datetime: {}
       avatar:
         .file: {}
       shibboleth_id:
