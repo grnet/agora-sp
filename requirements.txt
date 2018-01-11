@@ -1,3 +1,5 @@
+apimas==0.4.dev2
+apimas-django==0.4.dev2
 appdirs==1.4.3
 asn1crypto==0.22.0
 blessings==1.6
