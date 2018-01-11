@@ -13,7 +13,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 class ServiceArea(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, blank=True, null=True)
-    icon = models.ImageField(upload_to=(os.path.join(settings.BASE_DIR, "static", "img", "logos")), default="/var/www/html/agora/static/img/logos/logo-none.jpg")
+    icon = models.ImageField(default=settings.SERVICE_AREA_ICON)
 
     class Meta:
         verbose_name_plural = "06. Service Areas (settings)"

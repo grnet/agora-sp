@@ -337,9 +337,11 @@ SOCIAL_AUTH_PIPELINE = (
 )
 
 
-# MEDIA_ROOT = '/var/www/html/agora/static/img'
-MEDIA_ROOT = os.path.join(BASE_DIR, "static/img")
-MEDIA_URL = '/static/img/'
+MEDIA_ROOT = '/var/www/agora/media'
+MEDIA_URL = 'media/'
+
+# Default name for service area logo. Should exist in MEDIA_ROOT
+SERVICE_AREA_ICON = 'service-area-icon-default.jpg'
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
