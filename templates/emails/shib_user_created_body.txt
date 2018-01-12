@@ -1,0 +1,10 @@
+A new user in agora has been created via shibboleth login:
+
+User details:
+
+User ID: {{ user.pk }}
+Email: {{ user.email }}
+Shibboleth ID: {{ user.shibboleth_id }}
+
+NOTICE: Please do NOT reply to this e-mail.
+

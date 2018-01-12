@@ -43,6 +43,7 @@ EMAIL_HOST_USER = 'agora.notification@gmail.com'
 EMAIL_HOST_PASSWORD = 'agora2016'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = 'no-reply@agora.com'
 
 USER_CREATION_EMAIL_LIST = [
     'iliaboti@grnet.gr',

@@ -13,6 +13,8 @@ from accounts.models import User
 from rest_framework.authtoken.models import Token
 from django.http import HttpResponseRedirect
 from django.contrib.auth import user_logged_in
+from agora.emails import send_email_shib_user_created
+
 
 
 logger = logging.getLogger(__name__)
@@ -137,6 +139,8 @@ def shibboleth_login(request):
 
     except User.DoesNotExist:
         user = User.objects.create(**user_data)
+        send_email_shib_user_created(user)
+
 
     token, _ = Token.objects.get_or_create(user=user)
     user_logged_in.send(sender=user.__class__, request=request, user=user)
