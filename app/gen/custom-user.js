@@ -29,7 +29,8 @@ export default AgoraGen.extend({
         'full_name',
         'email',
         'is_staff',
-        'is_active'
+        'is_active',
+        'role',
       ]
     },
     menu: {

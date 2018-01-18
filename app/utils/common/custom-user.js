@@ -9,7 +9,7 @@ const DETAILS_FIELDSETS = [{
   label: 'custom_user.cards.basic_information',
   text: 'custom_user.cards.basic_hint',
   layout: {
-    flex: [100, 50, 50, 50, 50, 50, 50]
+    flex: [50, 50, 50, 50, 50, 50, 50, 50]
   },
   fields: [
     'username',
@@ -21,7 +21,8 @@ const DETAILS_FIELDSETS = [{
     'shibboleth_id',
     'email',
     'is_active',
-    'is_staff'
+    'is_staff',
+    'role'
   ]
 }]
 
@@ -40,6 +41,7 @@ const CREATE_OR_EDIT_FIELDSETS = [{
     'email',
     'is_active',
     'is_staff',
+    'role'
   ]
 }]
 
@@ -47,4 +49,4 @@ const CREATE_OR_EDIT_FIELDSETS = [{
 export {
   DETAILS_FIELDSETS,
   CREATE_OR_EDIT_FIELDSETS,
-};
+}

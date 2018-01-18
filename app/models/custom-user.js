@@ -2,7 +2,8 @@ import DS from 'ember-data';
 import moment from 'moment';
 import ENV from '../config/environment';
 
-const DATE_FORMAT = ENV.APP.date_format;
+const DATE_FORMAT = ENV.APP.date_format,
+  CHOICES = ENV.APP.resources;
 
 export default DS.Model.extend({
   username: DS.attr({
@@ -48,5 +49,6 @@ export default DS.Model.extend({
     const last_name = this.get('last_name');
     return `${first_name} ${last_name}`;
   }),
+  role: DS.attr({type: 'select', choices: CHOICES.USER_ROLES}),
 
 });
