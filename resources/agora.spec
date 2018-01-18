@@ -417,6 +417,8 @@ api/v2:
         .string: {}
         .readonly: {}
         .nullable: {}
+      role:
+        .string: {}
       .actions=:
         .retrieve: {}
         .update: {}
