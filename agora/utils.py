@@ -1,4 +1,9 @@
+import os
+import json
+
+from django.conf import settings
 from agora.permissions import RULES
+
 from collections import defaultdict
 
 
@@ -26,6 +31,10 @@ def load_permissions():
         rule_to_dict(PERMISSIONS, list(rule))
     return PERMISSIONS
 
+def load_resources():
+    with open(os.path.join(settings.PATH_RESOURCES, 'common.json')) \
+            as json_file:
+        return json.load(json_file)
 
 def get_rules():
 
@@ -38,3 +47,7 @@ def get_root_url():
         from agora.construct import adapter
         _root_url = adapter.spec['.meta']['root_url']
     return _root_url
+
+
+RESOURCES = load_resources()
+USER_ROLES = RESOURCES['USER_ROLES']
