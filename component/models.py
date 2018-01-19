@@ -264,8 +264,7 @@ class ServiceDetailsComponent(models.Model):
             (
                 'service_id',
                 'service_details_id',
-                'service_component_implementation_detail_id',
-                'configuration_parameters'
+                'service_component_implementation_detail_id'
             ),
         )
         verbose_name_plural = "5. Service Components Implementations Details Link"
