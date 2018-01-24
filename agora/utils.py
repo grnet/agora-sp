@@ -1,10 +1,11 @@
 import os
 import json
+from collections import defaultdict
 
 from django.conf import settings
-from agora.permissions import RULES
 
-from collections import defaultdict
+from agora.permissions import RULES
+import accounts.models
 
 
 _root_url = None
@@ -31,13 +32,25 @@ def load_permissions():
         rule_to_dict(PERMISSIONS, list(rule))
     return PERMISSIONS
 
+
 def load_resources():
     with open(os.path.join(settings.PATH_RESOURCES, 'common.json')) \
             as json_file:
         return json.load(json_file)
 
-def get_rules():
 
+def djoser_verifier(token):
+    user = accounts.models.User.objects.filter(auth_token=token).first()
+    if user is None or not user.is_active:
+        return None
+    return user
+
+
+def userid_extractor(user):
+    return user.id
+
+
+def get_rules():
     return RULES
 
 

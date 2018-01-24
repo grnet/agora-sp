@@ -1,6 +1,8 @@
 .meta:
   root_url: https://snf-789670.vm.okeanos.grnet.gr
   get_rules: agora.utils.get_rules
+  djoser_verifier: agora.utils.djoser_verifier
+  userid_extractor: agora.utils.userid_extractor
 api/v2:
   .endpoint: {}
   users:
