@@ -8,6 +8,8 @@ api/v2:
   users:
     .collection:
       model: accounts.models.User
+    .protected=:
+      .djoser: {}
     '*':
       id:
         .uuid: {}
@@ -39,6 +41,8 @@ api/v2:
   services:
     .collection:
       model: service.models.Service
+    .protected=:
+      .djoser: {}
     '*':
       id:
         .uuid: {}
@@ -113,6 +117,8 @@ api/v2:
   service-versions:
     .collection:
       model: service.models.ServiceDetails
+    .protected=:
+      .djoser: {}
     '*':
       id:
         .uuid: {}
@@ -203,6 +209,8 @@ api/v2:
   user-customers:
     .collection:
       model: service.models.UserCustomer
+    .protected=:
+      .djoser: {}
     '*':
       id:
         .uuid: {}
@@ -250,6 +258,8 @@ api/v2:
   service-status:
     .collection:
       model: service.models.ServiceStatus
+    .protected=:
+      .djoser: {}
     '*':
       id:
         .uuid: {}
@@ -270,6 +280,8 @@ api/v2:
   service-trls:
     .collection:
       model: service.models.ServiceTrl
+    .protected=:
+      .djoser: {}
     '*':
       id:
         .uuid: {}
@@ -290,6 +302,8 @@ api/v2:
   external_services:
     .collection:
       model: service.models.ExternalService
+    .protected=:
+      .djoser: {}
     '*':
       id:
         .uuid: {}
@@ -312,6 +326,8 @@ api/v2:
   user-roles:
     .collection:
       model: service.models.UserRole
+    .protected=:
+      .djoser: {}
     '*':
       id:
         .uuid: {}
@@ -330,6 +346,8 @@ api/v2:
   user_customers:
     .collection:
       model: service.models.UserCustomer
+    .protected=:
+      .djoser: {}
     '*':
       id:
         .uuid: {}
@@ -343,6 +361,8 @@ api/v2:
   service-areas:
     .collection:
       model: service.models.ServiceArea
+    .protected=:
+      .djoser: {}
     '*':
       id:
         .uuid: {}
@@ -363,6 +383,8 @@ api/v2:
   service-owners:
     .collection:
       model: owner.models.ServiceOwner
+    .protected=:
+      .djoser: {}
     '*':
       id:
         .uuid: {}
@@ -393,6 +415,8 @@ api/v2:
   custom-users:
     .collection:
       model: accounts.models.User
+    .protected=:
+      .djoser: {}
     '*':
       id:
         .uuid: {}
@@ -433,6 +457,8 @@ api/v2:
   contact-information:
     .collection:
       model: owner.models.ContactInformation
+    .protected=:
+      .djoser: {}
     '*':
       id:
         .uuid: {}
@@ -464,6 +490,8 @@ api/v2:
   institutions:
     .collection:
       model: owner.models.Institution
+    .protected=:
+      .djoser: {}
     '*':
       id:
         .uuid: {}
@@ -492,6 +520,8 @@ api/v2:
   service-owners:
     .collection:
       model: owner.models.ServiceOwner
+    .protected=:
+      .djoser: {}
     '*':
       id:
         .uuid: {}
@@ -521,6 +551,8 @@ api/v2:
   components:
     .collection:
       model: component.models.ServiceComponent
+    .protected=:
+      .djoser: {}
     '*':
       id:
         .uuid: {}
@@ -545,6 +577,8 @@ api/v2:
   component-implementations:
     .collection:
       model: component.models.ServiceComponentImplementation
+    .protected=:
+      .djoser: {}
     '*':
       id:
         .uuid: {}
@@ -570,6 +604,8 @@ api/v2:
   component-implementation-details:
     .collection:
       model: component.models.ServiceComponentImplementationDetail
+    .protected=:
+      .djoser: {}
     '*':
       id:
         .uuid: {}
@@ -595,6 +631,8 @@ api/v2:
   component-implementation-detail-links:
     .collection:
       model: component.models.ServiceDetailsComponent
+    .protected=:
+      .djoser: {}
     '*':
       id:
         .uuid: {}
