@@ -1,53 +1,59 @@
-# Agora-admin
+# Agora-sp Admin
 
-This README outlines the details of collaborating on this Ember application.
-A short introduction of this app could easily go here.
+Agora-sp admin is an EmberJS project that provides an intuitive user interface for the [the agora-sp](https://github.com/grnet/agora-sp) project. It allows users to create/edit/update/delete their services and components. Users can login with credentials provided by the administrator, or use the shibboleth login functionality to login with their academic account.
 
-## Prerequisites
+### Get the code
 
-You will need the following things properly installed on your computer.
+Clone or download the repo.
 
-* [Git](http://git-scm.com/)
-* [Node.js](http://nodejs.org/) (with NPM)
-* [Bower](http://bower.io/)
-* [Ember CLI](http://ember-cli.com/)
-* [PhantomJS](http://phantomjs.org/)
+```
+git clone https://github.com/grnet/agora-sp-admin.git
+```
 
-## Installation
+### Dependencies
 
-* `git clone <repository-url>` this repository
-* `cd agora-admin`
-* `npm install`
-* `bower install`
+You need to have [NodeJS](https://nodejs.org/en/download/) and [Yarn](https://yarnpkg.com/en/docs/install) installed.
 
-## Running / Development
+### Install requirements
 
-* `ember serve`
-* Visit your app at [http://localhost:4200](http://localhost:4200).
+You must first run `yarn` inside the project root directory to install depending libraries.
 
-### Code Generators
+When yarn finishes, you should run `./node_modules/.bin/bower install --allow-root` in order to install all bower components required (use the `--allow-root` option if required).
 
-Make use of the many generators for code, try `ember help generate` for more details
+### Configuration
 
-### Running Tests
+You should edit the `config/environment.js` file to set the default configuration options. You need to specify the location of your backend server and API (the backend server is [the agora-sp repo](https://github.com/grnet/agora-sp) as well as the media root url for the static files.
 
-* `ember test`
-* `ember test --server`
+Example options:
 
-### Building
+```
+var ENV = {
+  appURL: 'https://example.com/api/v2/',
+  APP: {
+    backend_host: 'https://example.com/api/v2',
+    backend_media_root: 'https://example.com/static/img/',
+  }
+}
+```
 
-* `ember build` (development)
-* `ember build --environment production` (production)
+### Development
 
-### Deploying
+If you want to make changes/update the code, you should run ember in development mode. You can do this by running:
 
-Specify what it takes to deploy your app.
+```
+./node_modules/.bin/ember serve
+```
 
-## Further Reading / Useful Links
+and then visit your app at [http://localhost:4200](http://localhost:4200).
 
-* [ember.js](http://emberjs.com/)
-* [ember-cli](http://ember-cli.com/)
-* Development Browser Extensions
-  * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
-  * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
+Ember then will watch for updates in your code and reload the files automatically.
 
+### Production
+
+In order to deliver the UI, you need to run ember in build mode. You can do this by running:
+
+```
+./node_modules/.bin/ember build
+```
+
+This will create a `dist` directory inside the project root directory, so you can serve it to deliver the UI.
