@@ -54,6 +54,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
 
 You should override it with your database settings, [you can read more information here](https://docs.djangoproject.com/en/1.9/ref/databases/).
 
+**NOTE:** You must create a `log` folder containing a `debug.log` file in your base project directory or configure LOGGING setting with custom log options.
+
 
 ### API configuration
 
