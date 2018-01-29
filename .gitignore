@@ -7,3 +7,16 @@ logs/*
 static/img/uploads/*
 *~
 *.swp
+
+grnet-metadata.xml
+viseem-metadata.xml
+edugain-meta.xml
+b2access-idp-production.xml
+b2access-idp-staging.xml
+meta-meta.xml
+idp-metadata.xml
+
+mycert.key
+mycert.pem
+key.pem
+cert.pem
