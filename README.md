@@ -114,7 +114,7 @@ All the tables will be created from the django migrations.
 The following packages are required for this project to work. You can install them with the following command:
 
 ```
-apt-get install git python mysql-server mysql-client libmysqlclient-dev build-essential libssl-dev libffi-dev python-dev apache2 apache2-doc apache2-utils
+apt-get install python mysql-server mysql-client libmysqlclient-dev build-essential libssl-dev libffi-dev python-dev apache2 apache2-doc apache2-utils
 ```
 
 You should have pip installed, if not you can find documentation [here](https://packaging.python.org/installing/)
