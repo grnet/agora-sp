@@ -1,0 +1,22 @@
+apt_packages: [ 'sudo', 'git', 'python', 'mysql-server', 'mysql-client', 'libmysqlclient-dev', 'build-essential', 'libssl-dev', 'libffi-dev', 'python-dev', 'apache2', 'apache2-doc', 'apache2-utils', 'libapache2-mod-wsgi', 'python-pip' ]
+
+user_name: 'agora'
+user_state: present
+user_append: True
+user_uid: 1005
+
+pip_packages: [ 'mysql-python' ]
+
+project_name: 'agora'
+install_root: '/home/agora'
+repo_root: '~/grnet/agora'
+tmp_zip_root: '/tmp'
+zip_name: 'agora.tgz'
+
+django_dir: '/home/agora/agora'
+
+server_ip: 83.212.98.135
+
+admin_user: admin
+admin_pass: test123456
+admin_email: admin@vi-seem.eu

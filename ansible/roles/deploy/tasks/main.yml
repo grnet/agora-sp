@@ -1,0 +1,40 @@
+---
+- file:
+    state: absent
+    path: "{{ install_root }}/{{ project_name }}"
+
+- file:
+    state: absent
+    path: "{{ install_root }}/{{zip_name}}"
+
+- file:
+    state: directory
+    path: "{{ install_root }}/{{ project_name }}"
+
+- copy:
+    src: "{{ tmp_zip_root }}/{{ zip_name }}"
+    dest: "{{ install_root }}/{{ zip_name }}"
+    owner: "{{ user_name }}"
+    mode: 0644
+
+- unarchive:
+    src: "{{ install_root }}/{{ zip_name }}"
+    dest: "{{ install_root }}/{{ project_name}}"
+    remote_src: True
+
+- template:
+    src: ../templates/apache2.conf.j2
+    dest: /etc/apache2/apache2.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- file:
+    path: "{{ install_root }}/{{ project_name }}/logs"
+    owner: www-data
+    group: www-data
+    state: directory
+    mode: 0777
+    recurse: yes
+  notify:
+    - restart apache

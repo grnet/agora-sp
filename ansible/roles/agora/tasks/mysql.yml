@@ -1,0 +1,8 @@
+---
+
+- mysql_db:
+    name: agora
+    state: present
+  tags:
+    - agora
+

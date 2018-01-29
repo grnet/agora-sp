@@ -1,0 +1,14 @@
+---
+
+- file:
+    state: absent
+    path: "{{ tmp_zip_root }}/{{ project_name }}"
+
+- git:
+    repo: "{{repo_root}}/.git"
+    version: "dev"
+    dest: "{{ tmp_zip_root }}/{{ project_name }}"
+
+- name: Compress the repo folder
+  shell: tar czf {{ tmp_zip_root }}/{{ project_name }}.tgz -C {{ tmp_zip_root }}/{{ project_name }} .
+
