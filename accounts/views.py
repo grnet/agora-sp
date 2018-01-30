@@ -63,19 +63,19 @@ def login_screen(request):
                       "APPLICATION_NAME" : agora.settings.APPLICATION_NAME,
                       "AUTHENTICATION" : request.user.is_authenticated()})
 
-def save_avatar(backend, user, response, *args, **kwargs):
-    if isinstance(backend, GoogleOAuth2):
-        if response.get('image') and response['image'].get('url'):
-            url = response['image'].get('url')
-
-            if user.avatar == "":
-                ext = url.split('.')[-1][-5]
-                user.avatar.save(
-                   '{0}_{1}.jpg'.format('avatar',str(user.id)),
-                   ContentFile(urllib2.urlopen(url).read()),
-                   save=False
-                )
-                user.save()
+#def save_avatar(backend, user, response, *args, **kwargs):
+#    if isinstance(backend, GoogleOAuth2):
+#        if response.get('image') and response['image'].get('url'):
+#            url = response['image'].get('url')
+#
+#            if user.avatar == "":
+#                ext = url.split('.')[-1][-5]
+#                user.avatar.save(
+#                   '{0}_{1}.jpg'.format('avatar',str(user.id)),
+#                   ContentFile(urllib2.urlopen(url).read()),
+#                   save=False
+#                )
+#                user.save()
 
 def retrieve_social_auth_users(request):
 

@@ -210,33 +210,11 @@ WSGI_APPLICATION = 'agora.wsgi.application'
 SQLITE = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': '/home/thanasis/agora/db.agora.sqlite3'
+        'NAME': '/srv/db.agora.sqlite3'
     }
 }
 
-MYSQL = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'agora2',
-        'USER': 'root',
-        'PASSWORD': 'password',
-        'HOST': '127.0.0.1',
-    }
-}
-POSTGRES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'agora',
-        'USER': 'agora_user',
-        'PASSWORD': 'agora',
-        'HOST': 'localhost',
-        'PORT': '',
-    }
-}
-if DEBUG:
-    DATABASES = POSTGRES
-else:
-    DATABASES = POSTGRES
+DATABASES = SQLITE
 
 AUTHENTICATION_BACKENDS = (
     'social.backends.google.GoogleOAuth2',

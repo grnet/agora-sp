@@ -86,11 +86,10 @@ def get_services_by_area(request, type):
             response[area].append(service.as_service_picker_compliant())
 
         if response[area] != []:
-            icon = None
             try:
                 icon = models.ServiceArea.objects.get(name=area).icon.name.split("/")[-1]
             except:
-                pass
+                icon = None
             data["areas"].append((response[area], icon))
 
 

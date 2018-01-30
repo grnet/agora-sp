@@ -32,7 +32,7 @@ from djoser import views as djoser_views
 
 
 with open(settings.FILEPATH_SPEC, 'r') as apimasfile:
-        spec = yaml.load(apimasfile)
+        spec = yaml.safe_load(apimasfile)
 
 
 adapter = DjangoAdapter()
