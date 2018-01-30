@@ -217,7 +217,6 @@ SQLITE = {
 DATABASES = SQLITE
 
 AUTHENTICATION_BACKENDS = (
-    'social.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',)
 
 # Password validation
@@ -241,8 +240,6 @@ AUTH_PASSWORD_VALIDATORS = [
 CLIENT_ID = ''
 APPLICATION_NAME = 'API-Client'
 
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = ''
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = ''
 
 AVATAR_LOCATION = '/var/www/html/agora/static/img/avatars/'
 
