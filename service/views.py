@@ -30,6 +30,8 @@ def list_services(request,  type):
 
     response = {}
     services = []
+    # Status code 204 No Content
+    status =  int(204)
 
     if type == "portfolio":
 
@@ -54,8 +56,10 @@ def list_services(request,  type):
             "services": services
         }
         response = helper.get_response_info(strings.SERVICE_LIST, data)
+        status = int(response["status"][:3])
 
-    return JsonResponse(response, status=int(response["status"][:3]))
+
+    return JsonResponse(response, status=status)
 
 def get_services_by_area(request, type):
     '''
