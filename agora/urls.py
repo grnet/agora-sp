@@ -55,7 +55,7 @@ urlpatterns = [
     url(r'^api/v1/options/?', include('options.insert_urls')),
     url(r'^api/v1/component/?', include('component.insert_urls')),
     url(r'^api/v1/accounts/?', include('accounts.urls')),
-    url(r'^api/v1/auth/', include("social.apps.django_app.urls", namespace="social")),
+    #url(r'^api/v1/auth/', include("social.apps.django_app.urls", namespace="social")),
     url(r'^api/v1/accounts/?', include('django.contrib.auth.urls')),
     url(r'^ui/?', include('service.view_urls')),
     url(r'^ui/home/?', views.home_write_ui),
