@@ -13,9 +13,6 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 from os import path
 
-import saml2
-from saml2.saml import NAMEID_FORMAT_PERSISTENT
-
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -82,7 +79,6 @@ INSTALLED_APPS = [
     'common',
     'service',
     'accounts',
-    'djangosaml2',
     'ckeditor',
     'ckeditor_uploader',
 ]
@@ -165,56 +161,6 @@ PROJECT_APPS = ['component', 'options', 'owner', 'service']
 SITE_ID = 2
 ALLOWED_HOST = 'sp.eudat.eu';
 
-SAML_ATTRIBUTE_MAPPING = {
-    'dn':('last_name',),
-    'cn': ('first_name',),
-    'mail': ('email',),
-    'userName': ('username',)
-}
-
-SAML_DJANGO_USER_MAIN_ATTRIBUTE = 'email'
-
-SAML_CONFIG = {
-  'xmlsec_binary': '/usr/bin/xmlsec1',
-  'entityid': 'https://'+ALLOWED_HOST+'/saml2/metadata/',
-  'attribute_map_dir': path.join(BASE_DIR, 'attribute-maps'),
-  'service': {
-        'sp' : {
-                  'name': 'Agora Dev Service',
-                  'name_id_format': 'unity:persistent',
-                  'authn_requests_signed': True,
-                  "allow_unsolicited": True,
-                  'endpoints': {
-                                'assertion_consumer_service': [ ('https://'+ALLOWED_HOST+'/saml2/acs/',saml2.BINDING_HTTP_POST),  ],
-
-                                'single_logout_service': [ ('https://'+ALLOWED_HOST+'/saml2/ls/',saml2.BINDING_HTTP_REDIRECT),
-                                                         ('https://'+ALLOWED_HOST+'/saml2/ls/post',saml2.BINDING_HTTP_POST),  ],
-                                },
-                  'required_attributes': ['dn', 'mail','userName'],
-                  'optional_attributes': ['cn'],
-
-                  'idp': {
-                          # the keys of this dictionary are entity ids
-                          'https://b2access.eudat.eu:8443/saml-idp/metadata': {
-                              'single_sign_on_service': {
-                                  saml2.BINDING_HTTP_REDIRECT: 'https://b2access.eudat.eu:8443/saml-idp/saml2idp-web',
-                                  },
-                              'single_logout_service': {
-                                  saml2.BINDING_HTTP_REDIRECT: 'https://b2access.eudat.eu:8443/saml-idp/SLO-WEB',
-                                  },
-                              },
-                          },
-        }
-    },
-         'key_file' : path.join(BASE_DIR, 'key.pem'),
-         'cert_file' : path.join(BASE_DIR, 'cert.pem'),
-
-        'metadata': {
-              'local': [path.join(BASE_DIR, 'b2access-idp-production.xml')],
-                },
-        'debug': 1,
-}
-
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 MIDDLEWARE_CLASSES = [
@@ -294,8 +240,7 @@ else:
 
 AUTHENTICATION_BACKENDS = (
     'social.backends.google.GoogleOAuth2',
-    'django.contrib.auth.backends.ModelBackend',
-    'djangosaml2.backends.Saml2Backend',)
+    'django.contrib.auth.backends.ModelBackend',)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -417,11 +362,6 @@ LOGGING = {
             'class': 'logging.FileHandler',
             'filename': os.path.join(BASE_DIR, 'logs/debug.log'),
         },
-        'file_saml': {
-            'level': 'DEBUG',
-            'class': 'logging.FileHandler',
-            'filename': os.path.join(BASE_DIR, 'logs/debug_saml2.log'),
-        },
 
     },
     'loggers': {
@@ -435,11 +375,6 @@ LOGGING = {
             'level': 'DEBUG' if DEBUG else 'INFO',
             'propagate': True,
         },
-        'djangosaml2': {
-            'handlers' : ['file_saml'],
-            'level' : 'DEBUG',
-            'propagate' : True,
-        }
     },
 }
 

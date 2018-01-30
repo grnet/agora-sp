@@ -75,19 +75,6 @@
             </g>
         </svg>
     </a>
-      {% if 'agora-dev.vi-seem.eu' in request.build_absolute_uri %}
-          <label>&nbsp;</label><input type="button" value="{% trans 'Log in with VI-SEEM' %}" onclick="location.href='http://agora-dev.vi-seem.eu/saml2/login'" />
-      {% endif %}
-      {% if 'services.vi-seem.eu' in request.build_absolute_uri %}
-          <label>&nbsp;</label><input type="button" value="{% trans 'Log in with VI-SEEM' %}" onclick="location.href='http://services.vi-seem.eu/saml2/login'" />
-      {% endif %}
-      {% if 'sp.eudat.eu' in request.build_absolute_uri %}
-          <label>&nbsp;</label><input type="button" value="{% trans 'Log in with B2-ACCESS' %}" />
-      {% endif %}
-        {% if 'localhost' in request.build_absolute_uri  %}
-          <label>&nbsp;</label><input type="button" value="{% trans 'Log in with B2-ACCESS' %}" />
-          <label>&nbsp;</label><input type="button" value="{% trans 'Log in with VI-SEEM' %}" onclick="location.href='http://localhost/saml2/login'" />
-      {% endif %}
 
 <p><a href="{% url 'password_reset' %}">Lost password?</a></p>
 {% endblock %}

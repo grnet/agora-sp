@@ -21,7 +21,6 @@ from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import RedirectView
-from djangosaml2.views import echo_attributes
 
 from service import views
 from component import views as component_views
@@ -66,9 +65,7 @@ urlpatterns = [
     url(r'^ui/options/?', include('options.ui_urls')),
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
-    url(r'^saml2/', include('djangosaml2.urls')),
     url(r'^api/shibboleth$', agora_views.shibboleth_login, name='shibboleth_login'),
-    url(r'^test/', echo_attributes),
     url(r'^/?$', RedirectView.as_view(url='/ui/catalogue/services')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^api/v2/auth/', include('djoser.urls')),
