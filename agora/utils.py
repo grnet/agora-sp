@@ -2,6 +2,9 @@ from agora.permissions import RULES
 from collections import defaultdict
 
 
+_root_url = None
+
+
 def rule_to_dict(data, args):
     if len(args) == 1:
         return args[0]
@@ -27,3 +30,11 @@ def load_permissions():
 def get_rules():
 
     return RULES
+
+
+def get_root_url():
+    global _root_url
+    if not _root_url:
+        from agora.construct import adapter
+        _root_url = adapter.spec['.meta']['root_url']
+    return _root_url

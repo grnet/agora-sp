@@ -13,8 +13,6 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-import yaml
-
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
@@ -25,18 +23,10 @@ from django.views.generic import RedirectView
 from service import views
 from component import views as component_views
 from agora import views as agora_views
-
-from apimas.django.adapter import DjangoAdapter
+from agora.construct import adapter
 
 from djoser import views as djoser_views
 
-
-with open(settings.FILEPATH_SPEC, 'r') as apimasfile:
-        spec = yaml.safe_load(apimasfile)
-
-
-adapter = DjangoAdapter()
-adapter.construct(spec)
 
 api_urls = adapter.get_urlpatterns()
 

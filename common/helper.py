@@ -1,6 +1,7 @@
 import responses
 import datetime
 from django.contrib.sites.models import Site
+from agora.utils import get_root_url
 
 def get_error_response(code, status=1, additional_status_msg=None):
     return {
@@ -19,12 +20,10 @@ def get_response_info(code, data, status=0):
         "data": data
     }
 
+
 def current_site_url():
+    return get_root_url()+"/api"
 
-    current_site = Site.objects.get_current()
-    url = 'https://%s' % (current_site.domain+"/api")
-
-    return url
 
 def build_list_object(name, objects):
     return {
