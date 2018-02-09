@@ -24,7 +24,7 @@ export default AgoraGen.extend({
       actions: ['gen:details', 'gen:edit', 'remove'],
       fields: [
         'name',
-        'icon'
+        field('icon_filename', {label: 'service_area.fields.icon'})
       ]
     },
     sort: {
