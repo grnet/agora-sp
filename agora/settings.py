@@ -261,6 +261,8 @@ MEDIA_URL = 'media/'
 
 # Default name for service area logo. Should exist in MEDIA_ROOT
 SERVICE_AREA_ICON = 'service-area-icon-default.jpg'
+# Default name for service logo. Should exist in MEDIA_ROOT
+SERVICE_LOGO = 'service-logo-default.jpg';
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 

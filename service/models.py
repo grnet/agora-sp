@@ -68,7 +68,8 @@ class Service(models.Model):
     id_contact_information = models.ForeignKey(ContactInformation, null=True, related_name="external_contact_info")
     #This is the id of the internal contact information
     id_contact_information_internal = models.ForeignKey(ContactInformation, null=True, related_name="internal_contact_info")
-    logo = models.ImageField(upload_to=(os.path.join(settings.BASE_DIR, "static", "img", "logos")), default="/var/www/html/agora/static/img/logos/logo-none.jpg")
+    logo = models.ImageField(default=settings.SERVICE_LOGO,
+            upload_to=helper.service_image_path)
 
     class Meta:
         verbose_name_plural = "01. Services"
