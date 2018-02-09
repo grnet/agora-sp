@@ -60,4 +60,9 @@ def get_request_data(request):
 
 
 def set_cookie(response, key, value):
-  response.set_cookie(key, value)
+    response.set_cookie(key, value)
+
+
+def service_area_image_path(instance, filename):
+    # file uploaded to MEDIA_ROOT/service_areas/resource_<id>/<filename>
+    return 'service_areas/{0}/{1}'.format(instance.pk, filename)
