@@ -45,7 +45,6 @@ api/v2:
         .string: {}
         .filterable: {}
         .sortable: {}
-        .required: {}
       short_description:
         .string: {}
         .nullable: {}
