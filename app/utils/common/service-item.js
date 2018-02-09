@@ -1,4 +1,5 @@
 import { field } from 'ember-gen';
+import { fileField } from '../../lib/common';
 
 const SORT_FIELDS = [
   'name',
@@ -80,10 +81,13 @@ const BASIC_INFO_FIELDS =  [
       label: 'service_item.fields.name'
     }
   ),
-  field(
-    'logo', {
-      type: 'text',
-      label: 'service_item.fields.logo'
+  fileField(
+    'logo', 'service', 'logo', {
+      readonly: true,
+      label: 'service.fields.logo',
+      hint: 'service.hints.icon',
+    }, {
+      img: true
     }
   ),
   field(
@@ -132,15 +136,65 @@ const BASIC_INFO_FIELDS =  [
   ),
 ];
 
-const BASIC_INFO_FORM_FIELDS =  [
+const BASIC_INFO_FORM_FIELDS_EDIT =  [
   field(
     'name', {
       label: 'service_item.fields.name'
     }
   ),
+  fileField(
+    'logo', 'service-item', 'logo', {
+      readonly: false,
+      label: 'service_item.fields.icon',
+      hint: 'service_item.hints.icon',
+    }, {
+      replace: true,
+      img: true
+    }
+  ),
   field(
-    'logo', {
-      label: 'service_item.fields.logo'
+    'service_area', {
+      label: 'service_item.fields.service_area'
+    }
+  ),
+  field(
+    'service_type', {
+      label: 'service_item.fields.service_type'
+    }
+  ),
+  field(
+    'service_trl', {
+      label: 'service_trl.belongs.value'
+    }
+  ),
+  field(
+    'short_description', {
+      label: 'service_item.fields.short_description',
+      htmlSafe: true,
+      formComponent: 'text-editor',
+    }
+  ),
+  field(
+    'id_service_owner', {
+      label: 'service_owner.belongs.full_name'
+    }
+  ),
+  field(
+    'id_contact_information', {
+      label: 'contact_information.belongs.external'
+    }
+  ),
+  field(
+    'id_contact_information_internal', {
+      label: 'contact_information.belongs.internal'
+    }
+  ),
+];
+
+const BASIC_INFO_FORM_FIELDS_CREATE =  [
+  field(
+    'name', {
+      label: 'service_item.fields.name'
     }
   ),
   field(
@@ -432,22 +486,37 @@ const DETAILS_FIELDSETS = [
 ];
 
 /********************************************
-            CREATE VIEW/EDIT VIEW
+            CREATE VIEW
 ********************************************/
 
 const CREATE_FIELDSETS = [
   {
     label: 'service_item.cards.basic_information',
-    fields: BASIC_INFO_FORM_FIELDS
+    fields: BASIC_INFO_FORM_FIELDS_CREATE
   },
   MORE_INFO_FIELDSET,
   BUSINESS_INFO_FIELDSET
 ];
+
+/********************************************
+            EDIT VIEW
+********************************************/
+
+const EDIT_FIELDSETS = [
+  {
+    label: 'service_item.cards.basic_information',
+    fields: BASIC_INFO_FORM_FIELDS_EDIT
+  },
+  MORE_INFO_FIELDSET,
+  BUSINESS_INFO_FIELDSET
+];
+
 
 export {
   TABLE_FIELDS,
   SORT_FIELDS,
   DETAILS_FIELDSETS,
   BASIC_INFO_FIELDS,
-  CREATE_FIELDSETS
+  CREATE_FIELDSETS,
+  EDIT_FIELDSETS
 };

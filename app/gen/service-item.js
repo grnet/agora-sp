@@ -4,6 +4,7 @@ import validate from 'ember-gen/validate';
 import { field } from 'ember-gen';
 import {
   CREATE_FIELDSETS,
+  EDIT_FIELDSETS,
   TABLE_FIELDS,
   SORT_FIELDS,
   DETAILS_FIELDSETS
@@ -73,7 +74,7 @@ export default AgoraGen.extend({
     }
   },
   edit: {
-    fieldsets: CREATE_FIELDSETS
+    fieldsets: EDIT_FIELDSETS
   },
   create: {
     fieldsets: CREATE_FIELDSETS
