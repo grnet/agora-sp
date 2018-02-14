@@ -8,6 +8,7 @@ from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 from agora.settings import AVATAR_LOCATION
 from agora.settings import USER_CREATION_EMAIL_LIST
+from agora.utils import USER_ROLES
 from rest_framework.authtoken.models import Token
 import datetime
 import pytz
@@ -67,14 +68,21 @@ class User(AbstractBaseUser, PermissionsMixin):
     avatar = models.ImageField(upload_to= AVATAR_LOCATION, blank=True)
     shibboleth_id = models.CharField(
                     max_length=255, unique=True, null=True, default=None)
+    role = models.CharField(
+            choices=USER_ROLES, max_length=20, default='observer')
     objects = UserManager()
 
     USERNAME_FIELD = 'username'
-    REQUIRED_FIELDS = ['email', ]
+    REQUIRED_FIELDS = ['email', 'role' ]
 
     class Meta:
         verbose_name = ('user')
         verbose_name_plural = ('users')
+
+
+    @property
+    def apimas_roles(self):
+        return [self.role]
 
     def get_absolute_url(self):
         return "/users/%s/" % urlquote(self.email)

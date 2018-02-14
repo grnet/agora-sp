@@ -1,0 +1,8 @@
+{
+    "USER_ROLES": [
+        ["observer", "Observer"],
+        ["serviceowner", "Service Owner"],
+        ["admin", "Admin"],
+        ["superadmin", "Superadmin"]
+    ]
+}
