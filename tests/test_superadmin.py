@@ -1,15 +1,14 @@
 from agora.testing import *
 
 
-def assertions(user, url, data, superadmin):
+def assertions(user, url, data):
     """
     Flow:
     User can list empty resources set
     User can create resource
     User can list data set
     User can update resource (TBA)
-    User cannot delete resource
-    Superadmin deletes resource
+    User can delete resource
     """
     assert user.get(url).json() == []
     resp = user.post(url, data)
@@ -21,31 +20,30 @@ def assertions(user, url, data, superadmin):
     # resp = user.put(url+id+ '/', data = {"name": "test-name-2"})
     # assert resp.json()['name'] == 'test-name=2'
     resp = user.delete(url+id+'/')
-    assert resp.status_code == 403
-    superadmin.delete('/api/v2/user-roles/'+id+'/')
+    assert user.get(url).json() == []
 
 
 # Tests for resources with no foreign keys
 
-def test_user_roles(admin, client, superadmin):
+def test_user_roles(superadmin, client):
     create_data = {"name": "test-name"}
     url = '/api/v2/user-roles/'
-    assertions(admin, url, create_data, superadmin)
+    assertions(superadmin, url, create_data)
 
 
-def test_service_trls(admin, client, superadmin):
+def test_service_trls(superadmin, client):
     create_data = {"value": "test-value", "order": 1}
     url = '/api/v2/service-trls/'
-    assertions(admin, url, create_data, superadmin)
+    assertions(superadmin, url, create_data)
 
 
-def test_service_status(admin, client, superadmin):
+def test_service_status(superadmin, client):
     create_data = {"value": "test-value", "order": 1}
     url = '/api/v2/service-status/'
-    assertions(admin, url, create_data, superadmin)
+    assertions(superadmin, url, create_data)
 
 
-def test_contact_information(admin, client, superadmin):
+def test_contact_information(superadmin, client):
     create_data = {
         "email": "contact@test.org",
         "first_name": "Hilary",
@@ -54,10 +52,10 @@ def test_contact_information(admin, client, superadmin):
         "url": "https://www.test.org"
     }
     url = '/api/v2/contact-information/'
-    assertions(admin, url, create_data, superadmin)
+    assertions(superadmin, url, create_data)
 
 
-def test_institutions(admin, client, superadmin):
+def test_institutions(superadmin, client):
     create_data = {
         "address": "Oneirwn 10, Parmythoupoli",
         "country": "Iceland",
@@ -65,4 +63,4 @@ def test_institutions(admin, client, superadmin):
         "name": "Test institution"
     }
     url = '/api/v2/institutions/'
-    assertions(admin, url, create_data, superadmin)
+    assertions(superadmin, url, create_data)
