@@ -1,7 +1,8 @@
+import json
 from agora.testing import *
 
 
-def assertions(user, url, data, superadmin):
+def assertions_crud(resource, user, superadmin):
     """
     Flow:
     Superadmin creates a resource
@@ -12,6 +13,9 @@ def assertions(user, url, data, superadmin):
     User cannot update resource (TBA)
     Superadmin deletes resource
     """
+    url = RESOURCES_CRUD[resource]['url']
+    data = RESOURCES_CRUD[resource]['create_data']
+    edit_data = RESOURCES_CRUD[resource]['edit_data']
     superadmin.post(url, data)
     assert len(user.get(url).json()) == 1
     resp = user.get(url)
@@ -29,41 +33,20 @@ def assertions(user, url, data, superadmin):
 # Tests for resources with no foreign keys or special handling
 
 def test_user_roles(observer, client, superadmin):
-    create_data = {"name": "test-name"}
-    url = '/api/v2/user-roles/'
-    assertions(observer, url, create_data, superadmin)
+    assertions_crud('user_roles', observer, superadmin)
 
 
 def test_service_trls(observer, client, superadmin):
-    create_data = {"value": "test-value", "order": 1}
-    url = '/api/v2/service-trls/'
-    assertions(observer, url, create_data, superadmin)
+    assertions_crud('service_trls', observer, superadmin)
 
 
 def test_service_status(observer, client, superadmin):
-    create_data = {"value": "test-value", "order": 1}
-    url = '/api/v2/service-status/'
-    assertions(observer, url, create_data, superadmin)
+    assertions_crud('service_status', observer, superadmin)
 
 
 def test_contact_information(observer, client, superadmin):
-    create_data = {
-        "email": "contact@test.org",
-        "first_name": "Hilary",
-        "last_name": "Knight",
-        "phone": "+30 2102103333",
-        "url": "https://www.test.org"
-    }
-    url = '/api/v2/contact-information/'
-    assertions(observer, url, create_data, superadmin)
+    assertions_crud('contact_information', observer, superadmin)
 
 
 def test_institutions(observer, client, superadmin):
-    create_data = {
-        "address": "Oneirwn 10, Parmythoupoli",
-        "country": "Iceland",
-        "department": "Test department",
-        "name": "Test institution"
-    }
-    url = '/api/v2/institutions/'
-    assertions(observer, url, create_data, superadmin)
+    assertions_crud('institutions', observer, superadmin)
