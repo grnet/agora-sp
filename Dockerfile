@@ -8,7 +8,7 @@ RUN mkdir /etc/agora
 
 COPY docker/settings.conf /etc/agora/
 
-RUN pip install -r requirements.txt
+RUN pip install -r requirements_dev.txt
 
 RUN mkdir /srv/agora/logs/
 RUN python manage.py migrate
