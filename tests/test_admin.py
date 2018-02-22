@@ -22,7 +22,7 @@ def assertions(user, url, data, superadmin):
     # assert resp.json()['name'] == 'test-name=2'
     resp = user.delete(url+id+'/')
     assert resp.status_code == 403
-    superadmin.delete('/api/v2/user-roles/'+id+'/')
+    superadmin.delete(url+id+'/')
 
 
 # Tests for resources with no foreign keys
