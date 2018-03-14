@@ -23,12 +23,16 @@ from django.views.generic import RedirectView
 from service import views
 from component import views as component_views
 from agora import views as agora_views
-from agora.construct import adapter
 
 from djoser import views as djoser_views
 
+from apimas_django import adapter
+from agora.spec import APP_CONFIG, DEPLOY_CONFIG
 
-api_urls = adapter.get_urlpatterns()
+app_spec = adapter.configure_apimas_app(APP_CONFIG)
+deployment_spec = adapter.configure_spec(app_spec, DEPLOY_CONFIG)
+
+api_urls = adapter.construct_views(deployment_spec)
 
 urlpatterns = [
     url(r'^api/admin/?', admin.site.urls),

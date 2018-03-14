@@ -54,11 +54,10 @@ def get_rules():
     return RULES
 
 
+from agora.spec import DEPLOY_CONFIG
+_root_url = DEPLOY_CONFIG['.meta']['root_url']
+
 def get_root_url():
-    global _root_url
-    if not _root_url:
-        from agora.construct import adapter
-        _root_url = adapter.spec['.meta']['root_url']
     return _root_url
 
 
