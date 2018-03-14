@@ -46,8 +46,8 @@ def djoser_verifier(token):
     return user
 
 
-def userid_extractor(user):
-    return user.id
+def userid_extractor(user, context):
+    return user
 
 
 def get_rules():
