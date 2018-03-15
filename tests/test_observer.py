@@ -25,7 +25,8 @@ def assertions_crud(resource, user, superadmin):
         assert resp.json()[key] == value
     resp = user.delete(url+id+'/')
     assert resp.status_code == 403
-    superadmin.delete(url+id+'/')
+    resp = superadmin.delete(url+id+'/')
+    assert resp.status_code == 204
     #resp = user.post(url, data)
     #assert resp.status_code == 403
 

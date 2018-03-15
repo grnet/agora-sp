@@ -28,6 +28,7 @@ def assertions_crud(resource, user):
             assert resp.json()[key] == value
 
     resp = user.delete(url+id+'/')
+    assert resp.status_code == 204
     assert user.get(url).json() == []
 
 
