@@ -1,4 +1,5 @@
-$primary: "blue" !default;
+$primary: "blue-grey" !default;
+$toolbar-color: "grey" !default;
 //$accent: "pink" !default;
 //$warn: "red" !default;
 //$background: "grey" !default;
@@ -46,4 +47,42 @@ img.logo {
   position: relative;
   top: -30px;
   left: 8px;
+}
+md-sidenav md-toolbar.md-tall {
+  background-image: linear-gradient(to bottom, #fafafa, #dedede 160px);
+}
+
+md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
+  background-color: #4596E5;
+}
+
+md-content.login-info .user-label,
+.login-info button {
+  color: #29333F !important;
+}
+
+md-content.login-info .user-label, md-toolbar.md-default-theme:not(.md-menu-toolbar) .md-button:not(.md-raised), md-toolbar:not(.md-menu-toolbar) .md-button:not(.md-raised) {
+  color: #ffffff;
+}
+
+a.md-button.md-default-theme.md-primary.md-raised, a.md-button.md-default-theme.md-primary.md-fab, a.md-button.md-primary.md-raised, a.md-button.md-primary.md-fab, .md-button.md-default-theme.md-primary.md-raised, .md-button.md-default-theme.md-primary.md-fab, .md-button.md-primary.md-raised, .md-button.md-primary.md-fab {
+    background-color: #4596E5;
+}
+
+a.md-button.md-default-theme.md-primary.md-raised:not([disabled]):hover, a.md-button.md-default-theme.md-primary.md-fab:not([disabled]):hover, a.md-button.md-primary.md-raised:not([disabled]):hover, a.md-button.md-primary.md-fab:not([disabled]):hover, .md-button.md-default-theme.md-primary.md-raised:not([disabled]):hover, .md-button.md-default-theme.md-primary.md-fab:not([disabled]):hover, .md-button.md-primary.md-raised:not([disabled]):hover, .md-button.md-primary.md-fab:not([disabled]):hover {
+    background-color: #75a4d8;
+}
+
+a.md-button.md-default-theme:not([disabled]):hover, a.md-button:not([disabled]):hover, .md-button.md-default-theme:not([disabled]):hover, .md-button:not([disabled]):hover {
+  background-color: rgba(158, 158, 158, 0.1);
+}
+
+.page-content .actions {
+  a.md-button {
+    padding: 2px 20px;
+  }
+
+  a.md-button.md-default-theme:not([disabled]):hover, a.md-button:not([disabled]):hover, .md-button.md-default-theme:not([disabled]):hover, .md-button:not([disabled]):hover {
+    background-color: rgba(30, 48, 70, 0.1);
+  }
 }
