@@ -1,7 +1,5 @@
 DEPLOY_CONFIG = {
-    '.meta': {
-        'root_url': 'https://snf-789670.vm.okeanos.grnet.gr',
-    }
+    ':root_url': 'https://snf-789670.vm.okeanos.grnet.gr',
 }
 
   # djoser_verifier: agora.utils.djoser_verifier
@@ -9,17 +7,16 @@ DEPLOY_CONFIG = {
 
 APP_CONFIG = {
     '.apimas_app': {},
-    '.meta': {'permission_rules': 'agora.utils.get_rules'},
+    ':permission_rules': 'agora.utils.get_rules',
+    ':authenticator': 'apimas.auth.DjoserAuthentication',
+    ':verifier': 'agora.utils.djoser_verifier',
+    ':user_resolver': 'agora.utils.userid_extractor',
+
     'endpoints': {
         'api/v2': {
             'collections': {
                 'users': {
                     '.field.collection.django': {},
-                    'auth': {
-                        'authenticator': 'apimas.auth.DjoserAuthentication',
-                        'verifier': 'agora.utils.djoser_verifier',
-                        'user_resolver': 'agora.utils.userid_extractor',
-                    },
                     'model': 'accounts.models.User',
                     'fields': {
                         'id': {
@@ -53,11 +50,6 @@ APP_CONFIG = {
 
                 'services': {
                     '.field.collection.django': {},
-                    'auth': {
-                        'authenticator': 'apimas.auth.DjoserAuthentication',
-                        'verifier': 'agora.utils.djoser_verifier',
-                        'user_resolver': 'agora.utils.userid_extractor',
-                    },
                     'model': 'service.models.Service',
                     'fields': {
                         'id': {
@@ -133,11 +125,6 @@ APP_CONFIG = {
 
                 'service-versions': {
                     '.field.collection.django': {},
-                    'auth': {
-                        'authenticator': 'apimas.auth.DjoserAuthentication',
-                        'verifier': 'agora.utils.djoser_verifier',
-                        'user_resolver': 'agora.utils.userid_extractor',
-                    },
                     'model': 'service.models.ServiceDetails',
                     'fields': {
                         'id': {
@@ -229,11 +216,6 @@ APP_CONFIG = {
 
                 'user-customers': {
                     '.field.collection.django': {},
-                    'auth': {
-                        'authenticator': 'apimas.auth.DjoserAuthentication',
-                        'verifier': 'agora.utils.djoser_verifier',
-                        'user_resolver': 'agora.utils.userid_extractor',
-                    },
                     'model': 'service.models.UserCustomer',
                     'fields': {
                         'id': {
@@ -292,11 +274,6 @@ APP_CONFIG = {
 
                 'service-status': {
                     '.field.collection.django': {},
-                    'auth': {
-                        'authenticator': 'apimas.auth.DjoserAuthentication',
-                        'verifier': 'agora.utils.djoser_verifier',
-                        'user_resolver': 'agora.utils.userid_extractor',
-                    },
                     'model': 'service.models.ServiceStatus',
                     'fields': {
                         'id': {
@@ -320,11 +297,6 @@ APP_CONFIG = {
 
                 'service-trls': {
                     '.field.collection.django': {},
-                    'auth': {
-                        'authenticator': 'apimas.auth.DjoserAuthentication',
-                        'verifier': 'agora.utils.djoser_verifier',
-                        'user_resolver': 'agora.utils.userid_extractor',
-                    },
                     'model': 'service.models.ServiceTrl',
                     'fields': {
                         'id': {
@@ -348,11 +320,6 @@ APP_CONFIG = {
 
                 'external_services': {
                     '.field.collection.django': {},
-                    'auth': {
-                        'authenticator': 'apimas.auth.DjoserAuthentication',
-                        'verifier': 'agora.utils.djoser_verifier',
-                        'user_resolver': 'agora.utils.userid_extractor',
-                    },
                     'model': 'service.models.ExternalService',
                     'fields': {
                         'id': {
@@ -378,11 +345,6 @@ APP_CONFIG = {
 
                 'user-roles': {
                     '.field.collection.django': {},
-                    'auth': {
-                        'authenticator': 'apimas.auth.DjoserAuthentication',
-                        'verifier': 'agora.utils.djoser_verifier',
-                        'user_resolver': 'agora.utils.userid_extractor',
-                    },
                     'model': 'service.models.UserRole',
                     'fields': {
                         'id': {
@@ -402,11 +364,6 @@ APP_CONFIG = {
 
                 'user_customers': {
                     '.field.collection.django': {},
-                    'auth': {
-                        'authenticator': 'apimas.auth.DjoserAuthentication',
-                        'verifier': 'agora.utils.djoser_verifier',
-                        'user_resolver': 'agora.utils.userid_extractor',
-                    },
                     'model': 'service.models.UserCustomer',
                     'fields': {
                         'id': {
@@ -425,11 +382,6 @@ APP_CONFIG = {
 
                 'service-areas': {
                     '.field.collection.django': {},
-                    'auth': {
-                        'authenticator': 'apimas.auth.DjoserAuthentication',
-                        'verifier': 'agora.utils.djoser_verifier',
-                        'user_resolver': 'agora.utils.userid_extractor',
-                    },
                     'model': 'service.models.ServiceArea',
                     'fields': {
                         'id': {
@@ -451,11 +403,6 @@ APP_CONFIG = {
 
                 'service-owners': {
                     '.field.collection.django': {},
-                    'auth': {
-                        'authenticator': 'apimas.auth.DjoserAuthentication',
-                        'verifier': 'agora.utils.djoser_verifier',
-                        'user_resolver': 'agora.utils.userid_extractor',
-                    },
                     'model': 'owner.models.ServiceOwner',
                     'fields': {
                         'id': {
@@ -487,11 +434,6 @@ APP_CONFIG = {
 
                 'custom-users': {
                     '.field.collection.django': {},
-                    'auth': {
-                        'authenticator': 'apimas.auth.DjoserAuthentication',
-                        'verifier': 'agora.utils.djoser_verifier',
-                        'user_resolver': 'agora.utils.userid_extractor',
-                    },
                     'model': 'accounts.models.User',
                     'fields': {
                         'id': {
@@ -532,11 +474,6 @@ APP_CONFIG = {
                 },
                 'contact-information': {
                     '.field.collection.django': {},
-                    'auth': {
-                        'authenticator': 'apimas.auth.DjoserAuthentication',
-                        'verifier': 'agora.utils.djoser_verifier',
-                        'user_resolver': 'agora.utils.userid_extractor',
-                    },
                     'model': 'owner.models.ContactInformation',
                     'fields': {
                         'id': {
@@ -569,11 +506,6 @@ APP_CONFIG = {
 
                 'institutions': {
                     '.field.collection.django': {},
-                    'auth': {
-                        'authenticator': 'apimas.auth.DjoserAuthentication',
-                        'verifier': 'agora.utils.djoser_verifier',
-                        'user_resolver': 'agora.utils.userid_extractor',
-                    },
                     'model': 'owner.models.Institution',
                     'fields': {
                         'id': {
@@ -603,11 +535,6 @@ APP_CONFIG = {
 
                 'service-owners': {
                     '.field.collection.django': {},
-                    'auth': {
-                        'authenticator': 'apimas.auth.DjoserAuthentication',
-                        'verifier': 'agora.utils.djoser_verifier',
-                        'user_resolver': 'agora.utils.userid_extractor',
-                    },
                     'model': 'owner.models.ServiceOwner',
                     'fields': {
                         'id': {
@@ -640,11 +567,6 @@ APP_CONFIG = {
 
                 'components': {
                     '.field.collection.django': {},
-                    'auth': {
-                        'authenticator': 'apimas.auth.DjoserAuthentication',
-                        'verifier': 'agora.utils.djoser_verifier',
-                        'user_resolver': 'agora.utils.userid_extractor',
-                    },
                     'model': 'component.models.ServiceComponent',
                     'fields': {
                         'id': {
@@ -670,11 +592,6 @@ APP_CONFIG = {
 
                 'component-implementations': {
                     '.field.collection.django': {},
-                    'auth': {
-                        'authenticator': 'apimas.auth.DjoserAuthentication',
-                        'verifier': 'agora.utils.djoser_verifier',
-                        'user_resolver': 'agora.utils.userid_extractor',
-                    },
                     'model': 'component.models.ServiceComponentImplementation',
                     'fields': {
                         'id': {
@@ -702,11 +619,6 @@ APP_CONFIG = {
 
                 'component-implementation-details': {
                     '.field.collection.django': {},
-                    'auth': {
-                        'authenticator': 'apimas.auth.DjoserAuthentication',
-                        'verifier': 'agora.utils.djoser_verifier',
-                        'user_resolver': 'agora.utils.userid_extractor',
-                    },
                     'model': 'component.models.ServiceComponentImplementationDetail',
                     'fields': {
                         'id': {
@@ -735,11 +647,6 @@ APP_CONFIG = {
 
                 'component-implementation-detail-links': {
                     '.field.collection.django': {},
-                    'auth': {
-                        'authenticator': 'apimas.auth.DjoserAuthentication',
-                        'verifier': 'agora.utils.djoser_verifier',
-                        'user_resolver': 'agora.utils.userid_extractor',
-                    },
                     'model': 'component.models.ServiceDetailsComponent',
                     'fields': {
                         'id': {

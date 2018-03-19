@@ -55,7 +55,7 @@ def get_rules():
 
 
 from agora.spec import DEPLOY_CONFIG
-_root_url = DEPLOY_CONFIG['.meta']['root_url']
+_root_url = DEPLOY_CONFIG[':root_url']
 
 def get_root_url():
     return _root_url
