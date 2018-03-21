@@ -11,6 +11,7 @@ APP_CONFIG = {
     ':authenticator': 'apimas.auth.DjoserAuthentication',
     ':verifier': 'agora.utils.djoser_verifier',
     ':user_resolver': 'agora.utils.userid_extractor',
+    ':filter_compat': True,
 
     'endpoints': {
         'api/v2': {
