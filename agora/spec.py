@@ -37,7 +37,8 @@ APP_CONFIG = {
                         'date_joined': {
                             '.field.string': {}},
                         'avatar': {
-                            '.field.file': {}},
+                            '.field.file': {},
+                            'default': ''},
                     },
                     'actions': {
                         '.action-template.django.list': {},
@@ -61,58 +62,59 @@ APP_CONFIG = {
                             '.flag.orderable': {}},
                         'short_description': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'description_external': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'description_internal': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'service_area': {
                             '.field.ref': {},
                             'to': '/api/v2/service-areas',
-                            '.flag.nullable': {},
+                            '.flag.nullable.default': {},
                             '.flag.orderable': {},
                             '.flag.filterable': {}},
                         'service_type': {
                             '.field.string': {},
-                            '.flag.nullable': {},
+                            '.flag.nullable.default': {},
                             '.flag.filterable': {}},
                         'service_trl': {
                             '.field.ref': {},
                             'to': '/api/v2/service-trls',
                             '.flag.orderable': {},
                             '.flag.filterable': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'request_procedures': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'funders_for_service': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'value_to_customer': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'risks': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'competitors': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'id_service_owner': {
                             '.field.ref': {},
                             'to': '/api/v2/service-owners',
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'id_contact_information': {
                             '.field.ref': {},
                             'to': '/api/v2/contact-information',
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'id_contact_information_internal': {
                             '.field.ref': {},
                             'to': '/api/v2/contact-information',
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'logo': {
-                            '.field.file': {}},
+                            '.field.file': {},
+                            'default': ''},
                     },
                     'actions': {
                         '.action-template.django.list': {},
@@ -138,70 +140,70 @@ APP_CONFIG = {
                             '.field.ref': {},
                             'to': '/api/v2/service-status',
                             '.flag.filterable': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'version': {
                             '.field.string': {}},
                         'features_current': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'features_future': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'usage_policy_has': {
                             '.field.boolean': {}},
                         'usage_policy_url': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'privacy_policy_has': {
                             '.field.boolean': {}},
                         'privacy_policy_url': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'user_documentation_has': {
                             '.field.boolean': {}},
                         'user_documentation_url': {
                             '.field.string': {},
                             #'.flag.blankable': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'operations_documentation_has': {
                             '.field.boolean': {}},
                         'operations_documentation_url': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'monitoring_has': {
                             '.field.boolean': {}},
                         'monitoring_url': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'accounting_has': {
                             '.field.boolean': {}},
                         'accounting_url': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'business_continuity_plan_has': {
                             '.field.boolean': {}},
                         'business_continuity_plan_url': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'disaster_recovery_plan_has': {
                             '.field.boolean': {}},
                         'disaster_recovery_plan_url': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'decommissioning_procedure_has': {
                             '.field.boolean': {}},
                         'decommissioning_procedure_url': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'cost_to_run': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'cost_to_build': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'use_cases': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'is_in_catalogue': {
                             '.field.boolean': {}},
                         },
@@ -226,7 +228,7 @@ APP_CONFIG = {
                             'to': 'api/v2/user-roles'},
                         'role': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'service_id': {
                             '.field.ref': {},
                             'to': 'api/v2/services'},
@@ -390,7 +392,8 @@ APP_CONFIG = {
                         'name': {
                             '.field.string': {}},
                         'icon': {
-                            '.field.file': {}},
+                            '.field.file': {},
+                            'default': ''},
                     },
                     'actions': {
                         '.action-template.django.list': {},
@@ -445,10 +448,10 @@ APP_CONFIG = {
                             '.field.string': {}},
                         'first_name': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'last_name': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'is_staff': {
                             '.field.boolean': {}},
                         'is_active': {
@@ -456,11 +459,12 @@ APP_CONFIG = {
                         'date_joined': {
                             '.field.datetime': {}},
                         'avatar': {
-                            '.field.file': {}},
+                            '.field.file': {},
+                            'default': ''},
                         'shibboleth_id': {
                             '.field.string': {},
                             '.flag.readonly': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'role': {
                             '.field.string': {}},
                     },
@@ -481,19 +485,19 @@ APP_CONFIG = {
                             '.flag.readonly': {}},
                         'first_name': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'last_name': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'email': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'phone': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'url': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                     },
                     'actions': {
                         '.action-template.django.list': {},
@@ -513,16 +517,16 @@ APP_CONFIG = {
                             '.flag.readonly': {}},
                         'name': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'address': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'country': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'department': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                     },
                     'actions': {
                         '.action-template.django.list': {},
@@ -542,16 +546,16 @@ APP_CONFIG = {
                             '.flag.readonly': {}},
                         'first_name': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'last_name': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'email': {
                             '.field.email': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'phone': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'id_service_owner': {
                             '.field.ref': {},
                             'to': '/api/v2/institutions'},
@@ -574,12 +578,13 @@ APP_CONFIG = {
                             '.flag.readonly': {}},
                         'name': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'description': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'logo': {
-                            '.field.file': {}},
+                            '.field.file': {},
+                            'default': ''},
                     },
                     'actions': {
                         '.action-template.django.list': {},
@@ -603,10 +608,10 @@ APP_CONFIG = {
                             '.flag.filterable': {}},
                         'name': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                         'description': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                     },
                     'actions': {
                         '.action-template.django.list': {},
@@ -634,7 +639,7 @@ APP_CONFIG = {
                             'to': '/api/v2/component-implementations'},
                         'version': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                     },
                     'actions': {
                         '.action-template.django.list': {},
@@ -666,7 +671,7 @@ APP_CONFIG = {
                             'to': '/api/v2/component-implementation-details'},
                         'configuration_parameters': {
                             '.field.string': {},
-                            '.flag.nullable': {}},
+                            '.flag.nullable.default': {}},
                     },
                     'actions': {
                         '.action-template.django.list': {},
