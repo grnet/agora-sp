@@ -72,6 +72,7 @@ APP_CONFIG = {
                             '.flag.nullable.default': {}},
                         'service_area': {
                             '.field.ref': {},
+                            'source': 'service_area_id',
                             'to': '/api/v2/service-areas',
                             '.flag.nullable.default': {},
                             '.flag.orderable': {},
@@ -82,6 +83,7 @@ APP_CONFIG = {
                             '.flag.filterable': {}},
                         'service_trl': {
                             '.field.ref': {},
+                            'source': 'service_trl_id',
                             'to': '/api/v2/service-trls',
                             '.flag.orderable': {},
                             '.flag.filterable': {},
@@ -103,14 +105,17 @@ APP_CONFIG = {
                             '.flag.nullable.default': {}},
                         'id_service_owner': {
                             '.field.ref': {},
+                            'source': 'id_service_owner_id',
                             'to': '/api/v2/service-owners',
                             '.flag.nullable.default': {}},
                         'id_contact_information': {
                             '.field.ref': {},
+                            'source': 'id_contact_information_id',
                             'to': '/api/v2/contact-information',
                             '.flag.nullable.default': {}},
                         'id_contact_information_internal': {
                             '.field.ref': {},
+                            'source': 'id_contact_information_internal_id',
                             'to': '/api/v2/contact-information',
                             '.flag.nullable.default': {}},
                         'logo': {
@@ -135,10 +140,12 @@ APP_CONFIG = {
                             '.flag.readonly': {}},
                         'id_service': {
                             '.field.ref': {},
+                            'source': 'id_service_id',
                             'to': '/api/v2/services',
                             '.flag.filterable': {}},
                         'status': {
                             '.field.ref': {},
+                            'source': 'status_id',
                             'to': '/api/v2/service-status',
                             '.flag.filterable': {},
                             '.flag.nullable.default': {}},
@@ -226,12 +233,14 @@ APP_CONFIG = {
                             '.flag.readonly': {}},
                         'name': {
                             '.field.ref': {},
+                            'source': 'name_id',
                             'to': 'api/v2/user-roles'},
                         'role': {
                             '.field.string': {},
                             '.flag.nullable.default': {}},
                         'service_id': {
                             '.field.ref': {},
+                            'source': 'service_id_id',
                             'to': 'api/v2/services'},
                     },
                     'actions': {
@@ -252,9 +261,11 @@ APP_CONFIG = {
                             '.flag.readonly': {}},
                         'id_service_one': {
                             '.field.ref': {},
+                            'source': 'id_service_one_id',
                             'to': '/api/v2/service'},
                         'id_service_two': {
                             '.field.ref': {},
+                            'source': 'id_service_two_id',
                             'to': '/api/v2/service'},
                     }
                 },
@@ -268,9 +279,11 @@ APP_CONFIG = {
                             '.flag.readonly': {}},
                         'id_service': {
                             '.field.ref': {},
+                            'source': 'id_service_id',
                             'to': '/api/v2/service'},
                         'id_external_service': {
                             '.field.ref': {},
+                            'source': 'id_external_service_id',
                             'to': '/api/v2/external_service'},
                     }
                 },
@@ -374,9 +387,11 @@ APP_CONFIG = {
                             '.flag.readonly': {}},
                         'name': {
                             '.field.ref': {},
+                            'source': 'name_id',
                             'to': '/api/v2/user_role'},
                         'service_id': {
                             '.field.ref': {},
+                            'source': 'service_id_id',
                             'to': '/api/v2/service'},
                         'role': {
                             '.field.string': {}},
@@ -422,9 +437,11 @@ APP_CONFIG = {
                             '.field.string': {}},
                         'id_service_owner': {
                             '.field.ref': {},
+                            'source': 'id_service_owner_id',
                             'to': '/api/v2/institutions'},
                         'id_account': {
                             '.field.ref': {},
+                            'source': 'id_account_id',
                             'to': '/api/v2/custom-users'},
                     },
                     'actions': {
@@ -559,6 +576,7 @@ APP_CONFIG = {
                             '.flag.nullable.default': {}},
                         'id_service_owner': {
                             '.field.ref': {},
+                            'source': 'id_service_owner_id',
                             'to': '/api/v2/institutions'},
                     },
                     'actions': {
@@ -605,6 +623,7 @@ APP_CONFIG = {
                             '.flag.readonly': {}},
                         'component_id': {
                             '.field.ref': {},
+                            'source': 'component_id_id',
                             'to': '/api/v2/components',
                             '.flag.filterable': {}},
                         'name': {
@@ -633,10 +652,12 @@ APP_CONFIG = {
                         'component_id': {
                             '.flag.filterable': {},
                             '.field.ref': {},
+                            'source': 'component_id_id',
                             'to': '/api/v2/components'},
                         'component_implementation_id': {
                             '.flag.filterable': {},
                             '.field.ref': {},
+                            'source': 'component_implementation_id_id',
                             'to': '/api/v2/component-implementations'},
                         'version': {
                             '.field.string': {},
@@ -661,14 +682,17 @@ APP_CONFIG = {
                         'service_id': {
                             '.flag.filterable': {},
                             '.field.ref': {},
+                            'source': 'service_id_id',
                             'to': '/api/v2/services'},
                         'service_details_id': {
                             '.flag.filterable': {},
                             '.field.ref': {},
+                            'source': 'service_details_id_id',
                             'to': '/api/v2/service-versions'},
                         'service_component_implementation_detail_id': {
                             '.flag.filterable': {},
                             '.field.ref': {},
+                            'source': 'service_component_implementation_detail_id_id',
                             'to': '/api/v2/component-implementation-details'},
                         'configuration_parameters': {
                             '.field.string': {},
