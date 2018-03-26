@@ -39,6 +39,7 @@
     "ember-cli-sass": "5.6.0",
     "ember-cli-sri": "^2.1.0",
     "ember-cli-test-loader": "^1.1.0",
+    "ember-cli-tinymce": "0.3.2",
     "ember-cli-uglify": "^1.2.0",
     "ember-data": "~2.13.0",
     "ember-export-application-global": "^1.0.5",
@@ -52,7 +53,6 @@
   },
   "dependencies": {
     "ember-font-awesome": "^4.0.0-alpha.13",
-    "ember-froala-editor": "^2.7.1",
     "ember-simple-auth-token": "^2.1.0"
   }
 }

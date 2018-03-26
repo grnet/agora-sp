@@ -20,7 +20,9 @@ module.exports = function(environment) {
         Date: false
       }
     },
-
+    tinyMCE:{
+      version: 4
+    },
     APP: {
       backend_host: 'http://127.0.0.1:8080/api/v2',
       backend_media_root: 'http://127.0.0.1:8080/static/img/',
