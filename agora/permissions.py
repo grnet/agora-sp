@@ -15,8 +15,10 @@ RULES = [
     ('api/v2/services', 'create', 'admin', '*', '*', '*', '*'),
     ('api/v2/services', 'update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/services', 'update', 'admin', '*', '*', '*', '*'),
+    ('api/v2/services', 'update', 'serviceowner', '*', 'owned', '*','*'),
     ('api/v2/services', 'partial_update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/services', 'partial_update', 'admin', '*', '*', '*', '*'),
+    ('api/v2/services', 'partial_update', 'serviceowner', '*', 'owned', '*','*'),
     ('api/v2/services', 'destroy', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/services', 'delete', 'superadmin', '*', '*', '*', '*'),
 

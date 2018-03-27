@@ -8,6 +8,7 @@ from common import helper
 from collections import OrderedDict
 from accounts.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
+from agora.utils import SERVICE_OWNERSHIP_STATES
 
 
 class ServiceArea(models.Model):
@@ -86,6 +87,18 @@ class Service(models.Model):
 
     def __unicode__(self):
         return str(self.name)
+    
+    @property
+    def service_owners_ids(self):
+        service_ownerships = ServiceOwnership.objects.filter(
+            service=self,
+            state="approved")
+        res = []
+        for s in service_ownerships:
+            res.append(str(s.owner.pk))
+
+        return ','.join(res)
+
 
     def save(self, *args, **kwargs):
         if not self.description_internal or self.description_internal == "":
@@ -1086,3 +1099,13 @@ class Roles(models.Model):
     role = models.CharField(('role'), max_length=90, unique=True, default="spectator")
 
 
+class ServiceOwnership(models.Model):
+    service = models.ForeignKey(Service, on_delete=models.PROTECT)
+    owner = models.ForeignKey(User, on_delete=models.PROTECT)
+    state = models.CharField(
+            choices=SERVICE_OWNERSHIP_STATES,
+            max_length=30,
+            default='pending')
+
+    class Meta:
+        unique_together = (("service", "owner"),)

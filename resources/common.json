@@ -4,5 +4,10 @@
         ["serviceowner", "Service Owner"],
         ["admin", "Admin"],
         ["superadmin", "Superadmin"]
+    ],
+    "SERVICE_OWNERSHIP_STATES": [
+        ["pending", "Pending"],
+        ["approved", "Approved"],
+        ["rejected", "Rejected"]
     ]
 }
