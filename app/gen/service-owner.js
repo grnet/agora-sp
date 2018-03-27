@@ -1,23 +1,15 @@
-import { AgoraGen } from '../lib/common';
+import Ember from 'ember';
 import validate from 'ember-gen/validate';
 import { field } from 'ember-gen';
+import ENV from '../config/environment';
+import { AgoraGen } from '../lib/common';
+import { approveServiceOwnership, rejectServiceOwnership } from '../utils/common/actions';
 
-const COMMON_FIELDSETS = [{
-  label: 'service_owner.cards.basic_information',
-  text: 'service_owner.cards.basic_hint',
-  layout: {
-    flex: [50, 50, 50, 50, 100]
-  },
-  fields: [
-    'first_name',
-    'last_name',
-    'email',
-    'phone',
-    'id_service_owner',
-  ]
-}]
+const CHOICES = ENV.APP.resources;
 
-
+const {
+  get,
+} = Ember;
 
 export default AgoraGen.extend({
   modelName: 'service-owner',
@@ -25,41 +17,77 @@ export default AgoraGen.extend({
   path: 'service-owners',
   resourceName: 'api/v2/service-owners',
   common: {
-    fieldsets: COMMON_FIELDSETS,
     validators: {
-      first_name: [validate.presence(true)],
-      last_name: [validate.presence(true)],
-      id_service_owner: [validate.presence(true)],
-      email: [validate.format({type: 'email'})],
+      service: [validate.presence(true)],
+      owner: [validate.presence(true)],
     },
   },
   list: {
     page: {
-      title: 'service_owner.menu'
+      title: 'service_owner.menu',
     },
     menu: {
       label: 'service_owner.menu',
       group: {
         name: 'user-information',
         label: 'group_menu.user_information',
-        order: 400
-      }
+        order: 400,
+      },
     },
     row: {
       fields: [
-        'first_name',
-        'last_name',
-        'email',
-        'phone',
-        field('id_service_owner.name', { label: 'institution.belongs.name' })
+        'service.name',
+        'state',
+        'owner.email',
+        'owner.username',
       ],
-      actions: ['gen:details', 'gen:edit', 'remove'],
+      actions: ['gen:details', 'remove', 'approveServiceOwnership', 'rejectServiceOwnership'],
+      actionsMap: {
+        rejectServiceOwnership,
+        approveServiceOwnership,
+      },
     },
     sort: {
       serverside: false,
       active: true,
-      fields: ['last_name', 'email', 'id_service_owner.name']
+      fields: ['service.name', 'owner.username', 'owner.email', 'state'],
     },
+    filter: {
+      active: true,
+      serverSide: true,
+      search: false,
+      meta: {
+        fields: [
+          field('state', {
+            type: 'select',
+            choices: CHOICES.SERVICE_OWNERSHIP_STATES,
+          }),
+          field(
+            'owner', {
+              modelName:'custom_user',
+              type: 'model',
+              displayAttr: 'username',
+            }
+          ),
+          field(
+            'service', {
+              modelName:'service_item',
+              type: 'model',
+              displayAttr: 'name',
+            }
+          ),
+        ],
+      },
+    },
+  },
+  create: {
+    getModel(params) {
+      let store = get(this, 'store');
 
-  }
+      return store.createRecord('service-owner', {
+        state: 'approved',
+      })
+    },
+    fields : ['owner', 'service'],
+  },
 });
