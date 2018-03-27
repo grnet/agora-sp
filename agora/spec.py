@@ -1,7 +1,3 @@
-DEPLOY_CONFIG = {
-    ':root_url': 'https://snf-789670.vm.okeanos.grnet.gr',
-}
-
   # djoser_verifier: agora.utils.djoser_verifier
   # userid_extractor: agora.utils.userid_extractor
 
