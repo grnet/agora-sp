@@ -29,34 +29,30 @@ export default DS.Model.extend({
   }),
   service_area: DS.belongsTo('service-area', {
     formAttrs: {
-      optionLabelAttr: 'name'
-    }
+      optionLabelAttr: 'name',
+    },
   }),
   id_contact_information: DS.belongsTo('contact-information', {
     formAttrs: {
-      optionLabelAttr: 'full_name'
-    }
+      optionLabelAttr: 'full_name',
+    },
   }),
   id_contact_information_internal: DS.belongsTo('contact-information', {
     formAttrs: {
-      optionLabelAttr: 'full_name'
-    }
+      optionLabelAttr: 'full_name',
+    },
   }),
   service_trl: DS.belongsTo('service-trl', {
     formAttrs: {
-      optionLabelAttr: 'value'
-    }
+      optionLabelAttr: 'value',
+    },
   }),
-  id_service_owner: DS.belongsTo('service-owner', {
-    formAttrs: {
-      optionLabelAttr: 'full_name'
-    }
-  }),
-  //computed
+  // computed
   short_desc: Ember.computed('short_description', function() {
     return shorten(Ember.get(this, 'short_description'));
   }),
+  service_owners_ids: DS.attr(),
   __api__: {
-    path: 'services'
-  }
+    path: 'services',
+  },
 });
