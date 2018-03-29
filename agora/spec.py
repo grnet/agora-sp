@@ -238,6 +238,7 @@ APP_CONFIG = {
                         'service_id': {
                             '.field.ref': {},
                             'source': 'service_id_id',
+                            '.flag.filterable': {},
                             'to': 'api/v2/services'},
                     },
                     'actions': {
