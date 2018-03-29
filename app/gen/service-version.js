@@ -36,7 +36,8 @@ export default AgoraGen.extend({
             'id_service', {
               modelName:'service_item',
               type: 'model',
-              label: 'Service Name'
+              label: 'Service Name',
+              displayAttr: 'name'
             }
           ),
           field(
