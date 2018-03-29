@@ -124,6 +124,7 @@ APP_CONFIG = {
                         '.action-template.django.create': {},
                         '.action-template.django.delete': {},
                         '.action-template.django.update': {},
+                        '.action-template.django.partial_update': {},
                     },
                 },
 
@@ -413,6 +414,7 @@ APP_CONFIG = {
                         '.action-template.django.create': {},
                         '.action-template.django.delete': {},
                         '.action-template.django.update': {},
+                        '.action-template.django.partial_update': {},
                     },
                 },
 

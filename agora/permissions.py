@@ -11,6 +11,8 @@ RULES = [
     ('api/v2/services', 'create', 'admin', '*', '*', '*'),
     ('api/v2/services', 'update', 'superadmin', '*', '*', '*'),
     ('api/v2/services', 'update', 'admin', '*', '*', '*'),
+    ('api/v2/services', 'partial_update', 'superadmin', '*', '*', '*'),
+    ('api/v2/services', 'partial_update', 'admin', '*', '*', '*'),
     ('api/v2/services', 'destroy', 'superadmin', '*', '*', '*'),
     ('api/v2/services', 'delete', 'superadmin', '*', '*', '*'),
 
@@ -41,6 +43,8 @@ RULES = [
     ('api/v2/service-areas', 'create', 'admin', '*', '*', '*'),
     ('api/v2/service-areas', 'update', 'superadmin', '*', '*', '*'),
     ('api/v2/service-areas', 'update', 'admin', '*', '*', '*'),
+    ('api/v2/service-areas', 'partial_update', 'superadmin', '*', '*', '*'),
+    ('api/v2/service-areas', 'partial_update', 'admin', '*', '*', '*'),
     ('api/v2/service-areas', 'destroy', 'superadmin', '*', '*', '*'),
     ('api/v2/service-areas', 'delete', 'superadmin', '*', '*', '*'),
 
