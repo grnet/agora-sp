@@ -50,5 +50,11 @@ export default DS.Model.extend({
     return `${first_name} ${last_name}`;
   }),
   role: DS.attr({type: 'select', choices: CHOICES.USER_ROLES}),
-
+  __api__: {
+    serialize: function(hash, serializer) {
+      // do not send readonly keys to backend
+      delete hash['shibboleth_id'];
+      return hash;
+    }
+  }
 });
