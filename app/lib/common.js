@@ -18,7 +18,7 @@ const AgoraGen = CRUDGen.extend({
     layout: 'table',
     paginate: {
       limits: [ 10, 50, 100 ],
-      serverSide: false,
+      serverSide: true,
       active: true
     }
   },

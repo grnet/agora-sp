@@ -32,11 +32,6 @@ export default AgoraGen.extend({
       active: true,
       fields: SORT_FIELDS
     },
-    paginate: {
-      limits: [ 10, 50, 100 ],
-      serverSide: false,
-      active: true
-    }
   },
   details: {
     page: {
