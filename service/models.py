@@ -101,6 +101,14 @@ class Service(models.Model):
 
         super(Service, self).save(*args, **kwargs)
 
+    @property
+    def logo_absolute_path(self):
+        if self.logo:
+            path = self.logo.url
+        else:
+            path = settings.MEDIA_URL+settings.SERVICE_LOGO
+        return helper.current_site_baseurl()+'/'+path
+
     def get_distinct_service_area(self):
 
         return self.service_area
@@ -487,7 +495,7 @@ class Service(models.Model):
                         "desc": "Portfolio level details about this service."
                     }
                 }}),
-            ("logo", self.logo.name.split("/")[-1])
+            ("logo", self.logo_absolute_path)
         ])
 
     def as_catalogue(self):
@@ -528,7 +536,7 @@ class Service(models.Model):
                 "count": len(service_details),
                 "service_details": service_details
             }),
-            ("logo", self.logo.name.split("/")[-1])
+            ("logo", self.logo_absolute_path)
         ])
 
 

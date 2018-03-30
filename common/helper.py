@@ -25,6 +25,10 @@ def current_site_url():
     return get_root_url()+"/api"
 
 
+def current_site_baseurl():
+    return get_root_url()
+
+
 def build_list_object(name, objects):
     return {
         name + "_list" : {
