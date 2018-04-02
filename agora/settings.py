@@ -32,7 +32,7 @@ SECRET_KEY = 'secret-key'
 # SECURITY WARNING don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['sp.eudat.eu',
+ALLOWED_HOSTS = ['127.0.0.1',
 		 'sp.eudat.eu'
 		]
 
@@ -235,7 +235,6 @@ CLIENT_ID = ''
 APPLICATION_NAME = 'API-Client'
 
 
-AVATAR_LOCATION = '/var/www/html/agora/static/img/avatars/'
 
 SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.social_auth.social_details',
@@ -254,6 +253,7 @@ SOCIAL_AUTH_PIPELINE = (
 
 MEDIA_ROOT = '/var/www/agora/media'
 MEDIA_URL = 'media/'
+AVATAR_LOCATION = MEDIA_ROOT + '/avatar'
 
 # Default name for service area logo. Should exist in MEDIA_ROOT
 SERVICE_AREA_ICON = 'service-area-icon-default.jpg'
