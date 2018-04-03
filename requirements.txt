@@ -1,11 +1,10 @@
 Django==1.11.10
 django-ckeditor==5.2.2
-django-cors-headers==2.1.0
+django-cors-headers==1.1.0
 django-rest-swagger==0.3.10
 django-reversion==2.0.8
 django-suit==0.2.25
-djangorestframework==3.6.3
-djoser==0.7.0
-future==0.16.0
-olefile==0.45.1
+djangorestframework==3.4.0
+djoser==0.5.2
+future==0.15.2
 Pillow==4.1.1
