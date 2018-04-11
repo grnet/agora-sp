@@ -340,7 +340,7 @@ const USER_CUSTOMERS_FIELDSET = {
       displayComponent: 'gen-display-field-table',
       valueQuery: (store, params, model, value) => {
         if(model.get('id')) {
-          return store.query('user_customer', { id_service: model.get('id') });
+          return store.query('user_customer', { service_id: model.get('id') });
         }
       },
       modelMeta: {

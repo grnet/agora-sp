@@ -54,10 +54,5 @@ export default AgoraGen.extend({
         'order'
       ]
     },
-    paginate: {
-      limits: [ 10, 50, 100 ],
-      serverSide: true,
-      active: true
-    }
   }
 });

@@ -12,7 +12,7 @@ function uploadFile(file, url, token, file_data_key='file_upload') {
   data.append(file_data_key, file);
 
   return fetch(url, {
-    method: 'PUT',
+    method: 'PATCH',
     headers: {
       'Accept': 'application/json',
       'Authorization': `Token ${token}`
