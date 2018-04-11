@@ -14,6 +14,7 @@ from rest_framework.authtoken.models import Token
 from django.http import HttpResponseRedirect
 from django.contrib.auth import user_logged_in
 from agora.emails import send_email_shib_user_created
+from agora.utils import load_resources
 
 
 
@@ -30,7 +31,8 @@ def config(request):
 
     config_data = {
         'permissions': permissions,
-        'shibboleth_login_url': shibboleth_endpoint
+        'shibboleth_login_url': shibboleth_endpoint,
+        'resources': load_resources()
     }
     return HttpResponse(json.dumps(config_data),
                         content_type='application/json')

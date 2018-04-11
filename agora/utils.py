@@ -1,5 +1,11 @@
-from agora.permissions import RULES
+import os
+import json
 from collections import defaultdict
+
+from django.conf import settings
+
+from agora.permissions import RULES
+import accounts.models
 
 
 _root_url = None
@@ -27,8 +33,24 @@ def load_permissions():
     return PERMISSIONS
 
 
-def get_rules():
+def load_resources():
+    with open(os.path.join(settings.PATH_RESOURCES, 'common.json')) \
+            as json_file:
+        return json.load(json_file)
 
+
+def djoser_verifier(token):
+    user = accounts.models.User.objects.filter(auth_token=token).first()
+    if user is None or not user.is_active:
+        return None
+    return user
+
+
+def userid_extractor(user):
+    return user.id
+
+
+def get_rules():
     return RULES
 
 
@@ -38,3 +60,7 @@ def get_root_url():
         from agora.construct import adapter
         _root_url = adapter.spec['.meta']['root_url']
     return _root_url
+
+
+RESOURCES = load_resources()
+USER_ROLES = RESOURCES['USER_ROLES']

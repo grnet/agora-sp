@@ -13,7 +13,8 @@ from ckeditor_uploader.fields import RichTextUploadingField
 class ServiceArea(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, blank=True, null=True)
-    icon = models.ImageField(default=settings.SERVICE_AREA_ICON)
+    icon = models.ImageField(default=settings.SERVICE_AREA_ICON,
+            upload_to=helper.service_area_image_path)
 
     class Meta:
         verbose_name_plural = "06. Service Areas (settings)"
@@ -67,7 +68,8 @@ class Service(models.Model):
     id_contact_information = models.ForeignKey(ContactInformation, null=True, related_name="external_contact_info")
     #This is the id of the internal contact information
     id_contact_information_internal = models.ForeignKey(ContactInformation, null=True, related_name="internal_contact_info")
-    logo = models.ImageField(upload_to=(os.path.join(settings.BASE_DIR, "static", "img", "logos")), default="/var/www/html/agora/static/img/logos/logo-none.jpg")
+    logo = models.ImageField(default=settings.SERVICE_LOGO,
+            upload_to=helper.service_image_path)
 
     class Meta:
         verbose_name_plural = "01. Services"
@@ -98,6 +100,14 @@ class Service(models.Model):
             self.competitors = None
 
         super(Service, self).save(*args, **kwargs)
+
+    @property
+    def logo_absolute_path(self):
+        if self.logo:
+            path = self.logo.url
+        else:
+            path = settings.MEDIA_URL+settings.SERVICE_LOGO
+        return helper.current_site_baseurl()+'/'+path
 
     def get_distinct_service_area(self):
 
@@ -485,7 +495,7 @@ class Service(models.Model):
                         "desc": "Portfolio level details about this service."
                     }
                 }}),
-            ("logo", self.logo.name.split("/")[-1])
+            ("logo", self.logo_absolute_path)
         ])
 
     def as_catalogue(self):
@@ -526,7 +536,7 @@ class Service(models.Model):
                 "count": len(service_details),
                 "service_details": service_details
             }),
-            ("logo", self.logo.name.split("/")[-1])
+            ("logo", self.logo_absolute_path)
         ])
 
 

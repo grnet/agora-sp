@@ -35,11 +35,7 @@ DEBUG = True
 ALLOWED_HOSTS = ['sp.eudat.eu',
 		 'sp.eudat.eu'
 		]
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'agora.notification@gmail.com'
-EMAIL_HOST_PASSWORD = 'agora2016'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+
 DEFAULT_FROM_EMAIL = 'no-reply@agora.com'
 
 USER_CREATION_EMAIL_LIST = [
@@ -261,6 +257,8 @@ MEDIA_URL = 'media/'
 
 # Default name for service area logo. Should exist in MEDIA_ROOT
 SERVICE_AREA_ICON = 'service-area-icon-default.jpg'
+# Default name for service logo. Should exist in MEDIA_ROOT
+SERVICE_LOGO = 'service-logo-default.jpg';
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 
