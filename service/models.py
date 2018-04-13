@@ -590,6 +590,7 @@ class Service(models.Model):
             ("name", self.name),
             ("short_description", self.short_description),
             ("description_external", self.description_external),
+            ("funders_for_service", self.funders_for_service),
             ("service_area", self.get_service_area_name()),
             ("value_to_customer", self.value_to_customer),
             ("request_procedures", self.request_procedures),
