@@ -115,7 +115,7 @@ RULES = [
 
     ('api/v2/service-owners', 'list', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-owners', 'list', 'admin', '*', '*', '*', '*'),
-    ('api/v2/service-owners', 'list', 'serviceowner', '*', '*', '*', '*'),
+    ('api/v2/service-owners', 'list', 'serviceowner', 'has_serviceownership', '*', '*', '*'),
     ('api/v2/service-owners', 'list', 'observer', '*', '*', '*', '*'),
     ('api/v2/service-owners', 'retrieve', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-owners', 'retrieve', 'admin', '*', '*', '*', '*'),
