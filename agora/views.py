@@ -141,7 +141,7 @@ def shibboleth_login(request):
 
     except User.DoesNotExist:
         user = User.objects.create(**user_data)
-        send_email_shib_user_created(user)
+        send_email_shib_user_created(user, headers['HTTP_HOST'])
 
 
     token, _ = Token.objects.get_or_create(user=user)
