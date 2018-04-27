@@ -36,10 +36,10 @@ export default AgoraGen.extend({
     },
     row: {
       fields: [
-        'service.name',
-        'state',
-        'owner.email',
-        'owner.username',
+        'service_name',
+        'owner_full_name',
+        'owner_email',
+        'state'
       ],
       actions: ['gen:details', 'remove', 'approveServiceOwnership', 'rejectServiceOwnership'],
       actionsMap: {
