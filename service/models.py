@@ -89,7 +89,7 @@ class Service(models.Model):
         return str(self.name)
     
     @property
-    def service_owners_ids(self):
+    def service_admins_ids(self):
         service_ownerships = ServiceOwnership.objects.filter(
             service=self,
             state="approved")
