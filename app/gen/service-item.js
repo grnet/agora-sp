@@ -2,7 +2,7 @@ import Ember from 'ember';
 import validate from 'ember-gen/validate';
 import { field } from 'ember-gen';
 import { AgoraGen } from '../lib/common';
-import { applyServiceOwnership } from '../utils/common/actions';
+import { applyServiceAdminship } from '../utils/common/actions';
 import {
   CREATE_FIELDSETS,
   EDIT_FIELDSETS,
@@ -22,8 +22,8 @@ export default AgoraGen.extend({
   path: 'services',
   order: 1,
   abilityStates: {
-    owned: computed('model.service_owners_ids', 'user.id', function(){
-      let ids = get(this, 'model.service_owners_ids');
+    owned: computed('model.service_admins_ids', 'user.id', function(){
+      let ids = get(this, 'model.service_admins_ids');
       let user_id = get(this, 'user.id').toString();
 
       if (!ids) { return false; }
@@ -80,9 +80,9 @@ export default AgoraGen.extend({
     },
   },
   details: {
-    actions: ['gen:details', 'gen:edit', 'remove', 'applyServiceOwnership'],
+    actions: ['gen:details', 'gen:edit', 'remove', 'applyServiceAdminship'],
     actionsMap: {
-      applyServiceOwnership,
+      applyServiceAdminship,
     },
     fieldsets: DETAILS_FIELDSETS,
     page: {
@@ -97,17 +97,17 @@ export default AgoraGen.extend({
   create: {
     fieldsets: CREATE_FIELDSETS,
     // tmp until updated apimas
-    // Service ownership creating will be normally handled by backend
+    // Service membership creating will be normally handled by backend
     onSubmit(model) {
       let user_id = get(this, 'session.session.authenticated.id');
       let service = model;
       let store = get(model, 'store');
-      let owner = store.findRecord('custom-user', user_id);
+      let admin = store.findRecord('custom-user', user_id);
 
-      return owner.then(owner => {
-        let so = store.createRecord('service-owner', {
+      return admin.then(admin => {
+        let so = store.createRecord('service-admin', {
           service,
-          owner,
+          admin,
           state: 'approved',
         })
 

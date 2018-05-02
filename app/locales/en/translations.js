@@ -1,7 +1,7 @@
 import { service_trl } from './service_trl';
 import { service_item } from './service_item';
 import { service_version } from './service_version';
-import { service_owner } from './service_owner';
+import { service_admin } from './service_admin';
 import { service_status } from './service_status';
 import { service_area } from './service_area';
 import { contact_information } from './contact_information';
@@ -20,7 +20,7 @@ export default {
   'service_item': service_item,
   'service_trl': service_trl,
   'service_version': service_version,
-  'service_owner': service_owner,
+  'service_admin': service_admin,
   'service_status': service_status,
   'service_area': service_area,
   'contact_information': contact_information,

@@ -5,8 +5,8 @@ const {
   get,
 } = Ember;
 
-const rejectServiceOwnership = {
-  label: 'reject.service_ownership',
+const rejectServiceAdminship = {
+  label: 'service_membership.reject.label',
   icon: 'cancel',
   accent: true,
   action: function(route, model) {
@@ -37,13 +37,13 @@ const rejectServiceOwnership = {
   prompt: {
     ok: 'submit',
     cancel: 'cancel',
-    message: 'reject.service_ownership.message',
-    title: 'reject.service_ownership.title',
+    message: 'service_adminship.reject.message',
+    title: 'service_adminship.reject.title',
   },
 };
 
-const approveServiceOwnership = {
-  label: 'approve.service_ownership',
+const approveServiceAdminship = {
+  label: 'service_adminship.approve.label',
   icon: 'check_circle',
   classNames: 'md-icon-success',
   action: function(route, model) {
@@ -74,23 +74,23 @@ const approveServiceOwnership = {
   prompt: {
     ok: 'submit',
     cancel: 'cancel',
-    message: 'approve.service_ownership.message',
-    title: 'approve.service_ownership.title',
+    message: 'service_adminship.approve.message',
+    title: 'service_adminship.approve.title',
   },
 };
 
-const applyServiceOwnership = {
-  label: 'apply.service_ownership',
+const applyServiceAdminship = {
+  label: 'service_adminship.apply.label',
   icon: 'grade',
   action: function(route, model) {
     return;
   },
-  hidden: computed('role', 'model.service_owners_ids', 'user.id', function(){
-    let ids = get(this, 'model.service_owners_ids');
+  hidden: computed('role', 'model.service_admins_ids', 'user.id', function(){
+    let ids = get(this, 'model.service_admins_ids');
     let user_id = get(this, 'user.id').toString();
     let role = get(this, 'role');
 
-    if (role !== 'serviceowner') { return true; }
+    if (role !== 'serviceadmin') { return true; }
     if (ids.includes(user_id)) { return true; }
 
     return false;
@@ -99,13 +99,13 @@ const applyServiceOwnership = {
   prompt: {
     ok: 'submit',
     cancel: 'cancel',
-    message: 'apply.service_ownership.message',
-    title: 'apply.service_ownership.title',
+    message: 'service_adminship.apply.message',
+    title: 'service_adminship.apply.title',
   },
 };
 
 export {
-  rejectServiceOwnership,
-  approveServiceOwnership,
-  applyServiceOwnership,
+  rejectServiceAdminship,
+  approveServiceAdminship,
+  applyServiceAdminship,
 }

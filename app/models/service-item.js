@@ -51,7 +51,7 @@ export default DS.Model.extend({
   short_desc: Ember.computed('short_description', function() {
     return shorten(Ember.get(this, 'short_description'));
   }),
-  service_owners_ids: DS.attr(),
+  service_admins_ids: DS.attr(),
   __api__: {
     path: 'services',
   },

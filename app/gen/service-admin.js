@@ -3,7 +3,7 @@ import validate from 'ember-gen/validate';
 import { field } from 'ember-gen';
 import ENV from '../config/environment';
 import { AgoraGen } from '../lib/common';
-import { approveServiceOwnership, rejectServiceOwnership } from '../utils/common/actions';
+import { approveServiceAdminship, rejectServiceAdminship } from '../utils/common/actions';
 
 const CHOICES = ENV.APP.resources;
 
@@ -12,22 +12,22 @@ const {
 } = Ember;
 
 export default AgoraGen.extend({
-  modelName: 'service-owner',
+  modelName: 'service-admin',
   order: 100,
-  path: 'service-owners',
-  resourceName: 'api/v2/service-owners',
+  path: 'service-admins',
+  resourceName: 'api/v2/service-admins',
   common: {
     validators: {
       service: [validate.presence(true)],
-      owner: [validate.presence(true)],
+      admin: [validate.presence(true)],
     },
   },
   list: {
     page: {
-      title: 'service_owner.menu',
+      title: 'service_admin.menu',
     },
     menu: {
-      label: 'service_owner.menu',
+      label: 'service_admin.menu',
       group: {
         name: 'user-information',
         label: 'group_menu.user_information',
@@ -37,20 +37,20 @@ export default AgoraGen.extend({
     row: {
       fields: [
         'service_name',
-        'owner_full_name',
-        'owner_email',
+        'admin_full_name',
+        'admin_email',
         'state'
       ],
-      actions: ['gen:details', 'remove', 'approveServiceOwnership', 'rejectServiceOwnership'],
+      actions: ['gen:details', 'remove', 'approveServiceAdminship', 'rejectServiceAdminship'],
       actionsMap: {
-        rejectServiceOwnership,
-        approveServiceOwnership,
+        rejectServiceAdminship,
+        approveServiceAdminship,
       },
     },
     sort: {
       serverside: false,
       active: true,
-      fields: ['service.name', 'owner.username', 'owner.email', 'state'],
+      fields: ['service.name', 'admin.username', 'admin.email', 'state'],
     },
     filter: {
       active: true,
@@ -60,10 +60,10 @@ export default AgoraGen.extend({
         fields: [
           field('state', {
             type: 'select',
-            choices: CHOICES.SERVICE_OWNERSHIP_STATES,
+            choices: CHOICES.SERVICE_ADMINSHIP_STATES,
           }),
           field(
-            'owner', {
+            'admin', {
               modelName:'custom_user',
               type: 'model',
               displayAttr: 'username',
@@ -84,10 +84,10 @@ export default AgoraGen.extend({
     getModel(params) {
       let store = get(this, 'store');
 
-      return store.createRecord('service-owner', {
+      return store.createRecord('service-admin', {
         state: 'approved',
       })
     },
-    fields : ['owner', 'service'],
+    fields : ['admin', 'service'],
   },
 });

@@ -1,4 +1,4 @@
-const service_owner = {
+const service_admin = {
   'cards': {
     'basic_information': 'Basic information',
     'basic_hint': ''
@@ -15,10 +15,10 @@ const service_owner = {
     'email': '',
     'phone': '',
   },
-  'menu': 'Service Owners',
+  'menu': 'Service Admins',
   'belongs': {
-    'full_name': 'Service Owner'
+    'full_name': 'Service Admin'
   }
 };
 
-export { service_owner };
+export { service_admin };
