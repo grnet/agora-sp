@@ -636,6 +636,9 @@ SERVICES = {
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
         '.action-template.django.partial_update': {},
+        'create': {
+            ':post_handler': 'service.models.post_create_service',
+        },
     },
 }
 

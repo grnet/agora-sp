@@ -1109,3 +1109,10 @@ class ServiceOwnership(models.Model):
 
     class Meta:
         unique_together = (("service", "owner"),)
+
+def post_create_service(service, context):
+    user = context.extract(b'auth/user')
+    ServiceOwnership.objects.create(
+            service=service,
+            owner=user,
+            state='approved')
