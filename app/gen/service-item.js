@@ -96,24 +96,5 @@ export default AgoraGen.extend({
   },
   create: {
     fieldsets: CREATE_FIELDSETS,
-    // tmp until updated apimas
-    // Service membership creating will be normally handled by backend
-    onSubmit(model) {
-      let user_id = get(this, 'session.session.authenticated.id');
-      let service = model;
-      let store = get(model, 'store');
-      let admin = store.findRecord('custom-user', user_id);
-
-      return admin.then(admin => {
-        let so = store.createRecord('service-admin', {
-          service,
-          admin,
-          state: 'approved',
-        })
-
-        so.save();
-      })
-    },
-    // end tmp
   },
 });
