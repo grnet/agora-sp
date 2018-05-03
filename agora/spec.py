@@ -80,7 +80,9 @@ SERVICE_FIELDS_INT = {
     'internal': {
         '.flag.filterable': {},
         '.field.boolean': {}},
-
+    'service_admins_ids': {
+        '.field.string': {},
+        '.flag.readonly': {}},
 }
 
 SERVICE_FIELDS_EXT = {
@@ -755,12 +757,61 @@ SERVICE_VERSIONS = {
     },
 }
 
+SERVICE_ADMINS = {
+    '.field.collection.django': {},
+    'model': 'service.models.ServiceAdminship',
+    ':permissions_namespace': 'agora.checks.ServiceAdminship',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.readonly': {}},
+        'state': {
+            '.field.string': {},
+            'default': 'pending'},
+        'service': {
+            '.field.ref': {},
+            'source': 'service_id',
+            'to': '/api/v2/services'},
+        'service_name': {
+            '.field.string': {},
+            '.flag.readonly': {},
+            'source': 'service.name'},
+        'admin_email': {
+            '.field.string': {},
+            '.flag.readonly': {},
+            'source': 'admin.email'},
+        'admin_first_name': {
+            '.field.string': {},
+            '.flag.readonly': {},
+            'source': 'admin.first_name'},
+        'admin_last_name': {
+            '.field.string': {},
+            '.flag.readonly': {},
+            'source': 'admin.last_name'},
+        'admin': {
+            '.field.ref': {},
+            'source': 'admin_id',
+            'to': '/api/v2/custom-users'},
+
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+    },
+}
+
+
+
 APP_CONFIG = {
     '.apimas_app': {},
     ':permission_rules': 'agora.utils.get_rules',
     ':authenticator': 'apimas.auth.DjoserAuthentication',
     ':verifier': 'agora.utils.djoser_verifier',
     ':user_resolver': 'agora.utils.userid_extractor',
+    ':permissions_namespace': 'agora.checks',
     ':filter_compat': True,
 
     'endpoints': {
@@ -780,6 +831,7 @@ APP_CONFIG = {
                 'user_customers': USER_CUSTOMERS,
                 'service-areas': SERVICE_AREAS,
                 'service-owners': SERVICE_OWNERS,
+                'service-admins': SERVICE_ADMINS,
                 'custom-users': CUSTOM_USERS,
                 'contact-information': CONTACT_INFORMATION,
                 'institutions': INSTITUTIONS,
