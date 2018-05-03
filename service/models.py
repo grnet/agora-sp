@@ -8,7 +8,7 @@ from common import helper
 from collections import OrderedDict
 from accounts.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
-from agora.utils import SERVICE_OWNERSHIP_STATES
+from agora.utils import SERVICE_ADMINSHIP_STATES
 
 
 class ServiceArea(models.Model):
@@ -90,12 +90,12 @@ class Service(models.Model):
     
     @property
     def service_admins_ids(self):
-        service_ownerships = ServiceOwnership.objects.filter(
+        service_adminships = ServiceAdminship.objects.filter(
             service=self,
             state="approved")
         res = []
-        for s in service_ownerships:
-            res.append(str(s.owner.pk))
+        for s in service_adminships:
+            res.append(str(s.admin.pk))
 
         return ','.join(res)
 
@@ -1099,20 +1099,20 @@ class Roles(models.Model):
     role = models.CharField(('role'), max_length=90, unique=True, default="spectator")
 
 
-class ServiceOwnership(models.Model):
+class ServiceAdminship(models.Model):
     service = models.ForeignKey(Service, on_delete=models.PROTECT)
-    owner = models.ForeignKey(User, on_delete=models.PROTECT)
+    admin = models.ForeignKey(User, on_delete=models.PROTECT)
     state = models.CharField(
-            choices=SERVICE_OWNERSHIP_STATES,
+            choices=SERVICE_ADMINSHIP_STATES,
             max_length=30,
             default='pending')
 
     class Meta:
-        unique_together = (("service", "owner"),)
+        unique_together = (("service", "admin"),)
 
 def post_create_service(service, context):
     user = context.extract(b'auth/user')
-    ServiceOwnership.objects.create(
+    ServiceAdminship.objects.create(
             service=service,
-            owner=user,
+            admin=user,
             state='approved')
