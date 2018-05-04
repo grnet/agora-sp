@@ -631,6 +631,7 @@ SERVICES = {
     '.field.collection.django': {},
     'model': 'service.models.Service',
     'fields': SERVICE_FIELDS_INTERNAL,
+    ':permissions_namespace': 'agora.checks.Service',
     'actions': {
         '.action-template.django.list': {},
         '.action-template.django.retrieve': {},
