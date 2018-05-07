@@ -15,10 +15,10 @@ export default DS.Model.extend({
     },
   }),
   service_name: DS.attr({
-    label: 'service.name',
+    label: 'service_admin.fields.service_name',
   }),
   admin_email: DS.attr({
-    label: 'custom_user.email',
+    label: 'service_admin.fields.admin_email',
   }),
   admin_first_name: DS.attr(),
   admin_last_name: DS.attr(),
@@ -28,6 +28,10 @@ export default DS.Model.extend({
     return `${first_name} ${last_name}`;
   }),
 
-  state: DS.attr({ type: 'select', choices: CHOICES.SERVICE_ADMINSHIP_STATES }),
+  state: DS.attr({
+    type: 'select',
+    choices: CHOICES.SERVICE_ADMINSHIP_STATES,
+    label: 'service_admin.fields.state',
+  }),
 
 });

@@ -4,16 +4,15 @@ const service_admin = {
     'basic_hint': ''
   },
   'fields': {
-    'first_name': 'First name',
-    'last_name': 'Last name',
-    'email': 'Email',
-    'phone': 'Phone',
+    'service_name': 'Service name',
+    'admin_email': 'Admin email',
+    'admin_full_name': 'Admin name',
+    'state': 'State',
   },
   'hints': {
-    'first_name': '',
-    'last_name': '',
-    'email': '',
-    'phone': '',
+    'service_name': '',
+    'admin_email': '',
+    'state': '',
   },
   'menu': 'Service Admins',
   'belongs': {

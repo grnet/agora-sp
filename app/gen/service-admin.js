@@ -37,7 +37,7 @@ export default AgoraGen.extend({
     row: {
       fields: [
         'service_name',
-        'admin_full_name',
+        field('admin_full_name', {label: 'service_admin.fields.admin_full_name'}),
         'admin_email',
         'state'
       ],
@@ -50,7 +50,7 @@ export default AgoraGen.extend({
     sort: {
       serverSide: true,
       active: true,
-      fields: ['service.name', 'admin.username', 'admin.email', 'state'],
+      fields: ['service_name', 'admin_email', 'state'],
     },
     filter: {
       active: true,
@@ -62,13 +62,6 @@ export default AgoraGen.extend({
             type: 'select',
             choices: CHOICES.SERVICE_ADMINSHIP_STATES,
           }),
-          field(
-            'admin', {
-              modelName:'custom_user',
-              type: 'model',
-              displayAttr: 'username',
-            }
-          ),
           field(
             'service', {
               modelName:'service_item',
@@ -83,7 +76,6 @@ export default AgoraGen.extend({
   create: {
     getModel(params) {
       let store = get(this, 'store');
-
       return store.createRecord('service-admin', {
         state: 'approved',
       })
