@@ -128,5 +128,14 @@ RESOURCES_CRUD = {
             'department': 'magic-edit',
             'name': 'test institution edit',
         },
+    },
+    'services': {
+        'url': '/api/v2/services/',
+        'create_data': {
+            "name": "Test service",
+        },
+        'edit_data': {
+            "name": "Test service 2",
+        }
     }
 }

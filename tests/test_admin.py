@@ -53,3 +53,7 @@ def test_contact_information(admin, client, superadmin):
 
 def test_institutions(admin, client, superadmin):
     assertions_crud('institutions', admin, superadmin)
+
+
+def test_services(admin, client, superadmin):
+    assertions_crud('services', admin, superadmin)
