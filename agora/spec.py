@@ -768,18 +768,23 @@ SERVICE_ADMINS = {
             '.flag.readonly': {}},
         'state': {
             '.field.string': {},
-            'default': 'pending'},
+            'default': 'pending',
+            '.flag.filterable': {},
+            '.flag.orderable': {}},
         'service': {
             '.field.ref': {},
             'source': 'service_id',
-            'to': '/api/v2/services'},
+            'to': '/api/v2/services',
+            '.flag.filterable': {}},
         'service_name': {
             '.field.string': {},
             '.flag.readonly': {},
+            '.flag.orderable': {},
             'source': 'service.name'},
         'admin_email': {
             '.field.string': {},
             '.flag.readonly': {},
+            '.flag.orderable': {},
             'source': 'admin.email'},
         'admin_first_name': {
             '.field.string': {},
