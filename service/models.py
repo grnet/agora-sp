@@ -1100,8 +1100,8 @@ class Roles(models.Model):
 
 
 class ServiceAdminship(models.Model):
-    service = models.ForeignKey(Service, on_delete=models.PROTECT)
-    admin = models.ForeignKey(User, on_delete=models.PROTECT)
+    service = models.ForeignKey(Service)
+    admin = models.ForeignKey(User)
     state = models.CharField(
             choices=SERVICE_ADMINSHIP_STATES,
             max_length=30,
