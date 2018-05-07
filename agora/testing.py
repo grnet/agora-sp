@@ -49,6 +49,42 @@ def admin(django_user_model):
     client.set_token(token)
     return client
 
+
+@pytest.fixture('function')
+def serviceadmin(django_user_model):
+    user, created = \
+        django_user_model.objects.get_or_create(username='serviceadmin',
+                                                email='serviceadmin@test.org',
+                                                role='serviceadmin')
+    user.set_password('12345')
+    user.save()
+
+    credentials = {"username": 'serviceadmin', "password": '12345'}
+    client = ApimasClient()
+    resp = client.post('/api/v2/auth/login/', credentials)
+    token = resp.json().get('auth_token')
+    client.set_token(token)
+    return client
+
+
+@pytest.fixture('function')
+def serviceadmin2(django_user_model):
+    user, created = \
+        django_user_model.objects.get_or_create(username='serviceadmin2',
+                                                email='serviceadmin2@test.org',
+                                                role='serviceadmin')
+    user.set_password('12345')
+    user.save()
+
+    credentials = {"username": 'serviceadmin2', "password": '12345'}
+    client = ApimasClient()
+    resp = client.post('/api/v2/auth/login/', credentials)
+    token = resp.json().get('auth_token')
+    client.set_token(token)
+    return client
+
+
+
 @pytest.fixture('function')
 def observer(django_user_model):
     user, created = \
