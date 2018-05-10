@@ -371,6 +371,7 @@ SERVICE_OWNERS = {
 CUSTOM_USERS = {
     '.field.collection.django': {},
     'model': 'accounts.models.User',
+    ':permissions_namespace': 'agora.checks.User',
     'fields': {
         'id': {
             '.field.uuid': {},
@@ -775,6 +776,7 @@ SERVICE_ADMINS = {
             '.field.ref': {},
             'source': 'service_id',
             'to': '/api/v2/services',
+            '.flag.nullable.default': {},
             '.flag.filterable': {}},
         'service_name': {
             '.field.string': {},
@@ -797,6 +799,7 @@ SERVICE_ADMINS = {
         'admin': {
             '.field.ref': {},
             'source': 'admin_id',
+            '.flag.nullable.default': {},
             'to': '/api/v2/custom-users'},
 
     },
@@ -806,6 +809,7 @@ SERVICE_ADMINS = {
         '.action-template.django.create': {},
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
     },
 }
 
