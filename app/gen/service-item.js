@@ -74,7 +74,7 @@ export default AgoraGen.extend({
       },
     },
     sort: {
-      serverSide: false,
+      serverSide: true,
       active: true,
       fields: SORT_FIELDS,
     },
