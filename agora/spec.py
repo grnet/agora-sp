@@ -83,6 +83,12 @@ SERVICE_FIELDS_INT = {
     'service_admins_ids': {
         '.field.string': {},
         '.flag.readonly': {}},
+    'pending_service_admins_ids': {
+        '.field.string': {},
+        '.flag.readonly': {}},
+    'rejected_service_admins_ids': {
+        '.field.string': {},
+        '.flag.readonly': {}},
 }
 
 SERVICE_FIELDS_EXT = {

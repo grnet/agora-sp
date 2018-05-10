@@ -99,6 +99,28 @@ class Service(models.Model):
 
         return ','.join(res)
 
+    @property
+    def pending_service_admins_ids(self):
+        service_adminships = ServiceAdminship.objects.filter(
+            service=self,
+            state="pending")
+        res = []
+        for s in service_adminships:
+            res.append(str(s.admin.pk))
+
+        return ','.join(res)
+
+    @property
+    def rejected_service_admins_ids(self):
+        service_adminships = ServiceAdminship.objects.filter(
+            service=self,
+            state="rejected")
+        res = []
+        for s in service_adminships:
+            res.append(str(s.admin.pk))
+
+        return ','.join(res)
+
 
     def save(self, *args, **kwargs):
         if not self.description_internal or self.description_internal == "":
