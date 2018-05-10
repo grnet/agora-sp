@@ -52,7 +52,17 @@ export default DS.Model.extend({
     return shorten(Ember.get(this, 'short_description'));
   }),
   service_admins_ids: DS.attr(),
+  pending_service_admins_ids: DS.attr(),
+  rejected_service_admins_ids: DS.attr(),
   __api__: {
     path: 'services',
+    serialize: function(hash, serializer) {
+      // do not send readonly keys to backend
+      delete hash['service_admins_ids'];
+      delete hash['pending_service_admins_ids'];
+      delete hash['rejected_service_admins_ids'];
+      return hash;
+    },
   },
+
 });
