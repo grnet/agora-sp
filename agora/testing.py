@@ -173,5 +173,8 @@ RESOURCES_CRUD = {
         'edit_data': {
             "name": "Test service 2",
         }
+    },
+    'service_admins': {
+        'url': '/api/v2/service-admins/'
     }
 }

@@ -54,3 +54,24 @@ def test_institutions(observer, client, superadmin):
 
 def test_services(observer, client, superadmin):
     assertions_crud('services', observer, superadmin)
+
+
+# Tests for ServiceAdminship
+
+def test_serviceadminship(observer, superadmin, client):
+    """
+    Observer cannot list  ServiceAdminships
+    Observer cannot create  ServiceAdminships
+    """
+    service_url = RESOURCES_CRUD['services']['url']
+    service_data = RESOURCES_CRUD['services']['create_data']
+    resp = superadmin.post(service_url, service_data)
+
+    service_id = resp.json()['id']
+    sa_url = RESOURCES_CRUD['service_admins']['url']
+
+    resp = observer.get(sa_url)
+    assert resp.status_code == 403
+
+    resp = observer.post(sa_url, {'admin': 1, 'service': 1})
+    assert resp.status_code == 403
