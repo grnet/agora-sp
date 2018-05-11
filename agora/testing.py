@@ -1,6 +1,7 @@
 from django.test import Client
 import pytest
 
+
 class ApimasClient(Client):
 
     auth_token = None
@@ -16,90 +17,63 @@ class ApimasClient(Client):
 
 
 @pytest.fixture('function')
-def superadmin(django_user_model):
+def create_client(django_user_model, username, email, role, is_superuser=False):
     user, created = \
-        django_user_model.objects.get_or_create(username='superadmin',
-                                                role='superadmin',
-                                                email='superadmin@test.org',
-                                                is_superuser=True)
+        django_user_model.objects.get_or_create(username=username,
+                                                email=email,
+                                                role=role,
+                                                is_superuser=is_superuser)
     user.set_password('12345')
     user.save()
 
-    credentials = {"username": 'superadmin', "password": '12345'}
+    credentials = {"username": username, "password": '12345'}
     client = ApimasClient()
     resp = client.post('/api/v2/auth/login/', credentials)
     token = resp.json().get('auth_token')
     client.set_token(token)
     return client
+
+
+@pytest.fixture('function')
+def superadmin(django_user_model):
+    return create_client(django_user_model,
+                         'superadmin',
+                         'superadmin@test.org',
+                         'superadmin',
+                         True)
 
 
 @pytest.fixture('function')
 def admin(django_user_model):
-    user, created = \
-        django_user_model.objects.get_or_create(username='admin',
-                                                email='admin@test.org',
-                                                role='admin')
-    user.set_password('12345')
-    user.save()
-
-    credentials = {"username": 'admin', "password": '12345'}
-    client = ApimasClient()
-    resp = client.post('/api/v2/auth/login/', credentials)
-    token = resp.json().get('auth_token')
-    client.set_token(token)
-    return client
+    return create_client(django_user_model,
+                         'admin',
+                         'admin@test.org',
+                         'admin')
 
 
 @pytest.fixture('function')
 def serviceadmin(django_user_model):
-    user, created = \
-        django_user_model.objects.get_or_create(username='serviceadmin',
-                                                email='serviceadmin@test.org',
-                                                role='serviceadmin')
-    user.set_password('12345')
-    user.save()
-
-    credentials = {"username": 'serviceadmin', "password": '12345'}
-    client = ApimasClient()
-    resp = client.post('/api/v2/auth/login/', credentials)
-    token = resp.json().get('auth_token')
-    client.set_token(token)
-    return client
+    return create_client(django_user_model,
+                         'serviceadmin',
+                         'serviceadmin@test.org',
+                         'serviceadmin')
 
 
 @pytest.fixture('function')
 def serviceadmin2(django_user_model):
-    user, created = \
-        django_user_model.objects.get_or_create(username='serviceadmin2',
-                                                email='serviceadmin2@test.org',
-                                                role='serviceadmin')
-    user.set_password('12345')
-    user.save()
-
-    credentials = {"username": 'serviceadmin2', "password": '12345'}
-    client = ApimasClient()
-    resp = client.post('/api/v2/auth/login/', credentials)
-    token = resp.json().get('auth_token')
-    client.set_token(token)
-    return client
-
+    return create_client(django_user_model,
+                         'serviceadmin2',
+                         'serviceadmin2@test.org',
+                         'serviceadmin')
 
 
 @pytest.fixture('function')
 def observer(django_user_model):
-    user, created = \
-        django_user_model.objects.get_or_create(username='observer',
-                                                email='observer@test.org',
-                                                role='observer')
-    user.set_password('12345')
-    user.save()
+    return create_client(django_user_model,
+                         'observer',
+                         'observer@test.org',
+                         'observer')
 
-    credentials = {"username": 'observer', "password": '12345'}
-    client = ApimasClient()
-    resp = client.post('/api/v2/auth/login/', credentials)
-    token = resp.json().get('auth_token')
-    client.set_token(token)
-    return client
 
 RESOURCES_CRUD = {
     'user_roles': {
