@@ -16,7 +16,7 @@ class ServiceAdminship(object):
             sa_m.objects.get(admin=backend_input['admin_id'],
                              service=backend_input['service_id'])
             raise ValidationError(_('Object exists'))
-        except:
+        except sa_m.DoesNotExist:
             backend_input['state'] = 'approved'
             return
 
@@ -27,7 +27,7 @@ class ServiceAdminship(object):
             sa_m.objects.get(admin=auth_user.id,
                              service=backend_input['service_id'])
             raise ValidationError(_('Object exists'))
-        except:
+        except sa_m.DoesNotExist:
             backend_input['admin_id'] = auth_user.id
             backend_input['state'] = 'pending'
             return
