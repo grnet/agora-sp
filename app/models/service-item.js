@@ -2,7 +2,13 @@ import DS from 'ember-data';
 import Ember from 'ember';
 import { shorten } from '../utils/common/common';
 
+const {
+  get,
+} = Ember;
+
+
 export default DS.Model.extend({
+  session: Ember.inject.service(),
   name: DS.attr(),
   service_type: DS.attr(),
   funders_for_service: DS.attr(),
@@ -47,13 +53,47 @@ export default DS.Model.extend({
       optionLabelAttr: 'value',
     },
   }),
+  service_admins_ids: DS.attr(),
+  pending_service_admins_ids: DS.attr(),
+  rejected_service_admins_ids: DS.attr(),
+
   // computed
   short_desc: Ember.computed('short_description', function() {
     return shorten(Ember.get(this, 'short_description'));
   }),
-  service_admins_ids: DS.attr(),
-  pending_service_admins_ids: DS.attr(),
-  rejected_service_admins_ids: DS.attr(),
+
+  can_apply_adminship: Ember.computed('service_admins_ids', 'pending_service_admins_ids', 'rejected_service_admins_ids', function(){
+    let role = get(this, 'session.session.authenticated.role');
+    if (role != 'serviceadmin') { return false; }
+    let approved = get(this, 'service_admins_ids').split(',');
+    let pending = get(this, 'pending_service_admins_ids').split(',');
+    let rejected = get(this, 'rejected_service_admins_ids').split(',');
+
+    let all = [...approved, ...pending, ...rejected];
+    let user_id = get(this, 'session.session.authenticated.id').toString();
+    return !all.includes(user_id);
+  }),
+
+  can_revoke_adminship: Ember.computed('pending_service_admins_ids', function(){
+    let role = get(this, 'session.session.authenticated.role');
+    if (role != 'serviceadmin') { return false; }
+
+    let pending = get(this, 'pending_service_admins_ids').split(',');
+    let user_id = get(this, 'session.session.authenticated.id').toString();
+    return pending.includes(user_id);
+  }),
+
+  has_rejected_adminship: Ember.computed('rejected_service_admins_ids', function(){
+    let role = get(this, 'session.session.authenticated.role');
+    if (role != 'serviceadmin') { return false; }
+
+    let rejected = get(this, 'rejected_service_admins_ids').split(',');
+    let user_id = get(this, 'session.session.authenticated.id').toString();
+    return rejected.includes(user_id);
+  }),
+
+
+
   __api__: {
     path: 'services',
     serialize: function(hash, serializer) {

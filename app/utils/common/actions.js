@@ -6,106 +6,185 @@ const {
 } = Ember;
 
 const rejectServiceAdminship = {
-  label: 'service_membership.reject.label',
-  icon: 'cancel',
+  label: 'service_admin.reject.label',
+  icon: 'block',
   accent: true,
   action: function(route, model) {
     let m = route.get('messageService');
 
     model.set('state', 'rejected');
     model.save().then((value) => {
-      m.setSuccess('form.saved');
+      m.setSuccess('service_admin.reject.success');
 
       return value;
     }, (reason) => {
       model.rollbackAttributes();
-      m.setError('reason.errors');
-
-      return reason.errors;
-    });
-  },
-  hidden: computed('model.state', 'role', 'user.role', function(){
-    let state = get(this, 'model.state');
-    let role = get(this, 'role');
-
-    if (!(['superadmin', 'admin'].includes(role))) { return true; }
-    if (state === 'rejected') { return true; }
-
-    return false;
-  }),
-  confirm: true,
-  prompt: {
-    ok: 'submit',
-    cancel: 'cancel',
-    message: 'service_adminship.reject.message',
-    title: 'service_adminship.reject.title',
-  },
-};
-
-const approveServiceAdminship = {
-  label: 'service_adminship.approve.label',
-  icon: 'check_circle',
-  classNames: 'md-icon-success',
-  action: function(route, model) {
-    let m = route.get('messageService');
-
-    model.set('state', 'approved');
-    model.save().then((value) => {
-      m.setSuccess('form.saved');
-
-      return value;
-    }, (reason) => {
-      model.rollbackAttributes();
-      m.setError('reason.errors');
+      m.setError('service_admin.reject.error');
 
       return reason.errors;
     });
   },
   hidden: computed('model.state', 'role', function(){
     let state = get(this, 'model.state');
-    let role = get(this, 'role');
 
-    if (!(['superadmin', 'admin'].includes(role))) { return true; }
-    if (state === 'approved') { return true; }
-
-    return false;
+    return !(state === 'pending')
   }),
   confirm: true,
   prompt: {
-    ok: 'submit',
+    ok: 'service_admin.reject.ok',
     cancel: 'cancel',
-    message: 'service_adminship.approve.message',
-    title: 'service_adminship.approve.title',
+    message: 'service_admin.reject.message',
+    title: 'service_admin.reject.title',
+  },
+};
+
+const approveServiceAdminship = {
+  label: 'service_admin.approve.label',
+  icon: 'check',
+  action: function(route, model) {
+    let m = route.get('messageService');
+
+    model.set('state', 'approved');
+    model.save().then((value) => {
+      m.setSuccess('service_admin.approve.success');
+
+      return value;
+    }, (reason) => {
+      model.rollbackAttributes();
+      m.setError('service_admin.approve.error');
+
+      return reason.errors;
+    });
+  },
+  hidden: computed('model.state', function(){
+    let state = get(this, 'model.state');
+
+    return !(state === 'pending')
+  }),
+  confirm: true,
+  prompt: {
+    ok: 'service_admin.approve.ok',
+    cancel: 'cancel',
+    message: 'service_admin.approve.message',
+    title: 'service_admin.approve.title',
+  },
+};
+
+const undoServiceAdminship = {
+  label: 'service_admin.undo.label',
+  icon: 'undo',
+  action: function(route, model) {
+    let m = route.get('messageService');
+
+    model.set('state', 'pending');
+    model.save().then((value) => {
+      m.setSuccess('service_admin.undo.success');
+
+      return value;
+    }, (reason) => {
+      model.rollbackAttributes();
+      m.setError('service_admin.undo.error');
+
+      return reason.errors;
+    });
+  },
+  hidden: computed('model.state', 'model.admin.id', function(){
+    let admin_id = get(this, 'model.admin.id');
+
+    if (admin_id) { return true; }
+
+    let state = get(this, 'model.state');
+
+    return state === 'pending'
+  }),
+  confirm: true,
+  prompt: {
+    ok: 'service_admin.undo.ok',
+    cancel: 'cancel',
+    message: 'service_admin.undo.message',
+    title: 'service_admin.undo.title',
   },
 };
 
 const applyServiceAdminship = {
-  label: 'service_adminship.apply.label',
+  label: 'service_admin.apply.label',
   icon: 'grade',
   action: function(route, model) {
-    return;
+    let m = route.get('messageService');
+    let store = route.get('store');
+    let service_admin = store.createRecord('service-admin', {
+      service: model,
+    })
+
+    service_admin.save().then((value) => {
+      model.reload().then(() => {
+        m.setSuccess('service_admin.apply.success');
+      })
+    }, (error) => {
+      m.setError('service_admin.apply.error');
+    });
   },
-  hidden: computed('role', 'model.service_admins_ids', 'user.id', function(){
-    let ids = get(this, 'model.service_admins_ids');
-    let user_id = get(this, 'user.id').toString();
-    let role = get(this, 'role');
-
-    if (role !== 'serviceadmin') { return true; }
-    if (ids.includes(user_id)) { return true; }
-
-    return false;
+  hidden: computed('model.can_apply_adminship', function(){
+    return !get(this, 'model.can_apply_adminship');
   }),
   confirm: true,
   prompt: {
-    ok: 'submit',
+    ok: 'service_admin.apply.ok',
     cancel: 'cancel',
-    message: 'service_adminship.apply.message',
-    title: 'service_adminship.apply.title',
+    message: 'service_admin.apply.message',
+    title: 'service_admin.apply.title',
+  },
+};
+
+const revokeServiceAdminship = {
+  label: 'service_admin.revoke.label',
+  icon: 'undo',
+  action: function(route, model) {
+    let m = route.get('messageService');
+    let store = route.get('store');
+    let user_id = get(route, 'session.session.authenticated.id');
+
+    return store.query('service-admin', {
+      admin: user_id,
+      service: model.id,
+      state: 'pending',
+    }).then(function(el) {
+      // TBA
+      return el[0];
+    });
+  },
+  hidden: computed('model.can_revoke_adminship', function(){
+    return !get(this, 'model.can_revoke_adminship');
+  }),
+  confirm: true,
+  prompt: {
+    ok: 'service_admin.revoke.ok',
+    cancel: 'cancel',
+    message: 'service_admin.revoke.message',
+    title: 'service_admin.revoke.title',
+  },
+};
+
+const informAdminshipRejected = {
+  label: 'service_admin.inform_rejected.label',
+  icon: 'warning',
+  action: function() {},
+  hidden: computed('model.has_rejected_adminship', function(){
+    return !get(this, 'model.has_rejected_adminship');
+  }),
+  confirm: true,
+  prompt: {
+    message: 'service_admin.inform_rejected.message',
+    title: 'service_admin.inform_rejected.title',
+    noControls: true,
   },
 };
 
 export {
   rejectServiceAdminship,
   approveServiceAdminship,
+  undoServiceAdminship,
   applyServiceAdminship,
+  revokeServiceAdminship,
+  informAdminshipRejected,
 }

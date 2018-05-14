@@ -2,7 +2,11 @@ import Ember from 'ember';
 import validate from 'ember-gen/validate';
 import { field } from 'ember-gen';
 import { AgoraGen } from '../lib/common';
-import { applyServiceAdminship } from '../utils/common/actions';
+import {
+  applyServiceAdminship,
+  revokeServiceAdminship,
+  informAdminshipRejected,
+} from '../utils/common/actions';
 import {
   CREATE_FIELDSETS,
   EDIT_FIELDSETS,
@@ -80,9 +84,18 @@ export default AgoraGen.extend({
     },
   },
   details: {
-    actions: ['gen:details', 'gen:edit', 'remove', 'applyServiceAdminship'],
+    actions: [
+      'gen:details',
+      'gen:edit',
+      'remove',
+      'applyServiceAdminship',
+      'revokeServiceAdminship',
+      'informAdminshipRejected',
+    ],
     actionsMap: {
       applyServiceAdminship,
+      revokeServiceAdminship,
+      informAdminshipRejected,
     },
     fieldsets: DETAILS_FIELDSETS,
     page: {

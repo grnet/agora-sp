@@ -3,7 +3,7 @@ import ENV from '../config/environment';
 
 const CHOICES = ENV.APP.resources;
 
-export default DS.Model.extend({
+let model = DS.Model.extend({
   admin: DS.belongsTo('custom-user', {
     formAttrs: {
       optionLabelAttr: 'username',
@@ -35,3 +35,7 @@ export default DS.Model.extend({
   }),
 
 });
+
+model.reopenClass({apimasResourceName: 'api/v2/service-admins'})
+
+export default model;

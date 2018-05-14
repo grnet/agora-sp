@@ -11,6 +11,9 @@ export default AgoraGen.extend({
   order: 600,
   path: 'custom-users',
   resourceName: 'api/v2/custom-users',
+  abilityStates: {
+    'me': true,
+  },
   common: {
     fieldsets: CREATE_OR_EDIT_FIELDSETS,
     validators: {

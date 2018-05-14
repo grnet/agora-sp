@@ -3,7 +3,11 @@ import validate from 'ember-gen/validate';
 import { field } from 'ember-gen';
 import ENV from '../config/environment';
 import { AgoraGen } from '../lib/common';
-import { approveServiceAdminship, rejectServiceAdminship } from '../utils/common/actions';
+import {
+  approveServiceAdminship,
+  rejectServiceAdminship,
+  undoServiceAdminship,
+} from '../utils/common/actions';
 
 const CHOICES = ENV.APP.resources;
 
@@ -16,6 +20,9 @@ export default AgoraGen.extend({
   order: 100,
   path: 'service-admins',
   resourceName: 'api/v2/service-admins',
+  abilityStates: {
+    check_create_other: true,
+  },
   common: {
     validators: {
       service: [validate.presence(true)],
@@ -41,10 +48,11 @@ export default AgoraGen.extend({
         'admin_email',
         'state'
       ],
-      actions: ['gen:details', 'remove', 'approveServiceAdminship', 'rejectServiceAdminship'],
+      actions: ['gen:details', 'remove', 'approveServiceAdminship', 'rejectServiceAdminship', 'undoServiceAdminship'],
       actionsMap: {
         rejectServiceAdminship,
         approveServiceAdminship,
+        undoServiceAdminship,
       },
     },
     sort: {
