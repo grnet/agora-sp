@@ -1,3 +1,6 @@
+apimas-django==0.4a1
+apimas==0.4a1
+docular==0.4a1
 Django==1.11.10
 django-ckeditor==5.2.2
 django-cors-headers==1.1.0
