@@ -28,20 +28,20 @@ from agora import views as agora_views
 
 from djoser import views as djoser_views
 
-from apimas_django import adapter
+from apimas_django import provider
 from agora.spec import APP_CONFIG
 
-app_spec = adapter.configure_apimas_app(APP_CONFIG)
+app_spec = provider.configure_apimas_app(APP_CONFIG)
 
 config_file = os.path.join(settings.SETTINGS_DIR, 'deployment.conf')
 if os.path.isfile(config_file):
     with open(config_file) as f:
         deploy_config = json.load(f)
-    deployment_spec = adapter.configure_spec(app_spec, deploy_config)
+    deployment_spec = provider.configure_spec(app_spec, deploy_config)
 else:
     deployment_spec = app_spec
 
-api_urls = adapter.construct_views(deployment_spec)
+api_urls = provider.construct_views(deployment_spec)
 
 urlpatterns = [
     url(r'^api/admin/?', admin.site.urls),
