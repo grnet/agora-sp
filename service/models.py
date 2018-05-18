@@ -333,7 +333,7 @@ class Service(models.Model):
                         "desc": "Portfolio level details about this service."
                     }
                 }}),
-            ("logo", self.logo.name.split("/")[-1])
+            ("logo", self.logo_absolute_path)
         ])
 
 
@@ -432,7 +432,7 @@ class Service(models.Model):
                         "desc": "Portfolio level details about this service."
                     }
                 }}),
-            ("logo", self.logo.name.split("/")[-1])
+            ("logo", self.logo_absolute_path)
         ])
 
 
