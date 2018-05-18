@@ -590,6 +590,10 @@ SERVICES = {
             'source': 'id_contact_information_internal_id',
             'to': '/api/v2/contact-information',
             '.flag.nullable.default': {}},
+        'customer_facing': {
+            '.field.boolean': {}},
+        'internal': {
+            '.field.boolean': {}},
         # extended keys
         'service_area_ext': {
             '.field.struct': {},

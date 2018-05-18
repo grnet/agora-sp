@@ -70,6 +70,8 @@ class Service(models.Model):
     id_contact_information_internal = models.ForeignKey(ContactInformation, null=True, related_name="internal_contact_info")
     logo = models.ImageField(default=settings.SERVICE_LOGO,
             upload_to=helper.service_image_path)
+    customer_facing = models.BooleanField(default=False)
+    internal = models.BooleanField(default=False)
 
     class Meta:
         verbose_name_plural = "01. Services"
