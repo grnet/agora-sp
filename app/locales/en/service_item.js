@@ -19,6 +19,8 @@ const service_item = {
     'risks': 'Risks',
     'competitors': 'Competitors',
     'customer_value': 'Value to Customer',
+    'customer_facing': 'Customer facing service',
+    'internal': 'Internal service',
   },
   'belongs': {
     'name': 'Service Name'

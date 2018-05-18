@@ -14,6 +14,14 @@ export default DS.Model.extend({
   competitors: DS.attr(),
   logo: DS.attr(),
   request_procedures: DS.attr(),
+  customer_facing: DS.attr({
+    type: 'boolean',
+    label: 'service_item.fields.customer_facing',
+  }),
+  internal: DS.attr({
+    type: 'boolean',
+    label: 'service_item.fields.internal',
+  }),
   service_version_url: Ember.computed('id', function() {
     return `/service-versions/create?service=${Ember.get(this, 'id')}`;
   }),
