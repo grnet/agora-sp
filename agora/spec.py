@@ -406,6 +406,7 @@ CUSTOM_USERS = {
             '.flag.readonly': {},
             '.flag.nullable.default': {}},
         'role': {
+            '.flag.filterable': {},
             '.field.string': {}},
     },
     'actions': {
@@ -782,6 +783,7 @@ SERVICE_ADMINS = {
             '.field.ref': {},
             'source': 'service_id',
             'to': '/api/v2/services',
+            '.flag.filterable': {},
             '.flag.nullable.default': {},
             '.flag.filterable': {}},
         'service_name': {
@@ -805,6 +807,7 @@ SERVICE_ADMINS = {
         'admin': {
             '.field.ref': {},
             'source': 'admin_id',
+            '.flag.filterable': {},
             '.flag.nullable.default': {},
             'to': '/api/v2/custom-users'},
 
