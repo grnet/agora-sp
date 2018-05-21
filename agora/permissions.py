@@ -117,7 +117,7 @@ RULES = [
 
     ('api/v2/service-admins', 'list', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-admins', 'list', 'admin', '*', '*', '*', '*'),
-    ('api/v2/service-admins', 'list', 'serviceadmin', 'owns', '*', '*', '*'),
+    ('api/v2/service-admins', 'list', 'serviceadmin', 'manages_or_self_pending', '*', '*', '*'),
     ('api/v2/service-admins', 'retrieve', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-admins', 'retrieve', 'admin', '*', '*', '*', '*'),
     ('api/v2/service-admins', 'retrieve', 'serviceadmin', '*', 'is_involved', '*', '*'),
@@ -126,7 +126,7 @@ RULES = [
     ('api/v2/service-admins', 'create', 'serviceadmin', '*', 'check_create_self', 'service', '*'),
     ('api/v2/service-admins', 'partial_update', 'superadmin', '*', 'check_update', 'state', '*'),
     ('api/v2/service-admins', 'partial_update', 'admin', '*', 'check_update', 'state', '*'),
-    ('api/v2/service-admins', 'partial_update', 'serviceadmin', 'owns', 'check_update', 'state', '*'),
+    ('api/v2/service-admins', 'partial_update', 'serviceadmin', 'manages', 'check_update', 'state', '*'),
     ('api/v2/service-admins', 'destroy', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-admins', 'delete', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-admins', 'destroy', 'serviceadmin', '*', 'self_pending', '*', '*'),

@@ -59,12 +59,21 @@ class ServiceAdminship(object):
             raise ValidationError("Transition not allowed")
 
     @staticmethod
-    def owns(context):
+    def manages(context):
         auth_user = context.extract('auth/user')
         user_sa = sa_m.objects.filter(admin=auth_user, state='approved')
         user_services = [x.service for x in user_sa]
 
-        return Q(service__in=user_services)
+        return Q(service__in=user_services) & ~Q(admin=auth_user)
+
+    @staticmethod
+    def manages_or_self_pending(context):
+        auth_user = context.extract('auth/user')
+        user_sa = sa_m.objects.filter(admin=auth_user, state='approved')
+        services = [x.service for x in user_sa]
+        self_pending = Q(admin=auth_user, state='pending')
+
+        return (Q(service__in=services) & ~Q(admin=auth_user)) | self_pending
 
     @staticmethod
     def self_pending(context):
