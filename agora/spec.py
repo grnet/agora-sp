@@ -804,6 +804,10 @@ SERVICE_ADMINS = {
             '.field.string': {},
             '.flag.readonly': {},
             'source': 'admin.last_name'},
+        'admin_id': {
+            '.field.uuid': {},
+            '.flag.readonly': {},
+            'source': 'admin.id'},
         'admin': {
             '.field.ref': {},
             'source': 'admin_id',
