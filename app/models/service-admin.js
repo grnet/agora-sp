@@ -27,6 +27,7 @@ let model = DS.Model.extend({
     const last_name = this.get('admin_last_name');
     return `${first_name} ${last_name}`;
   }),
+  admin_id: DS.attr(),
 
   state: DS.attr({
     type: 'select',

@@ -30,6 +30,14 @@ export default AgoraGen.extend({
     },
   },
   list: {
+    getModel(params) {
+      params = params || {};
+      return this.store.query('service-admin', params).then( (sa) => {
+        let user_id = get(this, 'session.session.authenticated.id');
+        let res = sa.filter(el => get(el, 'admin_id') != user_id);
+        return res;
+      });
+    },
     page: {
       title: 'service_admin.menu',
     },
@@ -88,6 +96,13 @@ export default AgoraGen.extend({
         state: 'approved',
       })
     },
-    fields : ['admin', 'service'],
+    fields : [
+      field('admin', {
+        query: (table, store, field, params) => {
+          return store.query('custom-user', { role: 'serviceadmin' });
+        },
+      }),
+      'service',
+    ],
   },
 });

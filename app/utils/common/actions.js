@@ -148,9 +148,20 @@ const revokeServiceAdminship = {
       admin: user_id,
       service: model.id,
       state: 'pending',
-    }).then(function(el) {
-      // TBA
-      return el[0];
+    }).then(function(res) {
+      if (get(res, 'length') === 1) {
+        res.forEach(function(el) {
+          el.destroyRecord().then(()=> {
+            model.reload().then(()=> {
+              m.setSuccess('service_admin.revoke.success');
+            })
+          }).catch((err)=> {
+            throw err;
+          })
+        })
+      } else {
+        m.setError('service_admin.revoke.error!!!!');
+      }
     });
   },
   hidden: computed('model.can_revoke_adminship', function(){
