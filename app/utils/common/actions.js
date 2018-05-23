@@ -90,8 +90,9 @@ const undoServiceAdminship = {
   },
   hidden: computed('model.state', 'model.admin.id', function(){
     let admin_id = get(this, 'model.admin.id');
+    let user_id = get(this, 'session.session.authenticated.id');
 
-    if (admin_id) { return true; }
+    if (admin_id && admin_id === user_id) { return true; }
 
     let state = get(this, 'model.state');
 
