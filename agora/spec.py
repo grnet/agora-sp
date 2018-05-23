@@ -591,8 +591,10 @@ SERVICES = {
             'to': '/api/v2/contact-information',
             '.flag.nullable.default': {}},
         'customer_facing': {
+            '.flag.filterable': {},
             '.field.boolean': {}},
         'internal': {
+            '.flag.filterable': {},
             '.field.boolean': {}},
         # extended keys
         'service_area_ext': {
