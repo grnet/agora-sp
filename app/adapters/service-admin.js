@@ -37,7 +37,6 @@ export default ApplicationAdapter.extend({
   },
 
   createRecord(store, type, snapshot) {
-    debugger;
     let data = {};
     let serializer = store.serializerFor(type.modelName);
     let url = this.buildURL(type.modelName, null, snapshot, 'createRecord');
