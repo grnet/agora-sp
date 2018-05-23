@@ -44,6 +44,8 @@ export default AgoraGen.extend({
               displayAttr: 'value'
             }
           ),
+          field('internal', {type: 'boolean'}),
+          field('customer_facing', {type: 'boolean'}),
           field(
             'service_area', {
               modelName:'service_area',
