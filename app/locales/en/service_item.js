@@ -19,7 +19,7 @@ const service_item = {
     'risks': 'Risks',
     'competitors': 'Competitors',
     'customer_value': 'Value to Customer',
-    'customer_facing': 'Customer facing service',
+    'customer_facing': 'External service',
     'internal': 'Internal service',
   },
   'belongs': {
