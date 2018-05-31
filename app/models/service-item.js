@@ -17,7 +17,7 @@ export default DS.Model.extend({
   customer_facing: DS.attr({
     type: 'boolean',
     label: 'service_item.fields.customer_facing',
-    defaultValue: false,
+    defaultValue: true,
   }),
   internal: DS.attr({
     type: 'boolean',
