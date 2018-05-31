@@ -1,11 +1,12 @@
 import Ember from 'ember';
+import ENV from 'agora-admin/config/environment';
 
 const {
   get
 } = Ember;
 
 
-const DEFAULT_ROUTE = 'component.index';
+const DEFAULT_ROUTE = ENV.APP.default_route || 'component.index';
 
 export default Ember.Route.extend({
   session: Ember.inject.service(),
