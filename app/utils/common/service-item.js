@@ -134,6 +134,8 @@ const BASIC_INFO_FIELDS =  [
       label: 'Contact Information'
     }
   ),
+  'customer_facing',
+  'internal',
 ];
 
 const BASIC_INFO_FORM_FIELDS_EDIT =  [
@@ -189,6 +191,8 @@ const BASIC_INFO_FORM_FIELDS_EDIT =  [
       label: 'contact_information.belongs.internal'
     }
   ),
+  'customer_facing',
+  'internal',
 ];
 
 const BASIC_INFO_FORM_FIELDS_CREATE =  [
@@ -234,13 +238,15 @@ const BASIC_INFO_FORM_FIELDS_CREATE =  [
       label: 'contact_information.belongs.internal'
     }
   ),
+  'customer_facing',
+  'internal',
 ];
 
 const DETAILS_BASIC_INFO_FIELDSET = {
   label: 'service_item.cards.basic_information',
   fields: BASIC_INFO_FIELDS,
   layout: {
-    flex: [ 100, 100, 100, 100, 100, 100, 100, 100, 100 ]
+    flex: [ 100, 100, 100, 100, 100, 100, 100, 100, 100, 50, 50 ]
   }
 };
 
