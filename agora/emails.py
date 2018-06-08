@@ -1,6 +1,14 @@
 from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
+from common.helper import current_site_baseurl
+
+import logging
+logger = logging.getLogger('apimas')
+
+
+def get_login_url():
+    return current_site_baseurl() + settings.TOKEN_LOGIN_URL
 
 
 def send_email_shib_user_created(user, http_host):
@@ -21,3 +29,71 @@ def send_email_shib_user_created(user, http_host):
         recipient_list,
         fail_silently=True
     )
+
+
+def send_user_email(user, tpl_subject, tpl_body, extra_context=()):
+    tpl_context = {
+        'user': user,
+        'login_url': get_login_url()
+    }
+    if extra_context:
+        tpl_context.update(extra_context)
+
+    subject = render_to_string(tpl_subject, tpl_context).replace('\n', ' ')
+    body = render_to_string(tpl_body, tpl_context)
+    sender = settings.DEFAULT_FROM_EMAIL
+    send_mail(
+        subject,
+        body,
+        sender,
+        [user.email],
+        fail_silently=False
+    )
+    logger.info('%s email sent to %s' % (tpl_body, str(user.id)))
+
+
+def serviceadminship_context(sa):
+    return {
+        'applicant': sa.admin,
+        'service': sa.service,
+        'service_url': current_site_baseurl() + '/services/'+str(sa.service.pk),
+        'service_admins_url': current_site_baseurl() + '/service-admins/'
+    }
+
+
+def send_email_application_created(sa, http_host):
+    recipients = sa.service.service_admins
+    extra_context = serviceadminship_context(sa)
+    extra_context['http_host'] = http_host
+
+    for recipient in recipients:
+        send_user_email(
+            recipient,
+            'emails/application_created_subject.txt',
+            'emails/application_created_body.txt',
+            extra_context
+        )
+
+
+def send_email_service_admin_assigned(sa, http_host):
+    recipients = sa.service.service_admins
+    recipients.remove(sa.admin)
+    extra_context = serviceadminship_context(sa)
+    extra_context['http_host'] = http_host
+
+    # Send email to new admin
+    send_user_email(
+        sa.admin,
+        'emails/service_admin_assigned_subject.txt',
+        'emails/service_admin_assigned_to_applicant_body.txt',
+        extra_context
+    )
+
+    # Send email to other admins
+    for recipient in recipients:
+        send_user_email(
+            recipient,
+            'emails/service_admin_assigned_subject.txt',
+            'emails/service_admin_assigned_to_admins_body.txt',
+            extra_context
+        )

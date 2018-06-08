@@ -783,7 +783,6 @@ SERVICE_ADMINS = {
             '.field.ref': {},
             'source': 'service_id',
             'to': '/api/v2/services',
-            '.flag.filterable': {},
             '.flag.nullable.default': {},
             '.flag.filterable': {}},
         'service_name': {
@@ -823,9 +822,11 @@ SERVICE_ADMINS = {
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
         '.action-template.django.partial_update': {},
+        'create': {
+            ':post_handler': 'service.models.post_create_serviceadminship',
+        },
     },
 }
-
 
 
 APP_CONFIG = {

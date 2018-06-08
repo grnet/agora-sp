@@ -9,6 +9,8 @@ from collections import OrderedDict
 from accounts.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
 from agora.utils import SERVICE_ADMINSHIP_STATES
+from agora.emails import send_email_application_created, \
+    send_email_service_admin_assigned
 
 
 class ServiceArea(models.Model):
@@ -1142,9 +1144,20 @@ class ServiceAdminship(models.Model):
     class Meta:
         unique_together = (("service", "admin"),)
 
+
 def post_create_service(service, context):
-    user = context.extract(b'auth/user')
+    user = context.extract('auth/user')
     ServiceAdminship.objects.create(
             service=service,
             admin=user,
             state='approved')
+
+
+def post_create_serviceadminship(sa, context):
+    user = context.extract('auth/user')
+    http_host = context.extract('request/meta/headers')['HTTP_HOST']
+
+    if sa.state == 'pending':
+        send_email_application_created(sa, http_host)
+    if sa.admin != user:
+        send_email_service_admin_assigned(sa, http_host)
