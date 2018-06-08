@@ -100,6 +100,16 @@ class Service(models.Model):
         return ','.join(res)
 
     @property
+    def service_admins(self):
+        service_adminships = ServiceAdminship.objects.filter(
+            service=self,
+            state="approved")
+        res = []
+        for s in service_adminships:
+            res.append(s.admin)
+        return res
+
+    @property
     def pending_service_admins_ids(self):
         service_adminships = ServiceAdminship.objects.filter(
             service=self,
