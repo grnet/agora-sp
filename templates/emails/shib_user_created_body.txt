@@ -1,4 +1,4 @@
-A new user in agora has been created via shibboleth login:
+A new user in {{ http_host }} has been created via shibboleth login:
 
 User details:
 
