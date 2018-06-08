@@ -1,0 +1,11 @@
+{% extends "emails/email_base.txt" %}
+{% block content %}
+
+An application for admninship of the service {{ service.admin }} for which you are administrator, for the user:
+
+{% include "emails/applicant_details.txt" %}
+
+has been rejected.
+
+
+{% endblock content %}

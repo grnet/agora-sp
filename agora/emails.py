@@ -110,3 +110,21 @@ def send_email_service_admin_assigned(sa, http_host):
                                    tpl_body_applicant)
 
 
+def send_email_application_evaluated(sa, http_host):
+    if sa.state == 'approved':
+        tpl_subject = 'emails/application_approved_subject.txt'
+        tpl_body_admins = 'emails/application_approved_to_admins_body.txt'
+        tpl_body_applicant = 'emails/application_approved_to_applicant_body.txt'
+
+        send_email_sa_admins_applicant(sa, http_host, tpl_subject,
+                                       tpl_body_admins,
+                                       tpl_body_applicant)
+
+    if sa.state == 'rejected':
+        tpl_subject = 'emails/application_rejected_subject.txt'
+        tpl_body_admins = 'emails/application_rejected_to_admins_body.txt'
+        tpl_body_applicant = 'emails/application_rejected_to_applicant_body.txt'
+
+        send_email_sa_admins_applicant(sa, http_host, tpl_subject,
+                                       tpl_body_admins,
+                                       tpl_body_applicant)

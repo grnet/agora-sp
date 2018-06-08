@@ -825,6 +825,10 @@ SERVICE_ADMINS = {
         'create': {
             ':post_handler': 'service.models.post_create_serviceadminship',
         },
+        'partial_update': {
+            ':post_handler': 'service.models.post_partial_update_serviceadminship',
+        },
+
     },
 }
 

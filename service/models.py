@@ -10,7 +10,7 @@ from accounts.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
 from agora.utils import SERVICE_ADMINSHIP_STATES
 from agora.emails import send_email_application_created, \
-    send_email_service_admin_assigned
+    send_email_service_admin_assigned, send_email_application_evaluated
 
 
 class ServiceArea(models.Model):
@@ -1161,3 +1161,8 @@ def post_create_serviceadminship(sa, context):
         send_email_application_created(sa, http_host)
     if sa.admin != user:
         send_email_service_admin_assigned(sa, http_host)
+
+
+def post_partial_update_serviceadminship(sa, context):
+    http_host = context.extract('request/meta/headers')['HTTP_HOST']
+    send_email_application_evaluated(sa, http_host)
