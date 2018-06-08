@@ -75,17 +75,19 @@ def send_email_application_created(sa, http_host):
         )
 
 
-def send_email_service_admin_assigned(sa, http_host):
+def send_email_sa_admins_applicant(sa, http_host, tpl_subject, tpl_body_admins,
+                                   tpl_body_applicant):
     recipients = sa.service.service_admins
-    recipients.remove(sa.admin)
+    if sa.admin in recipients:
+        recipients.remove(sa.admin)
     extra_context = serviceadminship_context(sa)
     extra_context['http_host'] = http_host
 
     # Send email to new admin
     send_user_email(
         sa.admin,
-        'emails/service_admin_assigned_subject.txt',
-        'emails/service_admin_assigned_to_applicant_body.txt',
+        tpl_subject,
+        tpl_body_applicant,
         extra_context
     )
 
@@ -93,7 +95,18 @@ def send_email_service_admin_assigned(sa, http_host):
     for recipient in recipients:
         send_user_email(
             recipient,
-            'emails/service_admin_assigned_subject.txt',
-            'emails/service_admin_assigned_to_admins_body.txt',
+            tpl_subject,
+            tpl_body_admins,
             extra_context
         )
+
+
+def send_email_service_admin_assigned(sa, http_host):
+    tpl_subject = 'emails/service_admin_assigned_subject.txt'
+    tpl_body_admins = 'emails/service_admin_assigned_to_admins_body.txt'
+    tpl_body_applicant = 'emails/service_admin_assigned_to_applicant_body.txt'
+
+    send_email_sa_admins_applicant(sa, http_host, tpl_subject, tpl_body_admins,
+                                   tpl_body_applicant)
+
+
