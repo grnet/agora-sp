@@ -1155,7 +1155,7 @@ def post_create_service(service, context):
 
 def post_create_serviceadminship(sa, context):
     user = context.extract('auth/user')
-    http_host = context.extract('request/meta/headers')['HTTP_HOST']
+    http_host = context.extract('request/meta/headers').get('HTTP_HOST', 'Agora')
 
     if sa.state == 'pending':
         send_email_application_created(sa, http_host)
@@ -1164,5 +1164,5 @@ def post_create_serviceadminship(sa, context):
 
 
 def post_partial_update_serviceadminship(sa, context):
-    http_host = context.extract('request/meta/headers')['HTTP_HOST']
+    http_host = context.extract('request/meta/headers').get('HTTP_HOST', 'Agora')
     send_email_application_evaluated(sa, http_host)
