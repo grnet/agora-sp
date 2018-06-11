@@ -143,9 +143,13 @@ RESOURCES_CRUD = {
         'url': '/api/v2/services/',
         'create_data': {
             "name": "Test service",
+            "internal": False,
+            "customer_facing": True,
         },
         'edit_data': {
             "name": "Test service 2",
+            "internal": True,
+            "customer_facing": False,
         }
     },
     'service_admins': {
