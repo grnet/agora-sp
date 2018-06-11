@@ -18,7 +18,7 @@ def send_email_shib_user_created(user, http_host):
         'user': user,
         'http_host': http_host
     }
-    subject = render_to_string(tpl_subject, tpl_context).replace('\n', ' ')
+    subject = render_to_string(tpl_subject, tpl_context).replace('\n', '')
     body = render_to_string(tpl_body, tpl_context)
     sender = settings.DEFAULT_FROM_EMAIL
     recipient_list = settings.USER_CREATION_EMAIL_LIST
@@ -39,7 +39,7 @@ def send_user_email(user, tpl_subject, tpl_body, extra_context=()):
     if extra_context:
         tpl_context.update(extra_context)
 
-    subject = render_to_string(tpl_subject, tpl_context).replace('\n', ' ')
+    subject = render_to_string(tpl_subject, tpl_context).replace('\n', '')
     body = render_to_string(tpl_body, tpl_context)
     sender = settings.DEFAULT_FROM_EMAIL
     send_mail(
@@ -83,7 +83,7 @@ def send_email_sa_admins_applicant(sa, http_host, tpl_subject, tpl_body_admins,
     extra_context = serviceadminship_context(sa)
     extra_context['http_host'] = http_host
 
-    # Send email to new admin
+    # Send email to applicant
     send_user_email(
         sa.admin,
         tpl_subject,
