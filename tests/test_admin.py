@@ -112,7 +112,8 @@ def test_serviceadminship_create(admin, superadmin, client):
         test_user.role = role
         test_user.save()
 
-        resp = admin.post(sa_url, {'admin': test_user.id, 'service': service_id})
+        resp = admin.post(sa_url,
+                          {'admin': test_user.id, 'service': service_id})
         assert resp.status_code == 400
 
     # Clean up

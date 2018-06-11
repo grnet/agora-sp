@@ -15,7 +15,6 @@ def assertions_crud(resource, user, superadmin):
     """
     url = RESOURCES_CRUD[resource]['url']
     data = RESOURCES_CRUD[resource]['create_data']
-    edit_data = RESOURCES_CRUD[resource]['edit_data']
     superadmin.post(url, data)
     assert len(user.get(url).json()) == 1
     resp = user.get(url)
@@ -27,8 +26,6 @@ def assertions_crud(resource, user, superadmin):
     assert resp.status_code == 403
     resp = superadmin.delete(url+id+'/')
     assert resp.status_code == 204
-    #resp = user.post(url, data)
-    #assert resp.status_code == 403
 
 
 # Tests for resources with no foreign keys or special handling
@@ -78,11 +75,12 @@ def test_services(serviceadmin, serviceadmin2, client, superadmin):
     for key, value in data.iteritems():
         assert resp.json()[key] == value
     if edit_data:
-        resp = serviceadmin.put(url+id+ '/', json.dumps(edit_data), content_type='application/json')
+        resp = serviceadmin.put(url + id + '/',
+                json.dumps(edit_data), content_type='application/json')
         assert resp.status_code == 200
         for key, value in edit_data.iteritems():
             assert resp.json()[key] == value
-    resp = serviceadmin.delete(url+id+'/')
+    resp = serviceadmin.delete(url + id + '/')
     assert resp.status_code == 403
     resp = superadmin.delete(url+id+'/')
     assert resp.status_code == 204
@@ -91,43 +89,12 @@ def test_services(serviceadmin, serviceadmin2, client, superadmin):
     assert len(serviceadmin.get(url).json()) == 1
     resp = serviceadmin.get(url)
     id = resp.json()[0]['id']
-    resp = serviceadmin.get(url+id+'/')
+    resp = serviceadmin.get(url + id + '/')
     for key, value in data.iteritems():
         assert resp.json()[key] == value
     if edit_data:
-        resp = serviceadmin.put(url+id+ '/', json.dumps(edit_data), content_type='application/json')
+        resp = serviceadmin.put(url + id + '/',
+                json.dumps(edit_data), content_type='application/json')
         assert resp.status_code == 400
     resp = superadmin.delete(url+id+'/')
     assert resp.status_code == 204
-
-
-# Tests for ServiceAdminship
-
-def test_serviceadminship_create_delete(serviceadmin, superadmin, client):
-
-    service_url = RESOURCES_CRUD['services']['url']
-    service_data = RESOURCES_CRUD['services']['create_data']
-    sa_url = RESOURCES_CRUD['service_admins']['url']
-
-    resp = superadmin.post(service_url, service_data)
-    assert resp.status_code == 201
-    service_id = resp.json()['id']
-
-    """
-    ServiceAdmin creates ServiceAdminship with status 'pending'.
-    ServiceAdmin creates ServiceAdminship for himself only.
-    ServiceAdmin can delete a ServiceAdminship he created in state pending.
-    """
-    resp = serviceadmin.post(sa_url, {'service': service_id})
-    sa_id = resp.json()['id']
-    assert resp.status_code == 201
-    assert resp.json()['state'] == 'pending'
-    assert resp.json()['admin_email'] == 'serviceadmin@test.org'
-
-
-    resp = serviceadmin.delete(sa_url+ sa_id+ '/')
-    assert resp.status_code == 204
-
-
-    # Clean up
-    superadmin.delete(service_url+service_id+'/')
