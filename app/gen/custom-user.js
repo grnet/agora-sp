@@ -17,6 +17,7 @@ export default AgoraGen.extend({
   common: {
     fieldsets: CREATE_OR_EDIT_FIELDSETS,
     validators: {
+      role: [validate.presence(true)],
       username: [validate.presence(true)],
       email: [validate.format({type: 'email'})],
     },
