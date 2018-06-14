@@ -579,6 +579,35 @@ SERVICES = {
         'internal': {
             '.flag.filterable': {},
             '.field.boolean': {}},
+        'user_customers': {
+            '.field.collection.django': {},
+            '.flag.readonly': {},
+            'model': 'service.models.UserCustomer',
+            'bound': 'service_id',
+            'fields': {
+                'id': {
+                    '.field.uuid': {},
+                    '.flag.readonly': {}},
+                'name': {
+                    '.field.ref': {},
+                    'source': 'name_id',
+                    'to': 'api/v2/user-roles'},
+                'role': {
+                    '.field.string': {},
+                    '.flag.nullable.default': {}},
+                'service_id': {
+                    '.field.ref': {},
+                    'source': 'service_id_id',
+                    '.flag.filterable': {},
+                    'to': 'api/v2/services'},
+            },
+            'actions': {
+                '.action-template.django.list': {},
+                '.action-template.django.retrieve': {},
+            }
+
+        },
+
         # extended keys
         'service_area_ext': {
             '.field.struct': {},
@@ -706,11 +735,11 @@ SERVICE_VERSIONS = {
         'is_in_catalogue': {
             '.field.boolean': {}},
         # extended fields
-        'id_service_ext': {
-            '.field.struct': {},
-            '.flag.readonly': {},
-            'source': 'id_service',
-            'fields': copy.deepcopy(SERVICES['fields'])},
+        # 'id_service_ext': {
+            # '.field.struct': {},
+            # '.flag.readonly': {},
+            # 'source': 'id_service',
+            # 'fields': copy.deepcopy(SERVICES['fields'])},
         'status_ext': {
             '.field.struct': {},
             '.flag.readonly': {},

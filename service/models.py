@@ -1042,7 +1042,7 @@ class UserCustomer(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.ForeignKey(UserRole)
     role = RichTextUploadingField(default=None, blank=True, null=True)
-    service_id = models.ForeignKey(Service)
+    service_id = models.ForeignKey(Service, related_name='user_customers')
 
     def __unicode__(self):
         return str(self.name) + " as " + str(self.role) + " for " + str(self.service_id)
