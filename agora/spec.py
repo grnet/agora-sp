@@ -191,26 +191,6 @@ USER_ROLES = {
     },
 }
 
-USER_CUSTOMERS = {
-    '.field.collection.django': {},
-    'model': 'service.models.UserCustomer',
-    'fields': {
-        'id': {
-            '.field.uuid': {},
-            '.flag.readonly': {}},
-        'name': {
-            '.field.ref': {},
-            'source': 'name_id',
-            'to': '/api/v2/user_role'},
-        'service_id': {
-            '.field.ref': {},
-            'source': 'service_id_id',
-            'to': '/api/v2/service'},
-        'role': {
-            '.field.string': {}},
-    },
-}
-
 SERVICE_AREAS = {
     '.field.collection.django': {},
     'model': 'service.models.ServiceArea',
