@@ -223,6 +223,9 @@ SERVICE_AREAS = {
         'icon': {
             '.field.file': {},
             'default': ''},
+        'icon_absolute_path': {
+            '.field.string': {},
+            '.flag.readonly': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -625,6 +628,9 @@ SERVICES = {
         'logo': {
             '.field.file': {},
             'default': ''},
+        'logo_absolute_path': {
+            '.field.string': {},
+            '.flag.readonly': {}},
     },
     'actions': {
         '.action-template.django.list': {},

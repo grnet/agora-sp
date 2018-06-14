@@ -16,6 +16,14 @@ class ServiceArea(models.Model):
     icon = models.ImageField(default=settings.SERVICE_AREA_ICON,
             upload_to=helper.service_area_image_path)
 
+    @property
+    def icon_absolute_path(self):
+        if self.icon:
+            path = self.icon.url
+        else:
+            path = settings.MEDIA_URL+settings.SERVICE_AREA_ICON
+        return helper.current_site_baseurl()+'/'+path
+
     class Meta:
         verbose_name_plural = "06. Service Areas (settings)"
 
