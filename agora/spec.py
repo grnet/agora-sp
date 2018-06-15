@@ -807,6 +807,14 @@ SERVICE_ADMINS = {
             '.field.uuid': {},
             '.flag.readonly': {},
             'source': 'admin.id'},
+        'created_at': {
+            '.field.datetime': {},
+            '.flag.nullable': {},
+            '.flag.readonly': {}},
+        'updated_at': {
+            '.field.datetime': {},
+            '.flag.nullable': {},
+            '.flag.readonly': {}},
         'admin': {
             '.field.ref': {},
             'source': 'admin_id',

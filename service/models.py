@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 import os
+from datetime import datetime
 from agora import  settings
 from django.db import models
 import uuid
@@ -1140,6 +1141,8 @@ class ServiceAdminship(models.Model):
             choices=SERVICE_ADMINSHIP_STATES,
             max_length=30,
             default='pending')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     class Meta:
         unique_together = (("service", "admin"),)
