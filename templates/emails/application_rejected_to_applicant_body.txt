@@ -1,6 +1,6 @@
 {% extends "emails/email_base.txt" %}
 {% block content %}
 
-You have been rejected as administrator of the service {{ service.name }}.
+Your application as administrator of the service {{ service.name }} has not been approved.
 
 {% endblock content %}
