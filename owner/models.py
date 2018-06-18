@@ -59,7 +59,7 @@ class ServiceOwner(models.Model):
 
     @property
     def full_name(self):
-        return self.first_name + " " + self.last_name
+        return str(self.first_name) + " " + str(self.last_name)
 
     def get_institution(self):
         return Institution.objects.get(id=self.id_service_owner.pk).as_json()
@@ -105,7 +105,7 @@ class ContactInformation(models.Model):
 
     @property
     def full_name(self):
-        return self.first_name + ' ' + self.last_name
+        return str(self.first_name) + ' ' + str(self.last_name)
 
     def get_internal(self):
 
