@@ -311,6 +311,10 @@ CONTACT_INFORMATION = {
         'phone': {
             '.field.string': {},
             '.flag.nullable.default': {}},
+        'full_name': {
+            '.field.string': {},
+            '.flag.readonly': {},
+            '.flag.nullable.default': {}},
         'url': {
             '.field.string': {},
             '.flag.nullable.default': {}},
@@ -581,30 +585,25 @@ SERVICES = {
             '.field.boolean': {}},
         # extended keys
         'service_area_ext': {
-            '.field.struct': {},
+            '.field.string': {},
             '.flag.readonly': {},
-            'source': 'service_area',
-            'fields': copy.deepcopy(SERVICE_AREAS['fields'])},
+            'source': 'service_area.name'},
         'service_trl_ext': {
-            '.field.struct': {},
+            '.field.string': {},
             '.flag.readonly': {},
-            'source': 'service_trl',
-            'fields': copy.deepcopy(SERVICE_TRLS['fields'])},
+            'source': 'service_trl.value'},
         'id_service_owner_ext': {
-            '.field.struct': {},
+            '.field.string': {},
             '.flag.readonly': {},
-            'source': 'id_service_owner',
-            'fields': copy.deepcopy(SERVICE_OWNERS['fields'])},
+            'source': 'id_service_owner.full_name'},
         'id_contact_information_ext': {
-            '.field.struct': {},
+            '.field.string': {},
             '.flag.readonly': {},
-            'source': 'id_contact_information',
-            'fields': copy.deepcopy(CONTACT_INFORMATION['fields'])},
+            'source': 'id_contact_information.full_name'},
         'id_contact_information_internal_ext': {
-            '.field.struct': {},
+            '.field.string': {},
             '.flag.readonly': {},
-            'source': 'id_contact_information',
-            'fields': copy.deepcopy(CONTACT_INFORMATION['fields'])},
+            'source': 'id_contact_information_internal.full_name'},
         'logo': {
             '.field.file': {},
             'default': ''},
@@ -707,15 +706,13 @@ SERVICE_VERSIONS = {
             '.field.boolean': {}},
         # extended fields
         'id_service_ext': {
-            '.field.struct': {},
+            '.field.string': {},
             '.flag.readonly': {},
-            'source': 'id_service',
-            'fields': copy.deepcopy(SERVICES['fields'])},
+            'source': 'id_service.name'},
         'status_ext': {
-            '.field.struct': {},
+            '.field.string': {},
             '.flag.readonly': {},
-            'source': 'status',
-            'fields': copy.deepcopy(SERVICE_STATUS['fields'])},
+            'source': 'status.value'},
         },
     'actions': {
         '.action-template.django.list': {},
