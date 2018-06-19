@@ -604,6 +604,10 @@ SERVICES = {
             '.field.string': {},
             '.flag.readonly': {},
             'source': 'id_contact_information_internal.full_name'},
+        'user_customers_ext': {
+            '.field.string': {},
+            '.flag.readonly': {},
+            'source': 'user_customers_names'},
         'logo': {
             '.field.file': {},
             'default': ''},

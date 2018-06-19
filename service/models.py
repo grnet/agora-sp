@@ -119,6 +119,14 @@ class Service(models.Model):
             path = settings.MEDIA_URL+settings.SERVICE_LOGO
         return helper.current_site_baseurl()+'/'+path
 
+    @property
+    def user_customers_names(self):
+        res = []
+        users = UserCustomer.objects.filter(service_id=self.pk)
+        for user in users:
+            res.append(user.name.name)
+        return ','.join(res)
+
     def get_distinct_service_area(self):
 
         return self.service_area
