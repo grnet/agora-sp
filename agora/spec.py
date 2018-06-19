@@ -93,15 +93,15 @@ SERVICE_FIELDS_EXT = {
         '.field.string': {},
         '.flag.readonly': {},
         'source': 'service_trl.value'},
-    'id_service_owner_ext': {
+    'service_owner_ext': {
         '.field.string': {},
         '.flag.readonly': {},
         'source': 'id_service_owner.full_name'},
-    'id_contact_information_ext': {
+    'contact_information_ext': {
         '.field.string': {},
         '.flag.readonly': {},
         'source': 'id_contact_information.full_name'},
-    'id_contact_information_internal_ext': {
+    'contact_information_internal_ext': {
         '.field.string': {},
         '.flag.readonly': {},
         'source': 'id_contact_information_internal.full_name'},
