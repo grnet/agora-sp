@@ -2,6 +2,122 @@ import copy
   # djoser_verifier: agora.utils.djoser_verifier
   # userid_extractor: agora.utils.userid_extractor
 
+SERVICE_FIELDS_COMMON = {
+    'id': {
+        '.field.uuid': {},
+        '.flag.readonly': {}},
+    'name': {
+        '.field.string': {},
+        '.flag.filterable': {},
+        '.flag.orderable': {}},
+    'short_description': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'description_external': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'description_internal': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'service_type': {
+        '.field.string': {},
+        '.flag.nullable.default': {},
+        '.flag.filterable': {}},
+    'request_procedures': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'funders_for_service': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'value_to_customer': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'risks': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'competitors': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+}
+
+
+SERVICE_FIELDS_INT = {
+    'service_area': {
+        '.field.ref': {},
+        'source': 'service_area_id',
+        'to': '/api/v2/service-areas',
+        '.flag.nullable.default': {},
+        '.flag.orderable': {},
+        '.flag.filterable': {}},
+    'service_trl': {
+        '.field.ref': {},
+        'source': 'service_trl_id',
+        'to': '/api/v2/service-trls',
+        '.flag.orderable': {},
+        '.flag.filterable': {},
+        '.flag.nullable.default': {}},
+    'id_service_owner': {
+        '.field.ref': {},
+        'source': 'id_service_owner_id',
+        'to': '/api/v2/service-owners',
+        '.flag.nullable.default': {}},
+    'id_contact_information': {
+        '.field.ref': {},
+        'source': 'id_contact_information_id',
+        'to': '/api/v2/contact-information',
+        '.flag.nullable.default': {}},
+    'id_contact_information_internal': {
+        '.field.ref': {},
+        'source': 'id_contact_information_internal_id',
+        'to': '/api/v2/contact-information',
+        '.flag.nullable.default': {}},
+    'logo': {
+        '.field.file': {},
+        'default': ''},
+    'customer_facing': {
+        '.flag.filterable': {},
+        '.field.boolean': {}},
+    'internal': {
+        '.flag.filterable': {},
+        '.field.boolean': {}},
+
+}
+
+SERVICE_FIELDS_EXT = {
+    # extended keys
+    'service_area_ext': {
+        '.field.string': {},
+        '.flag.readonly': {},
+        'source': 'service_area.name'},
+    'service_trl_ext': {
+        '.field.string': {},
+        '.flag.readonly': {},
+        'source': 'service_trl.value'},
+    'id_service_owner_ext': {
+        '.field.string': {},
+        '.flag.readonly': {},
+        'source': 'id_service_owner.full_name'},
+    'id_contact_information_ext': {
+        '.field.string': {},
+        '.flag.readonly': {},
+        'source': 'id_contact_information.full_name'},
+    'id_contact_information_internal_ext': {
+        '.field.string': {},
+        '.flag.readonly': {},
+        'source': 'id_contact_information_internal.full_name'},
+    'user_customers_ext': {
+        '.field.string': {},
+        '.flag.readonly': {},
+        'source': 'user_customers_names'},
+    'logo': {
+        '.field.string': {},
+        '.flag.readonly': {},
+        'source': 'logo_absolute_path'},
+}
+
+SERVICE_FIELDS_INTERNAL = dict(SERVICE_FIELDS_COMMON, **SERVICE_FIELDS_INT)
+SERVICE_FIELDS_EXTERNAL = dict(SERVICE_FIELDS_COMMON, **SERVICE_FIELDS_EXT)
+
 USERS = {
     '.field.collection.django': {},
     'model': 'accounts.models.User',
@@ -512,115 +628,24 @@ COMPONENT_IMPLEMENTATION_DETAIL_LINKS = {
 SERVICES = {
     '.field.collection.django': {},
     'model': 'service.models.Service',
-    'fields': {
-        'id': {
-            '.field.uuid': {},
-            '.flag.readonly': {}},
-        'name': {
-            '.field.string': {},
-            '.flag.filterable': {},
-            '.flag.orderable': {}},
-        'short_description': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'description_external': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'description_internal': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'service_area': {
-            '.field.ref': {},
-            'source': 'service_area_id',
-            'to': '/api/v2/service-areas',
-            '.flag.nullable.default': {},
-            '.flag.orderable': {},
-            '.flag.filterable': {}},
-        'service_type': {
-            '.field.string': {},
-            '.flag.nullable.default': {},
-            '.flag.filterable': {}},
-        'service_trl': {
-            '.field.ref': {},
-            'source': 'service_trl_id',
-            'to': '/api/v2/service-trls',
-            '.flag.orderable': {},
-            '.flag.filterable': {},
-            '.flag.nullable.default': {}},
-        'request_procedures': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'funders_for_service': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'value_to_customer': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'risks': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'competitors': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'id_service_owner': {
-            '.field.ref': {},
-            'source': 'id_service_owner_id',
-            'to': '/api/v2/service-owners',
-            '.flag.nullable.default': {}},
-        'id_contact_information': {
-            '.field.ref': {},
-            'source': 'id_contact_information_id',
-            'to': '/api/v2/contact-information',
-            '.flag.nullable.default': {}},
-        'id_contact_information_internal': {
-            '.field.ref': {},
-            'source': 'id_contact_information_internal_id',
-            'to': '/api/v2/contact-information',
-            '.flag.nullable.default': {}},
-        'customer_facing': {
-            '.flag.filterable': {},
-            '.field.boolean': {}},
-        'internal': {
-            '.flag.filterable': {},
-            '.field.boolean': {}},
-        # extended keys
-        'service_area_ext': {
-            '.field.string': {},
-            '.flag.readonly': {},
-            'source': 'service_area.name'},
-        'service_trl_ext': {
-            '.field.string': {},
-            '.flag.readonly': {},
-            'source': 'service_trl.value'},
-        'id_service_owner_ext': {
-            '.field.string': {},
-            '.flag.readonly': {},
-            'source': 'id_service_owner.full_name'},
-        'id_contact_information_ext': {
-            '.field.string': {},
-            '.flag.readonly': {},
-            'source': 'id_contact_information.full_name'},
-        'id_contact_information_internal_ext': {
-            '.field.string': {},
-            '.flag.readonly': {},
-            'source': 'id_contact_information_internal.full_name'},
-        'user_customers_ext': {
-            '.field.string': {},
-            '.flag.readonly': {},
-            'source': 'user_customers_names'},
-        'logo': {
-            '.field.file': {},
-            'default': ''},
-        'logo_absolute_path': {
-            '.field.string': {},
-            '.flag.readonly': {}},
-    },
+    'fields': SERVICE_FIELDS_INTERNAL,
     'actions': {
         '.action-template.django.list': {},
         '.action-template.django.retrieve': {},
         '.action-template.django.create': {},
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+EXT_SERVICES = {
+    '.field.collection.django': {},
+    'model': 'service.models.Service',
+    'fields': SERVICE_FIELDS_EXTERNAL,
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
         '.action-template.django.partial_update': {},
     },
 }
@@ -740,6 +765,7 @@ APP_CONFIG = {
             'collections': {
                 'users': USERS,
                 'services': SERVICES,
+                'ext-services': EXT_SERVICES,
                 'service-versions': SERVICE_VERSIONS,
                 'user-customers': USER_CUSTOMERS,
                 'service_dependsOn_services': SERVICE_DEPENDSON_SERVICES,

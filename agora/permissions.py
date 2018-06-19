@@ -20,6 +20,9 @@ RULES = [
     ('api/v2/services', 'destroy', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/services', 'delete', 'superadmin', '*', '*', '*', '*'),
 
+    ('api/v2/ext-services', 'list', 'anonymous', '*', '*', '*', '*'),
+    ('api/v2/ext-services', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+
     ('api/v2/service-trls', 'list', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-trls', 'list', 'admin', '*', '*', '*', '*'),
     ('api/v2/service-trls', 'list', 'serviceowner', '*', '*', '*', '*'),
