@@ -11,9 +11,13 @@ export default AgoraGen.extend({
   order: 600,
   path: 'custom-users',
   resourceName: 'api/v2/custom-users',
+  abilityStates: {
+    'me': true,
+  },
   common: {
     fieldsets: CREATE_OR_EDIT_FIELDSETS,
     validators: {
+      role: [validate.presence(true)],
       username: [validate.presence(true)],
       email: [validate.format({type: 'email'})],
     },
@@ -37,7 +41,7 @@ export default AgoraGen.extend({
       label: 'custom_user.menu',
     },
     sort: {
-      serverside: false,
+      serverSide: false,
       active: true,
       fields: ['username', 'email', 'is_active', 'is_staff']
     },

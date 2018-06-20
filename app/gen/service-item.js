@@ -1,35 +1,56 @@
 import Ember from 'ember';
-import { AgoraGen } from '../lib/common';
 import validate from 'ember-gen/validate';
 import { field } from 'ember-gen';
+import { AgoraGen } from '../lib/common';
+import {
+  applyServiceAdminship,
+  revokeServiceAdminship,
+  informAdminshipRejected,
+} from '../utils/common/actions';
 import {
   CREATE_FIELDSETS,
   EDIT_FIELDSETS,
   TABLE_FIELDS,
   SORT_FIELDS,
-  DETAILS_FIELDSETS
+  DETAILS_FIELDSETS,
 } from '../utils/common/service-item';
+
+const {
+  get,
+  computed,
+} = Ember;
 
 export default AgoraGen.extend({
   modelName: 'service-item',
   resourceName: 'api/v2/services',
   path: 'services',
   order: 1,
+  abilityStates: {
+    owned: computed('model.service_admins_ids', 'user.id', function(){
+      let ids = get(this, 'model.service_admins_ids');
+      let user_id = get(this, 'user.id').toString();
+
+      if (!ids) { return false; }
+      let ids_arr = ids.split(',');
+
+      return ids_arr.includes(user_id);
+    }),
+  },
   common: {
     validators: {
-      name: [validate.presence(true)]
-    }
+      name: [validate.presence(true)],
+    },
   },
   list: {
     page: {
-      title: 'service_item.menu'
+      title: 'service_item.menu',
     },
     menu: {
-      label: 'service_item.menu'
+      label: 'service_item.menu',
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],
-      fields: TABLE_FIELDS
+      fields: TABLE_FIELDS,
     },
     filter: {
       active: true,
@@ -41,7 +62,7 @@ export default AgoraGen.extend({
             'service_trl', {
               modelName:'service_trl',
               type: 'model',
-              displayAttr: 'value'
+              displayAttr: 'value',
             }
           ),
           field('internal', {type: 'boolean'}),
@@ -50,30 +71,43 @@ export default AgoraGen.extend({
             'service_area', {
               modelName:'service_area',
               type: 'model',
-              displayAttr: 'name'
+              displayAttr: 'name',
             }
-          )
-        ]
-      }
+          ),
+        ],
+      },
     },
     sort: {
-      serverSide: false,
+      serverSide: true,
       active: true,
-      fields: SORT_FIELDS
+      fields: SORT_FIELDS,
     },
   },
   details: {
+    actions: [
+      'gen:details',
+      'gen:edit',
+      'remove',
+      'applyServiceAdminship',
+      'revokeServiceAdminship',
+      'informAdminshipRejected',
+    ],
+    actionsMap: {
+      applyServiceAdminship,
+      revokeServiceAdminship,
+      informAdminshipRejected,
+    },
     fieldsets: DETAILS_FIELDSETS,
     page: {
       title: Ember.computed('model.name', function() {
         return Ember.get(this, 'model.name');
-      })
-    }
+      }),
+    },
   },
   edit: {
-    fieldsets: EDIT_FIELDSETS
+    fieldsets: EDIT_FIELDSETS,
   },
   create: {
-    fieldsets: CREATE_FIELDSETS
-  }
+    fieldsets: CREATE_FIELDSETS,
+  },
 });

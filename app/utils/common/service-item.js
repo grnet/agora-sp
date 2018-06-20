@@ -51,12 +51,6 @@ const TABLE_FIELDS = [
     }
   ),
   field(
-    'id_service_owner.full_name', {
-      type: 'text',
-      label: 'service_owner.belongs.full_name'
-    }
-  ),
-  field(
     'id_contact_information.full_name', {
       type: 'text',
       label: 'Contact Information'
@@ -117,12 +111,6 @@ const BASIC_INFO_FIELDS =  [
     }
   ),
   field(
-    'id_service_owner.full_name', {
-      type: 'text',
-      label: 'service_owner.belongs.full_name'
-    }
-  ),
-  field(
     'id_contact_information.full_name', {
       type: 'text',
       label: 'Contact Information'
@@ -177,11 +165,6 @@ const BASIC_INFO_FORM_FIELDS_EDIT =  [
     }
   ),
   field(
-    'id_service_owner', {
-      label: 'service_owner.belongs.full_name'
-    }
-  ),
-  field(
     'id_contact_information', {
       label: 'contact_information.belongs.external'
     }
@@ -221,11 +204,6 @@ const BASIC_INFO_FORM_FIELDS_CREATE =  [
       label: 'service_item.fields.short_description',
       htmlSafe: true,
       formComponent: 'text-editor',
-    }
-  ),
-  field(
-    'id_service_owner', {
-      label: 'service_owner.belongs.full_name'
     }
   ),
   field(
