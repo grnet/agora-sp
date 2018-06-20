@@ -1,0 +1,7 @@
+{% extends "emails/email_base.txt" %}
+{% block content %}
+
+You have been approved as administrator of the service {{ service.name }}.
+You can edit the service by signing in your account ({{ login_url }}) and visiting the link {{ service_url }}.
+
+{% endblock content %}

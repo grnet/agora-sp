@@ -80,7 +80,15 @@ SERVICE_FIELDS_INT = {
     'internal': {
         '.flag.filterable': {},
         '.field.boolean': {}},
-
+    'service_admins_ids': {
+        '.field.string': {},
+        '.flag.readonly': {}},
+    'pending_service_admins_ids': {
+        '.field.string': {},
+        '.flag.readonly': {}},
+    'rejected_service_admins_ids': {
+        '.field.string': {},
+        '.flag.readonly': {}},
 }
 
 SERVICE_FIELDS_EXT = {
@@ -369,6 +377,7 @@ SERVICE_OWNERS = {
 CUSTOM_USERS = {
     '.field.collection.django': {},
     'model': 'accounts.models.User',
+    ':permissions_namespace': 'agora.checks.User',
     'fields': {
         'id': {
             '.field.uuid': {},
@@ -397,6 +406,7 @@ CUSTOM_USERS = {
             '.flag.readonly': {},
             '.flag.nullable.default': {}},
         'role': {
+            '.flag.filterable': {},
             '.field.string': {}},
     },
     'actions': {
@@ -629,6 +639,7 @@ SERVICES = {
     '.field.collection.django': {},
     'model': 'service.models.Service',
     'fields': SERVICE_FIELDS_INTERNAL,
+    ':permissions_namespace': 'agora.checks.Service',
     'actions': {
         '.action-template.django.list': {},
         '.action-template.django.retrieve': {},
@@ -636,6 +647,9 @@ SERVICES = {
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
         '.action-template.django.partial_update': {},
+        'create': {
+            ':post_handler': 'service.models.post_create_service',
+        },
     },
 }
 
@@ -752,12 +766,88 @@ SERVICE_VERSIONS = {
     },
 }
 
+SERVICE_ADMINS = {
+    '.field.collection.django': {},
+    'model': 'service.models.ServiceAdminship',
+    ':permissions_namespace': 'agora.checks.ServiceAdminship',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.readonly': {}},
+        'state': {
+            '.field.string': {},
+            'default': 'pending',
+            '.flag.filterable': {},
+            '.flag.orderable': {}},
+        'service': {
+            '.field.ref': {},
+            'source': 'service_id',
+            'to': '/api/v2/services',
+            '.flag.nullable.default': {},
+            '.flag.filterable': {}},
+        'service_name': {
+            '.field.string': {},
+            '.flag.readonly': {},
+            '.flag.orderable': {},
+            'source': 'service.name'},
+        'admin_email': {
+            '.field.string': {},
+            '.flag.readonly': {},
+            '.flag.orderable': {},
+            'source': 'admin.email'},
+        'admin_first_name': {
+            '.field.string': {},
+            '.flag.readonly': {},
+            'source': 'admin.first_name'},
+        'admin_last_name': {
+            '.field.string': {},
+            '.flag.readonly': {},
+            'source': 'admin.last_name'},
+        'admin_id': {
+            '.field.uuid': {},
+            '.flag.readonly': {},
+            'source': 'admin.id'},
+        'created_at': {
+            '.field.datetime': {},
+            '.flag.nullable': {},
+            '.flag.readonly': {}},
+        'updated_at': {
+            '.field.datetime': {},
+            '.flag.nullable': {},
+            '.flag.readonly': {}},
+        'admin': {
+            '.field.ref': {},
+            'source': 'admin_id',
+            '.flag.filterable': {},
+            '.flag.nullable.default': {},
+            'to': '/api/v2/custom-users'},
+
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+        'create': {
+            ':post_handler': 'service.models.post_create_serviceadminship',
+        },
+        'partial_update': {
+            ':post_handler': 'service.models.post_partial_update_serviceadminship',
+        },
+
+    },
+}
+
+
 APP_CONFIG = {
     '.apimas_app': {},
     ':permission_rules': 'agora.utils.get_rules',
     ':authenticator': 'apimas.auth.DjoserAuthentication',
     ':verifier': 'agora.utils.djoser_verifier',
     ':user_resolver': 'agora.utils.userid_extractor',
+    ':permissions_namespace': 'agora.checks',
     ':filter_compat': True,
 
     'endpoints': {
@@ -777,6 +867,7 @@ APP_CONFIG = {
                 'user_customers': USER_CUSTOMERS,
                 'service-areas': SERVICE_AREAS,
                 'service-owners': SERVICE_OWNERS,
+                'service-admins': SERVICE_ADMINS,
                 'custom-users': CUSTOM_USERS,
                 'contact-information': CONTACT_INFORMATION,
                 'institutions': INSTITUTIONS,

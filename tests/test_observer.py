@@ -1,4 +1,3 @@
-import json
 from agora.testing import *
 
 
@@ -15,7 +14,6 @@ def assertions_crud(resource, user, superadmin):
     """
     url = RESOURCES_CRUD[resource]['url']
     data = RESOURCES_CRUD[resource]['create_data']
-    edit_data = RESOURCES_CRUD[resource]['edit_data']
     superadmin.post(url, data)
     assert len(user.get(url).json()) == 1
     resp = user.get(url)
@@ -27,8 +25,6 @@ def assertions_crud(resource, user, superadmin):
     assert resp.status_code == 403
     resp = superadmin.delete(url+id+'/')
     assert resp.status_code == 204
-    #resp = user.post(url, data)
-    #assert resp.status_code == 403
 
 
 # Tests for resources with no foreign keys or special handling
@@ -51,3 +47,27 @@ def test_contact_information(observer, client, superadmin):
 
 def test_institutions(observer, client, superadmin):
     assertions_crud('institutions', observer, superadmin)
+
+
+def test_services(observer, client, superadmin):
+    assertions_crud('services', observer, superadmin)
+
+
+# Tests for ServiceAdminship
+
+def test_serviceadminship(observer, superadmin, client):
+    """
+    Observer cannot list  ServiceAdminships
+    Observer cannot create  ServiceAdminships
+    """
+    service_url = RESOURCES_CRUD['services']['url']
+    service_data = RESOURCES_CRUD['services']['create_data']
+    resp = superadmin.post(service_url, service_data)
+
+    sa_url = RESOURCES_CRUD['service_admins']['url']
+
+    resp = observer.get(sa_url)
+    assert resp.status_code == 403
+
+    resp = observer.post(sa_url, {'admin': 1, 'service': 1})
+    assert resp.status_code == 403

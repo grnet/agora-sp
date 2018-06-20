@@ -1,0 +1,8 @@
+To user {{ user.first_name }} {{ user.last_name }},
+{% block content %}{% endblock content %}
+{% if agora_url %}You can view more by signing in ({{ login_url }}) your account and visiting the link: {{ agora_url }}{% endif %}
+
+------
+
+NOTICE:
+Please do NOT reply to this e-mail.

@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 import os
+from datetime import datetime
 from agora import  settings
 from django.db import models
 import uuid
@@ -8,6 +9,9 @@ from common import helper
 from collections import OrderedDict
 from accounts.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
+from agora.utils import SERVICE_ADMINSHIP_STATES
+from agora.emails import send_email_application_created, \
+    send_email_service_admin_assigned, send_email_application_evaluated
 
 
 class ServiceArea(models.Model):
@@ -86,6 +90,50 @@ class Service(models.Model):
 
     def __unicode__(self):
         return str(self.name)
+    
+    @property
+    def service_admins_ids(self):
+        service_adminships = ServiceAdminship.objects.filter(
+            service=self,
+            state="approved")
+        res = []
+        for s in service_adminships:
+            res.append(str(s.admin.pk))
+
+        return ','.join(res)
+
+    @property
+    def service_admins(self):
+        service_adminships = ServiceAdminship.objects.filter(
+            service=self,
+            state="approved")
+        res = []
+        for s in service_adminships:
+            res.append(s.admin)
+        return res
+
+    @property
+    def pending_service_admins_ids(self):
+        service_adminships = ServiceAdminship.objects.filter(
+            service=self,
+            state="pending")
+        res = []
+        for s in service_adminships:
+            res.append(str(s.admin.pk))
+
+        return ','.join(res)
+
+    @property
+    def rejected_service_admins_ids(self):
+        service_adminships = ServiceAdminship.objects.filter(
+            service=self,
+            state="rejected")
+        res = []
+        for s in service_adminships:
+            res.append(str(s.admin.pk))
+
+        return ','.join(res)
+
 
     def save(self, *args, **kwargs):
         if not self.description_internal or self.description_internal == "":
@@ -1086,3 +1134,38 @@ class Roles(models.Model):
     role = models.CharField(('role'), max_length=90, unique=True, default="spectator")
 
 
+class ServiceAdminship(models.Model):
+    service = models.ForeignKey(Service)
+    admin = models.ForeignKey(User)
+    state = models.CharField(
+            choices=SERVICE_ADMINSHIP_STATES,
+            max_length=30,
+            default='pending')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = (("service", "admin"),)
+
+
+def post_create_service(service, context):
+    user = context.extract('auth/user')
+    ServiceAdminship.objects.create(
+            service=service,
+            admin=user,
+            state='approved')
+
+
+def post_create_serviceadminship(sa, context):
+    user = context.extract('auth/user')
+    http_host = context.extract('request/meta/headers').get('HTTP_HOST', 'Agora')
+
+    if sa.state == 'pending':
+        send_email_application_created(sa, http_host)
+    if sa.admin != user:
+        send_email_service_admin_assigned(sa, http_host)
+
+
+def post_partial_update_serviceadminship(sa, context):
+    http_host = context.extract('request/meta/headers').get('HTTP_HOST', 'Agora')
+    send_email_application_evaluated(sa, http_host)
