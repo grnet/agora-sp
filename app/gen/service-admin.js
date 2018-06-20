@@ -32,9 +32,11 @@ export default AgoraGen.extend({
   list: {
     getModel(params) {
       params = params || {};
-      return this.store.query('service-admin', params).then( (sa) => {
+
+      return this.store.query('service-admin', params).then((sa) => {
         let user_id = get(this, 'session.session.authenticated.id');
         let res = sa.filter(el => get(el, 'admin_id') != user_id);
+
         return res;
       });
     },
@@ -52,9 +54,9 @@ export default AgoraGen.extend({
     row: {
       fields: [
         'service_name',
-        field('admin_full_name', {label: 'service_admin.fields.admin_full_name'}),
+        field('admin_full_name', { label: 'service_admin.fields.admin_full_name' }),
         'admin_email',
-        'state'
+        'state',
       ],
       actions: ['gen:details', 'remove', 'approveServiceAdminship', 'rejectServiceAdminship', 'undoServiceAdminship'],
       actionsMap: {
@@ -92,6 +94,7 @@ export default AgoraGen.extend({
   create: {
     getModel(params) {
       let store = get(this, 'store');
+
       return store.createRecord('service-admin', {
         state: 'approved',
       })
@@ -104,5 +107,28 @@ export default AgoraGen.extend({
       }),
       'service',
     ],
+  },
+  details: {
+    fieldsets: [{
+      label: 'service_admin.cards.basic_information',
+      fields: [
+        'state',
+        'created_at',
+        'updated_at',
+      ],
+    }, {
+      label: 'service_admin.cards.admin_info',
+      fields: [
+        'admin_full_name',
+        'admin_email',
+        'admin_id',
+      ],
+    }, {
+      label: 'service_admin.cards.service_info',
+      fields: [
+        'service_name',
+        'service_id',
+      ],
+    }],
   },
 });

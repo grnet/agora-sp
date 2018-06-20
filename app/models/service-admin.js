@@ -25,10 +25,16 @@ let model = DS.Model.extend({
   admin_full_name: Ember.computed('admin_first_name', 'admin_last_name', function() {
     const first_name = this.get('admin_first_name');
     const last_name = this.get('admin_last_name');
+
     return `${first_name} ${last_name}`;
   }),
   admin_id: DS.attr(),
-
+  created_at: DS.attr('date', {
+    label: 'service_admin.fields.created_at',
+  }),
+  updated_at: DS.attr('date', {
+    label: 'service_admin.fields.updated_at',
+  }),
   state: DS.attr({
     type: 'select',
     choices: CHOICES.SERVICE_ADMINSHIP_STATES,
@@ -37,6 +43,6 @@ let model = DS.Model.extend({
 
 });
 
-model.reopenClass({apimasResourceName: 'api/v2/service-admins'})
+model.reopenClass({ apimasResourceName: 'api/v2/service-admins' })
 
 export default model;

@@ -1,13 +1,17 @@
 const service_admin = {
   'cards': {
     'basic_information': 'Basic information',
-    'basic_hint': ''
+    'basic_hint': '',
+    'admin_info': 'Administrator',
+    'service_info': 'Service',
   },
   'fields': {
     'service_name': 'Service name',
     'admin_email': 'Admin email',
     'admin_full_name': 'Admin name',
     'state': 'State',
+    'created_at': 'Created',
+    'updated_at': 'Updated',
   },
   'hints': {
     'service_name': '',
@@ -16,7 +20,7 @@ const service_admin = {
   },
   'menu': 'Service Admins',
   'belongs': {
-    'full_name': 'Service Admin'
+    'full_name': 'Service Admin',
   },
   'inform_rejected': {
     'label': 'Application rejected',
@@ -62,7 +66,7 @@ const service_admin = {
     'success': 'Application\'s state successfully set to pending.',
     'error': 'Error',
     'ok': 'reassess',
-  }
+  },
 };
 
 export { service_admin };
