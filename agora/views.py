@@ -88,7 +88,10 @@ SHIBBOLETH_USER_MAP = {
 
 INCLUDED_HEADERS = [
     AAI_ID_KEY,
-    'mail'
+    'mail',
+    'displayname',
+    'sn',
+    'givenname'
 ]
 
 
@@ -110,11 +113,23 @@ def shibboleth_headers(headers):
 def get_user_data(shib_data):
     """
     Extract user model fields from shibboleth data.
+    First name and last name are extracted either from givenName and sn, either
+    from displayName
     """
     result = {}
     for user_key, shib_key in SHIBBOLETH_USER_MAP.iteritems():
         if shib_key in shib_data.keys():
             result[user_key] = shib_data[shib_key]
+    dn = shib_data.get('displayname')
+    sn = shib_data.get('sn')
+    gn = shib_data.get('givenname')
+    if gn and sn:
+        result['first_name'] = gn
+        result['last_name'] = sn
+    if dn and len(dn.split(' ')) > 0:
+        tmp_list = dn.split(' ')
+        result['first_name'] = tmp_list.pop(0)
+        result['last_name'] = ' '.join(tmp_list)
     return result
 
 
@@ -142,7 +157,6 @@ def shibboleth_login(request):
     except User.DoesNotExist:
         user = User.objects.create(**user_data)
         send_email_shib_user_created(user, headers['HTTP_HOST'])
-
 
     token, _ = Token.objects.get_or_create(user=user)
     user_logged_in.send(sender=user.__class__, request=request, user=user)
