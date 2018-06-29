@@ -38,6 +38,12 @@ SERVICE_FIELDS_COMMON = {
     'competitors': {
         '.field.string': {},
         '.flag.nullable.default': {}},
+    'customer_facing': {
+        '.flag.filterable': {},
+        '.field.boolean': {}},
+    'internal': {
+        '.flag.filterable': {},
+        '.field.boolean': {}},
 }
 
 
@@ -74,12 +80,6 @@ SERVICE_FIELDS_INT = {
     'logo': {
         '.field.file': {},
         'default': ''},
-    'customer_facing': {
-        '.flag.filterable': {},
-        '.field.boolean': {}},
-    'internal': {
-        '.flag.filterable': {},
-        '.field.boolean': {}},
     'service_admins_ids': {
         '.field.string': {},
         '.flag.readonly': {}},
