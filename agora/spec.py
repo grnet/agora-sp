@@ -393,10 +393,12 @@ CUSTOM_USERS = {
             '.field.string': {},
             '.flag.nullable.default': {}},
         'is_staff': {
-            '.field.boolean': {}},
+            '.field.boolean': {},
+            '.flag.nullable.default': {}},
         'is_active': {
             '.field.boolean': {}},
         'date_joined': {
+            '.flag.readonly': {},
             '.field.datetime': {}},
         'avatar': {
             '.field.file': {},
