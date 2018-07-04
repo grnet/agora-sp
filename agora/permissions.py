@@ -108,8 +108,6 @@ RULES = [
     ('api/v2/custom-users', 'retrieve', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/custom-users', 'retrieve', 'admin', '*', '*', '*', '*'),
     ('api/v2/custom-users', 'retrieve', 'serviceadmin', 'me', '*', '*', '*'),
-    ('api/v2/custom-users', 'create', 'superadmin', '*', '*', '*', '*'),
-    ('api/v2/custom-users', 'create', 'admin', '*', '*', '*', '*'),
     ('api/v2/custom-users', 'update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/custom-users', 'update', 'admin', '*', '*', '*', '*'),
     ('api/v2/custom-users', 'destroy', 'superadmin', '*', '*', '*', '*'),
