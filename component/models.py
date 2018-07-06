@@ -25,10 +25,8 @@ class ServiceComponent(models.Model):
     )
     description = RichTextUploadingField(default=None, blank=True, null=True)
     logo = models.ImageField(
-            upload_to=(
-                os.path.join(settings.BASE_DIR, "static", "img", "logos")
-            ),
-            default="/var/www/html/agora/static/img/logos/logo-none.jpg"
+            upload_to=("components"),
+            default=settings.SERVICE_AREA_ICON
     )
 
     class Meta:

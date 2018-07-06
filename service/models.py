@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 import os
+from datetime import datetime
 from agora import  settings
 from django.db import models
 import uuid
@@ -8,6 +9,9 @@ from common import helper
 from collections import OrderedDict
 from accounts.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
+from agora.utils import SERVICE_ADMINSHIP_STATES
+from agora.emails import send_email_application_created, \
+    send_email_service_admin_assigned, send_email_application_evaluated
 
 
 class ServiceArea(models.Model):
@@ -15,6 +19,14 @@ class ServiceArea(models.Model):
     name = models.CharField(max_length=255, default=None, blank=True, null=True)
     icon = models.ImageField(default=settings.SERVICE_AREA_ICON,
             upload_to=helper.service_area_image_path)
+
+    @property
+    def icon_absolute_path(self):
+        if self.icon:
+            path = self.icon.url
+        else:
+            path = settings.MEDIA_URL+settings.SERVICE_AREA_ICON
+        return helper.current_site_baseurl()+'/'+path
 
     class Meta:
         verbose_name_plural = "06. Service Areas (settings)"
@@ -70,12 +82,58 @@ class Service(models.Model):
     id_contact_information_internal = models.ForeignKey(ContactInformation, null=True, related_name="internal_contact_info")
     logo = models.ImageField(default=settings.SERVICE_LOGO,
             upload_to=helper.service_image_path)
+    customer_facing = models.BooleanField(default=False)
+    internal = models.BooleanField(default=False)
 
     class Meta:
         verbose_name_plural = "01. Services"
 
     def __unicode__(self):
         return str(self.name)
+    
+    @property
+    def service_admins_ids(self):
+        service_adminships = ServiceAdminship.objects.filter(
+            service=self,
+            state="approved")
+        res = []
+        for s in service_adminships:
+            res.append(str(s.admin.pk))
+
+        return ','.join(res)
+
+    @property
+    def service_admins(self):
+        service_adminships = ServiceAdminship.objects.filter(
+            service=self,
+            state="approved")
+        res = []
+        for s in service_adminships:
+            res.append(s.admin)
+        return res
+
+    @property
+    def pending_service_admins_ids(self):
+        service_adminships = ServiceAdminship.objects.filter(
+            service=self,
+            state="pending")
+        res = []
+        for s in service_adminships:
+            res.append(str(s.admin.pk))
+
+        return ','.join(res)
+
+    @property
+    def rejected_service_admins_ids(self):
+        service_adminships = ServiceAdminship.objects.filter(
+            service=self,
+            state="rejected")
+        res = []
+        for s in service_adminships:
+            res.append(str(s.admin.pk))
+
+        return ','.join(res)
+
 
     def save(self, *args, **kwargs):
         if not self.description_internal or self.description_internal == "":
@@ -108,6 +166,14 @@ class Service(models.Model):
         else:
             path = settings.MEDIA_URL+settings.SERVICE_LOGO
         return helper.current_site_baseurl()+'/'+path
+
+    @property
+    def user_customers_names(self):
+        res = []
+        users = UserCustomer.objects.filter(service_id=self.pk)
+        for user in users:
+            res.append(user.name.name)
+        return ','.join(res)
 
     def get_distinct_service_area(self):
 
@@ -333,7 +399,7 @@ class Service(models.Model):
                         "desc": "Portfolio level details about this service."
                     }
                 }}),
-            ("logo", self.logo.name.split("/")[-1])
+            ("logo", self.logo_absolute_path)
         ])
 
 
@@ -432,7 +498,7 @@ class Service(models.Model):
                         "desc": "Portfolio level details about this service."
                     }
                 }}),
-            ("logo", self.logo.name.split("/")[-1])
+            ("logo", self.logo_absolute_path)
         ])
 
 
@@ -1068,3 +1134,38 @@ class Roles(models.Model):
     role = models.CharField(('role'), max_length=90, unique=True, default="spectator")
 
 
+class ServiceAdminship(models.Model):
+    service = models.ForeignKey(Service)
+    admin = models.ForeignKey(User)
+    state = models.CharField(
+            choices=SERVICE_ADMINSHIP_STATES,
+            max_length=30,
+            default='pending')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = (("service", "admin"),)
+
+
+def post_create_service(service, context):
+    user = context.extract('auth/user')
+    ServiceAdminship.objects.create(
+            service=service,
+            admin=user,
+            state='approved')
+
+
+def post_create_serviceadminship(sa, context):
+    user = context.extract('auth/user')
+    http_host = context.extract('request/meta/headers').get('HTTP_HOST', 'Agora')
+
+    if sa.state == 'pending':
+        send_email_application_created(sa, http_host)
+    if sa.admin != user:
+        send_email_service_admin_assigned(sa, http_host)
+
+
+def post_partial_update_serviceadminship(sa, context):
+    http_host = context.extract('request/meta/headers').get('HTTP_HOST', 'Agora')
+    send_email_application_evaluated(sa, http_host)

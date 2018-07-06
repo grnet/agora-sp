@@ -65,7 +65,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         help_text=('Designates whether this user should be treated as '
                     'active. Unselect this instead of deleting accounts.'))
     date_joined = models.DateTimeField(('date joined'), default=timezone.now)
-    avatar = models.ImageField(upload_to= AVATAR_LOCATION, blank=True)
+    avatar = models.ImageField(upload_to='avatar', blank=True)
     shibboleth_id = models.CharField(
                     max_length=255, unique=True, null=True, default=None)
     role = models.CharField(

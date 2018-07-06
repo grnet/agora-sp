@@ -1,8 +1,13 @@
 {
     "USER_ROLES": [
         ["observer", "Observer"],
-        ["serviceowner", "Service Owner"],
+        ["serviceadmin", "Service Admin"],
         ["admin", "Admin"],
         ["superadmin", "Superadmin"]
+    ],
+    "SERVICE_ADMINSHIP_STATES": [
+        ["pending", "Pending"],
+        ["approved", "Approved"],
+        ["rejected", "Rejected"]
     ]
 }

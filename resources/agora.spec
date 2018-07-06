@@ -91,10 +91,6 @@ api/v2:
       competitors:
         .string: {}
         .nullable: {}
-      id_service_owner:
-        .nullable: {}
-        .ref:
-          to: /api/v2/service-owners
       id_contact_information:
         .nullable: {}
         .ref:
@@ -105,6 +101,9 @@ api/v2:
           to: /api/v2/contact-information
       logo:
         .file: {}
+      service_owners_ids:
+        .string: {}
+        .readonly: {}
       .actions=:
         .retrieve: {}
         .delete: {}
@@ -382,27 +381,24 @@ api/v2:
       .update: {}
   service-owners:
     .collection:
-      model: owner.models.ServiceOwner
+      model: service.models.ServiceOwnership
     .protected=:
       .djoser: {}
     '*':
       id:
         .uuid: {}
         .readonly: {}
-      first_name:
-        .string: {}
-      last_name:
-        .string: {}
-      email:
-        .email: {}
-      phone:
-        .string: {}
-      id_service_owner:
-        .ref:
-          to: /api/v2/institutions
-      id_account:
+      owner: 
         .ref:
           to: /api/v2/custom-users
+        .filterable: {}
+      service:
+        .ref:
+          to: /api/v2/services
+        .filterable: {}
+      state:
+        .string: {}
+        .filterable: {}
       .actions=:
         .retrieve: {}
         .update: {}
@@ -512,37 +508,6 @@ api/v2:
         .retrieve: {}
         .update: {}
         .delete: {}
-    .actions=:
-      .list: {}
-      .create: {}
-      .delete: {}
-      .update: {}
-  service-owners:
-    .collection:
-      model: owner.models.ServiceOwner
-    .protected=:
-      .djoser: {}
-    '*':
-      id:
-        .uuid: {}
-        .readonly: {}
-      first_name:
-        .string: {}
-        .nullable: {}
-      last_name:
-        .string: {}
-        .nullable: {}
-      email:
-        .email: {}
-        .nullable: {}
-      phone:
-        .string: {}
-        .nullable: {}
-      id_service_owner:
-        .ref: {'to': '/api/v2/institutions'}
-      .actions=:
-        .retrieve: {}
-        .update: {}
     .actions=:
       .list: {}
       .create: {}

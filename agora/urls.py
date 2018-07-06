@@ -13,6 +13,8 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
+import os
+import json
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
@@ -23,12 +25,23 @@ from django.views.generic import RedirectView
 from service import views
 from component import views as component_views
 from agora import views as agora_views
-from agora.construct import adapter
 
 from djoser import views as djoser_views
 
+from apimas_django import provider
+from agora.spec import APP_CONFIG
 
-api_urls = adapter.get_urlpatterns()
+app_spec = provider.configure_apimas_app(APP_CONFIG)
+
+config_file = os.path.join(settings.SETTINGS_DIR, 'deployment.conf')
+if os.path.isfile(config_file):
+    with open(config_file) as f:
+        deploy_config = json.load(f)
+    deployment_spec = provider.configure_spec(app_spec, deploy_config)
+else:
+    deployment_spec = app_spec
+
+api_urls = provider.construct_views(deployment_spec)
 
 urlpatterns = [
     url(r'^api/admin/?', admin.site.urls),

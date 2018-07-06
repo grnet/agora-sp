@@ -1,1 +1,1 @@
-Agora: New shibboleth user created
+{{ http_host }}: New shibboleth user created

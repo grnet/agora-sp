@@ -1,0 +1,2 @@
+Name: {{ applicant.get_full_name }}
+Email: {{ applicant.email }}

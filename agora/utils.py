@@ -28,7 +28,7 @@ def rule_to_dict(data, args):
 
 def load_permissions():
     PERMISSIONS = defaultdict(lambda: dict)
-    for rule in RULES:
+    for rule in transform_rules(RULES):
         rule_to_dict(PERMISSIONS, list(rule))
     return PERMISSIONS
 
@@ -46,21 +46,40 @@ def djoser_verifier(token):
     return user
 
 
-def userid_extractor(user):
-    return user.id
+def userid_extractor(user, context):
+    return user
+
+
+def transform_rules(rules):
+    new_rules = []
+    for r in rules:
+        el = list(r)
+        if el[5] == "*":
+            new_l = (el[0], el[1], el[2], el[5], el[4], el[6])
+            new_rules.append(new_l)
+        else:
+            fields = el[5].split(",")
+            for f in fields:
+                new_l = (el[0], el[1], el[2], f, el[4], el[6])
+                new_rules.append(new_l)
+    return new_rules
 
 
 def get_rules():
     return RULES
 
 
+config_file = os.path.join(settings.SETTINGS_DIR, 'deployment.conf')
+with open(config_file) as f:
+    deploy_config = json.load(f)
+
+_root_url = deploy_config[':root_url']
+
+
 def get_root_url():
-    global _root_url
-    if not _root_url:
-        from agora.construct import adapter
-        _root_url = adapter.spec['.meta']['root_url']
     return _root_url
 
 
 RESOURCES = load_resources()
 USER_ROLES = RESOURCES['USER_ROLES']
+SERVICE_ADMINSHIP_STATES = RESOURCES['SERVICE_ADMINSHIP_STATES']
