@@ -22,7 +22,7 @@ export default AgoraGen.extend({
   resourceName: 'api/v2/service-admins',
   abilityStates: {
     check_create_other: true,
-  },
+ },
   common: {
     validators: {
       service: [validate.presence(true)],
@@ -127,7 +127,7 @@ export default AgoraGen.extend({
       label: 'service_admin.cards.service_info',
       fields: [
         'service_name',
-        'service_id',
+        'service.id',
       ],
     }],
   },
