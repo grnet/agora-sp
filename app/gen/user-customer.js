@@ -18,7 +18,7 @@ export default AgoraGen.extend({
         fields: [
           'name',
           'service_id',
-          'role',
+          'role_description',
         ]
       }
     ],
