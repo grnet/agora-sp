@@ -18,6 +18,10 @@ const TABLE_FIELDS = [
       type: 'text',
       label: 'component_implementation_detail.belongs.name'
     }),
+    field('service_type', {
+      type: 'text',
+      label: 'cidl.fields.service_type'
+    }),
     field('configuration_parameters', {
       type: 'text',
       label: 'cidl.fields.configuration_parameters'
@@ -54,6 +58,10 @@ const DETAILS_FIELDSETS = [
       field('service_component_implementation_detail_id.version', {
         type: 'text',
         label: 'component_implementation_detail.belongs.name'
+      }),
+      field('service_type', {
+        type: 'text',
+        label: 'cidl.fields.service_type'
       }),
       field('configuration_parameters', {
         type: 'text',
@@ -99,6 +107,10 @@ const CREATE_FIELDSETS = [
       field('service_component_implementation_detail_id', {
         label: 'component_implementation_detail.belongs.name'
       }),
+      field('service_type', {
+        label: 'cidl.fields.service_type',
+        hint: 'cidl.hints.service_type'
+      }),
       field('configuration_parameters', {
         label: 'cidl.fields.configuration_parameters'
       })
@@ -139,6 +151,10 @@ const EDIT_FIELDSETS = [
       }),
       field('service_component_implementation_detail_id', {
         label: 'component_implementation_detail.belongs.name'
+      }),
+      field('service_type', {
+        type: 'text',
+        hint: 'cidl.hints.service_type'
       }),
       field('configuration_parameters', {
         type: 'text'

@@ -3,6 +3,7 @@ import Ember from 'ember';
 
 export default DS.Model.extend({
   configuration_parameters: DS.attr(),
+  service_type: DS.attr(),
   service_component: DS.belongsTo('component', {
     formAttrs: {
       optionLabelAttr: 'name'

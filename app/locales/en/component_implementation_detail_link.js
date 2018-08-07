@@ -5,16 +5,20 @@ const cidl = {
   },
   'fields': {
     'configuration_parameters': 'Configuration Parameters',
+    'service_type': 'Service Type',
   },
   'belongs': {
     'cards': {
       'title': 'Version Dependent Components'
     }
   },
+  'menu': 'Connection',
   'links': {
     'create_cidl': 'Connect a component to this version'
   },
-  'menu': 'Connection',
+  'hints': {
+    'service_type': 'Provide a DNS-like format, e.g. org.openstack.swift'
+  }
 };
 
 export { cidl };
