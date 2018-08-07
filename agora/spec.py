@@ -624,6 +624,9 @@ COMPONENT_IMPLEMENTATION_DETAIL_LINKS = {
             '.field.ref': {},
             'source': 'service_component_implementation_detail_id_id',
             'to': '/api/v2/component-implementation-details'},
+        'service_type': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
         'configuration_parameters': {
             '.field.string': {},
             '.flag.nullable.default': {}},
