@@ -9,7 +9,7 @@ const service_item = {
     'logo': 'Logo',
     'value': 'Value',
     'service_area': 'Service Area',
-    'service_type': 'Service Type',
+    'service_type': 'Service Type Description',
     'short_description': 'Short description',
     'description_external': 'Description external',
     'description_internal': 'Description internal',
