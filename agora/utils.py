@@ -96,8 +96,9 @@ _root_url = deploy_config[':root_url']
 def get_root_url():
     return _root_url
 
-def publishMessage():
+def publishMessage(instance):
     ams = ArgoMessagingService(endpoint=AMS_ENDPOINT, project=AMS_PROJECT, token=AMS_TOKEN)
+    endpoint =  '{0}{1}'.format(get_root_url(), '/api/v2/ext-services')
     try:
         if not ams.has_topic(AMS_TOPIC):
             ams.create_topic(AMS_TOPIC)
@@ -105,7 +106,7 @@ def publishMessage():
         print e
         raise SystemExit(1)
 
-    msg = AmsMessage(data='example', attributes={'bar1': 'baz1'}).dict()
+    msg = AmsMessage(data=endpoint, attributes={'bar1': 'baz1'}).dict()
     try:
         ret = ams.publish(AMS_TOPIC, msg)
         print ret

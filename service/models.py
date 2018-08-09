@@ -9,7 +9,8 @@ from common import helper
 from collections import OrderedDict
 from accounts.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
-from agora.utils import SERVICE_ADMINSHIP_STATES, clean_html_fields
+from agora.utils import SERVICE_ADMINSHIP_STATES, clean_html_fields, \
+    publishMessage
 from agora.emails import send_email_application_created, \
     send_email_service_admin_assigned, send_email_application_evaluated
 
@@ -163,6 +164,7 @@ class Service(models.Model):
         if not self.competitors or self.competitors == "":
             self.competitors = None
 
+        publishMessage(self)
         super(Service, self).save(*args, **kwargs)
 
     @property
@@ -740,6 +742,7 @@ class ServiceDetails(models.Model):
         if not self.decommissioning_procedure_url or self.decommissioning_procedure_url == "":
             self.decommissioning_procedure_url = None
 
+        publishMessage(self)
         super(ServiceDetails, self).save(*args, **kwargs)
 
     def as_short(self):
