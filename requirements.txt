@@ -1,3 +1,4 @@
+argo-ams-library==0.4.2
 apimas-django==0.4a1
 apimas==0.4a1
 docular==0.4a1

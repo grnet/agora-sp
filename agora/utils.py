@@ -6,6 +6,7 @@ from HTMLParser import HTMLParseError
 from ckeditor_uploader.fields import RichTextUploadingField
 
 from collections import defaultdict
+from argo_ams_library import ArgoMessagingService, AmsMessage, AmsException
 
 from django.conf import settings
 
@@ -14,6 +15,13 @@ from collections import defaultdict
 from django.conf import settings
 from agora.permissions import RULES
 import accounts.models
+
+from agora.settings import (
+     AMS_TOKEN,
+     AMS_ENDPOINT,
+     AMS_PROJECT,
+     AMS_TOPIC,
+)
 
 
 
@@ -88,6 +96,21 @@ _root_url = deploy_config[':root_url']
 def get_root_url():
     return _root_url
 
+def publishMessage():
+    ams = ArgoMessagingService(endpoint=AMS_ENDPOINT, project=AMS_PROJECT, token=AMS_TOKEN)
+    try:
+        if not ams.has_topic(AMS_TOPIC):
+            ams.create_topic(AMS_TOPIC)
+    except AmsException as e:
+        print e
+        raise SystemExit(1)
+
+    msg = AmsMessage(data='example', attributes={'bar1': 'baz1'}).dict()
+    try:
+        ret = ams.publish(AMS_TOPIC, msg)
+        print ret
+    except AmsException as e:
+        print e
 
 def clean_html_fields(instance):
     class_fields = instance.__class__._meta.get_fields()
