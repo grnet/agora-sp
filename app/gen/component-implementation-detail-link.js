@@ -1,13 +1,12 @@
-import { AgoraGen } from '../lib/common';
-import { field } from 'ember-gen';
 import validate from 'ember-gen/validate';
+import { AgoraGen } from '../lib/common';
 import {
   TABLE_FIELDS,
   SORT_FIELDS,
   DETAILS_FIELDSETS,
   CREATE_FIELDSETS,
   EDIT_FIELDSETS,
-  TABLE_FILTERS
+  TABLE_FILTERS,
 } from '../utils/common/component-implementation-detail-link';
 
 export default AgoraGen.extend({
@@ -23,7 +22,7 @@ export default AgoraGen.extend({
       service_component_implementation_detail_id: [validate.presence(true)],
       service_details_id: [validate.presence(true)],
       service_id: [validate.presence(true)],
-    }
+    },
   },
   list: {
     page: {
@@ -31,33 +30,42 @@ export default AgoraGen.extend({
     },
     menu: {
       label: 'cidl.menu',
-      group: 'components'
+      group: 'components',
+    },
+    menu: {
+      label: 'Component Implementation Detail Links',
+      group: 'components',
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],
-      fields: TABLE_FIELDS
+      fields: TABLE_FIELDS,
     },
     filter: {
       active: true,
       serverSide: true,
       search: false,
       meta: {
-        fields: TABLE_FILTERS
-      }
+        fields: TABLE_FILTERS,
+      },
+    },
+    sort: {
+      serverSide: true,
+      active: true,
+      fields: SORT_FIELDS,
     },
   },
   details: {
-    fieldsets: DETAILS_FIELDSETS
+    fieldsets: DETAILS_FIELDSETS,
   },
   edit: {
     routeMixins: {
-      queryParams: {'service_version': { refreshModel: true }}
+      queryParams: { 'service_version': { refreshModel: true } },
     },
     preloadModels: [
       'component',
       'component-implementation',
       'component-implementation-detail',
-      'component-implementation-detail-link'
+      'component-implementation-detail-link',
     ],
     getModel: function(params, model) {
       /*
@@ -76,7 +84,7 @@ export default AgoraGen.extend({
       return model.get('service_component_implementation_detail_id').then(function(resp) {
         let promises = [
           resp.get('component_id'),
-          resp.get('component_implementation_id')
+          resp.get('component_implementation_id'),
         ];
 
         var promise = Ember.RSVP.all(promises).then((res) => {
@@ -91,39 +99,41 @@ export default AgoraGen.extend({
     },
     fieldsets: EDIT_FIELDSETS,
     onSubmit(model) {
-      //const params = Ember.getOwner(this).lookup('router:main').get('currentState.routerJsState.fullQueryParams');
+      // const params = Ember.getOwner(this).lookup('router:main').get('currentState.routerJsState.fullQueryParams');
       const param = model.get('param_service_version');
+
       if(param) {
         this.transitionTo(`/service-versions/${param}`);
       }
     },
   },
   create: {
-    //provide url params with this magic trick
+    // provide url params with this magic trick
     routeMixins: {
       queryParams: {
         'service': {
-          refreshModel: true
+          refreshModel: true,
         },
         'service_version': {
-          refreshModel: true
-        }
-      }
+          refreshModel: true,
+        },
+      },
     },
-    //prepopulate a field from a query param
+    // prepopulate a field from a query param
     getModel(params) {
       const store = Ember.get(this, 'store');
-      //prepopulate field only if query param exists
+
+      // prepopulate field only if query param exists
       if(params.service_version && params.service) {
-        //get the service & service version from the id provided from query param
+        // get the service & service version from the id provided from query param
         let data = {};
 
-        //save the service version in order to redirect onsubmit
+        // save the service version in order to redirect onsubmit
         data.param_service_version = params.service_version;
 
         let promises = [
           store.findRecord('service-item', params.service),
-          store.findRecord('service-version', params.service_version)
+          store.findRecord('service-version', params.service_version),
         ];
 
         var promise = Ember.RSVP.all(promises).then((res) => {
@@ -140,10 +150,11 @@ export default AgoraGen.extend({
     },
     onSubmit(model) {
       const param = model.get('param_service_version');
+
       if(param) {
         this.transitionTo(`/service-versions/${param}`);
       }
     },
-    fieldsets: CREATE_FIELDSETS
-  }
+    fieldsets: CREATE_FIELDSETS,
+  },
 });
