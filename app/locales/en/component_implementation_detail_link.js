@@ -18,7 +18,10 @@ const cidl = {
   },
   'hints': {
     'service_type': 'Provide a DNS-like format, e.g. org.openstack.swift'
-  }
+  },
+  'errors': {
+    'service_type_unique': 'Service type should be unique',
+  },
 };
 
 export { cidl };

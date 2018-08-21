@@ -15,6 +15,9 @@ export default AgoraGen.extend({
   resourceName: 'api/v2/component-implementation-detail-links',
   path: 'component-implementation-detail-links',
   order: 4,
+  abilityStates: {
+    unique: true,
+  },
   common: {
     validators: {
       service_component_implementation_detail_id: [validate.presence(true)],
