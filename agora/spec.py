@@ -605,6 +605,7 @@ COMPONENT_IMPLEMENTATION_DETAILS = {
 COMPONENT_IMPLEMENTATION_DETAIL_LINKS = {
     '.field.collection.django': {},
     'model': 'component.models.ServiceDetailsComponent',
+    ':permissions_namespace': 'agora.checks.CIDL',
     'fields': {
         'id': {
             '.field.uuid': {},
