@@ -22,6 +22,7 @@ export default AgoraGen.extend({
       service_component_implementation_detail_id: [validate.presence(true)],
       service_details_id: [validate.presence(true)],
       service_id: [validate.presence(true)],
+      service_type: [validate.presence(true)],
     },
   },
   list: {
