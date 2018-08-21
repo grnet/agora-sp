@@ -164,8 +164,8 @@ class Service(models.Model):
         if not self.competitors or self.competitors == "":
             self.competitors = None
 
-        publishMessage(self)
         super(Service, self).save(*args, **kwargs)
+        publishMessage(self)
 
     @property
     def logo_absolute_path(self):
@@ -742,8 +742,8 @@ class ServiceDetails(models.Model):
         if not self.decommissioning_procedure_url or self.decommissioning_procedure_url == "":
             self.decommissioning_procedure_url = None
 
-        publishMessage(self)
         super(ServiceDetails, self).save(*args, **kwargs)
+        publishMessage(self)
 
     def as_short(self):
 
