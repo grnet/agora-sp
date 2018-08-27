@@ -33,10 +33,6 @@ export default AgoraGen.extend({
       label: 'cidl.menu',
       group: 'components',
     },
-    menu: {
-      label: 'Component Implementation Detail Links',
-      group: 'components',
-    },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],
       fields: TABLE_FIELDS,
