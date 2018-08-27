@@ -12,8 +12,9 @@ const cidl = {
     }
   },
   'links': {
-    'create_cidl': 'Create a new component for this version'
-  }
+    'create_cidl': 'Connect a component to this version'
+  },
+  'menu': 'Connection',
 };
 
 export { cidl };

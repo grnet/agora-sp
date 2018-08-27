@@ -6,11 +6,12 @@ const component_implementation_detail = {
     'version': 'Version',
   },
   'belongs': {
-    'name': 'Component Implementation Detail'
+    'name': 'Component Version',
   },
   'links': {
     //'create_service_version': 'Create a new service version'
-  }
+  },
+  'menu': 'Component Versions',
 };
 
 export { component_implementation_detail };

@@ -7,11 +7,12 @@ const component_implementation = {
     'description': 'Description',
   },
   'belongs': {
-    'name': 'Component Implementation'
+    'name': 'Component'
   },
   'links': {
     //'create_service_version': 'Create a new service version'
-  }
+  },
+  'menu': 'Components',
 };
 
 export { component_implementation };

@@ -24,10 +24,10 @@ export default AgoraGen.extend({
   },
   list: {
     page: {
-      title: 'Component Implementation Detail Links'
+      title: 'cidl.menu',
     },
     menu: {
-      label: 'Component Implementation Detail Links',
+      label: 'cidl.menu',
       group: 'components'
     },
     row: {

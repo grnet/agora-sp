@@ -13,12 +13,12 @@ const component = {
     'logo': ''
   },
   'belongs': {
-    'name': 'Component'
+    'name': 'Component category',
   },
   'links': {
     //'create_service_version': 'Create a new service version'
   },
-  'menu': 'Components',
+  'menu': 'Component Categories',
   'menu_group': 'Service Components'
 };
 

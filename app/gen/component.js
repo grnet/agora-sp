@@ -13,10 +13,10 @@ export default AgoraGen.extend({
   order: 1,
   list: {
     page: {
-      title: 'Components'
+      title: 'component.menu'
     },
     menu: {
-      label: 'Components',
+      label: 'component.menu',
       group: {
         name: 'components',
         label: 'Service Components',

@@ -22,10 +22,10 @@ export default AgoraGen.extend({
   },
   list: {
     page: {
-      title: 'Component Implementation Details'
+      title: 'component_implementation_detail.menu',
     },
     menu: {
-      label: 'Component Implementation Details',
+      label: 'component_implementation_detail.menu',
       group: 'components'
     },
     row: {
