@@ -38,5 +38,6 @@ export default {
   'login': login,
   'group_menu': common.group_menu,
   'confirm': common.confirm,
+  'Service_type should be unique': cidl.errors.service_type_unique,
 };
 
