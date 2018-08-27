@@ -217,7 +217,7 @@ RULES = [
     ('api/v2/components', 'retrieve', 'admin', '*', '*', '*', '*'),
     ('api/v2/components', 'retrieve', 'serviceadmin', '*', '*', '*', '*'),
     ('api/v2/components', 'retrieve', 'observer', '*', '*', '*', '*'),
-    ('api/v2/components', 'create', 'superadmin', '*', '*', '*', '*'),
+    ('api/v2/components', 'create', 'superadmin', '*', 'clean_html', '*', '*'),
     ('api/v2/components', 'create', 'admin', '*', '*', '*', '*'),
     ('api/v2/components', 'update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/components', 'update', 'admin', '*', '*', '*', '*'),

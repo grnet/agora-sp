@@ -521,6 +521,7 @@ SERVICE_OWNERS = {
 COMPONENTS = {
     '.field.collection.django': {},
     'model': 'component.models.ServiceComponent',
+    ':permissions_namespace': 'agora.checks.Component',
     'fields': {
         'id': {
             '.field.uuid': {},
