@@ -273,6 +273,12 @@ class ServiceDetailsComponent(models.Model):
     service_component_implementation_detail_id = models.ForeignKey(
         ServiceComponentImplementationDetail
     )
+    service_type = models.CharField(
+            max_length=255,
+            default=None,
+            blank=True,
+            unique=True
+    )
     configuration_parameters = RichTextUploadingField(
         default=None,
         blank=True,

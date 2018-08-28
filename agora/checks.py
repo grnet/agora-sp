@@ -2,6 +2,7 @@ from django.db.models import Q
 from django.utils.translation import ugettext as _
 from apimas.errors import ValidationError
 from service.models import ServiceAdminship as sa_m
+from component.models import ServiceDetailsComponent as cidl_m
 from accounts.models import User as user_m
 
 
@@ -101,3 +102,14 @@ class User(object):
     def me(context):
         auth_user = context.extract('auth/user')
         return Q(id=auth_user.id)
+
+
+class CIDL(object):
+
+    @staticmethod
+    def unique(backend_input, instance, context):
+        try:
+            cidl_m.objects.get(service_type=backend_input['service_type'])
+            raise ValidationError("Service_type should be unique")
+        except cidl_m.DoesNotExist:
+            return
