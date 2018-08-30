@@ -277,6 +277,7 @@ class ServiceDetailsComponent(models.Model):
             max_length=255,
             default=None,
             blank=True,
+            null=True,
             unique=True
     )
     configuration_parameters = RichTextUploadingField(
