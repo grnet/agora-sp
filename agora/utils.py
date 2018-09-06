@@ -92,10 +92,10 @@ def safe_html(html):
     logger.info(html)
 
     if not html:
-        return None
+        return html
 
     # remove these tags, complete with contents.
-    blacklist = ["script", "style" ]
+    blacklist = ["script", "style"]
 
     whitelist = [
         "div", "span", "p", "br", "pre",
@@ -108,11 +108,10 @@ def safe_html(html):
     try:
         # BeautifulSoup is catching out-of-order and unclosed tags, so markup
         # can't leak out of comments and break the rest of the page.
-        soup = BeautifulSoup(html,  'html.parser')
+        soup = BeautifulSoup(html, 'html.parser')
         logger.info(soup)
-    except HTMLParseError, e:
-        # special handling?
-        raise e
+    except HTMLParseError:
+        return html
 
     # now strip HTML we don't like.
     logger.info('ftanw mexri edw?')
@@ -135,15 +134,12 @@ def safe_html(html):
     for comment in comments:
         comment.extract()
 
-    safe_html = unicode(soup)
+    return unicode(soup)
 
-    if safe_html == ", -":
-        return None
-
-    return safe_html
 
 def _attr_name_whitelisted(attr_name):
     return attr_name.lower() in ["href", "style", "color", "size", "bgcolor", "border"]
+
 
 def safe_css(attr, css):
     if attr == "style":
