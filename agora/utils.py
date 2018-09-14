@@ -88,9 +88,6 @@ def get_root_url():
 
 
 def safe_html(html):
-    logger.info('mpike stin safe_html')
-    logger.info(html)
-
     if not html:
         return html
 
@@ -109,19 +106,19 @@ def safe_html(html):
         # BeautifulSoup is catching out-of-order and unclosed tags, so markup
         # can't leak out of comments and break the rest of the page.
         soup = BeautifulSoup(html, 'html.parser')
-        logger.info(soup)
     except HTMLParseError:
         return html
 
     # now strip HTML we don't like.
-    logger.info('ftanw mexri edw?')
     for tag in soup.findAll():
         if tag.name.lower() in blacklist:
             # blacklisted tags are removed in their entirety
             tag.extract()
         elif tag.name.lower() in whitelist:
             # tag is allowed. Make sure all the attributes are allowed.
-            tag.attrs = [(a[0], safe_css(a[0], a[1])) for a in tag.attrs if _attr_name_whitelisted(a[0])]
+            tag.attrs = dict((attr, safe_css(attr, css))
+                             for (attr, css) in tag.attrs.items()
+                             if _attr_name_whitelisted(attr))
         else:
             # not a whitelisted tag. I'd like to remove it from the tree
             # and replace it with its children. But that's hard. It's much
