@@ -9,7 +9,7 @@ from common import helper
 from collections import OrderedDict
 from accounts.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
-from agora.utils import SERVICE_ADMINSHIP_STATES
+from agora.utils import SERVICE_ADMINSHIP_STATES, clean_html_fields
 from agora.emails import send_email_application_created, \
     send_email_service_admin_assigned, send_email_application_evaluated
 
@@ -136,6 +136,7 @@ class Service(models.Model):
 
 
     def save(self, *args, **kwargs):
+        clean_html_fields(self)
         if not self.description_internal or self.description_internal == "":
             self.description_internal = None
         if not self.description_external or self.description_external == "":
@@ -674,6 +675,7 @@ class ServiceDetails(models.Model):
         return str(srv.name) + " " + str(self.version)
 
     def save(self, *args, **kwargs):
+        clean_html_fields(self)
         if not self.features_current or self.features_current == "":
             self.features_current = None
         if not self.features_future or self.features_future == "":
@@ -987,6 +989,7 @@ class ExternalService(models.Model):
         ])
 
     def save(self, *args, **kwargs):
+        clean_html_fields(self)
         if not self.description or self.description == "":
             self.description = none
         super(ExternalService, self).save(*args, **kwargs)
@@ -1122,6 +1125,7 @@ class UserCustomer(models.Model):
         ])
 
     def save(self, *args, **kwargs):
+        clean_html_fields(self)
         if not self.role or self.role == "":
             self.role = None
         super(UserCustomer, self).save(*args, **kwargs)

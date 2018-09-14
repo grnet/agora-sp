@@ -3,15 +3,17 @@ import json
 import re
 from bs4 import BeautifulSoup, Comment
 from HTMLParser import HTMLParseError
+from ckeditor_uploader.fields import RichTextUploadingField
+
+from collections import defaultdict
+
+from django.conf import settings
 
 from collections import defaultdict
 
 from django.conf import settings
 from agora.permissions import RULES
 import accounts.models
-
-import logging
-logger = logging.getLogger('apimas')
 
 
 
@@ -85,6 +87,15 @@ _root_url = deploy_config[':root_url']
 
 def get_root_url():
     return _root_url
+
+
+def clean_html_fields(instance):
+    class_fields = instance.__class__._meta.get_fields()
+    fields_to_clean = [field for field in class_fields
+                       if isinstance(field, RichTextUploadingField)]
+    for field in fields_to_clean:
+        old_value = getattr(instance, field.name)
+        setattr(instance, field.name, safe_html(old_value))
 
 
 def safe_html(html):
