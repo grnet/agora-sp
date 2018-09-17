@@ -4,11 +4,6 @@ from apimas.errors import ValidationError
 from service.models import ServiceAdminship as sa_m
 from component.models import ServiceDetailsComponent as cidl_m
 from accounts.models import User as user_m
-from agora.utils import safe_html
-
-import logging
-logger = logging.getLogger('apimas')
-
 
 
 class ServiceAdminship(object):
@@ -118,13 +113,3 @@ class CIDL(object):
             raise ValidationError("Service_type should be unique")
         except cidl_m.DoesNotExist:
             return
-
-
-class Component(object):
-
-    @staticmethod
-    def clean_html(backend_input, instance, context):
-        description = backend_input['description']
-        backend_input['description'] = safe_html(description)
-        logger.info(description)
-        return
