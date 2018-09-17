@@ -58,6 +58,7 @@ class ServiceTrl(models.Model):
         ])
 
     def save(self, *args, **kwargs):
+        clean_html_fields(self)
         super(ServiceTrl, self).save(*args, **kwargs)
 
 class Service(models.Model):
@@ -630,6 +631,7 @@ class ServiceStatus(models.Model):
         ])
 
     def save(self, *args, **kwargs):
+        clean_html_fields(self)
         super(ServiceStatus, self).save(*args, **kwargs)
 
 
@@ -1090,6 +1092,7 @@ class UserRole(models.Model):
         ])
 
     def save(self, *args, **kwargs):
+        clean_html_fields(self)
         super(UserRole, self).save(*args, **kwargs)
 
 

@@ -7,6 +7,7 @@ from django.contrib.sites.models import Site
 from common import helper
 from collections import OrderedDict
 from ckeditor_uploader.fields import RichTextUploadingField
+from agora.utils import clean_html_fields
 
 class ServiceOption(models.Model):
 
@@ -91,6 +92,7 @@ class ServiceOption(models.Model):
 
 
     def save(self, *args, **kwargs):
+        clean_html_fields(self)
         if not self.description or self.description == "":
             self.description = None
         if not self.pricing or self.pricing == "":
@@ -179,6 +181,7 @@ class Parameter(models.Model):
         ])
 
     def save(self, *args, **kwargs):
+        clean_html_fields(self)
         if not self.expression or self.expression == "":
             self.expression = None
         if not self.type or self.type == "":

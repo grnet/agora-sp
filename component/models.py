@@ -8,6 +8,7 @@ from service.models import Service, ServiceDetails
 from common import helper
 from collections import OrderedDict
 from ckeditor_uploader.fields import RichTextUploadingField
+from agora.utils import clean_html_fields
 
 
 class ServiceComponent(models.Model):
@@ -104,6 +105,7 @@ class ServiceComponent(models.Model):
         }
 
     def save(self, *args, **kwargs):
+        clean_html_fields(self)
         if not self.description or self.description == "":
             self.description = None
         super(ServiceComponent, self).save(*args, **kwargs)
@@ -200,6 +202,7 @@ class ServiceComponentImplementation(models.Model):
         ])
 
     def save(self, *args, **kwargs):
+        clean_html_fields(self)
         if not self.description or self.description == "":
             self.description = None
         super(ServiceComponentImplementation, self).save(*args, **kwargs)
@@ -252,6 +255,7 @@ class ServiceComponentImplementationDetail(models.Model):
         ])
 
     def save(self, *args, **kwargs):
+        clean_html_fields(self)
         super(ServiceComponentImplementationDetail, self).save(*args, **kwargs)
 
 
