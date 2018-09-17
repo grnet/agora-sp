@@ -103,14 +103,15 @@ def safe_html(html):
         return html
 
     # remove these tags, complete with contents.
-    blacklist = ["script", "style"]
+    blacklist = ["script", "style", "audio", "video"]
 
     whitelist = [
         "div", "span", "p", "br", "pre",
         "table", "tbody", "thead", "tr", "td", "a",
-        "blockquote",
+        "blockquote", "code",
         "ul", "li", "ol",
-        "b", "em", "i", "strong", "u", "font"
+        "b", "em", "i", "strong", "u", "font",
+        "h1", "h2", "h3", "h4", "h5", "h6",
         ]
 
     try:
