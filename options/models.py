@@ -142,6 +142,10 @@ class SLA(models.Model):
             }
         }
 
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(SLA, self).save(*args, **kwargs)
+
 
 class Parameter(models.Model):
 
@@ -226,6 +230,10 @@ class SLAParameter(models.Model):
             }
         }
 
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(SLAParameter, self).save(*args, **kwargs)
+
 
 class ServiceDetailsOption(models.Model):
     class Meta:
@@ -263,4 +271,6 @@ class ServiceDetailsOption(models.Model):
             }
         }
 
-
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(ServiceDetailsOption, self).save(*args, **kwargs)

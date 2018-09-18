@@ -331,3 +331,7 @@ class ServiceDetailsComponent(models.Model):
                 }
             }
         }
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(ServiceDetailsComponent, self).save(*args, **kwargs)

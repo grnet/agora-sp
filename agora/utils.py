@@ -112,6 +112,9 @@ def safe_html(html):
         "ul", "li", "ol",
         "b", "em", "i", "strong", "u", "font",
         "h1", "h2", "h3", "h4", "h5", "h6",
+        "dl", "dt", "dd",
+        "footer", "header", "nav"
+        "br", "caption", "img",
         ]
 
     try:

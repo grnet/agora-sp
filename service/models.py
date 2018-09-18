@@ -34,6 +34,10 @@ class ServiceArea(models.Model):
     def __unicode__(self):
         return str(self.name)
 
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(ServiceArea, self).save(*args, **kwargs)
+
 
 class ServiceTrl(models.Model):
 
@@ -1073,6 +1077,10 @@ class Service_ExternalService(models.Model):
             }
         }
 
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(Service_ExternalService, self).save(*args, **kwargs)
+
 
 class UserRole(models.Model):
 
@@ -1140,6 +1148,10 @@ class Roles(models.Model):
     id_service = models.ForeignKey(Service)
     role = models.CharField(('role'), max_length=90, unique=True, default="spectator")
 
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(Roles, self).save(*args, **kwargs)
+
 
 class ServiceAdminship(models.Model):
     service = models.ForeignKey(Service)
@@ -1153,6 +1165,10 @@ class ServiceAdminship(models.Model):
 
     class Meta:
         unique_together = (("service", "admin"),)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(ServiceAdminship, self).save(*args, **kwargs)
 
 
 def post_create_service(service, context):
