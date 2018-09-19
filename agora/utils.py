@@ -130,10 +130,9 @@ def safe_html(html):
             # blacklisted tags are removed in their entirety
             tag.extract()
         elif tag.name.lower() in whitelist:
-            # tag is allowed. Make sure all the attributes are allowed.
+            # tag is allowed
             tag.attrs = dict((attr, safe_css(attr, css))
-                             for (attr, css) in tag.attrs.items()
-                             if _attr_name_whitelisted(attr))
+                             for (attr, css) in tag.attrs.items())
         else:
             # not a whitelisted tag. I'd like to remove it from the tree
             # and replace it with its children. But that's hard. It's much
@@ -147,10 +146,6 @@ def safe_html(html):
         comment.extract()
 
     return unicode(soup)
-
-
-def _attr_name_whitelisted(attr_name):
-    return attr_name.lower() in ["href", "style", "color", "size", "bgcolor", "border"]
 
 
 def safe_css(attr, css):
