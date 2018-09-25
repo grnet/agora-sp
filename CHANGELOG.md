@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.9.6] - 2018-09-25
+
+### Added
+- Clean html feature for rich text textarea fields
+
+
 ## [0.9.5] - 2018-08-28
 
 ### Changed
