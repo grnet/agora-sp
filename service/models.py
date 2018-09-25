@@ -9,7 +9,7 @@ from common import helper
 from collections import OrderedDict
 from accounts.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
-from agora.utils import SERVICE_ADMINSHIP_STATES
+from agora.utils import SERVICE_ADMINSHIP_STATES, clean_html_fields
 from agora.emails import send_email_application_created, \
     send_email_service_admin_assigned, send_email_application_evaluated
 
@@ -33,6 +33,10 @@ class ServiceArea(models.Model):
 
     def __unicode__(self):
         return str(self.name)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(ServiceArea, self).save(*args, **kwargs)
 
 
 class ServiceTrl(models.Model):
@@ -58,6 +62,7 @@ class ServiceTrl(models.Model):
         ])
 
     def save(self, *args, **kwargs):
+        clean_html_fields(self)
         super(ServiceTrl, self).save(*args, **kwargs)
 
 class Service(models.Model):
@@ -136,6 +141,7 @@ class Service(models.Model):
 
 
     def save(self, *args, **kwargs):
+        clean_html_fields(self)
         if not self.description_internal or self.description_internal == "":
             self.description_internal = None
         if not self.description_external or self.description_external == "":
@@ -629,6 +635,7 @@ class ServiceStatus(models.Model):
         ])
 
     def save(self, *args, **kwargs):
+        clean_html_fields(self)
         super(ServiceStatus, self).save(*args, **kwargs)
 
 
@@ -674,6 +681,7 @@ class ServiceDetails(models.Model):
         return str(srv.name) + " " + str(self.version)
 
     def save(self, *args, **kwargs):
+        clean_html_fields(self)
         if not self.features_current or self.features_current == "":
             self.features_current = None
         if not self.features_future or self.features_future == "":
@@ -987,6 +995,7 @@ class ExternalService(models.Model):
         ])
 
     def save(self, *args, **kwargs):
+        clean_html_fields(self)
         if not self.description or self.description == "":
             self.description = none
         super(ExternalService, self).save(*args, **kwargs)
@@ -1068,6 +1077,10 @@ class Service_ExternalService(models.Model):
             }
         }
 
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(Service_ExternalService, self).save(*args, **kwargs)
+
 
 class UserRole(models.Model):
 
@@ -1087,6 +1100,7 @@ class UserRole(models.Model):
         ])
 
     def save(self, *args, **kwargs):
+        clean_html_fields(self)
         super(UserRole, self).save(*args, **kwargs)
 
 
@@ -1122,6 +1136,7 @@ class UserCustomer(models.Model):
         ])
 
     def save(self, *args, **kwargs):
+        clean_html_fields(self)
         if not self.role or self.role == "":
             self.role = None
         super(UserCustomer, self).save(*args, **kwargs)
@@ -1132,6 +1147,10 @@ class Roles(models.Model):
     id_user = models.ForeignKey(User)
     id_service = models.ForeignKey(Service)
     role = models.CharField(('role'), max_length=90, unique=True, default="spectator")
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(Roles, self).save(*args, **kwargs)
 
 
 class ServiceAdminship(models.Model):
@@ -1146,6 +1165,10 @@ class ServiceAdminship(models.Model):
 
     class Meta:
         unique_together = (("service", "admin"),)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(ServiceAdminship, self).save(*args, **kwargs)
 
 
 def post_create_service(service, context):
