@@ -15,6 +15,6 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='servicedetailscomponent',
             name='service_type',
-            field=models.CharField(blank=True, default=None, max_length=255, unique=True),
+            field=models.CharField(blank=True, default=None, max_length=255, null=True, unique=True),
         ),
     ]

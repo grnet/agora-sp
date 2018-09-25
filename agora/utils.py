@@ -1,11 +1,20 @@
 import os
 import json
+import re
+from bs4 import BeautifulSoup, Comment
+from HTMLParser import HTMLParseError
+from ckeditor_uploader.fields import RichTextUploadingField
+
 from collections import defaultdict
 
 from django.conf import settings
 
+from collections import defaultdict
+
+from django.conf import settings
 from agora.permissions import RULES
 import accounts.models
+
 
 
 _root_url = None
@@ -78,6 +87,71 @@ _root_url = deploy_config[':root_url']
 
 def get_root_url():
     return _root_url
+
+
+def clean_html_fields(instance):
+    class_fields = instance.__class__._meta.get_fields()
+    fields_to_clean = [field for field in class_fields
+                       if isinstance(field, RichTextUploadingField)]
+    for field in fields_to_clean:
+        old_value = getattr(instance, field.name)
+        setattr(instance, field.name, safe_html(old_value))
+
+
+def safe_html(html):
+    if not html:
+        return html
+
+    # remove these tags, complete with contents.
+    blacklist = ["script", "style", "audio", "video"]
+
+    whitelist = [
+        "div", "span", "p", "br", "pre",
+        "table", "tbody", "thead", "tr", "td", "a",
+        "blockquote", "code",
+        "ul", "li", "ol",
+        "b", "em", "i", "strong", "u", "font",
+        "h1", "h2", "h3", "h4", "h5", "h6",
+        "dl", "dt", "dd",
+        "footer", "header", "nav"
+        "br", "caption", "img",
+        ]
+
+    try:
+        # BeautifulSoup is catching out-of-order and unclosed tags, so markup
+        # can't leak out of comments and break the rest of the page.
+        soup = BeautifulSoup(html, 'html.parser')
+    except HTMLParseError:
+        return html
+
+    # now strip HTML we don't like.
+    for tag in soup.findAll():
+        if tag.name.lower() in blacklist:
+            # blacklisted tags are removed in their entirety
+            tag.extract()
+        elif tag.name.lower() in whitelist:
+            # tag is allowed
+            tag.attrs = dict((attr, safe_css(attr, css))
+                             for (attr, css) in tag.attrs.items())
+        else:
+            # not a whitelisted tag. I'd like to remove it from the tree
+            # and replace it with its children. But that's hard. It's much
+            # easier to just replace it with an empty span tag.
+            tag.name = "span"
+            tag.attrs = []
+
+    # scripts can be executed from comments in some cases
+    comments = soup.findAll(text=lambda text:isinstance(text, Comment))
+    for comment in comments:
+        comment.extract()
+
+    return unicode(soup)
+
+
+def safe_css(attr, css):
+    if attr == "style":
+        return re.sub("(width|height):[^;]+;", "", css)
+    return css
 
 
 RESOURCES = load_resources()
