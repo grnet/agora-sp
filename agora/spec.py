@@ -752,6 +752,7 @@ SERVICE_VERSIONS = {
             '.field.string': {},
             '.flag.nullable.default': {}},
         'is_in_catalogue': {
+            '.flag.filterable': {},
             '.field.boolean': {}},
         # extended fields
         'id_service_ext': {
