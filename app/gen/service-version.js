@@ -48,6 +48,10 @@ export default AgoraGen.extend({
               displayAttr: 'value'
             }
           ),
+          field('is_in_catalogue', {
+            type: 'boolean',
+            label: 'service_version.fields.in_catalogue',
+          }),
         ]
       }
     },
