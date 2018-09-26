@@ -18,7 +18,6 @@ You need to have [NodeJS](https://nodejs.org/en/download/) and [Yarn](https://ya
 
 You must first run `yarn` inside the project root directory to install depending libraries.
 
-When yarn finishes, you should run `./node_modules/.bin/bower install --allow-root` in order to install all bower components required (use the `--allow-root` option if required).
 
 ### Configuration
 
