@@ -670,6 +670,30 @@ EXT_SERVICES = {
     },
 }
 
+SERVICE_TYPES_FIELDS = {
+    'id': {
+        '.field.uuid': {},
+        '.flag.readonly': {}},
+    'service_type': {
+        '.field.string': {},
+        '.flag.readonly': {},
+        'source': 'service_type'},
+    'in_catalogue': {
+        '.field.boolean': {},
+        '.flag.readonly': {},
+        'source': 'service_details_id.is_in_catalogue'},
+}
+
+SERVICE_TYPES = {
+    '.field.collection.django': {},
+    'model': 'component.models.ServiceDetailsComponent',
+    'fields': SERVICE_TYPES_FIELDS,
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+    },
+}
+
 SERVICE_VERSIONS = {
     '.field.collection.django': {},
     'model': 'service.models.ServiceDetails',
@@ -863,6 +887,7 @@ APP_CONFIG = {
                 'users': USERS,
                 'services': SERVICES,
                 'ext-services': EXT_SERVICES,
+                'service-types': SERVICE_TYPES,
                 'service-versions': SERVICE_VERSIONS,
                 'user-customers': USER_CUSTOMERS,
                 'service_dependsOn_services': SERVICE_DEPENDSON_SERVICES,
