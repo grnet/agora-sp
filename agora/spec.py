@@ -676,11 +676,11 @@ SERVICE_TYPES_FIELDS = {
         '.flag.readonly': {}},
     'service_type': {
         '.field.string': {},
-        '.flag.readonly': {},
-        'source': 'service_type'},
+        '.flag.readonly': {}},
     'in_catalogue': {
         '.field.boolean': {},
         '.flag.readonly': {},
+        '.flag.filterable': {},
         'source': 'service_details_id.is_in_catalogue'},
 }
 
