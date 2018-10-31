@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add service-types endpoint.
 - Push messages using Argo Messaging Service.
 - Setup Travis CI.
+- Add visible_to_marketplace field to Service Version model.
 
 ### Changed
 - Expose funders_for_service to api/v1.
