@@ -113,7 +113,7 @@ const URLS_FIELDSET = {
 const BASIC_INFO_FIELDSET = {
   label: 'service_version.cards.basic_information',
   layout: {
-    flex: [50, 50, 50, 50, 100, 100, 100],
+    flex: [50, 50, 50, 25, 25, 100, 100, 100],
   },
   fields: [
     field(
@@ -137,6 +137,12 @@ const BASIC_INFO_FIELDSET = {
         label: 'service_version.fields.in_catalogue',
       }
     ),
+    field(
+      'visible_to_marketplace', {
+        label: 'service_version.fields.visible_to_marketplace',
+      }
+    ),
+
   field(
     'features_current', {
       label: 'service_version.fields.features_current',
@@ -271,7 +277,7 @@ const DETAILS_FIELDSETS = [
 const BASIC_INFO_CREATE_FIELDSET = {
   label: 'service_version.cards.basic_information',
   layout: {
-    flex: [50, 50, 50, 50, 100, 100, 100],
+    flex: [50, 50, 50, 25, 25, 100, 100, 100],
   },
   fields: [
     field(
@@ -293,6 +299,11 @@ const BASIC_INFO_CREATE_FIELDSET = {
     field(
       'is_in_catalogue', {
         label: 'service_version.fields.in_catalogue',
+      }
+    ),
+    field(
+      'visible_to_marketplace', {
+        label: 'service_version.fields.visible_to_marketplace',
       }
     ),
   field(
