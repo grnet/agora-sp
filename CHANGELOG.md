@@ -12,7 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Enable filtering of service versions by is_in_catalogue.
 
-## [0.9.4] - 2018-08-28
+## [v0.9.4](https://github.com/grnet/agora-sp-admin/releases/tag/v0.9.4) - 2018-08-28
 
 ### Added
 - "View source" mode in textarea fields.
@@ -27,7 +27,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Eslint fixes.
 - Bug concerning user creation.
 
-## [0.9.3] - 2018-07-06
+## [v0.9.3](https://github.com/grnet/agora-sp-admin/releases/tag/v0.9.3) - 2018-07-06
 
 ### Added
 - Allow custom-user create/edit.
@@ -40,7 +40,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Fix typos
 
-## [0.9.2] - 2018-04-11
+## [v0.9.2](https://github.com/grnet/agora-sp-admin/releases/tag/v0.9.2) - 2018-04-11
 
 ### Added
 - Allow service-item logo upload.
@@ -51,7 +51,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Changed
 - Replace froala text editor with tinyMCE
 
-## [0.9.1] - 2018-01-26
+## [v0.9.1](https://github.com/grnet/agora-sp-admin/releases/tag/v0.9.1) - 2018-01-26
 
 ### Added
 - Initial version
