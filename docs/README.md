@@ -16,11 +16,11 @@ AGORA is used the in the context of three projects.
 
 Agora software stack is comprised of the following components:
 
-- [agora-sp](https://github.com/grnet/agora-sp): is the backend/api portfolio management system. Manages the complete list of services. Provides API interface to the database that stores the service portfolio information and makes it available for other management tools.
+- [agora-sp](#agora-sp): is the backend/api portfolio management system. Manages the complete list of services. Provides API interface to the database that stores the service portfolio information and makes it available for other management tools.
 
-- [agora-sp-admin](https://github.com/grnet/agora-sp-admin): is the administration interface for the `agora-sp` component. It enables the data entry procedure.  
+- [agora-sp-admin](#agora-sp-admin): is the administration interface for the `agora-sp` component. It enables the data entry procedure.  
 
-- [agora-drupal-connector](https://github.com/grnet/agora-drupal-connector): is drupal module that allows to render a service catalogue listing of the services provided bye the `agora-sp` api in the context of a drupal based site.
+- [agora-drupal-connector](#agora-drupal-connector): is drupal module that allows to render a service catalogue listing of the services provided bye the `agora-sp` api in the context of a drupal based site.
 
 ### Agora-sp
 `Agora-sp` manages a complete list  of the services managed by a service provider
@@ -36,6 +36,10 @@ Agora software stack is comprised of the following components:
 - Informs other interested systems within the infrastructure about actual supported software versions and the service component configuration parameters as defined by the service developers.
 
 - The service management system has been designed to be compatible with the FitSM service portfolio management. fitsm.eu
+
+### Source Code
+
+[https://github.com/grnet/agora-sp](https://github.com/grnet/agora-sp)
 
 ### Deployments:
 
@@ -60,6 +64,10 @@ Provides an intuitive user interface for the the agora-sp project. It allows use
 	- *Service owner*: who can read everything; can modify/delete services that he is owner/manager of
 	- *Observer*: who can read everything
 
+### Source Code
+
+[https://github.com/grnet/agora-sp-admin](https://github.com/grnet/agora-sp-admin)
+
 ### Deployments:
 
 - [eosc.agora.grnet.gr](eosc.agora.grnet.gr)
@@ -72,6 +80,10 @@ Is a drupal module that allows the administrator to create multiple agora feeds,
 The administrator provides a valid Agora API Feed, selects which fields wants to be visible and specifies a new url in order for ReactJS app to render the defined selections.
 
 This module is working with a dependency of [agora-catalogue-react-view](https://github.com/grnet/agora-catalogue-react-view)
+
+### Source Code
+
+[https://github.com/grnet/agora-drupal-connector.git](https://github.com/grnet/agora-drupal-connector.git)
 
 ### Deployments:
 
