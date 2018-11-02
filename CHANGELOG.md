@@ -17,13 +17,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 - Upgrade Django to 1.11.16.
 
-## [0.9.6] - 2018-09-25
+## [0.9.6](https://github.com/grnet/agora-sp/compare/v0.9.5...v0.9.6) - 2018-09-25
 
 ### Added
 - Clean html feature for rich text textarea fields.
 
 
-## [0.9.5] - 2018-08-28
+## [v0.9.5](https://github.com/grnet/agora-sp/compare/v0.9.4...v0.9.5) - 2018-08-28
 
 ### Changed
 - Add field "service_type" in CIDL model.
@@ -31,7 +31,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Add forgotten migration file.
 
-## [0.9.4] - 2018-07-06
+## [v0.9.4](https://github.com/grnet/agora-sp/compare/v0.9.3...v0.9.4) - 2018-07-06
 
 ### Changed
 - Upgrade APIMAS.
@@ -49,7 +49,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Enable custom user creation from UI.
 
 
-## [0.9.3] - 2018-04-11
+## [v0.9.3](https://github.com/grnet/agora-sp/compare/v0.9.2...v0.9.3) - 2018-04-11
 
 ### Added
 - Add superadmin role.
@@ -64,7 +64,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Remove unused settings.
 
-## [0.9.2] - 2018-01-31
+## [v0.9.2](https://github.com/grnet/agora-sp/releases/tag/v0.9.2) - 2018-01-31
 
 ### Fixed
 - Clean up unsafe code
