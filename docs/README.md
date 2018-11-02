@@ -79,8 +79,6 @@ Provides an intuitive user interface for the the agora-sp project. It allows use
 Is a drupal module that allows the administrator to create multiple agora feeds, choose which fields to render and create pages to render the data feeds. 
 The administrator provides a valid Agora API Feed, selects which fields wants to be visible and specifies a new url in order for ReactJS app to render the defined selections.
 
-This module is working with a dependency of [agora-catalogue-react-view](https://github.com/grnet/agora-catalogue-react-view)
-
 ### Source Code
 
 [https://github.com/grnet/agora-drupal-connector.git](https://github.com/grnet/agora-drupal-connector.git)
