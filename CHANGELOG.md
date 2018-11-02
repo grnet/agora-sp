@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - "View source" mode in textarea fields.
 
 ### Changed
+
 - Add field "service_type" in CIDL model.
 - Update menu labels in "Service Components" section.
 
@@ -25,3 +26,34 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Remove duplicate code from CIDL.
 - Eslint fixes.
 - Bug concerning user creation.
+
+## [0.9.3] - 2018-07-06
+
+### Added
+- Allow custom-user create/edit.
+- Add role serviceowner.
+- Implement service ownership functionality.
+
+### Changed
+- Use PATCH to upload image to backend
+
+### Fixed
+- Fix typos
+
+## [0.9.2] - 2018-04-11
+
+### Added
+- Allow service-item logo upload.
+- Add role field to custom-user.
+- Add superadmin/admin roles.
+- Add customer_facing/external attributes to services.
+
+### Changed
+- Replace froala text editor with tinyMCE
+
+## [0.9.1] - 2018-01-26
+
+### Added
+- Initial version
+- Implement file upload
+- Enable shibboleth login
