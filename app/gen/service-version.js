@@ -52,6 +52,11 @@ export default AgoraGen.extend({
             type: 'boolean',
             label: 'service_version.fields.in_catalogue',
           }),
+          field('visible_to_marketplace', {
+            type: 'boolean',
+            label: 'service_version.fields.visible_to_marketplace',
+          }),
+
         ]
       }
     },

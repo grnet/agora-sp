@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Add visible_to_marketplace field to Service Model.
+
 ### Deprecated
 - Migrate away from bower.
 
