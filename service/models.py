@@ -677,6 +677,7 @@ class ServiceDetails(models.Model):
     cost_to_build = models.CharField(max_length=255, default=None, blank=True, null=True)
     use_cases = RichTextUploadingField(default=None, blank=True, null=True)
     is_in_catalogue = models.BooleanField(default=False)
+    visible_to_marketplace = models.BooleanField(default=False)
 
     def __unicode__(self):
         primary_key = self.id_service.pk

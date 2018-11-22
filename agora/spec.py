@@ -778,6 +778,9 @@ SERVICE_VERSIONS = {
         'is_in_catalogue': {
             '.flag.filterable': {},
             '.field.boolean': {}},
+        'visible_to_marketplace': {
+            '.flag.filterable': {},
+            '.field.boolean': {}},
         # extended fields
         'id_service_ext': {
             '.field.string': {},
