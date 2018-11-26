@@ -2,7 +2,7 @@
 
 The AGORA Service Portfolio Management Tool (AGORA/SPMT) is a tool aimed at facilitating service management in IT service provision, including federated scenarios.
 AGORA represents a complete list  of the services managed by a service provider; some of these services are visible to the customers, while others are internal.
-The service management system has been designed to be compatible with the FitSM service portfolio management. [fitsm.eu](fitsm.eu)
+The service management system has been designed to be compatible with the FitSM service portfolio management. [fitsm.eu](https://fitsm.itemo.org/)
 
 ## Current installations
 
