@@ -132,7 +132,7 @@ SERVICE_FIELDS_INTERNAL = dict(SERVICE_FIELDS_COMMON, **SERVICE_FIELDS_INT)
 SERVICE_FIELDS_EXTERNAL = dict(SERVICE_FIELDS_COMMON, **SERVICE_FIELDS_EXT)
 
 USERS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'accounts.models.User',
     'fields': {
         'id': {
@@ -169,7 +169,7 @@ USERS = {
 }
 
 USER_CUSTOMERS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'service.models.UserCustomer',
     'fields': {
         'id': {
@@ -198,7 +198,7 @@ USER_CUSTOMERS = {
 }
 
 SERVICE_DEPENDSON_SERVICES = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'service.models.Service_DependsOn_Service',
     'fields': {
         'id': {
@@ -216,7 +216,7 @@ SERVICE_DEPENDSON_SERVICES = {
 }
 
 SERVICE_EXTERNAL_SERVICES = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'service.models.Service_ExternalService',
     'fields': {
         'id': {
@@ -234,7 +234,7 @@ SERVICE_EXTERNAL_SERVICES = {
 }
 
 SERVICE_STATUS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'service.models.ServiceStatus',
     'fields': {
         'id': {
@@ -257,7 +257,7 @@ SERVICE_STATUS = {
 }
 
 SERVICE_TRLS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'service.models.ServiceTrl',
     'fields': {
         'id': {
@@ -280,7 +280,7 @@ SERVICE_TRLS = {
 }
 
 EXTERNAL_SERVICES = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'service.models.ExternalService',
     'fields': {
         'id': {
@@ -305,7 +305,7 @@ EXTERNAL_SERVICES = {
 }
 
 USER_ROLES = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'service.models.UserRole',
     'fields': {
         'id': {
@@ -325,7 +325,7 @@ USER_ROLES = {
 }
 
 SERVICE_AREAS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'service.models.ServiceArea',
     'fields': {
         'id': {
@@ -353,7 +353,7 @@ SERVICE_AREAS = {
 }
 
 SERVICE_OWNERS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'owner.models.ServiceOwner',
     'fields': {
         'id': {
@@ -386,7 +386,7 @@ SERVICE_OWNERS = {
 }
 
 CUSTOM_USERS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'accounts.models.User',
     ':permissions_namespace': 'agora.checks.User',
     'fields': {
@@ -440,7 +440,7 @@ CUSTOM_USERS = {
 }
 
 CONTACT_INFORMATION = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'owner.models.ContactInformation',
     'fields': {
         'id': {
@@ -477,7 +477,7 @@ CONTACT_INFORMATION = {
 }
 
 INSTITUTIONS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'owner.models.Institution',
     'fields': {
         'id': {
@@ -509,7 +509,7 @@ INSTITUTIONS = {
 }
 
 SERVICE_OWNERS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'owner.models.ServiceOwner',
     'fields': {
         'id': {
@@ -542,7 +542,7 @@ SERVICE_OWNERS = {
 }
 
 COMPONENTS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'component.models.ServiceComponent',
     'fields': {
         'id': {
@@ -569,7 +569,7 @@ COMPONENTS = {
 }
 
 COMPONENT_IMPLEMENTATIONS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'component.models.ServiceComponentImplementation',
     'fields': {
         'id': {
@@ -600,7 +600,7 @@ COMPONENT_IMPLEMENTATIONS = {
 }
 
 COMPONENT_IMPLEMENTATION_DETAILS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'component.models.ServiceComponentImplementationDetail',
     'fields': {
         'id': {
@@ -631,7 +631,7 @@ COMPONENT_IMPLEMENTATION_DETAILS = {
 }
 
 COMPONENT_IMPLEMENTATION_DETAIL_LINKS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'component.models.ServiceDetailsComponent',
     ':permissions_namespace': 'agora.checks.CIDL',
     'fields': {
@@ -671,7 +671,7 @@ COMPONENT_IMPLEMENTATION_DETAIL_LINKS = {
 }
 
 SERVICES = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'service.models.Service',
     'fields': SERVICE_FIELDS_INTERNAL,
     ':permissions_namespace': 'agora.checks.Service',
@@ -683,13 +683,25 @@ SERVICES = {
         '.action-template.django.update': {},
         '.action-template.django.partial_update': {},
         'create': {
-            ':post_handler': 'service.models.post_create_service',
+            'processors': {
+                'custom_post_create': {
+                    '.processor': {},
+                    'module_path': 'service.models.post_create_service',
+                    'read_keys': {'=': (
+                        'backend/raw_response',
+                        'auth/user',
+                    )},
+                    'write_keys': {'=': (
+                        'backend/raw_response',
+                    )},
+                },
+            },
         },
     },
 }
 
 EXT_SERVICES = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'service.models.Service',
     'fields': SERVICE_FIELDS_EXTERNAL,
     'actions': {
@@ -735,7 +747,7 @@ SERVICE_TYPES_FIELDS = {
 }
 
 SERVICE_TYPES = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'component.models.ServiceDetailsComponent',
     'fields': SERVICE_TYPES_FIELDS,
     'actions': {
@@ -745,7 +757,7 @@ SERVICE_TYPES = {
 }
 
 SERVICE_VERSIONS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'service.models.ServiceDetails',
     'fields': {
         'id': {
@@ -856,7 +868,7 @@ SERVICE_VERSIONS = {
 }
 
 SERVICE_ADMINS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'service.models.ServiceAdminship',
     ':permissions_namespace': 'agora.checks.ServiceAdminship',
     'fields': {
@@ -920,11 +932,35 @@ SERVICE_ADMINS = {
         '.action-template.django.update': {},
         '.action-template.django.partial_update': {},
         'create': {
-            ':post_handler': 'service.models.post_create_serviceadminship',
+            'processors': {
+                'custom_post_create': {
+                    '.processor': {},
+                    'module_path': 'service.models.post_create_serviceadminship',
+                    'read_keys': {'=': (
+                        'backend/raw_response',
+                        'auth/user',
+                    )},
+                    'write_keys': {'=': (
+                        'backend/raw_response',  # declared to ensure chaining
+                    )},
+                },
+            },
         },
-        'partial_update': {
-            ':post_handler': 'service.models.post_partial_update_serviceadminship',
-        },
+       #'partial_update': {
+       #    'processors': {
+       #        'custom_post_partial_update': {
+       #            '.processor': {},
+       #            'module_path': 'service.models.post_partial_update_serviceadminship',
+       #            'read_keys': {'=': (
+       #                'backend/raw_response',
+       #                'auth/user',
+       #            )},
+       #            'write_keys': {'=': (
+       #                'backend/raw_response',  # declared to ensure chaining
+       #            )},
+       #        },
+       #    },
+       #},
 
     },
 }
@@ -941,7 +977,8 @@ APP_CONFIG = {
     ':ordering_compat': True,
 
     'endpoints': {
-        'api/v2': {
+        'api': {
+            'prefix': 'api/v2',
             'collections': {
                 'users': USERS,
                 'services': SERVICES,
