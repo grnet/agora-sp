@@ -686,7 +686,7 @@ SERVICES = {
             'processors': {
                 'custom_post_create': {
                     '.processor': {},
-                    'module_path': 'service.models.post_create_service',
+                    'module_path': 'service.models.PostCreateService',
                     'read_keys': {'=': (
                         'backend/raw_response',
                         'auth/user',
@@ -935,10 +935,11 @@ SERVICE_ADMINS = {
             'processors': {
                 'custom_post_create': {
                     '.processor': {},
-                    'module_path': 'service.models.post_create_serviceadminship',
+                    'module_path': 'service.models.PostCreateServiceadminship',
                     'read_keys': {'=': (
                         'backend/raw_response',
                         'auth/user',
+                        'request/meta/headers',
                     )},
                     'write_keys': {'=': (
                         'backend/raw_response',  # declared to ensure chaining
@@ -946,21 +947,22 @@ SERVICE_ADMINS = {
                 },
             },
         },
-       #'partial_update': {
-       #    'processors': {
-       #        'custom_post_partial_update': {
-       #            '.processor': {},
-       #            'module_path': 'service.models.post_partial_update_serviceadminship',
-       #            'read_keys': {'=': (
-       #                'backend/raw_response',
-       #                'auth/user',
-       #            )},
-       #            'write_keys': {'=': (
-       #                'backend/raw_response',  # declared to ensure chaining
-       #            )},
-       #        },
-       #    },
-       #},
+       'partial_update': {
+           'processors': {
+               'custom_post_partial_update': {
+                   '.processor': {},
+                   'module_path': 'service.models.PostPartialUpdateServiceadminship',
+                   'read_keys': {'=': (
+                       'backend/raw_response',
+                       'auth/user',
+                       'request/meta/headers',
+                   )},
+                   'write_keys': {'=': (
+                       'backend/raw_response',  # declared to ensure chaining
+                   )},
+               },
+           },
+       },
 
     },
 }
