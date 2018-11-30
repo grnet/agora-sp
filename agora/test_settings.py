@@ -10,3 +10,7 @@ SQLITE = {
 DATABASES = SQLITE
 EMAIL_FILE_PATH = '/tmp/agora/agora_emails'
 EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+
+LOGGING = {
+    'version': 1            
+}

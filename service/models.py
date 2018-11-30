@@ -9,7 +9,8 @@ from common import helper
 from collections import OrderedDict
 from accounts.models import User
 from ckeditor_uploader.fields import RichTextUploadingField
-from agora.utils import SERVICE_ADMINSHIP_STATES, clean_html_fields
+from agora.utils import SERVICE_ADMINSHIP_STATES, clean_html_fields, \
+    publishMessage
 from agora.emails import send_email_application_created, \
     send_email_service_admin_assigned, send_email_application_evaluated
 
@@ -164,6 +165,7 @@ class Service(models.Model):
             self.competitors = None
 
         super(Service, self).save(*args, **kwargs)
+        publishMessage(self)
 
     @property
     def logo_absolute_path(self):
@@ -590,6 +592,7 @@ class Service(models.Model):
             ("name", self.name),
             ("short_description", self.short_description),
             ("description_external", self.description_external),
+            ("funders_for_service", self.funders_for_service),
             ("service_area", self.get_service_area_name()),
             ("value_to_customer", self.value_to_customer),
             ("request_procedures", self.request_procedures),
@@ -674,6 +677,7 @@ class ServiceDetails(models.Model):
     cost_to_build = models.CharField(max_length=255, default=None, blank=True, null=True)
     use_cases = RichTextUploadingField(default=None, blank=True, null=True)
     is_in_catalogue = models.BooleanField(default=False)
+    visible_to_marketplace = models.BooleanField(default=False)
 
     def __unicode__(self):
         primary_key = self.id_service.pk
@@ -740,6 +744,7 @@ class ServiceDetails(models.Model):
             self.decommissioning_procedure_url = None
 
         super(ServiceDetails, self).save(*args, **kwargs)
+        publishMessage(self)
 
     def as_short(self):
 
