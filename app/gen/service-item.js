@@ -55,7 +55,8 @@ export default AgoraGen.extend({
     filter: {
       active: true,
       serverSide: true,
-      search: false,
+      search: true,
+      searchPlaceholder: 'service_item.placeholders.search',
       meta: {
         fields: [
           field(

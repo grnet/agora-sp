@@ -28,7 +28,10 @@ const service_item = {
   'links': {
     'create_service_version': 'Create a new service version'
   },
-  'menu': 'Services'
+  'menu': 'Services',
+  'placeholders': {
+    'search': 'Search by service name or short desciption',
+  },
 };
 
 export { service_item };

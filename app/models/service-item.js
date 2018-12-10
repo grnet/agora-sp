@@ -20,6 +20,8 @@ export default DS.Model.extend({
   competitors: DS.attr(),
   logo: DS.attr(),
   request_procedures: DS.attr(),
+  service_area_ext: DS.attr(),
+  service_trl_ext: DS.attr(),
   customer_facing: DS.attr({
     type: 'boolean',
     label: 'service_item.fields.customer_facing',
@@ -101,6 +103,8 @@ export default DS.Model.extend({
       delete hash['service_admins_ids'];
       delete hash['pending_service_admins_ids'];
       delete hash['rejected_service_admins_ids'];
+      delete hash['service_area_ext'];
+      delete hash['service_trl_ext'];
       return hash;
     },
   },
