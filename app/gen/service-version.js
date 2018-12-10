@@ -22,14 +22,15 @@ export default AgoraGen.extend({
       label: 'service_version.menu'
     },
     sort: {
-      serverSide: false,
+      serverSide: true,
       active: true,
       fields: SORT_FIELDS
     },
     filter: {
       active: true,
       serverSide: true,
-      search: false,
+      search: true,
+      searchPlaceholder: 'service_version.placeholders.search',
       meta: {
         fields: [
           field(

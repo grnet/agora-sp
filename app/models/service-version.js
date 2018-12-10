@@ -28,6 +28,8 @@ export default DS.Model.extend({
   use_cases: DS.attr(),
   is_in_catalogue: DS.attr({ type: 'boolean' }),
   visible_to_marketplace: DS.attr({ type: 'boolean' }),
+  id_service_ext: DS.attr(),
+  status_ext: DS.attr(),
   cidl_url: Ember.computed('id', 'id_service.id', function() {
     const service =  Ember.get(this, 'id_service.id');
     const service_version = Ember.get(this, 'id');
@@ -44,5 +46,16 @@ export default DS.Model.extend({
     formAttrs: {
       optionLabelAttr: 'value'
     }
-  })
+  }),
+
+  __api__: {
+    serialize: function(hash, serializer) {
+      // do not send readonly keys to backend
+      delete hash['status_ext'];
+      delete hash['id_service_ext'];
+      return hash;
+    },
+  },
+
+
 });
