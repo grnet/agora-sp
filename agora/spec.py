@@ -9,9 +9,11 @@ SERVICE_FIELDS_COMMON = {
     'name': {
         '.field.string': {},
         '.flag.filterable': {},
+        '.flag.searchable': {},
         '.flag.orderable': {}},
     'short_description': {
         '.field.string': {},
+        '.flag.searchable': {},
         '.flag.nullable.default': {}},
     'description_external': {
         '.field.string': {},
@@ -44,6 +46,16 @@ SERVICE_FIELDS_COMMON = {
     'internal': {
         '.flag.filterable': {},
         '.field.boolean': {}},
+    'service_area_ext': {
+        '.field.string': {},
+        '.flag.readonly': {},
+        '.flag.orderable': {},
+        'source': 'service_area.name'},
+    'service_trl_ext': {
+        '.field.string': {},
+        '.flag.readonly': {},
+        '.flag.orderable': {},
+        'source': 'service_trl.value'},
 }
 
 
@@ -93,14 +105,6 @@ SERVICE_FIELDS_INT = {
 
 SERVICE_FIELDS_EXT = {
     # extended keys
-    'service_area_ext': {
-        '.field.string': {},
-        '.flag.readonly': {},
-        'source': 'service_area.name'},
-    'service_trl_ext': {
-        '.field.string': {},
-        '.flag.readonly': {},
-        'source': 'service_trl.value'},
     'service_owner_ext': {
         '.field.string': {},
         '.flag.readonly': {},
@@ -134,8 +138,10 @@ USERS = {
             '.field.uuid': {},
             '.flag.readonly': {}},
         'username': {
+            '.flag.orderable': {},
             '.field.string': {}},
         'email': {
+            '.flag.orderable': {},
             '.field.string': {}},
         'first_name': {
             '.field.string': {}},
@@ -144,6 +150,7 @@ USERS = {
         'is_staff': {
             '.field.boolean': {}},
         'is_active': {
+            '.flag.orderable': {},
             '.field.boolean': {}},
         'date_joined': {
             '.field.string': {}},
@@ -304,6 +311,7 @@ USER_ROLES = {
             '.field.uuid': {},
             '.flag.readonly': {}},
         'name': {
+            '.flag.orderable': {},
             '.field.string': {}},
     },
     'actions': {
@@ -323,7 +331,9 @@ SERVICE_AREAS = {
             '.field.uuid': {},
             '.flag.readonly': {}},
         'name': {
-            '.field.string': {}},
+            '.field.string': {},
+            '.flag.filterable': {},
+            '.flag.orderable': {}},
         'icon': {
             '.field.file': {},
             'default': ''},
@@ -383,8 +393,10 @@ CUSTOM_USERS = {
             '.field.uuid': {},
             '.flag.readonly': {}},
         'username': {
+            '.flag.orderable': {},
             '.field.string': {}},
         'email': {
+            '.flag.orderable': {},
             '.field.string': {}},
         'first_name': {
             '.field.string': {},
@@ -396,6 +408,7 @@ CUSTOM_USERS = {
             '.field.boolean': {},
             '.flag.nullable.default': {}},
         'is_active': {
+            '.flag.orderable': {},
             '.field.boolean': {}},
         'date_joined': {
             '.flag.readonly': {},
@@ -408,6 +421,7 @@ CUSTOM_USERS = {
             '.flag.readonly': {},
             '.flag.nullable.default': {}},
         'role': {
+            '.flag.orderable': {},
             '.flag.filterable': {},
             '.field.string': {}},
     },
@@ -435,6 +449,7 @@ CONTACT_INFORMATION = {
             '.flag.nullable.default': {}},
         'email': {
             '.field.string': {},
+            '.flag.orderable': {},
             '.flag.nullable.default': {}},
         'phone': {
             '.field.string': {},
@@ -465,15 +480,18 @@ INSTITUTIONS = {
             '.flag.readonly': {}},
         'name': {
             '.field.string': {},
+            '.flag.orderable': {},
             '.flag.nullable.default': {}},
         'address': {
             '.field.string': {},
             '.flag.nullable.default': {}},
         'country': {
             '.field.string': {},
+            '.flag.orderable': {},
             '.flag.nullable.default': {}},
         'department': {
             '.field.string': {},
+            '.flag.orderable': {},
             '.flag.nullable.default': {}},
     },
     'actions': {
@@ -527,6 +545,7 @@ COMPONENTS = {
             '.flag.readonly': {}},
         'name': {
             '.field.string': {},
+            '.flag.orderable': {},
             '.flag.nullable.default': {}},
         'description': {
             '.field.string': {},
@@ -558,9 +577,12 @@ COMPONENT_IMPLEMENTATIONS = {
             '.flag.filterable': {}},
         'name': {
             '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {},
             '.flag.nullable.default': {}},
         'description': {
             '.field.string': {},
+            '.flag.searchable': {},
             '.flag.nullable.default': {}},
     },
     'actions': {
@@ -591,6 +613,7 @@ COMPONENT_IMPLEMENTATION_DETAILS = {
             'to': '/api/v2/component-implementations'},
         'version': {
             '.field.string': {},
+            '.flag.orderable': {},
             '.flag.nullable.default': {}},
     },
     'actions': {
@@ -713,6 +736,7 @@ SERVICE_VERSIONS = {
             '.flag.filterable': {},
             '.flag.nullable.default': {}},
         'version': {
+            '.flag.orderable': {},
             '.field.string': {}},
         'features_current': {
             '.field.string': {},
@@ -777,18 +801,22 @@ SERVICE_VERSIONS = {
             '.flag.nullable.default': {}},
         'is_in_catalogue': {
             '.flag.filterable': {},
+            '.flag.orderable': {},
             '.field.boolean': {}},
         'visible_to_marketplace': {
             '.flag.filterable': {},
+            '.flag.orderable': {},
             '.field.boolean': {}},
         # extended fields
         'id_service_ext': {
             '.field.string': {},
+            '.flag.searchable': {},
             '.flag.readonly': {},
             'source': 'id_service.name'},
         'status_ext': {
             '.field.string': {},
             '.flag.readonly': {},
+            '.flag.orderable': {},
             'source': 'status.value'},
         },
     'actions': {
@@ -883,6 +911,7 @@ APP_CONFIG = {
     ':user_resolver': 'agora.utils.userid_extractor',
     ':permissions_namespace': 'agora.checks',
     ':filter_compat': True,
+    ':ordering_compat': True,
 
     'endpoints': {
         'api/v2': {
