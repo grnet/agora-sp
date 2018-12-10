@@ -48,7 +48,7 @@ export default AgoraGen.extend({
       ]
     },
     sort: {
-      serverSide: false,
+      serverSide: true,
       active: true,
       fields: ['full_name', 'email']
     },

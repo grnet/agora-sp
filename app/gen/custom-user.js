@@ -41,9 +41,9 @@ export default AgoraGen.extend({
       label: 'custom_user.menu',
     },
     sort: {
-      serverSide: false,
+      serverSide: true,
       active: true,
-      fields: ['username', 'email', 'is_active', 'is_staff']
+      fields: ['username', 'email', 'is_active', 'role']
     },
   },
   details: {
