@@ -80,8 +80,37 @@ SERVICE_FIELDS_INT = {
         'source': 'id_service_owner_id',
         'to': '/api/v2/service-owners',
         '.flag.nullable.default': {}},
+    'contact_information_external': {
+        '.field.struct': {},
+        'source': 'id_contact_information',
+        'fields': {
+            'id': {
+                '.field.uuid': {},
+                '.flag.readonly': {}},
+            'first_name': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+            'last_name': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+            'email': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+            'phone': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+            'full_name': {
+                '.field.string': {},
+                '.flag.readonly': {},
+                '.flag.nullable.default': {}},
+            'url': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+        }
+    },
     'id_contact_information': {
         '.field.ref': {},
+        '.flag.readonly': {},
         'source': 'id_contact_information_id',
         'to': '/api/v2/contact-information',
         '.flag.nullable.default': {}},
