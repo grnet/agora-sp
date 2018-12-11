@@ -5,7 +5,7 @@ import copy
 SERVICE_FIELDS_COMMON = {
     'id': {
         '.field.uuid': {},
-        '.flag.readonly': {}},
+        '.flag.nowrite': {}},
     'name': {
         '.field.string': {},
         '.flag.filterable': {},
@@ -49,12 +49,12 @@ SERVICE_FIELDS_COMMON = {
         '.field.boolean': {}},
     'service_area_ext': {
         '.field.string': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         '.flag.orderable': {},
         'source': 'service_area.name'},
     'service_trl_ext': {
         '.field.string': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         '.flag.orderable': {},
         'source': 'service_trl.value'},
 }
@@ -95,36 +95,36 @@ SERVICE_FIELDS_INT = {
         'default': ''},
     'service_admins_ids': {
         '.field.string': {},
-        '.flag.readonly': {}},
+        '.flag.nowrite': {}},
     'pending_service_admins_ids': {
         '.field.string': {},
-        '.flag.readonly': {}},
+        '.flag.nowrite': {}},
     'rejected_service_admins_ids': {
         '.field.string': {},
-        '.flag.readonly': {}},
+        '.flag.nowrite': {}},
 }
 
 SERVICE_FIELDS_EXT = {
     # extended keys
     'service_owner_ext': {
         '.field.string': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         'source': 'id_service_owner.full_name'},
     'contact_information_ext': {
         '.field.string': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         'source': 'id_contact_information.full_name'},
     'contact_information_internal_ext': {
         '.field.string': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         'source': 'id_contact_information_internal.full_name'},
     'user_customers_ext': {
         '.field.string': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         'source': 'user_customers_names'},
     'logo': {
         '.field.string': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         'source': 'logo_absolute_path'},
 }
 
@@ -137,7 +137,7 @@ USERS = {
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'username': {
             '.flag.orderable': {},
             '.field.string': {}},
@@ -174,7 +174,7 @@ USER_CUSTOMERS = {
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'name': {
             '.field.ref': {},
             'source': 'name_id',
@@ -203,7 +203,7 @@ SERVICE_DEPENDSON_SERVICES = {
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'id_service_one': {
             '.field.ref': {},
             'source': 'id_service_one_id',
@@ -221,7 +221,7 @@ SERVICE_EXTERNAL_SERVICES = {
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'id_service': {
             '.field.ref': {},
             'source': 'id_service_id',
@@ -239,7 +239,7 @@ SERVICE_STATUS = {
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'value': {
             '.field.string': {},
             '.flag.orderable': {},
@@ -262,7 +262,7 @@ SERVICE_TRLS = {
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'value': {
             '.field.string': {},
             '.flag.filterable': {},
@@ -285,7 +285,7 @@ EXTERNAL_SERVICES = {
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'name': {
             '.field.string': {}},
         'description': {
@@ -310,7 +310,7 @@ USER_ROLES = {
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'name': {
             '.flag.orderable': {},
             '.field.string': {}},
@@ -330,7 +330,7 @@ SERVICE_AREAS = {
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'name': {
             '.field.string': {},
             '.flag.filterable': {},
@@ -340,7 +340,7 @@ SERVICE_AREAS = {
             'default': ''},
         'icon_absolute_path': {
             '.field.string': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -358,7 +358,7 @@ SERVICE_OWNERS = {
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'first_name': {
             '.field.string': {}},
         'last_name': {
@@ -392,7 +392,7 @@ CUSTOM_USERS = {
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'username': {
             '.flag.orderable': {},
             '.flag.searchable': {},
@@ -416,14 +416,14 @@ CUSTOM_USERS = {
             '.flag.orderable': {},
             '.field.boolean': {}},
         'date_joined': {
-            '.flag.readonly': {},
+            '.flag.nowrite': {},
             '.field.datetime': {}},
         'avatar': {
             '.field.file': {},
             'default': ''},
         'shibboleth_id': {
             '.field.string': {},
-            '.flag.readonly': {},
+            '.flag.nowrite': {},
             '.flag.nullable.default': {}},
         'role': {
             '.flag.orderable': {},
@@ -445,7 +445,7 @@ CONTACT_INFORMATION = {
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'first_name': {
             '.field.string': {},
             '.flag.nullable.default': {}},
@@ -461,7 +461,7 @@ CONTACT_INFORMATION = {
             '.flag.nullable.default': {}},
         'full_name': {
             '.field.string': {},
-            '.flag.readonly': {},
+            '.flag.nowrite': {},
             '.flag.nullable.default': {}},
         'url': {
             '.field.string': {},
@@ -482,7 +482,7 @@ INSTITUTIONS = {
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'name': {
             '.field.string': {},
             '.flag.orderable': {},
@@ -514,7 +514,7 @@ SERVICE_OWNERS = {
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'first_name': {
             '.field.string': {},
             '.flag.nullable.default': {}},
@@ -547,7 +547,7 @@ COMPONENTS = {
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'name': {
             '.field.string': {},
             '.flag.orderable': {},
@@ -574,7 +574,7 @@ COMPONENT_IMPLEMENTATIONS = {
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'component_id': {
             '.field.ref': {},
             'source': 'component_id_id',
@@ -605,7 +605,7 @@ COMPONENT_IMPLEMENTATION_DETAILS = {
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'component_id': {
             '.flag.filterable': {},
             '.field.ref': {},
@@ -637,7 +637,7 @@ COMPONENT_IMPLEMENTATION_DETAIL_LINKS = {
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'service_id': {
             '.flag.filterable': {},
             '.field.ref': {},
@@ -714,32 +714,32 @@ EXT_SERVICES = {
 SERVICE_TYPES_FIELDS = {
     'id': {
         '.field.uuid': {},
-        '.flag.readonly': {}},
+        '.flag.nowrite': {}},
     'service_name': {
         '.field.string': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         'source': 'service_id.name'},
     'service_type': {
         '.field.string': {},
-        '.flag.readonly': {}},
+        '.flag.nowrite': {}},
     'in_catalogue': {
         '.field.boolean': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         '.flag.filterable': {},
         'source': 'service_details_id.is_in_catalogue'},
     'visible_to_marketplace': {
         '.field.boolean': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         '.flag.filterable': {},
         'source': 'service_details_id.visible_to_marketplace'},
     'external_service': {
         '.field.boolean': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         '.flag.filterable': {},
         'source': 'service_id.customer_facing'},
     'internal_service': {
         '.field.boolean': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         '.flag.filterable': {},
         'source': 'service_id.internal'},
 
@@ -762,7 +762,7 @@ SERVICE_VERSIONS = {
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'id_service': {
             '.field.ref': {},
             'source': 'id_service_id',
@@ -850,12 +850,12 @@ SERVICE_VERSIONS = {
         'id_service_ext': {
             '.field.string': {},
             '.flag.searchable': {},
-            '.flag.readonly': {},
+            '.flag.nowrite': {},
             'source': 'id_service.name'},
         'status_ext': {
             '.field.string': {},
-            '.flag.readonly': {},
             '.flag.orderable': {},
+            '.flag.nowrite': {},
             'source': 'status.value'},
         },
     'actions': {
@@ -874,7 +874,7 @@ SERVICE_ADMINS = {
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'state': {
             '.field.string': {},
             'default': 'pending',
@@ -888,34 +888,34 @@ SERVICE_ADMINS = {
             '.flag.filterable': {}},
         'service_name': {
             '.field.string': {},
-            '.flag.readonly': {},
+            '.flag.nowrite': {},
             '.flag.orderable': {},
             'source': 'service.name'},
         'admin_email': {
             '.field.string': {},
-            '.flag.readonly': {},
+            '.flag.nowrite': {},
             '.flag.orderable': {},
             'source': 'admin.email'},
         'admin_first_name': {
             '.field.string': {},
-            '.flag.readonly': {},
+            '.flag.nowrite': {},
             'source': 'admin.first_name'},
         'admin_last_name': {
             '.field.string': {},
-            '.flag.readonly': {},
+            '.flag.nowrite': {},
             'source': 'admin.last_name'},
         'admin_id': {
             '.field.uuid': {},
-            '.flag.readonly': {},
+            '.flag.nowrite': {},
             'source': 'admin.id'},
         'created_at': {
             '.field.datetime': {},
             '.flag.nullable': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'updated_at': {
             '.field.datetime': {},
             '.flag.nullable': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'admin': {
             '.field.ref': {},
             'source': 'admin_id',

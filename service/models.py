@@ -1180,6 +1180,7 @@ class ServiceAdminship(models.Model):
 class PostCreateService(ProcessorFactory):
     def process(self, data):
         user = data['auth/user']
+        service = data['backend/raw_response']
         ServiceAdminship.objects.create(
                 service=service,
                 admin=user,
