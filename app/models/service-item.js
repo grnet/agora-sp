@@ -40,11 +40,6 @@ export default DS.Model.extend({
       optionLabelAttr: 'name',
     },
   }),
-  id_contact_information: DS.belongsTo('contact-information', {
-    formAttrs: {
-      optionLabelAttr: 'full_name',
-    },
-  }),
   id_contact_information_internal: DS.belongsTo('contact-information', {
     formAttrs: {
       optionLabelAttr: 'full_name',
@@ -105,8 +100,50 @@ export default DS.Model.extend({
       delete hash['rejected_service_admins_ids'];
       delete hash['service_area_ext'];
       delete hash['service_trl_ext'];
+      delete hash['contact_external_full_name'];
+      // handle external contact information
+      let contact_external = {};
+      Object.entries(hash).forEach(([key, value]) => {
+        if (key.startsWith('contact_external')) {
+          let new_key = key.split('contact_external_')[1];
+          contact_external[new_key] = value;
+          delete hash[key];
+        }
+      })
+      hash['contact_information_external'] = contact_external;
       return hash;
     },
+    normalize: function(json) {
+      if (json['contact_information_external']) {
+        Object.entries(json['contact_information_external']).forEach(([key, value]) => {
+          let new_key = `contact_external_${key}`;
+          json[new_key] = value;
+        });
+        delete json['contact_information_external'];
+      }
+      return json;
+    }
   },
+
+
+  // contact information fields
+  contact_external_first_name: DS.attr({
+    label: 'service_item.fields.contact.first_name',
+  }),
+  contact_external_last_name: DS.attr({
+    label: 'service_item.fields.contact.last_name',
+  }),
+  contact_external_email: DS.attr({
+    label: 'service_item.fields.contact.email',
+  }),
+  contact_external_phone: DS.attr({
+    label: 'service_item.fields.contact.phone',
+  }),
+  contact_external_full_name: DS.attr({
+    label: 'service_item.fields.contact.full_name',
+  }),
+  contact_external_url: DS.attr({
+    label: 'service_item.fields.contact.url',
+  }),
 
 });

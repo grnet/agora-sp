@@ -39,6 +39,8 @@ export default AgoraGen.extend({
   common: {
     validators: {
       name: [validate.presence(true)],
+      contact_external_email: [validate.format({type: 'email', allowBlank: true})],
+      contact_external_url: [validate.format({type: 'url', allowBlank: true})]
     },
   },
   list: {

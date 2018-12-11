@@ -19,12 +19,6 @@ const TABLE_FIELDS = [
       label: 'service_item.fields.name'
     }
   ),
-  /*field(
-    'logo', {
-      type: 'text',
-      label: 'service_item.fields.logo'
-    }
-  ),*/
   field(
     'service_area_ext', {
       type: 'text',
@@ -52,9 +46,9 @@ const TABLE_FIELDS = [
     }
   ),
   field(
-    'id_contact_information.full_name', {
+    'contact_external_full_name', {
       type: 'text',
-      label: 'External Contact'
+      label: 'service_item.fields.contact_external'
     }
   ),
   field(
@@ -112,12 +106,6 @@ const BASIC_INFO_FIELDS =  [
     }
   ),
   field(
-    'id_contact_information.full_name', {
-      type: 'text',
-      label: 'Contact Information'
-    }
-  ),
-  field(
     'id_contact_information_internal.full_name', {
       type: 'text',
       label: 'Contact Information'
@@ -166,11 +154,6 @@ const BASIC_INFO_FORM_FIELDS_EDIT =  [
     }
   ),
   field(
-    'id_contact_information', {
-      label: 'contact_information.belongs.external'
-    }
-  ),
-  field(
     'id_contact_information_internal', {
       label: 'contact_information.belongs.internal'
     }
@@ -205,11 +188,6 @@ const BASIC_INFO_FORM_FIELDS_CREATE =  [
       label: 'service_item.fields.short_description',
       htmlSafe: true,
       formComponent: 'text-editor',
-    }
-  ),
-  field(
-    'id_contact_information', {
-      label: 'contact_information.belongs.external'
     }
   ),
   field(
@@ -315,6 +293,20 @@ const CUSTOM_VERSIONS_FIELDSET = {
       },
       label: 'service_item.links.create_service_version',
     }),
+  ]
+};
+
+const EXTERNAL_CONTACT_FIELDSET = {
+  label: 'service_item.cards.contact_external',
+  layout: {
+    flex: [50, 50, 50, 50, 100]
+  },
+  fields: [
+    'contact_external_first_name',
+    'contact_external_last_name',
+    'contact_external_email',
+    'contact_external_phone',
+    'contact_external_url'
   ]
 };
 
@@ -472,7 +464,8 @@ const DETAILS_FIELDSETS = [
   //this creates a new referenced table inside another gen
   CUSTOM_VERSIONS_FIELDSET,
   MORE_INFO_FIELDSET,
-  BUSINESS_INFO_FIELDSET
+  BUSINESS_INFO_FIELDSET,
+  EXTERNAL_CONTACT_FIELDSET,
 ];
 
 /********************************************
@@ -485,7 +478,8 @@ const CREATE_FIELDSETS = [
     fields: BASIC_INFO_FORM_FIELDS_CREATE
   },
   MORE_INFO_FIELDSET,
-  BUSINESS_INFO_FIELDSET
+  BUSINESS_INFO_FIELDSET,
+  EXTERNAL_CONTACT_FIELDSET,
 ];
 
 /********************************************
@@ -498,7 +492,8 @@ const EDIT_FIELDSETS = [
     fields: BASIC_INFO_FORM_FIELDS_EDIT
   },
   MORE_INFO_FIELDSET,
-  BUSINESS_INFO_FIELDSET
+  BUSINESS_INFO_FIELDSET,
+  EXTERNAL_CONTACT_FIELDSET,
 ];
 
 
