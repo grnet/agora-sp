@@ -22,6 +22,9 @@ const cidl = {
   'errors': {
     'service_type_unique': 'Service type should be unique',
   },
+  'placeholders': {
+    'search': 'Search by Service Type',
+  },
 };
 
 export { cidl };
