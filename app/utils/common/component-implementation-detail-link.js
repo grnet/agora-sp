@@ -22,10 +22,6 @@ const TABLE_FIELDS = [
       type: 'text',
       label: 'cidl.fields.service_type'
     }),
-    field('configuration_parameters', {
-      type: 'text',
-      label: 'cidl.fields.configuration_parameters'
-    }),
     field('service_id.name', {
       type: 'text',
       label: 'service_item.belongs.name'
