@@ -13,6 +13,9 @@ const component_implementation = {
     //'create_service_version': 'Create a new service version'
   },
   'menu': 'Components',
+  'placeholders': {
+    'search': 'Search by name',
+  },
 };
 
 export { component_implementation };

@@ -37,7 +37,7 @@ export default AgoraGen.extend({
       group: 'user-information'
     },
     sort: {
-      serverSide: false,
+      serverSide: true,
       active: true,
       fields: ['name', 'department', 'country']
     },

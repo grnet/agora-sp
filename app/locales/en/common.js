@@ -29,8 +29,14 @@ const common = {
     'title': 'Delete item',
     'ok': 'OK',
     'cancel': 'CANCEL',
+  },
+  'list': {
+    'filters': {
+      'title': 'Filters',
+      'apply.label': 'APPLY',
+      'clear.label': 'CLEAR',
+    }
   }
-
 };
 
 export { common };

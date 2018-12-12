@@ -2,7 +2,6 @@ import { field } from 'ember-gen';
 
 const SORT_FIELDS = [
   'name',
-  'component_id'
 ];
 
 /********************************************

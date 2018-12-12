@@ -40,10 +40,16 @@ export default AgoraGen.extend({
     menu: {
       label: 'custom_user.menu',
     },
+    filter: {
+      active: false,
+      serverSide: true,
+      search: true,
+      searchPlaceholder: 'custom_user.placeholders.search',
+    },
     sort: {
-      serverSide: false,
+      serverSide: true,
       active: true,
-      fields: ['username', 'email', 'is_active', 'is_staff']
+      fields: ['username', 'email', 'is_active', 'role']
     },
   },
   details: {

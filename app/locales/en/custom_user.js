@@ -25,7 +25,11 @@ const custom_user = {
     'date_joined': '',
     'shibboleth_id': ''
   },
-  'menu': 'Users'
+  'menu': 'Users',
+  'placeholders': {
+    'search': 'Search by username, full name or email',
+  },
+
 };
 
 export { custom_user };

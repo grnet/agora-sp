@@ -33,14 +33,13 @@ export default AgoraGen.extend({
       fields: TABLE_FIELDS
     },
     sort: {
-      serverSide: false,
+      serverSide: true,
       active: true,
       fields: SORT_FIELDS
     },
     filter: {
       active: true,
       serverSide: true,
-      search: false,
       meta: {
         fields: [
           field(

@@ -40,7 +40,8 @@ export default AgoraGen.extend({
     filter: {
       active: true,
       serverSide: true,
-      search: false,
+      search: true,
+      searchPlaceholder: 'cidl.placeholders.search',
       meta: {
         fields: TABLE_FILTERS,
       },

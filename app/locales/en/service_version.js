@@ -32,7 +32,10 @@ const service_version = {
     'disaster_recovery_plan': 'Disaster Recovery Plan',
     'usage_policy': 'Usage Policy'
   },
-  'menu': 'Service Versions'
+  'menu': 'Service Versions',
+  'placeholders': {
+    'search': 'Seach by service name',
+  },
 };
 
 export { service_version };

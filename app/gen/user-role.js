@@ -17,7 +17,7 @@ export default AgoraGen.extend({
       actions: ['gen:details', 'gen:edit', 'remove'],
     },
     sort: {
-      serverSide: false,
+      serverSide: true,
       active: true,
       fields: ['name']
     },

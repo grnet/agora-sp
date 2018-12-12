@@ -50,8 +50,7 @@ export default AgoraGen.extend({
       serverSide: true,
       active: true,
       fields: [
-        'value',
-        'order'
+        'value'
       ]
     },
   }

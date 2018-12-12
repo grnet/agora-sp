@@ -2,9 +2,10 @@ import { field } from 'ember-gen';
 import { TABLE_FILTERS } from './component-implementation-detail-link';
 
 const SORT_FIELDS = [
-  'status.value',
-  'id_service.name',
-  'version'
+  'is_in_catalogue',
+  'visible_to_marketplace',
+  'version',
+  'status_ext',
 ];
 
 const TABLE_FIELDS = [
@@ -12,7 +13,7 @@ const TABLE_FIELDS = [
     type: 'text',
     label: 'service_version.fields.version'
   }),
-  field('status.value', {
+  field('status_ext', {
     type: 'text',
     label: 'service_status.belongs.value'
   }),
@@ -20,7 +21,11 @@ const TABLE_FIELDS = [
     type: 'text',
     label: 'service_version.fields.in_catalogue'
   }),
-  field('id_service.name', {
+  field('visible_to_marketplace', {
+    type: 'text',
+    label: 'service_version.fields.visible_to_marketplace'
+  }),
+  field('id_service_ext', {
     type: 'text',
     label: 'service_item.belongs.name'
   })
