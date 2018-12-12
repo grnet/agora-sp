@@ -394,15 +394,19 @@ CUSTOM_USERS = {
             '.flag.readonly': {}},
         'username': {
             '.flag.orderable': {},
+            '.flag.searchable': {},
             '.field.string': {}},
         'email': {
             '.flag.orderable': {},
+            '.flag.searchable': {},
             '.field.string': {}},
         'first_name': {
             '.field.string': {},
+            '.flag.searchable': {},
             '.flag.nullable.default': {}},
         'last_name': {
             '.field.string': {},
+            '.flag.searchable': {},
             '.flag.nullable.default': {}},
         'is_staff': {
             '.field.boolean': {},
@@ -649,6 +653,7 @@ COMPONENT_IMPLEMENTATION_DETAIL_LINKS = {
             'source': 'service_component_implementation_detail_id_id',
             'to': '/api/v2/component-implementation-details'},
         'service_type': {
+            '.flag.searchable': {},
             '.field.string': {},
             '.flag.nullable.default': {}},
         'configuration_parameters': {
