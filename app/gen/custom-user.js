@@ -40,6 +40,12 @@ export default AgoraGen.extend({
     menu: {
       label: 'custom_user.menu',
     },
+    filter: {
+      active: false,
+      serverSide: true,
+      search: true,
+      searchPlaceholder: 'custom_user.placeholders.search',
+    },
     sort: {
       serverSide: true,
       active: true,
