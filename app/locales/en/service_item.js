@@ -11,16 +11,16 @@ const service_item = {
     'service_area': 'Service Area',
     'service_type': 'Service Type Description',
     'short_description': 'Short description',
-    'description_external': 'Description external',
-    'description_internal': 'Description internal',
-    'short_description': 'Short description',
+    'description_external': 'Description External',
+    'description_internal': 'Description Internal',
+    'short_description': 'Short Description',
     'funders': 'Funders for Service',
-    'procedures': 'Request procedures',
+    'procedures': 'Request Procedures',
     'risks': 'Risks',
     'competitors': 'Competitors',
     'customer_value': 'Value to Customer',
-    'customer_facing': 'External service',
-    'internal': 'Internal service',
+    'customer_facing': 'External Service',
+    'internal': 'Internal Service',
   },
   'belongs': {
     'name': 'Service Name'
@@ -30,7 +30,7 @@ const service_item = {
   },
   'menu': 'Services',
   'placeholders': {
-    'search': 'Search by service name or short desciption',
+    'search': 'Search by name or short desciption',
   },
 };
 

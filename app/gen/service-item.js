@@ -62,6 +62,7 @@ export default AgoraGen.extend({
           field(
             'service_trl', {
               modelName:'service_trl',
+              label: 'service_trl.belongs.value',
               type: 'model',
               displayAttr: 'value',
             }
