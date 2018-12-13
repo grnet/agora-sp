@@ -23,6 +23,7 @@ SERVICE_FIELDS_COMMON = {
         '.flag.nullable.default': {}},
     'service_type': {
         '.field.string': {},
+        '.flag.orderable': {},
         '.flag.nullable.default': {},
         '.flag.filterable': {}},
     'request_procedures': {
@@ -702,6 +703,10 @@ SERVICE_TYPES_FIELDS = {
     'id': {
         '.field.uuid': {},
         '.flag.readonly': {}},
+    'service_name': {
+        '.field.string': {},
+        '.flag.readonly': {},
+        'source': 'service_id.name'},
     'service_type': {
         '.field.string': {},
         '.flag.readonly': {}},
@@ -710,6 +715,23 @@ SERVICE_TYPES_FIELDS = {
         '.flag.readonly': {},
         '.flag.filterable': {},
         'source': 'service_details_id.is_in_catalogue'},
+    'visible_to_marketplace': {
+        '.field.boolean': {},
+        '.flag.readonly': {},
+        '.flag.filterable': {},
+        'source': 'service_details_id.visible_to_marketplace'},
+    'external_service': {
+        '.field.boolean': {},
+        '.flag.readonly': {},
+        '.flag.filterable': {},
+        'source': 'service_id.customer_facing'},
+    'internal_service': {
+        '.field.boolean': {},
+        '.flag.readonly': {},
+        '.flag.filterable': {},
+        'source': 'service_id.internal'},
+
+
 }
 
 SERVICE_TYPES = {
