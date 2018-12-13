@@ -4,7 +4,8 @@ import { fileField } from '../../lib/common';
 const SORT_FIELDS = [
   'name',
   'service_area_ext',
-  'service_trl_ext'
+  'service_trl_ext',
+  'service_type',
 ];
 
 /********************************************
