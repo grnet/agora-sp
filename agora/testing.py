@@ -16,8 +16,8 @@ class ApimasClient(Client):
         return super(ApimasClient, self).generic(*args, **kwargs)
 
 
-@pytest.fixture('function')
-def create_client(django_user_model, username, email, role, is_superuser=False):
+def create_client(django_user_model, username, email, role,
+                  is_superuser=False):
     user, created = \
         django_user_model.objects.get_or_create(username=username,
                                                 email=email,
@@ -32,6 +32,13 @@ def create_client(django_user_model, username, email, role, is_superuser=False):
     token = resp.json().get('auth_token')
     client.set_token(token)
     return client
+
+
+@pytest.fixture(name="create_client")
+def create_client_fixture(django_user_model, username, email, role,
+                          is_superuser=False):
+    return create_client(django_user_model, username, email, role,
+                         is_superuser)
 
 
 @pytest.fixture('function')
