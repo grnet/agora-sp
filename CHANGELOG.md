@@ -11,6 +11,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Upgrade apimas to 0.4a3.
 - Use specular instead of docular.
 - Update testing code to match latest pytest deprecation notes.
+- Update Django version to fix vulnerability issues.
 
 ## [0.9.8](https://github.com/grnet/agora-sp/compare/v0.9.7...v0.9.8) - 2018-01-03
 
