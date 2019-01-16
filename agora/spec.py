@@ -742,6 +742,11 @@ SERVICE_TYPES_FIELDS = {
         '.flag.nowrite': {},
         '.flag.filterable': {},
         'source': 'service_id.internal'},
+    'service_area': {
+        '.field.string': {},
+        '.flag.nowrite': {},
+        '.flag.filterable': {},
+        'source': 'service_id.service_area.name'},
 
 
 }
