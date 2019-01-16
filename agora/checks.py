@@ -23,7 +23,7 @@ class ServiceAdminship(object):
 
     @staticmethod
     def check_create_self(backend_input, instance, context):
-        auth_user = context.extract('auth/user')
+        auth_user = context['auth/user']
         try:
             sa_m.objects.get(admin=auth_user.id,
                              service=backend_input['service_id'])
@@ -35,7 +35,7 @@ class ServiceAdminship(object):
 
     @staticmethod
     def is_involved(instance, context):
-        auth_user = context.extract('auth/user')
+        auth_user = context['auth/user']
         user_sa = sa_m.objects.filter(admin=auth_user, state='approved')
         user_services = [x.service for x in user_sa]
         if instance.service in user_services:
@@ -61,7 +61,7 @@ class ServiceAdminship(object):
 
     @staticmethod
     def manages(context):
-        auth_user = context.extract('auth/user')
+        auth_user = context['auth/user']
         user_sa = sa_m.objects.filter(admin=auth_user, state='approved')
         user_services = [x.service for x in user_sa]
 
@@ -69,7 +69,7 @@ class ServiceAdminship(object):
 
     @staticmethod
     def manages_or_self_pending(context):
-        auth_user = context.extract('auth/user')
+        auth_user = context['auth/user']
         user_sa = sa_m.objects.filter(admin=auth_user, state='approved')
         services = [x.service for x in user_sa]
         self_pending = Q(admin=auth_user, state='pending')
@@ -78,7 +78,7 @@ class ServiceAdminship(object):
 
     @staticmethod
     def self_pending(context):
-        auth_user = context.extract('auth/user')
+        auth_user = context['auth/user']
 
         return Q(admin=auth_user, state='pending')
 
@@ -87,7 +87,7 @@ class Service(object):
 
     @staticmethod
     def owned(backend_input, instance, context):
-        auth_user = context.extract('auth/user')
+        auth_user = context['auth/user']
         auth_user_id = str(auth_user.id)
         service_admins_ids = instance.service_admins_ids.split(",")
         if auth_user_id in service_admins_ids:
@@ -100,7 +100,7 @@ class User(object):
 
     @staticmethod
     def me(context):
-        auth_user = context.extract('auth/user')
+        auth_user = context['auth/user']
         return Q(id=auth_user.id)
 
 
