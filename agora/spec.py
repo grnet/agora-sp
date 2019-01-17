@@ -747,6 +747,21 @@ SERVICE_TYPES_FIELDS = {
         '.flag.nowrite': {},
         '.flag.filterable': {},
         'source': 'service_id.service_area.name'},
+    'service_version': {
+        '.field.string': {},
+        '.flag.nowrite': {},
+        '.flag.filterable': {},
+        'source': 'service_details_id.version'},
+    'component_name': {
+        '.field.string': {},
+        '.flag.nowrite': {},
+        '.flag.filterable': {},
+        'source': 'service_component_implementation_detail_id.component_id.name'},
+    'component_version': {
+        '.field.string': {},
+        '.flag.nowrite': {},
+        '.flag.filterable': {},
+        'source': 'service_component_implementation_detail_id.version'},
 
 
 }
