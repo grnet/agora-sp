@@ -7,7 +7,7 @@ const {
 } = Ember;
 
 
-export default DS.Model.extend({
+let model =  DS.Model.extend({
   session: Ember.inject.service(),
   name: DS.attr(),
   service_type: DS.attr(),
@@ -147,3 +147,7 @@ export default DS.Model.extend({
   }),
 
 });
+
+model.reopenClass({ apimasResourceName: 'api/v2/services' })
+
+export default model;
