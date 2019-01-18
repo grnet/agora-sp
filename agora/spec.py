@@ -762,6 +762,11 @@ SERVICE_TYPES_FIELDS = {
         '.flag.nowrite': {},
         '.flag.filterable': {},
         'source': 'service_component_implementation_detail_id.version'},
+    'service_id': {
+        '.field.uuid': {},
+        '.flag.nowrite': {},
+        '.flag.filterable': {},
+        'source': 'service_id.id'},
 
 
 }
