@@ -108,6 +108,34 @@ SERVICE_FIELDS_INT = {
                 '.flag.nullable.default': {}},
         }
     },
+    'contact_information_internal': {
+        '.field.struct': {},
+        'source': 'id_contact_information_internal',
+        'fields': {
+            'id': {
+                '.field.uuid': {},
+                '.flag.readonly': {}},
+            'first_name': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+            'last_name': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+            'email': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+            'phone': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+            'full_name': {
+                '.field.string': {},
+                '.flag.readonly': {},
+                '.flag.nullable.default': {}},
+            'url': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+        }
+    },
     'id_contact_information': {
         '.field.ref': {},
         '.flag.readonly': {},
@@ -116,6 +144,7 @@ SERVICE_FIELDS_INT = {
         '.flag.nullable.default': {}},
     'id_contact_information_internal': {
         '.field.ref': {},
+        '.flag.readonly': {},
         'source': 'id_contact_information_internal_id',
         'to': '/api/v2/contact-information',
         '.flag.nullable.default': {}},
