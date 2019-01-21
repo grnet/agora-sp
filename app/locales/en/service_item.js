@@ -4,6 +4,7 @@ const service_item = {
     'details': 'Service Description',
     'business_info': 'Business Information',
     'contact_external': 'External Contact Information',
+    'contact_internal': 'Internal Contact Information',
   },
   'fields': {
     'name': 'Name',
@@ -23,6 +24,7 @@ const service_item = {
     'customer_facing': 'External Service',
     'internal': 'Internal Service',
     'contact_external': 'External Contact',
+    'contact_internal': 'Internal Contact',
     'contact': {
       'first_name': 'First name',
       'last_name': 'Last name',

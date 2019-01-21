@@ -39,8 +39,10 @@ export default AgoraGen.extend({
   common: {
     validators: {
       name: [validate.presence(true)],
-      contact_external_email: [validate.format({type: 'email', allowBlank: true})],
-      contact_external_url: [validate.format({type: 'url', allowBlank: true})]
+      contact_external_email: [validate.format({ type: 'email', allowBlank: true })],
+      contact_external_url: [validate.format({ type: 'url', allowBlank: true })],
+      contact_internal_email: [validate.format({ type: 'email', allowBlank: true })],
+      contact_internal_url: [validate.format({ type: 'url', allowBlank: true })],
     },
   },
   list: {
@@ -69,8 +71,8 @@ export default AgoraGen.extend({
               displayAttr: 'value',
             }
           ),
-          field('internal', {type: 'boolean'}),
-          field('customer_facing', {type: 'boolean'}),
+          field('internal', { type: 'boolean' }),
+          field('customer_facing', { type: 'boolean' }),
           field(
             'service_area', {
               modelName:'service_area',

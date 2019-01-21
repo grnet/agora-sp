@@ -52,9 +52,9 @@ const TABLE_FIELDS = [
     }
   ),
   field(
-    'id_contact_information_internal.full_name', {
+    'contact_internal_full_name', {
       type: 'text',
-      label: 'Internal Contact'
+      label: 'service_item.fields.contact_internal'
     }
   ),
 ];
@@ -103,12 +103,6 @@ const BASIC_INFO_FIELDS =  [
       label: 'service_item.fields.short_description',
       htmlSafe: true,
       formComponent: 'text-editor',
-    }
-  ),
-  field(
-    'id_contact_information_internal.full_name', {
-      type: 'text',
-      label: 'Contact Information'
     }
   ),
   'customer_facing',
@@ -188,11 +182,6 @@ const BASIC_INFO_FORM_FIELDS_CREATE =  [
       label: 'service_item.fields.short_description',
       htmlSafe: true,
       formComponent: 'text-editor',
-    }
-  ),
-  field(
-    'id_contact_information_internal', {
-      label: 'contact_information.belongs.internal'
     }
   ),
   'customer_facing',
@@ -309,6 +298,21 @@ const EXTERNAL_CONTACT_FIELDSET = {
     'contact_external_url'
   ]
 };
+
+const INTERNAL_CONTACT_FIELDSET = {
+  label: 'service_item.cards.contact_internal',
+  layout: {
+    flex: [50, 50, 50, 50, 100]
+  },
+  fields: [
+    'contact_internal_first_name',
+    'contact_internal_last_name',
+    'contact_internal_email',
+    'contact_internal_phone',
+    'contact_internal_url'
+  ]
+};
+
 
 const USER_CUSTOMERS_FIELDSET = {
   label: 'User Customers',
@@ -466,6 +470,7 @@ const DETAILS_FIELDSETS = [
   MORE_INFO_FIELDSET,
   BUSINESS_INFO_FIELDSET,
   EXTERNAL_CONTACT_FIELDSET,
+  INTERNAL_CONTACT_FIELDSET,
 ];
 
 /********************************************
@@ -480,6 +485,7 @@ const CREATE_FIELDSETS = [
   MORE_INFO_FIELDSET,
   BUSINESS_INFO_FIELDSET,
   EXTERNAL_CONTACT_FIELDSET,
+  INTERNAL_CONTACT_FIELDSET,
 ];
 
 /********************************************
@@ -494,6 +500,7 @@ const EDIT_FIELDSETS = [
   MORE_INFO_FIELDSET,
   BUSINESS_INFO_FIELDSET,
   EXTERNAL_CONTACT_FIELDSET,
+  INTERNAL_CONTACT_FIELDSET,
 ];
 
 
