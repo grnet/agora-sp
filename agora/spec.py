@@ -83,6 +83,7 @@ SERVICE_FIELDS_INT = {
     'contact_information_external': {
         '.field.struct': {},
         'source': 'id_contact_information',
+        '.flag.nullable.default': {},
         'fields': {
             'id': {
                 '.field.uuid': {},
@@ -111,6 +112,7 @@ SERVICE_FIELDS_INT = {
     'contact_information_internal': {
         '.field.struct': {},
         'source': 'id_contact_information_internal',
+        '.flag.nullable.default': {},
         'fields': {
             'id': {
                 '.field.uuid': {},
