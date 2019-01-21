@@ -86,7 +86,7 @@ SERVICE_FIELDS_INT = {
         'fields': {
             'id': {
                 '.field.uuid': {},
-                '.flag.readonly': {}},
+                '.flag.nowrite': {}},
             'first_name': {
                 '.field.string': {},
                 '.flag.nullable.default': {}},
@@ -101,7 +101,7 @@ SERVICE_FIELDS_INT = {
                 '.flag.nullable.default': {}},
             'full_name': {
                 '.field.string': {},
-                '.flag.readonly': {},
+                '.flag.nowrite': {},
                 '.flag.nullable.default': {}},
             'url': {
                 '.field.string': {},
@@ -114,7 +114,7 @@ SERVICE_FIELDS_INT = {
         'fields': {
             'id': {
                 '.field.uuid': {},
-                '.flag.readonly': {}},
+                '.flag.nowrite': {}},
             'first_name': {
                 '.field.string': {},
                 '.flag.nullable.default': {}},
@@ -129,7 +129,7 @@ SERVICE_FIELDS_INT = {
                 '.flag.nullable.default': {}},
             'full_name': {
                 '.field.string': {},
-                '.flag.readonly': {},
+                '.flag.nowrite': {},
                 '.flag.nullable.default': {}},
             'url': {
                 '.field.string': {},
@@ -138,13 +138,13 @@ SERVICE_FIELDS_INT = {
     },
     'id_contact_information': {
         '.field.ref': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         'source': 'id_contact_information_id',
         'to': '/api/v2/contact-information',
         '.flag.nullable.default': {}},
     'id_contact_information_internal': {
         '.field.ref': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         'source': 'id_contact_information_internal_id',
         'to': '/api/v2/contact-information',
         '.flag.nullable.default': {}},
