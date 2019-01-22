@@ -2,7 +2,9 @@ const service_item = {
   'cards': {
     'basic_information': 'Basic Service Information',
     'details': 'Service Description',
-    'business_info': 'Business Information'
+    'business_info': 'Business Information',
+    'contact_external': 'External Contact Information',
+    'contact_internal': 'Internal Contact Information',
   },
   'fields': {
     'name': 'Name',
@@ -21,6 +23,16 @@ const service_item = {
     'customer_value': 'Value to Customer',
     'customer_facing': 'External Service',
     'internal': 'Internal Service',
+    'contact_external': 'External Contact',
+    'contact_internal': 'Internal Contact',
+    'contact': {
+      'first_name': 'First name',
+      'last_name': 'Last name',
+      'full_name': 'Full name',
+      'url': 'URL',
+      'email': 'Email',
+      'phone': 'Phone',
+    },
   },
   'belongs': {
     'name': 'Service Name'
