@@ -80,13 +80,73 @@ SERVICE_FIELDS_INT = {
         'source': 'id_service_owner_id',
         'to': '/api/v2/service-owners',
         '.flag.nullable.default': {}},
+    'contact_information_external': {
+        '.field.struct': {},
+        'source': 'id_contact_information',
+        '.flag.nullable.default': {},
+        'fields': {
+            'id': {
+                '.field.uuid': {},
+                '.flag.nowrite': {}},
+            'first_name': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+            'last_name': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+            'email': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+            'phone': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+            'full_name': {
+                '.field.string': {},
+                '.flag.nowrite': {},
+                '.flag.nullable.default': {}},
+            'url': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+        }
+    },
+    'contact_information_internal': {
+        '.field.struct': {},
+        'source': 'id_contact_information_internal',
+        '.flag.nullable.default': {},
+        'fields': {
+            'id': {
+                '.field.uuid': {},
+                '.flag.nowrite': {}},
+            'first_name': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+            'last_name': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+            'email': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+            'phone': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+            'full_name': {
+                '.field.string': {},
+                '.flag.nowrite': {},
+                '.flag.nullable.default': {}},
+            'url': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+        }
+    },
     'id_contact_information': {
         '.field.ref': {},
+        '.flag.nowrite': {},
         'source': 'id_contact_information_id',
         'to': '/api/v2/contact-information',
         '.flag.nullable.default': {}},
     'id_contact_information_internal': {
         '.field.ref': {},
+        '.flag.nowrite': {},
         'source': 'id_contact_information_internal_id',
         'to': '/api/v2/contact-information',
         '.flag.nullable.default': {}},
@@ -360,13 +420,17 @@ SERVICE_OWNERS = {
             '.field.uuid': {},
             '.flag.nowrite': {}},
         'first_name': {
-            '.field.string': {}},
+            '.field.string': {},
+            '.flag.nullable.default': {}},
         'last_name': {
-            '.field.string': {}},
+            '.field.string': {},
+            '.flag.nullable.default': {}},
         'email': {
-            '.field.email': {}},
+            '.field.email': {},
+            '.flag.nullable.default': {}},
         'phone': {
-            '.field.string': {}},
+            '.field.string': {},
+            '.flag.nullable.default': {}},
         'id_service_owner': {
             '.field.ref': {},
             'source': 'id_service_owner_id',
@@ -506,39 +570,6 @@ INSTITUTIONS = {
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
     },
-}
-
-SERVICE_OWNERS = {
-    '.collection.django': {},
-    'model': 'owner.models.ServiceOwner',
-    'fields': {
-        'id': {
-            '.field.uuid': {},
-            '.flag.nowrite': {}},
-        'first_name': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'last_name': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'email': {
-            '.field.email': {},
-            '.flag.nullable.default': {}},
-        'phone': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'id_service_owner': {
-            '.field.ref': {},
-            'source': 'id_service_owner_id',
-            'to': '/api/v2/institutions'},
-    },
-    'actions': {
-        '.action-template.django.list': {},
-        '.action-template.django.retrieve': {},
-        '.action-template.django.create': {},
-        '.action-template.django.delete': {},
-        '.action-template.django.update': {},
-    }
 }
 
 COMPONENTS = {
@@ -1021,7 +1052,6 @@ APP_CONFIG = {
                 'user-roles': USER_ROLES,
                 'user_customers': USER_CUSTOMERS,
                 'service-areas': SERVICE_AREAS,
-                'service-owners': SERVICE_OWNERS,
                 'service-admins': SERVICE_ADMINS,
                 'custom-users': CUSTOM_USERS,
                 'contact-information': CONTACT_INFORMATION,
