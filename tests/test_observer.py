@@ -53,6 +53,10 @@ def test_services(observer, client, superadmin):
     assertions_crud('services', observer, superadmin)
 
 
+def test_components(observer, client, superadmin):
+    assertions_crud('components', observer, superadmin)
+
+
 # Tests for ServiceAdminship
 
 def test_serviceadminship(observer, superadmin, client):

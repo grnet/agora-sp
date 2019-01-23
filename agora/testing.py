@@ -161,5 +161,17 @@ RESOURCES_CRUD = {
     },
     'service_admins': {
         'url': '/api/v2/service-admins/'
-    }
+    },
+    'components': {
+        'url': '/api/v2/components/',
+        'create_data': {
+            'name': 'Paros',
+            'description': '<p>Description</p>',
+        },
+        'edit_data': {
+            'name': 'Antiparos',
+            'description': '<p>Description 2</p>',
+        },
+    },
+
 }

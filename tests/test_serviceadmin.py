@@ -50,6 +50,35 @@ def test_institutions(serviceadmin, client, superadmin):
     assertions_crud('institutions', serviceadmin, superadmin)
 
 
+def test_components(serviceadmin, client, superadmin):
+    """
+    Flow:
+    Serviceadmin creates components
+    Serviceadmin can retrieve service
+    Serviceadmin cannot update component
+    Serviceadmin cannot delete component
+    """
+    url = RESOURCES_CRUD['components']['url']
+    data = RESOURCES_CRUD['components']['create_data']
+    edit_data = RESOURCES_CRUD['components']['edit_data']
+
+    serviceadmin.post(url, data)
+    assert len(serviceadmin.get(url).json()) == 1
+    resp = serviceadmin.get(url)
+    id = resp.json()[0]['id']
+    resp = serviceadmin.get(url+id+'/')
+    for key, value in data.iteritems():
+        assert resp.json()[key] == value
+    resp = serviceadmin.put(url + id + '/',
+                            json.dumps(edit_data),
+                            content_type='application/json')
+    assert resp.status_code == 403
+    resp = serviceadmin.delete(url + id + '/')
+    assert resp.status_code == 403
+    resp = superadmin.delete(url+id+'/')
+    assert resp.status_code == 204
+
+
 def test_services(serviceadmin, serviceadmin2, client, superadmin):
     """
     Flow:
