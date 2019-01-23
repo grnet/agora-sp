@@ -75,3 +75,27 @@ def test_serviceadminship(observer, superadmin, client):
 
     resp = observer.post(sa_url, {'admin': 1, 'service': 1})
     assert resp.status_code == 403
+
+
+# Tests for resources with related data
+
+def test_component_implementations(observer, superadmin, component_id):
+    url = '/api/v2/component-implementations/'
+    data = {
+        'name': 'component category',
+        'component_id': component_id
+    }
+    resp = observer.post(url, data)
+    assert resp.status_code == 403
+
+
+def test_component_implementations_details(observer, superadmin, component_id,
+                                           component_implementation_id):
+    url = '/api/v2/component-implementation-details/'
+    data = {
+        'version': '1.0.0',
+        'component_id': component_id,
+        'component_implementation_id': component_implementation_id
+    }
+    resp = observer.post(url, data)
+    assert resp.status_code == 403

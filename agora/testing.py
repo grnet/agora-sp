@@ -1,4 +1,5 @@
 from django.test import Client
+from component.models import ServiceComponent, ServiceComponentImplementation
 import pytest
 
 
@@ -80,6 +81,24 @@ def observer(django_user_model):
                          'observer',
                          'observer@test.org',
                          'observer')
+
+
+@pytest.fixture('function')
+def component():
+    component, created = ServiceComponent.objects.get_or_create(name='Servers')
+    return component
+
+
+@pytest.fixture('function')
+def component_id(component):
+    return component.id
+
+
+@pytest.fixture('function')
+def component_implementation_id(component):
+    component_implementation, created = ServiceComponentImplementation.\
+            objects.get_or_create(name='Apache', component_id=component)
+    return component_implementation.id
 
 
 RESOURCES_CRUD = {

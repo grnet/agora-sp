@@ -122,3 +122,27 @@ def test_serviceadminship_create(admin, superadmin, client):
 
     # Clean up
     superadmin.delete(service_url+service_id+'/')
+
+
+# Tests for resources with related data
+
+def test_component_implementations(admin, superadmin, component_id):
+    url = '/api/v2/component-implementations/'
+    data = {
+        'name': 'component category',
+        'component_id': component_id
+    }
+    resp = admin.post(url, data)
+    assert resp.status_code == 201
+
+
+def test_component_implementations_details(admin, superadmin, component_id,
+                                           component_implementation_id):
+    url = '/api/v2/component-implementation-details/'
+    data = {
+        'version': '1.0.0',
+        'component_id': component_id,
+        'component_implementation_id': component_implementation_id
+    }
+    resp = admin.post(url, data)
+    assert resp.status_code == 201
