@@ -7,8 +7,12 @@ import {
   TABLE_FIELDS,
   SORT_FIELDS,
   DETAILS_FIELDSETS,
-  BASIC_INFO_FIELDS
 } from '../utils/common/service-version';
+
+const {
+  get,
+  computed,
+} = Ember;
 
 export default AgoraGen.extend({
   modelName: 'service_version',
@@ -21,6 +25,18 @@ export default AgoraGen.extend({
       version: [validate.presence(true)],
       status : [validate.presence(true)],
     },
+  },
+  abilityStates: {
+    owns_service: computed('model.service_admins_ids', 'user.id', function(){
+      let ids = get(this, 'model.service_admins_ids');
+      let user_id = get(this, 'user.id').toString();
+
+      if (!ids) { return false; }
+      let ids_arr = ids.split(',');
+
+      console.log(ids_arr.includes(user_id));
+      return ids_arr.includes(user_id);
+    }),
   },
   list: {
     page: {
@@ -94,7 +110,7 @@ export default AgoraGen.extend({
             id_service: service,
             param_service: params.service
           });
-        })
+        });
       }
 
       return store.createRecord('service-version', {});

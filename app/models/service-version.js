@@ -1,7 +1,7 @@
 import DS from 'ember-data';
 import gen from 'ember-gen/lib/attrs';
 
-export default DS.Model.extend({
+let model = DS.Model.extend({
   privacy_policy_has: DS.attr({ type: 'boolean' }),
   privacy_policy_url: DS.attr(),
   monitoring_has: DS.attr({ type: 'boolean' }),
@@ -30,6 +30,7 @@ export default DS.Model.extend({
   visible_to_marketplace: DS.attr({ type: 'boolean', default: false }),
   id_service_ext: DS.attr(),
   status_ext: DS.attr(),
+  service_admins_ids: DS.attr(),
   cidl_url: Ember.computed('id', 'id_service.id', function() {
     const service =  Ember.get(this, 'id_service.id');
     const service_version = Ember.get(this, 'id');
@@ -51,6 +52,7 @@ export default DS.Model.extend({
   __api__: {
     serialize: function(hash, serializer) {
       // do not send readonly keys to backend
+      delete hash['service_admins_ids'];
       delete hash['status_ext'];
       delete hash['id_service_ext'];
       return hash;
@@ -59,3 +61,7 @@ export default DS.Model.extend({
 
 
 });
+
+model.reopenClass({ apimasResourceName: 'api/v2/service-versions' });
+
+export default model;
