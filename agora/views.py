@@ -15,7 +15,9 @@ from django.http import HttpResponseRedirect
 from django.contrib.auth import user_logged_in
 from agora.emails import send_email_shib_user_created
 from agora.utils import load_resources
+from agora.serializers import UserMeSerializer
 
+from djoser import views as djoser_views
 
 
 logger = logging.getLogger(__name__)
@@ -165,3 +167,9 @@ def shibboleth_login(request):
     redirect_url = redirect_url + token_fragment
 
     return HttpResponseRedirect(redirect_url)
+
+
+class CustomMe(djoser_views.UserView):
+
+    def get_serializer_class(self):
+        return UserMeSerializer
