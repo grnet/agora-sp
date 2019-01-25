@@ -838,6 +838,10 @@ SERVICE_VERSIONS = {
             'source': 'id_service_id',
             'to': '/api/v2/services',
             '.flag.filterable': {}},
+        'service_admins_ids': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            '.flag.nullable.default': {}},
         'status': {
             '.field.ref': {},
             'source': 'status_id',

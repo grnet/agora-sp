@@ -748,6 +748,10 @@ class ServiceDetails(models.Model):
         super(ServiceDetails, self).save(*args, **kwargs)
         publishMessage(self)
 
+    @property
+    def service_admins_ids(self):
+        return self.id_service.service_admins_ids
+
     def as_short(self):
 
         return OrderedDict([
