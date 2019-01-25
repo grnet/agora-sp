@@ -829,6 +829,7 @@ SERVICE_TYPES = {
 SERVICE_VERSIONS = {
     '.collection.django': {},
     'model': 'service.models.ServiceDetails',
+    ':permissions_namespace': 'agora.checks.ServiceVersion',
     'fields': {
         'id': {
             '.field.uuid': {},
