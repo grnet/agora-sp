@@ -1,6 +1,7 @@
 import Ember from 'ember';
 import { AgoraGen } from '../lib/common';
 import { field } from 'ember-gen';
+import validate from 'ember-gen/validate';
 import {
   CREATE_FIELDSETS,
   TABLE_FIELDS,
@@ -14,6 +15,13 @@ export default AgoraGen.extend({
   order: 2,
   path: 'service-versions',
   resourceName: 'api/v2/service-versions',
+  common: {
+    validators: {
+      id_service: [validate.presence(true)],
+      version: [validate.presence(true)],
+      status : [validate.presence(true)],
+    },
+  },
   list: {
     page: {
       title: 'service_version.menu'
