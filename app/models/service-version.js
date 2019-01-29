@@ -26,8 +26,8 @@ export default DS.Model.extend({
   version: DS.attr(),
   cost_to_build: DS.attr(),
   use_cases: DS.attr(),
-  is_in_catalogue: DS.attr({ type: 'boolean' }),
-  visible_to_marketplace: DS.attr({ type: 'boolean' }),
+  is_in_catalogue: DS.attr({ type: 'boolean', default: false }),
+  visible_to_marketplace: DS.attr({ type: 'boolean', default: false }),
   id_service_ext: DS.attr(),
   status_ext: DS.attr(),
   cidl_url: Ember.computed('id', 'id_service.id', function() {
