@@ -1,5 +1,6 @@
 from django.test import Client
 from component.models import ServiceComponent, ServiceComponentImplementation
+from accounts.models import User
 import pytest
 
 
@@ -65,6 +66,12 @@ def serviceadmin(django_user_model):
                          'serviceadmin',
                          'serviceadmin@test.org',
                          'serviceadmin')
+
+
+@pytest.fixture('function')
+def serviceadmin_id(serviceadmin):
+    s, created = User.objects.get_or_create(username='serviceadmin')
+    return s.id
 
 
 @pytest.fixture('function')
@@ -172,6 +179,11 @@ RESOURCES_CRUD = {
             "internal": False,
             "customer_facing": True,
         },
+        'create_data_2': {
+            "name": "Test service 2",
+            "internal": False,
+            "customer_facing": True,
+        },
         'edit_data': {
             "name": "Test service 2",
             "internal": True,
@@ -192,5 +204,9 @@ RESOURCES_CRUD = {
             'description': '<p>Description 2</p>',
         },
     },
+    'service_versions': {
+        'url': '/api/v2/service-versions/'
+    },
+
 
 }
