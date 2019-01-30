@@ -208,6 +208,7 @@ RULES = [
     ('api/v2/service-versions', 'retrieve', 'anonymous', '*', '*', '*', '*'),
     ('api/v2/service-versions', 'create', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-versions', 'create', 'admin', '*', '*', '*', '*'),
+    ('api/v2/service-versions', 'create', 'serviceadmin', '*', 'create_owns_service', '*', '*'),
     ('api/v2/service-versions', 'update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-versions', 'update', 'admin', '*', '*', '*', '*'),
     ('api/v2/service-versions', 'update', 'serviceadmin', '*', 'update_owns_service', '*', '*'),
