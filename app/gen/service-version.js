@@ -27,7 +27,13 @@ export default AgoraGen.extend({
     },
   },
   abilityStates: {
-    owns_service: computed('model.service_admins_ids', 'user.id', function(){
+    create_owns_service: computed('role', function(){
+        if (get(this, 'role') === 'serviceadmin') {
+          return  get(this, 'session.session.authenticated.admins_services');
+        }
+        return true;
+    }),
+    update_owns_service: computed('model.service_admins_ids', 'user.id', function(){
       let ids = get(this, 'model.service_admins_ids');
       let user_id = get(this, 'user.id').toString();
 
