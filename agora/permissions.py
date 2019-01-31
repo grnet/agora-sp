@@ -1,5 +1,47 @@
 # COLUMNS = ('collection', 'action', 'role', 'filter', 'check' 'fields', 'comment')
 
+service_version_all = [
+     'id',
+     'id_service',
+     'version',
+     'status',
+     'features_current',
+     'features_future',
+     'usage_policy_has',
+     'usage_policy_url',
+     'privacy_policy_has',
+     'privacy_policy_url',
+     'user_documentation_has',
+     'user_documentation_url',
+     'operations_documentation_has',
+     'operations_documentation_url',
+     'monitoring_has',
+     'monitoring_url',
+     'accounting_has',
+     'accounting_url',
+     'business_continuity_plan_has',
+     'business_continuity_plan_url',
+     'disaster_recovery_plan_has',
+     'disaster_recovery_plan_url',
+     'decommissioning_procedure_has',
+     'decommissioning_procedure_url',
+     'cost_to_run',
+     'cost_to_build',
+     'use_cases',
+     'is_in_catalogue',
+     'visible_to_marketplace'
+]
+
+service_version_not = [
+    'is_in_catalogue',
+    'visible_to_marketplace'
+]
+
+service_version_limited = [x for x in service_version_all if x not in service_version_not]
+
+service_version_limited = ','.join(service_version_limited)
+
+
 RULES = [
     ('api/v2/services', 'list', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/services', 'list', 'admin', '*', '*', '*', '*'),
@@ -208,13 +250,13 @@ RULES = [
     ('api/v2/service-versions', 'retrieve', 'anonymous', '*', '*', '*', '*'),
     ('api/v2/service-versions', 'create', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-versions', 'create', 'admin', '*', '*', '*', '*'),
-    ('api/v2/service-versions', 'create', 'serviceadmin', '*', 'create_owns_service', '*', '*'),
+    ('api/v2/service-versions', 'create', 'serviceadmin', '*', 'create_owns_service', service_version_limited, '*'),
     ('api/v2/service-versions', 'update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-versions', 'update', 'admin', '*', '*', '*', '*'),
-    ('api/v2/service-versions', 'update', 'serviceadmin', '*', 'update_owns_service', '*', '*'),
+    ('api/v2/service-versions', 'update', 'serviceadmin', '*', 'update_owns_service', service_version_limited, '*'),
     ('api/v2/service-versions', 'partial_update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-versions', 'partial_update', 'admin', '*', '*', '*', '*'),
-    ('api/v2/service-versions', 'partial_update', 'serviceadmin', '*', 'update_owns_service', '*', '*'),
+    ('api/v2/service-versions', 'partial_update', 'serviceadmin', '*', 'update_owns_service', service_version_limited, '*'),
     ('api/v2/service-versions', 'destroy', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-versions', 'delete', 'superadmin', '*', '*', '*', '*'),
 
