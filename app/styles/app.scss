@@ -40,3 +40,10 @@ img.logo {
     color: $success-color !important;
   }
 }
+
+
+.checkbox-container + .md-input-hint {
+  position: relative;
+  top: -30px;
+  left: 8px;
+}
