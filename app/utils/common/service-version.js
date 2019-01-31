@@ -337,8 +337,76 @@ const BASIC_INFO_CREATE_FIELDSET = {
   ]
 };
 
+const BASIC_INFO_CREATE_FIELDSET_LIMITED = {
+  label: 'service_version.cards.basic_information',
+  layout: {
+    flex: [50, 50, 50, 25, 25, 100, 100, 100],
+  },
+  fields: [
+    field(
+      'version', {
+        label: 'service_version.fields.version',
+        type: 'text'
+      }
+    ),
+    field(
+      'id_service', {
+        label: 'service_item.belongs.name',
+      }
+    ),
+    field(
+      'status', {
+        label: 'service_status.belongs.value',
+      }
+    ),
+    field(
+      'is_in_catalogue', {
+        label: 'service_version.fields.in_catalogue',
+        hint: 'service_version.hints.in_catalogue',
+        disabled: true,
+      }
+    ),
+    field(
+      'visible_to_marketplace', {
+        label: 'service_version.fields.visible_to_marketplace',
+        hint: 'service_version.hints.visible_to_marketplace',
+        disabled: true,
+      }
+    ),
+  field(
+    'features_current', {
+      label: 'service_version.fields.features_current',
+      formComponent: 'text-editor',
+      htmlSafe: true
+    }
+  ),
+  field(
+    'features_future', {
+      label: 'service_version.fields.features_future',
+      type: 'text',
+      formComponent: 'text-editor',
+      htmlSafe: true
+    }
+  ),
+  field(
+    'use_cases', {
+      label: 'service_version.fields.use_cases',
+      type: 'text',
+      formComponent: 'text-editor',
+      htmlSafe: true
+    }
+  ),
+  ]
+};
+
 const CREATE_FIELDSETS = [
   BASIC_INFO_CREATE_FIELDSET,
+  URLS_FIELDSET,
+  FINANCIAL_FIELDSET,
+];
+
+const CREATE_FIELDSETS_LIMITED = [
+  BASIC_INFO_CREATE_FIELDSET_LIMITED,
   URLS_FIELDSET,
   FINANCIAL_FIELDSET,
 ];
@@ -347,5 +415,6 @@ export {
   TABLE_FIELDS,
   SORT_FIELDS,
   DETAILS_FIELDSETS,
-  CREATE_FIELDSETS
+  CREATE_FIELDSETS,
+  CREATE_FIELDSETS_LIMITED
 };

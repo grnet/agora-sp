@@ -4,6 +4,7 @@ import { field } from 'ember-gen';
 import validate from 'ember-gen/validate';
 import {
   CREATE_FIELDSETS,
+  CREATE_FIELDSETS_LIMITED,
   TABLE_FIELDS,
   SORT_FIELDS,
   DETAILS_FIELDSETS,
@@ -121,7 +122,13 @@ export default AgoraGen.extend({
 
       return store.createRecord('service-version', {});
     },
-    fieldsets: CREATE_FIELDSETS,
+    fieldsets: computed('', function() {
+      if (get(this, 'role') === 'serviceadmin') {
+        return CREATE_FIELDSETS_LIMITED;
+      } else {
+        return CREATE_FIELDSETS;
+      }
+    }),
     onSubmit(model) {
       const param = model.get('param_service');
       if(param) {
@@ -130,7 +137,13 @@ export default AgoraGen.extend({
     }
   },
   edit: {
-    fieldsets: CREATE_FIELDSETS
+    fieldsets: computed('', function() {
+      if (get(this, 'role') === 'serviceadmin') {
+        return CREATE_FIELDSETS_LIMITED;
+      } else {
+        return CREATE_FIELDSETS;
+      }
+    }),
   },
   details: {
     preloadModels: ['service-item'],
