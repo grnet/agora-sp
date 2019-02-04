@@ -95,6 +95,14 @@ class Service(object):
         else:
             raise ValidationError("Unauthorized action")
 
+    @staticmethod
+    def filter_owned(context):
+        auth_user = context['auth/user']
+        auth_user_id = str(auth_user.id)
+        user_sa = sa_m.objects.filter(admin__id=auth_user_id, state='approved')
+        services = [x.service.id for x in user_sa]
+        return Q(id__in=services)
+
 
 class User(object):
 

@@ -71,6 +71,9 @@ RULES = [
     ('api/v2/service-types', 'list', 'anonymous', '*', '*', '*', '*'),
     ('api/v2/service-types', 'retrieve', 'anonymous', '*', '*', '*', '*'),
 
+    ('api/v2/my-services', 'list', 'serviceadmin', 'filter_owned', '*', '*', '*'),
+    ('api/v2/my-services', 'retrieve', 'serviceadmin', '*', '*', '*', '*'),
+
     ('api/v2/service-trls', 'list', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-trls', 'list', 'admin', '*', '*', '*', '*'),
     ('api/v2/service-trls', 'list', 'serviceadmin', '*', '*', '*', '*'),

@@ -745,6 +745,27 @@ SERVICES = {
     },
 }
 
+MY_SERVICES = {
+    '.collection.django': {},
+    'model': 'service.models.Service',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.filterable': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
+    },
+    ':permissions_namespace': 'agora.checks.Service',
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+    },
+}
+
+
 EXT_SERVICES = {
     '.collection.django': {},
     'model': 'service.models.Service',
@@ -1083,6 +1104,7 @@ APP_CONFIG = {
                 'component-implementations': COMPONENT_IMPLEMENTATIONS,
                 'component-implementation-details': COMPONENT_IMPLEMENTATION_DETAILS,
                 'component-implementation-detail-links': COMPONENT_IMPLEMENTATION_DETAIL_LINKS,
+                'my-services': MY_SERVICES,
             },
         },
     },
