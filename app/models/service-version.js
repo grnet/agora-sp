@@ -31,6 +31,8 @@ let model = DS.Model.extend({
   id_service_ext: DS.attr(),
   status_ext: DS.attr(),
   service_admins_ids: DS.attr(),
+  // id_service_ext is service.name
+  id_service_ext: DS.attr(),
   cidl_url: Ember.computed('id', 'id_service.id', function() {
     const service =  Ember.get(this, 'id_service.id');
     const service_version = Ember.get(this, 'id');
@@ -43,6 +45,12 @@ let model = DS.Model.extend({
       optionLabelAttr: 'name'
     }
   }),
+  my_service: gen.belongsTo('my_service', {
+    formAttrs: {
+      optionLabelAttr: 'name'
+    }
+  }),
+
   status: gen.belongsTo('service_status', {
     formAttrs: {
       optionLabelAttr: 'value'
@@ -51,12 +59,26 @@ let model = DS.Model.extend({
 
   __api__: {
     serialize: function(hash, serializer) {
+      // Hacky trick: We want to send 'id_service' to backend and not 'my_service'
+      if ('my_service' in hash && hash['my_service']) {
+        let tmp = hash['my_service'];
+        tmp = tmp.replace('my-services', 'services');
+        hash['id_service'] = tmp;
+      }
+      delete hash['my_service'];
+
       // do not send readonly keys to backend
       delete hash['service_admins_ids'];
       delete hash['status_ext'];
       delete hash['id_service_ext'];
       return hash;
     },
+    normalize: function(json) {
+      if ('id_service' in json) {
+        json['my_service'] = json['id_service'].replace('services', 'my-services')
+      }
+      return json
+    }
   },
 
 

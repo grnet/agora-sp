@@ -128,7 +128,7 @@ const BASIC_INFO_FIELDSET = {
       }
     ),
     field(
-      'id_service.name', {
+      'id_service_ext', {
         label: 'service_item.belongs.name',
       }
     ),
@@ -350,7 +350,7 @@ const BASIC_INFO_CREATE_FIELDSET_LIMITED = {
       }
     ),
     field(
-      'id_service', {
+      'my_service', {
         label: 'service_item.belongs.name',
       }
     ),
