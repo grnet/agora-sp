@@ -28,7 +28,7 @@ export default AgoraGen.extend({
     },
   },
   abilityStates: {
-    create_owns_service: computed('role', function(){
+    create_owns_service: computed('role', 'session.session.authenticated.admins_services', function(){
         if (get(this, 'role') === 'serviceadmin') {
           return  get(this, 'session.session.authenticated.admins_services');
         }
