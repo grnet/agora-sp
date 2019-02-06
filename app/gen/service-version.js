@@ -41,7 +41,6 @@ export default AgoraGen.extend({
       if (!ids) { return false; }
       let ids_arr = ids.split(',');
 
-      console.log(ids_arr.includes(user_id));
       return ids_arr.includes(user_id);
     }),
   },
