@@ -704,6 +704,10 @@ COMPONENT_IMPLEMENTATION_DETAIL_LINKS = {
         'configuration_parameters': {
             '.field.string': {},
             '.flag.nullable.default': {}},
+        'service_admins_ids': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            '.flag.nullable.default': {}},
     },
     'actions': {
         '.action-template.django.list': {},

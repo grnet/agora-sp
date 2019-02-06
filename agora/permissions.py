@@ -344,10 +344,13 @@ RULES = [
     ('api/v2/component-implementation-detail-links', 'retrieve', 'observer', '*', '*', '*', '*'),
     ('api/v2/component-implementation-detail-links', 'create', 'superadmin', '*', 'unique', '*', '*'),
     ('api/v2/component-implementation-detail-links', 'create', 'admin', '*', 'unique', '*', '*'),
+    ('api/v2/component-implementation-detail-links', 'create', 'serviceadmin', '*', 'create_owns_service_unique', '*', '*'),
     ('api/v2/component-implementation-detail-links', 'update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/component-implementation-detail-links', 'update', 'admin', '*', '*', '*', '*'),
+    ('api/v2/component-implementation-detail-links', 'update', 'serviceadmin', '*', 'update_owns_service_unique', '*', '*'),
     ('api/v2/component-implementation-detail-links', 'partial_update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/component-implementation-detail-links', 'partial_update', 'admin', '*', '*', '*', '*'),
+    ('api/v2/component-implementation-detail-links', 'partial_update', 'serviceadmin', '*', 'update_owns_service_unique', '*', '*'),
     ('api/v2/component-implementation-detail-links', 'destroy', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/component-implementation-detail-links', 'delete', 'superadmin', '*', '*', '*', '*')
 ]
