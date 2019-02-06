@@ -164,6 +164,18 @@ class CIDL(object):
         except cidl_m.DoesNotExist:
             return
 
+    @staticmethod
+    def update_unique(backend_input, instance, context):
+
+        if (backend_input['service_type'] == instance.service_type):
+            return
+
+        try:
+            cidl_m.objects.get(service_type=backend_input['service_type'])
+            raise ValidationError("Service_type should be unique")
+        except cidl_m.DoesNotExist:
+            return
+
 
 class ServiceVersion(object):
 
