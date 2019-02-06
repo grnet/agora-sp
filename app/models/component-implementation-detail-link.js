@@ -44,10 +44,12 @@ export default DS.Model.extend({
       optionLabelAttr: 'version'
     }
   }),
+  service_admins_ids: DS.attr(),
   __api__: {
     serialize: function(hash, serializer) {
       //do not send unwanted keys to backend
       delete hash['service_component'];
+      delete hash['service_admins_ids'];
       delete hash['service_component_implementation'];
       return hash;
     }

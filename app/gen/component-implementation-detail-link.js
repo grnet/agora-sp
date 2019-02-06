@@ -9,6 +9,12 @@ import {
   TABLE_FILTERS,
 } from '../utils/common/component-implementation-detail-link';
 
+const {
+  get,
+  computed,
+} = Ember;
+
+
 export default AgoraGen.extend({
   modelName: 'component-implementation-detail-link',
   resourceName: 'api/v2/component-implementation-detail-links',
@@ -16,6 +22,22 @@ export default AgoraGen.extend({
   order: 4,
   abilityStates: {
     unique: true,
+    update_unique: true,
+    create_owns_service_unique: computed('role', 'session.session.authenticated.admins_services', function(){
+        if (get(this, 'role') === 'serviceadmin') {
+          return  get(this, 'session.session.authenticated.admins_services');
+        }
+        return true;
+    }),
+    update_owns_service_unique: computed('model.service_admins_ids', 'user.id', function(){
+      let ids = get(this, 'model.service_admins_ids');
+      let user_id = get(this, 'user.id').toString();
+
+      if (!ids) { return false; }
+      let ids_arr = ids.split(',');
+
+      return ids_arr.includes(user_id);
+    }),
   },
   common: {
     validators: {
