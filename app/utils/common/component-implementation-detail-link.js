@@ -40,7 +40,7 @@ const DETAILS_FIELDSETS = [
   {
     label: 'cidl.cards.components',
     layout: {
-      flex: [100, 100, 100 ,100]
+      flex: [100, 100, 100 ,100, 100]
     },
     fields: [
       field('service_component_implementation_detail_id.component_id.name', {
@@ -87,7 +87,7 @@ const DETAILS_FIELDSETS = [
 ];
 
 /********************************************
-                  EDIT VIEW
+                  CREATE VIEW
 ********************************************/
 
 const CREATE_FIELDSETS = [
@@ -112,7 +112,7 @@ const CREATE_FIELDSETS = [
       })
     ],
     layout: {
-      flex: [100, 100, 100, 100]
+      flex: [100, 100, 100, 100, 100]
     }
   },
   {
@@ -137,7 +137,7 @@ const CREATE_FIELDSETS = [
 
 const EDIT_FIELDSETS = [
   {
-    label: 'components',
+    label: 'cidl.cards.components',
     fields: [
       field('service_component', {
         label: 'component.belongs.name'
@@ -157,11 +157,11 @@ const EDIT_FIELDSETS = [
       }),
     ],
     layout: {
-      flex: [100, 100, 100, 100]
+      flex: [100, 100, 100, 100, 100]
     }
   },
   {
-    label: 'service version',
+    label: 'cidl.cards.service_version',
     fields: [
       field('service_id', {
         label: 'service_item.belongs.name'
