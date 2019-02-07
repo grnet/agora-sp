@@ -5,7 +5,9 @@ import {
   SORT_FIELDS,
   DETAILS_FIELDSETS,
   CREATE_FIELDSETS,
+  CREATE_FIELDSETS_LIMITED,
   EDIT_FIELDSETS,
+  EDIT_FIELDSETS_LIMITED,
   TABLE_FILTERS,
 } from '../utils/common/component-implementation-detail-link';
 
@@ -117,7 +119,14 @@ export default AgoraGen.extend({
         });
       });
     },
-    fieldsets: EDIT_FIELDSETS,
+    fieldsets: computed('', function() {
+      if (get(this, 'role') === 'serviceadmin') {
+        return EDIT_FIELDSETS_LIMITED;
+      } else {
+        return EDIT_FIELDSETS;
+      }
+    }),
+
     onSubmit(model) {
       // const params = Ember.getOwner(this).lookup('router:main').get('currentState.routerJsState.fullQueryParams');
       const param = model.get('param_service_version');
@@ -175,6 +184,12 @@ export default AgoraGen.extend({
         this.transitionTo(`/service-versions/${param}`);
       }
     },
-    fieldsets: CREATE_FIELDSETS,
+    fieldsets: computed('', function() {
+      if (get(this, 'role') === 'serviceadmin') {
+        return CREATE_FIELDSETS_LIMITED;
+      } else {
+        return CREATE_FIELDSETS;
+      }
+    }),
   },
 });
