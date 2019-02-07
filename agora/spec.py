@@ -5,7 +5,7 @@ import copy
 SERVICE_FIELDS_COMMON = {
     'id': {
         '.field.uuid': {},
-        '.flag.readonly': {}},
+        '.flag.nowrite': {}},
     'name': {
         '.field.string': {},
         '.flag.filterable': {},
@@ -49,12 +49,12 @@ SERVICE_FIELDS_COMMON = {
         '.field.boolean': {}},
     'service_area_ext': {
         '.field.string': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         '.flag.orderable': {},
         'source': 'service_area.name'},
     'service_trl_ext': {
         '.field.string': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         '.flag.orderable': {},
         'source': 'service_trl.value'},
 }
@@ -80,13 +80,73 @@ SERVICE_FIELDS_INT = {
         'source': 'id_service_owner_id',
         'to': '/api/v2/service-owners',
         '.flag.nullable.default': {}},
+    'contact_information_external': {
+        '.field.struct': {},
+        'source': 'id_contact_information',
+        '.flag.nullable.default': {},
+        'fields': {
+            'id': {
+                '.field.uuid': {},
+                '.flag.nowrite': {}},
+            'first_name': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+            'last_name': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+            'email': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+            'phone': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+            'full_name': {
+                '.field.string': {},
+                '.flag.nowrite': {},
+                '.flag.nullable.default': {}},
+            'url': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+        }
+    },
+    'contact_information_internal': {
+        '.field.struct': {},
+        'source': 'id_contact_information_internal',
+        '.flag.nullable.default': {},
+        'fields': {
+            'id': {
+                '.field.uuid': {},
+                '.flag.nowrite': {}},
+            'first_name': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+            'last_name': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+            'email': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+            'phone': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+            'full_name': {
+                '.field.string': {},
+                '.flag.nowrite': {},
+                '.flag.nullable.default': {}},
+            'url': {
+                '.field.string': {},
+                '.flag.nullable.default': {}},
+        }
+    },
     'id_contact_information': {
         '.field.ref': {},
+        '.flag.nowrite': {},
         'source': 'id_contact_information_id',
         'to': '/api/v2/contact-information',
         '.flag.nullable.default': {}},
     'id_contact_information_internal': {
         '.field.ref': {},
+        '.flag.nowrite': {},
         'source': 'id_contact_information_internal_id',
         'to': '/api/v2/contact-information',
         '.flag.nullable.default': {}},
@@ -95,36 +155,36 @@ SERVICE_FIELDS_INT = {
         'default': ''},
     'service_admins_ids': {
         '.field.string': {},
-        '.flag.readonly': {}},
+        '.flag.nowrite': {}},
     'pending_service_admins_ids': {
         '.field.string': {},
-        '.flag.readonly': {}},
+        '.flag.nowrite': {}},
     'rejected_service_admins_ids': {
         '.field.string': {},
-        '.flag.readonly': {}},
+        '.flag.nowrite': {}},
 }
 
 SERVICE_FIELDS_EXT = {
     # extended keys
     'service_owner_ext': {
         '.field.string': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         'source': 'id_service_owner.full_name'},
     'contact_information_ext': {
         '.field.string': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         'source': 'id_contact_information.full_name'},
     'contact_information_internal_ext': {
         '.field.string': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         'source': 'id_contact_information_internal.full_name'},
     'user_customers_ext': {
         '.field.string': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         'source': 'user_customers_names'},
     'logo': {
         '.field.string': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         'source': 'logo_absolute_path'},
 }
 
@@ -132,12 +192,12 @@ SERVICE_FIELDS_INTERNAL = dict(SERVICE_FIELDS_COMMON, **SERVICE_FIELDS_INT)
 SERVICE_FIELDS_EXTERNAL = dict(SERVICE_FIELDS_COMMON, **SERVICE_FIELDS_EXT)
 
 USERS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'accounts.models.User',
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'username': {
             '.flag.orderable': {},
             '.field.string': {}},
@@ -169,12 +229,12 @@ USERS = {
 }
 
 USER_CUSTOMERS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'service.models.UserCustomer',
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'name': {
             '.field.ref': {},
             'source': 'name_id',
@@ -198,12 +258,12 @@ USER_CUSTOMERS = {
 }
 
 SERVICE_DEPENDSON_SERVICES = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'service.models.Service_DependsOn_Service',
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'id_service_one': {
             '.field.ref': {},
             'source': 'id_service_one_id',
@@ -216,12 +276,12 @@ SERVICE_DEPENDSON_SERVICES = {
 }
 
 SERVICE_EXTERNAL_SERVICES = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'service.models.Service_ExternalService',
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'id_service': {
             '.field.ref': {},
             'source': 'id_service_id',
@@ -234,12 +294,12 @@ SERVICE_EXTERNAL_SERVICES = {
 }
 
 SERVICE_STATUS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'service.models.ServiceStatus',
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'value': {
             '.field.string': {},
             '.flag.orderable': {},
@@ -257,12 +317,12 @@ SERVICE_STATUS = {
 }
 
 SERVICE_TRLS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'service.models.ServiceTrl',
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'value': {
             '.field.string': {},
             '.flag.filterable': {},
@@ -280,12 +340,12 @@ SERVICE_TRLS = {
 }
 
 EXTERNAL_SERVICES = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'service.models.ExternalService',
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'name': {
             '.field.string': {}},
         'description': {
@@ -305,12 +365,12 @@ EXTERNAL_SERVICES = {
 }
 
 USER_ROLES = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'service.models.UserRole',
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'name': {
             '.flag.orderable': {},
             '.field.string': {}},
@@ -325,12 +385,12 @@ USER_ROLES = {
 }
 
 SERVICE_AREAS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'service.models.ServiceArea',
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'name': {
             '.field.string': {},
             '.flag.filterable': {},
@@ -340,7 +400,7 @@ SERVICE_AREAS = {
             'default': ''},
         'icon_absolute_path': {
             '.field.string': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -353,20 +413,24 @@ SERVICE_AREAS = {
 }
 
 SERVICE_OWNERS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'owner.models.ServiceOwner',
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'first_name': {
-            '.field.string': {}},
+            '.field.string': {},
+            '.flag.nullable.default': {}},
         'last_name': {
-            '.field.string': {}},
+            '.field.string': {},
+            '.flag.nullable.default': {}},
         'email': {
-            '.field.email': {}},
+            '.field.email': {},
+            '.flag.nullable.default': {}},
         'phone': {
-            '.field.string': {}},
+            '.field.string': {},
+            '.flag.nullable.default': {}},
         'id_service_owner': {
             '.field.ref': {},
             'source': 'id_service_owner_id',
@@ -386,13 +450,13 @@ SERVICE_OWNERS = {
 }
 
 CUSTOM_USERS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'accounts.models.User',
     ':permissions_namespace': 'agora.checks.User',
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'username': {
             '.flag.orderable': {},
             '.flag.searchable': {},
@@ -416,14 +480,14 @@ CUSTOM_USERS = {
             '.flag.orderable': {},
             '.field.boolean': {}},
         'date_joined': {
-            '.flag.readonly': {},
+            '.flag.nowrite': {},
             '.field.datetime': {}},
         'avatar': {
             '.field.file': {},
             'default': ''},
         'shibboleth_id': {
             '.field.string': {},
-            '.flag.readonly': {},
+            '.flag.nowrite': {},
             '.flag.nullable.default': {}},
         'role': {
             '.flag.orderable': {},
@@ -440,12 +504,12 @@ CUSTOM_USERS = {
 }
 
 CONTACT_INFORMATION = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'owner.models.ContactInformation',
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'first_name': {
             '.field.string': {},
             '.flag.nullable.default': {}},
@@ -461,7 +525,7 @@ CONTACT_INFORMATION = {
             '.flag.nullable.default': {}},
         'full_name': {
             '.field.string': {},
-            '.flag.readonly': {},
+            '.flag.nowrite': {},
             '.flag.nullable.default': {}},
         'url': {
             '.field.string': {},
@@ -477,12 +541,12 @@ CONTACT_INFORMATION = {
 }
 
 INSTITUTIONS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'owner.models.Institution',
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'name': {
             '.field.string': {},
             '.flag.orderable': {},
@@ -508,46 +572,13 @@ INSTITUTIONS = {
     },
 }
 
-SERVICE_OWNERS = {
-    '.field.collection.django': {},
-    'model': 'owner.models.ServiceOwner',
-    'fields': {
-        'id': {
-            '.field.uuid': {},
-            '.flag.readonly': {}},
-        'first_name': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'last_name': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'email': {
-            '.field.email': {},
-            '.flag.nullable.default': {}},
-        'phone': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'id_service_owner': {
-            '.field.ref': {},
-            'source': 'id_service_owner_id',
-            'to': '/api/v2/institutions'},
-    },
-    'actions': {
-        '.action-template.django.list': {},
-        '.action-template.django.retrieve': {},
-        '.action-template.django.create': {},
-        '.action-template.django.delete': {},
-        '.action-template.django.update': {},
-    }
-}
-
 COMPONENTS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'component.models.ServiceComponent',
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'name': {
             '.field.string': {},
             '.flag.orderable': {},
@@ -569,12 +600,12 @@ COMPONENTS = {
 }
 
 COMPONENT_IMPLEMENTATIONS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'component.models.ServiceComponentImplementation',
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'component_id': {
             '.field.ref': {},
             'source': 'component_id_id',
@@ -600,12 +631,12 @@ COMPONENT_IMPLEMENTATIONS = {
 }
 
 COMPONENT_IMPLEMENTATION_DETAILS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'component.models.ServiceComponentImplementationDetail',
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'component_id': {
             '.flag.filterable': {},
             '.field.ref': {},
@@ -631,13 +662,13 @@ COMPONENT_IMPLEMENTATION_DETAILS = {
 }
 
 COMPONENT_IMPLEMENTATION_DETAIL_LINKS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'component.models.ServiceDetailsComponent',
     ':permissions_namespace': 'agora.checks.CIDL',
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'service_id': {
             '.flag.filterable': {},
             '.field.ref': {},
@@ -671,7 +702,7 @@ COMPONENT_IMPLEMENTATION_DETAIL_LINKS = {
 }
 
 SERVICES = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'service.models.Service',
     'fields': SERVICE_FIELDS_INTERNAL,
     ':permissions_namespace': 'agora.checks.Service',
@@ -683,13 +714,25 @@ SERVICES = {
         '.action-template.django.update': {},
         '.action-template.django.partial_update': {},
         'create': {
-            ':post_handler': 'service.models.post_create_service',
+            'processors': {
+                'custom_post_create': {
+                    '.processor': {},
+                    'module_path': 'service.models.PostCreateService',
+                    'read_keys': {'=': (
+                        'backend/raw_response',
+                        'auth/user',
+                    )},
+                    'write_keys': {'=': (
+                        'backend/raw_response',
+                    )},
+                },
+            },
         },
     },
 }
 
 EXT_SERVICES = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'service.models.Service',
     'fields': SERVICE_FIELDS_EXTERNAL,
     'actions': {
@@ -702,40 +745,65 @@ EXT_SERVICES = {
 SERVICE_TYPES_FIELDS = {
     'id': {
         '.field.uuid': {},
-        '.flag.readonly': {}},
+        '.flag.nowrite': {}},
     'service_name': {
         '.field.string': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         'source': 'service_id.name'},
     'service_type': {
         '.field.string': {},
-        '.flag.readonly': {}},
+        '.flag.nowrite': {}},
     'in_catalogue': {
         '.field.boolean': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         '.flag.filterable': {},
         'source': 'service_details_id.is_in_catalogue'},
     'visible_to_marketplace': {
         '.field.boolean': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         '.flag.filterable': {},
         'source': 'service_details_id.visible_to_marketplace'},
     'external_service': {
         '.field.boolean': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         '.flag.filterable': {},
         'source': 'service_id.customer_facing'},
     'internal_service': {
         '.field.boolean': {},
-        '.flag.readonly': {},
+        '.flag.nowrite': {},
         '.flag.filterable': {},
         'source': 'service_id.internal'},
+    'service_area': {
+        '.field.string': {},
+        '.flag.nowrite': {},
+        '.flag.filterable': {},
+        'source': 'service_id.service_area.name'},
+    'service_version': {
+        '.field.string': {},
+        '.flag.nowrite': {},
+        '.flag.filterable': {},
+        'source': 'service_details_id.version'},
+    'component_name': {
+        '.field.string': {},
+        '.flag.nowrite': {},
+        '.flag.filterable': {},
+        'source': 'service_component_implementation_detail_id.component_id.name'},
+    'component_version': {
+        '.field.string': {},
+        '.flag.nowrite': {},
+        '.flag.filterable': {},
+        'source': 'service_component_implementation_detail_id.version'},
+    'service_id': {
+        '.field.uuid': {},
+        '.flag.nowrite': {},
+        '.flag.filterable': {},
+        'source': 'service_id.id'},
 
 
 }
 
 SERVICE_TYPES = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'component.models.ServiceDetailsComponent',
     'fields': SERVICE_TYPES_FIELDS,
     'actions': {
@@ -745,12 +813,12 @@ SERVICE_TYPES = {
 }
 
 SERVICE_VERSIONS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'service.models.ServiceDetails',
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'id_service': {
             '.field.ref': {},
             'source': 'id_service_id',
@@ -829,21 +897,23 @@ SERVICE_VERSIONS = {
         'is_in_catalogue': {
             '.flag.filterable': {},
             '.flag.orderable': {},
-            '.field.boolean': {}},
+            '.field.boolean': {},
+            'default': False},
         'visible_to_marketplace': {
             '.flag.filterable': {},
             '.flag.orderable': {},
-            '.field.boolean': {}},
+            '.field.boolean': {},
+            'default': False},
         # extended fields
         'id_service_ext': {
             '.field.string': {},
             '.flag.searchable': {},
-            '.flag.readonly': {},
+            '.flag.nowrite': {},
             'source': 'id_service.name'},
         'status_ext': {
             '.field.string': {},
-            '.flag.readonly': {},
             '.flag.orderable': {},
+            '.flag.nowrite': {},
             'source': 'status.value'},
         },
     'actions': {
@@ -856,13 +926,13 @@ SERVICE_VERSIONS = {
 }
 
 SERVICE_ADMINS = {
-    '.field.collection.django': {},
+    '.collection.django': {},
     'model': 'service.models.ServiceAdminship',
     ':permissions_namespace': 'agora.checks.ServiceAdminship',
     'fields': {
         'id': {
             '.field.uuid': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'state': {
             '.field.string': {},
             'default': 'pending',
@@ -876,34 +946,34 @@ SERVICE_ADMINS = {
             '.flag.filterable': {}},
         'service_name': {
             '.field.string': {},
-            '.flag.readonly': {},
+            '.flag.nowrite': {},
             '.flag.orderable': {},
             'source': 'service.name'},
         'admin_email': {
             '.field.string': {},
-            '.flag.readonly': {},
+            '.flag.nowrite': {},
             '.flag.orderable': {},
             'source': 'admin.email'},
         'admin_first_name': {
             '.field.string': {},
-            '.flag.readonly': {},
+            '.flag.nowrite': {},
             'source': 'admin.first_name'},
         'admin_last_name': {
             '.field.string': {},
-            '.flag.readonly': {},
+            '.flag.nowrite': {},
             'source': 'admin.last_name'},
         'admin_id': {
             '.field.uuid': {},
-            '.flag.readonly': {},
+            '.flag.nowrite': {},
             'source': 'admin.id'},
         'created_at': {
             '.field.datetime': {},
             '.flag.nullable': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'updated_at': {
             '.field.datetime': {},
             '.flag.nullable': {},
-            '.flag.readonly': {}},
+            '.flag.nowrite': {}},
         'admin': {
             '.field.ref': {},
             'source': 'admin_id',
@@ -920,11 +990,37 @@ SERVICE_ADMINS = {
         '.action-template.django.update': {},
         '.action-template.django.partial_update': {},
         'create': {
-            ':post_handler': 'service.models.post_create_serviceadminship',
+            'processors': {
+                'custom_post_create': {
+                    '.processor': {},
+                    'module_path': 'service.models.PostCreateServiceadminship',
+                    'read_keys': {'=': (
+                        'backend/raw_response',
+                        'auth/user',
+                        'request/meta/headers',
+                    )},
+                    'write_keys': {'=': (
+                        'backend/raw_response',  # declared to ensure chaining
+                    )},
+                },
+            },
         },
-        'partial_update': {
-            ':post_handler': 'service.models.post_partial_update_serviceadminship',
-        },
+       'partial_update': {
+           'processors': {
+               'custom_post_partial_update': {
+                   '.processor': {},
+                   'module_path': 'service.models.PostPartialUpdateServiceadminship',
+                   'read_keys': {'=': (
+                       'backend/raw_response',
+                       'auth/user',
+                       'request/meta/headers',
+                   )},
+                   'write_keys': {'=': (
+                       'backend/raw_response',  # declared to ensure chaining
+                   )},
+               },
+           },
+       },
 
     },
 }
@@ -941,7 +1037,8 @@ APP_CONFIG = {
     ':ordering_compat': True,
 
     'endpoints': {
-        'api/v2': {
+        'api': {
+            'prefix': 'api/v2',
             'collections': {
                 'users': USERS,
                 'services': SERVICES,
@@ -957,7 +1054,6 @@ APP_CONFIG = {
                 'user-roles': USER_ROLES,
                 'user_customers': USER_CUSTOMERS,
                 'service-areas': SERVICE_AREAS,
-                'service-owners': SERVICE_OWNERS,
                 'service-admins': SERVICE_ADMINS,
                 'custom-users': CUSTOM_USERS,
                 'contact-information': CONTACT_INFORMATION,

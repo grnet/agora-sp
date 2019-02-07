@@ -13,6 +13,7 @@ from agora.utils import SERVICE_ADMINSHIP_STATES, clean_html_fields, \
     publishMessage
 from agora.emails import send_email_application_created, \
     send_email_service_admin_assigned, send_email_application_evaluated
+from apimas.base import ProcessorFactory
 
 
 class ServiceArea(models.Model):
@@ -1176,24 +1177,32 @@ class ServiceAdminship(models.Model):
         super(ServiceAdminship, self).save(*args, **kwargs)
 
 
-def post_create_service(service, context):
-    user = context.extract('auth/user')
-    ServiceAdminship.objects.create(
-            service=service,
-            admin=user,
-            state='approved')
+class PostCreateService(ProcessorFactory):
+    def process(self, data):
+        user = data['auth/user']
+        service = data['backend/raw_response']
+        ServiceAdminship.objects.create(
+                service=service,
+                admin=user,
+                state='approved')
+        return {}
 
 
-def post_create_serviceadminship(sa, context):
-    user = context.extract('auth/user')
-    http_host = context.extract('request/meta/headers').get('HTTP_HOST', 'Agora')
+class PostCreateServiceadminship(ProcessorFactory):
+    def process(self, data):
+        user = data['auth/user']
+        http_host = data['request/meta/headers'].get('HTTP_HOST', 'Agora')
 
-    if sa.state == 'pending':
-        send_email_application_created(sa, http_host)
-    if sa.admin != user:
-        send_email_service_admin_assigned(sa, http_host)
+        sa = data['backend/raw_response']
+        if sa.state == 'pending':
+            send_email_application_created(sa, http_host)
+        if sa.admin != user:
+            send_email_service_admin_assigned(sa, http_host)
+        return {}
 
 
-def post_partial_update_serviceadminship(sa, context):
-    http_host = context.extract('request/meta/headers').get('HTTP_HOST', 'Agora')
-    send_email_application_evaluated(sa, http_host)
+class PostPartialUpdateServiceadminship(ProcessorFactory):
+    def process(self, data):
+        http_host = data['request/meta/headers'].get('HTTP_HOST', 'Agora')
+        send_email_application_evaluated(data['backend/raw_response'], http_host)
+        return {}

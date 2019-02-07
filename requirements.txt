@@ -1,8 +1,8 @@
 argo-ams-library==0.4.2
-apimas-django==0.4a1
-apimas==0.4a1
-docular==0.4a1
-Django==1.11.16
+apimas-django==0.4a3
+apimas==0.4a3
+specular==0.4a3
+Django==1.11.18
 django-ckeditor==5.2.2
 django-cors-headers==1.1.0
 django-rest-swagger==0.3.10
