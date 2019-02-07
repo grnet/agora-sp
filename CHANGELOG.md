@@ -4,15 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.9.9](https://github.com/grnet/agora-sp/compare/v0.9.8...v0.9.9) - 2018-02-07
 
 ### Changed
-
 - Upgrade apimas to 0.4a3.
 - Use specular instead of docular.
 - Update testing code to match latest pytest deprecation notes.
-- Update Django version to fix vulnerability issues.
 - Expose Service external/internal contact information as struct.
+
+### Fixed
+- Use default values in spec for not nullable fields in model.
+
+### Security
+- Update Django version to fix vulnerability issues.
 
 ## [0.9.8](https://github.com/grnet/agora-sp/compare/v0.9.7...v0.9.8) - 2018-01-03
 
