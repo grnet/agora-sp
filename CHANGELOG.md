@@ -4,12 +4,19 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [v0.9.7](https://github.com/grnet/agora-sp-admin/compare/v0.9.6...v0.9.7) - 2019-02-07
+
+### Added
+- Validations in service-version forms.
 
 ### Changed
-- Include external/internal conctact information in Service view.
+- Include external/internal contact information in Service view.
 - Remove contact information from sidebar navigation.
 - Use PATCH in all update actions.
+
+### Fixed
+- Use default values for some fields in service-version model to ensure API
+compatibility.
 
 ## [v0.9.6](https://github.com/grnet/agora-sp-admin/compare/v0.9.5...v0.9.6) - 2019-01-03
 
