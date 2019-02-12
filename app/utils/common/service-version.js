@@ -1,6 +1,13 @@
 import { field } from 'ember-gen';
 import { TABLE_FILTERS } from './component-implementation-detail-link';
 
+const {
+  get,
+  computed,
+} = Ember;
+
+
+
 const SORT_FIELDS = [
   'is_in_catalogue',
   'visible_to_marketplace',
@@ -206,6 +213,9 @@ const COMPONENT_LINKS_FIELDSET = {
               icon: 'delete',
               confirm: true,
               warn: true,
+              hidden: computed('role', function() {
+                return get(this, 'role') !== 'superadmin';
+              }),
               prompt: {
                 title: 'Remove service version component',
                 message: 'Are you sure you want to remove this service version component?',
@@ -214,21 +224,14 @@ const COMPONENT_LINKS_FIELDSET = {
               },
               action(route, model) {
                 model.destroyRecord();
-                //model.save();
               }
             },
-            /*goToDetails: {
-              label: 'details',
-              icon: 'remove red eye',
-              action(route, model) {
-                let resource = model.get('_internalModel.modelName'),
-                  dest_route = `${resource}.record.index`;
-                route.transitionTo(dest_route, model);
-              }
-            },*/
             goToEdit: {
               label: 'edit',
               icon: 'edit',
+              hidden: computed('role', function() {
+                return get(this, 'role') !== 'superadmin';
+              }),
               action(route, model) {
                 let resource = model.get('_internalModel.modelName'),
                   dest_route = `${resource}.record.edit.index`,
