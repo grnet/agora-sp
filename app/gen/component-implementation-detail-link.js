@@ -154,6 +154,9 @@ export default AgoraGen.extend({
     getModel(params) {
       const store = Ember.get(this, 'store');
 
+      let role =  get(this, 'session.session.authenticated.role'),
+        is_serviceadmin = role === 'serviceadmin';
+
       // prepopulate field only if query param exists
       if(params.service_version && params.service) {
         // get the service & service version from the id provided from query param
@@ -167,9 +170,20 @@ export default AgoraGen.extend({
           store.findRecord('service-version', params.service_version),
         ];
 
+        // my-service is needed for serviceadmins
+        if (is_serviceadmin) {
+          promises.push(store.findRecord('my-service', params.service));
+        }
+
         var promise = Ember.RSVP.all(promises).then((res) => {
           data.service_id = res[0];
           data.service_details_id = res[1];
+          // my_service_version is populated by service-version promise, while
+          // my_service from my-service promise
+          if (is_serviceadmin) {
+            data.my_service = res[2];
+            data.my_service_version = res[1];
+          }
         });
 
         return promise.then(function() {
