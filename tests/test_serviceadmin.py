@@ -75,7 +75,7 @@ def test_services(serviceadmin, serviceadmin2, client, superadmin):
     for key, value in data.iteritems():
         assert resp.json()[key] == value
     if edit_data:
-        resp = serviceadmin.put(url + id + '/',
+        resp = serviceadmin.patch(url + id + '/',
                 json.dumps(edit_data), content_type='application/json')
         assert resp.status_code == 200
         for key, value in edit_data.iteritems():
@@ -93,7 +93,7 @@ def test_services(serviceadmin, serviceadmin2, client, superadmin):
     for key, value in data.iteritems():
         assert resp.json()[key] == value
     if edit_data:
-        resp = serviceadmin.put(url + id + '/',
+        resp = serviceadmin.patch(url + id + '/',
                 json.dumps(edit_data), content_type='application/json')
         assert resp.status_code == 400
     resp = superadmin.delete(url+id+'/')
