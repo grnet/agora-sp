@@ -41,6 +41,8 @@ RULES = [
     ('api/v2/service-trls', 'create', 'admin', '*', '*', '*', '*'),
     ('api/v2/service-trls', 'update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-trls', 'update', 'admin', '*', '*', '*', '*'),
+    ('api/v2/service-trls', 'partial_update', 'admin', '*', '*', '*', '*'),
+    ('api/v2/service-trls', 'partial_update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-trls', 'destroy', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-trls', 'delete', 'superadmin', '*', '*', '*', '*'),
 
@@ -73,6 +75,8 @@ RULES = [
     ('api/v2/institutions', 'create', 'admin', '*', '*', '*', '*'),
     ('api/v2/institutions', 'update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/institutions', 'update', 'admin', '*', '*', '*', '*'),
+    ('api/v2/institutions', 'partial_update', 'superadmin', '*', '*', '*', '*'),
+    ('api/v2/institutions', 'partial_update', 'admin', '*', '*', '*', '*'),
     ('api/v2/institutions', 'destroy', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/institutions', 'delete', 'superadmin', '*', '*', '*', '*'),
 
@@ -88,6 +92,8 @@ RULES = [
     ('api/v2/user-roles', 'create', 'admin', '*', '*', '*', '*'),
     ('api/v2/user-roles', 'update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/user-roles', 'update', 'admin', '*', '*', '*', '*'),
+    ('api/v2/user-roles', 'partial_update', 'superadmin', '*', '*', '*', '*'),
+    ('api/v2/user-roles', 'partial_update', 'admin', '*', '*', '*', '*'),
     ('api/v2/user-roles', 'destroy', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/user-roles', 'delete', 'superadmin', '*', '*', '*', '*'),
 
@@ -103,6 +109,8 @@ RULES = [
     ('api/v2/user-customers', 'create', 'admin', '*', '*', '*', '*'),
     ('api/v2/user-customers', 'update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/user-customers', 'update', 'admin', '*', '*', '*', '*'),
+    ('api/v2/user-customers', 'partial_update', 'superadmin', '*', '*', '*', '*'),
+    ('api/v2/user-customers', 'partial_update', 'admin', '*', '*', '*', '*'),
     ('api/v2/user-customers', 'destroy', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/user-customers', 'delete', 'superadmin', '*', '*', '*', '*'),
 
@@ -113,6 +121,8 @@ RULES = [
     ('api/v2/custom-users', 'retrieve', 'serviceadmin', 'me', '*', '*', '*'),
     ('api/v2/custom-users', 'update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/custom-users', 'update', 'admin', '*', '*', '*', '*'),
+    ('api/v2/custom-users', 'partial_update', 'superadmin', '*', '*', '*', '*'),
+    ('api/v2/custom-users', 'partial_update', 'admin', '*', '*', '*', '*'),
     ('api/v2/custom-users', 'destroy', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/custom-users', 'delete', 'superadmin', '*', '*', '*', '*'),
 
@@ -147,6 +157,8 @@ RULES = [
     ('api/v2/contact-information', 'create', 'admin', '*', '*', '*', '*'),
     ('api/v2/contact-information', 'update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/contact-information', 'update', 'admin', '*', '*', '*', '*'),
+    ('api/v2/contact-information', 'partial_update', 'superadmin', '*', '*', '*', '*'),
+    ('api/v2/contact-information', 'partial_update', 'admin', '*', '*', '*', '*'),
     ('api/v2/contact-information', 'destroy', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/contact-information', 'delete', 'superadmin', '*', '*', '*', '*'),
 
@@ -162,6 +174,8 @@ RULES = [
     ('api/v2/contact_information_internal', 'create', 'admin', '*', '*', '*', '*'),
     ('api/v2/contact_information_internal', 'update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/contact_information_internal', 'update', 'admin', '*', '*', '*', '*'),
+    ('api/v2/contact_information_internal', 'partial_update', 'superadmin', '*', '*', '*', '*'),
+    ('api/v2/contact_information_internal', 'partial_update', 'admin', '*', '*', '*', '*'),
     ('api/v2/contact_information_internal', 'destroy', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/contact_information_internal', 'delete', 'superadmin', '*', '*', '*', '*'),
 
@@ -177,6 +191,8 @@ RULES = [
     ('api/v2/users', 'create', 'admin', '*', '*', '*', '*'),
     ('api/v2/users', 'update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/users', 'update', 'admin', '*', '*', '*', '*'),
+    ('api/v2/users', 'partial_update', 'superadmin', '*', '*', '*', '*'),
+    ('api/v2/users', 'partial_update', 'admin', '*', '*', '*', '*'),
     ('api/v2/users', 'destroy', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/users', 'delete', 'superadmin', '*', '*', '*', '*'),
 
@@ -194,6 +210,8 @@ RULES = [
     ('api/v2/service-versions', 'create', 'admin', '*', '*', '*', '*'),
     ('api/v2/service-versions', 'update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-versions', 'update', 'admin', '*', '*', '*', '*'),
+    ('api/v2/service-versions', 'partial_update', 'superadmin', '*', '*', '*', '*'),
+    ('api/v2/service-versions', 'partial_update', 'admin', '*', '*', '*', '*'),
     ('api/v2/service-versions', 'destroy', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-versions', 'delete', 'superadmin', '*', '*', '*', '*'),
 
@@ -209,6 +227,8 @@ RULES = [
     ('api/v2/service-status', 'create', 'admin', '*', '*', '*', '*'),
     ('api/v2/service-status', 'update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-status', 'update', 'admin', '*', '*', '*', '*'),
+    ('api/v2/service-status', 'partial_update', 'admin', '*', '*', '*', '*'),
+    ('api/v2/service-status', 'partial_update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-status', 'destroy', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-status', 'delete', 'superadmin', '*', '*', '*', '*'),
 
@@ -224,6 +244,8 @@ RULES = [
     ('api/v2/components', 'create', 'admin', '*', '*', '*', '*'),
     ('api/v2/components', 'update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/components', 'update', 'admin', '*', '*', '*', '*'),
+    ('api/v2/components', 'partial_update', 'superadmin', '*', '*', '*', '*'),
+    ('api/v2/components', 'partial_update', 'admin', '*', '*', '*', '*'),
     ('api/v2/components', 'destroy', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/components', 'delete', 'superadmin', '*', '*', '*', '*'),
 
@@ -239,6 +261,8 @@ RULES = [
     ('api/v2/component-implementations', 'create', 'admin', '*', '*', '*', '*'),
     ('api/v2/component-implementations', 'update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/component-implementations', 'update', 'admin', '*', '*', '*', '*'),
+    ('api/v2/component-implementations', 'partial_update', 'superadmin', '*', '*', '*', '*'),
+    ('api/v2/component-implementations', 'partial_update', 'admin', '*', '*', '*', '*'),
     ('api/v2/component-implementations', 'destroy', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/component-implementations', 'delete', 'superadmin', '*', '*', '*', '*'),
 
@@ -254,6 +278,8 @@ RULES = [
     ('api/v2/component-implementation-details', 'create', 'admin', '*', '*', '*', '*'),
     ('api/v2/component-implementation-details', 'update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/component-implementation-details', 'update', 'admin', '*', '*', '*', '*'),
+    ('api/v2/component-implementation-details', 'partial_update', 'superadmin', '*', '*', '*', '*'),
+    ('api/v2/component-implementation-details', 'partial_update', 'admin', '*', '*', '*', '*'),
     ('api/v2/component-implementation-details', 'destroy', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/component-implementation-details', 'delete', 'superadmin', '*', '*', '*', '*'),
 
@@ -269,6 +295,8 @@ RULES = [
     ('api/v2/component-implementation-detail-links', 'create', 'admin', '*', 'unique', '*', '*'),
     ('api/v2/component-implementation-detail-links', 'update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/component-implementation-detail-links', 'update', 'admin', '*', '*', '*', '*'),
+    ('api/v2/component-implementation-detail-links', 'partial_update', 'superadmin', '*', '*', '*', '*'),
+    ('api/v2/component-implementation-detail-links', 'partial_update', 'admin', '*', '*', '*', '*'),
     ('api/v2/component-implementation-detail-links', 'destroy', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/component-implementation-detail-links', 'delete', 'superadmin', '*', '*', '*', '*')
 ]

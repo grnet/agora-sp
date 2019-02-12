@@ -23,7 +23,7 @@ def assertions_crud(resource, user):
     assert len(user.get(url).json()) == 1
     id = resp.json()['id']
     if edit_data:
-        resp = user.put(
+        resp = user.patch(
             url + id + '/',
             json.dumps(edit_data),
             content_type='application/json')
