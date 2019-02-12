@@ -225,6 +225,7 @@ USERS = {
         '.action-template.django.create': {},
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
     }
 }
 
@@ -254,6 +255,7 @@ USER_CUSTOMERS = {
         '.action-template.django.create': {},
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
     }
 }
 
@@ -313,6 +315,7 @@ SERVICE_STATUS = {
         '.action-template.django.create': {},
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
         },
 }
 
@@ -336,6 +339,7 @@ SERVICE_TRLS = {
         '.action-template.django.create': {},
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
     },
 }
 
@@ -361,6 +365,7 @@ EXTERNAL_SERVICES = {
         '.action-template.django.create': {},
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
     },
 }
 
@@ -381,6 +386,7 @@ USER_ROLES = {
         '.action-template.django.create': {},
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
     },
 }
 
@@ -446,6 +452,7 @@ SERVICE_OWNERS = {
         '.action-template.django.create': {},
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
     },
 }
 
@@ -500,6 +507,7 @@ CUSTOM_USERS = {
         '.action-template.django.create': {},
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
     },
 }
 
@@ -537,6 +545,7 @@ CONTACT_INFORMATION = {
         '.action-template.django.create': {},
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
     },
 }
 
@@ -569,6 +578,7 @@ INSTITUTIONS = {
         '.action-template.django.create': {},
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
     },
 }
 
@@ -596,6 +606,7 @@ COMPONENTS = {
         '.action-template.django.create': {},
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
     },
 }
 
@@ -627,6 +638,7 @@ COMPONENT_IMPLEMENTATIONS = {
         '.action-template.django.create': {},
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
     },
 }
 
@@ -658,6 +670,7 @@ COMPONENT_IMPLEMENTATION_DETAILS = {
         '.action-template.django.create': {},
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
     },
 }
 
@@ -698,6 +711,7 @@ COMPONENT_IMPLEMENTATION_DETAIL_LINKS = {
         '.action-template.django.create': {},
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
     },
 }
 
@@ -922,6 +936,7 @@ SERVICE_VERSIONS = {
         '.action-template.django.create': {},
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
     },
 }
 
