@@ -19,7 +19,8 @@ export default Select.extend({
     mixin(this, {
       relatedQuery: computed('field.modelName', `object.${key}.id`, function() {
         let value = this.get(`object.${key}`);
-        return value ? query(this.get('store'), value) : Ember.A();
+        let value_id = this.get(`object.${key}.id`);
+        return value_id ? query(this.get('store'), value) : Ember.A();
       })
     })
   })
