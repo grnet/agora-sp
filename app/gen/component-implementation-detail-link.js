@@ -184,6 +184,8 @@ export default AgoraGen.extend({
 
       if(param) {
         this.transitionTo(`/service-versions/${param}`);
+      } else {
+        this.transitionTo('component-implementation-detail-link.record.index', model);
       }
     },
     fieldsets: computed('', function() {
