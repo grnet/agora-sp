@@ -186,92 +186,106 @@ const COMPONENT_LINKS_FIELDSET = {
   layout: {
     flex: [ 100, 100 ]
   },
-  fields: [
-    field('cidl', {
-      label: '',
-      modelName: 'component_implementation_detail_link',
-      displayComponent: 'gen-display-field-table',
-      valueQuery: (store, params, model, value) => {
-        if(model.get('id')) {
-          return store.query('component_implementation_detail_link', { service_details_id: model.get('id') });
-        }
-      },
-      modelMeta: {
-        /*filter: {
-          active: true,
-          serverSide: true,
-          search: false,
-          meta: {
-            fields: TABLE_FILTERS
+  fields: computed( 'role', 'user.id', 'model.service_admins_ids', function() {
+    let role = get(this, 'role');
+    let is_serviceadmin = role === 'serviceadmin';
+    let admins_ids = get(this, 'model.service_admins_ids');
+    let user_id = get(this, 'user.id').toString();
+
+    // Component creation button is visible if the user is admin/superadmin
+    // or is serviceadmin and owns the service of the service version
+    let show_button = false;
+    if (role === 'admin' || role === 'superadmin') {
+      show_button = true;
+    }
+    if (admins_ids.split(',').includes(user_id) && is_serviceadmin) {
+      show_button = true;
+    }
+
+
+      let cidl = field('cidl', {
+        label: '',
+        modelName: 'component_implementation_detail_link',
+        displayComponent: 'gen-display-field-table',
+        valueQuery: (store, params, model, value) => {
+          if(model.get('id')) {
+            return store.query('component_implementation_detail_link', { service_details_id: model.get('id') });
           }
-        },*/
-        row: {
-          actions: ['goToEdit', 'remove'],
-          actionsMap: {
-            remove: {
-              label: 'remove',
-              icon: 'delete',
-              confirm: true,
-              warn: true,
-              hidden: computed('role', function() {
-                return get(this, 'role') !== 'superadmin';
-              }),
-              prompt: {
-                title: 'Remove service version component',
-                message: 'Are you sure you want to remove this service version component?',
-                cancel: 'Cancel',
-                ok: 'Confirm'
+        },
+        modelMeta: {
+          row: {
+            actions: ['goToEdit', 'remove'],
+            actionsMap: {
+              remove: {
+                label: 'remove',
+                icon: 'delete',
+                confirm: true,
+                warn: true,
+                hidden: computed('role', function() {
+                  return get(this, 'role') !== 'superadmin';
+                }),
+                prompt: {
+                  title: 'Remove service version component',
+                  message: 'Are you sure you want to remove this service version component?',
+                  cancel: 'Cancel',
+                  ok: 'Confirm'
+                },
+                action(route, model) {
+                  model.destroyRecord();
+                }
               },
-              action(route, model) {
-                model.destroyRecord();
+              goToEdit: {
+                label: 'edit',
+                icon: 'edit',
+                hidden: computed('role', function() {
+                  return get(this, 'role') !== 'superadmin';
+                }),
+                action(route, model) {
+                  let resource = model.get('_internalModel.modelName'),
+                    dest_route = `${resource}.record.edit.index`,
+                    queryParams = {
+                      service_version: route.currentModel.id
+                    };
+                  route.transitionTo(dest_route, model, { queryParams });
+                }
               }
             },
-            goToEdit: {
-              label: 'edit',
-              icon: 'edit',
-              hidden: computed('role', function() {
-                return get(this, 'role') !== 'superadmin';
+            fields: [
+              field('service_component_implementation_detail_id.component_id.name', {
+                type: 'text',
+                label: 'component.belongs.name'
               }),
-              action(route, model) {
-                let resource = model.get('_internalModel.modelName'),
-                  dest_route = `${resource}.record.edit.index`,
-                  queryParams = {
-                    service_version: route.currentModel.id
-                  };
-                route.transitionTo(dest_route, model, { queryParams });
-              }
-            }
-          },
-          fields: [
-            field('service_component_implementation_detail_id.component_id.name', {
-              type: 'text',
-              label: 'component.belongs.name'
-            }),
-            field('service_component_implementation_detail_id.component_implementation_id.name', {
-              type: 'text',
-              label: 'component_implementation.belongs.name'
-            }),
-            field('service_component_implementation_detail_id.version', {
-              type: 'text',
-              label: 'component_implementation_detail.belongs.name'
-            }),
-            field('configuration_parameters', {
-              type: 'text',
-              label: 'cidl.fields.configuration_parameters'
-            }),
-          ]
+              field('service_component_implementation_detail_id.component_implementation_id.name', {
+                type: 'text',
+                label: 'component_implementation.belongs.name'
+              }),
+              field('service_component_implementation_detail_id.version', {
+                type: 'text',
+                label: 'component_implementation_detail.belongs.name'
+              }),
+              field('configuration_parameters', {
+                type: 'text',
+                label: 'cidl.fields.configuration_parameters'
+              }),
+            ]
+          }
         }
+      });
+      let button = field('cidl_url', {
+        displayComponent: 'cta-btn',
+        displayAttrs: {
+          hideLabel: true,
+          //classNames: ['cta-btn cta-btn--text-right']
+        },
+        label: 'cidl.links.create_cidl',
+      });
+      if (show_button) {
+        return [cidl, button];
+      } else {
+        return [cidl];
       }
-    }),
-    field('cidl_url', {
-      displayComponent: 'cta-btn',
-      displayAttrs: {
-        hideLabel: true,
-        //classNames: ['cta-btn cta-btn--text-right']
-      },
-      label: 'cidl.links.create_cidl',
-    }),
-  ]
+
+  })
 };
 
 const DETAILS_FIELDSETS = [
