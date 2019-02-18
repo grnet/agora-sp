@@ -205,6 +205,7 @@ class ServiceVersion(object):
 
         try:
             sa_m.objects.get(admin=auth_user_id,
+                             state='approved',
                              service=backend_input['id_service_id'])
         except sa_m.DoesNotExist:
             raise ValidationError(_('User should admin the service'))
