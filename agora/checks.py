@@ -57,7 +57,7 @@ class ServiceAdminship(object):
         input_state = backend_input['state']
 
         if (current_state, input_state) not in TRANSITIONS:
-            raise ValidationError("Transition not allowed")
+            raise ValidationError(_('Transition not allowed'))
 
     @staticmethod
     def manages(context):
@@ -93,7 +93,7 @@ class Service(object):
         if auth_user_id in service_admins_ids:
             return
         else:
-            raise ValidationError("Unauthorized action")
+            raise ValidationError(_('Unauthorized action'))
 
     @staticmethod
     def filter_owned(context):
@@ -118,7 +118,7 @@ class CIDL(object):
     def unique(backend_input, instance, context):
         try:
             cidl_m.objects.get(service_type=backend_input['service_type'])
-            raise ValidationError("Service_type should be unique")
+            raise ValidationError(_('Service_type should be unique'))
         except cidl_m.DoesNotExist:
             return
 
@@ -135,7 +135,7 @@ class CIDL(object):
             raise ValidationError(_('User should admin the service'))
         try:
             cidl_m.objects.get(service_type=backend_input['service_type'])
-            raise ValidationError("Service_type should be unique")
+            raise ValidationError(_('Service_type should be unique'))
         except cidl_m.DoesNotExist:
             return
 
@@ -147,7 +147,7 @@ class CIDL(object):
         service_admins_ids = instance.service_admins_ids.split(",")
 
         if auth_user_id not in service_admins_ids:
-            raise ValidationError("Unauthorized action")
+            raise ValidationError(_('Unauthorized action'))
 
         try:
             sa_m.objects.get(admin=auth_user_id,
@@ -160,7 +160,7 @@ class CIDL(object):
 
         try:
             cidl_m.objects.get(service_type=backend_input['service_type'])
-            raise ValidationError("Service_type should be unique")
+            raise ValidationError(_('Service_type should be unique'))
         except cidl_m.DoesNotExist:
             return
 
@@ -172,7 +172,7 @@ class CIDL(object):
 
         try:
             cidl_m.objects.get(service_type=backend_input['service_type'])
-            raise ValidationError("Service_type should be unique")
+            raise ValidationError(_('Service_type should be unique'))
         except cidl_m.DoesNotExist:
             return
 
@@ -195,7 +195,7 @@ class ServiceVersion(object):
         if auth_user_id in service_admins_ids:
             return
         else:
-            raise ValidationError("Unauthorized action")
+            raise ValidationError(_('Unauthorized action'))
 
     @staticmethod
     def create_owns_service(backend_input, instance, context):
