@@ -39,7 +39,11 @@ export default DS.Model.extend({
     formAttrs: {
       lookupField: 'service_id',
       changedChoices: function(store, value) {
-        return store.query('service-version', {id_service: Ember.get(value, 'id')});
+        const params = {
+          id_service: Ember.get(value, 'id'),
+          ordering: 'version',
+        };
+        return store.query('service-version', params);
       },
       optionLabelAttr: 'version'
     }
@@ -54,7 +58,11 @@ export default DS.Model.extend({
     formAttrs: {
       lookupField: 'my_service',
       changedChoices: function(store, value) {
-        return store.query('service-version', {id_service: Ember.get(value, 'id')});
+        const params = {
+          id_service: Ember.get(value, 'id'),
+          ordering: 'version',
+        }
+        return store.query('service-version', params);
       },
       optionLabelAttr: 'version'
     }
