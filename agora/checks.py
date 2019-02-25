@@ -17,7 +17,6 @@ class ServiceAdminship(object):
         'serviceadmin' and she/he does not already admin the service.
         The ServiceAdminship created by admins/superadmins has state
         'approved'.
-
         """
         admin = user_m.objects.get(id=backend_input['admin_id'])
         if admin.role != 'serviceadmin':
@@ -38,7 +37,6 @@ class ServiceAdminship(object):
         already admin the service.
         The ServiceAdminship created is not yet approved/rejected, so it is
         created with state 'pending'.
-
         """
         auth_user = context['auth/user']
         try:
@@ -59,7 +57,6 @@ class ServiceAdminship(object):
         Serviceadmins can also retrieve the ServiceAdminship for which they are
         admins regardlress of the state, so that they can view a
         ServiceAdminship request or revoke one.
-
         """
         auth_user = context['auth/user']
         user_sa = sa_m.objects.filter(admin=auth_user, state='approved')
@@ -75,7 +72,6 @@ class ServiceAdminship(object):
         """Check allowed transitions between ServiceAdminship instances.
 
         The transition between 'approved' and 'rejected' must go via 'pending'.
-
         """
         TRANSITIONS = set([
             ('pending', 'approved'),
@@ -141,7 +137,6 @@ class Service(object):
 
         A serviceadmin owns a Service if service's service_admins_ids
         computed property contains the id of the user.
-
         """
         auth_user = context['auth/user']
         auth_user_id = str(auth_user.id)
@@ -248,7 +243,6 @@ class CIDL(object):
         If a admin/superadmin updates a CIDL, the new service_type value should
         be unique.
         """
-
         if (backend_input['service_type'] == instance.service_type):
             return
 
@@ -265,11 +259,10 @@ class ServiceVersion(object):
     def update_owns_service(backend_input, instance, context):
         """ ServiceVersions update rules for serviceadmins.
 
-        Serviceadmins can update a ServiceVersion if they  own the Service of 
+        Serviceadmins can update a ServiceVersion if they  own the Service of
         the ServiceVersion. If they choose to update the Service, they should
         also own the new Service.
         """
-
         auth_user = context['auth/user']
         auth_user_id = str(auth_user.id)
         service_admins_ids = instance.service_admins_ids.split(",")
@@ -290,7 +283,6 @@ class ServiceVersion(object):
     def create_owns_service(backend_input, instance, context):
         """
         Serviceadmins can create ServiceVersion of Services the admin.
-
         """
         auth_user = context['auth/user']
         auth_user_id = str(auth_user.id)
