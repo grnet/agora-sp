@@ -143,6 +143,7 @@ class Service(models.Model):
 
 
     def save(self, *args, **kwargs):
+        self.name = self.name.strip()
         clean_html_fields(self)
         if not self.description_internal or self.description_internal == "":
             self.description_internal = None
