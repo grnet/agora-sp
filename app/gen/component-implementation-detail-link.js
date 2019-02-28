@@ -5,9 +5,17 @@ import {
   SORT_FIELDS,
   DETAILS_FIELDSETS,
   CREATE_FIELDSETS,
+  CREATE_FIELDSETS_LIMITED,
   EDIT_FIELDSETS,
+  EDIT_FIELDSETS_LIMITED,
   TABLE_FILTERS,
 } from '../utils/common/component-implementation-detail-link';
+
+const {
+  get,
+  computed,
+} = Ember;
+
 
 export default AgoraGen.extend({
   modelName: 'component-implementation-detail-link',
@@ -16,12 +24,30 @@ export default AgoraGen.extend({
   order: 4,
   abilityStates: {
     unique: true,
+    update_unique: true,
+    create_owns_service_unique: computed('role', 'session.session.authenticated.admins_services', function(){
+        if (get(this, 'role') === 'serviceadmin') {
+          return  get(this, 'session.session.authenticated.admins_services');
+        }
+        return true;
+    }),
+    update_owns_service_unique: computed('model.service_admins_ids', 'user.id', function(){
+      let ids = get(this, 'model.service_admins_ids');
+      let user_id = get(this, 'user.id').toString();
+
+      if (!ids) { return false; }
+      let ids_arr = ids.split(',');
+
+      return ids_arr.includes(user_id);
+    }),
   },
   common: {
     validators: {
       service_component_implementation_detail_id: [validate.presence(true)],
       service_details_id: [validate.presence(true)],
       service_id: [validate.presence(true)],
+      my_service: [validate.presence(true)],
+      my_service_version: [validate.presence(true)],
       service_type: [validate.presence(true)],
     },
   },
@@ -95,7 +121,14 @@ export default AgoraGen.extend({
         });
       });
     },
-    fieldsets: EDIT_FIELDSETS,
+    fieldsets: computed('', function() {
+      if (get(this, 'role') === 'serviceadmin') {
+        return EDIT_FIELDSETS_LIMITED;
+      } else {
+        return EDIT_FIELDSETS;
+      }
+    }),
+
     onSubmit(model) {
       // const params = Ember.getOwner(this).lookup('router:main').get('currentState.routerJsState.fullQueryParams');
       const param = model.get('param_service_version');
@@ -121,6 +154,9 @@ export default AgoraGen.extend({
     getModel(params) {
       const store = Ember.get(this, 'store');
 
+      let role =  get(this, 'session.session.authenticated.role'),
+        is_serviceadmin = role === 'serviceadmin';
+
       // prepopulate field only if query param exists
       if(params.service_version && params.service) {
         // get the service & service version from the id provided from query param
@@ -134,9 +170,20 @@ export default AgoraGen.extend({
           store.findRecord('service-version', params.service_version),
         ];
 
+        // my-service is needed for serviceadmins
+        if (is_serviceadmin) {
+          promises.push(store.findRecord('my-service', params.service));
+        }
+
         var promise = Ember.RSVP.all(promises).then((res) => {
           data.service_id = res[0];
           data.service_details_id = res[1];
+          // my_service_version is populated by service-version promise, while
+          // my_service from my-service promise
+          if (is_serviceadmin) {
+            data.my_service = res[2];
+            data.my_service_version = res[1];
+          }
         });
 
         return promise.then(function() {
@@ -151,8 +198,16 @@ export default AgoraGen.extend({
 
       if(param) {
         this.transitionTo(`/service-versions/${param}`);
+      } else {
+        this.transitionTo('component-implementation-detail-link.record.index', model);
       }
     },
-    fieldsets: CREATE_FIELDSETS,
+    fieldsets: computed('', function() {
+      if (get(this, 'role') === 'serviceadmin') {
+        return CREATE_FIELDSETS_LIMITED;
+      } else {
+        return CREATE_FIELDSETS;
+      }
+    }),
   },
 });

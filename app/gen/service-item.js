@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import validate from 'ember-gen/validate';
+import ENV from '../config/environment';
 import { field } from 'ember-gen';
 import { AgoraGen } from '../lib/common';
 import {
@@ -17,6 +18,7 @@ import {
 
 const {
   get,
+  set,
   computed,
 } = Ember;
 
@@ -115,5 +117,24 @@ export default AgoraGen.extend({
   },
   create: {
     fieldsets: CREATE_FIELDSETS,
+    onSubmit(model) {
+
+      let url = ENV.APP.backend_host + '/auth/me/'
+      let token = get(this, 'session.session.authenticated.auth_token');
+      return fetch(url, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': `Token ${token}`
+        },
+      }).then((resp) => {
+        return resp.json().then((json) => {
+          set(this, 'session.session.authenticated.admins_services', json['admins_services']);
+          this.transitionTo('service-item.record.index', model);
+        })
+      })
+
+    }
   },
 });

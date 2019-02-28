@@ -4,11 +4,16 @@ import { field } from 'ember-gen';
 import validate from 'ember-gen/validate';
 import {
   CREATE_FIELDSETS,
+  CREATE_FIELDSETS_LIMITED,
   TABLE_FIELDS,
   SORT_FIELDS,
   DETAILS_FIELDSETS,
-  BASIC_INFO_FIELDS
 } from '../utils/common/service-version';
+
+const {
+  get,
+  computed,
+} = Ember;
 
 export default AgoraGen.extend({
   modelName: 'service_version',
@@ -21,6 +26,23 @@ export default AgoraGen.extend({
       version: [validate.presence(true)],
       status : [validate.presence(true)],
     },
+  },
+  abilityStates: {
+    create_owns_service: computed('role', 'session.session.authenticated.admins_services', function(){
+        if (get(this, 'role') === 'serviceadmin') {
+          return  get(this, 'session.session.authenticated.admins_services');
+        }
+        return true;
+    }),
+    update_owns_service: computed('model.service_admins_ids', 'user.id', function(){
+      let ids = get(this, 'model.service_admins_ids');
+      let user_id = get(this, 'user.id').toString();
+
+      if (!ids) { return false; }
+      let ids_arr = ids.split(',');
+
+      return ids_arr.includes(user_id);
+    }),
   },
   list: {
     page: {
@@ -94,12 +116,18 @@ export default AgoraGen.extend({
             id_service: service,
             param_service: params.service
           });
-        })
+        });
       }
 
       return store.createRecord('service-version', {});
     },
-    fieldsets: CREATE_FIELDSETS,
+    fieldsets: computed('', function() {
+      if (get(this, 'role') === 'serviceadmin') {
+        return CREATE_FIELDSETS_LIMITED;
+      } else {
+        return CREATE_FIELDSETS;
+      }
+    }),
     onSubmit(model) {
       const param = model.get('param_service');
       if(param) {
@@ -108,7 +136,13 @@ export default AgoraGen.extend({
     }
   },
   edit: {
-    fieldsets: CREATE_FIELDSETS
+    fieldsets: computed('', function() {
+      if (get(this, 'role') === 'serviceadmin') {
+        return CREATE_FIELDSETS_LIMITED;
+      } else {
+        return CREATE_FIELDSETS;
+      }
+    }),
   },
   details: {
     preloadModels: ['service-item'],

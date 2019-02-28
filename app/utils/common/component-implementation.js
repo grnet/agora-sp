@@ -57,7 +57,7 @@ const DETAILS_FIELDSETS = [
 
 const CREATE_FIELDSETS = [
   {
-    label: 'Component Category',
+    label: 'component_implementation.cards.basic_information',
     fields: [
       field('name', {
         type: 'text',

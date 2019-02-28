@@ -32,6 +32,10 @@ const service_version = {
     'disaster_recovery_plan': 'Disaster Recovery Plan',
     'usage_policy': 'Usage Policy'
   },
+  'hints': {
+    'visible_to_marketplace': 'Only admins can edit',
+    'in_catalogue': 'Only admins can edit',
+  },
   'menu': 'Service Versions',
   'placeholders': {
     'search': 'Seach by service name',
