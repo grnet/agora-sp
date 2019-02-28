@@ -15,6 +15,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Trim Service name before saving.
 
+### Security
+- Update Django version to fix vulnerability issues.
+
 ## [0.9.10](https://github.com/grnet/agora-sp/compare/v0.9.9...v0.9.10) - 2018-02-12
 
 ### Fixed
