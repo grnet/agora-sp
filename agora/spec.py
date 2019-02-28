@@ -704,6 +704,10 @@ COMPONENT_IMPLEMENTATION_DETAIL_LINKS = {
         'configuration_parameters': {
             '.field.string': {},
             '.flag.nullable.default': {}},
+        'service_admins_ids': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            '.flag.nullable.default': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -744,6 +748,27 @@ SERVICES = {
         },
     },
 }
+
+MY_SERVICES = {
+    '.collection.django': {},
+    'model': 'service.models.Service',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.filterable': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
+    },
+    ':permissions_namespace': 'agora.checks.Service',
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+    },
+}
+
 
 EXT_SERVICES = {
     '.collection.django': {},
@@ -829,6 +854,7 @@ SERVICE_TYPES = {
 SERVICE_VERSIONS = {
     '.collection.django': {},
     'model': 'service.models.ServiceDetails',
+    ':permissions_namespace': 'agora.checks.ServiceVersion',
     'fields': {
         'id': {
             '.field.uuid': {},
@@ -838,6 +864,10 @@ SERVICE_VERSIONS = {
             'source': 'id_service_id',
             'to': '/api/v2/services',
             '.flag.filterable': {}},
+        'service_admins_ids': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            '.flag.nullable.default': {}},
         'status': {
             '.field.ref': {},
             'source': 'status_id',
@@ -1078,6 +1108,7 @@ APP_CONFIG = {
                 'component-implementations': COMPONENT_IMPLEMENTATIONS,
                 'component-implementation-details': COMPONENT_IMPLEMENTATION_DETAILS,
                 'component-implementation-detail-links': COMPONENT_IMPLEMENTATION_DETAIL_LINKS,
+                'my-services': MY_SERVICES,
             },
         },
     },

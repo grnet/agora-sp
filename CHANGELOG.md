@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Serviceadmins can create components related resources.
+- Serviceadmins can create/edit CIDL for services they own.
+- Serviceadmins can create/edit Service Versions for services they own.
+
 ### Fixed
 - Trim Service name before saving.
 

@@ -294,6 +294,10 @@ class ServiceDetailsComponent(models.Model):
         return str(self.service_id.name) + " "  + str(self.service_details_id.version) + " " + \
                str(self.service_component_implementation_detail_id)
 
+    @property
+    def service_admins_ids(self):
+        return self.service_id.service_admins_ids
+
     def as_json(self):
         return {
             "service_uuid": self.service_id.name,

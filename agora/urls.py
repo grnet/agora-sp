@@ -71,6 +71,8 @@ urlpatterns = [
     url(r'^api/shibboleth$', agora_views.shibboleth_login, name='shibboleth_login'),
     url(r'^/?$', RedirectView.as_view(url='/ui/catalogue/services')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
+    url(r'^api/v2/auth/me/$', agora_views.CustomMe.as_view(),
+        name='custom_me'),
     url(r'^api/v2/auth/', include('djoser.urls')),
     url(r'^api/v2/auth/login/$',
         djoser_views.LoginView.as_view(), name='login'),

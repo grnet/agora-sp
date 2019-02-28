@@ -62,6 +62,10 @@ def test_services(superadmin, client):
     assertions_crud('services', superadmin)
 
 
+def test_components(superadmin, client):
+    assertions_crud('components', superadmin)
+
+
 # Tests for ServiceAdminship
 
 def test_serviceadminship_create(superadmin, client):
@@ -83,7 +87,8 @@ def test_serviceadminship_create(superadmin, client):
     Superadmin creates ServiceAdminship with status 'approved'.
     Superadmin can delete a serviceAdminship
     """
-    resp = superadmin.post(sa_url, {'admin': test_user.id, 'service': service_id})
+    resp = superadmin.post(sa_url,
+                           {'admin': test_user.id, 'service': service_id})
     sa_id = resp.json()['id']
     assert resp.status_code == 201
     assert resp.json()['state'] == 'approved'
@@ -107,7 +112,8 @@ def test_serviceadminship_create(superadmin, client):
         test_user.role = role
         test_user.save()
 
-        resp = superadmin.post(sa_url, {'admin': test_user.id, 'service': service_id})
+        resp = superadmin.post(sa_url,
+                               {'admin': test_user.id, 'service': service_id})
         assert resp.status_code == 400
 
     superadmin.delete(service_url+service_id+'/')
@@ -135,9 +141,10 @@ def test_serviceadminship_update(superadmin, client):
     test_user.save()
     sa_url = RESOURCES_CRUD['service_admins']['url']
 
-    resp = superadmin.post(sa_url, {'admin': test_user.id, 'service': service_id})
+    resp = superadmin.post(sa_url,
+                           {'admin': test_user.id, 'service': service_id})
     sa_id = resp.json()['id']
- 
+
     resp = superadmin.patch(
         sa_url + sa_id + '/',
         json.dumps({'state': 'rejected'}),
@@ -155,3 +162,27 @@ def test_serviceadminship_update(superadmin, client):
         json.dumps({'state': 'pending'}),
         content_type='application/json')
     assert resp.status_code == 200
+
+
+# Tests for resources with related data
+
+def test_component_implementations(superadmin, component_id):
+    url = '/api/v2/component-implementations/'
+    data = {
+        'name': 'component category',
+        'component_id': component_id
+    }
+    resp = superadmin.post(url, data)
+    assert resp.status_code == 201
+
+
+def test_component_implementations_details(superadmin, component_id,
+                                           component_implementation_id):
+    url = '/api/v2/component-implementation-details/'
+    data = {
+        'version': '1.0.0',
+        'component_id': component_id,
+        'component_implementation_id': component_implementation_id
+    }
+    resp = superadmin.post(url, data)
+    assert resp.status_code == 201
