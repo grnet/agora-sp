@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 
-## [0.9.11](https://github.com/grnet/agora-sp/compare/v0.9.10...v0.9.11) - 2018-03-05
+## [0.9.11](https://github.com/grnet/agora-sp/compare/v0.9.10...v0.9.11) - 2019-03-05
 
 ### Added
 - Serviceadmins can create components related resources.
@@ -18,12 +18,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 - Update Django version to fix vulnerability issues.
 
-## [0.9.10](https://github.com/grnet/agora-sp/compare/v0.9.9...v0.9.10) - 2018-02-12
+## [0.9.10](https://github.com/grnet/agora-sp/compare/v0.9.9...v0.9.10) - 2019-02-12
 
 ### Fixed
 - Enable partial update actions for admins/serviceadmins.
 
-## [0.9.9](https://github.com/grnet/agora-sp/compare/v0.9.8...v0.9.9) - 2018-02-07
+## [0.9.9](https://github.com/grnet/agora-sp/compare/v0.9.8...v0.9.9) - 2019-02-07
 
 ### Changed
 - Upgrade apimas to 0.4a3.
@@ -37,7 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Security
 - Update Django version to fix vulnerability issues.
 
-## [0.9.8](https://github.com/grnet/agora-sp/compare/v0.9.7...v0.9.8) - 2018-01-03
+## [0.9.8](https://github.com/grnet/agora-sp/compare/v0.9.7...v0.9.8) - 2019-01-03
 
 ### Added
 - Expose more fields to service-types endpoint.
