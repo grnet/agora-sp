@@ -1,5 +1,47 @@
 # COLUMNS = ('collection', 'action', 'role', 'filter', 'check' 'fields', 'comment')
 
+service_version_all = [
+     'id',
+     'id_service',
+     'version',
+     'status',
+     'features_current',
+     'features_future',
+     'usage_policy_has',
+     'usage_policy_url',
+     'privacy_policy_has',
+     'privacy_policy_url',
+     'user_documentation_has',
+     'user_documentation_url',
+     'operations_documentation_has',
+     'operations_documentation_url',
+     'monitoring_has',
+     'monitoring_url',
+     'accounting_has',
+     'accounting_url',
+     'business_continuity_plan_has',
+     'business_continuity_plan_url',
+     'disaster_recovery_plan_has',
+     'disaster_recovery_plan_url',
+     'decommissioning_procedure_has',
+     'decommissioning_procedure_url',
+     'cost_to_run',
+     'cost_to_build',
+     'use_cases',
+     'is_in_catalogue',
+     'visible_to_marketplace'
+]
+
+service_version_not = [
+    'is_in_catalogue',
+    'visible_to_marketplace'
+]
+
+service_version_limited = [x for x in service_version_all if x not in service_version_not]
+
+service_version_limited = ','.join(service_version_limited)
+
+
 RULES = [
     ('api/v2/services', 'list', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/services', 'list', 'admin', '*', '*', '*', '*'),
@@ -28,6 +70,9 @@ RULES = [
 
     ('api/v2/service-types', 'list', 'anonymous', '*', '*', '*', '*'),
     ('api/v2/service-types', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+
+    ('api/v2/my-services', 'list', 'serviceadmin', 'filter_owned', '*', '*', '*'),
+    ('api/v2/my-services', 'retrieve', 'serviceadmin', '*', '*', '*', '*'),
 
     ('api/v2/service-trls', 'list', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-trls', 'list', 'admin', '*', '*', '*', '*'),
@@ -208,10 +253,13 @@ RULES = [
     ('api/v2/service-versions', 'retrieve', 'anonymous', '*', '*', '*', '*'),
     ('api/v2/service-versions', 'create', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-versions', 'create', 'admin', '*', '*', '*', '*'),
+    ('api/v2/service-versions', 'create', 'serviceadmin', '*', 'create_owns_service', service_version_limited, '*'),
     ('api/v2/service-versions', 'update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-versions', 'update', 'admin', '*', '*', '*', '*'),
+    ('api/v2/service-versions', 'update', 'serviceadmin', '*', 'update_owns_service', service_version_limited, '*'),
     ('api/v2/service-versions', 'partial_update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-versions', 'partial_update', 'admin', '*', '*', '*', '*'),
+    ('api/v2/service-versions', 'partial_update', 'serviceadmin', '*', 'update_owns_service', service_version_limited, '*'),
     ('api/v2/service-versions', 'destroy', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/service-versions', 'delete', 'superadmin', '*', '*', '*', '*'),
 
@@ -242,6 +290,7 @@ RULES = [
     ('api/v2/components', 'retrieve', 'observer', '*', '*', '*', '*'),
     ('api/v2/components', 'create', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/components', 'create', 'admin', '*', '*', '*', '*'),
+    ('api/v2/components', 'create', 'serviceadmin', '*', '*', '*', '*'),
     ('api/v2/components', 'update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/components', 'update', 'admin', '*', '*', '*', '*'),
     ('api/v2/components', 'partial_update', 'superadmin', '*', '*', '*', '*'),
@@ -259,6 +308,7 @@ RULES = [
     ('api/v2/component-implementations', 'retrieve', 'observer', '*', '*', '*', '*'),
     ('api/v2/component-implementations', 'create', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/component-implementations', 'create', 'admin', '*', '*', '*', '*'),
+    ('api/v2/component-implementations', 'create', 'serviceadmin', '*', '*', '*', '*'),
     ('api/v2/component-implementations', 'update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/component-implementations', 'update', 'admin', '*', '*', '*', '*'),
     ('api/v2/component-implementations', 'partial_update', 'superadmin', '*', '*', '*', '*'),
@@ -276,6 +326,7 @@ RULES = [
     ('api/v2/component-implementation-details', 'retrieve', 'observer', '*', '*', '*', '*'),
     ('api/v2/component-implementation-details', 'create', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/component-implementation-details', 'create', 'admin', '*', '*', '*', '*'),
+    ('api/v2/component-implementation-details', 'create', 'serviceadmin', '*', '*', '*', '*'),
     ('api/v2/component-implementation-details', 'update', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/component-implementation-details', 'update', 'admin', '*', '*', '*', '*'),
     ('api/v2/component-implementation-details', 'partial_update', 'superadmin', '*', '*', '*', '*'),
@@ -293,10 +344,13 @@ RULES = [
     ('api/v2/component-implementation-detail-links', 'retrieve', 'observer', '*', '*', '*', '*'),
     ('api/v2/component-implementation-detail-links', 'create', 'superadmin', '*', 'unique', '*', '*'),
     ('api/v2/component-implementation-detail-links', 'create', 'admin', '*', 'unique', '*', '*'),
-    ('api/v2/component-implementation-detail-links', 'update', 'superadmin', '*', '*', '*', '*'),
-    ('api/v2/component-implementation-detail-links', 'update', 'admin', '*', '*', '*', '*'),
-    ('api/v2/component-implementation-detail-links', 'partial_update', 'superadmin', '*', '*', '*', '*'),
-    ('api/v2/component-implementation-detail-links', 'partial_update', 'admin', '*', '*', '*', '*'),
+    ('api/v2/component-implementation-detail-links', 'create', 'serviceadmin', '*', 'create_owns_service_unique', '*', '*'),
+    ('api/v2/component-implementation-detail-links', 'update', 'superadmin', '*', 'update_unique', '*', '*'),
+    ('api/v2/component-implementation-detail-links', 'update', 'admin', '*', 'update_unique', '*', '*'),
+    ('api/v2/component-implementation-detail-links', 'update', 'serviceadmin', '*', 'update_owns_service_unique', '*', '*'),
+    ('api/v2/component-implementation-detail-links', 'partial_update', 'superadmin', '*', 'update_unique', '*', '*'),
+    ('api/v2/component-implementation-detail-links', 'partial_update', 'admin', '*', 'update_unique', '*', '*'),
+    ('api/v2/component-implementation-detail-links', 'partial_update', 'serviceadmin', '*', 'update_owns_service_unique', '*', '*'),
     ('api/v2/component-implementation-detail-links', 'destroy', 'superadmin', '*', '*', '*', '*'),
     ('api/v2/component-implementation-detail-links', 'delete', 'superadmin', '*', '*', '*', '*')
 ]

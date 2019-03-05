@@ -143,6 +143,7 @@ class Service(models.Model):
 
 
     def save(self, *args, **kwargs):
+        self.name = self.name.strip()
         clean_html_fields(self)
         if not self.description_internal or self.description_internal == "":
             self.description_internal = None
@@ -746,6 +747,10 @@ class ServiceDetails(models.Model):
 
         super(ServiceDetails, self).save(*args, **kwargs)
         publishMessage(self)
+
+    @property
+    def service_admins_ids(self):
+        return self.id_service.service_admins_ids
 
     def as_short(self):
 

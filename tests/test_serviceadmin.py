@@ -50,6 +50,35 @@ def test_institutions(serviceadmin, client, superadmin):
     assertions_crud('institutions', serviceadmin, superadmin)
 
 
+def test_components(serviceadmin, client, superadmin):
+    """
+    Flow:
+    Serviceadmin creates components
+    Serviceadmin can retrieve service
+    Serviceadmin cannot update component
+    Serviceadmin cannot delete component
+    """
+    url = RESOURCES_CRUD['components']['url']
+    data = RESOURCES_CRUD['components']['create_data']
+    edit_data = RESOURCES_CRUD['components']['edit_data']
+
+    serviceadmin.post(url, data)
+    assert len(serviceadmin.get(url).json()) == 1
+    resp = serviceadmin.get(url)
+    id = resp.json()[0]['id']
+    resp = serviceadmin.get(url+id+'/')
+    for key, value in data.iteritems():
+        assert resp.json()[key] == value
+    resp = serviceadmin.put(url + id + '/',
+                            json.dumps(edit_data),
+                            content_type='application/json')
+    assert resp.status_code == 403
+    resp = serviceadmin.delete(url + id + '/')
+    assert resp.status_code == 403
+    resp = superadmin.delete(url+id+'/')
+    assert resp.status_code == 204
+
+
 def test_services(serviceadmin, serviceadmin2, client, superadmin):
     """
     Flow:
@@ -76,7 +105,8 @@ def test_services(serviceadmin, serviceadmin2, client, superadmin):
         assert resp.json()[key] == value
     if edit_data:
         resp = serviceadmin.patch(url + id + '/',
-                json.dumps(edit_data), content_type='application/json')
+                                json.dumps(edit_data),
+                                content_type='application/json')
         assert resp.status_code == 200
         for key, value in edit_data.iteritems():
             assert resp.json()[key] == value
@@ -94,7 +124,32 @@ def test_services(serviceadmin, serviceadmin2, client, superadmin):
         assert resp.json()[key] == value
     if edit_data:
         resp = serviceadmin.patch(url + id + '/',
-                json.dumps(edit_data), content_type='application/json')
+                                json.dumps(edit_data),
+                                content_type='application/json')
         assert resp.status_code == 400
     resp = superadmin.delete(url+id+'/')
     assert resp.status_code == 204
+
+
+# Tests for resources with related data
+
+def test_component_implementations(serviceadmin, superadmin, component_id):
+    url = '/api/v2/component-implementations/'
+    data = {
+        'name': 'component category',
+        'component_id': component_id
+    }
+    resp = serviceadmin.post(url, data)
+    assert resp.status_code == 201
+
+
+def test_component_implementations_details(serviceadmin, superadmin, component_id,
+                                           component_implementation_id):
+    url = '/api/v2/component-implementation-details/'
+    data = {
+        'version': '1.0.0',
+        'component_id': component_id,
+        'component_implementation_id': component_implementation_id
+    }
+    resp = serviceadmin.post(url, data)
+    assert resp.status_code == 201

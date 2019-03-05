@@ -84,6 +84,14 @@ class User(AbstractBaseUser, PermissionsMixin):
     def apimas_roles(self):
         return [self.role]
 
+    @property
+    def admins_services(self):
+        """
+        Return True if a user has active service adminships
+        """
+        sa = self.serviceadminship_set.filter(state="approved")
+        return sa.count() > 0
+
     def get_absolute_url(self):
         return "/users/%s/" % urlquote(self.email)
 

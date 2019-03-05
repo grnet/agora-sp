@@ -1,4 +1,6 @@
 from django.test import Client
+from component.models import ServiceComponent, ServiceComponentImplementation
+from accounts.models import User
 import pytest
 
 
@@ -67,6 +69,12 @@ def serviceadmin(django_user_model):
 
 
 @pytest.fixture('function')
+def serviceadmin_id(serviceadmin):
+    s, created = User.objects.get_or_create(username='serviceadmin')
+    return s.id
+
+
+@pytest.fixture('function')
 def serviceadmin2(django_user_model):
     return create_client(django_user_model,
                          'serviceadmin2',
@@ -80,6 +88,24 @@ def observer(django_user_model):
                          'observer',
                          'observer@test.org',
                          'observer')
+
+
+@pytest.fixture('function')
+def component():
+    component, created = ServiceComponent.objects.get_or_create(name='Servers')
+    return component
+
+
+@pytest.fixture('function')
+def component_id(component):
+    return component.id
+
+
+@pytest.fixture('function')
+def component_implementation_id(component):
+    component_implementation, created = ServiceComponentImplementation.\
+            objects.get_or_create(name='Apache', component_id=component)
+    return component_implementation.id
 
 
 RESOURCES_CRUD = {
@@ -153,6 +179,11 @@ RESOURCES_CRUD = {
             "internal": False,
             "customer_facing": True,
         },
+        'create_data_2': {
+            "name": "Test service 2",
+            "internal": False,
+            "customer_facing": True,
+        },
         'edit_data': {
             "name": "Test service 2",
             "internal": True,
@@ -161,5 +192,21 @@ RESOURCES_CRUD = {
     },
     'service_admins': {
         'url': '/api/v2/service-admins/'
-    }
+    },
+    'components': {
+        'url': '/api/v2/components/',
+        'create_data': {
+            'name': 'Paros',
+            'description': '<p>Description</p>',
+        },
+        'edit_data': {
+            'name': 'Antiparos',
+            'description': '<p>Description 2</p>',
+        },
+    },
+    'service_versions': {
+        'url': '/api/v2/service-versions/'
+    },
+
+
 }
