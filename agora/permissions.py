@@ -4,15 +4,16 @@
 def service_version_limited():
     from service.models import ServiceDetails
 
-    service_version_all = [f.name for f in ServiceDetails._meta.get_fields()]
+    service_version_all = [f.name for f in ServiceDetails._meta.get_fields()
+                                  if f.concrete]
 
-    service_version_not = [
+    service_version_excluded = [
         'is_in_catalogue',
         'visible_to_marketplace'
     ]
 
     service_version_chosen = [x for x in service_version_all
-            if x not in service_version_not]
+                                if x not in service_version_excluded]
     return ','.join(service_version_chosen)
 
 
