@@ -1,11 +1,12 @@
 # COLUMNS = ('collection', 'action', 'role', 'filter', 'check' 'fields', 'comment')
+from agora import spec
 
 
 def service_version_limited():
-    from service.models import ServiceDetails
-
-    service_version_all = [f.name for f in ServiceDetails._meta.get_fields()
-                                  if f.concrete]
+    service_version_all = []
+    for (field, flags) in spec.SERVICE_VERSIONS['fields'].items():
+        if '.flag.nowrite' not in flags:
+            service_version_all.append(field)
 
     service_version_excluded = [
         'is_in_catalogue',
