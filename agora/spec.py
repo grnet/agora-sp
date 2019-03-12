@@ -1073,7 +1073,7 @@ SERVICE_ADMINS = {
 
 APP_CONFIG = {
     '.apimas_app': {},
-    ':permission_rules': 'agora.utils.get_rules',
+    ':permission_rules': 'agora.permissions.get_rules',
     ':authenticator': 'apimas.auth.DjoserAuthentication',
     ':verifier': 'agora.utils.djoser_verifier',
     ':user_resolver': 'agora.utils.userid_extractor',
