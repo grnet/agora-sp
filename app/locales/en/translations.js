@@ -13,6 +13,7 @@ import { custom_user } from './custom_user';
 import { user_role } from './user_role';
 import { user_customer } from './user_customer';
 import { institution } from './institution';
+import { organisation } from './organisation';
 import { common } from './common';
 import { login } from './login';
 
@@ -34,6 +35,7 @@ export default {
   'user_role': user_role,
   'user_customer': user_customer,
   'institution': institution,
+  'organisation': organisation,
   'form': common.form,
   'login': login,
   'group_menu': common.group_menu,
