@@ -57,6 +57,24 @@ SERVICE_FIELDS_COMMON = {
         '.flag.nowrite': {},
         '.flag.orderable': {},
         'source': 'service_trl.value'},
+    'organisations_names': {
+        '.field.string': {},
+        '.flag.nowrite': {}},
+    'organisations': {
+        '.field.collection.django': {},
+        '.flag.nullable.default': {},
+        ':filter_compat': True,
+        'flat': True,
+        'id_field': 'organisation',
+        'model': 'service.models.Service.organisations.through',
+        'source': 'organisations',
+        'bound': 'service',
+        'fields': {
+            'organisation': {'.field.ref': {},
+                            'source': 'organisation_id',
+                            'to': 'api/v2/organisations'},
+        }
+    }
 }
 
 
@@ -500,6 +518,22 @@ CUSTOM_USERS = {
             '.flag.orderable': {},
             '.flag.filterable': {},
             '.field.string': {}},
+        "organisations": {
+            '.field.collection.django': {},
+            ':filter_compat': True,
+            '.flag.nullable.default': {},
+            'flat': True,
+            'id_field': 'organisation',
+            'model': 'accounts.models.User.organisations.through',
+            'source': 'organisations',
+            'bound': 'user',
+            'fields': {
+                'organisation': {'.field.ref': {},
+                                'source': 'organisation_id',
+                                'to': 'api/v2/organisations'},
+            }
+        }
+
     },
     'actions': {
         '.action-template.django.list': {},
@@ -1070,6 +1104,35 @@ SERVICE_ADMINS = {
     },
 }
 
+ORGANISATIONS = {
+    '.collection.django': {},
+    'model': 'accounts.models.Organisation',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'description': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'logo': {
+            '.field.file': {},
+            'default': ''},
+
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
 
 APP_CONFIG = {
     '.apimas_app': {},
@@ -1109,6 +1172,7 @@ APP_CONFIG = {
                 'component-implementation-details': COMPONENT_IMPLEMENTATION_DETAILS,
                 'component-implementation-detail-links': COMPONENT_IMPLEMENTATION_DETAIL_LINKS,
                 'my-services': MY_SERVICES,
+                'organisations': ORGANISATIONS,
             },
         },
     },

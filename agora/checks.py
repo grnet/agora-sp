@@ -137,14 +137,39 @@ class Service(object):
 
         A serviceadmin owns a Service if service's service_admins_ids
         computed property contains the id of the user.
+        The service's organisations must be subset of the organisations in
+        which the serviceadmin belongs.
         """
         auth_user = context['auth/user']
         auth_user_id = str(auth_user.id)
         service_admins_ids = instance.service_admins_ids.split(",")
+        service_orgs = backend_input.get('organisations', [])
+        service_orgs_ids = [s['organisation_id'] for s in service_orgs]
+        user_orgs_ids = [str(o.id) for o in auth_user.organisations.all()]
+
+        if not set(service_orgs_ids).issubset(set(user_orgs_ids)):
+            raise ValidationError(_('Unauthorized organisation(s)'))
+
         if auth_user_id in service_admins_ids:
             return
         else:
             raise ValidationError(_('Unauthorized action'))
+
+    @staticmethod
+    def organisation_owned(backend_input, instance, context):
+        """Servicadmins must belong to Service's organisation(s).
+
+        The service's organisations must be subset of the organisations in
+        which the serviceadmin belongs.
+        """
+        auth_user = context['auth/user']
+        service_orgs = backend_input.get('organisations', [])
+        service_orgs_ids = [s['organisation_id'] for s in service_orgs]
+        user_orgs_ids = [str(o.id) for o in auth_user.organisations.all()]
+
+        if not set(service_orgs_ids).issubset(set(user_orgs_ids)):
+            raise ValidationError(_('Unauthorized organisation(s)'))
+
 
     @staticmethod
     def filter_owned(context):

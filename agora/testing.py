@@ -207,6 +207,17 @@ RESOURCES_CRUD = {
     'service_versions': {
         'url': '/api/v2/service-versions/'
     },
+    'organisations': {
+        'url': '/api/v2/organisations/',
+        'create_data': {
+            'name': 'CIA',
+            'description': '<p>Description</p>',
+        },
+        'edit_data': {
+            'name': 'FBI',
+        },
+    },
+
 
 
 }

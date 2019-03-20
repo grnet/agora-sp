@@ -75,3 +75,7 @@ def service_area_image_path(instance, filename):
 def service_image_path(instance, filename):
     # file uploaded to MEDIA_ROOT/services/resource_<id>/<filename>
     return 'services/{0}/{1}'.format(instance.pk, filename)
+
+def organisation_image_path(instance, filename):
+    # file uploaded to MEDIA_ROOT/organisations/resource_<id>/<filename>
+    return 'organisations/{0}/{1}'.format(instance.pk, filename)

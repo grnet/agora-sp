@@ -7,7 +7,7 @@ import uuid
 from owner.models import ServiceOwner, ContactInformation, Institution
 from common import helper
 from collections import OrderedDict
-from accounts.models import User
+from accounts.models import User, Organisation
 from ckeditor_uploader.fields import RichTextUploadingField
 from agora.utils import SERVICE_ADMINSHIP_STATES, clean_html_fields, \
     publishMessage
@@ -91,12 +91,17 @@ class Service(models.Model):
             upload_to=helper.service_image_path)
     customer_facing = models.BooleanField(default=False)
     internal = models.BooleanField(default=False)
+    organisations = models.ManyToManyField(Organisation, blank=True)
 
     class Meta:
         verbose_name_plural = "01. Services"
 
     def __unicode__(self):
         return str(self.name)
+
+    @property
+    def organisations_names(self):
+        return ", ".join(o.name for o in self.organisations.all())
     
     @property
     def service_admins_ids(self):

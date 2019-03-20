@@ -65,6 +65,9 @@ def test_services(superadmin, client):
 def test_components(superadmin, client):
     assertions_crud('components', superadmin)
 
+def test_organisations(superadmin, client):
+    assertions_crud('organisations', superadmin)
+
 
 # Tests for ServiceAdminship
 

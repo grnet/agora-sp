@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Add Organisation model.
+- Services can belong to Organisations.
+- Serviceadmins can be assigned to Organisations by superadmins.
+
 ### Changed
 - Extract ServiceDetails permission fields dynamically.
 
