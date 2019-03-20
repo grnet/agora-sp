@@ -36,7 +36,12 @@ const common = {
       'apply.label': 'APPLY',
       'clear.label': 'CLEAR',
     }
-  }
+  },
+  'select': {
+    'options': 'Select',
+    'options.add': 'Add',
+    'options.cancel': 'Cancel',
+  },
 };
 
 export { common };

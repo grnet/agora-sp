@@ -42,5 +42,6 @@ export default {
   'confirm': common.confirm,
   'Service_type should be unique': cidl.errors.service_type_unique,
   'list': common.list,
+  'select': common.select,
 };
 
