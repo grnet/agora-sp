@@ -26,6 +26,7 @@ const service_item = {
     'internal': 'Internal Service',
     'contact_external': 'External Contact',
     'contact_internal': 'Internal Contact',
+    'organisations_names': 'Organisations',
     'contact': {
       'first_name': 'First name',
       'last_name': 'Last name',

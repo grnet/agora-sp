@@ -51,25 +51,14 @@ const TABLE_FIELDS = [
     }
   ),
   field(
-    'short_desc', {
+    'organisations_names', {
       type: 'text',
-      label: 'service_item.fields.short_description',
-      htmlSafe: true,
-      formComponent: 'text-editor',
+      label: 'service_item.fields.organisations_names'
     }
   ),
-  field(
-    'contact_external_full_name', {
-      type: 'text',
-      label: 'service_item.fields.contact_external'
-    }
-  ),
-  field(
-    'contact_internal_full_name', {
-      type: 'text',
-      label: 'service_item.fields.contact_internal'
-    }
-  ),
+
+
+
 ];
 
 /********************************************
