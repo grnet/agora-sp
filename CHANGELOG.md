@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Enable multiple themes functionality
+- Add Organisation resource.
+- Serviceadmins can be assigned to Organisations by superadmins.
+- A Service can optionally belong to one or many Organisations.
 
 ## [v0.9.8](https://github.com/grnet/agora-sp-admin/compare/v0.9.7...v0.9.8) - 2019-03-05
 
