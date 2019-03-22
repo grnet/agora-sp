@@ -28,6 +28,7 @@ export default AgoraGen.extend({
   path: 'services',
   order: 1,
   abilityStates: {
+    organisation_owned: true,
     owned: computed('model.service_admins_ids', 'user.id', function(){
       let ids = get(this, 'model.service_admins_ids');
       let user_id = get(this, 'user.id').toString();

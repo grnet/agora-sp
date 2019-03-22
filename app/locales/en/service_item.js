@@ -5,6 +5,7 @@ const service_item = {
     'business_info': 'Business Information',
     'contact_external': 'External Contact Information',
     'contact_internal': 'Internal Contact Information',
+    'organisations': 'Service Organisations',
   },
   'fields': {
     'name': 'Name',

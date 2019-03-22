@@ -8,6 +8,19 @@ const SORT_FIELDS = [
   'service_type',
 ];
 
+const organisations = field('organisations', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: [
+        'name',
+      ]
+    }
+  }
+})
+
+
+
 /********************************************
                 LIST VIEW
 ********************************************/
@@ -421,6 +434,15 @@ const MORE_INFO_FIELDSET = {
   }
 };
 
+const ORGANISATIONS_FIELDSET = {
+  label: 'service_item.cards.organisations',
+  fields: [organisations],
+  layout: {
+    flex: [ 100 ]
+  }
+};
+
+
 const BUSINESS_INFO_FIELDSET = {
   label: 'service_item.cards.business_info',
   fields: [
@@ -469,6 +491,7 @@ const DETAILS_FIELDSETS = [
   CUSTOM_VERSIONS_FIELDSET,
   MORE_INFO_FIELDSET,
   BUSINESS_INFO_FIELDSET,
+  ORGANISATIONS_FIELDSET,
   EXTERNAL_CONTACT_FIELDSET,
   INTERNAL_CONTACT_FIELDSET,
 ];
@@ -484,6 +507,7 @@ const CREATE_FIELDSETS = [
   },
   MORE_INFO_FIELDSET,
   BUSINESS_INFO_FIELDSET,
+  ORGANISATIONS_FIELDSET,
   EXTERNAL_CONTACT_FIELDSET,
   INTERNAL_CONTACT_FIELDSET,
 ];
@@ -499,6 +523,7 @@ const EDIT_FIELDSETS = [
   },
   MORE_INFO_FIELDSET,
   BUSINESS_INFO_FIELDSET,
+  ORGANISATIONS_FIELDSET,
   EXTERNAL_CONTACT_FIELDSET,
   INTERNAL_CONTACT_FIELDSET,
 ];
