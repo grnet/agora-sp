@@ -42,6 +42,16 @@ const common = {
     'options.add': 'Add',
     'options.cancel': 'Cancel',
   },
+  'row': {
+    'remove': {
+      'cancel': 'Cancel',
+      'ok': 'Yes',
+      'confirm': {
+        'message': 'Are you sure you want to remove this item?',
+        'title': 'Removal',
+      },
+    },
+  },
 };
 
 export { common };
