@@ -13,7 +13,6 @@ const service_item = {
     'value': 'Value',
     'service_area': 'Service Area',
     'service_type': 'Service Type Description',
-    'short_description': 'Short description',
     'description_external': 'Description External',
     'description_internal': 'Description Internal',
     'short_description': 'Short Description',
