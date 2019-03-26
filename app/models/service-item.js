@@ -99,6 +99,7 @@ let model =  DS.Model.extend({
       delete hash['service_trl_ext'];
       delete hash['contact_external_full_name'];
       delete hash['contact_internal_full_name'];
+      delete hash['organisations_names'];
       // handle external/internal contact information
       let contact_external = {};
       let contact_internal = {};
