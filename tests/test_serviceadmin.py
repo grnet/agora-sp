@@ -49,8 +49,14 @@ def test_contact_information(serviceadmin, client, superadmin):
 def test_institutions(serviceadmin, client, superadmin):
     assertions_crud('institutions', serviceadmin, superadmin)
 
+
 def test_organisations(serviceadmin, client, superadmin):
     assertions_crud('organisations', serviceadmin, superadmin)
+
+
+def test_access_policies(serviceadmin, client, superadmin):
+    assertions_crud('access_policies', serviceadmin, superadmin)
+
 
 def test_components(serviceadmin, client, superadmin):
     """

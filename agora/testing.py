@@ -217,6 +217,18 @@ RESOURCES_CRUD = {
             'name': 'FBI',
         },
     },
+    'access_policies': {
+        'url': '/api/v2/access-policies/',
+        'create_data': {
+            'name': 'Excellence-driven',
+            'geo_availability': 'Europe',
+        },
+        'edit_data': {
+            'name': 'Market-driven',
+        },
+    },
+
+
 
 
 

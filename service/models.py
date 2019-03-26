@@ -67,6 +67,25 @@ class ServiceTrl(models.Model):
         clean_html_fields(self)
         super(ServiceTrl, self).save(*args, **kwargs)
 
+
+class AccessPolicy(models.Model):
+    """
+    Policies stating how the service can be accessed
+    """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255,
+                            default=None,
+                            blank=True,
+                            unique=True)
+    access_mode = RichTextUploadingField(default=None, blank=True, null=True)
+    payment_model = RichTextUploadingField(default=None, blank=True, null=True)
+    pricing = RichTextUploadingField(default=None, blank=True, null=True)
+    conditions = RichTextUploadingField(default=None, blank=True, null=True)
+    geo_availability = models.TextField(default=None, blank=True)
+    access_policy_url = models.CharField(max_length=255,
+                                         default=None, blank=True, null=True)
+
+
 class Service(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -685,6 +704,7 @@ class ServiceDetails(models.Model):
     use_cases = RichTextUploadingField(default=None, blank=True, null=True)
     is_in_catalogue = models.BooleanField(default=False)
     visible_to_marketplace = models.BooleanField(default=False)
+    access_policies = models.ManyToManyField(AccessPolicy, blank=True)
 
     def __unicode__(self):
         primary_key = self.id_service.pk

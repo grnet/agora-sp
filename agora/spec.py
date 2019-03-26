@@ -993,7 +993,22 @@ SERVICE_VERSIONS = {
             '.flag.orderable': {},
             '.flag.nowrite': {},
             'source': 'status.value'},
-        },
+        'access_policies': {
+            '.field.collection.django': {},
+            ':filter_compat': True,
+            '.flag.nullable.default': {},
+            'flat': True,
+            'id_field': 'access_policy',
+            'model': 'service.models.ServiceDetails.access_policies.through',
+            'source': 'access_policies',
+            'bound': 'servicedetails',
+            'fields': {
+                'access_policy': {'.field.ref': {},
+                                'source': 'accesspolicy_id',
+                                'to': 'api/v2/access-policies'},
+            }
+        }
+    },
     'actions': {
         '.action-template.django.list': {},
         '.action-template.django.retrieve': {},
@@ -1133,6 +1148,51 @@ ORGANISATIONS = {
     },
 }
 
+ACCESS_POLICIES = {
+    '.collection.django': {},
+    'model': 'service.models.AccessPolicy',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'access_mode': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
+        'payment_model': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+       'pricing': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+       'conditions': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+       'geo_availability': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {},
+            '.flag.nullable.default': {}},
+       'access_policy_url': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {},
+            '.flag.nullable.default': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
 
 APP_CONFIG = {
     '.apimas_app': {},
@@ -1173,6 +1233,7 @@ APP_CONFIG = {
                 'component-implementation-detail-links': COMPONENT_IMPLEMENTATION_DETAIL_LINKS,
                 'my-services': MY_SERVICES,
                 'organisations': ORGANISATIONS,
+                'access-policies': ACCESS_POLICIES 
             },
         },
     },

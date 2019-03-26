@@ -343,7 +343,26 @@ def get_rules():
         ('api/v2/organisations', 'update', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/organisations', 'partial_update', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/organisations', 'destroy', 'superadmin', '*', '*', '*', '*'),
-        ('api/v2/organisations', 'delete', 'superadmin', '*', '*', '*', '*')
+        ('api/v2/organisations', 'delete', 'superadmin', '*', '*', '*', '*'),
+
+        ('api/v2/access-policies', 'list', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/access-policies', 'list', 'admin', '*', '*', '*', '*'),
+        ('api/v2/access-policies', 'list', 'serviceadmin', '*', '*', '*', '*'),
+        ('api/v2/access-policies', 'list', 'observer', '*', '*', '*', '*'),
+        ('api/v2/access-policies', 'retrieve', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/access-policies', 'retrieve', 'admin', '*', '*', '*', '*'),
+        ('api/v2/access-policies', 'retrieve', 'serviceadmin', '*', '*', '*', '*'),
+        ('api/v2/access-policies', 'retrieve', 'observer', '*', '*', '*', '*'),
+        ('api/v2/access-policies', 'create', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/access-policies', 'create', 'admin', '*', '*', '*', '*'),
+        ('api/v2/access-policies', 'create', 'serviceadmin', '*', '*', '*', '*'),
+        ('api/v2/access-policies', 'update', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/access-policies', 'update', 'admin', '*', '*', '*', '*'),
+        ('api/v2/access-policies', 'partial_update', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/access-policies', 'partial_update', 'admin', '*', '*', '*', '*'),
+        ('api/v2/access-policies', 'destroy', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/access-policies', 'delete', 'superadmin', '*', '*', '*', '*'),
+
 
     ]
     return rules
