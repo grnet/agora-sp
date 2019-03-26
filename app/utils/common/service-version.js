@@ -6,6 +6,18 @@ const {
   computed,
 } = Ember;
 
+const access_policies = field('access_policies', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: [
+        'name',
+        'geo_availability',
+        'access_policy_url',
+      ]
+    }
+  }
+})
 
 
 const SORT_FIELDS = [
@@ -288,13 +300,6 @@ const COMPONENT_LINKS_FIELDSET = {
   })
 };
 
-const DETAILS_FIELDSETS = [
-  BASIC_INFO_FIELDSET,
-  COMPONENT_LINKS_FIELDSET,
-  URLS_FIELDSET,
-  FINANCIAL_FIELDSET
-];
-
 
 const BASIC_INFO_CREATE_FIELDSET = {
   label: 'service_version.cards.basic_information',
@@ -416,16 +421,34 @@ const BASIC_INFO_CREATE_FIELDSET_LIMITED = {
   ]
 };
 
+
+const CONTRACT_FIELDSET = {
+  label: 'service_version.cards.contract',
+  fields: [access_policies],
+  layout: {
+    flex: [ 100 ]
+  }
+};
+
+const DETAILS_FIELDSETS = [
+  BASIC_INFO_FIELDSET,
+  COMPONENT_LINKS_FIELDSET,
+  URLS_FIELDSET,
+  CONTRACT_FIELDSET,
+];
+
 const CREATE_FIELDSETS = [
   BASIC_INFO_CREATE_FIELDSET,
   URLS_FIELDSET,
   FINANCIAL_FIELDSET,
+  CONTRACT_FIELDSET,
 ];
 
 const CREATE_FIELDSETS_LIMITED = [
   BASIC_INFO_CREATE_FIELDSET_LIMITED,
   URLS_FIELDSET,
   FINANCIAL_FIELDSET,
+  CONTRACT_FIELDSET,
 ];
 
 export {

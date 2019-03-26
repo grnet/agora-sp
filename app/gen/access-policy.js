@@ -35,6 +35,7 @@ export default AgoraGen.extend({
       label: 'access_policy.menu',
     },
     row: {
+      actions: ['gen:details', 'gen:edit', 'remove'],
       fields: [
         'name',
         'geo_availability',

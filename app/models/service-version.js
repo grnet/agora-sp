@@ -31,6 +31,7 @@ let model = DS.Model.extend({
   id_service_ext: DS.attr(),
   status_ext: DS.attr(),
   service_admins_ids: DS.attr(),
+  access_policies: DS.hasMany('access_policy'),
   // id_service_ext is service.name
   id_service_ext: DS.attr(),
   cidl_url: Ember.computed('id', 'id_service.id', function() {
