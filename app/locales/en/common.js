@@ -52,6 +52,9 @@ const common = {
       },
     },
   },
+  'placeholders': {
+    'search': 'Search',
+  },
 };
 
 export { common };
