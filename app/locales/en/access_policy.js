@@ -21,7 +21,7 @@ const access_policy = {
     'access_policy_url': 'URL to a webpage from the service organisation with more information on the procedure for getting access',
   },
   'belongs': {
-    'name': 'Access Policies',
+    'name': 'Service access policies',
     'hint': ''
   },
   'menu': 'Access Policies'

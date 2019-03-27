@@ -74,21 +74,9 @@ const FINANCIAL_FIELDSET = {
 const URLS_FIELDSET = {
   label: 'service_version.cards.resources',
   layout: {
-    flex: [50, 50, 50, 50, 50, 50, 50, 50, 50]
+    flex: [50, 50, 50, 50, 50, 50, 50]
   },
   fields: [
-    field(
-      'terms_of_use_url', {
-        type: 'text',
-        label: 'service_version.fields.terms_of_use'
-      }
-    ),
-    field(
-      'privacy_policy_url', {
-        type: 'text',
-        label: 'service_version.fields.privacy_policy'
-      }
-    ),
     field(
       'user_documentation_url', {
         type: 'text',
@@ -424,9 +412,25 @@ const BASIC_INFO_CREATE_FIELDSET_LIMITED = {
 
 const CONTRACT_FIELDSET = {
   label: 'service_version.cards.contract',
-  fields: [access_policies],
+  fields: [
+    field(
+      'terms_of_use_url', {
+        type: 'text',
+        label: 'service_version.fields.terms_of_use',
+        hint: 'service_version.hints.terms_of_use',
+      }
+    ),
+    field(
+      'privacy_policy_url', {
+        type: 'text',
+        label: 'service_version.fields.privacy_policy',
+        hint: 'service_version.hints.privacy_policy',
+      }
+    ),
+    access_policies,
+  ],
   layout: {
-    flex: [ 100 ]
+    flex: [ 100, 100, 100 ]
   }
 };
 
