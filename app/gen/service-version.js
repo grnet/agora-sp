@@ -25,6 +25,9 @@ export default AgoraGen.extend({
       id_service: [validate.presence(true)],
       version: [validate.presence(true)],
       status : [validate.presence(true)],
+      sla_url: [validate.format({ type: 'url', allowBlank: true })],
+      terms_of_use_url: [validate.format({ type: 'url', allowBlank: true })],
+      privacy_policy_url: [validate.format({ type: 'url', allowBlank: true })],
     },
   },
   abilityStates: {

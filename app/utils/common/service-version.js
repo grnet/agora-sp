@@ -421,6 +421,13 @@ const CONTRACT_FIELDSET = {
       }
     ),
     field(
+      'sla_url', {
+        type: 'text',
+        label: 'service_version.fields.sla',
+        hint: 'service_version.hints.sla',
+      }
+    ),
+    field(
       'privacy_policy_url', {
         type: 'text',
         label: 'service_version.fields.privacy_policy',
@@ -430,7 +437,7 @@ const CONTRACT_FIELDSET = {
     access_policies,
   ],
   layout: {
-    flex: [ 100, 100, 100 ]
+    flex: [ 100, 100, 100, 100 ]
   }
 };
 
