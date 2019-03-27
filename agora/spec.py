@@ -11,6 +11,12 @@ SERVICE_FIELDS_COMMON = {
         '.flag.filterable': {},
         '.flag.searchable': {},
         '.flag.orderable': {}},
+    'url': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'endpoint': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
     'short_description': {
         '.field.string': {},
         '.flag.searchable': {},
@@ -19,6 +25,9 @@ SERVICE_FIELDS_COMMON = {
         '.field.string': {},
         '.flag.nullable.default': {}},
     'description_internal': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'tagline': {
         '.field.string': {},
         '.flag.nullable.default': {}},
     'service_type': {
@@ -32,7 +41,25 @@ SERVICE_FIELDS_COMMON = {
     'funders_for_service': {
         '.field.string': {},
         '.flag.nullable.default': {}},
-    'value_to_customer': {
+    'user_value': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'target_customers': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'target_users': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'screenshots_videos': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'languages': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'standards': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'certifications': {
         '.field.string': {},
         '.flag.nullable.default': {}},
     'risks': {

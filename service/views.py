@@ -1043,8 +1043,8 @@ def insert_service(request):
     if "funders_for_service" in params:
         service.funders_for_service = params.get('funders_for_service')
 
-    if "value_to_customer" in params:
-        service.value_to_customer = params.get('value_to_customer')
+    if "user_value" in params:
+        service.user_value = params.get('user_value')
 
     if "risks" in params:
         service.risks = params.get('risks')

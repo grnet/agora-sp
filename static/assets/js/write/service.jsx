@@ -45,7 +45,7 @@ var resourceObject = [
 	{ tag: 'button', type: 'button', name: 'edit-request-procedures', label: 'Edit', value: "Edit"},
 	{ tag: 'textarea', type: 'textarea', name: 'funders_for_service', placeholder: "Enter funders for service", label: 'Funders for Service', required: true, onChange: 'textareaHTMLValidation' },
 	{ tag: 'button', type: 'button', name: 'edit-funders-for-service', label: 'Edit', value: "Edit"},
-	{ tag: 'textarea', type: 'textarea', name: 'value_to_customer', placeholder: "Enter value to customer", label: 'Value to customer', required: true, onChange: 'textareaHTMLValidation' },
+	{ tag: 'textarea', type: 'textarea', name: 'user_value', placeholder: "Enter value to customer", label: 'Value to customer', required: true, onChange: 'textareaHTMLValidation' },
 	{ tag: 'button', type: 'button', name: 'edit-value-to-customer', label: 'Edit', value: "Edit"},
 	{ tag: 'textarea', type: 'textarea', name: 'risks', placeholder: "Enter risks", label: 'Risks', required: true, onChange: 'textareaHTMLValidation' },
 	{ tag: 'button', type: 'button', name: 'edit-risks', label: 'Edit', value: "Edit"},
@@ -258,7 +258,7 @@ var FormWrapper = React.createClass({
 			params["service_type"] = type;
 			params["request_procedures"] = $("#request_procedures").val();
 			params["funders_for_service"] = $("#funders_for_service").val();
-			params["value_to_customer"] = $("#value_to_customer").val();
+			params["user_value"] = $("#user_value").val();
 			params["risks"] = $("#risks").val();
 			params["competitors"] = $("#competitors").val();
 
@@ -759,7 +759,7 @@ var Tabs = React.createClass({
                 $("#description_external").val(this.state.service.description_external);
                 $("#request_procedures").val(this.state.service.request_procedures);
                 $("#funders_for_service").val(this.state.service.funders_for_service);
-                $("#value_to_customer").val(this.state.service.value_to_customer);
+                $("#user_value").val(this.state.service.user_value);
                 $("#risks").val(this.state.service.risks);
                 $("#competitors").val(this.state.service.competitors);
 
@@ -1036,9 +1036,9 @@ $(function(){
 			height: 250,
 			plugins: "advlist"
 		});
-		tinymce.get('rich-edit').setContent($("#value_to_customer").val());
+		tinymce.get('rich-edit').setContent($("#user_value").val());
 		$("#modal-rich-html").modal('show');
-		fieldEdited = "value_to_customer";
+		fieldEdited = "user_value";
 	});
 
 	$("#btn-edit-risks").click(function(e){
@@ -1081,8 +1081,8 @@ $(function(){
 		else if(fieldEdited == "funders_for_service"){
 			$("#funders_for_service").val(tinymce.get('rich-edit').getContent());
 		}
-		else if(fieldEdited == "value_to_customer"){
-			$("#value_to_customer").val(tinymce.get('rich-edit').getContent());
+		else if(fieldEdited == "user_value"){
+			$("#user_value").val(tinymce.get('rich-edit').getContent());
 		}
 		else if(fieldEdited == "risks"){
 			$("#risks").val(tinymce.get('rich-edit').getContent());

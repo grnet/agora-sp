@@ -993,7 +993,7 @@ var CatalogueServicePage = React.createClass({
                     user_customers_list: {
                         user_customers: []
                     },
-                    value_to_customer: "",
+                    user_value: "",
                     request_procedures: "",
                     service_details_list: {
                         service_details: []
@@ -1041,7 +1041,7 @@ var CatalogueServicePage = React.createClass({
                         {/*  <UserCustomers userCustomers={this.state.data.user_customers_list.user_customers} /> */}
                         {/*    <Separator /> */}
                         <RequestProcedures requestProcedures={this.state.data.request_procedures}/>
-                        <ValueToCustomer valueToCustomer={this.state.data.value_to_customer}/>
+                        <ValueToCustomer valueToCustomer={this.state.data.user_value}/>
                         {/* <Separator /> */}
                         <ServiceVersions serviceDetails={this.state.data.service_details_list.service_details}
                                          serviceName={this.state.data.name}/>
@@ -1072,7 +1072,7 @@ var PortfolioServicePage = React.createClass({
                 user_customers_list: {
                     user_customers: []
                 },
-                value_to_customer: "",
+                user_value: "",
                 request_procedures: "",
                 service_details_list: {
                     service_details: []
@@ -1147,7 +1147,7 @@ var PortfolioServicePage = React.createClass({
                         <FundersForService fundersForService={this.state.data.funders_for_service}/>
                         <Risks risks={this.state.data.risks}/>
                         <Competitors competitors={this.state.data.competitors}/>
-                        <ValueToCustomer valueToCustomer={this.state.data.value_to_customer}/>
+                        <ValueToCustomer valueToCustomer={this.state.data.user_value}/>
                     </div>
 
                     {/* EXTRA */}

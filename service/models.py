@@ -90,15 +90,24 @@ class Service(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, blank=True, unique=True)
+    url = models.CharField(max_length=255, default=None, blank=True, null=True)
+    endpoint = models.CharField(max_length=255, default=None, blank=True, null=True)
     short_description = RichTextUploadingField(default=None, blank=True, null=True)
     description_external = RichTextUploadingField(default=None, blank=True, null=True)
     description_internal = RichTextUploadingField(default=None, blank=True, null=True)
+    tagline = models.TextField(default=None, blank=True, null=True)
     service_area = models.ForeignKey(ServiceArea, blank=False, null=True)
     service_type = models.CharField(max_length=255, default=None, blank=True, null=True)
     service_trl = models.ForeignKey(ServiceTrl, null=True)
     request_procedures = RichTextUploadingField(default=None, blank=True, null=True)
     funders_for_service = RichTextUploadingField(default=None, blank=True, null=True)
-    value_to_customer = RichTextUploadingField(default=None, blank=True, null=True)
+    user_value = RichTextUploadingField(default=None, blank=True, null=True)
+    target_customers = RichTextUploadingField(default=None, blank=True, null=True)
+    target_users = models.TextField(default=None, blank=True, null=True)
+    screenshots_videos = RichTextUploadingField(default=None, blank=True, null=True)
+    languages = models.TextField(default=None, blank=True, null=True)
+    standards = RichTextUploadingField(default=None, blank=True, null=True)
+    certifications = RichTextUploadingField(default=None, blank=True, null=True)
     risks = RichTextUploadingField(default=None, blank=True, null=True)
     competitors = RichTextUploadingField(default=None, blank=True, null=True)
     id_service_owner = models.ForeignKey(ServiceOwner, null=True)
@@ -181,8 +190,8 @@ class Service(models.Model):
             self.request_procedures = None
         if not self.funders_for_service or self.funders_for_service == "":
             self.funders_for_service = None
-        if not self.value_to_customer or self.value_to_customer == "":
-            self.value_to_customer = None
+        if not self.user_value or self.user_value == "":
+            self.user_value = None
         if not self.request_procedures or self.request_procedures == "":
             self.request_procedures = None
         if not self.risks or self.risks == "":
@@ -333,7 +342,7 @@ class Service(models.Model):
             ("short_description", self.short_description),
             ("description_external", self.description_external),
             ("service_area", self.get_service_area_name()),
-            ("value_to_customer", self.value_to_customer),
+            ("user_value", self.user_value),
             ("service_type", self.service_type),
             ("logo",  "/static/img/logos/"+self.logo.name.split("/")[-1])
         ])
@@ -416,7 +425,7 @@ class Service(models.Model):
                 "external_services": external_services
             }),
             ("funders_for_service", self.funders_for_service),
-            ("value_to_customer", self.value_to_customer),
+            ("user_value", self.user_value),
             ("risks", self.risks),
             ("competitors", self.competitors),
             ("service_type", self.service_type),
@@ -515,7 +524,7 @@ class Service(models.Model):
                 "external_services": external_services
             }),
             ("funders_for_service", self.funders_for_service),
-            ("value_to_customer", self.value_to_customer),
+            ("user_value", self.user_value),
             ("risks", self.risks),
             ("competitors", self.competitors),
             ("service_type", self.service_type),
@@ -578,7 +587,7 @@ class Service(models.Model):
                 "user_customers": users_customers
             }),
             ("funders_for_service", self.funders_for_service),
-            ("value_to_customer", self.value_to_customer),
+            ("user_value", self.user_value),
             ("risks", self.risks),
             ("competitors", self.competitors),
             ("service_type", self.service_type),
@@ -620,7 +629,7 @@ class Service(models.Model):
             ("description_external", self.description_external),
             ("funders_for_service", self.funders_for_service),
             ("service_area", self.get_service_area_name()),
-            ("value_to_customer", self.value_to_customer),
+            ("user_value", self.user_value),
             ("request_procedures", self.request_procedures),
             ("service_type", self.service_type),
             ("contact_information", contact_information),
