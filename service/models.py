@@ -704,6 +704,7 @@ class ServiceDetails(models.Model):
     use_cases = RichTextUploadingField(default=None, blank=True, null=True)
     is_in_catalogue = models.BooleanField(default=False)
     visible_to_marketplace = models.BooleanField(default=False)
+    sla_url = models.CharField(max_length=255, default=None, blank=True, null=True)
     access_policies = models.ManyToManyField(AccessPolicy, blank=True)
 
     def __unicode__(self):

@@ -982,6 +982,9 @@ SERVICE_VERSIONS = {
             '.flag.orderable': {},
             '.field.boolean': {},
             'default': False},
+        'sla_url': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
         # extended fields
         'id_service_ext': {
             '.field.string': {},
