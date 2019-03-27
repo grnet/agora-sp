@@ -1508,17 +1508,17 @@ def insert_service_details(request, service_name_or_uuid):
     if "features_future" in params:
         service_details.features_future = params.get('features_future')
 
-    if "usage_policy_has" in params:
-        uph = params.get('usage_policy_has')
+    if "terms_of_use_has" in params:
+        uph = params.get('terms_of_use_has')
         if uph == "false":
-            service_details.usage_policy_has = False
+            service_details.terms_of_use_has = False
         elif uph == "true":
-            service_details.usage_policy_has = True
+            service_details.terms_of_use_has = True
         else:
-            service_details.usage_policy_has = uph
+            service_details.terms_of_use_has = uph
 
-    if "usage_policy_url" in params:
-        service_details.usage_policy_url = params.get('usage_policy_url')
+    if "terms_of_use_url" in params:
+        service_details.terms_of_use_url = params.get('terms_of_use_url')
 
     if "privacy_policy_has" in params:
         pph = params.get('privacy_policy_has')

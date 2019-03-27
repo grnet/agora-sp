@@ -681,8 +681,8 @@ class ServiceDetails(models.Model):
     status = models.ForeignKey(ServiceStatus, default=None, blank=True) # allow empty field
     features_current = RichTextUploadingField(default=None, blank=True, null=True)
     features_future = RichTextUploadingField(default=None, blank=True, null=True)
-    usage_policy_has = models.BooleanField(default=False, blank=True)
-    usage_policy_url = models.CharField(max_length=255, default=None, blank=True, null=True)
+    terms_of_use_has = models.BooleanField(default=False, blank=True)
+    terms_of_use_url = models.CharField(max_length=255, default=None, blank=True, null=True)
     privacy_policy_has = models.BooleanField(default=False, blank=True)
     privacy_policy_url = models.CharField(max_length=255, default=None, blank=True, null=True)
     user_documentation_has = models.BooleanField(default=False, blank=True)
@@ -724,8 +724,8 @@ class ServiceDetails(models.Model):
         if not self.use_cases or self.use_cases == "":
             self.use_cases = None
 
-        if not self.usage_policy_has:
-            self.usage_policy_url = None
+        if not self.terms_of_use_has:
+            self.terms_of_use_url = None
         if not self.user_documentation_has:
             self.user_documentation_url = None
         if not self.operations_documentation_has:
@@ -743,8 +743,8 @@ class ServiceDetails(models.Model):
         if not self.privacy_policy_has:
             self.privacy_policy_url = None
 
-        if not self.usage_policy_url or self.usage_policy_url == "":
-            self.usage_policy_url = None
+        if not self.terms_of_use_url or self.terms_of_use_url == "":
+            self.terms_of_use_url = None
 
         if not self.privacy_policy_url or self.privacy_policy_url == "":
             self.privacy_policy_url = None
@@ -831,12 +831,12 @@ class ServiceDetails(models.Model):
                 # },
                 "services": service_dependencies
             }),
-            ("usage_policy_has", self.usage_policy_has),
-            ("usage_policy_link", {
+            ("terms_of_use_has", self.terms_of_use_has),
+            ("terms_of_use_link", {
                 "related": {
-                    "href": self.usage_policy_url,
+                    "href": self.terms_of_use_url,
                     "meta": {
-                        "desc": "A link to the usage policy for this service."
+                        "desc": "A link to the terms of use for this service."
                     }
                 }}),
             ("privacy_policy_has", self.privacy_policy_has),
@@ -899,10 +899,10 @@ class ServiceDetails(models.Model):
                 # },
                 "services": service_dependencies
             }),
-            ("usage_policy_has", self.usage_policy_has),
-            ("usage_policy_link", {
+            ("terms_of_use_has", self.terms_of_use_has),
+            ("terms_of_use_link", {
                 "related": {
-                    "href": self.usage_policy_url,
+                    "href": self.terms_of_use_url,
                     "meta": {
                         "desc": "A link to the usage policy for this service."
                     }

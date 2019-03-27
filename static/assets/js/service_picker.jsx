@@ -151,10 +151,10 @@ var ServiceVersionWrapper = React.createClass({
                 <div className="wrapper col-lg-12  col-md-12 links">
 
 
-                    <div className={!this.props.data.usage_policy_has && type == 'catalogue' ? 'collapse' : ''}>
+                    <div className={!this.props.data.terms_of_use_has && type == 'catalogue' ? 'collapse' : ''}>
                         Usage policy
-                        <a className={!this.props.data.usage_policy_has ? 'collapse' : ''} target="blank" href={this.props.data.usage_policy_link.related.href}> here</a>
-                        <span className={this.props.data.usage_policy_has ? 'collapse' : ''}> not available</span>
+                        <a className={!this.props.data.terms_of_use_has ? 'collapse' : ''} target="blank" href={this.props.data.terms_of_use_link.related.href}> here</a>
+                        <span className={this.props.data.terms_of_use_has ? 'collapse' : ''}> not available</span>
                     </div>
 
                     <div className={!this.props.data.privacy_policy_has && type == 'catalogue' ? 'collapse' : ''}>

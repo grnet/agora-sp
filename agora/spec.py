@@ -917,9 +917,9 @@ SERVICE_VERSIONS = {
         'features_future': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'usage_policy_has': {
+        'terms_of_use_has': {
             '.field.boolean': {}},
-        'usage_policy_url': {
+        'terms_of_use_url': {
             '.field.string': {},
             '.flag.nullable.default': {}},
         'privacy_policy_has': {
