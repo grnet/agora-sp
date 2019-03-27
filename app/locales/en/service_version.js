@@ -31,7 +31,7 @@ const service_version = {
     'operations_documentation': 'Operations Documentation',
     'business_continuity': 'Business Continuity',
     'disaster_recovery_plan': 'Disaster Recovery Plan',
-    'usage_policy': 'Usage Policy'
+    'terms_of_use': 'Terms of use'
   },
   'hints': {
     'visible_to_marketplace': 'Only admins can edit',

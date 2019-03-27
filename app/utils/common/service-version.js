@@ -78,9 +78,9 @@ const URLS_FIELDSET = {
   },
   fields: [
     field(
-      'usage_policy_url', {
+      'terms_of_use_url', {
         type: 'text',
-        label: 'service_version.fields.usage_policy'
+        label: 'service_version.fields.terms_of_use'
       }
     ),
     field(
