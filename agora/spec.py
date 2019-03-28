@@ -74,11 +74,11 @@ SERVICE_FIELDS_COMMON = {
     'internal': {
         '.flag.filterable': {},
         '.field.boolean': {}},
-    'service_area_ext': {
+    'service_category_ext': {
         '.field.string': {},
         '.flag.nowrite': {},
         '.flag.orderable': {},
-        'source': 'service_area.name'},
+        'source': 'service_category.name'},
     'service_trl_ext': {
         '.field.string': {},
         '.flag.nowrite': {},
@@ -106,10 +106,10 @@ SERVICE_FIELDS_COMMON = {
 
 
 SERVICE_FIELDS_INT = {
-    'service_area': {
+    'service_category': {
         '.field.ref': {},
-        'source': 'service_area_id',
-        'to': '/api/v2/service-areas',
+        'source': 'service_category_id',
+        'to': '/api/v2/service-categories',
         '.flag.nullable.default': {},
         '.flag.orderable': {},
         '.flag.filterable': {}},
@@ -435,9 +435,9 @@ USER_ROLES = {
     },
 }
 
-SERVICE_AREAS = {
+SERVICE_CATEGORIES = {
     '.collection.django': {},
-    'model': 'service.models.ServiceArea',
+    'model': 'service.models.ServiceCategory',
     'fields': {
         'id': {
             '.field.uuid': {},
@@ -873,11 +873,11 @@ SERVICE_TYPES_FIELDS = {
         '.flag.nowrite': {},
         '.flag.filterable': {},
         'source': 'service_id.internal'},
-    'service_area': {
+    'service_category': {
         '.field.string': {},
         '.flag.nowrite': {},
         '.flag.filterable': {},
-        'source': 'service_id.service_area.name'},
+        'source': 'service_id.service_category.name'},
     'service_version': {
         '.field.string': {},
         '.flag.nowrite': {},
@@ -1251,7 +1251,7 @@ APP_CONFIG = {
                 'external_services': EXTERNAL_SERVICES,
                 'user-roles': USER_ROLES,
                 'user_customers': USER_CUSTOMERS,
-                'service-areas': SERVICE_AREAS,
+                'service-categories': SERVICE_CATEGORIES,
                 'service-admins': SERVICE_ADMINS,
                 'custom-users': CUSTOM_USERS,
                 'contact-information': CONTACT_INFORMATION,
@@ -1263,7 +1263,7 @@ APP_CONFIG = {
                 'component-implementation-detail-links': COMPONENT_IMPLEMENTATION_DETAIL_LINKS,
                 'my-services': MY_SERVICES,
                 'organisations': ORGANISATIONS,
-                'access-policies': ACCESS_POLICIES 
+                'access-policies': ACCESS_POLICIES,
             },
         },
     },

@@ -146,7 +146,7 @@
 
 
             var source = host + "/api/v1/" + type + "/services/" + service_name;
-            var source_areas = host + "/api/v1/" + type + "/service_picker/";
+            var source_categories = host + "/api/v1/" + type + "/service_picker/";
 
 
 
@@ -289,7 +289,7 @@
             },
             getInitialState: function () {
                 return {
-                    areas: []
+                    categories: []
                 }
             },
 
@@ -300,10 +300,10 @@
 
                         <ul className="nav sidebar-menu" onClick={this.bodyClickHandler}>
 
-                            {this.props.areas.map(function (area) {
+                            {this.props.categories.map(function (category) {
                                 return (
-                                    <li key={area}>
-                                        <ParentMenuIcon name={area} key={area}/>
+                                    <li key={category}>
+                                        <ParentMenuIcon name={category} key={category}/>
                                     </li>
                                 )
                             })}
@@ -355,7 +355,7 @@
         );
 
         ReactDOM.render(
-            <PageSidebar areas={leftMenu}/>,
+            <PageSidebar categories={leftMenu}/>,
             document.getElementById('sidebar')
         );
 
@@ -420,8 +420,8 @@
         <script type="text/babel" src="/static/assets/js/write/service.jsx"></script>
     {% endif %}
 
-    {% if type == "service_area" %}
-        <script type="text/babel" src="/static/assets/js/write/service_area.jsx"></script>
+    {% if type == "service_category" %}
+        <script type="text/babel" src="/static/assets/js/write/service_category.jsx"></script>
     {% endif %}
 
     {% if type == "service_component" %}

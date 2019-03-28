@@ -3,7 +3,7 @@ var ServiceHeadline = React.createClass({
     getInitialState: function () {
         return {
             title: "",
-            serviceArea: "",
+            serviceCategory: "",
             shortDescription: "",
             logo: ""
         }
@@ -21,7 +21,7 @@ var ServiceHeadline = React.createClass({
                 <div className="col-lg-10 col-md-10 col-sm-10 col-xs-12" id="service-name">
                     <h1 className="center-text-xs col-lg-12 col-md-12 col-sm-12 col-xs-8 col-sm-offset-0 col-xs-offset-2 col-md-offset-0 col-lg-offset-0">{this.props.title}</h1>
                     <h5 className="center-text-xs col-xs-8 col-xs-offset-2 col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0"
-                        id="service-area">{this.props.serviceArea}</h5>
+                        id="service-category">{this.props.serviceCategory}</h5>
                 </div>
 
                 <hr className="separator col-lg-12 col-md-12 col-sm-12 col-xs-12"/>
@@ -822,7 +822,7 @@ var CatalogueServicePage = React.createClass({
             return {
                 data: {
                     name: "",
-                    service_area: "",
+                    service_category: "",
                     description_external: "",
                     user_customers_list: {
                         user_customers: []
@@ -862,7 +862,7 @@ var CatalogueServicePage = React.createClass({
             return (
                 <div className="col-md-10 col-lg-8" id="service-content">
 
-                    <ServiceHeadline title={this.state.data.name} serviceArea={this.state.data.service_area}
+                    <ServiceHeadline title={this.state.data.name} serviceCategory={this.state.data.service_category}
                                      shortDescription="Sample short description" logo={this.state.data.logo}/>
 
                     <ServiceDescription descriptionExternal={this.state.data.description_external}/>
@@ -894,7 +894,7 @@ var PortfolioServicePage = React.createClass({
         return {
             data: {
                 name: "",
-                service_area: "",
+                service_category: "",
                 description_external: "",
                 user_customers_list: {
                     user_customers: []
@@ -939,7 +939,7 @@ var PortfolioServicePage = React.createClass({
 
                 {/* BASIC */}
                 <div id="basic-info-sect" className="col-xs-12">
-                    <ServiceHeadline title={this.state.data.name} serviceArea={this.state.data.service_area}
+                    <ServiceHeadline title={this.state.data.name} serviceCategory={this.state.data.service_category}
                                      shortDescription="Sample short description" logo={this.state.data.logo}/>
                     <ServiceDescription descriptionExternal={this.state.data.description_external}/>
                     <UserCustomers userCustomers={this.state.data.user_customers_list.user_customers}/>
@@ -1018,11 +1018,11 @@ var ServiceWrapper = React.createClass({
     }
 });
 
-var ServiceAreas = React.createClass({
+var ServiceCategories = React.createClass({
     getInitialState: function () {
         return {
-            service_area: "",
-            service_area_icon: "",
+            service_category: "",
+            service_category_icon: "",
             services: []
         }
 
@@ -1042,9 +1042,9 @@ var ServiceAreas = React.createClass({
 
         return (
             <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <h2 className="area-header"><img width="40"
-                                                 src={host + "/static/img/logos/" + this.props.service_area_icon}/>
-                    <span >{this.props.service_area}</span></h2>
+                <h2 className="category-header"><img width="40"
+                                                 src={host + "/static/img/logos/" + this.props.service_category_icon}/>
+                    <span >{this.props.service_category}</span></h2>
                 <div className="wrapper">
 
 
@@ -1203,7 +1203,7 @@ var PageSidebar = React.createClass({
     },
     getInitialState: function () {
         return {
-            areas: []
+            categories: []
         }
     },
 
@@ -1216,7 +1216,7 @@ var PageSidebar = React.createClass({
             type: "GET",
             cache: false,
             success: function (data) {
-                this.setState({areas: data.data.areas});
+                this.setState({categories: data.data.categories});
             }.bind(this),
             error: function (xhr, status, err) {
             }.bind(this)
@@ -1232,14 +1232,14 @@ var PageSidebar = React.createClass({
 
                 <ul className="nav sidebar-menu" onClick={this.bodyClickHandler}>
 
-                    {this.state.areas.map(function (area) {
-                        if (area[1] == null)
-                            area[1] = "service.png";
+                    {this.state.categories.map(function (category) {
+                        if (category[1] == null)
+                            category[1] = "service.png";
                         return (
                             <li>
-                                <ParentMenuIcon name={area[0][0].service_area} icon={area[1]}/>
+                                <ParentMenuIcon name={category[0][0].service_category} icon={category[1]}/>
                                 <ul className="submenu">
-                                    {area[0].map(function (service) {
+                                    {category[0].map(function (service) {
                                         return <li><MenuItemIcon name={service.name} icon={service.logo}/></li>
                                     })}
                                 </ul>
@@ -1269,7 +1269,7 @@ var PickerPage = React.createClass({
             type: "GET",
             cache: false,
             success: function (data) {
-                this.setState({data: data.data.areas});
+                this.setState({data: data.data.categories});
             }.bind(this),
             error: function (xhr, status, err) {
                 console.log(this.props.source, status, err.toString());
@@ -1286,12 +1286,12 @@ var PickerPage = React.createClass({
         return (
             <div className="col-xs-12 col-md-8 col-md-offset-2">
                 <Header />
-                <div className="wrapper area-content">
-                    {this.state.data.map(function (servicesInArea) {
-                        if (servicesInArea[1] == null)
-                            servicesInArea[1] = "service.png";
-                        return <ServiceAreas services={servicesInArea[0]} service_area_icon={servicesInArea[1]}
-                                             service_area={servicesInArea[0][0].service_area}/>
+                <div className="wrapper category-content">
+                    {this.state.data.map(function (servicesInCategory) {
+                        if (servicesInCategory[1] == null)
+                            servicesInCategory[1] = "service.png";
+                        return <ServiceCategories services={servicesInCategory[0]} service_category_icon={servicesInCategory[1]}
+                                             service_category={servicesInCategory[0][0].service_category}/>
                     })}
                 </div>
             </div>
@@ -1305,7 +1305,7 @@ var CataloguePage = React.createClass({
         return (
             <div>
                 <Header />
-                <PageSidebar source={source_areas}/>
+                <PageSidebar source={source_categories}/>
                 <SideBar />
                 <CatalogueServicePage source={source}/>
             </div>
@@ -1319,7 +1319,7 @@ var PortfolioPage = React.createClass({
         return (
             <div>
                 <Header />
-                <PageSidebar source={source_areas}/>
+                <PageSidebar source={source_categories}/>
                 <SideBar />
                 <PortfolioServicePage source={source}/>
             </div>
@@ -1362,7 +1362,7 @@ if (window.location.href.indexOf("#") > -1) {
 
 
     // var source = host + "/api/v1/" + type + "/services/" + service_name;
-    // var source_areas = host + "/api/v1/" + type + "/service_picker/";
+    // var source_categories = host + "/api/v1/" + type + "/service_picker/";
 
 
     // if (type == "catalogue") {

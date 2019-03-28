@@ -68,8 +68,8 @@ def set_cookie(response, key, value):
 
 
 def service_area_image_path(instance, filename):
-    # file uploaded to MEDIA_ROOT/service_areas/resource_<id>/<filename>
-    return 'service_areas/{0}/{1}'.format(instance.pk, filename)
+    # file uploaded to MEDIA_ROOT/service_categories/resource_<id>/<filename>
+    return 'service_categories/{0}/{1}'.format(instance.pk, filename)
 
 
 def service_image_path(instance, filename):

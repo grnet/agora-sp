@@ -16,10 +16,10 @@ from agora.emails import send_email_application_created, \
 from apimas.base import ProcessorFactory
 
 
-class ServiceArea(models.Model):
+class ServiceCategory(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, blank=True, null=True)
-    icon = models.ImageField(default=settings.SERVICE_AREA_ICON,
+    icon = models.ImageField(default=settings.SERVICE_CATEGORY_ICON,
             upload_to=helper.service_area_image_path)
 
     @property
@@ -27,18 +27,18 @@ class ServiceArea(models.Model):
         if self.icon:
             path = self.icon.url
         else:
-            path = settings.MEDIA_URL+settings.SERVICE_AREA_ICON
+            path = settings.MEDIA_URL+settings.SERVICE_CATEGORY_ICON
         return helper.current_site_baseurl()+'/'+path
 
     class Meta:
-        verbose_name_plural = "06. Service Areas (settings)"
+        verbose_name_plural = "06. Service Categories (settings)"
 
     def __unicode__(self):
         return str(self.name)
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)
-        super(ServiceArea, self).save(*args, **kwargs)
+        super(ServiceCategory, self).save(*args, **kwargs)
 
 
 class ServiceTrl(models.Model):
@@ -96,7 +96,7 @@ class Service(models.Model):
     description_external = RichTextUploadingField(default=None, blank=True, null=True)
     description_internal = RichTextUploadingField(default=None, blank=True, null=True)
     tagline = models.TextField(default=None, blank=True, null=True)
-    service_area = models.ForeignKey(ServiceArea, blank=False, null=True)
+    service_category = models.ForeignKey(ServiceCategory, blank=False, null=True)
     service_type = models.CharField(max_length=255, default=None, blank=True, null=True)
     service_trl = models.ForeignKey(ServiceTrl, null=True)
     request_procedures = RichTextUploadingField(default=None, blank=True, null=True)
@@ -182,8 +182,8 @@ class Service(models.Model):
             self.description_internal = None
         if not self.description_external or self.description_external == "":
             self.description_external = None
-        if not self.service_area or self.service_area == "":
-            self.service_area = None
+        if not self.service_category or self.service_category == "":
+            self.service_category = None
         if not self.service_type or self.service_type == "":
             self.service_type = None
         if not self.request_procedures or self.request_procedures == "":
@@ -218,13 +218,13 @@ class Service(models.Model):
             res.append(user.name.name)
         return ','.join(res)
 
-    def get_distinct_service_area(self):
+    def get_distinct_service_category(self):
 
-        return self.service_area
+        return self.service_category
 
-    def get_service_area_name(self):
-        if self.service_area:
-            return self.service_area.name
+    def get_service_category_name(self):
+        if self.service_category:
+            return self.service_category.name
         return None
 
     def get_service_details(self, complete=False, url=False, catalogue=False):
@@ -341,7 +341,7 @@ class Service(models.Model):
             ("name", self.name),
             ("short_description", self.short_description),
             ("description_external", self.description_external),
-            ("service_area", self.get_service_area_name()),
+            ("service_category", self.get_service_category_name()),
             ("user_value", self.user_value),
             ("service_type", self.service_type),
             ("logo",  "/static/img/logos/"+self.logo.name.split("/")[-1])
@@ -393,7 +393,7 @@ class Service(models.Model):
             ("description_internal", self.description_internal),
             ("service_owner", service_owner),
             ("contact_information", contact_information),
-            ("service_area", self.get_service_area_name()),
+            ("service_category", self.get_service_category_name()),
             ("user_customers_list", {
                 "count": len(users_customers),
                 "user_customers": users_customers
@@ -491,7 +491,7 @@ class Service(models.Model):
             ("description_internal", self.description_internal),
             ("service_owner", service_owner),
             ("contact_information", contact_information),
-            ("service_area", self.get_service_area_name()),
+            ("service_category", self.get_service_category_name()),
             ("user_customers_list", {
                 "count": len(users_customers),
                 "user_customers": users_customers
@@ -581,7 +581,7 @@ class Service(models.Model):
             ("description_internal", self.description_internal),
             ("service_owner", service_owner),
             ("contact_information", contact_information),
-            ("service_area", self.get_service_area_name()),
+            ("service_category", self.get_service_category_name()),
             ("user_customers_list", {
                 "count": len(users_customers),
                 "user_customers": users_customers
@@ -628,7 +628,7 @@ class Service(models.Model):
             ("short_description", self.short_description),
             ("description_external", self.description_external),
             ("funders_for_service", self.funders_for_service),
-            ("service_area", self.get_service_area_name()),
+            ("service_category", self.get_service_category_name()),
             ("user_value", self.user_value),
             ("request_procedures", self.request_procedures),
             ("service_type", self.service_type),
