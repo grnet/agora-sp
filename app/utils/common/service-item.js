@@ -3,7 +3,7 @@ import { fileField } from '../../lib/common';
 
 const SORT_FIELDS = [
   'name',
-  'service_area_ext',
+  'service_category_ext',
   'service_trl_ext',
   'service_type',
 ];
@@ -33,9 +33,9 @@ const TABLE_FIELDS = [
     }
   ),
   field(
-    'service_area_ext', {
+    'service_category_ext', {
       type: 'text',
-      label: 'service_item.fields.service_area'
+      label: 'service_item.fields.service_category'
     }
   ),
   field(
@@ -68,10 +68,55 @@ const TABLE_FIELDS = [
 const BASIC_INFO_FIELDS =  [
   field(
     'name', {
-      type: 'text',
       label: 'service_item.fields.name'
     }
   ),
+  field(
+    'url', {
+      type: 'text',
+      label: 'service_item.fields.url'
+    }
+  ),
+  field(
+    'endpoint', {
+      type: 'text',
+      label: 'service_item.fields.endpoint'
+    }
+  ),
+  field(
+    'short_description', {
+      label: 'service_item.fields.short_description',
+      formComponent: 'text-editor',
+      htmlSafe: true,
+    }
+  ),
+  field(
+    'tagline', {
+      label: 'service_item.fields.tagline',
+    }
+  ),
+  field(
+    'user_value', {
+      label: 'service_item.fields.user_value',
+      formComponent: 'text-editor',
+      htmlSafe: true,
+    }
+  ),
+  field(
+    'target_customers', {
+      label: 'service_item.fields.target_customers',
+      formComponent: 'text-editor',
+      htmlSafe: true,
+    }
+  ),
+  field(
+    'target_users', {
+      label: 'service_item.fields.target_users',
+      formComponent: 'text-editor',
+      htmlSafe: true,
+    }
+  ),
+
   fileField(
     'logo', 'service', 'logo', {
       readonly: true,
@@ -82,9 +127,36 @@ const BASIC_INFO_FIELDS =  [
     }
   ),
   field(
-    'service_area.name', {
+    'screenshots_videos', {
+      label: 'service_item.fields.screenshots_videos',
+      formComponent: 'text-editor',
+      htmlSafe: true,
+    }
+  ),
+  field(
+    'languages', {
+      label: 'service_item.fields.languages',
+    }
+  ),
+  field(
+    'standards', {
+      label: 'service_item.fields.standards',
+      formComponent: 'text-editor',
+      htmlSafe: true,
+    }
+  ),
+  field(
+    'certifications', {
+      label: 'service_item.fields.certifications',
+      formComponent: 'text-editor',
+      htmlSafe: true,
+    }
+  ),
+
+  field(
+    'service_category.name', {
       type: 'text',
-      label: 'service_item.fields.service_area'
+      label: 'service_item.fields.service_category'
     }
   ),
   field(
@@ -99,14 +171,6 @@ const BASIC_INFO_FIELDS =  [
       label: 'service_trl.belongs.value'
     }
   ),
-  field(
-    'short_description', {
-      type: 'text',
-      label: 'service_item.fields.short_description',
-      htmlSafe: true,
-      formComponent: 'text-editor',
-    }
-  ),
   'customer_facing',
   'internal',
 ];
@@ -117,19 +181,85 @@ const BASIC_INFO_FORM_FIELDS_EDIT =  [
       label: 'service_item.fields.name'
     }
   ),
+  field(
+    'url', {
+      type: 'text',
+      label: 'service_item.fields.url'
+    }
+  ),
+  field(
+    'endpoint', {
+      type: 'text',
+      label: 'service_item.fields.endpoint'
+    }
+  ),
+  field(
+    'tagline', {
+      label: 'service_item.fields.tagline',
+      hint: 'service_item.hints.tagline',
+    }
+  ),
+  field(
+    'user_value', {
+      label: 'service_item.fields.user_value',
+      htmlSafe: true,
+      formComponent: 'text-editor',
+    }
+  ),
+  field(
+    'target_customers', {
+      label: 'service_item.fields.target_customers',
+      htmlSafe: true,
+      formComponent: 'text-editor',
+    }
+  ),
+  field(
+    'target_users', {
+      label: 'service_item.fields.target_users',
+      htmlSafe: true,
+      formComponent: 'text-editor',
+    }
+  ),
   fileField(
     'logo', 'service-item', 'logo', {
       readonly: false,
-      label: 'service_item.fields.icon',
-      hint: 'service_item.hints.icon',
+      label: 'service_item.fields.logo',
+      hint: 'service_item.hints.logo',
     }, {
       replace: true,
       img: true
     }
   ),
   field(
-    'service_area', {
-      label: 'service_item.fields.service_area'
+    'screenshots_videos', {
+      label: 'service_item.fields.screenshots_videos',
+      htmlSafe: true,
+      formComponent: 'text-editor',
+    }
+  ),
+  field(
+    'languages', {
+      label: 'service_item.fields.languages',
+      hint: 'service_item.hints.languages',
+    }
+  ),
+  field(
+    'standards', {
+      label: 'service_item.fields.standards',
+      htmlSafe: true,
+      formComponent: 'text-editor',
+    }
+  ),
+  field(
+    'certifications', {
+      label: 'service_item.fields.certifications',
+      htmlSafe: true,
+      formComponent: 'text-editor',
+    }
+  ),
+  field(
+    'service_category', {
+      label: 'service_item.fields.service_category'
     }
   ),
   field(
@@ -149,11 +279,6 @@ const BASIC_INFO_FORM_FIELDS_EDIT =  [
       formComponent: 'text-editor',
     }
   ),
-  field(
-    'id_contact_information_internal', {
-      label: 'contact_information.belongs.internal'
-    }
-  ),
   'customer_facing',
   'internal',
 ];
@@ -165,8 +290,74 @@ const BASIC_INFO_FORM_FIELDS_CREATE =  [
     }
   ),
   field(
-    'service_area', {
-      label: 'service_item.fields.service_area'
+    'url', {
+      type: 'text',
+      label: 'service_item.fields.url'
+    }
+  ),
+  field(
+    'endpoint', {
+      type: 'text',
+      label: 'service_item.fields.endpoint'
+    }
+  ),
+  field(
+    'tagline', {
+      label: 'service_item.fields.tagline',
+      hint: 'service_item.hints.tagline',
+    }
+  ),
+  field(
+    'user_value', {
+      label: 'service_item.fields.user_value',
+      htmlSafe: true,
+      formComponent: 'text-editor',
+    }
+  ),
+  field(
+    'target_customers', {
+      label: 'service_item.fields.target_customers',
+      htmlSafe: true,
+      formComponent: 'text-editor',
+    }
+  ),
+  field(
+    'target_users', {
+      label: 'service_item.fields.target_users',
+      htmlSafe: true,
+      formComponent: 'text-editor',
+    }
+  ),
+  field(
+    'screenshots_videos', {
+      label: 'service_item.fields.screenshots_videos',
+      htmlSafe: true,
+      formComponent: 'text-editor',
+    }
+  ),
+  field(
+    'languages', {
+      label: 'service_item.fields.languages',
+      hint: 'service_item.hints.languages',
+    }
+  ),
+  field(
+    'standards', {
+      label: 'service_item.fields.standards',
+      htmlSafe: true,
+      formComponent: 'text-editor',
+    }
+  ),
+  field(
+    'certifications', {
+      label: 'service_item.fields.certifications',
+      htmlSafe: true,
+      formComponent: 'text-editor',
+    }
+  ),
+  field(
+    'service_category', {
+      label: 'service_item.fields.service_category'
     }
   ),
   field(
@@ -194,7 +385,22 @@ const DETAILS_BASIC_INFO_FIELDSET = {
   label: 'service_item.cards.basic_information',
   fields: BASIC_INFO_FIELDS,
   layout: {
-    flex: [ 100, 100, 100, 100, 100, 100, 100, 100, 100, 50, 50 ]
+    flex: [
+      100,
+      50, 50,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      50, 50,
+      50, 25, 25,
+    ]
   }
 };
 
@@ -439,14 +645,6 @@ const BUSINESS_INFO_FIELDSET = {
     'funders_for_service', {
       type: 'text',
       label: 'service_item.fields.funders',
-      formComponent: 'text-editor',
-      htmlSafe: true
-    }
-  ),
-  field(
-    'value_to_customer', {
-      type: 'text',
-      label: 'service_item.fields.customer_value',
       formComponent: 'text-editor',
       htmlSafe: true
     }

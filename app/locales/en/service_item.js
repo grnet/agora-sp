@@ -1,6 +1,6 @@
 const service_item = {
   'cards': {
-    'basic_information': 'Basic Service Information',
+    'basic_information': 'Basic Information',
     'details': 'Service Description',
     'business_info': 'Business Information',
     'contact_external': 'External Contact Information',
@@ -8,8 +8,17 @@ const service_item = {
     'organisations': 'Service Organisations',
   },
   'fields': {
-    'name': 'Name',
-    'logo': 'Logo',
+    'name': 'Service name',
+    'url': 'Service URL',
+    'tagline': 'Service tagline',
+    'endpoint': 'Service endpoint',
+    'target_customers': 'Target customers',
+    'target_users': 'Target users',
+    'screenshots_videos': 'Service screenshots and videos',
+    'languages': 'Service language',
+    'standards': 'Standards',
+    'certifications': 'Certifications',
+    'logo': 'Service logo',
     'value': 'Value',
     'service_area': 'Service Area',
     'service_type': 'Service Type Description',
@@ -20,7 +29,7 @@ const service_item = {
     'procedures': 'Request Procedures',
     'risks': 'Risks',
     'competitors': 'Competitors',
-    'customer_value': 'Value to Customer',
+    'user_value': 'User value',
     'customer_facing': 'External Service',
     'internal': 'Internal Service',
     'contact_external': 'External Contact',
@@ -34,6 +43,11 @@ const service_item = {
       'email': 'Email',
       'phone': 'Phone',
     },
+  },
+  'hints': {
+    'logo': '',
+    'tagline': 'Short catch-phrase for marketing and advertising purposes (1 line). It will be usually displayed close the service name and should refer to the main value or purpose of the service.',
+    'languages': 'add the language codes separated by comma using the <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" target="_blank">2-letter codes from the ISO</a>',
   },
   'belongs': {
     'name': 'Service Name'
