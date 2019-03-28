@@ -16,7 +16,7 @@ const service_version = {
     'value': 'Value',
     'in_catalogue': 'In catalogue',
     'visible_to_marketplace': 'Visible to marketplace',
-    'service_area': 'Service Area',
+    'service_category': 'Service Category',
     'service_type': 'Service Type',
     'use_cases': 'Use cases',
     'features_current': 'Current Features',

@@ -20,7 +20,7 @@ const service_item = {
     'certifications': 'Certifications',
     'logo': 'Service logo',
     'value': 'Value',
-    'service_area': 'Service Area',
+    'service_category': 'Service Category',
     'service_type': 'Service Type Description',
     'description_external': 'Description External',
     'description_internal': 'Description Internal',

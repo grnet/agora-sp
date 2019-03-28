@@ -29,7 +29,7 @@ let model =  DS.Model.extend({
   competitors: DS.attr(),
   logo: DS.attr(),
   request_procedures: DS.attr(),
-  service_area_ext: DS.attr(),
+  service_category_ext: DS.attr(),
   service_trl_ext: DS.attr(),
   customer_facing: DS.attr({
     type: 'boolean',
@@ -44,7 +44,7 @@ let model =  DS.Model.extend({
   service_version_url: Ember.computed('id', function() {
     return `/service-versions/create?service=${Ember.get(this, 'id')}`;
   }),
-  service_area: DS.belongsTo('service-area', {
+  service_category: DS.belongsTo('service-category', {
     formAttrs: {
       optionLabelAttr: 'name',
     },
@@ -104,7 +104,7 @@ let model =  DS.Model.extend({
       delete hash['service_admins_ids'];
       delete hash['pending_service_admins_ids'];
       delete hash['rejected_service_admins_ids'];
-      delete hash['service_area_ext'];
+      delete hash['service_category_ext'];
       delete hash['service_trl_ext'];
       delete hash['contact_external_full_name'];
       delete hash['contact_internal_full_name'];
