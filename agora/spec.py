@@ -1224,6 +1224,40 @@ ACCESS_POLICIES = {
 }
 
 
+SERVICE_PROVIDERS = {
+    '.collection.django': {},
+    'model': 'service.models.ServiceProvider',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'webpage': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
+        'logo': {
+            '.field.file': {},
+            'default': ''},
+        'country': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.nullable.default': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+
 APP_CONFIG = {
     '.apimas_app': {},
     ':permission_rules': 'agora.permissions.get_rules',
@@ -1264,6 +1298,7 @@ APP_CONFIG = {
                 'my-services': MY_SERVICES,
                 'organisations': ORGANISATIONS,
                 'access-policies': ACCESS_POLICIES,
+                'service-providers': SERVICE_PROVIDERS,
             },
         },
     },

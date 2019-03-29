@@ -79,3 +79,7 @@ def service_image_path(instance, filename):
 def organisation_image_path(instance, filename):
     # file uploaded to MEDIA_ROOT/organisations/resource_<id>/<filename>
     return 'organisations/{0}/{1}'.format(instance.pk, filename)
+
+def service_provider_image_path(instance, filename):
+    # file uploaded to MEDIA_ROOT/service_providers/resource_<id>/<filename>
+    return 'service_providers/{0}/{1}'.format(instance.pk, filename)

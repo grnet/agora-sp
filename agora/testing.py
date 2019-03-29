@@ -227,9 +227,15 @@ RESOURCES_CRUD = {
             'name': 'Market-driven',
         },
     },
-
-
-
-
-
+    'service_providers': {
+        'url': '/api/v2/service-providers/',
+        'create_data': {
+            'name': 'Test Provider',
+            'country': 'FR',
+            'webpage': 'https://example.com',
+        },
+        'edit_data': {
+            'name': 'Test provider modified',
+        },
+    },
 }

@@ -58,6 +58,10 @@ def test_access_policies(serviceadmin, client, superadmin):
     assertions_crud('access_policies', serviceadmin, superadmin)
 
 
+def test_service_providers(serviceadmin, client, superadmin):
+    assertions_crud('service_providers', serviceadmin, superadmin)
+
+
 def test_components(serviceadmin, client, superadmin):
     """
     Flow:

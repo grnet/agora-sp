@@ -363,6 +363,21 @@ def get_rules():
         ('api/v2/access-policies', 'destroy', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/access-policies', 'delete', 'superadmin', '*', '*', '*', '*'),
 
-
+        ('api/v2/service-providers', 'list', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/service-providers', 'list', 'admin', '*', '*', '*', '*'),
+        ('api/v2/service-providers', 'list', 'serviceadmin', '*', '*', '*', '*'),
+        ('api/v2/service-providers', 'list', 'observer', '*', '*', '*', '*'),
+        ('api/v2/service-providers', 'retrieve', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/service-providers', 'retrieve', 'admin', '*', '*', '*', '*'),
+        ('api/v2/service-providers', 'retrieve', 'serviceadmin', '*', '*', '*', '*'),
+        ('api/v2/service-providers', 'retrieve', 'observer', '*', '*', '*', '*'),
+        ('api/v2/service-providers', 'create', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/service-providers', 'create', 'admin', '*', '*', '*', '*'),
+        ('api/v2/service-providers', 'update', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/service-providers', 'update', 'admin', '*', '*', '*', '*'),
+        ('api/v2/service-providers', 'partial_update', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/service-providers', 'partial_update', 'admin', '*', '*', '*', '*'),
+        ('api/v2/service-providers', 'destroy', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/service-providers', 'delete', 'superadmin', '*', '*', '*', '*'),
     ]
     return rules
