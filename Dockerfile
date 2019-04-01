@@ -6,11 +6,11 @@ WORKDIR /srv/agora
 RUN mkdir -p /tmp/agora/agora_emails
 RUN mkdir /etc/agora
 
-COPY docker/settings.conf /etc/agora/
+COPY docker/* /etc/agora/
 
 RUN pip install -r requirements_dev.txt
 
-RUN mkdir /srv/agora/logs/
+RUN mkdir -p /srv/agora/logs/
 RUN python manage.py migrate
 
 CMD ["python", "manage.py", "runserver", "0.0.0.0:80"]
