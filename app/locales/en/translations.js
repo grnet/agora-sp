@@ -15,6 +15,7 @@ import { user_customer } from './user_customer';
 import { institution } from './institution';
 import { organisation } from './organisation';
 import { access_policy } from './access_policy';
+import { service_provider } from './service_provider';
 import { common } from './common';
 import { login } from './login';
 
@@ -37,6 +38,7 @@ export default {
   'user_customer': user_customer,
   'institution': institution,
   'organisation': organisation,
+  'service_provider': service_provider,
   'access_policy': access_policy,
   'form': common.form,
   'login': login,
