@@ -1,19 +1,16 @@
 const service_status = {
   'belongs': {
-    'value': 'Service Status'
+    'value': 'Service Phase'
   },
   'cards': {
     'basic_information': 'Basic information',
-    'basic_hint': 'Service status will be used in Service Versions'
+    'basic_hint': 'Service Phase will be used in Service Versions'
   },
   'fields': {
     'value': 'Value',
-    'order': 'Order'
+    'description': 'Description'
   },
-  'hints': {
-    'order': 'Order is used only internally in admin interface',
-  },
-  'menu': 'Service Version Status',
+  'menu': 'Service Phase',
 };
 
 export { service_status };
