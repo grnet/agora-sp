@@ -351,8 +351,10 @@ SERVICE_STATUS = {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.filterable': {}},
-        'order': {
-            '.field.integer': {}},
+        'description': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {}},
         },
     'actions': {
         '.action-template.django.list': {},

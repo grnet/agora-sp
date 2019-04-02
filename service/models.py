@@ -651,16 +651,13 @@ class Service(models.Model):
 
 
 class ServiceStatus(models.Model):
-
-    class Meta:
-        verbose_name_plural = "09. Service Status (settings)"
-        ordering = [
-            "order",
-        ]
+    """
+    Phase of the ServiceDetails lifecycle
+    """
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
     value = models.CharField(max_length=255, default=None, blank=False, unique=True)
-    order = models.IntegerField(default=None, blank=False)
+    description = models.TextField(default=None, blank=True, null=True)
 
     def __unicode__(self):
         return str(self.value)
@@ -669,7 +666,6 @@ class ServiceStatus(models.Model):
         return OrderedDict([
             ("uuid", self.id),
             ("value", self.value),
-            ("order", self.order),
         ])
 
     def save(self, *args, **kwargs):

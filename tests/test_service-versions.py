@@ -37,8 +37,7 @@ def test_serviceversion_create_edit(serviceadmin, serviceadmin_id, superadmin):
     s2 = resp.json()['id']
 
     resp = superadmin.post(sa_url, {'service': s2, 'admin': serviceadmin_id})
-    status, created = ServiceStatus.objects.get_or_create(value='st',
-                                                          order="2")
+    status, created = ServiceStatus.objects.get_or_create(value='st')
 
     SV_DATA_1 = {
         'version': '1.1',

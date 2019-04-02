@@ -133,11 +133,11 @@ RESOURCES_CRUD = {
         'url': '/api/v2/service-status/',
         'create_data': {
             'value': 'test-value',
-            'order': 1
+            'description': 'description',
         },
         'edit_data': {
             'value': 'test-value-edit',
-            'order': 2
+            'description': 'description changed',
         }
     },
     'contact_information': {
