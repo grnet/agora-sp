@@ -5,7 +5,7 @@ const COMMON_FIELDSETS = [{
   label: 'service_status.cards.basic_information',
   text: 'service_status.cards.basic_hint',
   layout: {
-    flex: [50, 50]
+    flex: [100, 100]
   },
   fields: [
     field(
@@ -14,9 +14,11 @@ const COMMON_FIELDSETS = [{
       }
     ),
     field(
-      'order', {
-        'label': 'service_status.fields.order',
-        'hint': 'service_status.hints.order'
+      'description', {
+        type: 'text',
+        htmlSafe: true,
+        formComponent: 'text-editor',
+        label: 'service_status.fields.description',
       }
     )
   ]
@@ -46,7 +48,6 @@ export default AgoraGen.extend({
       actions: ['gen:details', 'gen:edit', 'remove'],
       fields: [
         'value',
-        'order',
       ],
     },
     sort: {
