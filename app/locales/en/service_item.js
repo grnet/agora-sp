@@ -24,7 +24,7 @@ const service_item = {
     'service_type': 'Service Type Description',
     'description_external': 'Description External',
     'description_internal': 'Description Internal',
-    'short_description': 'Short Description',
+    'short_description': 'Service Description',
     'funders': 'Funders for Service',
     'procedures': 'Request Procedures',
     'risks': 'Risks',
