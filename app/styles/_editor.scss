@@ -1,0 +1,12 @@
+md-input-container.editor-messages [ng-messages] {
+  overflow: auto;
+}
+
+.model-form md-content .editor-messages .md-input-error {
+  top: 0;
+}
+
+.editor-label {
+  position: relative;
+  top: -65px;
+}

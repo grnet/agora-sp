@@ -1,4 +1,4 @@
-<label class="md-label raised padded table-label">{{ label }}</label>
+<label class="md-label padded editor-label">{{ label }}</label>
 {{tinymce-editor
   value=value
   options=(hash
@@ -10,3 +10,14 @@
     min_height=200
     heigth=300)
   onValueChanged=(action onChange)}}
+
+
+{{#if errors.length }}
+  <div class="md-input-messages-animation md-auto-hide editor-messages" ng-messages>
+    {{#each errors as |error index|}}
+      <div id="error-{{index}}" class="md-input-error">
+        {{error}}
+      </div>
+    {{/each}}
+  </div>
+{{/if}}

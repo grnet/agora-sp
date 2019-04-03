@@ -7,6 +7,7 @@ $toolbar-color: "grey" !default;
 
 @import "ember-gen";
 @import "_buttons";
+@import "_editor";
 
 $success-color: color($color-light-green, '600');
 
@@ -91,3 +92,4 @@ a.md-button.md-default-theme:not([disabled]):hover, a.md-button:not([disabled]):
 .message {
   font-style: italic;
 }
+
