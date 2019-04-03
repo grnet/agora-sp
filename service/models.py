@@ -97,6 +97,8 @@ class Service(models.Model):
     description_internal = RichTextUploadingField(default=None, blank=True, null=True)
     tagline = models.TextField(default=None, blank=True, null=True)
     service_category = models.ForeignKey(ServiceCategory, blank=False, null=True)
+    service_categories = models.ManyToManyField(ServiceCategory, blank=False,
+                                                related_name="categories")
     service_type = models.CharField(max_length=255, default=None, blank=True, null=True)
     service_trl = models.ForeignKey(ServiceTrl, null=True)
     request_procedures = RichTextUploadingField(default=None, blank=True, null=True)
@@ -130,6 +132,11 @@ class Service(models.Model):
     @property
     def organisations_names(self):
         return ", ".join(o.name for o in self.organisations.all())
+
+    @property
+    def service_categories_names(self):
+        return ", ".join(o.name for o in self.service_categories.all())
+
 
     @property
     def service_admins_ids(self):

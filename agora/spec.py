@@ -1,4 +1,3 @@
-import copy
   # djoser_verifier: agora.utils.djoser_verifier
   # userid_extractor: agora.utils.userid_extractor
 
@@ -76,9 +75,30 @@ SERVICE_FIELDS_COMMON = {
         '.field.boolean': {}},
     'service_category_ext': {
         '.field.string': {},
-        '.flag.nowrite': {},
-        '.flag.orderable': {},
-        'source': 'service_category.name'},
+        '.flag.searchable': {},
+        '.flag.nullable.default': {}},
+    'scientific_fields': {
+        '.field.string': {},
+        '.flag.searchable': {},
+        '.flag.nullable.default': {}},
+    'service_categories_names': {
+        '.field.string': {},
+        '.flag.nowrite': {}},
+    'service_categories': {
+        '.field.collection.django': {},
+        '.flag.nullable.default': {},
+        ':filter_compat': True,
+        'flat': True,
+        'id_field': 'service_category',
+        'model': 'service.models.Service.service_categories.through',
+        'source': 'service_categories',
+        'bound': 'service',
+        'fields': {
+            'service_category': {'.field.ref': {},
+                                 'source': 'servicecategory_id',
+                                 'to': 'api/v2/service-categories'},
+        },
+    },
     'service_trl_ext': {
         '.field.string': {},
         '.flag.nowrite': {},
