@@ -3,7 +3,6 @@ import { fileField } from '../../lib/common';
 
 const SORT_FIELDS = [
   'name',
-  'service_categories_names',
   'service_trl_ext',
   'service_type',
 ];
