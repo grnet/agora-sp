@@ -3,7 +3,7 @@ import { fileField } from '../../lib/common';
 
 const SORT_FIELDS = [
   'name',
-  'service_category_ext',
+  'service_categories_names',
   'service_trl_ext',
   'service_type',
 ];
@@ -38,9 +38,9 @@ const TABLE_FIELDS = [
     type: 'text',
     label: 'service_item.fields.name',
   }),
-  field('service_category_ext', {
+  field('service_categories_names', {
     type: 'text',
-    label: 'service_item.fields.service_category',
+    label: 'service_item.fields.service_categories',
   }),
   field('service_type', {
     type: 'text',

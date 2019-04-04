@@ -33,6 +33,7 @@ let model =  DS.Model.extend({
   service_trl_ext: DS.attr(),
   tags: DS.attr(),
   scientific_fields: DS.attr(),
+  service_categories_names: DS.attr(),
   customer_facing: DS.attr({
     type: 'boolean',
     label: 'service_item.fields.customer_facing',
