@@ -73,7 +73,7 @@ SERVICE_FIELDS_COMMON = {
     'internal': {
         '.flag.filterable': {},
         '.field.boolean': {}},
-    'service_category_ext': {
+    'tags': {
         '.field.string': {},
         '.flag.searchable': {},
         '.flag.nullable.default': {}},
@@ -126,13 +126,6 @@ SERVICE_FIELDS_COMMON = {
 
 
 SERVICE_FIELDS_INT = {
-    'service_category': {
-        '.field.ref': {},
-        'source': 'service_category_id',
-        'to': '/api/v2/service-categories',
-        '.flag.nullable.default': {},
-        '.flag.orderable': {},
-        '.flag.filterable': {}},
     'service_trl': {
         '.field.ref': {},
         'source': 'service_trl_id',

@@ -122,6 +122,8 @@ class Service(models.Model):
     customer_facing = models.BooleanField(default=False)
     internal = models.BooleanField(default=False)
     organisations = models.ManyToManyField(Organisation, blank=True)
+    tags = models.TextField(default=None, blank=True, null=True)
+    scientific_fields = models.TextField(default=None, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "01. Services"
