@@ -33,7 +33,7 @@ pip install -r requirements.txt
 
 ## Configuration
 
-### Create configuration file
+### Create configuration files
 
 You can create a configuration file in order to override the default settings for the agora project. The default location of the .conf file is `/etc/agora/settings.conf`
 
@@ -56,16 +56,16 @@ You should override it with your database settings, [you can read more informati
 
 **NOTE:** You must create a `log` folder containing a `debug.log` file in your base project directory or configure LOGGING setting with custom log options.
 
+Finally, you should also create a `deployment.conf` file which should specify the `root_url` attribute to reflect the url of the backend server.
 
-### API configuration
-
-As an extra step, you should also update the `resources/agora.spec` spec file,
-and update the `root_url` attribute to reflect the url of the backend server.
+The default location of `deployment.conf` is in '/etc/agora/`.
 
 Example: 
 
 ```
-root_url: https://example.com
+{
+    ":root_url": "localhost"
+}
 ```
 
 
