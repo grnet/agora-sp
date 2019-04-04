@@ -17,6 +17,18 @@ const organisations = field('organisations', {
   },
 });
 
+
+const service_categories = field('service_categories', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: [
+        'name',
+      ]
+    }
+  }
+})
+
 /********************************************
                 LIST VIEW
 ********************************************/
@@ -516,8 +528,32 @@ const BUSINESS_INFO_FIELDSET = {
   },
 };
 
+
+const CLASSIFICATION_FIELDSET = {
+  label: 'service_item.cards.classification',
+  fields: [
+    service_categories,
+    field(
+      'tags', {
+        label: 'service_item.fields.tags',
+        hint: 'service_item.hints.tags',
+      }
+    ),
+    field(
+      'scientific_fields', {
+        label: 'service_item.fields.scientific_fields',
+        hint: 'service_item.hints.scientific_fields',
+      }
+    ),
+  ],
+  layout: {
+    flex: [ 100, 100, 100 ]
+  }
+};
+
 const DETAILS_FIELDSETS = [
   DETAILS_BASIC_INFO_FIELDSET,
+  CLASSIFICATION_FIELDSET,
   USER_CUSTOMERS_FIELDSET,
   //this creates a new referenced table inside another gen
   CUSTOM_VERSIONS_FIELDSET,
@@ -538,6 +574,7 @@ const CREATE_FIELDSETS = [
       flex: [100, 50, 50, 100],
     },
   },
+  CLASSIFICATION_FIELDSET,
   MORE_INFO_FIELDSET,
   BUSINESS_INFO_FIELDSET,
   ORGANISATIONS_FIELDSET,
@@ -555,6 +592,7 @@ const EDIT_FIELDSETS = [
       flex: [100, 50, 50, 100],
     },
   },
+  CLASSIFICATION_FIELDSET,
   MORE_INFO_FIELDSET,
   BUSINESS_INFO_FIELDSET,
   ORGANISATIONS_FIELDSET,

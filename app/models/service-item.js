@@ -31,6 +31,8 @@ let model =  DS.Model.extend({
   request_procedures: DS.attr(),
   service_category_ext: DS.attr(),
   service_trl_ext: DS.attr(),
+  tags: DS.attr(),
+  scientific_fields: DS.attr(),
   customer_facing: DS.attr({
     type: 'boolean',
     label: 'service_item.fields.customer_facing',
@@ -44,11 +46,7 @@ let model =  DS.Model.extend({
   service_version_url: Ember.computed('id', function() {
     return `/service-versions/create?service=${Ember.get(this, 'id')}`;
   }),
-  service_category: DS.belongsTo('service-category', {
-    formAttrs: {
-      optionLabelAttr: 'name',
-    },
-  }),
+  service_categories: DS.hasMany('service-category'),
   service_trl: DS.belongsTo('service-trl', {
     formAttrs: {
       optionLabelAttr: 'value',

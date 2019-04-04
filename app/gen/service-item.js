@@ -74,11 +74,6 @@ export default AgoraGen.extend({
           }),
           field('internal', { type: 'boolean' }),
           field('customer_facing', { type: 'boolean' }),
-          field('service_category', {
-            modelName: 'service_category',
-            type: 'model',
-            displayAttr: 'name',
-          }),
         ],
       },
     },
