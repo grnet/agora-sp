@@ -71,8 +71,8 @@ def test_access_policies(admin, client, superadmin):
     assertions_crud('access_policies', admin, superadmin)
 
 
-def test_service_providers(admin, client, superadmin):
-    assertions_crud('service_providers', admin, superadmin)
+def test_federation_members(admin, client, superadmin):
+    assertions_crud('federation_members', admin, superadmin)
 
 
 # Tests for ServiceAdminship

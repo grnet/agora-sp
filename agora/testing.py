@@ -227,15 +227,15 @@ RESOURCES_CRUD = {
             'name': 'Market-driven',
         },
     },
-    'service_providers': {
-        'url': '/api/v2/service-providers/',
+    'federation_members': {
+        'url': '/api/v2/federation-members/',
         'create_data': {
-            'name': 'Test Provider',
+            'name': 'Federation Member',
             'country': 'FR',
             'webpage': 'https://example.com',
         },
         'edit_data': {
-            'name': 'Test provider modified',
+            'name': 'Federation Member modified',
         },
     },
 }

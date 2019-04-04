@@ -261,8 +261,8 @@ SERVICE_CATEGORY_ICON = 'service-category-icon-default.jpg'
 # Default name for service logo. Should exist in MEDIA_ROOT
 SERVICE_LOGO = 'service-logo-default.jpg';
 
-# Default name for service provider logo. Should exist in MEDIA_ROOT
-SERVICE_PROVIDER_LOGO = 'service-provider-logo-default.jpg';
+# Default name for federation member logo. Should exist in MEDIA_ROOT
+FEDERATION_MEMBER_LOGO = 'federation-member-logo-default.jpg';
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 

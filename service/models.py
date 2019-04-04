@@ -1262,11 +1262,11 @@ class PostPartialUpdateServiceadminship(ProcessorFactory):
         return {}
 
 
-class ServiceProvider(models.Model):
+class FederationMember(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, unique=True)
     webpage = models.CharField(max_length=255, default=None, blank=True,
                                null=True)
-    logo = models.ImageField(default=settings.SERVICE_PROVIDER_LOGO,
-                             upload_to=helper.service_provider_image_path)
+    logo = models.ImageField(default=settings.FEDERATION_MEMBER_LOGO,
+                             upload_to=helper.federation_member_image_path)
     country = models.CharField(max_length=2, default=None)

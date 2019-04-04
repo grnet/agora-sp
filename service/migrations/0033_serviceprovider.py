@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
                 ('id', models.UUIDField(default=uuid.uuid4, editable=False, primary_key=True, serialize=False)),
                 ('name', models.CharField(default=None, max_length=255, unique=True)),
                 ('webpage', models.CharField(blank=True, default=None, max_length=255, null=True)),
-                ('logo', models.ImageField(default=b'service-provider-logo-default.jpg', upload_to=common.helper.service_provider_image_path)),
+                ('logo', models.ImageField(default=b'federation-member-logo-default.jpg', upload_to=common.helper.federation_member_image_path)),
                 ('country', models.CharField(default=None, max_length=2)),
             ],
         ),

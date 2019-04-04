@@ -1282,9 +1282,9 @@ ACCESS_POLICIES = {
 }
 
 
-SERVICE_PROVIDERS = {
+FEDERATION_MEMBERS = {
     '.collection.django': {},
-    'model': 'service.models.ServiceProvider',
+    'model': 'service.models.FederationMember',
     'fields': {
         'id': {
             '.field.uuid': {},
@@ -1356,7 +1356,7 @@ APP_CONFIG = {
                 'my-services': MY_SERVICES,
                 'organisations': ORGANISATIONS,
                 'access-policies': ACCESS_POLICIES,
-                'service-providers': SERVICE_PROVIDERS,
+                'federation-members': FEDERATION_MEMBERS,
             },
         },
     },
