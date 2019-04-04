@@ -7,8 +7,8 @@ import { fileField } from '../../lib/common';
 
 const DETAILS_FIELDSETS = [
   {
-    label: 'service_provider.cards.basic_information',
-    text: 'service_provider.cards.basic_hint',
+    label: 'federation_member.cards.basic_information',
+    text: 'federation_member.cards.basic_hint',
     layout: {
       flex: [100, 75, 25, 100],
     },
@@ -16,7 +16,7 @@ const DETAILS_FIELDSETS = [
       'name',
       'webpage',
       'country',
-      fileField( 'logo', 'service-provider', 'logo', {
+      fileField( 'logo', 'federation-member', 'logo', {
           readonly: true,
         }, {
           img: true,
@@ -32,8 +32,8 @@ const DETAILS_FIELDSETS = [
 
 const EDIT_FIELDSETS = [
   {
-    label: 'service_provider.cards.basic_information',
-    text: 'service_provider.cards.basic_hint',
+    label: 'federation_member.cards.basic_information',
+    text: 'federation_member.cards.basic_hint',
     layout: {
       flex: [100, 50, 50, 100],
     },
@@ -41,7 +41,7 @@ const EDIT_FIELDSETS = [
       'name',
       'webpage',
       'country',
-      fileField( 'logo', 'service-provider', 'logo', {
+      fileField( 'logo', 'federation-member', 'logo', {
         },{
           img: true,
         }
@@ -56,8 +56,8 @@ const EDIT_FIELDSETS = [
 
 const CREATE_FIELDSETS = [
   {
-    label: 'service_provider.cards.basic_information',
-    text: 'service_provider.cards.basic_hint',
+    label: 'federation_member.cards.basic_information',
+    text: 'federation_member.cards.basic_hint',
     layout: {
       flex: [100, 50, 50],
     },

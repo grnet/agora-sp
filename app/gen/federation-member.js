@@ -5,12 +5,12 @@ import {
   CREATE_FIELDSETS,
   EDIT_FIELDSETS,
   DETAILS_FIELDSETS,
-} from '../utils/common/service-provider';
+} from '../utils/common/federation-member';
 
 export default AgoraGen.extend({
-  modelName: 'service_provider',
-  path: 'service-providers',
-  resourceName: 'api/v2/service-providers',
+  modelName: 'federation_member',
+  path: 'federation-members',
+  resourceName: 'api/v2/federation-members',
   common: {
     validators: {
       name: [validate.presence(true)],
@@ -20,14 +20,14 @@ export default AgoraGen.extend({
   },
   list: {
     page: {
-      title: 'service_provider.menu',
+      title: 'federation_member.menu',
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],
       fields: ['name', 'webpage', 'country'],
     },
     menu: {
-      label: 'service_provider.menu',
+      label: 'federation_member.menu',
     },
     filter: {
       active: false,
@@ -50,7 +50,7 @@ export default AgoraGen.extend({
   create: {
     fieldsets: CREATE_FIELDSETS,
     onSubmit(model) {
-      this.transitionTo('service-provider.record.edit', model);
+      this.transitionTo('federation-member.record.edit', model);
     },
   },
 });
