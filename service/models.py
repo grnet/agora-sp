@@ -124,6 +124,15 @@ class Service(models.Model):
     organisations = models.ManyToManyField(Organisation, blank=True)
     tags = models.TextField(default=None, blank=True, null=True)
     scientific_fields = models.TextField(default=None, blank=True, null=True)
+    owner_name = models.CharField(max_length=255, default=None, blank=True, null=True)
+    owner_contact = models.CharField(max_length=255, default=None, blank=True, null=True)
+    support_name = models.CharField(max_length=255, default=None, blank=True, null=True)
+    support_contact = models.CharField(max_length=255, default=None, blank=True, null=True)
+    security_name = models.CharField(max_length=255, default=None, blank=True, null=True)
+    security_contact = models.CharField(max_length=255, default=None, blank=True, null=True)
+    helpdesk = models.TextField(default=None, blank=True, null=True)
+    order = models.TextField(default=None, blank=True, null=True)
+    order_type = RichTextUploadingField(default=None, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "01. Services"

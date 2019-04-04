@@ -81,6 +81,49 @@ SERVICE_FIELDS_COMMON = {
         '.field.string': {},
         '.flag.searchable': {},
         '.flag.nullable.default': {}},
+    'owner_name': {
+        '.field.string': {},
+        '.flag.orderable': {},
+        '.flag.nullable.default': {},
+        '.flag.filterable': {}},
+    'owner_contact': {
+        '.field.string': {},
+        '.flag.orderable': {},
+        '.flag.nullable.default': {},
+        '.flag.filterable': {}},
+    'support_name': {
+        '.field.string': {},
+        '.flag.orderable': {},
+        '.flag.nullable.default': {},
+        '.flag.filterable': {}},
+    'support_contact': {
+        '.field.string': {},
+        '.flag.orderable': {},
+        '.flag.nullable.default': {},
+        '.flag.filterable': {}},
+    'security_name': {
+        '.field.string': {},
+        '.flag.orderable': {},
+        '.flag.nullable.default': {},
+        '.flag.filterable': {}},
+    'security_contact': {
+        '.field.string': {},
+        '.flag.orderable': {},
+        '.flag.nullable.default': {},
+        '.flag.filterable': {}},
+    'helpdesk': {
+        '.field.string': {},
+        '.flag.orderable': {},
+        '.flag.nullable.default': {},
+        '.flag.filterable': {}},
+    'order': {
+        '.field.string': {},
+        '.flag.orderable': {},
+        '.flag.nullable.default': {},
+        '.flag.filterable': {}},
+    'order_type': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
     'service_categories_names': {
         '.field.string': {},
         '.flag.nowrite': {}},
