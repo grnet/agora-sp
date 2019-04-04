@@ -58,6 +58,16 @@ let model =  DS.Model.extend({
   rejected_service_admins_ids: DS.attr(),
   organisations: DS.hasMany('organisation'),
   organisations_names: DS.attr(),
+  owner_name: DS.attr(),
+  owner_contact: DS.attr(),
+  security_name: DS.attr(),
+  security_contact: DS.attr(),
+  support_name: DS.attr(),
+  support_contact: DS.attr(),
+  helpdesk: DS.attr(),
+  order: DS.attr(),
+  order_type: DS.attr(),
+
 
   // computed
   short_desc: Ember.computed('short_description', function() {

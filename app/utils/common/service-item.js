@@ -550,10 +550,74 @@ const CLASSIFICATION_FIELDSET = {
   }
 };
 
+const MANAGEMENT_FIELDSET = {
+  label: 'service_item.cards.management',
+  fields: [
+    field(
+      'owner_name', {
+    type: 'text',
+        label: 'service_item.fields.owner_name',
+        hint: 'service_item.hints.owner_name',
+      }
+    ),
+    field(
+      'owner_contact', {
+        label: 'service_item.fields.owner_contact',
+        hint: 'service_item.hints.owner_contact',
+      }
+    ),
+    field(
+      'support_name', {
+        label: 'service_item.fields.support_name',
+        hint: 'service_item.hints.support_name',
+      }
+    ),
+    field(
+      'support_contact', {
+        label: 'service_item.fields.support_contact',
+        hint: 'service_item.hints.support_contact',
+      }
+    ),
+    field(
+      'security_name', {
+        label: 'service_item.fields.security_name',
+        hint: 'service_item.hints.security_name',
+      }
+    ),
+    field(
+      'security_contact', {
+        label: 'service_item.fields.security_contact',
+        hint: 'service_item.hints.security_contact',
+      }
+    ),
+    field(
+      'helpdesk', {
+        label: 'service_item.fields.helpdesk',
+        hint: 'service_item.hints.helpdesk',
+      }
+    ),
+    field(
+      'order', {
+        label: 'service_item.fields.order',
+        hint: 'service_item.hints.order',
+      }
+    ),
+    field('order_type', {
+      label: 'service_item.fields.order_type',
+      formComponent: 'text-editor',
+      htmlSafe: true,
+    }),
+  ],
+  layout: {
+    flex: [ 50, 50, 50, 50, 50, 50, 50, 50, 100 ]
+  }
+};
+
+
 const DETAILS_FIELDSETS = [
   DETAILS_BASIC_INFO_FIELDSET,
   CLASSIFICATION_FIELDSET,
-  USER_CUSTOMERS_FIELDSET,
+  MANAGEMENT_FIELDSET,
   //this creates a new referenced table inside another gen
   CUSTOM_VERSIONS_FIELDSET,
   MORE_INFO_FIELDSET,
@@ -574,6 +638,7 @@ const CREATE_FIELDSETS = [
     },
   },
   CLASSIFICATION_FIELDSET,
+  MANAGEMENT_FIELDSET,
   MORE_INFO_FIELDSET,
   BUSINESS_INFO_FIELDSET,
   ORGANISATIONS_FIELDSET,
@@ -592,6 +657,7 @@ const EDIT_FIELDSETS = [
     },
   },
   CLASSIFICATION_FIELDSET,
+  MANAGEMENT_FIELDSET,
   MORE_INFO_FIELDSET,
   BUSINESS_INFO_FIELDSET,
   ORGANISATIONS_FIELDSET,
