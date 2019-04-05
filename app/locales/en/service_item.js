@@ -5,7 +5,7 @@ const service_item = {
     'business_info': 'Business Information',
     'contact_external': 'External Contact Information',
     'contact_internal': 'Internal Contact Information',
-    'organisations': 'Service Organisations',
+    'providers': 'Service Providers',
     'classification': 'Service Classification',
   },
   'fields': {
@@ -35,7 +35,7 @@ const service_item = {
     'internal': 'Internal Service',
     'contact_external': 'External Contact',
     'contact_internal': 'Internal Contact',
-    'organisations_names': 'Organisations',
+    'providers_names': 'Service Providers',
     'tags': 'Service tags',
     'scientific_fields': 'Scientific fields',
     'owner_name': 'Service owner name',

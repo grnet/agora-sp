@@ -7,7 +7,7 @@ const SORT_FIELDS = [
   'service_type',
 ];
 
-const organisations = field('organisations', {
+const providers = field('providers', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -41,17 +41,13 @@ const TABLE_FIELDS = [
     type: 'text',
     label: 'service_item.fields.service_categories',
   }),
-  field('service_type', {
-    type: 'text',
-    label: 'service_item.fields.service_type',
-  }),
   field('service_trl_ext', {
     type: 'text',
     label: 'service_trl.belongs.value',
   }),
-  field('organisations_names', {
+  field('providers_names', {
     type: 'text',
-    label: 'service_item.fields.organisations_names',
+    label: 'service_item.fields.providers_names',
   }),
 ];
 
@@ -70,6 +66,11 @@ const BASIC_INFO_FIELDS = [
   field('endpoint', {
     type: 'text',
     label: 'service_item.fields.endpoint',
+  }),
+  'customer_facing',
+  'internal',
+  field('service_type', {
+    label: 'service_item.fields.service_type',
   }),
   field('short_description', {
     label: 'service_item.fields.short_description',
@@ -126,6 +127,7 @@ const BASIC_INFO_FIELDS = [
     formComponent: 'text-editor',
     htmlSafe: true,
   }),
+
 ];
 
 const BASIC_INFO_FORM_FIELDS_EDIT = [
@@ -139,6 +141,11 @@ const BASIC_INFO_FORM_FIELDS_EDIT = [
   field('endpoint', {
     type: 'text',
     label: 'service_item.fields.endpoint',
+  }),
+  'customer_facing',
+  'internal',
+  field('service_type', {
+    label: 'service_item.fields.service_type',
   }),
   field('short_description', {
     label: 'service_item.fields.short_description',
@@ -211,6 +218,11 @@ const BASIC_INFO_FORM_FIELDS_CREATE = [
     type: 'text',
     label: 'service_item.fields.endpoint',
   }),
+  'customer_facing',
+  'internal',
+  field('service_type', {
+    label: 'service_item.fields.service_type',
+  }),
   field('short_description', {
     label: 'service_item.fields.short_description',
     htmlSafe: true,
@@ -264,21 +276,19 @@ const DETAILS_BASIC_INFO_FIELDSET = {
       100,
       50,
       50,
-      100,
-      100,
-      100,
-      100,
-      100,
-      100,
-      100,
-      100,
-      100,
-      100,
       50,
       50,
-      50,
-      25,
-      25,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
+      100,
     ],
   },
 };
@@ -492,9 +502,9 @@ const MORE_INFO_FIELDSET = {
   },
 };
 
-const ORGANISATIONS_FIELDSET = {
-  label: 'service_item.cards.organisations',
-  fields: [organisations],
+const PROVIDERS_FIELDSET = {
+  label: 'service_item.cards.providers',
+  fields: [providers],
   layout: {
     flex: [100],
   },
@@ -622,7 +632,7 @@ const DETAILS_FIELDSETS = [
   CUSTOM_VERSIONS_FIELDSET,
   MORE_INFO_FIELDSET,
   BUSINESS_INFO_FIELDSET,
-  ORGANISATIONS_FIELDSET,
+  PROVIDERS_FIELDSET,
 ];
 
 /********************************************
@@ -634,14 +644,14 @@ const CREATE_FIELDSETS = [
     label: 'service_item.cards.basic_information',
     fields: BASIC_INFO_FORM_FIELDS_CREATE,
     layout: {
-      flex: [100, 50, 50, 100],
+      flex: [100, 50, 50, 50, 50, 100],
     },
   },
   CLASSIFICATION_FIELDSET,
   MANAGEMENT_FIELDSET,
   MORE_INFO_FIELDSET,
   BUSINESS_INFO_FIELDSET,
-  ORGANISATIONS_FIELDSET,
+  PROVIDERS_FIELDSET,
 ];
 
 /********************************************
@@ -653,14 +663,14 @@ const EDIT_FIELDSETS = [
     label: 'service_item.cards.basic_information',
     fields: BASIC_INFO_FORM_FIELDS_EDIT,
     layout: {
-      flex: [100, 50, 50, 100],
+      flex: [100, 50, 50, 50, 50, 100],
     },
   },
   CLASSIFICATION_FIELDSET,
   MANAGEMENT_FIELDSET,
   MORE_INFO_FIELDSET,
   BUSINESS_INFO_FIELDSET,
-  ORGANISATIONS_FIELDSET,
+  PROVIDERS_FIELDSET,
 ];
 
 export {

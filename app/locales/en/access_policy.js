@@ -18,7 +18,7 @@ const access_policy = {
     'pricing': '',
     'conditions': 'More information about the access policy, including any restrictions regarding the users who might want to use your service.',
     'geo_availability': 'The countries in which your service is available to the users. If the service is European-wide, please list "Europe".',
-    'access_policy_url': 'URL to a webpage from the service organisation with more information on the procedure for getting access',
+    'access_policy_url': 'URL to a webpage from the service provider with more information on the procedure for getting access',
   },
   'belongs': {
     'name': 'Service access policies',

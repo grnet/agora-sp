@@ -7,8 +7,8 @@ import { fileField } from '../../lib/common';
 ********************************************/
 
 const DETAILS_FIELDSETS = [{
-  label: 'organisation.cards.basic_information',
-  text: 'organisation.cards.basic_hint',
+  label: 'provider.cards.basic_information',
+  text: 'provider.cards.basic_hint',
   layout: {
     flex: [100, 100, 100]
   },
@@ -22,7 +22,7 @@ const DETAILS_FIELDSETS = [{
       }
     ),
     fileField(
-      'logo', 'organisation', 'logo', {
+      'logo', 'provider', 'logo', {
         readonly: true,
       }, {
         img: true
@@ -37,8 +37,8 @@ const DETAILS_FIELDSETS = [{
 ********************************************/
 
 const EDIT_FIELDSETS = [{
-  label: 'organisation.cards.basic_information',
-  text: 'organisation.cards.basic_hint',
+  label: 'provider.cards.basic_information',
+  text: 'provider.cards.basic_hint',
   layout: {
     flex: [100, 100, 100]
   },
@@ -52,7 +52,7 @@ const EDIT_FIELDSETS = [{
       }
     ),
     fileField(
-      'logo', 'organisation', 'logo', {
+      'logo', 'provider', 'logo', {
       }, {
         img: true
       }
@@ -67,8 +67,8 @@ const EDIT_FIELDSETS = [{
 ********************************************/
 
 const CREATE_FIELDSETS = [{
-  label: 'organisation.cards.basic_information',
-  text: 'organisation.cards.basic_hint',
+  label: 'provider.cards.basic_information',
+  text: 'provider.cards.basic_hint',
   layout: {
     flex: [100, 100, 100]
   },

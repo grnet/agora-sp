@@ -9,16 +9,16 @@ const {
 
 export default DS.Model.extend({
   name: DS.attr({
-    label: 'organisation.fields.name',
-    hint: 'organisation.hints.name'
+    label: 'provider.fields.name',
+    hint: 'provider.hints.name'
   }),
   description: DS.attr({
-    label: 'organisation.fields.description',
-    hint: 'organisation.hints.description'
+    label: 'provider.fields.description',
+    hint: 'provider.hints.description'
   }),
   logo: DS.attr({
-    label: 'organisation.fields.logo',
-    hint: 'organisation.hints.logo'
+    label: 'provider.fields.logo',
+    hint: 'provider.hints.logo'
   }),
   // computed
   short_desc: computed('description', function() {

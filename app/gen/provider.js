@@ -5,13 +5,13 @@ import {
   CREATE_FIELDSETS,
   EDIT_FIELDSETS,
   DETAILS_FIELDSETS
-} from '../utils/common/organisation';
+} from '../utils/common/provider';
 
 
 export default AgoraGen.extend({
-  modelName: 'organisation',
-  path: 'organisations',
-  resourceName: 'api/v2/organisations',
+  modelName: 'provider',
+  path: 'providers',
+  resourceName: 'api/v2/providers',
   common: {
     validators: {
       name: [validate.presence(true)],
@@ -19,20 +19,20 @@ export default AgoraGen.extend({
   },
   list: {
     page: {
-      title: 'organisation.menu'
+      title: 'provider.menu'
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],
       fields: [
         'name',
         field('short_desc', {
-          label: 'organisation.fields.description',
+          label: 'provider.fields.description',
         }),
         'logo'
       ]
     },
     menu: {
-      label: 'organisation.menu',
+      label: 'provider.menu',
     },
     filter: {
       active: false,
@@ -55,7 +55,7 @@ export default AgoraGen.extend({
   create: {
     fieldsets: CREATE_FIELDSETS,
     onSubmit(model) {
-      this.transitionTo('organisation.record.edit', model);
+      this.transitionTo('provider.record.edit', model);
     },
 
   }

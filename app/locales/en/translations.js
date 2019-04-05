@@ -13,7 +13,7 @@ import { custom_user } from './custom_user';
 import { user_role } from './user_role';
 import { user_customer } from './user_customer';
 import { institution } from './institution';
-import { organisation } from './organisation';
+import { provider } from './provider';
 import { access_policy } from './access_policy';
 import { federation_member } from './federation_member';
 import { common } from './common';
@@ -37,7 +37,7 @@ export default {
   'user_role': user_role,
   'user_customer': user_customer,
   'institution': institution,
-  'organisation': organisation,
+  'provider': provider,
   'federation_member': federation_member,
   'access_policy': access_policy,
   'form': common.form,

@@ -6,7 +6,7 @@ const {
   computed
 } = Ember;
 
-const organisations = field('organisations', {
+const providers = field('providers', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -44,7 +44,7 @@ const DETAILS_FIELDSETS = [{
       'role'
     ];
     if (role === 'superadmin' && model_role === 'serviceadmin') {
-      fields.push(organisations);
+      fields.push(providers);
     }
     return fields;
   }),
@@ -71,7 +71,7 @@ const CREATE_OR_EDIT_FIELDSETS = [{
       'role',
     ];
     if (role === 'superadmin' && model_role === 'serviceadmin') {
-      fields.push(organisations);
+      fields.push(providers);
     }
     return fields;
   }),
