@@ -1015,14 +1015,16 @@ SERVICE_VERSIONS = {
             '.flag.nullable.default': {}},
         'user_documentation_has': {
             '.field.boolean': {}},
-        'user_documentation_url': {
+        'user_manual': {
             '.field.string': {},
+            'source': 'user_documentation_url',
             #'.flag.blankable': {},
             '.flag.nullable.default': {}},
         'operations_documentation_has': {
             '.field.boolean': {}},
-        'operations_documentation_url': {
+        'admin_manual': {
             '.field.string': {},
+            'source': 'operations_documentation_url',
             '.flag.nullable.default': {}},
         'monitoring_has': {
             '.field.boolean': {}},
