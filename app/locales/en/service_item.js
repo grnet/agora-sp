@@ -2,6 +2,7 @@ const service_item = {
   'cards': {
     'basic_information': 'Basic Information',
     'details': 'Service Description',
+    'management': 'Service Management',
     'business_info': 'Business Information',
     'contact_external': 'External Contact Information',
     'contact_internal': 'Internal Contact Information',
