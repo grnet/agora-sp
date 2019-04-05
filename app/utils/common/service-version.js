@@ -78,15 +78,17 @@ const URLS_FIELDSET = {
   },
   fields: [
     field(
-      'user_documentation_url', {
+      'user_manual', {
         type: 'text',
-        label: 'service_version.fields.user_documentation'
+        label: 'service_version.fields.user_manual',
+        hint: 'service_version.hints.user_manual',
       }
     ),
     field(
-      'operations_documentation_url', {
+      'admin_manual', {
         type: 'text',
-        label: 'service_version.fields.operations_documentation'
+        label: 'service_version.fields.admin_manual',
+        hint: 'service_version.hints.admin_manual',
       }
     ),
     field(
