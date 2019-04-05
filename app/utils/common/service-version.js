@@ -434,8 +434,31 @@ const CONTRACT_FIELDSET = {
   }
 };
 
+
+const MATURITY_FIELDSET = {
+  label: 'service_version.cards.maturity',
+  fields: [
+    field('service_trl.value', {label: 'service_version.fields.service_trl'}),
+    field('status.value', {label: 'service_version.fields.status'}),
+  ],
+  layout: {
+    flex: [ 100, 100 ]
+  }
+};
+
+const MATURITY_FIELDSET_EDIT = {
+  label: 'service_version.cards.maturity',
+  fields: [
+    'service_trl',
+    'status',
+  ],
+  layout: {
+    flex: [ 100, 100 ]
+  }
+};
 const DETAILS_FIELDSETS = [
   BASIC_INFO_FIELDSET,
+  MATURITY_FIELDSET,
   COMPONENT_LINKS_FIELDSET,
   URLS_FIELDSET,
   CONTRACT_FIELDSET,
@@ -443,6 +466,7 @@ const DETAILS_FIELDSETS = [
 
 const CREATE_FIELDSETS = [
   BASIC_INFO_CREATE_FIELDSET,
+  MATURITY_FIELDSET_EDIT,
   URLS_FIELDSET,
   FINANCIAL_FIELDSET,
   CONTRACT_FIELDSET,
@@ -450,6 +474,7 @@ const CREATE_FIELDSETS = [
 
 const CREATE_FIELDSETS_LIMITED = [
   BASIC_INFO_CREATE_FIELDSET_LIMITED,
+  MATURITY_FIELDSET_EDIT,
   URLS_FIELDSET,
   FINANCIAL_FIELDSET,
   CONTRACT_FIELDSET,

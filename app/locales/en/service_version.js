@@ -10,6 +10,7 @@ const service_version = {
     'more_information': 'More information',
     'management': 'Service Version management',
     'contract': 'Service Contract',
+    'maturity': 'Service Version maturity',
   },
   'fields': {
     'version': 'Version',

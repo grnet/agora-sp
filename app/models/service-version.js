@@ -37,6 +37,13 @@ let model = DS.Model.extend({
   maintenance: DS.attr(),
   // id_service_ext is service.name
   id_service_ext: DS.attr(),
+  service_trl: DS.belongsTo('service-trl', {
+    label: 'service_version.fields.service_trl',
+    hint: 'service_version.hints.service_trl',
+    formAttrs: {
+      optionLabelAttr: 'value',
+    },
+  }),
   cidl_url: Ember.computed('id', 'id_service.id', function() {
     const service =  Ember.get(this, 'id_service.id');
     const service_version = Ember.get(this, 'id');
@@ -56,6 +63,8 @@ let model = DS.Model.extend({
   }),
 
   status: gen.belongsTo('service_status', {
+    label: 'service_version.fields.status',
+    hint: 'service_version.hints.status',
     formAttrs: {
       optionLabelAttr: 'value'
     }
