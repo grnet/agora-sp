@@ -28,6 +28,10 @@ export default AgoraGen.extend({
       sla_url: [validate.format({ type: 'url', allowBlank: true })],
       terms_of_use_url: [validate.format({ type: 'url', allowBlank: true })],
       privacy_policy_url: [validate.format({ type: 'url', allowBlank: true })],
+      user_manual: [validate.format({ type: 'url', allowBlank: true })],
+      admin_manual: [validate.format({ type: 'url', allowBlank: true })],
+      monitoring_url: [validate.format({ type: 'url', allowBlank: true })],
+      maintenance: [validate.format({ type: 'url', allowBlank: true })],
     },
   },
   abilityStates: {
