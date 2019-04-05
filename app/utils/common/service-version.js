@@ -72,9 +72,9 @@ const FINANCIAL_FIELDSET = {
 };
 
 const URLS_FIELDSET = {
-  label: 'service_version.cards.resources',
+  label: 'service_version.cards.management',
   layout: {
-    flex: [50, 50, 50, 50, 50, 50, 50]
+    flex: [50, 50, 100, 50, 50]
   },
   fields: [
     field(
@@ -95,6 +95,8 @@ const URLS_FIELDSET = {
       'training_information', {
         label: 'service_version.fields.training_information',
         hint: 'service_version.hints.training_information',
+        formComponent: 'text-editor',
+        htmlSafe: true,
       }
     ),
     field(
@@ -108,30 +110,6 @@ const URLS_FIELDSET = {
       'maintenance', {
         label: 'service_version.fields.maintenance',
         hint: 'service_version.hints.maintenance',
-      }
-    ),
-    field(
-      'accounting_url', {
-        type: 'text',
-        label: 'service_version.fields.accounting'
-      }
-    ),
-    field(
-      'business_continuity_plan_url', {
-        type: 'text',
-        label: 'service_version.fields.business_continuity'
-      }
-    ),
-    field(
-      'disaster_recovery_plan_url', {
-        type: 'text',
-        label: 'service_version.fields.disaster_recovery_plan'
-      }
-    ),
-    field(
-      'decommissioning_procedure_url', {
-        type: 'text',
-        label: 'service_version.fields.decommissioning_procedure'
       }
     ),
   ]
