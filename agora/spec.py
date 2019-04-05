@@ -124,6 +124,13 @@ SERVICE_FIELDS_COMMON = {
     'order_type': {
         '.field.string': {},
         '.flag.nullable.default': {}},
+    'changelog': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'last_update': {
+        '.field.string': {},
+        '.flag.orderable': {},
+        '.flag.nullable.default': {}},
     'service_categories_names': {
         '.field.string': {},
         '.flag.nowrite': {}},

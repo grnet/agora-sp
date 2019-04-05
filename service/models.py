@@ -133,6 +133,8 @@ class Service(models.Model):
     helpdesk = models.TextField(default=None, blank=True, null=True)
     order = models.TextField(default=None, blank=True, null=True)
     order_type = RichTextUploadingField(default=None, blank=True, null=True)
+    changelog = models.TextField(default=None, blank=True, null=True)
+    last_update = models.CharField(max_length=255, default=None, blank=True, null=True)
 
     class Meta:
         verbose_name_plural = "01. Services"
