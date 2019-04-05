@@ -1071,6 +1071,12 @@ SERVICE_VERSIONS = {
         'sla_url': {
             '.field.string': {},
             '.flag.nullable.default': {}},
+        'training_information': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'maintenance_url': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
         # extended fields
         'id_service_ext': {
             '.field.string': {},

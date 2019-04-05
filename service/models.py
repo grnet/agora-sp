@@ -729,6 +729,8 @@ class ServiceDetails(models.Model):
     visible_to_marketplace = models.BooleanField(default=False)
     sla_url = models.CharField(max_length=255, default=None, blank=True, null=True)
     access_policies = models.ManyToManyField(AccessPolicy, blank=True)
+    training_information = models.TextField(default=None, blank=True, null=True)
+    maintenance_url = models.CharField(max_length=255, default=None, blank=True, null=True)
 
     def __unicode__(self):
         primary_key = self.id_service.pk
