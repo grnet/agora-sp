@@ -92,10 +92,22 @@ const URLS_FIELDSET = {
       }
     ),
     field(
+      'training_information', {
+        label: 'service_version.fields.training_information',
+        hint: 'service_version.hints.training_information',
+      }
+    ),
+    field(
       'monitoring_url', {
         type: 'text',
         label: 'service_version.fields.monitoring',
         hint: 'service_version.hints.monitoring',
+      }
+    ),
+    field(
+      'maintenance', {
+        label: 'service_version.fields.maintenance',
+        hint: 'service_version.hints.maintenance',
       }
     ),
     field(

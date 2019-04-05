@@ -33,6 +33,8 @@ const service_version = {
     'disaster_recovery_plan': 'Disaster Recovery Plan',
     'terms_of_use': 'Service terms of use',
     'sla': 'Service Level Agreement',
+    'maintenance': 'Service maintenance',
+    'training_information': 'Service training information',
   },
   'hints': {
     'visible_to_marketplace': 'Only admins can edit',
@@ -43,6 +45,8 @@ const service_version = {
     'admin_manual': 'Link to your to your service admin manual (write ‘n/a’ ’if not applicable)',
     'user_manual': 'Link to your service user manual',
     'monitoring': 'Web page with monitoring information about this service',
+    'maintenance': 'Web page with information about planned maintenance windows for this service',
+    'training_information': 'Link(s) to training information on this service',
   },
   'menu': 'Service Versions',
   'placeholders': {
