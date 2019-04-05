@@ -10,3 +10,7 @@ md-input-container.editor-messages [ng-messages] {
   position: relative;
   top: -65px;
 }
+
+.model-form [data-form-field-component='text-editor'] .md-input-hint {
+  top: -24px;
+}
