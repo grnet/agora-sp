@@ -8,6 +8,7 @@ const service_item = {
     'contact_internal': 'Internal Contact Information',
     'providers': 'Service Providers',
     'classification': 'Service Classification',
+    'maturity': 'Service Maturity',
   },
   'fields': {
     'name': 'Service name',
@@ -48,6 +49,8 @@ const service_item = {
     'helpdesk': 'Helpdesk',
     'order': 'Service order',
     'order_type': 'Service order type',
+    'last_update': 'Service last update',
+    'changelog': 'Service change log',
     'contact': {
       'first_name': 'First name',
       'last_name': 'Last name',
@@ -72,6 +75,8 @@ const service_item = {
     'helpdesk': 'Link to your service helpdesk',
     'order': 'Webpage to order the service directly via the main service provider',
     'order_type': 'Explain ordering procedure',
+    'last_update': 'Date when this service was released',
+    'changelog': 'Summary of the main changes from the previous version',
   },
   'belongs': {
     'name': 'Service Name'

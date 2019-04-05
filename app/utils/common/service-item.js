@@ -3,7 +3,7 @@ import { fileField } from '../../lib/common';
 
 const SORT_FIELDS = [
   'name',
-  'service_trl_ext',
+  'owner_name',
   'service_type',
 ];
 
@@ -34,19 +34,15 @@ const service_categories = field('service_categories', {
 
 const TABLE_FIELDS = [
   field('name', {
-    type: 'text',
     label: 'service_item.fields.name',
   }),
   field('service_categories_names', {
-    type: 'text',
     label: 'service_item.fields.service_categories',
   }),
-  field('service_trl_ext', {
-    type: 'text',
-    label: 'service_trl.belongs.value',
+  field('owner_name', {
+    label: 'service_item.fields.owner_name',
   }),
   field('providers_names', {
-    type: 'text',
     label: 'service_item.fields.providers_names',
   }),
 ];
@@ -538,6 +534,29 @@ const BUSINESS_INFO_FIELDSET = {
 };
 
 
+const MATURITY_FIELDSET = {
+  label: 'service_item.cards.maturity',
+  fields: [
+    field('last_update', {
+        label: 'service_item.fields.last_update',
+        hint: 'service_item.hints.last_update',
+      }
+    ),
+    field(
+      'changelog', {
+        label: 'service_item.fields.changelog',
+        hint: 'service_item.hints.changelog',
+        formComponent: 'text-editor',
+        htmlSafe: true,
+      }
+    ),
+  ],
+  layout: {
+    flex: [ 100, 100 ]
+  }
+};
+
+
 const CLASSIFICATION_FIELDSET = {
   label: 'service_item.cards.classification',
   fields: [
@@ -626,6 +645,7 @@ const MANAGEMENT_FIELDSET = {
 
 const DETAILS_FIELDSETS = [
   DETAILS_BASIC_INFO_FIELDSET,
+  MATURITY_FIELDSET,
   CLASSIFICATION_FIELDSET,
   MANAGEMENT_FIELDSET,
   //this creates a new referenced table inside another gen
@@ -645,6 +665,7 @@ const CREATE_FIELDSETS = [
       flex: [100, 50, 50, 50, 50, 100],
     },
   },
+  MATURITY_FIELDSET,
   CLASSIFICATION_FIELDSET,
   MANAGEMENT_FIELDSET,
   PROVIDERS_FIELDSET,
@@ -662,6 +683,7 @@ const EDIT_FIELDSETS = [
       flex: [100, 50, 50, 50, 50, 100],
     },
   },
+  MATURITY_FIELDSET,
   CLASSIFICATION_FIELDSET,
   MANAGEMENT_FIELDSET,
   PROVIDERS_FIELDSET,

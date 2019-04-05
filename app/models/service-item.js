@@ -67,7 +67,8 @@ let model =  DS.Model.extend({
   helpdesk: DS.attr(),
   order: DS.attr(),
   order_type: DS.attr(),
-
+  last_update: DS.attr('date'),
+  changelog: DS.attr(),
 
   // computed
   short_desc: Ember.computed('short_description', function() {
