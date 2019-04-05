@@ -66,8 +66,8 @@ def test_components(superadmin, client):
     assertions_crud('components', superadmin)
 
 
-def test_organisations(superadmin, client):
-    assertions_crud('organisations', superadmin)
+def test_providers(superadmin, client):
+    assertions_crud('providers', superadmin)
 
 
 def test_access_policies(superadmin, client):

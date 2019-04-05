@@ -147,10 +147,11 @@ SERVICE_FIELDS_COMMON = {
         '.flag.nowrite': {},
         '.flag.orderable': {},
         'source': 'service_trl.value'},
-    'organisations_names': {
+    'providers_names': {
         '.field.string': {},
+        'source': 'organisations_names',
         '.flag.nowrite': {}},
-    'organisations': {
+    'providers': {
         '.field.collection.django': {},
         '.flag.nullable.default': {},
         ':filter_compat': True,
@@ -162,7 +163,7 @@ SERVICE_FIELDS_COMMON = {
         'fields': {
             'organisation': {'.field.ref': {},
                             'source': 'organisation_id',
-                            'to': 'api/v2/organisations'},
+                            'to': 'api/v2/providers'},
         }
     }
 }
@@ -603,7 +604,7 @@ CUSTOM_USERS = {
             '.flag.orderable': {},
             '.flag.filterable': {},
             '.field.string': {}},
-        "organisations": {
+        'providers': {
             '.field.collection.django': {},
             ':filter_compat': True,
             '.flag.nullable.default': {},
@@ -615,7 +616,7 @@ CUSTOM_USERS = {
             'fields': {
                 'organisation': {'.field.ref': {},
                                 'source': 'organisation_id',
-                                'to': 'api/v2/organisations'},
+                                'to': 'api/v2/providers'},
             }
         }
 
@@ -1354,7 +1355,7 @@ APP_CONFIG = {
                 'component-implementation-details': COMPONENT_IMPLEMENTATION_DETAILS,
                 'component-implementation-detail-links': COMPONENT_IMPLEMENTATION_DETAIL_LINKS,
                 'my-services': MY_SERVICES,
-                'organisations': ORGANISATIONS,
+                'providers': ORGANISATIONS,
                 'access-policies': ACCESS_POLICIES,
                 'federation-members': FEDERATION_MEMBERS,
             },

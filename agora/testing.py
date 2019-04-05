@@ -207,8 +207,8 @@ RESOURCES_CRUD = {
     'service_versions': {
         'url': '/api/v2/service-versions/'
     },
-    'organisations': {
-        'url': '/api/v2/organisations/',
+    'providers': {
+        'url': '/api/v2/providers/',
         'create_data': {
             'name': 'CIA',
             'description': '<p>Description</p>',
