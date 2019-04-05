@@ -94,7 +94,8 @@ const URLS_FIELDSET = {
     field(
       'monitoring_url', {
         type: 'text',
-        label: 'service_version.fields.monitoring'
+        label: 'service_version.fields.monitoring',
+        hint: 'service_version.hints.monitoring',
       }
     ),
     field(

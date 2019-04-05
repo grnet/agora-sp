@@ -24,7 +24,7 @@ const service_version = {
     'cost_to_run': 'Cost to run',
     'cost_to_build': 'Cost to build',
     'privacy_policy': 'Privacy policy',
-    'monitoring': 'Monitoring',
+    'monitoring': 'Service monitoring',
     'user_manual': 'Service user manual',
     'decommissioning_procedure': 'Decommissioning Procedure',
     'accounting': 'Accounting',
@@ -42,6 +42,7 @@ const service_version = {
     'sla': 'Link to an Service Level Agreement (SLA) applicable to the service',
     'admin_manual': 'Link to your to your service admin manual (write ‘n/a’ ’if not applicable)',
     'user_manual': 'Link to your service user manual',
+    'monitoring': 'Web page with monitoring information about this service',
   },
   'menu': 'Service Versions',
   'placeholders': {
