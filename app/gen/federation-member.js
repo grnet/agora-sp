@@ -28,6 +28,10 @@ export default AgoraGen.extend({
     },
     menu: {
       label: 'federation_member.menu',
+      order: 500,
+      group: {
+        name: 'user-information',
+      }
     },
     filter: {
       active: false,

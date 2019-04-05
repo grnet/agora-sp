@@ -17,7 +17,7 @@ const provider = {
     'name': 'Service provider',
     'hint': ''
   },
-  'menu': 'Service providers'
+  'menu': 'Service Providers'
 };
 
 export { provider };

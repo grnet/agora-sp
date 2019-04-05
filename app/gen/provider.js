@@ -33,6 +33,12 @@ export default AgoraGen.extend({
     },
     menu: {
       label: 'provider.menu',
+      order: 50,
+      group: {
+        name: 'user-information',
+        order: 100,
+      },
+
     },
     filter: {
       active: false,
