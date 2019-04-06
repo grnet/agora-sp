@@ -67,7 +67,9 @@ let model =  DS.Model.extend({
   helpdesk: DS.attr(),
   order: DS.attr(),
   order_type: DS.attr(),
-  last_update: DS.attr('date'),
+  last_update: DS.attr('date', {
+    displayComponent: 'date-formatted',
+  }),
   changelog: DS.attr(),
 
   // computed
