@@ -63,7 +63,7 @@ let model = DS.Model.extend({
   }),
 
   status: gen.belongsTo('service_status', {
-    label: 'service_version.fields.status',
+    label: 'service_status.belongs.value',
     hint: 'service_version.hints.status',
     formAttrs: {
       optionLabelAttr: 'value'

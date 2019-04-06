@@ -36,6 +36,7 @@ const service_version = {
     'sla': 'Service Level Agreement',
     'maintenance': 'Service maintenance',
     'training_information': 'Service training information',
+    'service_trl': 'Service TRL',
   },
   'hints': {
     'visible_to_marketplace': 'Only admins can edit',
@@ -48,6 +49,7 @@ const service_version = {
     'monitoring': 'Web page with monitoring information about this service',
     'maintenance': 'Web page with information about planned maintenance windows for this service',
     'training_information': 'Link(s) to training information on this service',
+    'status': 'Phase of the service lifecycle',
   },
   'menu': 'Service Versions',
   'placeholders': {
