@@ -10,10 +10,11 @@ const DETAILS_FIELDSETS = [{
   label: 'provider.cards.basic_information',
   text: 'provider.cards.basic_hint',
   layout: {
-    flex: [100, 100, 100]
+    flex: [100, 100, 100, 100]
   },
   fields: [
     'name',
+    'contact',
     field(
       'description', {
         type: 'text',
@@ -40,10 +41,11 @@ const EDIT_FIELDSETS = [{
   label: 'provider.cards.basic_information',
   text: 'provider.cards.basic_hint',
   layout: {
-    flex: [100, 100, 100]
+    flex: [100, 100, 100, 100]
   },
   fields: [
     'name',
+    'contact',
     field(
       'description', {
         type: 'text',
@@ -70,10 +72,11 @@ const CREATE_FIELDSETS = [{
   label: 'provider.cards.basic_information',
   text: 'provider.cards.basic_hint',
   layout: {
-    flex: [100, 100, 100]
+    flex: [100, 100, 100, 100]
   },
   fields: [
     'name',
+    'contact',
     field(
       'description', {
         type: 'text',

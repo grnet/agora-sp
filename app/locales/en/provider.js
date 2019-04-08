@@ -7,11 +7,13 @@ const provider = {
     'logo': 'Service provider Logo',
     'description': 'Service provider Description',
     'name': 'Service provider Name',
+    'contact': 'Contact',
   },
   'hints': {
     'name': '',
     'description': '',
     'logo': '',
+    'contact': 'Contact email',
   },
   'belongs': {
     'name': 'Service provider',

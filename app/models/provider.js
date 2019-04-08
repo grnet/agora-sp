@@ -20,6 +20,10 @@ export default DS.Model.extend({
     label: 'provider.fields.logo',
     hint: 'provider.hints.logo'
   }),
+  contact: DS.attr({
+    label: 'provider.fields.contact',
+    hint: 'provider.hints.contact',
+  }),
   // computed
   short_desc: computed('description', function() {
     return shorten(get(this, 'description'));

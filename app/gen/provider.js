@@ -15,6 +15,7 @@ export default AgoraGen.extend({
   common: {
     validators: {
       name: [validate.presence(true)],
+      contact: [validate.format({type: 'email', allowBlank: true})],
     },
   },
   list: {
@@ -25,10 +26,10 @@ export default AgoraGen.extend({
       actions: ['gen:details', 'gen:edit', 'remove'],
       fields: [
         'name',
+        'contact',
         field('short_desc', {
           label: 'provider.fields.description',
         }),
-        'logo'
       ]
     },
     menu: {
