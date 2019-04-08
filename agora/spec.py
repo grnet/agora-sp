@@ -1237,6 +1237,11 @@ ORGANISATIONS = {
         'description': {
             '.field.string': {},
             '.flag.nullable.default': {}},
+         'contact': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
         'logo': {
             '.field.file': {},
             'default': ''},

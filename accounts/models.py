@@ -60,6 +60,7 @@ class Organisation(models.Model):
     name = models.CharField(max_length=255, unique=True)
     description = RichTextUploadingField(default=None, blank=True, null=True)
     logo = models.ImageField(upload_to=helper.organisation_image_path)
+    contact = models.CharField(max_length=255, default=None, blank=True, null=True)
 
 
 class User(AbstractBaseUser, PermissionsMixin):
