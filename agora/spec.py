@@ -1086,6 +1086,13 @@ SERVICE_VERSIONS = {
         'maintenance_url': {
             '.field.string': {},
             '.flag.nullable.default': {}},
+        'service_trl': {
+            '.field.ref': {},
+            'source': 'service_trl_id',
+            'to': '/api/v2/service-trls',
+            '.flag.orderable': {},
+            '.flag.filterable': {},
+            '.flag.nullable.default': {}},
         # extended fields
         'id_service_ext': {
             '.field.string': {},

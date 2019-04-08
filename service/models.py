@@ -733,6 +733,7 @@ class ServiceDetails(models.Model):
     access_policies = models.ManyToManyField(AccessPolicy, blank=True)
     training_information = models.TextField(default=None, blank=True, null=True)
     maintenance_url = models.CharField(max_length=255, default=None, blank=True, null=True)
+    service_trl = models.ForeignKey(ServiceTrl, null=True)
 
     def __unicode__(self):
         primary_key = self.id_service.pk
