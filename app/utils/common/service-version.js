@@ -286,7 +286,7 @@ const BASIC_INFO_CREATE_FIELDSET = {
 const BASIC_INFO_CREATE_FIELDSET_LIMITED = {
   label: 'service_version.cards.basic_information',
   layout: {
-    flex: [50, 50, 50, 25, 25, 100, 100, 100],
+    flex: [50, 50, 25, 25, 100, 100, 100],
   },
   fields: [
     field(
@@ -298,11 +298,6 @@ const BASIC_INFO_CREATE_FIELDSET_LIMITED = {
     field(
       'my_service', {
         label: 'service_item.belongs.name',
-      }
-    ),
-    field(
-      'status', {
-        label: 'service_status.belongs.value',
       }
     ),
     field(
