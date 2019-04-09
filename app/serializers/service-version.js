@@ -11,6 +11,8 @@ import Serializer from './application';
       }
     });
     delete json['sla_has'];
+    json['operations_documentation_has'] = true;
+    json['user_documentation_has'] = true;
     return json;
   }
 
