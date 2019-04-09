@@ -44,7 +44,6 @@ export default AgoraGen.extend({
       endpoint: [validate.format({ type: 'url', allowBlank: true })],
       short_description: [validate.presence(true)],
       tagline: [validate.presence(true)],
-      logo: [validate.presence(true)],
       languages: [validate.presence(true)],
       owner_contact: [validate.format({ type: 'email', allowBlank: true })],
       support_contact: [validate.format({ type: 'email', allowBlank: true })],
