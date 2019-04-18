@@ -65,5 +65,10 @@
     "@bower_components/jquery-extendext": "mistic100/jQuery.extendext#^0.1.2",
     "@bower_components/matchMedia": "paulirish/matchMedia.js#0.2.0",
     "@bower_components/pickadate": "amsul/pickadate.js#^3.5.6"
+  },
+  "ember-addon": {
+    "paths": [
+      "lib/theme-scripts"
+    ]
   }
 }
