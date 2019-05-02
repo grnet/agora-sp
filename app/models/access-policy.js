@@ -30,6 +30,7 @@ export default DS.Model.extend({
     htmlSafe: true,
   }),
   geo_availability: DS.attr({
+    defaultValue: 'Europe',
     label: 'access_policy.fields.geo_availability',
     hint: 'access_policy.hints.geo_availability',
   }),

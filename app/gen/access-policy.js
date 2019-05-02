@@ -25,6 +25,7 @@ export default AgoraGen.extend({
     }],
     validators: {
       name: [validate.presence(true)],
+      geo_availability: [validate.presence(true)],
     },
   },
   list: {
