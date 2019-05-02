@@ -8,7 +8,7 @@ from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 from agora.settings import AVATAR_LOCATION
 from agora.settings import USER_CREATION_EMAIL_LIST
-from agora.utils import USER_ROLES
+from agora.utils import USER_ROLES, clean_html_fields
 from rest_framework.authtoken.models import Token
 from ckeditor_uploader.fields import RichTextUploadingField
 from common import helper
@@ -61,6 +61,11 @@ class Organisation(models.Model):
     description = RichTextUploadingField(default=None, blank=True, null=True)
     logo = models.ImageField(upload_to=helper.organisation_image_path)
     contact = models.CharField(max_length=255, default=None, blank=True, null=True)
+
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(Organisation, self).save(*args, **kwargs)
 
 
 class User(AbstractBaseUser, PermissionsMixin):

@@ -85,6 +85,10 @@ class AccessPolicy(models.Model):
     access_policy_url = models.CharField(max_length=255,
                                          default=None, blank=True, null=True)
 
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(AccessPolicy, self).save(*args, **kwargs)
+
 
 class Service(models.Model):
 
