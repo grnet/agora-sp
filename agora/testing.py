@@ -157,21 +157,6 @@ RESOURCES_CRUD = {
             'url': 'https://www.test2.org'
         }
     },
-    'institutions': {
-        'url': '/api/v2/institutions/',
-        'create_data': {
-            'address': 'Dreams 3',
-            'country': 'Iceland',
-            'department': 'magic',
-            'name': 'test institution',
-        },
-        'edit_data': {
-            'address': 'Dreams 3 edit',
-            'country': 'Iceland-edit',
-            'department': 'magic-edit',
-            'name': 'test institution edit',
-        },
-    },
     'services': {
         'url': '/api/v2/services/',
         'create_data': {

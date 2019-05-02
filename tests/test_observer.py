@@ -45,10 +45,6 @@ def test_contact_information(observer, client, superadmin):
     assertions_crud('contact_information', observer, superadmin)
 
 
-def test_institutions(observer, client, superadmin):
-    assertions_crud('institutions', observer, superadmin)
-
-
 def test_services(observer, client, superadmin):
     assertions_crud('services', observer, superadmin)
 
