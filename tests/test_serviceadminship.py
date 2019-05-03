@@ -3,7 +3,7 @@ from agora.testing import *
 from django.core import mail
 
 
-def test_serviceadminship_create_delete(serviceadmin, superadmin, client):
+def test_serviceadminship_create_delete(serviceadmin, superadmin):
 
     service_url = RESOURCES_CRUD['services']['url']
     service_data = RESOURCES_CRUD['services']['create_data']
@@ -28,11 +28,11 @@ def test_serviceadminship_create_delete(serviceadmin, superadmin, client):
     assert resp.status_code == 204
 
     # Clean up
-    superadmin.delete(service_url+service_id+'/')
+    superadmin.delete(service_url + service_id + '/')
 
 
 def test_serviceadminship_emails(serviceadmin, serviceadmin2,
-                                 superadmin, client):
+                                 superadmin):
 
     service_url = RESOURCES_CRUD['services']['url']
     service_data = RESOURCES_CRUD['services']['create_data']
@@ -120,4 +120,4 @@ def test_serviceadminship_emails(serviceadmin, serviceadmin2,
     mail.outbox = []
 
     # Clean up
-    superadmin.delete(service_url+service_id+'/')
+    superadmin.delete(service_url + service_id + '/')

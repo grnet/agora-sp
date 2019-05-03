@@ -1,4 +1,3 @@
-import json
 from agora.testing import *
 from service.models import ServiceStatus
 
@@ -71,7 +70,6 @@ def test_serviceversion_create_edit(serviceadmin, serviceadmin_id, superadmin):
         'decommissioning_procedure_has': True,
     }
 
-
     SV_DATA_2 = {
         'version': '1.2',
         'id_service': s2,
@@ -104,8 +102,6 @@ def test_serviceversion_create_edit(serviceadmin, serviceadmin_id, superadmin):
         'decommissioning_procedure_has': True,
     }
 
-
-
     # CREATE
     resp = serviceadmin.post(sv_url, SV_DATA_1)
     assert resp.status_code == 403
@@ -119,11 +115,10 @@ def test_serviceversion_create_edit(serviceadmin, serviceadmin_id, superadmin):
 
     resp = serviceadmin.post(sv_url, SV_DATA_2)
     assert resp.status_code == 403
-     
+
     resp = serviceadmin.post(sv_url, SV_DATA_2_LIMITED)
     assert resp.status_code == 201
     sv2_id = resp.json()['id']
-
 
     # DELETE
     resp = serviceadmin.delete(sv_url + sv1_id + '/')
@@ -136,7 +131,7 @@ def test_serviceversion_create_edit(serviceadmin, serviceadmin_id, superadmin):
     assert resp.status_code == 204
 
     # Clean up
-    superadmin.delete(service_url+s1+'/')
-    superadmin.delete(service_url+s2+'/')
-    superadmin.delete(sv_url+sv2_id+'/')
-    superadmin.delete(status_url+str(status.id)+'/')
+    superadmin.delete(service_url + s1 + '/')
+    superadmin.delete(service_url + s2 + '/')
+    superadmin.delete(sv_url + sv2_id + '/')
+    superadmin.delete(status_url + str(status.id) + '/')

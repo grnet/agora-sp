@@ -19,46 +19,46 @@ def assertions_crud(resource, user, superadmin):
     assert len(user.get(url).json()) == 1
     resp = user.get(url)
     id = resp.json()[0]['id']
-    resp = user.get(url+id+'/')
+    resp = user.get(url + id + '/')
     for key, value in data.iteritems():
         assert resp.json()[key] == value
-    resp = user.delete(url+id+'/')
+    resp = user.delete(url + id + '/')
     assert resp.status_code == 403
-    resp = superadmin.delete(url+id+'/')
+    resp = superadmin.delete(url + id + '/')
     assert resp.status_code == 204
 
 
 # Tests for resources with no foreign keys or special handling
 
-def test_user_roles(serviceadmin, client, superadmin):
+def test_user_roles(serviceadmin, superadmin):
     assertions_crud('user_roles', serviceadmin, superadmin)
 
 
-def test_service_trls(serviceadmin, client, superadmin):
+def test_service_trls(serviceadmin, superadmin):
     assertions_crud('service_trls', serviceadmin, superadmin)
 
 
-def test_service_status(serviceadmin, client, superadmin):
+def test_service_status(serviceadmin, superadmin):
     assertions_crud('service_status', serviceadmin, superadmin)
 
 
-def test_contact_information(serviceadmin, client, superadmin):
+def test_contact_information(serviceadmin, superadmin):
     assertions_crud('contact_information', serviceadmin, superadmin)
 
 
-def test_providers(serviceadmin, client, superadmin):
+def test_providers(serviceadmin, superadmin):
     assertions_crud('providers', serviceadmin, superadmin)
 
 
-def test_access_policies(serviceadmin, client, superadmin):
+def test_access_policies(serviceadmin, superadmin):
     assertions_crud('access_policies', serviceadmin, superadmin)
 
 
-def test_federation_members(serviceadmin, client, superadmin):
+def test_federation_members(serviceadmin, superadmin):
     assertions_crud('federation_members', serviceadmin, superadmin)
 
 
-def test_components(serviceadmin, client, superadmin):
+def test_components(serviceadmin, superadmin):
     """
     Flow:
     Serviceadmin creates components
@@ -74,7 +74,7 @@ def test_components(serviceadmin, client, superadmin):
     assert len(serviceadmin.get(url).json()) == 1
     resp = serviceadmin.get(url)
     id = resp.json()[0]['id']
-    resp = serviceadmin.get(url+id+'/')
+    resp = serviceadmin.get(url + id + '/')
     for key, value in data.iteritems():
         assert resp.json()[key] == value
     resp = serviceadmin.put(url + id + '/',
@@ -83,11 +83,11 @@ def test_components(serviceadmin, client, superadmin):
     assert resp.status_code == 403
     resp = serviceadmin.delete(url + id + '/')
     assert resp.status_code == 403
-    resp = superadmin.delete(url+id+'/')
+    resp = superadmin.delete(url + id + '/')
     assert resp.status_code == 204
 
 
-def test_services(serviceadmin, serviceadmin2, client, superadmin):
+def test_services(serviceadmin, serviceadmin2, superadmin):
     """
     Flow:
     Serviceadmin creates service
@@ -108,19 +108,19 @@ def test_services(serviceadmin, serviceadmin2, client, superadmin):
     assert len(serviceadmin.get(url).json()) == 1
     resp = serviceadmin.get(url)
     id = resp.json()[0]['id']
-    resp = serviceadmin.get(url+id+'/')
+    resp = serviceadmin.get(url + id + '/')
     for key, value in data.iteritems():
         assert resp.json()[key] == value
     if edit_data:
         resp = serviceadmin.patch(url + id + '/',
-                                json.dumps(edit_data),
-                                content_type='application/json')
+                                  json.dumps(edit_data),
+                                  content_type='application/json')
         assert resp.status_code == 200
         for key, value in edit_data.iteritems():
             assert resp.json()[key] == value
     resp = serviceadmin.delete(url + id + '/')
     assert resp.status_code == 403
-    resp = superadmin.delete(url+id+'/')
+    resp = superadmin.delete(url + id + '/')
     assert resp.status_code == 204
 
     serviceadmin2.post(url, data)
@@ -132,10 +132,10 @@ def test_services(serviceadmin, serviceadmin2, client, superadmin):
         assert resp.json()[key] == value
     if edit_data:
         resp = serviceadmin.patch(url + id + '/',
-                                json.dumps(edit_data),
-                                content_type='application/json')
+                                  json.dumps(edit_data),
+                                  content_type='application/json')
         assert resp.status_code == 400
-    resp = superadmin.delete(url+id+'/')
+    resp = superadmin.delete(url + id + '/')
     assert resp.status_code == 204
 
 
@@ -151,7 +151,8 @@ def test_component_implementations(serviceadmin, superadmin, component_id):
     assert resp.status_code == 201
 
 
-def test_component_implementations_details(serviceadmin, superadmin, component_id,
+def test_component_implementations_details(serviceadmin, superadmin,
+                                           component_id,
                                            component_implementation_id):
     url = '/api/v2/component-implementation-details/'
     data = {

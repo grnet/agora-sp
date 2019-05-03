@@ -18,52 +18,52 @@ def assertions_crud(resource, user, superadmin):
     assert len(user.get(url).json()) == 1
     resp = user.get(url)
     id = resp.json()[0]['id']
-    resp = user.get(url+id+'/')
+    resp = user.get(url + id + '/')
     for key, value in data.iteritems():
         assert resp.json()[key] == value
-    resp = user.delete(url+id+'/')
+    resp = user.delete(url + id + '/')
     assert resp.status_code == 403
-    resp = superadmin.delete(url+id+'/')
+    resp = superadmin.delete(url + id + '/')
     assert resp.status_code == 204
 
 
 # Tests for resources with no foreign keys or special handling
 
-def test_user_roles(observer, client, superadmin):
+def test_user_roles(observer, superadmin):
     assertions_crud('user_roles', observer, superadmin)
 
 
-def test_service_trls(observer, client, superadmin):
+def test_service_trls(observer, superadmin):
     assertions_crud('service_trls', observer, superadmin)
 
 
-def test_service_status(observer, client, superadmin):
+def test_service_status(observer, superadmin):
     assertions_crud('service_status', observer, superadmin)
 
 
-def test_contact_information(observer, client, superadmin):
+def test_contact_information(observer, superadmin):
     assertions_crud('contact_information', observer, superadmin)
 
 
-def test_services(observer, client, superadmin):
+def test_services(observer, superadmin):
     assertions_crud('services', observer, superadmin)
 
 
-def test_components(observer, client, superadmin):
+def test_components(observer, superadmin):
     assertions_crud('components', observer, superadmin)
 
 
-def test_access_policies(observer, client, superadmin):
+def test_access_policies(observer, superadmin):
     assertions_crud('access_policies', observer, superadmin)
 
 
-def test_federation_members(observer, client, superadmin):
+def test_federation_members(observer, superadmin):
     assertions_crud('federation_members', observer, superadmin)
 
 
 # Tests for ServiceAdminship
 
-def test_serviceadminship(observer, superadmin, client):
+def test_serviceadminship(observer, superadmin):
     """
     Observer cannot list  ServiceAdminships
     Observer cannot create  ServiceAdminships
