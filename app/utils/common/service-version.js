@@ -6,6 +6,18 @@ const {
   computed,
 } = Ember;
 
+const access_policies = field('access_policies', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: [
+        'name',
+        'geo_availability',
+        'access_policy_url',
+      ]
+    }
+  }
+})
 
 
 const SORT_FIELDS = [
@@ -60,63 +72,44 @@ const FINANCIAL_FIELDSET = {
 };
 
 const URLS_FIELDSET = {
-  label: 'service_version.cards.resources',
+  label: 'service_version.cards.management',
   layout: {
-    flex: [50, 50, 50, 50, 50, 50, 50, 50, 50]
+    flex: [50, 50, 100, 50, 50]
   },
   fields: [
     field(
-      'usage_policy_url', {
+      'user_manual', {
         type: 'text',
-        label: 'service_version.fields.usage_policy'
+        label: 'service_version.fields.user_manual',
+        hint: 'service_version.hints.user_manual',
       }
     ),
     field(
-      'privacy_policy_url', {
+      'admin_manual', {
         type: 'text',
-        label: 'service_version.fields.privacy_policy'
+        label: 'service_version.fields.admin_manual',
+        hint: 'service_version.hints.admin_manual',
       }
     ),
     field(
-      'user_documentation_url', {
-        type: 'text',
-        label: 'service_version.fields.user_documentation'
-      }
-    ),
-    field(
-      'operations_documentation_url', {
-        type: 'text',
-        label: 'service_version.fields.operations_documentation'
+      'training_information', {
+        label: 'service_version.fields.training_information',
+        hint: 'service_version.hints.training_information',
+        formComponent: 'text-editor',
+        htmlSafe: true,
       }
     ),
     field(
       'monitoring_url', {
         type: 'text',
-        label: 'service_version.fields.monitoring'
+        label: 'service_version.fields.monitoring',
+        hint: 'service_version.hints.monitoring',
       }
     ),
     field(
-      'accounting_url', {
-        type: 'text',
-        label: 'service_version.fields.accounting'
-      }
-    ),
-    field(
-      'business_continuity_plan_url', {
-        type: 'text',
-        label: 'service_version.fields.business_continuity'
-      }
-    ),
-    field(
-      'disaster_recovery_plan_url', {
-        type: 'text',
-        label: 'service_version.fields.disaster_recovery_plan'
-      }
-    ),
-    field(
-      'decommissioning_procedure_url', {
-        type: 'text',
-        label: 'service_version.fields.decommissioning_procedure'
+      'maintenance', {
+        label: 'service_version.fields.maintenance',
+        hint: 'service_version.hints.maintenance',
       }
     ),
   ]
@@ -125,7 +118,7 @@ const URLS_FIELDSET = {
 const BASIC_INFO_FIELDSET = {
   label: 'service_version.cards.basic_information',
   layout: {
-    flex: [50, 50, 50, 25, 25, 100, 100, 100],
+    flex: [50, 50, 25, 25],
   },
   fields: [
     field(
@@ -140,11 +133,6 @@ const BASIC_INFO_FIELDSET = {
       }
     ),
     field(
-      'status.value', {
-        label: 'service_status.belongs.value',
-      }
-    ),
-    field(
       'is_in_catalogue', {
         label: 'service_version.fields.in_catalogue',
       }
@@ -154,30 +142,6 @@ const BASIC_INFO_FIELDSET = {
         label: 'service_version.fields.visible_to_marketplace',
       }
     ),
-
-  field(
-    'features_current', {
-      label: 'service_version.fields.features_current',
-      formComponent: 'text-editor',
-      htmlSafe: true
-    }
-  ),
-  field(
-    'features_future', {
-      label: 'service_version.fields.features_future',
-      type: 'text',
-      formComponent: 'text-editor',
-      htmlSafe: true
-    }
-  ),
-  field(
-    'use_cases', {
-      label: 'service_version.fields.use_cases',
-      type: 'text',
-      formComponent: 'text-editor',
-      htmlSafe: true
-    }
-  ),
   ]
 };
 
@@ -288,18 +252,11 @@ const COMPONENT_LINKS_FIELDSET = {
   })
 };
 
-const DETAILS_FIELDSETS = [
-  BASIC_INFO_FIELDSET,
-  COMPONENT_LINKS_FIELDSET,
-  URLS_FIELDSET,
-  FINANCIAL_FIELDSET
-];
-
 
 const BASIC_INFO_CREATE_FIELDSET = {
   label: 'service_version.cards.basic_information',
   layout: {
-    flex: [50, 50, 50, 25, 25, 100, 100, 100],
+    flex: [50, 50, 25, 25],
   },
   fields: [
     field(
@@ -314,11 +271,6 @@ const BASIC_INFO_CREATE_FIELDSET = {
       }
     ),
     field(
-      'status', {
-        label: 'service_status.belongs.value',
-      }
-    ),
-    field(
       'is_in_catalogue', {
         label: 'service_version.fields.in_catalogue',
       }
@@ -328,36 +280,13 @@ const BASIC_INFO_CREATE_FIELDSET = {
         label: 'service_version.fields.visible_to_marketplace',
       }
     ),
-  field(
-    'features_current', {
-      label: 'service_version.fields.features_current',
-      formComponent: 'text-editor',
-      htmlSafe: true
-    }
-  ),
-  field(
-    'features_future', {
-      label: 'service_version.fields.features_future',
-      type: 'text',
-      formComponent: 'text-editor',
-      htmlSafe: true
-    }
-  ),
-  field(
-    'use_cases', {
-      label: 'service_version.fields.use_cases',
-      type: 'text',
-      formComponent: 'text-editor',
-      htmlSafe: true
-    }
-  ),
   ]
 };
 
 const BASIC_INFO_CREATE_FIELDSET_LIMITED = {
   label: 'service_version.cards.basic_information',
   layout: {
-    flex: [50, 50, 50, 25, 25, 100, 100, 100],
+    flex: [50, 50, 25, 25, 100, 100, 100],
   },
   fields: [
     field(
@@ -369,11 +298,6 @@ const BASIC_INFO_CREATE_FIELDSET_LIMITED = {
     field(
       'my_service', {
         label: 'service_item.belongs.name',
-      }
-    ),
-    field(
-      'status', {
-        label: 'service_status.belongs.value',
       }
     ),
     field(
@@ -390,42 +314,83 @@ const BASIC_INFO_CREATE_FIELDSET_LIMITED = {
         disabled: true,
       }
     ),
-  field(
-    'features_current', {
-      label: 'service_version.fields.features_current',
-      formComponent: 'text-editor',
-      htmlSafe: true
-    }
-  ),
-  field(
-    'features_future', {
-      label: 'service_version.fields.features_future',
-      type: 'text',
-      formComponent: 'text-editor',
-      htmlSafe: true
-    }
-  ),
-  field(
-    'use_cases', {
-      label: 'service_version.fields.use_cases',
-      type: 'text',
-      formComponent: 'text-editor',
-      htmlSafe: true
-    }
-  ),
   ]
 };
 
+
+const CONTRACT_FIELDSET = {
+  label: 'service_version.cards.contract',
+  fields: [
+    field(
+      'terms_of_use_url', {
+        type: 'text',
+        label: 'service_version.fields.terms_of_use',
+        hint: 'service_version.hints.terms_of_use',
+      }
+    ),
+    field(
+      'sla_url', {
+        type: 'text',
+        label: 'service_version.fields.sla',
+        hint: 'service_version.hints.sla',
+      }
+    ),
+    field(
+      'privacy_policy_url', {
+        type: 'text',
+        label: 'service_version.fields.privacy_policy',
+        hint: 'service_version.hints.privacy_policy',
+      }
+    ),
+    access_policies,
+  ],
+  layout: {
+    flex: [ 100, 100, 100, 100 ]
+  }
+};
+
+
+const MATURITY_FIELDSET = {
+  label: 'service_version.cards.maturity',
+  fields: [
+    field('service_trl.value', {label: 'service_version.fields.service_trl'}),
+    field('status.value', {label: 'service_status.belongs.value'}),
+  ],
+  layout: {
+    flex: [ 50, 50 ]
+  }
+};
+
+const MATURITY_FIELDSET_EDIT = {
+  label: 'service_version.cards.maturity',
+  fields: [
+    'service_trl',
+    'status',
+  ],
+  layout: {
+    flex: [ 50, 50 ]
+  }
+};
+const DETAILS_FIELDSETS = [
+  BASIC_INFO_FIELDSET,
+  MATURITY_FIELDSET,
+  COMPONENT_LINKS_FIELDSET,
+  URLS_FIELDSET,
+  CONTRACT_FIELDSET,
+];
+
 const CREATE_FIELDSETS = [
   BASIC_INFO_CREATE_FIELDSET,
+  MATURITY_FIELDSET_EDIT,
   URLS_FIELDSET,
-  FINANCIAL_FIELDSET,
+  CONTRACT_FIELDSET,
 ];
 
 const CREATE_FIELDSETS_LIMITED = [
   BASIC_INFO_CREATE_FIELDSET_LIMITED,
+  MATURITY_FIELDSET_EDIT,
   URLS_FIELDSET,
-  FINANCIAL_FIELDSET,
+  CONTRACT_FIELDSET,
 ];
 
 export {

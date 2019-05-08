@@ -22,7 +22,7 @@ const common = {
     }
   },
   'group_menu': {
-    'user_information': 'Owners & Contact',
+    'user_information': 'Owners',
   },
   'confirm': {
     'message': 'Are you sure you want to delete this item?<br> The action cannot be undone',
@@ -36,7 +36,25 @@ const common = {
       'apply.label': 'APPLY',
       'clear.label': 'CLEAR',
     }
-  }
+  },
+  'select': {
+    'options': 'Select',
+    'options.add': 'Add',
+    'options.cancel': 'Cancel',
+  },
+  'row': {
+    'remove': {
+      'cancel': 'Cancel',
+      'ok': 'Yes',
+      'confirm': {
+        'message': 'Are you sure you want to remove this item?',
+        'title': 'Removal',
+      },
+    },
+  },
+  'placeholders': {
+    'search': 'Search',
+  },
 };
 
 export { common };

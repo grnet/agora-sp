@@ -10,18 +10,30 @@ const {
 let model =  DS.Model.extend({
   session: Ember.inject.service(),
   name: DS.attr(),
+  url: DS.attr(),
+  endpoint : DS.attr(),
+  tagline : DS.attr(),
   service_type: DS.attr(),
   funders_for_service: DS.attr(),
   description_external: DS.attr(),
-  value_to_customer: DS.attr(),
+  user_value: DS.attr(),
+  target_customers: DS.attr(),
+  target_users: DS.attr(),
+  screenshots_videos: DS.attr(),
+  languages: DS.attr(),
+  standards: DS.attr(),
+  certifications: DS.attr(),
   risks: DS.attr(),
   description_internal: DS.attr(),
   short_description: DS.attr(),
   competitors: DS.attr(),
   logo: DS.attr(),
   request_procedures: DS.attr(),
-  service_area_ext: DS.attr(),
+  service_category_ext: DS.attr(),
   service_trl_ext: DS.attr(),
+  tags: DS.attr(),
+  scientific_fields: DS.attr(),
+  service_categories_names: DS.attr(),
   customer_facing: DS.attr({
     type: 'boolean',
     label: 'service_item.fields.customer_facing',
@@ -35,11 +47,7 @@ let model =  DS.Model.extend({
   service_version_url: Ember.computed('id', function() {
     return `/service-versions/create?service=${Ember.get(this, 'id')}`;
   }),
-  service_area: DS.belongsTo('service-area', {
-    formAttrs: {
-      optionLabelAttr: 'name',
-    },
-  }),
+  service_categories: DS.hasMany('service-category'),
   service_trl: DS.belongsTo('service-trl', {
     formAttrs: {
       optionLabelAttr: 'value',
@@ -48,6 +56,21 @@ let model =  DS.Model.extend({
   service_admins_ids: DS.attr(),
   pending_service_admins_ids: DS.attr(),
   rejected_service_admins_ids: DS.attr(),
+  providers: DS.hasMany('provider'),
+  providers_names: DS.attr(),
+  owner_name: DS.attr(),
+  owner_contact: DS.attr(),
+  security_name: DS.attr(),
+  security_contact: DS.attr(),
+  support_name: DS.attr(),
+  support_contact: DS.attr(),
+  helpdesk: DS.attr(),
+  order: DS.attr(),
+  order_type: DS.attr(),
+  last_update: DS.attr('date', {
+    displayComponent: 'date-formatted',
+  }),
+  changelog: DS.attr(),
 
   // computed
   short_desc: Ember.computed('short_description', function() {
@@ -93,10 +116,12 @@ let model =  DS.Model.extend({
       delete hash['service_admins_ids'];
       delete hash['pending_service_admins_ids'];
       delete hash['rejected_service_admins_ids'];
-      delete hash['service_area_ext'];
+      delete hash['service_category_ext'];
       delete hash['service_trl_ext'];
       delete hash['contact_external_full_name'];
       delete hash['contact_internal_full_name'];
+      delete hash['providers_names'];
+      delete hash['service_categories_names'];
       // handle external/internal contact information
       let contact_external = {};
       let contact_internal = {};

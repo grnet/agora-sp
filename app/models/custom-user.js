@@ -58,6 +58,7 @@ export default DS.Model.extend({
     choices: CHOICES.USER_ROLES,
     defaultValue: 'observer',
   }),
+  providers: DS.hasMany('provider'),
   __api__: {
     serialize: function(hash, serializer) {
       // do not send readonly keys to backend

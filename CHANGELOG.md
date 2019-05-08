@@ -7,7 +7,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- Enable multiple themes functionality
+- Enable multiple themes functionality.
+- Add Provider resource.
+- Add Federation Members resource.
+- Add Access Policy resource.
+- Serviceadmins can be assigned to providers by superadmins.
+- A Service can optionally belong to one or many providers.
+- New date-formatted component.
+
+
+### Changed
+- Rename Service Area to Service Category.
+- A Service can belong to many Service Categories.
+- Add/remove fields to models according to new guidelines.
 
 ## [v0.9.8](https://github.com/grnet/agora-sp-admin/compare/v0.9.7...v0.9.8) - 2019-03-05
 

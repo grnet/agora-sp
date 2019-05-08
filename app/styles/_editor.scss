@@ -1,0 +1,26 @@
+md-input-container.editor-messages [ng-messages] {
+  overflow: auto;
+}
+
+.model-form md-content .editor-messages .md-input-error {
+  top: 0;
+}
+
+.editor-label {
+  position: relative;
+  top: -65px;
+}
+
+.model-form [data-form-field-component='text-editor'] .md-input-hint {
+  top: -24px;
+}
+
+.model-form .model-form-field[data-form-field-component='text-editor']:last-child .md-input-hint {
+  top: -7px;
+}
+
+
+.model-form [data-form-field-component='gen-form-field-date'] .md-input-hint {
+  top: -18px;
+}
+

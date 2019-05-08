@@ -10,6 +10,9 @@ import Serializer from './application';
         json[new_key] = key? true: false;
       }
     });
+    delete json['sla_has'];
+    json['operations_documentation_has'] = true;
+    json['user_documentation_has'] = true;
     return json;
   }
 

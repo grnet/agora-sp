@@ -7,19 +7,19 @@ let model = DS.Model.extend({
   monitoring_has: DS.attr({ type: 'boolean' }),
   monitoring_url: DS.attr(),
   user_documentation_has: DS.attr({ type: 'boolean' }),
-  user_documentation_url: DS.attr(),
+  user_manual: DS.attr(),
   decommissioning_procedure_has: DS.attr({ type: 'boolean' }),
   decommissioning_procedure_url: DS.attr(),
   accounting_has: DS.attr({ type: 'boolean' }),
   accounting_url: DS.attr(),
   operations_documentation_has: DS.attr({ type: 'boolean' }),
-  operations_documentation_url: DS.attr(),
+  admin_manual: DS.attr(),
   business_continuity_plan_has: DS.attr({ type: 'boolean' }),
   business_continuity_plan_url: DS.attr(),
   disaster_recovery_plan_has: DS.attr({ type: 'boolean' }),
   disaster_recovery_plan_url: DS.attr(),
-  usage_policy_has: DS.attr({ type: 'boolean' }),
-  usage_policy_url: DS.attr(),
+  terms_of_use_has: DS.attr({ type: 'boolean' }),
+  terms_of_use_url: DS.attr(),
   features_current: DS.attr(),
   features_future: DS.attr(),
   cost_to_run: DS.attr(),
@@ -31,8 +31,19 @@ let model = DS.Model.extend({
   id_service_ext: DS.attr(),
   status_ext: DS.attr(),
   service_admins_ids: DS.attr(),
+  access_policies: DS.hasMany('access_policy'),
+  sla_url: DS.attr(),
+  training_information: DS.attr(),
+  maintenance: DS.attr(),
   // id_service_ext is service.name
   id_service_ext: DS.attr(),
+  service_trl: DS.belongsTo('service-trl', {
+    label: 'service_version.fields.service_trl',
+    hint: 'service_version.hints.service_trl',
+    formAttrs: {
+      optionLabelAttr: 'value',
+    },
+  }),
   cidl_url: Ember.computed('id', 'id_service.id', function() {
     const service =  Ember.get(this, 'id_service.id');
     const service_version = Ember.get(this, 'id');
@@ -52,6 +63,8 @@ let model = DS.Model.extend({
   }),
 
   status: gen.belongsTo('service_status', {
+    label: 'service_status.belongs.value',
+    hint: 'service_version.hints.status',
     formAttrs: {
       optionLabelAttr: 'value'
     }
