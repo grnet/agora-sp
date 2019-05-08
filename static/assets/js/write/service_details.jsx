@@ -31,8 +31,8 @@ var resourceObject = [
 	{ tag: 'textarea', type: 'textarea', name: 'features_future', placeholder: "Enter future features", label: 'Features Future', onChange: 'textareaHTMLValidation' },
 	{ tag: 'button', type: 'button', name: 'edit-features-future', label: 'Edit', value: "Edit"},
 	// todo: how to fill the data for the options (should be done before rendering)
-	{ tag: 'select', type: 'select', name: 'usage_policy_has', label: 'Has Usage Policy', required: true, optionsData: booleanData },
-	{ tag: 'input', type: 'text', name: 'usage_policy_url', placeholder: 'Enter Usage Policy URL', label: 'Usage Policy URL', onChange: 'urlContentChanged' },
+	{ tag: 'select', type: 'select', name: 'terms_of_use_has', label: 'Has Usage Policy', required: true, optionsData: booleanData },
+	{ tag: 'input', type: 'text', name: 'terms_of_use_url', placeholder: 'Enter Usage Policy URL', label: 'Usage Policy URL', onChange: 'urlContentChanged' },
 
 	{ tag: 'select', type: 'select', name: 'privacy_policy_has', label: 'Has Privacy Policy', required: true, optionsData: booleanData },
 	{ tag: 'input', type: 'text', name: 'privacy_policy_url', placeholder: 'Enter Privacy Policy URL', label: 'Privacy Policy URL', onChange: 'urlContentChanged' },
@@ -248,17 +248,17 @@ var FormWrapper = React.createClass({
 			validationObjects.push( { field: 'privacy_policy_url', message: validationMessage } );
 		}
 
-		var usage_policy_has = $("#usage_policy_has").val();
-		var usage_policy_url = $("#usage_policy_url").val();
+		var terms_of_use_has = $("#terms_of_use_has").val();
+		var terms_of_use_url = $("#terms_of_use_url").val();
 
-		if(usage_policy_has == "false" && usage_policy_url != null && usage_policy_url != ""){
+		if(terms_of_use_has == "false" && terms_of_use_url != null && terms_of_use_url != ""){
 			validationMessage = "Usage policy URL cannot be filled without checking the select box";
-			validationObjects.push( { field: 'usage_policy_url', message: validationMessage } );
+			validationObjects.push( { field: 'terms_of_use_url', message: validationMessage } );
 		}
 
-		if(usage_policy_has == "true" && (usage_policy_url == null || usage_policy_url == "")){
+		if(terms_of_use_has == "true" && (terms_of_use_url == null || terms_of_use_url == "")){
 			validationMessage = "Usage policy URL cannot be empty with the select box checked";
-			validationObjects.push( { field: 'usage_policy_url', message: validationMessage } );
+			validationObjects.push( { field: 'terms_of_use_url', message: validationMessage } );
 		}
 
 		var user_documentation_has = $("#user_documentation_has").val();
@@ -394,8 +394,8 @@ var FormWrapper = React.createClass({
 			params["status"] = $("#status").val();
 			params["features_current"] = $("#features_current").val();
 			params["features_future"] = $("#features_future").val();
-			params["usage_policy_has"] = $("#usage_policy_has").val();
-			params["usage_policy_url"] = $("#usage_policy_url").val();
+			params["terms_of_use_has"] = $("#terms_of_use_has").val();
+			params["terms_of_use_url"] = $("#terms_of_use_url").val();
 			params["privacy_policy_has"] = $("#privacy_policy_has").val();
 			params["privacy_policy_url"] = $("#privacy_policy_url").val();
 			params["user_documentation_has"] = $("#user_documentation_has").val();
@@ -686,8 +686,8 @@ var Tabs = React.createClass({
                 $("#status").val(this.state.service_details.service_status);
                 $("#features_current").val(this.state.service_details.features_current);
                 $("#features_future").val(this.state.service_details.features_future);
-                $("#usage_policy_has").val(this.state.service_details.usage_policy_has.toString());
-                $("#usage_policy_url").val(this.state.service_details.usage_policy_link.related.href);
+                $("#terms_of_use_has").val(this.state.service_details.terms_of_use_has.toString());
+                $("#terms_of_use_url").val(this.state.service_details.usage_policy_link.related.href);
                 $("#privacy_policy_has").val(this.state.service_details.privacy_policy_has.toString());
                 $("#privacy_policy_url").val(this.state.service_details.privacy_policy_link.related.href);
                 $("#user_documentation_has").val(this.state.service_details.user_documentation_has.toString());

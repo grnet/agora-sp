@@ -15,7 +15,7 @@ urlpatterns = [
     url(r'^internal_dependency/(?P<internal_dep_uuid>[0-9a-zA-Z\@\-\_]+)?$', views.internal_dependency_edit_ui),
     url(r'^users_customers/?$', views.users_customers_write_ui),
     url(r'^users_customers/(?P<user_customer_uuid>[0-9a-zA-Z\@\-\_]+)/?$', views.users_customers_edit_ui),
-    url(r'^area/?$', views.service_area_write_ui),
+    url(r'^category/?$', views.service_category_write_ui),
     url(r'^version/?$', views.service_details_write_ui),
     url(r'^external/(?P<service_name_or_uuid>[0-9a-zA-Z\-\_]+)/?$', views.external_service_edit_ui),
     url(r'^(?P<service_name_or_uuid>[0-9a-zA-Z\-\_\ \.]+)/?$', views.service_edit_ui),

@@ -33,7 +33,7 @@ SECRET_KEY = 'secret-key'
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1',
-		 'sp.eudat.eu'
+                 'sp.eudat.eu',
 		]
 
 DEFAULT_FROM_EMAIL = 'no-reply@agora.com'
@@ -255,10 +255,14 @@ MEDIA_ROOT = '/var/www/agora/media'
 MEDIA_URL = 'media/'
 AVATAR_LOCATION = MEDIA_ROOT + '/avatar'
 
-# Default name for service area logo. Should exist in MEDIA_ROOT
-SERVICE_AREA_ICON = 'service-area-icon-default.jpg'
+# Default name for service category logo. Should exist in MEDIA_ROOT
+SERVICE_CATEGORY_ICON = 'service-category-icon-default.jpg'
+
 # Default name for service logo. Should exist in MEDIA_ROOT
 SERVICE_LOGO = 'service-logo-default.jpg';
+
+# Default name for federation member logo. Should exist in MEDIA_ROOT
+FEDERATION_MEMBER_LOGO = 'federation-member-logo-default.jpg';
 
 CKEDITOR_UPLOAD_PATH = "uploads/"
 

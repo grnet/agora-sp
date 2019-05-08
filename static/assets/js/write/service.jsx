@@ -24,8 +24,8 @@ var optionsExternalContactData = [
   {id: 1, value: -1, text: "Select external contact information"}
 ];
 
-var optionsArea = [
-  {id: 1, value: -1, text: "Select service area"}
+var optionsCategory = [
+  {id: 1, value: -1, text: "Select service category"}
 ];
 
 var optionsType = [
@@ -38,14 +38,14 @@ var resourceObject = [
 	{ tag: 'button', type: 'button', name: 'edit-description-external', label: 'Edit', value: "Edit"},
 	{ tag: 'textarea', type: 'textarea', name: 'description_internal', placeholder: "Enter internal description", label: 'Internal Description', required: true, onChange: 'textareaHTMLValidation' },
 	{ tag: 'button', type: 'button', name: 'edit-description-internal', label: 'Edit', value: "Edit"},
-	{ tag: 'select', type: 'text', name: 'service_area', placeholder: 'Enter service area', label: 'Service Area', required: true, optionsData: optionsArea },
-	{ tag: 'button', type: 'button', name: 'add-area', label: 'Add', value: "Add"},
+	{ tag: 'select', type: 'text', name: 'service_category', placeholder: 'Enter service category', label: 'Service Category', required: true, optionsData: optionsCategory },
+	{ tag: 'button', type: 'button', name: 'add-category', label: 'Add', value: "Add"},
 	{ tag: 'select', type: 'text', name: 'service_type', placeholder: 'Enter service type', label: 'Service Type', required: true, optionsData: optionsType },
 	{ tag: 'textarea', type: 'textarea', name: 'request_procedures', placeholder: "Enter request procedures", label: 'Request Procedures', required: true, onChange: 'textareaHTMLValidation' },
 	{ tag: 'button', type: 'button', name: 'edit-request-procedures', label: 'Edit', value: "Edit"},
 	{ tag: 'textarea', type: 'textarea', name: 'funders_for_service', placeholder: "Enter funders for service", label: 'Funders for Service', required: true, onChange: 'textareaHTMLValidation' },
 	{ tag: 'button', type: 'button', name: 'edit-funders-for-service', label: 'Edit', value: "Edit"},
-	{ tag: 'textarea', type: 'textarea', name: 'value_to_customer', placeholder: "Enter value to customer", label: 'Value to customer', required: true, onChange: 'textareaHTMLValidation' },
+	{ tag: 'textarea', type: 'textarea', name: 'user_value', placeholder: "Enter value to customer", label: 'Value to customer', required: true, onChange: 'textareaHTMLValidation' },
 	{ tag: 'button', type: 'button', name: 'edit-value-to-customer', label: 'Edit', value: "Edit"},
 	{ tag: 'textarea', type: 'textarea', name: 'risks', placeholder: "Enter risks", label: 'Risks', required: true, onChange: 'textareaHTMLValidation' },
 	{ tag: 'button', type: 'button', name: 'edit-risks', label: 'Edit', value: "Edit"},
@@ -168,9 +168,9 @@ var FormWrapper = React.createClass({
 			validationObjects.push( { field: 'name', message: validationMessage } );			
 		}
 
-		if($('#service_area').val().length > 255){
+		if($('#service_category').val().length > 255){
 			validationMessage = "Content exceeds max length of 255 characters."
-			validationObjects.push( { field: 'service_area', message: validationMessage } );			
+			validationObjects.push( { field: 'service_category', message: validationMessage } );			
 		}
 
 		if($('#service_type').val().length > 255){
@@ -243,9 +243,9 @@ var FormWrapper = React.createClass({
 				}
 			}
 
-			var area = $("#service_area").val();
-			if(area == "-1" || area == -1)
-				area = null;
+			var category = $("#service_category").val();
+			if(category == "-1" || category == -1)
+				category = null;
 			var type = $("#service_type").val();
 			if(type == "-1" || type == -1)
 				type = null;
@@ -254,11 +254,11 @@ var FormWrapper = React.createClass({
 			params["name"] = $("#name").val();
 			params["description_external"] = $("#description_external").val();
 			params["description_internal"] = $("#description_internal").val();
-			params["service_area"] = area;
+			params["service_category"] = category;
 			params["service_type"] = type;
 			params["request_procedures"] = $("#request_procedures").val();
 			params["funders_for_service"] = $("#funders_for_service").val();
-			params["value_to_customer"] = $("#value_to_customer").val();
+			params["user_value"] = $("#user_value").val();
 			params["risks"] = $("#risks").val();
 			params["competitors"] = $("#competitors").val();
 
@@ -700,21 +700,21 @@ var Tabs = React.createClass({
 
 
 		$.getJSON(
-            host + "/api/v1/services/area/all",
+            host + "/api/v1/services/category/all",
             function (data) {
-				var service_area = $("#service_area");
-				var current = service_area.val();
+				var service_category = $("#service_category");
+				var current = service_category.val();
 
 				if(current != -1){
-					$("#service_area option[value='" + current + "']").remove();
+					$("#service_category option[value='" + current + "']").remove();
 				}
 				for(var i = 0; i < data.data.length; i++) {
-					var option = $('<option></option>').attr("value", data.data[i].area).text(data.data[i].area);
-					service_area.append(option);
+					var option = $('<option></option>').attr("value", data.data[i].category).text(data.data[i].category);
+					service_category.append(option);
 
 				}
 				if(current != -1)
-					service_area.val(current).change();
+					service_category.val(current).change();
             });
 
 		$.getJSON(
@@ -759,20 +759,20 @@ var Tabs = React.createClass({
                 $("#description_external").val(this.state.service.description_external);
                 $("#request_procedures").val(this.state.service.request_procedures);
                 $("#funders_for_service").val(this.state.service.funders_for_service);
-                $("#value_to_customer").val(this.state.service.value_to_customer);
+                $("#user_value").val(this.state.service.user_value);
                 $("#risks").val(this.state.service.risks);
                 $("#competitors").val(this.state.service.competitors);
 
 				serviceId = this.state.service.uuid;
 
-				var service_area = $("#service_area");
-				var optionsCount = $("#service_area>option").length;
-				var sa = this.state.service.service_area;
+				var service_category = $("#service_category");
+				var optionsCount = $("#service_category>option").length;
+				var sa = this.state.service.service_category;
 				if(optionsCount <= 1){
 					var option = $('<option></option>').attr("value", sa).text(sa);
-						service_area.append(option);
+						service_category.append(option);
 				}
-				service_area.val(sa).change();
+				service_category.val(sa).change();
 
 				var service_type = $("#service_type");
 				optionsCount = $("#service_type>option").length;
@@ -946,9 +946,9 @@ $(function(){
 		window.open("/ui/service/users_customers?serviceId=" + serviceId, "_blank");
 	});
 
-	$("#btn-add-area").click(function (e) {
+	$("#btn-add-category").click(function (e) {
 		e.preventDefault();
-		window.open("/ui/service/area", "_blank");
+		window.open("/ui/service/category", "_blank");
 	});
 
 	$("#btn-add-owner").click(function (e) {
@@ -1036,9 +1036,9 @@ $(function(){
 			height: 250,
 			plugins: "advlist"
 		});
-		tinymce.get('rich-edit').setContent($("#value_to_customer").val());
+		tinymce.get('rich-edit').setContent($("#user_value").val());
 		$("#modal-rich-html").modal('show');
-		fieldEdited = "value_to_customer";
+		fieldEdited = "user_value";
 	});
 
 	$("#btn-edit-risks").click(function(e){
@@ -1081,8 +1081,8 @@ $(function(){
 		else if(fieldEdited == "funders_for_service"){
 			$("#funders_for_service").val(tinymce.get('rich-edit').getContent());
 		}
-		else if(fieldEdited == "value_to_customer"){
-			$("#value_to_customer").val(tinymce.get('rich-edit').getContent());
+		else if(fieldEdited == "user_value"){
+			$("#user_value").val(tinymce.get('rich-edit').getContent());
 		}
 		else if(fieldEdited == "risks"){
 			$("#risks").val(tinymce.get('rich-edit').getContent());

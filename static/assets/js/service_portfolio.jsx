@@ -3,7 +3,7 @@ var ServiceHeadline = React.createClass({
         	getInitialState: function(){
         		return {
         			title: "",
-        			serviceArea: "",
+        			serviceCategory: "",
         			shortDescription: "",
                     logo: ""
         		}
@@ -17,7 +17,7 @@ var ServiceHeadline = React.createClass({
                             <img className="logo col-lg-2 col-md-2 col-sm-2 col-xs-6 col-xs-offset-3 col-sm-offset-0 col-md-offset-0 col-lg-offset-0" src={logo} width="150" />
                             <div className="col-lg-10 col-md-10 col-sm-10 col-xs-12" id="service-name">
                                 <h1 className="center-text-xs col-lg-12 col-md-12 col-sm-12 col-xs-8 col-sm-offset-0 col-xs-offset-2 col-md-offset-0 col-lg-offset-0">{this.props.title}</h1>
-                                <h5 className="center-text-xs col-xs-8 col-xs-offset-2 col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0" id="service-area">{this.props.serviceArea}</h5>
+                                <h5 className="center-text-xs col-xs-8 col-xs-offset-2 col-lg-12 col-lg-offset-0 col-md-12 col-md-offset-0 col-sm-12 col-sm-offset-0" id="service-category">{this.props.serviceCategory}</h5>
 
                             </div>
                         </div>
@@ -571,12 +571,12 @@ var ServiceHeadline = React.createClass({
 				return {
 					data: {
 						name: "",
-						service_area: "",
+						service_category: "",
 						description_external: "",
 						user_customers_list: {
 							user_customers: []
 						},
-						value_to_customer: "",
+						user_value: "",
 						request_procedures: "",
 						service_details_list: {
 							service_details: []
@@ -612,12 +612,12 @@ var ServiceHeadline = React.createClass({
            render: function () {
                 return (
                         <div>
-                            <ServiceHeadline title={this.state.data.name} serviceArea={this.state.data.service_area} shortDescription="Sample short description" logo={this.state.data.logo} />
+                            <ServiceHeadline title={this.state.data.name} serviceCategory={this.state.data.service_category} shortDescription="Sample short description" logo={this.state.data.logo} />
                             <ServiceDescription descriptionExternal={this.state.data.description_external} />
                             <Separator />
                             <UserCustomers userCustomers={this.state.data.user_customers_list.user_customers} />
                             <Separator />
-                            <ValueToCustomer valueToCustomer={this.state.data.value_to_customer} />
+                            <ValueToCustomer valueToCustomer={this.state.data.user_value} />
                             <Separator />
                             <ServiceVersions serviceDetails={this.state.data.service_details_list.service_details} serviceName={this.state.data.name} />
                             <Separator />

@@ -6,9 +6,23 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Changed
-- Extract ServiceDetails permission fields dynamically.
+### Added
+- Add Organisation model exposed in /providers endpoint.
+- Add Access Policy model.
+- Add Federation Member model.
+- Services can belong to organisations.
+- Serviceadmins can be assigned to organisations by superadmins.
 
+### Changed
+- Upgrade apimas to 0.4a4.
+- Extract ServiceDetails permission fields dynamically.
+- Rename Service Area -> Service Category.
+- A Service can belong to many service categories.
+- Add/remove fields to models according to new guidelines.
+- Models altered are:  Service, ServiceDetails, ServiceStatus, User.
+
+### Fixed
+- Various pep8 fixes.
 
 ## [0.9.11](https://github.com/grnet/agora-sp/compare/v0.9.10...v0.9.11) - 2019-03-05
 

@@ -31,44 +31,52 @@ def assertions_crud(resource, user):
         for key, value in edit_data.iteritems():
             assert resp.json()[key] == value
 
-    resp = user.delete(url+id+'/')
+    resp = user.delete(url + id + '/')
     assert resp.status_code == 204
     assert user.get(url).json() == []
 
 
 # Tests for resources with no foreign keys
 
-def test_user_roles(superadmin, client):
+def test_user_roles(superadmin):
     assertions_crud('user_roles', superadmin)
 
 
-def test_service_trls(superadmin, client):
+def test_service_trls(superadmin):
     assertions_crud('service_trls', superadmin)
 
 
-def test_service_status(superadmin, client):
+def test_service_status(superadmin):
     assertions_crud('service_status', superadmin)
 
 
-def test_contact_information(superadmin, client):
+def test_contact_information(superadmin):
     assertions_crud('contact_information', superadmin)
 
 
-def test_institutions(superadmin, client):
-    assertions_crud('institutions', superadmin)
-
-
-def test_services(superadmin, client):
+def test_services(superadmin):
     assertions_crud('services', superadmin)
 
 
-def test_components(superadmin, client):
+def test_components(superadmin):
     assertions_crud('components', superadmin)
+
+
+def test_providers(superadmin):
+    assertions_crud('providers', superadmin)
+
+
+def test_access_policies(superadmin):
+    assertions_crud('access_policies', superadmin)
+
+
+def test_federation_members(superadmin):
+    assertions_crud('federation_members', superadmin)
 
 
 # Tests for ServiceAdminship
 
-def test_serviceadminship_create(superadmin, client):
+def test_serviceadminship_create(superadmin):
 
     service_url = RESOURCES_CRUD['services']['url']
     service_data = RESOURCES_CRUD['services']['create_data']
@@ -93,10 +101,10 @@ def test_serviceadminship_create(superadmin, client):
     assert resp.status_code == 201
     assert resp.json()['state'] == 'approved'
 
-    resp = superadmin.delete(sa_url+sa_id+'/')
+    resp = superadmin.delete(sa_url + sa_id + '/')
     assert resp.status_code == 204
 
-    resp = superadmin.delete(service_url+service_id+'/')
+    resp = superadmin.delete(service_url + service_id + '/')
     assert resp.status_code == 204
 
     resp = superadmin.post(service_url, service_data)
@@ -116,10 +124,10 @@ def test_serviceadminship_create(superadmin, client):
                                {'admin': test_user.id, 'service': service_id})
         assert resp.status_code == 400
 
-    superadmin.delete(service_url+service_id+'/')
+    superadmin.delete(service_url + service_id + '/')
 
 
-def test_serviceadminship_update(superadmin, client):
+def test_serviceadminship_update(superadmin):
     """
     Allowed state transitions are:
     ('pending', 'approved'),

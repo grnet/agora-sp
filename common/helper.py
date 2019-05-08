@@ -1,7 +1,6 @@
 import responses
-import datetime
-from django.contrib.sites.models import Site
 from agora.utils import get_root_url
+
 
 def get_error_response(code, status=1, additional_status_msg=None):
     return {
@@ -31,11 +30,12 @@ def current_site_baseurl():
 
 def build_list_object(name, objects):
     return {
-        name + "_list" : {
+        name + "_list": {
             "count": len(objects),
             name: objects
         }
     }
+
 
 def page_not_found():
     return {
@@ -45,19 +45,22 @@ def page_not_found():
         }
     }
 
+
 def generate_full_url(request):
 
     absolute_uri = request.build_absolute_uri()
     full_path = request.get_full_path()
 
-    host_protocol = str(absolute_uri).replace(str(full_path),"")
+    host_protocol = str(absolute_uri).replace(str(full_path), "")
 
     return str(host_protocol)
+
 
 def get_last_url_part(request):
     url = request.get_full_path()
     url_parts = url.strip("/").split("/")
     return url_parts[-1]
+
 
 def get_request_data(request):
     return request.data if request.META['CONTENT_TYPE'] == "application/json" else request.POST.copy()
@@ -68,10 +71,20 @@ def set_cookie(response, key, value):
 
 
 def service_area_image_path(instance, filename):
-    # file uploaded to MEDIA_ROOT/service_areas/resource_<id>/<filename>
-    return 'service_areas/{0}/{1}'.format(instance.pk, filename)
+    # file uploaded to MEDIA_ROOT/service_categories/resource_<id>/<filename>
+    return 'service_categories/{0}/{1}'.format(instance.pk, filename)
 
 
 def service_image_path(instance, filename):
     # file uploaded to MEDIA_ROOT/services/resource_<id>/<filename>
     return 'services/{0}/{1}'.format(instance.pk, filename)
+
+
+def organisation_image_path(instance, filename):
+    # file uploaded to MEDIA_ROOT/organisations/resource_<id>/<filename>
+    return 'organisations/{0}/{1}'.format(instance.pk, filename)
+
+
+def federation_member_image_path(instance, filename):
+    # file uploaded to MEDIA_ROOT/federation_members/resource_<id>/<filename>
+    return 'federation_members/{0}/{1}'.format(instance.pk, filename)

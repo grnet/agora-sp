@@ -8,8 +8,11 @@ from django.dispatch import receiver
 from rest_framework.authtoken.models import Token
 from agora.settings import AVATAR_LOCATION
 from agora.settings import USER_CREATION_EMAIL_LIST
-from agora.utils import USER_ROLES
+from agora.utils import USER_ROLES, clean_html_fields
 from rest_framework.authtoken.models import Token
+from ckeditor_uploader.fields import RichTextUploadingField
+from common import helper
+import uuid
 import datetime
 import pytz
 
@@ -49,6 +52,22 @@ class UserManager(BaseUserManager):
                                  **extra_fields)
 
 
+class Organisation(models.Model):
+    """
+    The organisation providing the Service
+    """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, unique=True)
+    description = RichTextUploadingField(default=None, blank=True, null=True)
+    logo = models.ImageField(upload_to=helper.organisation_image_path)
+    contact = models.CharField(max_length=255, default=None, blank=True, null=True)
+
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(Organisation, self).save(*args, **kwargs)
+
+
 class User(AbstractBaseUser, PermissionsMixin):
     """
     A fully featured User model with admin-compliant permissions
@@ -70,6 +89,7 @@ class User(AbstractBaseUser, PermissionsMixin):
                     max_length=255, unique=True, null=True, default=None)
     role = models.CharField(
             choices=USER_ROLES, max_length=20, default='observer')
+    organisations = models.ManyToManyField(Organisation, blank=True)
     objects = UserManager()
 
     USERNAME_FIELD = 'username'

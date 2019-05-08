@@ -59,7 +59,7 @@ var ServiceTable = React.createClass({
 										Description internal
 									</th>
 									<th>
-										Service area
+										Service category
 									</th>
 									<th>
 										Service type
@@ -76,7 +76,7 @@ var ServiceTable = React.createClass({
 									<tr key={service.name}>
 										<td>{service.name}</td>
 										<td>{service.description_internal}</td>
-										<td>{service.service_area}</td>
+										<td>{service.service_category}</td>
 										<td>{service.service_type}</td>
 										<td><a href={"/ui/service/" + service.uuid}>Edit</a></td>
 									</tr>

@@ -33,7 +33,7 @@ class Service_ExternalServiceAdmin(VersionAdmin):
 class UserCustomerAdmin(VersionAdmin):
     pass
 
-class ServiceAreaAdmin(VersionAdmin):
+class ServiceCategoryAdmin(VersionAdmin):
     pass
 
 admin.site.register(ServiceTrl, ServiceTrlAdmin)
@@ -45,4 +45,4 @@ admin.site.register(ExternalService, ExternalServiceAdmin)
 admin.site.register(Service_DependsOn_Service, Service_DependsOn_ServiceAdmin)
 admin.site.register(Service_ExternalService, Service_ExternalServiceAdmin)
 admin.site.register(UserCustomer, UserCustomerAdmin)
-admin.site.register(ServiceArea, ServiceAreaAdmin)
+admin.site.register(ServiceCategory, ServiceCategoryAdmin)
