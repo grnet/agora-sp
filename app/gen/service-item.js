@@ -70,12 +70,6 @@ export default AgoraGen.extend({
       searchPlaceholder: 'service_item.placeholders.search',
       meta: {
         fields: [
-          field('service_trl', {
-            modelName: 'service_trl',
-            label: 'service_trl.belongs.value',
-            type: 'model',
-            displayAttr: 'value',
-          }),
           field('internal', { type: 'boolean' }),
           field('customer_facing', { type: 'boolean' }),
         ],

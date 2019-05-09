@@ -30,7 +30,6 @@ let model =  DS.Model.extend({
   logo: DS.attr(),
   request_procedures: DS.attr(),
   service_category_ext: DS.attr(),
-  service_trl_ext: DS.attr(),
   tags: DS.attr(),
   scientific_fields: DS.attr(),
   service_categories_names: DS.attr(),
@@ -48,11 +47,6 @@ let model =  DS.Model.extend({
     return `/service-versions/create?service=${Ember.get(this, 'id')}`;
   }),
   service_categories: DS.hasMany('service-category'),
-  service_trl: DS.belongsTo('service-trl', {
-    formAttrs: {
-      optionLabelAttr: 'value',
-    },
-  }),
   service_admins_ids: DS.attr(),
   pending_service_admins_ids: DS.attr(),
   rejected_service_admins_ids: DS.attr(),
@@ -117,7 +111,6 @@ let model =  DS.Model.extend({
       delete hash['pending_service_admins_ids'];
       delete hash['rejected_service_admins_ids'];
       delete hash['service_category_ext'];
-      delete hash['service_trl_ext'];
       delete hash['providers_names'];
       delete hash['service_categories_names'];
       return hash;
