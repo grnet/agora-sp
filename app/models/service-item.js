@@ -118,45 +118,10 @@ let model =  DS.Model.extend({
       delete hash['rejected_service_admins_ids'];
       delete hash['service_category_ext'];
       delete hash['service_trl_ext'];
-      delete hash['contact_external_full_name'];
-      delete hash['contact_internal_full_name'];
       delete hash['providers_names'];
       delete hash['service_categories_names'];
-      // handle external/internal contact information
-      let contact_external = {};
-      let contact_internal = {};
-      Object.entries(hash).forEach(([key, value]) => {
-        if (key.startsWith('contact_external')) {
-          let new_key_ext = key.split('contact_external_')[1];
-          contact_external[new_key_ext] = value;
-          delete hash[key];
-        } else if (key.startsWith('contact_internal')) {
-          let new_key_int = key.split('contact_internal_')[1];
-          contact_internal[new_key_int] = value;
-          delete hash[key];
-        }
-      })
-      hash['contact_information_external'] = contact_external;
-      hash['contact_information_internal'] = contact_internal;
       return hash;
     },
-    normalize: function(json) {
-      if (json['contact_information_external']) {
-        Object.entries(json['contact_information_external']).forEach(([key, value]) => {
-          let new_key = `contact_external_${key}`;
-          json[new_key] = value;
-        });
-        delete json['contact_information_external'];
-      }
-      if (json['contact_information_internal']) {
-        Object.entries(json['contact_information_internal']).forEach(([key, value]) => {
-          let new_key = `contact_internal_${key}`;
-          json[new_key] = value;
-        });
-        delete json['contact_information_internal'];
-      }
-      return json;
-    }
   },
 
 

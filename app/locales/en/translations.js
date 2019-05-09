@@ -4,7 +4,6 @@ import { service_version } from './service_version';
 import { service_admin } from './service_admin';
 import { service_status } from './service_status';
 import { service_category } from './service_category';
-import { contact_information } from './contact_information';
 import { component } from './component';
 import { component_implementation } from './component_implementation';
 import { component_implementation_detail } from './component_implementation_detail';
@@ -26,7 +25,6 @@ export default {
   'service_admin': service_admin,
   'service_status': service_status,
   'service_category': service_category,
-  'contact_information': contact_information,
   'component': component,
   'component_implementation': component_implementation,
   'component_implementation_detail': component_implementation_detail,

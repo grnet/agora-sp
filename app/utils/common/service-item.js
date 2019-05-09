@@ -373,33 +373,6 @@ const CUSTOM_VERSIONS_FIELDSET = {
   ],
 };
 
-const EXTERNAL_CONTACT_FIELDSET = {
-  label: 'service_item.cards.contact_external',
-  layout: {
-    flex: [50, 50, 50, 50, 100],
-  },
-  fields: [
-    'contact_external_first_name',
-    'contact_external_last_name',
-    'contact_external_email',
-    'contact_external_phone',
-    'contact_external_url',
-  ],
-};
-
-const INTERNAL_CONTACT_FIELDSET = {
-  label: 'service_item.cards.contact_internal',
-  layout: {
-    flex: [50, 50, 50, 50, 100],
-  },
-  fields: [
-    'contact_internal_first_name',
-    'contact_internal_last_name',
-    'contact_internal_email',
-    'contact_internal_phone',
-    'contact_internal_url',
-  ],
-};
 
 const USER_CUSTOMERS_FIELDSET = {
   label: 'User Customers',
