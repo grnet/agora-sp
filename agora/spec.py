@@ -134,21 +134,6 @@ SERVICE_FIELDS_COMMON = {
     'service_categories_names': {
         '.field.string': {},
         '.flag.nowrite': {}},
-    'service_categories': {
-        '.field.collection.django': {},
-        '.flag.nullable.default': {},
-        ':filter_compat': True,
-        'flat': True,
-        'id_field': 'service_category',
-        'model': 'service.models.Service.service_categories.through',
-        'source': 'service_categories',
-        'bound': 'service',
-        'fields': {
-            'service_category': {'.field.ref': {},
-                                 'source': 'servicecategory_id',
-                                 'to': 'api/v2/service-categories'},
-        },
-    },
     'service_trl_ext': {
         '.field.string': {},
         '.flag.nowrite': {},
@@ -158,21 +143,6 @@ SERVICE_FIELDS_COMMON = {
         '.field.string': {},
         'source': 'organisations_names',
         '.flag.nowrite': {}},
-    'providers': {
-        '.field.collection.django': {},
-        '.flag.nullable.default': {},
-        ':filter_compat': True,
-        'flat': True,
-        'id_field': 'organisation',
-        'model': 'service.models.Service.organisations.through',
-        'source': 'organisations',
-        'bound': 'service',
-        'fields': {
-            'organisation': {'.field.ref': {},
-                            'source': 'organisation_id',
-                            'to': 'api/v2/providers'},
-        }
-    }
 }
 
 
@@ -271,6 +241,36 @@ SERVICE_FIELDS_INT = {
     'rejected_service_admins_ids': {
         '.field.string': {},
         '.flag.nowrite': {}},
+    'service_categories': {
+        '.field.collection.django': {},
+        '.flag.nullable.default': {},
+        ':filter_compat': True,
+        'flat': True,
+        'id_field': 'service_category',
+        'model': 'service.models.Service.service_categories.through',
+        'source': 'service_categories',
+        'bound': 'service',
+        'fields': {
+            'service_category': {'.field.ref': {},
+                                 'source': 'servicecategory_id',
+                                 'to': 'api/v2/service-categories'},
+        },
+    },
+    'providers': {
+        '.field.collection.django': {},
+        '.flag.nullable.default': {},
+        ':filter_compat': True,
+        'flat': True,
+        'id_field': 'organisation',
+        'model': 'service.models.Service.organisations.through',
+        'source': 'organisations',
+        'bound': 'service',
+        'fields': {
+            'organisation': {'.field.ref': {},
+                            'source': 'organisation_id',
+                            'to': 'api/v2/providers'},
+        }
+    }
 }
 
 SERVICE_FIELDS_EXT = {
