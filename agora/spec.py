@@ -159,76 +159,6 @@ SERVICE_FIELDS_INT = {
         'source': 'id_service_owner_id',
         'to': '/api/v2/service-owners',
         '.flag.nullable.default': {}},
-    'contact_information_external': {
-        '.field.struct': {},
-        'source': 'id_contact_information',
-        '.flag.nullable.default': {},
-        'fields': {
-            'id': {
-                '.field.uuid': {},
-                '.flag.nowrite': {}},
-            'first_name': {
-                '.field.string': {},
-                '.flag.nullable.default': {}},
-            'last_name': {
-                '.field.string': {},
-                '.flag.nullable.default': {}},
-            'email': {
-                '.field.string': {},
-                '.flag.nullable.default': {}},
-            'phone': {
-                '.field.string': {},
-                '.flag.nullable.default': {}},
-            'full_name': {
-                '.field.string': {},
-                '.flag.nowrite': {},
-                '.flag.nullable.default': {}},
-            'url': {
-                '.field.string': {},
-                '.flag.nullable.default': {}},
-        }
-    },
-    'contact_information_internal': {
-        '.field.struct': {},
-        'source': 'id_contact_information_internal',
-        '.flag.nullable.default': {},
-        'fields': {
-            'id': {
-                '.field.uuid': {},
-                '.flag.nowrite': {}},
-            'first_name': {
-                '.field.string': {},
-                '.flag.nullable.default': {}},
-            'last_name': {
-                '.field.string': {},
-                '.flag.nullable.default': {}},
-            'email': {
-                '.field.string': {},
-                '.flag.nullable.default': {}},
-            'phone': {
-                '.field.string': {},
-                '.flag.nullable.default': {}},
-            'full_name': {
-                '.field.string': {},
-                '.flag.nowrite': {},
-                '.flag.nullable.default': {}},
-            'url': {
-                '.field.string': {},
-                '.flag.nullable.default': {}},
-        }
-    },
-    'id_contact_information': {
-        '.field.ref': {},
-        '.flag.nowrite': {},
-        'source': 'id_contact_information_id',
-        'to': '/api/v2/contact-information',
-        '.flag.nullable.default': {}},
-    'id_contact_information_internal': {
-        '.field.ref': {},
-        '.flag.nowrite': {},
-        'source': 'id_contact_information_internal_id',
-        'to': '/api/v2/contact-information',
-        '.flag.nullable.default': {}},
     'logo': {
         '.field.file': {},
         'default': ''},
@@ -279,14 +209,6 @@ SERVICE_FIELDS_EXT = {
         '.field.string': {},
         '.flag.nowrite': {},
         'source': 'id_service_owner.full_name'},
-    'contact_information_ext': {
-        '.field.string': {},
-        '.flag.nowrite': {},
-        'source': 'id_contact_information.full_name'},
-    'contact_information_internal_ext': {
-        '.field.string': {},
-        '.flag.nowrite': {},
-        'source': 'id_contact_information_internal.full_name'},
     'user_customers_ext': {
         '.field.string': {},
         '.flag.nowrite': {},
