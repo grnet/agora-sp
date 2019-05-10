@@ -1,5 +1,4 @@
 import { field } from 'ember-gen';
-import { TABLE_FILTERS } from './component-implementation-detail-link';
 
 const {
   get,
@@ -50,26 +49,6 @@ const TABLE_FIELDS = [
   })
 ];
 
-const FINANCIAL_FIELDSET = {
-  label: 'service_version.cards.more_information',
-  layout: {
-    flex: [50, 50]
-  },
-  fields: [
-    field(
-      'cost_to_run', {
-        label: 'service_version.fields.cost_to_run',
-        type: 'text',
-      }
-    ),
-    field(
-      'cost_to_build', {
-        label: 'service_version.fields.cost_to_build',
-        type: 'text',
-      }
-    ),
-  ]
-};
 
 const URLS_FIELDSET = {
   label: 'service_version.cards.management',
