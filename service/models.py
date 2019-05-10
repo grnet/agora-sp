@@ -126,6 +126,15 @@ class Service(models.Model):
     order_type = RichTextUploadingField(default=None, blank=True, null=True)
     changelog = models.TextField(default=None, blank=True, null=True)
     last_update = models.CharField(max_length=255, default=None, blank=True, null=True)
+    required_services = models.ManyToManyField('self', blank=True,
+                                               symmetrical=False,
+                                               related_name='is_required_by')
+    other_required_services = RichTextUploadingField(default=None, blank=True, null=True)
+    related_services = models.ManyToManyField('self', blank=True,
+                                              symmetrical=False,
+                                              related_name='set_as_related_by')
+    other_related_services = RichTextUploadingField(default=None, blank=True, null=True)
+    related_platform = RichTextUploadingField(default=None, blank=True, null=True)
 
     # Unused fields
     service_category = models.ForeignKey(ServiceCategory, blank=False, null=True)
