@@ -25,7 +25,7 @@ let model = DS.Model.extend({
   access_policies: DS.hasMany('access_policy'),
   sla_url: DS.attr(),
   training_information: DS.attr(),
-  maintenance: DS.attr(),
+  maintenance_url: DS.attr(),
   // id_service_ext is service.name
   id_service_ext: DS.attr(),
   service_trl: DS.belongsTo('service-trl', {

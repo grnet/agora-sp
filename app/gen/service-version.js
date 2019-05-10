@@ -31,7 +31,7 @@ export default AgoraGen.extend({
       user_manual: [validate.format({ type: 'url', allowBlank: true })],
       admin_manual: [validate.format({ type: 'url', allowBlank: true })],
       monitoring_url: [validate.format({ type: 'url', allowBlank: true })],
-      maintenance: [validate.format({ type: 'url', allowBlank: true })],
+      maintenance_url: [validate.format({ type: 'url', allowBlank: true })],
     },
   },
   abilityStates: {

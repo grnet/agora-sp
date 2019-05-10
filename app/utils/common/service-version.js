@@ -107,7 +107,7 @@ const URLS_FIELDSET = {
       }
     ),
     field(
-      'maintenance', {
+      'maintenance_url', {
         label: 'service_version.fields.maintenance',
         hint: 'service_version.hints.maintenance',
       }
