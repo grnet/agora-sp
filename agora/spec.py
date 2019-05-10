@@ -883,67 +883,22 @@ SERVICE_VERSIONS = {
         'version': {
             '.flag.orderable': {},
             '.field.string': {}},
-        'features_current': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'features_future': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'terms_of_use_has': {
-            '.field.boolean': {}},
         'terms_of_use_url': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'privacy_policy_has': {
-            '.field.boolean': {}},
         'privacy_policy_url': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'user_documentation_has': {
-            '.field.boolean': {}},
         'user_manual': {
             '.field.string': {},
             'source': 'user_documentation_url',
             #'.flag.blankable': {},
             '.flag.nullable.default': {}},
-        'operations_documentation_has': {
-            '.field.boolean': {}},
         'admin_manual': {
             '.field.string': {},
             'source': 'operations_documentation_url',
             '.flag.nullable.default': {}},
-        'monitoring_has': {
-            '.field.boolean': {}},
         'monitoring_url': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'accounting_has': {
-            '.field.boolean': {}},
-        'accounting_url': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'business_continuity_plan_has': {
-            '.field.boolean': {}},
-        'business_continuity_plan_url': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'disaster_recovery_plan_has': {
-            '.field.boolean': {}},
-        'disaster_recovery_plan_url': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'decommissioning_procedure_has': {
-            '.field.boolean': {}},
-        'decommissioning_procedure_url': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'cost_to_run': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'cost_to_build': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'use_cases': {
             '.field.string': {},
             '.flag.nullable.default': {}},
         'is_in_catalogue': {

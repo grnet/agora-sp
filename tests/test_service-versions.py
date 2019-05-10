@@ -42,15 +42,6 @@ def test_serviceversion_create_edit(serviceadmin, serviceadmin_id, superadmin):
         'version': '1.1',
         'id_service': s1,
         'status': status.id,
-        'terms_of_use_has': True,
-        'user_documentation_has': True,
-        'privacy_policy_has': True,
-        'operations_documentation_has': True,
-        'monitoring_has': True,
-        'accounting_has': True,
-        'business_continuity_plan_has': True,
-        'disaster_recovery_plan_has': True,
-        'decommissioning_procedure_has': True,
         'is_in_catalogue': True,
         'visible_to_marketplace': True
     }
@@ -59,30 +50,12 @@ def test_serviceversion_create_edit(serviceadmin, serviceadmin_id, superadmin):
         'version': '1.1',
         'id_service': s1,
         'status': status.id,
-        'terms_of_use_has': True,
-        'user_documentation_has': True,
-        'privacy_policy_has': True,
-        'operations_documentation_has': True,
-        'monitoring_has': True,
-        'accounting_has': True,
-        'business_continuity_plan_has': True,
-        'disaster_recovery_plan_has': True,
-        'decommissioning_procedure_has': True,
     }
 
     SV_DATA_2 = {
         'version': '1.2',
         'id_service': s2,
         'status': status.id,
-        'terms_of_use_has': True,
-        'user_documentation_has': True,
-        'privacy_policy_has': True,
-        'operations_documentation_has': True,
-        'monitoring_has': True,
-        'accounting_has': True,
-        'business_continuity_plan_has': True,
-        'disaster_recovery_plan_has': True,
-        'decommissioning_procedure_has': True,
         'is_in_catalogue': True,
         'visible_to_marketplace': True
     }
@@ -91,15 +64,6 @@ def test_serviceversion_create_edit(serviceadmin, serviceadmin_id, superadmin):
         'version': '1.2',
         'id_service': s2,
         'status': status.id,
-        'terms_of_use_has': True,
-        'user_documentation_has': True,
-        'privacy_policy_has': True,
-        'operations_documentation_has': True,
-        'monitoring_has': True,
-        'accounting_has': True,
-        'business_continuity_plan_has': True,
-        'disaster_recovery_plan_has': True,
-        'decommissioning_procedure_has': True,
     }
 
     # CREATE
