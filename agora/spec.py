@@ -166,7 +166,46 @@ SERVICE_FIELDS_INT = {
                             'source': 'organisation_id',
                             'to': 'api/v2/providers'},
         }
-    }
+    },
+    'required_services': {
+        '.field.collection.django': {},
+        '.flag.nullable.default': {},
+        ':filter_compat': True,
+        'flat': True,
+        'id_field': 'service',
+        'model': 'service.models.Service.required_services.through',
+        'source': 'required_services',
+        'bound': 'service',
+        'fields': {
+            'service': {'.field.ref': {},
+                        'source': 'id',
+                        'to': 'api/v2/services'},
+        },
+    },
+    'other_required_services': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'related_services': {
+        '.field.collection.django': {},
+        '.flag.nullable.default': {},
+        ':filter_compat': True,
+        'flat': True,
+        'id_field': 'service',
+        'model': 'service.models.Service.related_services.through',
+        'source': 'related_services',
+        'bound': 'service',
+        'fields': {
+            'service': {'.field.ref': {},
+                        'source': 'id',
+                        'to': 'api/v2/services'},
+        },
+    },
+    'other_related_services': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'related_platform': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
 }
 
 SERVICE_FIELDS_EXT = {
