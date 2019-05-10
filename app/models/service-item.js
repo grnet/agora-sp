@@ -28,7 +28,6 @@ let model =  DS.Model.extend({
   short_description: DS.attr(),
   competitors: DS.attr(),
   logo: DS.attr(),
-  request_procedures: DS.attr(),
   service_category_ext: DS.attr(),
   tags: DS.attr(),
   scientific_fields: DS.attr(),
