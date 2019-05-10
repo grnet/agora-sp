@@ -6,8 +6,7 @@ const {
   get,
 } = Ember;
 
-
-let model =  DS.Model.extend({
+let model = DS.Model.extend({
   session: Ember.inject.service(),
   name: DS.attr(),
   url: DS.attr(),
@@ -72,7 +71,8 @@ let model =  DS.Model.extend({
 
   can_apply_adminship: Ember.computed('service_admins_ids', 'pending_service_admins_ids', 'rejected_service_admins_ids', function(){
     let role = get(this, 'session.session.authenticated.role');
-    if (role != 'serviceadmin') { return false; }
+
+    if (role !== 'serviceadmin') { return false; }
     let approved = get(this, 'service_admins_ids').split(',');
     let pending = get(this, 'pending_service_admins_ids').split(',');
     let rejected = get(this, 'rejected_service_admins_ids').split(',');
@@ -84,7 +84,8 @@ let model =  DS.Model.extend({
 
   can_revoke_adminship: Ember.computed('pending_service_admins_ids', function(){
     let role = get(this, 'session.session.authenticated.role');
-    if (role != 'serviceadmin') { return false; }
+
+    if (role !== 'serviceadmin') { return false; }
 
     let pending = get(this, 'pending_service_admins_ids').split(',');
     let user_id = get(this, 'session.session.authenticated.id').toString();
@@ -93,7 +94,8 @@ let model =  DS.Model.extend({
 
   has_rejected_adminship: Ember.computed('rejected_service_admins_ids', function(){
     let role = get(this, 'session.session.authenticated.role');
-    if (role != 'serviceadmin') { return false; }
+
+    if (role !== 'serviceadmin') { return false; }
 
     let rejected = get(this, 'rejected_service_admins_ids').split(',');
     let user_id = get(this, 'session.session.authenticated.id').toString();
@@ -158,6 +160,6 @@ let model =  DS.Model.extend({
 
 });
 
-model.reopenClass({ apimasResourceName: 'api/v2/services' })
+model.reopenClass({ apimasResourceName: 'api/v2/services' });
 
 export default model;

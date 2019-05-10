@@ -1,7 +1,7 @@
 import Ember from 'ember';
 import validate from 'ember-gen/validate';
-import ENV from '../config/environment';
 import { field } from 'ember-gen';
+import ENV from '../config/environment';
 import { AgoraGen } from '../lib/common';
 import {
   applyServiceAdminship,
