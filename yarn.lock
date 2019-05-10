@@ -96,9 +96,9 @@
   version "0.1.2"
   resolved "https://codeload.github.com/mistic100/jQuery.extendext/tar.gz/ae3816abfea41cd5698a3c92634129f108db3bbf"
 
-"@bower_components/jquery@jquery/jquery-dist#>=1.7":
-  version "3.3.1"
-  resolved "https://codeload.github.com/jquery/jquery-dist/tar.gz/9e8ec3d10fad04748176144f108d7355662ae75e"
+"@bower_components/jquery@jquery/jquery-dist#>=3.4.0":
+  version "3.4.1"
+  resolved "https://codeload.github.com/jquery/jquery-dist/tar.gz/15bc73803f76bc53b654b9fdbbbc096f56d7c03d"
 
 "@bower_components/matchMedia@paulirish/matchMedia.js#0.2.0":
   version "0.0.0"
