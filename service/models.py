@@ -97,16 +97,10 @@ class Service(models.Model):
     url = models.CharField(max_length=255, default=None, blank=True, null=True)
     endpoint = models.CharField(max_length=255, default=None, blank=True, null=True)
     short_description = RichTextUploadingField(default=None, blank=True, null=True)
-    description_external = RichTextUploadingField(default=None, blank=True, null=True)
-    description_internal = RichTextUploadingField(default=None, blank=True, null=True)
     tagline = models.TextField(default=None, blank=True, null=True)
-    service_category = models.ForeignKey(ServiceCategory, blank=False, null=True)
     service_categories = models.ManyToManyField(ServiceCategory, blank=False,
                                                 related_name="categories")
     service_type = models.CharField(max_length=255, default=None, blank=True, null=True)
-    service_trl = models.ForeignKey(ServiceTrl, null=True)
-    request_procedures = RichTextUploadingField(default=None, blank=True, null=True)
-    funders_for_service = RichTextUploadingField(default=None, blank=True, null=True)
     user_value = RichTextUploadingField(default=None, blank=True, null=True)
     target_customers = RichTextUploadingField(default=None, blank=True, null=True)
     target_users = models.TextField(default=None, blank=True, null=True)
@@ -114,13 +108,6 @@ class Service(models.Model):
     languages = models.TextField(default=None, blank=True, null=True)
     standards = RichTextUploadingField(default=None, blank=True, null=True)
     certifications = RichTextUploadingField(default=None, blank=True, null=True)
-    risks = RichTextUploadingField(default=None, blank=True, null=True)
-    competitors = RichTextUploadingField(default=None, blank=True, null=True)
-    id_service_owner = models.ForeignKey(ServiceOwner, null=True)
-    #This is the id of the external contact information
-    id_contact_information = models.ForeignKey(ContactInformation, null=True, related_name="external_contact_info")
-    #This is the id of the internal contact information
-    id_contact_information_internal = models.ForeignKey(ContactInformation, null=True, related_name="internal_contact_info")
     logo = models.ImageField(default=settings.SERVICE_LOGO,
             upload_to=helper.service_image_path)
     customer_facing = models.BooleanField(default=False)
@@ -139,6 +126,24 @@ class Service(models.Model):
     order_type = RichTextUploadingField(default=None, blank=True, null=True)
     changelog = models.TextField(default=None, blank=True, null=True)
     last_update = models.CharField(max_length=255, default=None, blank=True, null=True)
+
+    # Unused fields
+    service_category = models.ForeignKey(ServiceCategory, blank=False, null=True)
+    description_external = RichTextUploadingField(default=None, blank=True, null=True)
+    description_internal = RichTextUploadingField(default=None, blank=True, null=True)
+    request_procedures = RichTextUploadingField(default=None, blank=True, null=True)
+    funders_for_service = RichTextUploadingField(default=None, blank=True, null=True)
+    risks = RichTextUploadingField(default=None, blank=True, null=True)
+    competitors = RichTextUploadingField(default=None, blank=True, null=True)
+    service_trl = models.ForeignKey(ServiceTrl, null=True)
+    id_contact_information = models.ForeignKey(ContactInformation,
+                                               null=True,
+                                               related_name="external_contact_info")
+    id_contact_information_internal = models.ForeignKey(ContactInformation,
+                                                        null=True,
+                                                        related_name="internal_contact_info")
+    id_service_owner = models.ForeignKey(ServiceOwner, null=True)
+
 
     class Meta:
         verbose_name_plural = "01. Services"
@@ -708,29 +713,11 @@ class ServiceDetails(models.Model):
     id_service = models.ForeignKey(Service)
     version = models.CharField(max_length=255, default=None, blank=True)
     status = models.ForeignKey(ServiceStatus, default=None, blank=True) # allow empty field
-    features_current = RichTextUploadingField(default=None, blank=True, null=True)
-    features_future = RichTextUploadingField(default=None, blank=True, null=True)
-    terms_of_use_has = models.BooleanField(default=False, blank=True)
     terms_of_use_url = models.CharField(max_length=255, default=None, blank=True, null=True)
-    privacy_policy_has = models.BooleanField(default=False, blank=True)
     privacy_policy_url = models.CharField(max_length=255, default=None, blank=True, null=True)
-    user_documentation_has = models.BooleanField(default=False, blank=True)
     user_documentation_url = models.CharField(max_length=255, default=None, blank=True, null=True)
-    operations_documentation_has = models.BooleanField(default=False, blank=True)
     operations_documentation_url = models.CharField(max_length=255, default=None, blank=True, null=True)
-    monitoring_has = models.BooleanField(default=False, blank=True)
     monitoring_url = models.CharField(max_length=255, default=None, blank=True, null=True)
-    accounting_has = models.BooleanField(default=False, blank=True)
-    accounting_url = models.CharField(max_length=255, default=None, blank=True, null=True)
-    business_continuity_plan_has = models.BooleanField(default=False, blank=True)
-    business_continuity_plan_url = models.CharField(max_length=255, default=None, blank=True, null=True)
-    disaster_recovery_plan_has = models.BooleanField(default=False, blank=True)
-    disaster_recovery_plan_url = models.CharField(max_length=255, default=None, blank=True, null=True)
-    decommissioning_procedure_has = models.BooleanField(default=False, blank=True)
-    decommissioning_procedure_url = models.CharField(max_length=255, default=None, blank=True, null=True)
-    cost_to_run = models.CharField(max_length=255, default=None, blank=True, null=True)
-    cost_to_build = models.CharField(max_length=255, default=None, blank=True, null=True)
-    use_cases = RichTextUploadingField(default=None, blank=True, null=True)
     is_in_catalogue = models.BooleanField(default=False)
     visible_to_marketplace = models.BooleanField(default=False)
     sla_url = models.CharField(max_length=255, default=None, blank=True, null=True)
@@ -738,6 +725,35 @@ class ServiceDetails(models.Model):
     training_information = models.TextField(default=None, blank=True, null=True)
     maintenance_url = models.CharField(max_length=255, default=None, blank=True, null=True)
     service_trl = models.ForeignKey(ServiceTrl, null=True)
+
+    # Unused fields
+    features_current = RichTextUploadingField(default=None, blank=True, null=True)
+    features_future = RichTextUploadingField(default=None, blank=True, null=True)
+    terms_of_use_has = models.NullBooleanField(default=False, blank=True)
+    privacy_policy_has = models.NullBooleanField(default=False, blank=True)
+    user_documentation_has = models.NullBooleanField(default=False, blank=True)
+    operations_documentation_has = models.NullBooleanField(default=False, blank=True)
+    monitoring_has = models.NullBooleanField(default=False, blank=True)
+    accounting_has = models.NullBooleanField(default=False, blank=True)
+    accounting_url = models.CharField(max_length=255, default=None, blank=True, null=True)
+    business_continuity_plan_has = models.NullBooleanField(default=False, blank=True)
+    business_continuity_plan_url = models.CharField(max_length=255,
+                                                    default=None,
+                                                    blank=True,
+                                                    null=True)
+    disaster_recovery_plan_has = models.NullBooleanField(default=False, blank=True)
+    disaster_recovery_plan_url = models.CharField(max_length=255,
+                                                  default=None,
+                                                  blank=True, null=True)
+    decommissioning_procedure_has = models.NullBooleanField(default=False, blank=True)
+    decommissioning_procedure_url = models.CharField(max_length=255,
+                                                     default=None,
+                                                     blank=True,
+                                                     null=True)
+    cost_to_run = models.CharField(max_length=255, default=None, blank=True, null=True)
+    cost_to_build = models.CharField(max_length=255, default=None, blank=True, null=True)
+    use_cases = RichTextUploadingField(default=None, blank=True, null=True)
+
 
     def __unicode__(self):
         primary_key = self.id_service.pk
