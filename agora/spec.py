@@ -16,9 +16,10 @@ SERVICE_FIELDS_COMMON = {
     'endpoint': {
         '.field.string': {},
         '.flag.nullable.default': {}},
-    'short_description': {
+    'description': {
         '.field.string': {},
         '.flag.searchable': {},
+        'source': 'short_description',
         '.flag.nullable.default': {}},
     'tagline': {
         '.field.string': {},
