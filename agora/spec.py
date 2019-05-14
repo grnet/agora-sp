@@ -214,6 +214,12 @@ SERVICE_FIELDS_EXT = {
         '.field.string': {},
         '.flag.nowrite': {},
         'source': 'logo_absolute_path'},
+    'related_services_names': {
+        '.field.string': {},
+        '.flag.nowrite': {}},
+    'required_services_names': {
+        '.field.string': {},
+        '.flag.nowrite': {}},
 }
 
 SERVICE_FIELDS_INTERNAL = dict(SERVICE_FIELDS_COMMON, **SERVICE_FIELDS_INT)

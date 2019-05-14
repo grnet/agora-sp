@@ -168,6 +168,13 @@ class Service(models.Model):
     def service_categories_names(self):
         return ", ".join(o.name for o in self.service_categories.all())
 
+    @property
+    def related_services_names(self):
+        return ", ".join(o.name for o in self.related_services.all())
+
+    @property
+    def required_services_names(self):
+        return ", ".join(o.name for o in self.required_services.all())
 
     @property
     def service_admins_ids(self):
