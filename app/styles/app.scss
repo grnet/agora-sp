@@ -93,3 +93,9 @@ a.md-button.md-default-theme:not([disabled]):hover, a.md-button:not([disabled]):
   font-style: italic;
 }
 
+
+.model-form md-content[data-form-field-component='gen-form-field-select-table'] .md-input-hint {
+  top: 0;
+  margin-bottom: 2em;
+
+}
