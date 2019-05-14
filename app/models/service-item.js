@@ -102,6 +102,20 @@ let model = DS.Model.extend({
     return rejected.includes(user_id);
   }),
 
+  // related & required services
+  related_services: DS.hasMany('service-item', {
+    label: 'service_item.fields.related_services',
+    hint: 'service_item.hints.related_services',
+    inverse: null,
+  }),
+  required_services: DS.hasMany('service-item', {
+    label: 'service_item.fields.required_services',
+    hint: 'service_item.hints.required_services',
+    inverse: null,
+  }),
+  other_required_services: DS.attr(),
+  other_related_services: DS.attr(),
+  related_platform: DS.attr(),
 
 
   __api__: {
