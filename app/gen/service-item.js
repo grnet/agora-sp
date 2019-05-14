@@ -42,7 +42,7 @@ export default AgoraGen.extend({
       name: [validate.presence(true)],
       url: [validate.format({ type: 'url' })],
       endpoint: [validate.format({ type: 'url', allowBlank: true })],
-      short_description: [validate.presence(true)],
+      description: [validate.presence(true)],
       tagline: [validate.presence(true)],
       languages: [validate.presence(true)],
       owner_contact: [validate.format({ type: 'email', allowBlank: true })],

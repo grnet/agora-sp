@@ -24,7 +24,7 @@ let model = DS.Model.extend({
   certifications: DS.attr(),
   risks: DS.attr(),
   description_internal: DS.attr(),
-  short_description: DS.attr(),
+  description: DS.attr(),
   competitors: DS.attr(),
   logo: DS.attr(),
   service_category_ext: DS.attr(),
@@ -65,8 +65,8 @@ let model = DS.Model.extend({
   changelog: DS.attr(),
 
   // computed
-  short_desc: Ember.computed('short_description', function() {
-    return shorten(Ember.get(this, 'short_description'));
+  short_desc: Ember.computed('description', function() {
+    return shorten(Ember.get(this, 'description'));
   }),
 
   can_apply_adminship: Ember.computed('service_admins_ids', 'pending_service_admins_ids', 'rejected_service_admins_ids', function(){

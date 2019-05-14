@@ -68,8 +68,8 @@ const BASIC_INFO_FIELDS = [
   field('service_type', {
     label: 'service_item.fields.service_type',
   }),
-  field('short_description', {
-    label: 'service_item.fields.short_description',
+  field('description', {
+    label: 'service_item.fields.description',
     formComponent: 'text-editor',
     htmlSafe: true,
   }),
@@ -143,8 +143,8 @@ const BASIC_INFO_FORM_FIELDS_EDIT = [
   field('service_type', {
     label: 'service_item.fields.service_type',
   }),
-  field('short_description', {
-    label: 'service_item.fields.short_description',
+  field('description', {
+    label: 'service_item.fields.description',
     htmlSafe: true,
     formComponent: 'text-editor',
   }),
@@ -219,8 +219,8 @@ const BASIC_INFO_FORM_FIELDS_CREATE = [
   field('service_type', {
     label: 'service_item.fields.service_type',
   }),
-  field('short_description', {
-    label: 'service_item.fields.short_description',
+  field('description', {
+    label: 'service_item.fields.description',
     htmlSafe: true,
     formComponent: 'text-editor',
   }),
