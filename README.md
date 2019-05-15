@@ -35,6 +35,32 @@ var ENV = {
 }
 ```
 
+### Customization
+
+You can customize the appearance of your installation by adding your own logo, style and domestic login method text.
+
+You can place your own logo inside `public/assets` directory under the name `logo.png`.
+You can also use a custom preprocessed stylesheet, which you should place inside `styles` folder.
+In order to process it and import it, you have to edit `config/environment.js` file and set the `theme` option to match the name of the stylesheet `my-themes.scss`:
+
+```
+var ENV = {
+    theme: 'my-theme',
+}
+```
+
+In case you want to alter the text for domestic login method, you can change the configuration option in `config/environment.js` as follows:
+
+```
+var ENV = {
+  APP: {
+    domestic_login_msg: "My login method"
+  }
+}
+
+```
+
+
 ### Development
 
 If you want to make changes/update the code, you should run ember in development mode. You can do this by running:
