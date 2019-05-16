@@ -14,7 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Serviceadmins can be assigned to providers by superadmins.
 - A Service can optionally belong to one or many providers.
 - New date-formatted component.
-
+- Add Service Dependencies fieldset to Service.
 
 ### Changed
 - Rename Service Area to Service Category.
