@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add Federation Member model.
 - Services can belong to organisations.
 - Serviceadmins can be assigned to organisations by superadmins.
+- Add related/required services to Service model.
 
 ### Changed
 - Upgrade apimas to 0.4a4.
