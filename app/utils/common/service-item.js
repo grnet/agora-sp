@@ -1,11 +1,27 @@
 import { field } from 'ember-gen';
 import { fileField } from '../../lib/common';
 
+const {
+  get,
+  computed,
+} = Ember;
+
+
 const SORT_FIELDS = [
   'name',
   'owner_name',
   'service_type',
 ];
+
+const my_providers = field('my_providers', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: ['name'],
+    },
+  },
+});
+
 
 const providers = field('providers', {
   displayComponent: 'gen-display-field-table',
@@ -15,7 +31,6 @@ const providers = field('providers', {
     },
   },
 });
-
 
 const service_categories = field('service_categories', {
   displayComponent: 'gen-display-field-table',
@@ -420,7 +435,13 @@ const CUSTOM_VERSIONS_FIELDSET = {
 
 const PROVIDERS_FIELDSET = {
   label: 'service_item.cards.providers',
-  fields: [providers],
+  fields: computed('role', function(){
+    if (get(this, 'role') === 'serviceadmin') {
+      return [my_providers];
+    } else {
+      return [providers];
+    }
+  }),
   layout: {
     flex: [100],
   },

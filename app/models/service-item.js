@@ -49,6 +49,7 @@ let model = DS.Model.extend({
   pending_service_admins_ids: DS.attr(),
   rejected_service_admins_ids: DS.attr(),
   providers: DS.hasMany('provider'),
+  my_providers: DS.hasMany('my_provider'),
   providers_names: DS.attr(),
   owner_name: DS.attr(),
   owner_contact: DS.attr(),
@@ -121,6 +122,17 @@ let model = DS.Model.extend({
   __api__: {
     path: 'services',
     serialize: function(hash, serializer) {
+
+      if ('my_providers' in hash && hash['my_providers']) {
+        let arr = [];
+        hash['my_providers'].forEach(function(el) {
+          let a = el.replace('my-providers', 'providers');
+          arr.push(a);
+        })
+        hash['providers'] = arr;
+      }
+      delete hash['my_providers'];
+
       // do not send readonly keys to backend
       delete hash['service_admins_ids'];
       delete hash['pending_service_admins_ids'];
@@ -130,6 +142,18 @@ let model = DS.Model.extend({
       delete hash['service_categories_names'];
       return hash;
     },
+
+    normalize: function(json) {
+      if ('providers' in json) {
+        let arr = [];
+        json['providers'].forEach(function(el) {
+          let a  = el.replace('providers', 'my-providers');
+          arr.push(a);
+        })
+        json['my_providers'] = arr;
+      }
+      return json
+    }
   },
 
 
