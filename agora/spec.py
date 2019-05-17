@@ -1144,6 +1144,27 @@ ORGANISATIONS = {
     },
 }
 
+
+MY_ORGANISATIONS = {
+    '.collection.django': {},
+    'model': 'service.models.Organisation',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.filterable': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
+    },
+    ':permissions_namespace': 'agora.checks.Organisation',
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+    },
+}
+
 ACCESS_POLICIES = {
     '.collection.django': {},
     'model': 'service.models.AccessPolicy',
@@ -1263,6 +1284,7 @@ APP_CONFIG = {
                 'component-implementation-detail-links': COMPONENT_IMPLEMENTATION_DETAIL_LINKS,
                 'my-services': MY_SERVICES,
                 'providers': ORGANISATIONS,
+                'my-providers': MY_ORGANISATIONS,
                 'access-policies': ACCESS_POLICIES,
                 'federation-members': FEDERATION_MEMBERS,
             },
