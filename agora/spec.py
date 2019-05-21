@@ -121,6 +121,15 @@ SERVICE_FIELDS_COMMON = {
         '.field.string': {},
         'source': 'organisations_names',
         '.flag.nowrite': {}},
+    'other_required_services': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'other_related_services': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'related_platform': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
 }
 
 
@@ -182,9 +191,6 @@ SERVICE_FIELDS_INT = {
                         'to': 'api/v2/services'},
         },
     },
-    'other_required_services': {
-        '.field.string': {},
-        '.flag.nullable.default': {}},
     'related_services': {
         '.field.collection.django': {},
         '.flag.nullable.default': {},
@@ -200,12 +206,6 @@ SERVICE_FIELDS_INT = {
                         'to': 'api/v2/services'},
         },
     },
-    'other_related_services': {
-        '.field.string': {},
-        '.flag.nullable.default': {}},
-    'related_platform': {
-        '.field.string': {},
-        '.flag.nullable.default': {}},
 }
 
 SERVICE_FIELDS_EXT = {
