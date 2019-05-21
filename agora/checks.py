@@ -317,3 +317,17 @@ class ServiceVersion(object):
                              service=backend_input['id_service_id'])
         except sa_m.DoesNotExist:
             raise ValidationError(_('User should admin the service'))
+
+
+class Organisation(object):
+
+
+    @staticmethod
+    def filter_belongs(context):
+        """
+        List only the Organisations a serviceadmins belongs to.
+        """
+        auth_user = context['auth/user']
+        organisations = [x.id for x in auth_user.organisations.all()]
+        return Q(id__in=organisations)
+

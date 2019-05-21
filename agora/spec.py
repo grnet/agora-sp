@@ -121,6 +121,15 @@ SERVICE_FIELDS_COMMON = {
         '.field.string': {},
         'source': 'organisations_names',
         '.flag.nowrite': {}},
+    'other_required_services': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'other_related_services': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'related_platform': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
 }
 
 
@@ -166,7 +175,37 @@ SERVICE_FIELDS_INT = {
                             'source': 'organisation_id',
                             'to': 'api/v2/providers'},
         }
-    }
+    },
+    'required_services': {
+        '.field.collection.django': {},
+        '.flag.nullable.default': {},
+        ':filter_compat': True,
+        'flat': True,
+        'id_field': 'service',
+        'model': 'service.models.Service.required_services.through',
+        'source': 'required_services',
+        'bound': 'from_service',
+        'fields': {
+            'service': {'.field.ref': {},
+                        'source': 'to_service_id',
+                        'to': 'api/v2/services'},
+        },
+    },
+    'related_services': {
+        '.field.collection.django': {},
+        '.flag.nullable.default': {},
+        ':filter_compat': True,
+        'flat': True,
+        'id_field': 'service',
+        'model': 'service.models.Service.related_services.through',
+        'source': 'related_services',
+        'bound': 'from_service',
+        'fields': {
+            'service': {'.field.ref': {},
+                        'source': 'to_service_id',
+                        'to': 'api/v2/services'},
+        },
+    },
 }
 
 SERVICE_FIELDS_EXT = {
@@ -175,6 +214,12 @@ SERVICE_FIELDS_EXT = {
         '.field.string': {},
         '.flag.nowrite': {},
         'source': 'logo_absolute_path'},
+    'related_services_names': {
+        '.field.string': {},
+        '.flag.nowrite': {}},
+    'required_services_names': {
+        '.field.string': {},
+        '.flag.nowrite': {}},
 }
 
 SERVICE_FIELDS_INTERNAL = dict(SERVICE_FIELDS_COMMON, **SERVICE_FIELDS_INT)
@@ -1099,6 +1144,27 @@ ORGANISATIONS = {
     },
 }
 
+
+MY_ORGANISATIONS = {
+    '.collection.django': {},
+    'model': 'service.models.Organisation',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.filterable': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
+    },
+    ':permissions_namespace': 'agora.checks.Organisation',
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+    },
+}
+
 ACCESS_POLICIES = {
     '.collection.django': {},
     'model': 'service.models.AccessPolicy',
@@ -1218,6 +1284,7 @@ APP_CONFIG = {
                 'component-implementation-detail-links': COMPONENT_IMPLEMENTATION_DETAIL_LINKS,
                 'my-services': MY_SERVICES,
                 'providers': ORGANISATIONS,
+                'my-providers': MY_ORGANISATIONS,
                 'access-policies': ACCESS_POLICIES,
                 'federation-members': FEDERATION_MEMBERS,
             },
