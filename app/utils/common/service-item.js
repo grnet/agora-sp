@@ -1,11 +1,27 @@
 import { field } from 'ember-gen';
 import { fileField } from '../../lib/common';
 
+const {
+  get,
+  computed,
+} = Ember;
+
+
 const SORT_FIELDS = [
   'name',
   'owner_name',
   'service_type',
 ];
+
+const my_providers = field('my_providers', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: ['name'],
+    },
+  },
+});
+
 
 const providers = field('providers', {
   displayComponent: 'gen-display-field-table',
@@ -16,17 +32,60 @@ const providers = field('providers', {
   },
 });
 
-
 const service_categories = field('service_categories', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
       fields: [
         'name',
-      ]
-    }
-  }
-})
+      ],
+    },
+  },
+});
+
+const related_services = field('related_services', {
+  label: 'service_item.fields.related_services',
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: [
+        'name',
+        field('service_categories_names', {
+          label: 'service_item.fields.service_categories',
+        }),
+        field('providers_names', {
+          label: 'service_item.fields.providers_names',
+        }),
+        field('owner_name', {
+          label: 'service_item.fields.owner_name',
+        })
+      ],
+    },
+  },
+});
+
+
+const required_services = field('required_services', {
+  label: 'service_item.fields.required_services',
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: [
+        'name',
+        field('service_categories_names', {
+          label: 'service_item.fields.service_categories',
+        }),
+        field('providers_names', {
+          label: 'service_item.fields.providers_names',
+        }),
+        field('owner_name', {
+          label: 'service_item.fields.owner_name',
+        })
+      ],
+    },
+  },
+});
+
 
 /********************************************
                 LIST VIEW
@@ -376,7 +435,13 @@ const CUSTOM_VERSIONS_FIELDSET = {
 
 const PROVIDERS_FIELDSET = {
   label: 'service_item.cards.providers',
-  fields: [providers],
+  fields: computed('role', function(){
+    if (get(this, 'role') === 'serviceadmin') {
+      return [my_providers];
+    } else {
+      return [providers];
+    }
+  }),
   layout: {
     flex: [100],
   },
@@ -492,6 +557,35 @@ const MANAGEMENT_FIELDSET = {
 };
 
 
+const DEPENDENCIES_FIELDSET = {
+  label: 'service_item.cards.dependencies',
+  fields: [
+    required_services,
+    field('other_required_services', {
+      label: 'service_item.fields.other_required_services',
+      hint: 'service_item.hints.other_required_services',
+      formComponent: 'text-editor',
+      htmlSafe: true,
+    }),
+    related_services,
+    field('other_related_services', {
+      label: 'service_item.fields.other_related_services',
+      hint: 'service_item.hints.other_related_services',
+      formComponent: 'text-editor',
+      htmlSafe: true,
+    }),
+    field('related_platform', {
+      label: 'service_item.fields.related_platform',
+      hint: 'service_item.hints.related_platform',
+      formComponent: 'text-editor',
+      htmlSafe: true,
+    }),
+  ],
+  layout: {
+    flex: [ 100, 100, 100, 100, 100 ]
+  }
+};
+
 const DETAILS_FIELDSETS = [
   DETAILS_BASIC_INFO_FIELDSET,
   MATURITY_FIELDSET,
@@ -499,6 +593,7 @@ const DETAILS_FIELDSETS = [
   MANAGEMENT_FIELDSET,
   //this creates a new referenced table inside another gen
   CUSTOM_VERSIONS_FIELDSET,
+  DEPENDENCIES_FIELDSET,
   PROVIDERS_FIELDSET,
 ];
 
@@ -517,6 +612,7 @@ const CREATE_FIELDSETS = [
   MATURITY_FIELDSET,
   CLASSIFICATION_FIELDSET,
   MANAGEMENT_FIELDSET,
+  DEPENDENCIES_FIELDSET,
   PROVIDERS_FIELDSET,
 ];
 
@@ -535,6 +631,7 @@ const EDIT_FIELDSETS = [
   MATURITY_FIELDSET,
   CLASSIFICATION_FIELDSET,
   MANAGEMENT_FIELDSET,
+  DEPENDENCIES_FIELDSET,
   PROVIDERS_FIELDSET,
 ];
 

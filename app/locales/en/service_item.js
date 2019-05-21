@@ -7,6 +7,7 @@ const service_item = {
     'providers': 'Service Providers',
     'classification': 'Service Classification',
     'maturity': 'Service Maturity',
+    'dependencies': 'Service Dependencies',
   },
   'fields': {
     'name': 'Service name',
@@ -45,6 +46,11 @@ const service_item = {
     'order_type': 'Service order type',
     'last_update': 'Service last update',
     'changelog': 'Service change log',
+    'related_services': 'Related services',
+    'other_related_services': 'Other related services',
+    'required_services': 'Required services',
+    'other_required_services': 'Other required services',
+    'related_platform': 'Related platform',
     'contact': {
       'first_name': 'First name',
       'last_name': 'Last name',
@@ -71,6 +77,11 @@ const service_item = {
     'order_type': 'Explain ordering procedure',
     'last_update': 'Date when this service was released',
     'changelog': 'Summary of the main changes from the previous version',
+    'required_services': 'If any, please list any other EOSC services that your service requires in order to operate.',
+    'related_services': 'Are there any other EOSC services that you are aware of that your service can cooperate with? Please list these.',
+    'other_required_services': 'If there are any more required services not listed in EOSC services, list them here',
+    'other_related_services': 'If there are any more related services not listed in EOSC services, list them here',
+    'related_platform': 'E.g.: WeNMR Suite',
   },
   'belongs': {
     'name': 'Service Name'
