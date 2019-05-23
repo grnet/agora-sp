@@ -139,6 +139,8 @@ export default AgoraGen.extend({
       const param = model.get('param_service');
       if(param) {
         this.transitionTo(`/services/${param}`);
+      } else {
+        this.transitionTo('service-version.record.index', model);
       }
     }
   },
