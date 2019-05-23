@@ -133,11 +133,11 @@ RESOURCES_CRUD = {
         'url': '/api/v2/service-status/',
         'create_data': {
             'value': 'test-value',
-            'order': 1
+            'description': 'description',
         },
         'edit_data': {
             'value': 'test-value-edit',
-            'order': 2
+            'description': 'description changed',
         }
     },
     'contact_information': {
@@ -156,21 +156,6 @@ RESOURCES_CRUD = {
             'phone': '+30 21021033332',
             'url': 'https://www.test2.org'
         }
-    },
-    'institutions': {
-        'url': '/api/v2/institutions/',
-        'create_data': {
-            'address': 'Dreams 3',
-            'country': 'Iceland',
-            'department': 'magic',
-            'name': 'test institution',
-        },
-        'edit_data': {
-            'address': 'Dreams 3 edit',
-            'country': 'Iceland-edit',
-            'department': 'magic-edit',
-            'name': 'test institution edit',
-        },
     },
     'services': {
         'url': '/api/v2/services/',
@@ -207,6 +192,35 @@ RESOURCES_CRUD = {
     'service_versions': {
         'url': '/api/v2/service-versions/'
     },
-
-
+    'providers': {
+        'url': '/api/v2/providers/',
+        'create_data': {
+            'name': 'CIA',
+            'description': '<p>Description</p>',
+        },
+        'edit_data': {
+            'name': 'FBI',
+        },
+    },
+    'access_policies': {
+        'url': '/api/v2/access-policies/',
+        'create_data': {
+            'name': 'Excellence-driven',
+            'geo_availability': 'Europe',
+        },
+        'edit_data': {
+            'name': 'Market-driven',
+        },
+    },
+    'federation_members': {
+        'url': '/api/v2/federation-members/',
+        'create_data': {
+            'name': 'Federation Member',
+            'country': 'FR',
+            'webpage': 'https://example.com',
+        },
+        'edit_data': {
+            'name': 'Federation Member modified',
+        },
+    },
 }

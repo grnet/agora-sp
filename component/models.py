@@ -27,7 +27,7 @@ class ServiceComponent(models.Model):
     description = RichTextUploadingField(default=None, blank=True, null=True)
     logo = models.ImageField(
             upload_to=("components"),
-            default=settings.SERVICE_AREA_ICON
+            default=settings.SERVICE_CATEGORY_ICON
     )
 
     class Meta:

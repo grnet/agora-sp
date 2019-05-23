@@ -7,7 +7,7 @@ import uuid
 from owner.models import ServiceOwner, ContactInformation, Institution
 from common import helper
 from collections import OrderedDict
-from accounts.models import User
+from accounts.models import User, Organisation
 from ckeditor_uploader.fields import RichTextUploadingField
 from agora.utils import SERVICE_ADMINSHIP_STATES, clean_html_fields, \
     publishMessage
@@ -16,10 +16,10 @@ from agora.emails import send_email_application_created, \
 from apimas.base import ProcessorFactory
 
 
-class ServiceArea(models.Model):
+class ServiceCategory(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, blank=True, null=True)
-    icon = models.ImageField(default=settings.SERVICE_AREA_ICON,
+    icon = models.ImageField(default=settings.SERVICE_CATEGORY_ICON,
             upload_to=helper.service_area_image_path)
 
     @property
@@ -27,18 +27,18 @@ class ServiceArea(models.Model):
         if self.icon:
             path = self.icon.url
         else:
-            path = settings.MEDIA_URL+settings.SERVICE_AREA_ICON
+            path = settings.MEDIA_URL+settings.SERVICE_CATEGORY_ICON
         return helper.current_site_baseurl()+'/'+path
 
     class Meta:
-        verbose_name_plural = "06. Service Areas (settings)"
+        verbose_name_plural = "06. Service Categories (settings)"
 
     def __unicode__(self):
         return str(self.name)
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)
-        super(ServiceArea, self).save(*args, **kwargs)
+        super(ServiceCategory, self).save(*args, **kwargs)
 
 
 class ServiceTrl(models.Model):
@@ -67,37 +67,115 @@ class ServiceTrl(models.Model):
         clean_html_fields(self)
         super(ServiceTrl, self).save(*args, **kwargs)
 
+
+class AccessPolicy(models.Model):
+    """
+    Policies stating how the service can be accessed
+    """
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255,
+                            default=None,
+                            blank=True,
+                            unique=True)
+    access_mode = RichTextUploadingField(default=None, blank=True, null=True)
+    payment_model = RichTextUploadingField(default=None, blank=True, null=True)
+    pricing = RichTextUploadingField(default=None, blank=True, null=True)
+    conditions = RichTextUploadingField(default=None, blank=True, null=True)
+    geo_availability = models.TextField(default=None, blank=True)
+    access_policy_url = models.CharField(max_length=255,
+                                         default=None, blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(AccessPolicy, self).save(*args, **kwargs)
+
+
 class Service(models.Model):
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, default=None, blank=True, unique=True)
+    url = models.CharField(max_length=255, default=None, blank=True, null=True)
+    endpoint = models.CharField(max_length=255, default=None, blank=True, null=True)
     short_description = RichTextUploadingField(default=None, blank=True, null=True)
-    description_external = RichTextUploadingField(default=None, blank=True, null=True)
-    description_internal = RichTextUploadingField(default=None, blank=True, null=True)
-    service_area = models.ForeignKey(ServiceArea, blank=False, null=True)
+    tagline = models.TextField(default=None, blank=True, null=True)
+    service_categories = models.ManyToManyField(ServiceCategory, blank=False,
+                                                related_name="categories")
     service_type = models.CharField(max_length=255, default=None, blank=True, null=True)
-    service_trl = models.ForeignKey(ServiceTrl, null=True)
-    request_procedures = RichTextUploadingField(default=None, blank=True, null=True)
-    funders_for_service = RichTextUploadingField(default=None, blank=True, null=True)
-    value_to_customer = RichTextUploadingField(default=None, blank=True, null=True)
-    risks = RichTextUploadingField(default=None, blank=True, null=True)
-    competitors = RichTextUploadingField(default=None, blank=True, null=True)
-    id_service_owner = models.ForeignKey(ServiceOwner, null=True)
-    #This is the id of the external contact information
-    id_contact_information = models.ForeignKey(ContactInformation, null=True, related_name="external_contact_info")
-    #This is the id of the internal contact information
-    id_contact_information_internal = models.ForeignKey(ContactInformation, null=True, related_name="internal_contact_info")
+    user_value = RichTextUploadingField(default=None, blank=True, null=True)
+    target_customers = RichTextUploadingField(default=None, blank=True, null=True)
+    target_users = models.TextField(default=None, blank=True, null=True)
+    screenshots_videos = RichTextUploadingField(default=None, blank=True, null=True)
+    languages = models.TextField(default=None, blank=True, null=True)
+    standards = RichTextUploadingField(default=None, blank=True, null=True)
+    certifications = RichTextUploadingField(default=None, blank=True, null=True)
     logo = models.ImageField(default=settings.SERVICE_LOGO,
             upload_to=helper.service_image_path)
     customer_facing = models.BooleanField(default=False)
     internal = models.BooleanField(default=False)
+    organisations = models.ManyToManyField(Organisation, blank=True)
+    tags = models.TextField(default=None, blank=True, null=True)
+    scientific_fields = models.TextField(default=None, blank=True, null=True)
+    owner_name = models.CharField(max_length=255, default=None, blank=True, null=True)
+    owner_contact = models.CharField(max_length=255, default=None, blank=True, null=True)
+    support_name = models.CharField(max_length=255, default=None, blank=True, null=True)
+    support_contact = models.CharField(max_length=255, default=None, blank=True, null=True)
+    security_name = models.CharField(max_length=255, default=None, blank=True, null=True)
+    security_contact = models.CharField(max_length=255, default=None, blank=True, null=True)
+    helpdesk = models.TextField(default=None, blank=True, null=True)
+    order = models.TextField(default=None, blank=True, null=True)
+    order_type = RichTextUploadingField(default=None, blank=True, null=True)
+    changelog = models.TextField(default=None, blank=True, null=True)
+    last_update = models.CharField(max_length=255, default=None, blank=True, null=True)
+    required_services = models.ManyToManyField('self', blank=True,
+                                               symmetrical=False,
+                                               related_name='is_required_by')
+    other_required_services = RichTextUploadingField(default=None, blank=True, null=True)
+    related_services = models.ManyToManyField('self', blank=True,
+                                              symmetrical=False,
+                                              related_name='set_as_related_by')
+    other_related_services = RichTextUploadingField(default=None, blank=True, null=True)
+    related_platform = RichTextUploadingField(default=None, blank=True, null=True)
+
+    # Unused fields
+    service_category = models.ForeignKey(ServiceCategory, blank=False, null=True)
+    description_external = RichTextUploadingField(default=None, blank=True, null=True)
+    description_internal = RichTextUploadingField(default=None, blank=True, null=True)
+    request_procedures = RichTextUploadingField(default=None, blank=True, null=True)
+    funders_for_service = RichTextUploadingField(default=None, blank=True, null=True)
+    risks = RichTextUploadingField(default=None, blank=True, null=True)
+    competitors = RichTextUploadingField(default=None, blank=True, null=True)
+    service_trl = models.ForeignKey(ServiceTrl, null=True)
+    id_contact_information = models.ForeignKey(ContactInformation,
+                                               null=True,
+                                               related_name="external_contact_info")
+    id_contact_information_internal = models.ForeignKey(ContactInformation,
+                                                        null=True,
+                                                        related_name="internal_contact_info")
+    id_service_owner = models.ForeignKey(ServiceOwner, null=True)
+
 
     class Meta:
         verbose_name_plural = "01. Services"
 
     def __unicode__(self):
         return str(self.name)
-    
+
+    @property
+    def organisations_names(self):
+        return ", ".join(o.name for o in self.organisations.all())
+
+    @property
+    def service_categories_names(self):
+        return ", ".join(o.name for o in self.service_categories.all())
+
+    @property
+    def related_services_names(self):
+        return ", ".join(o.name for o in self.related_services.all())
+
+    @property
+    def required_services_names(self):
+        return ", ".join(o.name for o in self.required_services.all())
+
     @property
     def service_admins_ids(self):
         service_adminships = ServiceAdminship.objects.filter(
@@ -149,16 +227,16 @@ class Service(models.Model):
             self.description_internal = None
         if not self.description_external or self.description_external == "":
             self.description_external = None
-        if not self.service_area or self.service_area == "":
-            self.service_area = None
+        if not self.service_category or self.service_category == "":
+            self.service_category = None
         if not self.service_type or self.service_type == "":
             self.service_type = None
         if not self.request_procedures or self.request_procedures == "":
             self.request_procedures = None
         if not self.funders_for_service or self.funders_for_service == "":
             self.funders_for_service = None
-        if not self.value_to_customer or self.value_to_customer == "":
-            self.value_to_customer = None
+        if not self.user_value or self.user_value == "":
+            self.user_value = None
         if not self.request_procedures or self.request_procedures == "":
             self.request_procedures = None
         if not self.risks or self.risks == "":
@@ -185,13 +263,13 @@ class Service(models.Model):
             res.append(user.name.name)
         return ','.join(res)
 
-    def get_distinct_service_area(self):
+    def get_distinct_service_category(self):
 
-        return self.service_area
+        return self.service_category
 
-    def get_service_area_name(self):
-        if self.service_area:
-            return self.service_area.name
+    def get_service_category_name(self):
+        if self.service_category:
+            return self.service_category.name
         return None
 
     def get_service_details(self, complete=False, url=False, catalogue=False):
@@ -308,8 +386,8 @@ class Service(models.Model):
             ("name", self.name),
             ("short_description", self.short_description),
             ("description_external", self.description_external),
-            ("service_area", self.get_service_area_name()),
-            ("value_to_customer", self.value_to_customer),
+            ("service_category", self.get_service_category_name()),
+            ("user_value", self.user_value),
             ("service_type", self.service_type),
             ("logo",  "/static/img/logos/"+self.logo.name.split("/")[-1])
         ])
@@ -360,7 +438,7 @@ class Service(models.Model):
             ("description_internal", self.description_internal),
             ("service_owner", service_owner),
             ("contact_information", contact_information),
-            ("service_area", self.get_service_area_name()),
+            ("service_category", self.get_service_category_name()),
             ("user_customers_list", {
                 "count": len(users_customers),
                 "user_customers": users_customers
@@ -392,7 +470,7 @@ class Service(models.Model):
                 "external_services": external_services
             }),
             ("funders_for_service", self.funders_for_service),
-            ("value_to_customer", self.value_to_customer),
+            ("user_value", self.user_value),
             ("risks", self.risks),
             ("competitors", self.competitors),
             ("service_type", self.service_type),
@@ -458,7 +536,7 @@ class Service(models.Model):
             ("description_internal", self.description_internal),
             ("service_owner", service_owner),
             ("contact_information", contact_information),
-            ("service_area", self.get_service_area_name()),
+            ("service_category", self.get_service_category_name()),
             ("user_customers_list", {
                 "count": len(users_customers),
                 "user_customers": users_customers
@@ -491,7 +569,7 @@ class Service(models.Model):
                 "external_services": external_services
             }),
             ("funders_for_service", self.funders_for_service),
-            ("value_to_customer", self.value_to_customer),
+            ("user_value", self.user_value),
             ("risks", self.risks),
             ("competitors", self.competitors),
             ("service_type", self.service_type),
@@ -548,13 +626,13 @@ class Service(models.Model):
             ("description_internal", self.description_internal),
             ("service_owner", service_owner),
             ("contact_information", contact_information),
-            ("service_area", self.get_service_area_name()),
+            ("service_category", self.get_service_category_name()),
             ("user_customers_list", {
                 "count": len(users_customers),
                 "user_customers": users_customers
             }),
             ("funders_for_service", self.funders_for_service),
-            ("value_to_customer", self.value_to_customer),
+            ("user_value", self.user_value),
             ("risks", self.risks),
             ("competitors", self.competitors),
             ("service_type", self.service_type),
@@ -595,8 +673,8 @@ class Service(models.Model):
             ("short_description", self.short_description),
             ("description_external", self.description_external),
             ("funders_for_service", self.funders_for_service),
-            ("service_area", self.get_service_area_name()),
-            ("value_to_customer", self.value_to_customer),
+            ("service_category", self.get_service_category_name()),
+            ("user_value", self.user_value),
             ("request_procedures", self.request_procedures),
             ("service_type", self.service_type),
             ("contact_information", contact_information),
@@ -618,16 +696,13 @@ class Service(models.Model):
 
 
 class ServiceStatus(models.Model):
-
-    class Meta:
-        verbose_name_plural = "09. Service Status (settings)"
-        ordering = [
-            "order",
-        ]
+    """
+    Phase of the ServiceDetails lifecycle
+    """
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
     value = models.CharField(max_length=255, default=None, blank=False, unique=True)
-    order = models.IntegerField(default=None, blank=False)
+    description = models.TextField(default=None, blank=True, null=True)
 
     def __unicode__(self):
         return str(self.value)
@@ -636,7 +711,6 @@ class ServiceStatus(models.Model):
         return OrderedDict([
             ("uuid", self.id),
             ("value", self.value),
-            ("order", self.order),
         ])
 
     def save(self, *args, **kwargs):
@@ -655,31 +729,47 @@ class ServiceDetails(models.Model):
     id_service = models.ForeignKey(Service)
     version = models.CharField(max_length=255, default=None, blank=True)
     status = models.ForeignKey(ServiceStatus, default=None, blank=True) # allow empty field
+    terms_of_use_url = models.CharField(max_length=255, default=None, blank=True, null=True)
+    privacy_policy_url = models.CharField(max_length=255, default=None, blank=True, null=True)
+    user_documentation_url = models.CharField(max_length=255, default=None, blank=True, null=True)
+    operations_documentation_url = models.CharField(max_length=255, default=None, blank=True, null=True)
+    monitoring_url = models.CharField(max_length=255, default=None, blank=True, null=True)
+    is_in_catalogue = models.BooleanField(default=False)
+    visible_to_marketplace = models.BooleanField(default=False)
+    sla_url = models.CharField(max_length=255, default=None, blank=True, null=True)
+    access_policies = models.ManyToManyField(AccessPolicy, blank=True)
+    training_information = models.TextField(default=None, blank=True, null=True)
+    maintenance_url = models.CharField(max_length=255, default=None, blank=True, null=True)
+    service_trl = models.ForeignKey(ServiceTrl, null=True)
+
+    # Unused fields
     features_current = RichTextUploadingField(default=None, blank=True, null=True)
     features_future = RichTextUploadingField(default=None, blank=True, null=True)
-    usage_policy_has = models.BooleanField(default=False, blank=True)
-    usage_policy_url = models.CharField(max_length=255, default=None, blank=True, null=True)
-    privacy_policy_has = models.BooleanField(default=False, blank=True)
-    privacy_policy_url = models.CharField(max_length=255, default=None, blank=True, null=True)
-    user_documentation_has = models.BooleanField(default=False, blank=True)
-    user_documentation_url = models.CharField(max_length=255, default=None, blank=True, null=True)
-    operations_documentation_has = models.BooleanField(default=False, blank=True)
-    operations_documentation_url = models.CharField(max_length=255, default=None, blank=True, null=True)
-    monitoring_has = models.BooleanField(default=False, blank=True)
-    monitoring_url = models.CharField(max_length=255, default=None, blank=True, null=True)
-    accounting_has = models.BooleanField(default=False, blank=True)
+    terms_of_use_has = models.NullBooleanField(default=False, blank=True)
+    privacy_policy_has = models.NullBooleanField(default=False, blank=True)
+    user_documentation_has = models.NullBooleanField(default=False, blank=True)
+    operations_documentation_has = models.NullBooleanField(default=False, blank=True)
+    monitoring_has = models.NullBooleanField(default=False, blank=True)
+    accounting_has = models.NullBooleanField(default=False, blank=True)
     accounting_url = models.CharField(max_length=255, default=None, blank=True, null=True)
-    business_continuity_plan_has = models.BooleanField(default=False, blank=True)
-    business_continuity_plan_url = models.CharField(max_length=255, default=None, blank=True, null=True)
-    disaster_recovery_plan_has = models.BooleanField(default=False, blank=True)
-    disaster_recovery_plan_url = models.CharField(max_length=255, default=None, blank=True, null=True)
-    decommissioning_procedure_has = models.BooleanField(default=False, blank=True)
-    decommissioning_procedure_url = models.CharField(max_length=255, default=None, blank=True, null=True)
+    business_continuity_plan_has = models.NullBooleanField(default=False, blank=True)
+    business_continuity_plan_url = models.CharField(max_length=255,
+                                                    default=None,
+                                                    blank=True,
+                                                    null=True)
+    disaster_recovery_plan_has = models.NullBooleanField(default=False, blank=True)
+    disaster_recovery_plan_url = models.CharField(max_length=255,
+                                                  default=None,
+                                                  blank=True, null=True)
+    decommissioning_procedure_has = models.NullBooleanField(default=False, blank=True)
+    decommissioning_procedure_url = models.CharField(max_length=255,
+                                                     default=None,
+                                                     blank=True,
+                                                     null=True)
     cost_to_run = models.CharField(max_length=255, default=None, blank=True, null=True)
     cost_to_build = models.CharField(max_length=255, default=None, blank=True, null=True)
     use_cases = RichTextUploadingField(default=None, blank=True, null=True)
-    is_in_catalogue = models.BooleanField(default=False)
-    visible_to_marketplace = models.BooleanField(default=False)
+
 
     def __unicode__(self):
         primary_key = self.id_service.pk
@@ -699,8 +789,8 @@ class ServiceDetails(models.Model):
         if not self.use_cases or self.use_cases == "":
             self.use_cases = None
 
-        if not self.usage_policy_has:
-            self.usage_policy_url = None
+        if not self.terms_of_use_has:
+            self.terms_of_use_url = None
         if not self.user_documentation_has:
             self.user_documentation_url = None
         if not self.operations_documentation_has:
@@ -718,8 +808,8 @@ class ServiceDetails(models.Model):
         if not self.privacy_policy_has:
             self.privacy_policy_url = None
 
-        if not self.usage_policy_url or self.usage_policy_url == "":
-            self.usage_policy_url = None
+        if not self.terms_of_use_url or self.terms_of_use_url == "":
+            self.terms_of_use_url = None
 
         if not self.privacy_policy_url or self.privacy_policy_url == "":
             self.privacy_policy_url = None
@@ -806,12 +896,12 @@ class ServiceDetails(models.Model):
                 # },
                 "services": service_dependencies
             }),
-            ("usage_policy_has", self.usage_policy_has),
-            ("usage_policy_link", {
+            ("terms_of_use_has", self.terms_of_use_has),
+            ("terms_of_use_link", {
                 "related": {
-                    "href": self.usage_policy_url,
+                    "href": self.terms_of_use_url,
                     "meta": {
-                        "desc": "A link to the usage policy for this service."
+                        "desc": "A link to the terms of use for this service."
                     }
                 }}),
             ("privacy_policy_has", self.privacy_policy_has),
@@ -874,10 +964,10 @@ class ServiceDetails(models.Model):
                 # },
                 "services": service_dependencies
             }),
-            ("usage_policy_has", self.usage_policy_has),
-            ("usage_policy_link", {
+            ("terms_of_use_has", self.terms_of_use_has),
+            ("terms_of_use_link", {
                 "related": {
-                    "href": self.usage_policy_url,
+                    "href": self.terms_of_use_url,
                     "meta": {
                         "desc": "A link to the usage policy for this service."
                     }
@@ -1211,3 +1301,13 @@ class PostPartialUpdateServiceadminship(ProcessorFactory):
         http_host = data['request/meta/headers'].get('HTTP_HOST', 'Agora')
         send_email_application_evaluated(data['backend/raw_response'], http_host)
         return {}
+
+
+class FederationMember(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, default=None, unique=True)
+    webpage = models.CharField(max_length=255, default=None, blank=True,
+                               null=True)
+    logo = models.ImageField(default=settings.FEDERATION_MEMBER_LOGO,
+                             upload_to=helper.federation_member_image_path)
+    country = models.CharField(max_length=2, default=None)

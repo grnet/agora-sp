@@ -1,5 +1,5 @@
 
-var formName = 'Service Area Form'
+var formName = 'Service Category Form'
 
 var optionsData = [
   {id: 1, value: 1, text: "option 1"},
@@ -118,7 +118,7 @@ var FormWrapper = React.createClass({
 			var host = "https://" + parts[2];
 
 			this.serverRequest = $.ajax({
-				url: host + "/api/v1/services/area/add",
+				url: host + "/api/v1/services/category/add",
 				headers: {
 					"X-CSRFToken": $("input[name=csrfmiddlewaretoken]")[0].value,
 					"AUTHTOKEN": localStorage.apiToken,

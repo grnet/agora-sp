@@ -13,7 +13,7 @@ from django.conf import settings
 from collections import defaultdict
 
 from django.conf import settings
-from agora.permissions import RULES
+from agora.permissions import get_rules
 import accounts.models
 
 from agora.settings import (
@@ -45,7 +45,7 @@ def rule_to_dict(data, args):
 
 def load_permissions():
     PERMISSIONS = defaultdict(lambda: dict)
-    for rule in transform_rules(RULES):
+    for rule in transform_rules(get_rules()):
         rule_to_dict(PERMISSIONS, list(rule))
     return PERMISSIONS
 
@@ -80,10 +80,6 @@ def transform_rules(rules):
                 new_l = (el[0], el[1], el[2], f, el[4], el[6])
                 new_rules.append(new_l)
     return new_rules
-
-
-def get_rules():
-    return RULES
 
 
 config_file = os.path.join(settings.SETTINGS_DIR, 'deployment.conf')

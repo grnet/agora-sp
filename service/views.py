@@ -61,7 +61,7 @@ def list_services(request,  type):
 
     return JsonResponse(response, status=status)
 
-def get_services_by_area(request, type):
+def get_services_by_category(request, type):
     '''
     Retrieves a JSON list of all services for the service landing page.
     :return:
@@ -78,23 +78,25 @@ def get_services_by_area(request, type):
         elif type == "portfolio":
             services.append(s)
 
-    areas = models.Service.objects.values_list('service_area', flat=True).distinct()
+    categories = models.Service.objects.values_list('service_category',
+                                                    flat=True).distinct()
 
     response = defaultdict(list)
     data = defaultdict(list)
 
-    for area in areas:
+    for category in categories:
         for service in services:
 
-          if area == service.service_area:
-            response[area].append(service.as_service_picker_compliant())
+          if category == service.service_category:
+            response[category].append(service.as_service_picker_compliant())
 
-        if response[area] != []:
+        if response[category] != []:
             try:
-                icon = models.ServiceArea.objects.get(name=area).icon.name.split("/")[-1]
+                icon = models.ServiceCategory.objects.get(
+                        name=category).icon.name.split("/")[-1]
             except:
                 icon = None
-            data["areas"].append((response[area], icon))
+            data["categories"].append((response[category], icon))
 
 
     response = helper.get_response_info(strings.SERVICE_LIST, data)
@@ -204,24 +206,24 @@ def get_service_logo(request, service_name_or_uuid):
 
 def get_catalogue_main_page(request):
 
-    service_areas = models.Service.objects.values('service_area').distinct()
+    service_categories = models.Service.objects.values('service_category').distinct()
 
     services = {}
     name_help = {}
 
-    for area in service_areas:
-        services_buffer  = models.Service.objects.filter(service_area=area['service_area']).values_list('name', flat=True)
+    for category in service_categories:
+        services_buffer  = models.Service.objects.filter(service_category=category['service_category']).values_list('name', flat=True)
         for service in services_buffer:
             name_help[service] = service.replace(" ","_").strip()
 
 
 
-    for area in service_areas:
-        services_buffer  = models.Service.objects.filter(service_area=area['service_area']).values_list('name', flat=True)
-        services[area['service_area']] = services_buffer
+    for category in service_categories:
+        services_buffer  = models.Service.objects.filter(service_category=category['service_category']).values_list('name', flat=True)
+        services[category['service_category']] = services_buffer
 
 
-    return render(request, 'catalogue.html', {"areas": service_areas, "services": services, "names": name_help})
+    return render(request, 'catalogue.html', {"categories": service_categories, "services": services, "names": name_help})
 
 @login_required()
 def home_write_ui(request):
@@ -246,8 +248,8 @@ def external_service_edit_ui(request, service_name_or_uuid):
     return render(request, 'service/write.html', {"type": "external_service", "source": source})
 
 @login_required()
-def service_area_write_ui(request):
-    return render(request, 'service/write.html', {"type": "service_area"})
+def service_category_write_ui(request):
+    return render(request, 'service/write.html', {"type": "service_category"})
 
 @login_required()
 def service_details_write_ui(request):
@@ -1031,8 +1033,8 @@ def insert_service(request):
     if "description_internal" in params:
         service.description_internal = params.get('description_internal')
 
-    if "service_area" in params:
-        service.service_area = params.get('service_area')
+    if "service_category" in params:
+        service.service_category = params.get('service_category')
 
     if "service_type" in params:
         service.service_type = params.get('service_type')
@@ -1043,8 +1045,8 @@ def insert_service(request):
     if "funders_for_service" in params:
         service.funders_for_service = params.get('funders_for_service')
 
-    if "value_to_customer" in params:
-        service.value_to_customer = params.get('value_to_customer')
+    if "user_value" in params:
+        service.user_value = params.get('user_value')
 
     if "risks" in params:
         service.risks = params.get('risks')
@@ -1261,35 +1263,35 @@ def get_service_versions(request):
 
 @api_view(['POST'])
 @check_auth_and_type
-def insert_service_area(request):
+def insert_service_category(request):
     params = request.data
 
     name = params.get('name')
 
     if name == "" or name is None:
-        return JsonResponse(helper.get_error_response(strings.EMPTY_AREA, status=strings.REJECTED_406),
+        return JsonResponse(helper.get_error_response(strings.EMPTY_CATEGORY, status=strings.REJECTED_406),
                             status=406)
 
-    area = models.ServiceArea()
-    area.name = name
-    area.save()
+    category = models.ServiceCategory()
+    category.name = name
+    category.save()
 
-    response = helper.get_response_info(strings.SERVICE_AREA_INFO, {})
+    response = helper.get_response_info(strings.SERVICE_CATEGORY_INFO, {})
 
     return JsonResponse(response, status=int(response["status"][:3]))
 
-def get_service_areas(request):
+def get_service_categories(request):
 
     query = request.GET.get('search')
     if query is not None:
         query = query.lower()
 
-    areas_set = set([s.service_area for s in models.Service.objects.all() if (query == None or query == "") or
-                     (s.service_area is not None and query in s.service_area.lower())])
+    categories_set = set([s.service_category for s in models.Service.objects.all() if (query == None or query == "") or
+                     (s.service_category is not None and query in s.service_category.lower())])
 
-    areas_set = [{"area": a} for a in areas_set]
+    categories_set = [{"category": a} for a in categories_set]
 
-    response = helper.get_response_info(strings.SERVICE_OWNER_INFORMATION, areas_set)
+    response = helper.get_response_info(strings.SERVICE_OWNER_INFORMATION, categories_set)
     return JsonResponse(response, status=int(response["status"][:3]))
 
 
@@ -1508,17 +1510,17 @@ def insert_service_details(request, service_name_or_uuid):
     if "features_future" in params:
         service_details.features_future = params.get('features_future')
 
-    if "usage_policy_has" in params:
-        uph = params.get('usage_policy_has')
+    if "terms_of_use_has" in params:
+        uph = params.get('terms_of_use_has')
         if uph == "false":
-            service_details.usage_policy_has = False
+            service_details.terms_of_use_has = False
         elif uph == "true":
-            service_details.usage_policy_has = True
+            service_details.terms_of_use_has = True
         else:
-            service_details.usage_policy_has = uph
+            service_details.terms_of_use_has = uph
 
-    if "usage_policy_url" in params:
-        service_details.usage_policy_url = params.get('usage_policy_url')
+    if "terms_of_use_url" in params:
+        service_details.terms_of_use_url = params.get('terms_of_use_url')
 
     if "privacy_policy_has" in params:
         pph = params.get('privacy_policy_has')

@@ -1,4 +1,3 @@
-import copy
   # djoser_verifier: agora.utils.djoser_verifier
   # userid_extractor: agora.utils.userid_extractor
 
@@ -11,14 +10,18 @@ SERVICE_FIELDS_COMMON = {
         '.flag.filterable': {},
         '.flag.searchable': {},
         '.flag.orderable': {}},
-    'short_description': {
+    'url': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'endpoint': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'description': {
         '.field.string': {},
         '.flag.searchable': {},
+        'source': 'short_description',
         '.flag.nullable.default': {}},
-    'description_external': {
-        '.field.string': {},
-        '.flag.nullable.default': {}},
-    'description_internal': {
+    'tagline': {
         '.field.string': {},
         '.flag.nullable.default': {}},
     'service_type': {
@@ -26,19 +29,25 @@ SERVICE_FIELDS_COMMON = {
         '.flag.orderable': {},
         '.flag.nullable.default': {},
         '.flag.filterable': {}},
-    'request_procedures': {
+    'user_value': {
         '.field.string': {},
         '.flag.nullable.default': {}},
-    'funders_for_service': {
+    'target_customers': {
         '.field.string': {},
         '.flag.nullable.default': {}},
-    'value_to_customer': {
+    'target_users': {
         '.field.string': {},
         '.flag.nullable.default': {}},
-    'risks': {
+    'screenshots_videos': {
         '.field.string': {},
         '.flag.nullable.default': {}},
-    'competitors': {
+    'languages': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'standards': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'certifications': {
         '.field.string': {},
         '.flag.nullable.default': {}},
     'customer_facing': {
@@ -47,109 +56,84 @@ SERVICE_FIELDS_COMMON = {
     'internal': {
         '.flag.filterable': {},
         '.field.boolean': {}},
-    'service_area_ext': {
+    'tags': {
         '.field.string': {},
-        '.flag.nowrite': {},
-        '.flag.orderable': {},
-        'source': 'service_area.name'},
-    'service_trl_ext': {
+        '.flag.searchable': {},
+        '.flag.nullable.default': {}},
+    'scientific_fields': {
         '.field.string': {},
-        '.flag.nowrite': {},
+        '.flag.searchable': {},
+        '.flag.nullable.default': {}},
+    'owner_name': {
+        '.field.string': {},
         '.flag.orderable': {},
-        'source': 'service_trl.value'},
+        '.flag.nullable.default': {},
+        '.flag.filterable': {}},
+    'owner_contact': {
+        '.field.string': {},
+        '.flag.orderable': {},
+        '.flag.nullable.default': {},
+        '.flag.filterable': {}},
+    'support_name': {
+        '.field.string': {},
+        '.flag.orderable': {},
+        '.flag.nullable.default': {},
+        '.flag.filterable': {}},
+    'support_contact': {
+        '.field.string': {},
+        '.flag.orderable': {},
+        '.flag.nullable.default': {},
+        '.flag.filterable': {}},
+    'security_name': {
+        '.field.string': {},
+        '.flag.orderable': {},
+        '.flag.nullable.default': {},
+        '.flag.filterable': {}},
+    'security_contact': {
+        '.field.string': {},
+        '.flag.orderable': {},
+        '.flag.nullable.default': {},
+        '.flag.filterable': {}},
+    'helpdesk': {
+        '.field.string': {},
+        '.flag.orderable': {},
+        '.flag.nullable.default': {},
+        '.flag.filterable': {}},
+    'order': {
+        '.field.string': {},
+        '.flag.orderable': {},
+        '.flag.nullable.default': {},
+        '.flag.filterable': {}},
+    'order_type': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'changelog': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'last_update': {
+        '.field.string': {},
+        '.flag.orderable': {},
+        '.flag.nullable.default': {}},
+    'service_categories_names': {
+        '.field.string': {},
+        '.flag.nowrite': {}},
+    'providers_names': {
+        '.field.string': {},
+        'source': 'organisations_names',
+        '.flag.nowrite': {}},
+    'other_required_services': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'other_related_services': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
+    'related_platform': {
+        '.field.string': {},
+        '.flag.nullable.default': {}},
 }
 
 
 SERVICE_FIELDS_INT = {
-    'service_area': {
-        '.field.ref': {},
-        'source': 'service_area_id',
-        'to': '/api/v2/service-areas',
-        '.flag.nullable.default': {},
-        '.flag.orderable': {},
-        '.flag.filterable': {}},
-    'service_trl': {
-        '.field.ref': {},
-        'source': 'service_trl_id',
-        'to': '/api/v2/service-trls',
-        '.flag.orderable': {},
-        '.flag.filterable': {},
-        '.flag.nullable.default': {}},
-    'id_service_owner': {
-        '.field.ref': {},
-        'source': 'id_service_owner_id',
-        'to': '/api/v2/service-owners',
-        '.flag.nullable.default': {}},
-    'contact_information_external': {
-        '.field.struct': {},
-        'source': 'id_contact_information',
-        '.flag.nullable.default': {},
-        'fields': {
-            'id': {
-                '.field.uuid': {},
-                '.flag.nowrite': {}},
-            'first_name': {
-                '.field.string': {},
-                '.flag.nullable.default': {}},
-            'last_name': {
-                '.field.string': {},
-                '.flag.nullable.default': {}},
-            'email': {
-                '.field.string': {},
-                '.flag.nullable.default': {}},
-            'phone': {
-                '.field.string': {},
-                '.flag.nullable.default': {}},
-            'full_name': {
-                '.field.string': {},
-                '.flag.nowrite': {},
-                '.flag.nullable.default': {}},
-            'url': {
-                '.field.string': {},
-                '.flag.nullable.default': {}},
-        }
-    },
-    'contact_information_internal': {
-        '.field.struct': {},
-        'source': 'id_contact_information_internal',
-        '.flag.nullable.default': {},
-        'fields': {
-            'id': {
-                '.field.uuid': {},
-                '.flag.nowrite': {}},
-            'first_name': {
-                '.field.string': {},
-                '.flag.nullable.default': {}},
-            'last_name': {
-                '.field.string': {},
-                '.flag.nullable.default': {}},
-            'email': {
-                '.field.string': {},
-                '.flag.nullable.default': {}},
-            'phone': {
-                '.field.string': {},
-                '.flag.nullable.default': {}},
-            'full_name': {
-                '.field.string': {},
-                '.flag.nowrite': {},
-                '.flag.nullable.default': {}},
-            'url': {
-                '.field.string': {},
-                '.flag.nullable.default': {}},
-        }
-    },
-    'id_contact_information': {
-        '.field.ref': {},
-        '.flag.nowrite': {},
-        'source': 'id_contact_information_id',
-        'to': '/api/v2/contact-information',
-        '.flag.nullable.default': {}},
-    'id_contact_information_internal': {
-        '.field.ref': {},
-        '.flag.nowrite': {},
-        'source': 'id_contact_information_internal_id',
-        'to': '/api/v2/contact-information',
-        '.flag.nullable.default': {}},
     'logo': {
         '.field.file': {},
         'default': ''},
@@ -162,30 +146,80 @@ SERVICE_FIELDS_INT = {
     'rejected_service_admins_ids': {
         '.field.string': {},
         '.flag.nowrite': {}},
+    'service_categories': {
+        '.field.collection.django': {},
+        '.flag.nullable.default': {},
+        ':filter_compat': True,
+        'flat': True,
+        'id_field': 'service_category',
+        'model': 'service.models.Service.service_categories.through',
+        'source': 'service_categories',
+        'bound': 'service',
+        'fields': {
+            'service_category': {'.field.ref': {},
+                                 'source': 'servicecategory_id',
+                                 'to': 'api/v2/service-categories'},
+        },
+    },
+    'providers': {
+        '.field.collection.django': {},
+        '.flag.nullable.default': {},
+        ':filter_compat': True,
+        'flat': True,
+        'id_field': 'organisation',
+        'model': 'service.models.Service.organisations.through',
+        'source': 'organisations',
+        'bound': 'service',
+        'fields': {
+            'organisation': {'.field.ref': {},
+                            'source': 'organisation_id',
+                            'to': 'api/v2/providers'},
+        }
+    },
+    'required_services': {
+        '.field.collection.django': {},
+        '.flag.nullable.default': {},
+        ':filter_compat': True,
+        'flat': True,
+        'id_field': 'service',
+        'model': 'service.models.Service.required_services.through',
+        'source': 'required_services',
+        'bound': 'from_service',
+        'fields': {
+            'service': {'.field.ref': {},
+                        'source': 'to_service_id',
+                        'to': 'api/v2/services'},
+        },
+    },
+    'related_services': {
+        '.field.collection.django': {},
+        '.flag.nullable.default': {},
+        ':filter_compat': True,
+        'flat': True,
+        'id_field': 'service',
+        'model': 'service.models.Service.related_services.through',
+        'source': 'related_services',
+        'bound': 'from_service',
+        'fields': {
+            'service': {'.field.ref': {},
+                        'source': 'to_service_id',
+                        'to': 'api/v2/services'},
+        },
+    },
 }
 
 SERVICE_FIELDS_EXT = {
     # extended keys
-    'service_owner_ext': {
-        '.field.string': {},
-        '.flag.nowrite': {},
-        'source': 'id_service_owner.full_name'},
-    'contact_information_ext': {
-        '.field.string': {},
-        '.flag.nowrite': {},
-        'source': 'id_contact_information.full_name'},
-    'contact_information_internal_ext': {
-        '.field.string': {},
-        '.flag.nowrite': {},
-        'source': 'id_contact_information_internal.full_name'},
-    'user_customers_ext': {
-        '.field.string': {},
-        '.flag.nowrite': {},
-        'source': 'user_customers_names'},
     'logo': {
         '.field.string': {},
         '.flag.nowrite': {},
         'source': 'logo_absolute_path'},
+    'related_services_names': {
+        '.field.string': {},
+        '.flag.nowrite': {}},
+    'required_services_names': {
+        '.field.string': {},
+        '.flag.nowrite': {}},
 }
 
 SERVICE_FIELDS_INTERNAL = dict(SERVICE_FIELDS_COMMON, **SERVICE_FIELDS_INT)
@@ -306,8 +340,10 @@ SERVICE_STATUS = {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.filterable': {}},
-        'order': {
-            '.field.integer': {}},
+        'description': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {}},
         },
     'actions': {
         '.action-template.django.list': {},
@@ -390,9 +426,9 @@ USER_ROLES = {
     },
 }
 
-SERVICE_AREAS = {
+SERVICE_CATEGORIES = {
     '.collection.django': {},
-    'model': 'service.models.ServiceArea',
+    'model': 'service.models.ServiceCategory',
     'fields': {
         'id': {
             '.field.uuid': {},
@@ -500,6 +536,22 @@ CUSTOM_USERS = {
             '.flag.orderable': {},
             '.flag.filterable': {},
             '.field.string': {}},
+        'providers': {
+            '.field.collection.django': {},
+            ':filter_compat': True,
+            '.flag.nullable.default': {},
+            'flat': True,
+            'id_field': 'organisation',
+            'model': 'accounts.models.User.organisations.through',
+            'source': 'organisations',
+            'bound': 'user',
+            'fields': {
+                'organisation': {'.field.ref': {},
+                                'source': 'organisation_id',
+                                'to': 'api/v2/providers'},
+            }
+        }
+
     },
     'actions': {
         '.action-template.django.list': {},
@@ -812,11 +864,11 @@ SERVICE_TYPES_FIELDS = {
         '.flag.nowrite': {},
         '.flag.filterable': {},
         'source': 'service_id.internal'},
-    'service_area': {
+    'service_category': {
         '.field.string': {},
         '.flag.nowrite': {},
         '.flag.filterable': {},
-        'source': 'service_id.service_area.name'},
+        'source': 'service_id.service_category.name'},
     'service_version': {
         '.field.string': {},
         '.flag.nowrite': {},
@@ -877,65 +929,22 @@ SERVICE_VERSIONS = {
         'version': {
             '.flag.orderable': {},
             '.field.string': {}},
-        'features_current': {
+        'terms_of_use_url': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'features_future': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'usage_policy_has': {
-            '.field.boolean': {}},
-        'usage_policy_url': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'privacy_policy_has': {
-            '.field.boolean': {}},
         'privacy_policy_url': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'user_documentation_has': {
-            '.field.boolean': {}},
-        'user_documentation_url': {
+        'user_manual': {
             '.field.string': {},
+            'source': 'user_documentation_url',
             #'.flag.blankable': {},
             '.flag.nullable.default': {}},
-        'operations_documentation_has': {
-            '.field.boolean': {}},
-        'operations_documentation_url': {
+        'admin_manual': {
             '.field.string': {},
+            'source': 'operations_documentation_url',
             '.flag.nullable.default': {}},
-        'monitoring_has': {
-            '.field.boolean': {}},
         'monitoring_url': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'accounting_has': {
-            '.field.boolean': {}},
-        'accounting_url': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'business_continuity_plan_has': {
-            '.field.boolean': {}},
-        'business_continuity_plan_url': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'disaster_recovery_plan_has': {
-            '.field.boolean': {}},
-        'disaster_recovery_plan_url': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'decommissioning_procedure_has': {
-            '.field.boolean': {}},
-        'decommissioning_procedure_url': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'cost_to_run': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'cost_to_build': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'use_cases': {
             '.field.string': {},
             '.flag.nullable.default': {}},
         'is_in_catalogue': {
@@ -948,6 +957,22 @@ SERVICE_VERSIONS = {
             '.flag.orderable': {},
             '.field.boolean': {},
             'default': False},
+        'sla_url': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'training_information': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'maintenance_url': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'service_trl': {
+            '.field.ref': {},
+            'source': 'service_trl_id',
+            'to': '/api/v2/service-trls',
+            '.flag.orderable': {},
+            '.flag.filterable': {},
+            '.flag.nullable.default': {}},
         # extended fields
         'id_service_ext': {
             '.field.string': {},
@@ -959,7 +984,22 @@ SERVICE_VERSIONS = {
             '.flag.orderable': {},
             '.flag.nowrite': {},
             'source': 'status.value'},
-        },
+        'access_policies': {
+            '.field.collection.django': {},
+            ':filter_compat': True,
+            '.flag.nullable.default': {},
+            'flat': True,
+            'id_field': 'access_policy',
+            'model': 'service.models.ServiceDetails.access_policies.through',
+            'source': 'access_policies',
+            'bound': 'servicedetails',
+            'fields': {
+                'access_policy': {'.field.ref': {},
+                                'source': 'accesspolicy_id',
+                                'to': 'api/v2/access-policies'},
+            }
+        }
+    },
     'actions': {
         '.action-template.django.list': {},
         '.action-template.django.retrieve': {},
@@ -1070,10 +1110,144 @@ SERVICE_ADMINS = {
     },
 }
 
+ORGANISATIONS = {
+    '.collection.django': {},
+    'model': 'accounts.models.Organisation',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'description': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+         'contact': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
+        'logo': {
+            '.field.file': {},
+            'default': ''},
+
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+
+MY_ORGANISATIONS = {
+    '.collection.django': {},
+    'model': 'service.models.Organisation',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.filterable': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
+    },
+    ':permissions_namespace': 'agora.checks.Organisation',
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+    },
+}
+
+ACCESS_POLICIES = {
+    '.collection.django': {},
+    'model': 'service.models.AccessPolicy',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'access_mode': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
+        'payment_model': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+       'pricing': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+       'conditions': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+       'geo_availability': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {},
+            '.flag.nullable.default': {}},
+       'access_policy_url': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {},
+            '.flag.nullable.default': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+
+FEDERATION_MEMBERS = {
+    '.collection.django': {},
+    'model': 'service.models.FederationMember',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'webpage': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
+        'logo': {
+            '.field.file': {},
+            'default': ''},
+        'country': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.nullable.default': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
 
 APP_CONFIG = {
     '.apimas_app': {},
-    ':permission_rules': 'agora.utils.get_rules',
+    ':permission_rules': 'agora.permissions.get_rules',
     ':authenticator': 'apimas.auth.DjoserAuthentication',
     ':verifier': 'agora.utils.djoser_verifier',
     ':user_resolver': 'agora.utils.userid_extractor',
@@ -1098,7 +1272,7 @@ APP_CONFIG = {
                 'external_services': EXTERNAL_SERVICES,
                 'user-roles': USER_ROLES,
                 'user_customers': USER_CUSTOMERS,
-                'service-areas': SERVICE_AREAS,
+                'service-categories': SERVICE_CATEGORIES,
                 'service-admins': SERVICE_ADMINS,
                 'custom-users': CUSTOM_USERS,
                 'contact-information': CONTACT_INFORMATION,
@@ -1109,6 +1283,10 @@ APP_CONFIG = {
                 'component-implementation-details': COMPONENT_IMPLEMENTATION_DETAILS,
                 'component-implementation-detail-links': COMPONENT_IMPLEMENTATION_DETAIL_LINKS,
                 'my-services': MY_SERVICES,
+                'providers': ORGANISATIONS,
+                'my-providers': MY_ORGANISATIONS,
+                'access-policies': ACCESS_POLICIES,
+                'federation-members': FEDERATION_MEMBERS,
             },
         },
     },
