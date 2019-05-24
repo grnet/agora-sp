@@ -1,6 +1,0 @@
----
-
-- include: users.yml
-- include: apt_install.yml
-- include: pip_install.yml
-- include: mysql.yml
