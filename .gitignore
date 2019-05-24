@@ -24,12 +24,12 @@ cert.pem
 .DS_Store
 
 # compiled output
-/dist
-/tmp
+**/dist
+**/tmp
 
 # dependencies
-/node_modules
-/bower_components
+**/node_modules
+**/bower_components
 
 # misc
 /.sass-cache
