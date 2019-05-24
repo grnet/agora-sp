@@ -10,7 +10,7 @@ module.exports = function(environment) {
     },
     rootURL: '/',
     locationType: 'auto',
-    appURL: 'http://127.0.0.1:8080/api/v2/',
+    appURL: 'https://snf-3950.ok-kno.grnetcloud.net/api/v2/',
     EmberENV: {
       FEATURES: {
         // Here you can enable experimental features on an ember canary build
@@ -25,8 +25,8 @@ module.exports = function(environment) {
       version: 4
     },
     APP: {
-      backend_host: 'http://127.0.0.1:8080/api/v2',
-      backend_media_root: 'http://127.0.0.1:8080/static/img/',
+      backend_host: 'https://snf-3950.ok-kno.grnetcloud.net/api/v2',
+      backend_media_root: 'https://snf-3950.ok-kno.grnetcloud.net/static/img/',
       date_format: 'DD/MM/YYYY',
       default_route: 'service-item.index',
       domestic_login_msg: 'Log in with Check-in',
