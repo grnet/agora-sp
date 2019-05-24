@@ -1,0 +1,72 @@
+$primary: "blue" !default;
+//$accent: "pink" !default;
+//$warn: "red" !default;
+//$background: "grey" !default;
+//$link: "light-blue" !default;
+
+@import "ember-gen";
+@import "_buttons";
+@import "_editor";
+
+$success-color: color($color-light-green, '600');
+
+.model-form .model-form-field:last-child .md-input-hint {
+  top: -19px;
+}
+
+.fullwidth {
+  width: 100%;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+td img {
+  max-height: 100px;
+  margin: 10px 0;
+}
+
+img.logo {
+  max-width: 200px;
+}
+
+.mce-panel {
+  border-width: 0!important;
+  margin-bottom: 10px!important;
+}
+
+body .md-icon-success {
+  md-icon {
+    color: $success-color !important;
+  }
+}
+
+
+body .checkbox-container + .md-input-hint {
+  position: relative;
+  top: -30px;
+  padding-left: 8px;
+}
+
+body .model-form .model-form-field:last-child .checkbox-container  + .md-input-hint {
+  top: -12px;
+}
+
+body .page-content .actions {
+  a.md-button {
+    padding: 2px 20px;
+  }
+
+}
+
+.message {
+  font-style: italic;
+}
+
+
+body .model-form md-content[data-form-field-component='gen-form-field-select-table'] .md-input-hint {
+  top: 0;
+  margin-bottom: 2em;
+
+}
