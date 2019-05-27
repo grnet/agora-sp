@@ -23,6 +23,9 @@ PATH_RESOURCES = os.path.join(BASE_DIR, DIR_RESOURCES)
 FILE_SPEC = 'agora.spec'
 FILEPATH_SPEC = os.path.join(PATH_RESOURCES, FILE_SPEC)
 
+# Path where UI dist files are served
+DISTPATH_UI = os.path.join(BASE_DIR, '../ui/dist')
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
@@ -433,6 +436,9 @@ AMS_TOKEN = '6b58fac490a00b935eda78e8aefa74898aafab65'
 AMS_PROJECT = 'AGORA'
 AMS_ENDPOINT = 'msg-devel.argo.grnet.gr'
 AMS_TOPIC = 'services'
+
+UI_PREFIX = 'ui/'
+API_ENDPOINT = 'api/v2'
 
 SETTINGS_DIR = os.environ.get('AGORA_SETTINGS_DIR', '/etc/agora')
 SETTINGS_FILE = 'settings.conf'

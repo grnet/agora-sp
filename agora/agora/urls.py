@@ -5,6 +5,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import RedirectView
+from django.views.static import serve
 
 from agora import views as agora_views
 from djoser import views as djoser_views
@@ -28,7 +29,6 @@ urlpatterns = [
     url(r'^api/admin/?', admin.site.urls),
     url(r'^api/shibboleth$', agora_views.shibboleth_login,
         name='shibboleth_login'),
-    url(r'^/?$', RedirectView.as_view(url='/ui/catalogue/services')),
     url(r'^ckeditor/', include('ckeditor_uploader.urls')),
     url(r'^api/v2/auth/me/$', agora_views.CustomMe.as_view(),
         name='custom_me'),
@@ -46,6 +46,33 @@ urls_static_files = static(settings.STATIC_URL,
                            document_root=settings.STATIC_ROOT)
 urlpatterns.extend(urls_static)
 urlpatterns.extend(urls_static_files)
+
+
+if getattr(settings, 'SERVE_UI', True):
+    # make django app serve ember dist files
+
+    ui_prefix = getattr(settings, 'UI_PREFIX', 'ui/')
+    if ui_prefix and ui_prefix != '/':
+        urlpatterns += [url('^$', RedirectView.as_view(url=ui_prefix))]
+
+    root = os.path.dirname(__file__)
+    ui_root = os.path.abspath(os.path.join(root, '..', '..', 'ui/dist'))
+
+    # admin may optionaly use a custom dist dir via settings
+    ui_root = getattr(settings, 'DISTPATH_UI', ui_root)
+    assets = os.path.join(ui_root, 'assets')
+    if ui_prefix == '/':
+        ui_prefix = ''
+
+    urlpatterns += static('%sassets/' % ui_prefix, document_root=assets)
+
+    # serve index.html for all paths
+    urlpatterns += [
+        url('^%s.*' % ui_prefix, serve, {
+            'path': 'index.html',
+            'document_root': ui_root
+            }),
+    ]
 
 
 handler404 = "agora.views.error404"

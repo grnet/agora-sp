@@ -8,7 +8,7 @@ module.exports = function(environment) {
     i18n: {
       defaultLocale: 'en'
     },
-    rootURL: '/agora/ui/',
+    rootURL: '/ui/',
     locationType: 'auto',
     appURL: '/api/v2/',
     EmberENV: {
