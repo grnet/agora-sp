@@ -41,6 +41,8 @@ ALLOWED_HOSTS = ['127.0.0.1',
 
 DEFAULT_FROM_EMAIL = 'no-reply@agora.com'
 
+
+# Users that will be emailed when a new shibboleth user is created
 USER_CREATION_EMAIL_LIST = [
     'iliaboti@grnet.gr',
     'strezoski.g@gmail.com',
@@ -81,70 +83,6 @@ INSTALLED_APPS = [
 ]
 
 
-def generate_service_menu():
-    import service
-    import inspect
-
-    MEMBER_NAME = 0
-    MEMBER_MODULE = 1
-
-    def is_service_model(member):
-        return member[MEMBER_MODULE].__module__ == 'service.models'
-
-    def is_not_blacklisted(member):
-        blacklist = [
-            'ServiceStatus',
-            'ServiceTrl',
-        ]
-        return member[MEMBER_NAME] not in blacklist
-
-    def to_menu_structure(member):
-        return {
-            'url': '/api/adminservice/' + member[MEMBER_NAME].lower(),
-        }
-
-    members_all = inspect.getmembers(
-        getattr(service, 'models'),
-        inspect.isclass)
-    members_valid = []
-    for m in members_all:
-        if is_service_model(m) and is_not_blacklisted(m):
-            members_valid.append(to_menu_structure(m))
-
-    return tuple(members_valid)
-
-
-SUIT_CONFIG = {
-    # header
-    'ADMIN_NAME': 'Agora Write Beta 1.0',
-    'HEADER_DATE_FORMAT': 'l, j. F Y',
-    'HEADER_TIME_FORMAT': 'H:i',
-
-    # forms
-    'SHOW_REQUIRED_ASTERISK': True,
-    'CONFIRM_UNSAVED_CHANGES': True,
-
-    # menu
-    'SEARCH_URL': '/admin/auth/user/',
-    'MENU_ICONS': {
-        'service': 'icon-leaf',
-        'component': 'icon-leaf',
-        'owner': 'icon-leaf',
-        'sites': 'icon-leaf',
-        'auth': 'icon-lock',
-    },
-    'MENU_OPEN_FIRST_CHILD': True,
-    'MENU_EXCLUDE': ('auth.group',),
-    'MENU': (
-        'service',
-        'component',
-        'owner',
-        'options',
-        'sites',
-    ),
-    'LIST_PER_PAGE': 15
-}
-
 AUTH_USER_MODEL = "accounts.User"
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
@@ -152,8 +90,6 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 LOGIN_URL = '/login/'
 
 LOGIN_REDIRECT_URL = "/api/admin/"
-
-PROJECT_APPS = ['component', 'options', 'owner', 'service']
 
 SITE_ID = 2
 ALLOWED_HOST = 'sp.eudat.eu';
@@ -236,22 +172,6 @@ AUTH_PASSWORD_VALIDATORS = [
 
 CLIENT_ID = ''
 APPLICATION_NAME = 'API-Client'
-
-
-
-SOCIAL_AUTH_PIPELINE = (
-    'social.pipeline.social_auth.social_details',
-    'social.pipeline.social_auth.social_uid',
-    'social.pipeline.social_auth.auth_allowed',
-    'social.pipeline.social_auth.social_user',
-    'social.pipeline.user.get_username',
-    'social.pipeline.social_auth.associate_by_email',  # <--- enable this one
-    'social.pipeline.user.create_user',
-    'social.pipeline.social_auth.associate_user',
-    'social.pipeline.social_auth.load_extra_data',
-    'social.pipeline.user.user_details',
-    # 'accounts.views.save_avatar'
-)
 
 
 MEDIA_ROOT = '/var/www/agora/media'
