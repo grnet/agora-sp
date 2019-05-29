@@ -1,0 +1,30 @@
+version: '3'
+services:
+  backend:
+    container_name: agora-backend
+    build:
+      context: .
+      dockerfile: ./agora/Dockerfile
+    ports:
+      - "127.0.0.1:8000:80"
+    volumes:
+       - ./agora:/srv/agora/agora
+       - dist:/srv/agora/ui/dist
+    stdin_open: true
+    tty: true
+  frontend:
+    container_name: agora-frontend
+    build:
+      context: ./ui
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./ui:/srv/agora/ui
+      - dist:/srv/agora/ui/dist
+      - /srv/agora/ui/tmp
+      - /srv/agora/ui/node_modules
+      - /srv/agora/ui/bower_components
+    stdin_open: true
+    tty: true
+
+volumes:
+  dist:
