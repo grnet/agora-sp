@@ -10,13 +10,10 @@ RUN mkdir /etc/agora
 
 COPY ./agora/docker/* /etc/agora/
 
-RUN mkdir -p /srv/agora/agora/logs/
-RUN touch /srv/agora/agora/logs/debug.log
-
 ADD ./agora /srv/agora/agora
 
 WORKDIR /srv/agora/agora
-RUN python manage.py migrate
 
-RUN echo "from accounts.models import User; User.objects.create_superuser('superadmin', 'superadmin@synnefo.org', '12345', role='superadmin')" | python manage.py shell
-CMD ["python", "manage.py", "runserver", "0.0.0.0:80"]
+CMD python manage.py migrate && \
+    echo "from accounts.models import User; User.objects.create_superuser('superadmin', 'superadmin@synnefo.org', '12345', role='superadmin')" | python manage.py shell && \
+    python manage.py runserver 0.0.0.0:80

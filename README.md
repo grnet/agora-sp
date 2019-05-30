@@ -157,7 +157,7 @@ Agora can be accessed at localhost:8000.
 
 To check the output of the container use docker logs, e.g. `docker logs [-f] agora-backend`
 
-The database will be created in the root directory, alongside docker-compose.yml (mydb-docker.sqlite3) and will be reused across docker builds. If you want to reset it, just remove the file. If you want to use an existing database, overwrite it. You'll probably need root, as Docker runs and therefore creates/modifies files as root.
+The database will be created in the backend directory (agora/mydb-docker.sqlite3) and will be reused across docker builds. If you want to reset it, just remove the file. If you want to use an existing database, overwrite it. You'll probably need root, as Docker runs and therefore creates/modifies files as root.
 
 If you want to run a shell in a container use
 ```
