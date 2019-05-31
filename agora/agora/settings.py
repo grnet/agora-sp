@@ -350,7 +350,7 @@ CKEDITOR_CONFIGS = {
 }
 
 AAI_ID_KEY = 'edupersonuniqueid'
-TOKEN_LOGIN_URL = '/auth/login'
+TOKEN_LOGIN_URL = '/ui/auth/login'
 
 AMS_TOKEN = '6b58fac490a00b935eda78e8aefa74898aafab65'
 AMS_PROJECT = 'AGORA'

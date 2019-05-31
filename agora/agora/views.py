@@ -23,7 +23,7 @@ from djoser import views as djoser_views
 
 logger = logging.getLogger(__name__)
 
-TOKEN_LOGIN_URL = getattr(settings, 'TOKEN_LOGIN_URL', '/auth/login')
+TOKEN_LOGIN_URL = getattr(settings, 'TOKEN_LOGIN_URL', '/ui/auth/login')
 AAI_ID_KEY = getattr(settings, 'AAI_ID_KEY', 'id')
 API_ENDPOINT = getattr(settings, 'API_ENDPOINT', 'api/v2')
 MEDIA_URL = getattr(settings, 'MEDIA_URL', 'media/')
