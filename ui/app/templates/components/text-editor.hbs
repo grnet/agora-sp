@@ -1,0 +1,23 @@
+<label class="md-label padded editor-label">{{ label }}</label>
+{{tinymce-editor
+  value=value
+  options=(hash
+    branding=false
+    plugins='lists link table image code'
+    toolbar='formatselect | undo redo | link | bold italic backcolor  | numlist bullist | table image | removeformat | code'
+    menubar=false
+    selector=textarea
+    min_height=200
+    heigth=300)
+  onValueChanged=(action onChange)}}
+
+
+{{#if errors.length }}
+  <div class="md-input-messages-animation md-auto-hide editor-messages" ng-messages>
+    {{#each errors as |error index|}}
+      <div id="error-{{index}}" class="md-input-error">
+        {{error}}
+      </div>
+    {{/each}}
+  </div>
+{{/if}}

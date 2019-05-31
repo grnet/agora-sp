@@ -1,0 +1,11 @@
+Dockerfile
+**/*.git*
+logs
+**/*.swp
+**/*.pyc
+**/*.sqlite3
+**/*~
+**/*.log
+*README*
+ui
+docker-compose.yml

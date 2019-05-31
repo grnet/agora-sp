@@ -1,6 +1,0 @@
----
-- user:
-    name: "{{ user_name }}"
-    state: "{{ user_state }}"
-    append: "{{ user_append }}"
-    uid: "{{ user_uid }}"
