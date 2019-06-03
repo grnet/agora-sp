@@ -15,5 +15,5 @@ ADD ./agora /srv/agora/agora
 WORKDIR /srv/agora/agora
 
 CMD python manage.py migrate && \
-    echo "from accounts.models import User; User.objects.create_superuser('superadmin', 'superadmin@synnefo.org', '12345', role='superadmin')" | python manage.py shell && \
+    echo "from accounts.models import User; User.objects.filter(username='superadmin').exists() or User.objects.create_superuser('superadmin', 'superadmin@synnefo.org', '12345', role='superadmin')" | python manage.py shell && \
     python manage.py runserver 0.0.0.0:80
