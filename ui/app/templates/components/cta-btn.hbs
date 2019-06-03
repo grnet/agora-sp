@@ -1,0 +1,7 @@
+<span class="flex-100 field-value">
+  {{#if notSet}}{{ notSetValue }}{{else}}
+    {{#paper-button raised=true primary=true href=value}}
+      {{paper-icon "add"}} {{label}}
+    {{/paper-button}}
+  {{/if}}
+</span>

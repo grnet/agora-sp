@@ -1,0 +1,12 @@
+Dockerfile
+**/*.git*
+./dist
+./node_modules
+./bower_components
+./tmp
+**/*.swp
+**/*.pyc
+**/*.sqlite3
+**/*~
+**/*.log
+*README*
