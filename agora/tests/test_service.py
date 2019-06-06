@@ -26,9 +26,14 @@ def test_name_trim(superadmin):
     assert superadmin.get(url).json()[2]['name'] == 'ski'
 
 
-def test_related_services_fieldset(superadmin):
+def test_required_related_services(superadmin):
     """
-    Test that Service related_services fields work as intended.
+    Test that required_services and related_services m2m fields work.
+
+    We will first create a hockey service, then create a tennis service
+    with hockey as a requirement and then create a ski service with both
+    required_services and related_services filled. Finally, we will add ski
+    as a requirement to itself to test that this can be done too.
     """
     url = RESOURCES_CRUD['services']['url']
     data = {
