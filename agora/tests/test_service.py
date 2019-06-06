@@ -1,10 +1,8 @@
-from agora.testing import *
 import json
 from django.test import Client
 from service.models import Service
+from agora.testing import superadmin, RESOURCES_CRUD
 from agora.permissions import SERVICE_SENSITIVE_DATA
-
-c = Client()
 
 
 def test_name_trim(superadmin):
@@ -90,6 +88,8 @@ def test_required_related_services(superadmin):
 
 def test_service_sensitive_data(superadmin):
     """
+    Check that sensitive data are not exposed publicly.
+
     Check that public api /api/v2/ext-services does not expose sensitive data.
     Check that anonymous user does not view sensitive data
     in public /api/v2/services call.
@@ -98,6 +98,7 @@ def test_service_sensitive_data(superadmin):
     """
 
     sensitive_len = len(SERVICE_SENSITIVE_DATA)
+    client = Client()
 
     # Create a Service
     service_url = RESOURCES_CRUD['services']['url']
@@ -105,16 +106,16 @@ def test_service_sensitive_data(superadmin):
     resp = superadmin.post(service_url, service_data)
 
     # Anonymous user /api/v2/ext-services
-    resp = c.get('/api/v2/ext-services/')
+    resp = client.get('/api/v2/ext-services/')
     service = resp.json()[0]
     keys = service.keys()
-    assert len(list(set(keys) & set(SERVICE_SENSITIVE_DATA))) == 0
+    assert not list(set(keys) & set(SERVICE_SENSITIVE_DATA))
 
     # Anonymous user /api/v2/services
-    resp = c.get(service_url)
+    resp = client.get(service_url)
     service = resp.json()[0]
     keys = service.keys()
-    assert len(list(set(keys) & set(SERVICE_SENSITIVE_DATA))) == 0
+    assert not list(set(keys) & set(SERVICE_SENSITIVE_DATA))
 
     # Authenticated user /api/v2/services
     resp = superadmin.get(service_url)
