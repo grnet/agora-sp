@@ -1,6 +1,15 @@
 # COLUMNS = ('collection', 'action', 'role', 'filter', 'check' 'fields', 'comment')
 from agora import spec
 
+SERVICE_SENSITIVE_DATA = [
+    'owner_name',
+    'owner_contact',
+    'security_name',
+    'security_contact',
+    'support_name',
+    'support_contact',
+]
+
 
 def service_version_limited():
     service_version_all = []
@@ -18,18 +27,29 @@ def service_version_limited():
     return ','.join(service_version_chosen)
 
 
+def service_limited():
+    service_all = []
+    for (field, flags) in spec.SERVICES['fields'].items():
+        if '.flag.nowrite' not in flags:
+            service_all.append(field)
+
+    service_chosen = [x for x in service_all
+                      if x not in SERVICE_SENSITIVE_DATA]
+    return ','.join(service_chosen)
+
+
 def get_rules():
     rules = [
         ('api/v2/services', 'list', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/services', 'list', 'admin', '*', '*', '*', '*'),
         ('api/v2/services', 'list', 'serviceadmin', '*', '*', '*', '*'),
         ('api/v2/services', 'list', 'observer', '*', '*', '*', '*'),
-        ('api/v2/services', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/services', 'list', 'anonymous', '*', '*', service_limited(), '*'),
         ('api/v2/services', 'retrieve', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/services', 'retrieve', 'admin', '*', '*', '*', '*'),
         ('api/v2/services', 'retrieve', 'serviceadmin', '*', '*', '*', '*'),
         ('api/v2/services', 'retrieve', 'observer', '*', '*', '*', '*'),
-        ('api/v2/services', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/services', 'retrieve', 'anonymous', '*', '*', service_limited(), '*'),
         ('api/v2/services', 'create', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/services', 'create', 'admin', '*', '*', '*', '*'),
         ('api/v2/services', 'create', 'serviceadmin', '*', 'organisation_owned', '*', '*'),

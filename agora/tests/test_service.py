@@ -1,6 +1,8 @@
-from agora.testing import *
 import json
+from django.test import Client
 from service.models import Service
+from agora.testing import superadmin, RESOURCES_CRUD
+from agora.permissions import SERVICE_SENSITIVE_DATA
 
 
 def test_name_trim(superadmin):
@@ -82,3 +84,41 @@ def test_required_related_services(superadmin):
     assert len(ski_service['required_services']) == 2
     assert ski_service_obj.required_services.get(name='ski') \
                            == ski_service_obj
+
+
+def test_service_sensitive_data(superadmin):
+    """
+    Check that sensitive data are not exposed publicly.
+
+    Check that public api /api/v2/ext-services does not expose sensitive data.
+    Check that anonymous user does not view sensitive data
+    in public /api/v2/services call.
+    Check that authenticated user can view sensitive data in
+    /api/v2/services call.
+    """
+
+    sensitive_len = len(SERVICE_SENSITIVE_DATA)
+    client = Client()
+
+    # Create a Service
+    service_url = RESOURCES_CRUD['services']['url']
+    service_data = RESOURCES_CRUD['services']['create_data']
+    resp = superadmin.post(service_url, service_data)
+
+    # Anonymous user /api/v2/ext-services
+    resp = client.get('/api/v2/ext-services/')
+    service = resp.json()[0]
+    keys = service.keys()
+    assert not list(set(keys) & set(SERVICE_SENSITIVE_DATA))
+
+    # Anonymous user /api/v2/services
+    resp = client.get(service_url)
+    service = resp.json()[0]
+    keys = service.keys()
+    assert not list(set(keys) & set(SERVICE_SENSITIVE_DATA))
+
+    # Authenticated user /api/v2/services
+    resp = superadmin.get(service_url)
+    service = resp.json()[0]
+    keys = service.keys()
+    assert len(list(set(keys) & set(SERVICE_SENSITIVE_DATA))) == sensitive_len
