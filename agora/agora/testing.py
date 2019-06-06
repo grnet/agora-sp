@@ -163,6 +163,9 @@ RESOURCES_CRUD = {
             "name": "Test service",
             "internal": False,
             "customer_facing": True,
+            "other_required_services": "Other service",
+            "other_related_services": "Related service",
+            "related_platform": "Platform",
         },
         'create_data_2': {
             "name": "Test service 2",
@@ -173,6 +176,9 @@ RESOURCES_CRUD = {
             "name": "Test service 2",
             "internal": True,
             "customer_facing": False,
+            "other_required_services": "Other service2",
+            "other_related_services": "Related service2",
+            "related_platform": "Platform2",
         }
     },
     'service_admins': {

@@ -35,17 +35,11 @@ def test_related_services_fieldset(superadmin):
         'internal': False,
         'customer_facing': True,
         'name': 'hockey',
-        'other_required_services': 'what',
-        'other_related_services': 'what2',
-        'related_platform': '?!',
     }
     superadmin.post(url, data)
     assert superadmin.get(url).json()[0]['name'] == 'hockey'
     hockey_service = superadmin.get(url).json()[0]
     hockey_service_obj = Service.objects.get(name=hockey_service['name'])
-    assert hockey_service['other_required_services'] == 'what'
-    assert hockey_service['other_related_services'] == 'what2'
-    assert hockey_service['related_platform'] == '?!'
 
     data.update(name='tennis', required_services=[hockey_service['id']])
     superadmin.post(url, json.dumps(data), content_type='application/json')
