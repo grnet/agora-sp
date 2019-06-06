@@ -54,6 +54,10 @@ def test_required_related_services(superadmin):
     assert len(tennis_service['required_services']) == 1
     assert tennis_service_obj.required_services.first() == hockey_service_obj
 
+    # Also test that required_services is not symmetrical
+    hockey_service_obj = Service.objects.get(name=hockey_service['name'])
+    assert len(hockey_service_obj.required_services.values()) == 0
+
     data.update({
         'name': 'ski',
         'related_services': [hockey_service['id'], tennis_service['id']],
