@@ -140,23 +140,6 @@ RESOURCES_CRUD = {
             'description': 'description changed',
         }
     },
-    'contact_information': {
-        'url': '/api/v2/contact-information/',
-        'create_data':  {
-            'email': 'contact@test.org',
-            'first_name': 'Hilary',
-            'last_name': 'Knight',
-            'phone': '+30 2102103333',
-            'url': 'https://www.test.org'
-        },
-        'edit_data': {
-            'email': 'contact2@test.org',
-            'first_name': 'Hilary2',
-            'last_name': 'Knight2',
-            'phone': '+30 21021033332',
-            'url': 'https://www.test2.org'
-        }
-    },
     'services': {
         'url': '/api/v2/services/',
         'create_data': {

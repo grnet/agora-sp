@@ -563,43 +563,6 @@ CUSTOM_USERS = {
     },
 }
 
-CONTACT_INFORMATION = {
-    '.collection.django': {},
-    'model': 'owner.models.ContactInformation',
-    'fields': {
-        'id': {
-            '.field.uuid': {},
-            '.flag.nowrite': {}},
-        'first_name': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'last_name': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'email': {
-            '.field.string': {},
-            '.flag.orderable': {},
-            '.flag.nullable.default': {}},
-        'phone': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-        'full_name': {
-            '.field.string': {},
-            '.flag.nowrite': {},
-            '.flag.nullable.default': {}},
-        'url': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-    },
-    'actions': {
-        '.action-template.django.list': {},
-        '.action-template.django.retrieve': {},
-        '.action-template.django.create': {},
-        '.action-template.django.delete': {},
-        '.action-template.django.update': {},
-        '.action-template.django.partial_update': {},
-    },
-}
 
 INSTITUTIONS = {
     '.collection.django': {},
@@ -1275,7 +1238,6 @@ APP_CONFIG = {
                 'service-categories': SERVICE_CATEGORIES,
                 'service-admins': SERVICE_ADMINS,
                 'custom-users': CUSTOM_USERS,
-                'contact-information': CONTACT_INFORMATION,
                 'institutions': INSTITUTIONS,
                 'service-owners': SERVICE_OWNERS,
                 'components': COMPONENTS,
