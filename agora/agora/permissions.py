@@ -337,6 +337,9 @@ def get_rules():
         ('api/v2/ext-components', 'list', 'anonymous', '*', '*', '*', '*'),
         ('api/v2/ext-components', 'retrieve', 'anonymous', '*', '*', '*', '*'),
 
+        ('api/v2/ext-component-connections', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/ext-component-connections', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+
         ('api/v2/providers', 'list', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/providers', 'list', 'admin', '*', '*', '*', '*'),
         ('api/v2/providers', 'list', 'serviceadmin', '*', '*', '*', '*'),
