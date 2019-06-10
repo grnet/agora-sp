@@ -166,7 +166,7 @@ class Service(models.Model):
 
     @property
     def service_categories_names(self):
-        return ", ".join(o.name for o in self.service_categories.all())
+        return "; ".join(o.name for o in self.service_categories.all())
 
     @property
     def related_services_names(self):
