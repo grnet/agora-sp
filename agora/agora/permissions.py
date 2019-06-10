@@ -334,6 +334,9 @@ def get_rules():
         ('api/v2/component-implementation-detail-links', 'destroy', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/component-implementation-detail-links', 'delete', 'superadmin', '*', '*', '*', '*'),
 
+        ('api/v2/ext-components', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/ext-components', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+
         ('api/v2/providers', 'list', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/providers', 'list', 'admin', '*', '*', '*', '*'),
         ('api/v2/providers', 'list', 'serviceadmin', '*', '*', '*', '*'),

@@ -734,6 +734,48 @@ COMPONENT_IMPLEMENTATION_DETAIL_LINKS = {
     },
 }
 
+
+EXT_COMPONENTS = {
+    '.collection.django': {},
+    'model': 'component.models.ServiceComponentImplementationDetail',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'component_category': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            '.flag.filterable': {},
+            'source': 'component_id.name'},
+        'component_category_description': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            '.flag.filterable': {},
+            'source': 'component_id.description'},
+        'component_description': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            '.flag.filterable': {},
+            'source': 'component_implementation_id.description'},
+        'component_name': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            '.flag.filterable': {},
+            'source': 'component_implementation_id.name'},
+        'component_version': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.nullable.default': {},
+            'source': 'version'},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+
 SERVICES = {
     '.collection.django': {},
     'model': 'service.models.Service',
@@ -1244,6 +1286,7 @@ APP_CONFIG = {
                 'component-implementations': COMPONENT_IMPLEMENTATIONS,
                 'component-implementation-details': COMPONENT_IMPLEMENTATION_DETAILS,
                 'component-implementation-detail-links': COMPONENT_IMPLEMENTATION_DETAIL_LINKS,
+                'ext-components': EXT_COMPONENTS,
                 'my-services': MY_SERVICES,
                 'providers': ORGANISATIONS,
                 'my-providers': MY_ORGANISATIONS,
