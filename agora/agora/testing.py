@@ -92,7 +92,8 @@ def observer(django_user_model):
 
 @pytest.fixture('function')
 def component():
-    component, created = ServiceComponent.objects.get_or_create(name='Servers')
+    component, created = ServiceComponent.objects.get_or_create(name='Servers',\
+        description='category description')
     return component
 
 
@@ -104,7 +105,8 @@ def component_id(component):
 @pytest.fixture('function')
 def component_implementation_id(component):
     component_implementation, created = ServiceComponentImplementation.\
-            objects.get_or_create(name='Apache', component_id=component)
+            objects.get_or_create(name='Apache', component_id=component,\
+            description='component description')
     return component_implementation.id
 
 
@@ -177,6 +179,12 @@ RESOURCES_CRUD = {
             'name': 'Antiparos',
             'description': '<p>Description 2</p>',
         },
+    },
+    'component-implementation-details': {
+      'url': '/api/v2/component-implementation-details/',
+    },
+    'ext-components': {
+      'url': '/api/v2/ext-component',
     },
     'service_versions': {
         'url': '/api/v2/service-versions/'

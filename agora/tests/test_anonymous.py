@@ -66,3 +66,25 @@ def test_access_policies(superadmin):
 
 def test_federation_members(superadmin):
     assertions_crud('federation_members', client, superadmin)
+
+
+def test_ext_components(superadmin, component_id, component_implementation_id):
+    """
+    Test that /api/v2/ext-components exposes proper data to anonymous user.
+    """
+
+    url = RESOURCES_CRUD['component-implementation-details']['url']
+    data = {
+        'version': '1.0.0',
+        'component_id': component_id,
+        'component_implementation_id': component_implementation_id
+    }
+    resp = superadmin.post(url, data)
+    resp = client.get('/api/v2/ext-components/')
+    assert resp.status_code == 200
+    assert resp.json()[0]['component_version'] == '1.0.0'
+    assert resp.json()[0]['component_name'] == 'Apache'
+    assert resp.json()[0]['component_category'] == 'Servers'
+    assert resp.json()[0]['component_description'] == 'component description'
+    assert resp.json()[0]['component_category_description'] == 'category description'
+
