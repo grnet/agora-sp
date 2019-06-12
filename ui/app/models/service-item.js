@@ -117,13 +117,16 @@ let model = DS.Model.extend({
   other_required_services: DS.attr(),
   other_related_services: DS.attr(),
   related_platform: DS.attr(),
+  user_role: DS.attr(),
 
 
   __api__: {
     path: 'services',
     serialize: function(hash, serializer) {
+      let role = hash['user_role'];
+      let is_serviceadmin = role === 'serviceadmin';
 
-      if ('my_providers' in hash && hash['my_providers']) {
+      if (is_serviceadmin && 'my_providers' in hash) {
         let arr = [];
         hash['my_providers'].forEach(function(el) {
           let a = el.replace('my-providers', 'providers');
@@ -132,6 +135,7 @@ let model = DS.Model.extend({
         hash['providers'] = arr;
       }
       delete hash['my_providers'];
+      delete hash['user_role'];
 
       // do not send readonly keys to backend
       delete hash['service_admins_ids'];

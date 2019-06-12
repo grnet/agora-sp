@@ -104,9 +104,24 @@ export default AgoraGen.extend({
   },
   edit: {
     fieldsets: EDIT_FIELDSETS,
+    routeMixins: {
+      afterModel(model, transition) {
+        let role = get(this, 'session.session.authenticated.role');
+        set(model, 'user_role', role);
+        return this._super(model, transition);
+      }
+    }
   },
+
   create: {
     fieldsets: CREATE_FIELDSETS,
+    routeMixins: {
+      afterModel(model, transition) {
+        let role = get(this, 'session.session.authenticated.role');
+        set(model, 'user_role', role);
+        return this._super(model, transition);
+      }
+    },
     onSubmit(model) {
       let url = ENV.APP.backend_host + '/auth/me/';
       let token = get(this, 'session.session.authenticated.auth_token');
