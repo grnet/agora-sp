@@ -9,7 +9,8 @@ from django.db import migrations
 def description_tagline_transfer(apps, schema_editor):
     Service = apps.get_model('service', 'Service')
     for s in Service.objects.all():
-        s.tagline = re.sub('<[^<]+?>', '', s.short_description)
+        s.tagline = None if s.short_description is None\
+                         else re.sub('<[^<]+?>', '', s.short_description)
         s.short_description = s.description_external
         s.save()
 
