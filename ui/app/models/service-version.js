@@ -1,5 +1,8 @@
 import DS from 'ember-data';
 import gen from 'ember-gen/lib/attrs';
+import ENV from '../config/environment';
+
+const ROOT_URL = ENV.rootURL || '/';
 
 let model = DS.Model.extend({
   privacy_policy_url: DS.attr(),
@@ -30,7 +33,7 @@ let model = DS.Model.extend({
   cidl_url: Ember.computed('id', 'id_service.id', function() {
     const service =  Ember.get(this, 'id_service.id');
     const service_version = Ember.get(this, 'id');
-    return `/component-implementation-detail-links/create?service=${service}&service_version=${service_version}`;
+    return `${ROOT_URL}component-implementation-detail-links/create?service=${service}&service_version=${service_version}`;
   }),
   //the object resembles the value to be printed in the create/update page of this referenced model
   //e.g. name is a key from the service-item model

@@ -41,10 +41,6 @@ def test_service_status(observer, superadmin):
     assertions_crud('service_status', observer, superadmin)
 
 
-def test_contact_information(observer, superadmin):
-    assertions_crud('contact_information', observer, superadmin)
-
-
 def test_services(observer, superadmin):
     assertions_crud('services', observer, superadmin)
 

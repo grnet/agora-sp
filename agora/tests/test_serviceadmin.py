@@ -42,10 +42,6 @@ def test_service_status(serviceadmin, superadmin):
     assertions_crud('service_status', serviceadmin, superadmin)
 
 
-def test_contact_information(serviceadmin, superadmin):
-    assertions_crud('contact_information', serviceadmin, superadmin)
-
-
 def test_providers(serviceadmin, superadmin):
     assertions_crud('providers', serviceadmin, superadmin)
 
