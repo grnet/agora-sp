@@ -1,10 +1,13 @@
 import DS from 'ember-data';
 import Ember from 'ember';
+import ENV from '../config/environment';
 import { shorten } from '../utils/common/common';
 
 const {
   get,
 } = Ember;
+
+const ROOT_URL = ENV.rootURL || '/';
 
 let model = DS.Model.extend({
   session: Ember.inject.service(),
@@ -42,7 +45,7 @@ let model = DS.Model.extend({
     defaultValue: false,
   }),
   service_version_url: Ember.computed('id', function() {
-    return `/service-versions/create?service=${Ember.get(this, 'id')}`;
+    return `${ROOT_URL}service-versions/create?service=${Ember.get(this, 'id')}`;
   }),
   service_categories: DS.hasMany('service-category'),
   service_admins_ids: DS.attr(),
