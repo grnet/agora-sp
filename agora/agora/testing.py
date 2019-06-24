@@ -144,6 +144,17 @@ RESOURCES_CRUD = {
             'description': 'description changed',
         }
     },
+    'service_categories': {
+        'url': '/api/v2/service-categories/',
+        'create_data': {
+            'name': 'Sports',
+            'description': '<p>My awesome category</p>'
+        },
+        'edit_data': {
+            'name': 'Games',
+            'description': '<p>All the games I like</p>'
+        }
+    },
     'services': {
         'url': '/api/v2/services/',
         'create_data': {
