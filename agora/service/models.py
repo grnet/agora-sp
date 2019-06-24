@@ -18,6 +18,7 @@ class ServiceCategory(models.Model):
     name = models.CharField(max_length=255, default=None, blank=True, null=True)
     icon = models.ImageField(default=settings.SERVICE_CATEGORY_ICON,
             upload_to=helper.service_area_image_path)
+    description = RichTextUploadingField(default=None, blank=True, null=True)
 
     @property
     def icon_absolute_path(self):
