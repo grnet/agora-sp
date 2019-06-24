@@ -8,11 +8,13 @@ const service_category = {
   },
   'fields': {
     'name': 'Name',
-    'icon': 'Icon'
+    'icon': 'Icon',
+    'description': 'Description',
   },
   'hints': {
     'name': 'A short description of the service category',
-    'icon': 'Recomended size: 100px * 20px'
+    'icon': 'Recomended size: 100px * 20px',
+    'description': '',
   },
   'menu': 'Service Categories'
 };
