@@ -1,7 +1,7 @@
+import pytest
 from django.test import Client
 from component.models import ServiceComponent, ServiceComponentImplementation
 from accounts.models import User
-import pytest
 
 
 class ApimasClient(Client):
@@ -20,7 +20,7 @@ class ApimasClient(Client):
 
 def create_client(django_user_model, username, email, role,
                   is_superuser=False):
-    user, created = \
+    user, _ = \
         django_user_model.objects.get_or_create(username=username,
                                                 email=email,
                                                 role=role,
@@ -70,7 +70,7 @@ def serviceadmin(django_user_model):
 
 @pytest.fixture('function')
 def serviceadmin_id(serviceadmin):
-    s, created = User.objects.get_or_create(username='serviceadmin')
+    s, _ = User.objects.get_or_create(username='serviceadmin')
     return s.id
 
 
@@ -92,7 +92,9 @@ def observer(django_user_model):
 
 @pytest.fixture('function')
 def component():
-    component, created = ServiceComponent.objects.get_or_create(name='Servers')
+    component, _ = ServiceComponent.objects.get_or_create(
+        name='Servers',
+        description='category description')
     return component
 
 
@@ -103,8 +105,10 @@ def component_id(component):
 
 @pytest.fixture('function')
 def component_implementation_id(component):
-    component_implementation, created = ServiceComponentImplementation.\
-            objects.get_or_create(name='Apache', component_id=component)
+    component_implementation, _ = ServiceComponentImplementation.\
+            objects.get_or_create(name='Apache',
+                                  component_id=component,
+                                  description='component description')
     return component_implementation.id
 
 
@@ -177,6 +181,12 @@ RESOURCES_CRUD = {
             'name': 'Antiparos',
             'description': '<p>Description 2</p>',
         },
+    },
+    'component-implementation-details': {
+        'url': '/api/v2/component-implementation-details/',
+    },
+    'ext-components': {
+        'url': '/api/v2/ext-component',
     },
     'service_versions': {
         'url': '/api/v2/service-versions/'

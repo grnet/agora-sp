@@ -734,6 +734,103 @@ COMPONENT_IMPLEMENTATION_DETAIL_LINKS = {
     },
 }
 
+
+EXT_COMPONENTS = {
+    '.collection.django': {},
+    'model': 'component.models.ServiceComponentImplementationDetail',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'component_category': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            '.flag.filterable': {},
+            'source': 'component_id.name'},
+        'component_category_description': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            '.flag.filterable': {},
+            'source': 'component_id.description'},
+        'component_description': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            '.flag.filterable': {},
+            'source': 'component_implementation_id.description'},
+        'component_name': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            '.flag.filterable': {},
+            'source': 'component_implementation_id.name'},
+        'component_version': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.nullable.default': {},
+            'source': 'version'},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+    },
+}
+
+
+EXT_COMPONENT_CONNECTIONS = {
+    '.collection.django': {},
+    'model': 'component.models.ServiceDetailsComponent',
+    ':permissions_namespace': 'agora.checks.CIDL',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'component_id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {},
+            '.flag.filterable': {},
+            'source': 'service_component_implementation_detail_id.id'},
+        'component_version': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            '.flag.filterable': {},
+            'source': 'service_component_implementation_detail_id.version'},
+        'component_name': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            '.flag.filterable': {},
+            'source': 'service_component_implementation_detail_id.component_implementation_id.name'},
+        'component_category': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            '.flag.filterable': {},
+            'source': 'service_component_implementation_detail_id.component_implementation_id.component_id.name'},
+        'service_name': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            '.flag.filterable': {},
+            'source': 'service_id.name'},
+        'service_id': {
+            '.field.uuid': {},
+            '.flag.filterable': {},
+            'source': 'service_id.id'},
+        'service_version': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            '.flag.filterable': {},
+            'source': 'service_details_id.version'},
+        'service_type': {
+            '.flag.searchable': {},
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'configuration_parameters': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+    },
+}
+
 SERVICES = {
     '.collection.django': {},
     'model': 'service.models.Service',
@@ -1244,6 +1341,8 @@ APP_CONFIG = {
                 'component-implementations': COMPONENT_IMPLEMENTATIONS,
                 'component-implementation-details': COMPONENT_IMPLEMENTATION_DETAILS,
                 'component-implementation-detail-links': COMPONENT_IMPLEMENTATION_DETAIL_LINKS,
+                'ext-components': EXT_COMPONENTS,
+                'ext-component-connections': EXT_COMPONENT_CONNECTIONS,
                 'my-services': MY_SERVICES,
                 'providers': ORGANISATIONS,
                 'my-providers': MY_ORGANISATIONS,
