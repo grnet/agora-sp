@@ -443,6 +443,9 @@ SERVICE_CATEGORIES = {
         'icon_absolute_path': {
             '.field.string': {},
             '.flag.nowrite': {}},
+        'description': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
     },
     'actions': {
         '.action-template.django.list': {},

@@ -10,7 +10,7 @@ const DETAILS_FIELDSETS = [{
   label: 'service_category.cards.basic_information',
   text: 'service_category.cards.basic_hint',
   layout: {
-    flex: [100, 100]
+    flex: [100, 100, 100]
   },
   fields: [
     field(
@@ -19,6 +19,11 @@ const DETAILS_FIELDSETS = [{
         'hint': 'service_category.hints.name'
       }
     ),
+    field('description', {
+      type: 'text',
+      label: 'service_category.fields.description',
+      htmlSafe: true
+    }),
     fileField(
       'icon', 'service-category', 'icon', {
         readonly: true,
@@ -40,7 +45,7 @@ const EDIT_FIELDSETS = [{
   label: 'service_category.cards.basic_information',
   text: 'service_category.cards.basic_hint',
   layout: {
-    flex: [100, 100]
+    flex: [100, 100, 100]
   },
   fields: [
     field(
@@ -49,6 +54,12 @@ const EDIT_FIELDSETS = [{
         'hint': 'service_category.hints.name'
       }
     ),
+    field('description', {
+      type: 'text',
+      formComponent: 'text-editor',
+      label: 'service_category.fields.description',
+      hint: 'service_category.hints.description',
+    }),
     fileField(
       'icon', 'service-category', 'icon', {
         readonly: false,
@@ -71,7 +82,7 @@ const CREATE_FIELDSETS = [{
   label: 'service_category.cards.basic_information',
   text: 'service_category.cards.basic_hint',
   layout: {
-    flex: [100, 100]
+    flex: [100, 100, 100]
   },
   fields: [
     field(
@@ -80,6 +91,12 @@ const CREATE_FIELDSETS = [{
         'hint': 'service_category.hints.name'
       }
     ),
+    field('description', {
+      type: 'text',
+      formComponent: 'text-editor',
+      label: 'service_category.fields.description',
+      hint: 'service_category.hints.description',
+    }),
   ]
 }]
 

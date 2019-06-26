@@ -47,6 +47,10 @@ def test_service_trls(admin, superadmin):
     assertions_crud('service_trls', admin, superadmin)
 
 
+def test_service_categories(admin, superadmin):
+    assertions_crud('service_categories', admin, superadmin)
+
+
 def test_service_status(admin, superadmin):
     assertions_crud('service_status', admin, superadmin)
 
