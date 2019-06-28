@@ -4,6 +4,7 @@ import re
 from bs4 import BeautifulSoup, Comment
 from HTMLParser import HTMLParseError
 from ckeditor_uploader.fields import RichTextUploadingField
+from django.core import serializers
 
 from collections import defaultdict
 from argo_ams_library import ArgoMessagingService, AmsMessage, AmsException
@@ -92,9 +93,11 @@ _root_url = deploy_config[':root_url']
 def get_root_url():
     return _root_url
 
-def publishMessage(instance):
+def publishMessage(instance, action):
     ams = ArgoMessagingService(endpoint=AMS_ENDPOINT, project=AMS_PROJECT, token=AMS_TOKEN)
-    endpoint =  '{0}{1}'.format(get_root_url(), '/api/v2/ext-services')
+    endpoint =  '{0}{1}'.format(get_root_url(), '/api/v2/ext-services/'+str(instance.id))
+    serialized_service = serializers.serialize('json', [ instance, ])
+
     try:
         if not ams.has_topic(AMS_TOPIC):
             ams.create_topic(AMS_TOPIC)
@@ -102,7 +105,7 @@ def publishMessage(instance):
         print e
         raise SystemExit(1)
 
-    msg = AmsMessage(data=endpoint, attributes={'bar1': 'baz1'}).dict()
+    msg = AmsMessage(data=serialized_service, attributes={"method": action, "service_id": str(instance.id), "service_name": instance.name, "endpoint": endpoint}).dict()
     try:
         ret = ams.publish(AMS_TOPIC, msg)
         print ret

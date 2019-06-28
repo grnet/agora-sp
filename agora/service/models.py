@@ -11,6 +11,7 @@ from agora.utils import SERVICE_ADMINSHIP_STATES, clean_html_fields, \
 from agora.emails import send_email_application_created, \
     send_email_service_admin_assigned, send_email_application_evaluated
 from apimas.base import ProcessorFactory
+from copy import deepcopy
 
 
 class ServiceCategory(models.Model):
@@ -199,8 +200,19 @@ class Service(models.Model):
     def save(self, *args, **kwargs):
         self.name = self.name.strip()
         clean_html_fields(self)
+
+        if self._state.adding is True:
+            mode = 'create'
+        else:
+            mode = 'update'
+
         super(Service, self).save(*args, **kwargs)
-        publishMessage(self)
+        publishMessage(self, mode)
+
+    def delete(self, *args, **kwargs):
+        del_service = deepcopy(self)
+        super(Service, self).delete(*args, **kwargs)
+        publishMessage(del_service, 'delete')
 
     @property
     def logo_absolute_path(self):
@@ -287,7 +299,6 @@ class ServiceDetails(models.Model):
     def save(self, *args, **kwargs):
         clean_html_fields(self)
         super(ServiceDetails, self).save(*args, **kwargs)
-        publishMessage(self)
 
     @property
     def service_admins_ids(self):
