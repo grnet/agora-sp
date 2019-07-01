@@ -172,6 +172,16 @@ To check the output of the container use docker logs, e.g. `docker logs [-f] ago
 
 The database will be created in the backend directory (agora/mydb-docker.sqlite3) and will be reused across docker builds. If you want to reset it, just remove the file. If you want to use an existing database, overwrite it. You'll probably need root, as Docker runs and therefore creates/modifies files as root.
 
+The database will be populated with some initial data. The users with username/password:
+
+* superadmin/12345
+* admin/12345
+* service_admin_1/12345
+* service_admin_2/12345
+* observer/12345
+
+will be created.
+
 If you want to run a shell in a container use
 ```
 # docker exec -it agora-backend bash
