@@ -120,11 +120,24 @@ var ENV = {
 
 Run all migrations in order to construct the database schema.
 
-You should run:
+Move inside `agora` folder, and run:
 
 ```
 python manage.py migrate
 ```
+
+You can load some initial data by running:
+```
+python manage.py fixtures/users.json
+```
+
+`users.json` will create users with usernames/passwords:
+
+* superadmin/12345
+* admin/12345
+* service_admin_1/12345
+* service_admin_2/12345
+* observer/12345
 
 
 ### Development
@@ -137,7 +150,7 @@ Serve ui files by running the command from inside `ui/` directory:
 
 This will create a `dist` , that will be served by Agora to deliver the UI.
 
-Finally, run `python manage.py runserver` to test that the application is installed properly.
+Finally, run `python manage.py runserver` from inside `agora` folder to test that the application is installed properly.
 
 You can now view your application in `http://127.0.0.1:8000/`
 
