@@ -196,6 +196,23 @@ If you want to attach to the running process use:
 - To use the containers without docker-compose, you will have to build the containers, create and start them. You can check docker-compose.yml for info on options to use during container creation.
 
 
+## Testing
+
+We use [pytest](https://docs.pytest.org/en/latest/index.html) to run API testing and [cypress](https://www.cypress.io/) for e2e testing.
+
+In order to test API, you must run
+```
+pytest 
+```
+from inside `agora` folder with virtualenv activated.
+
+For e2e testing, open cypress using yarn:
+```
+yarn run cypress open
+```
+and follow the instruction in [cypress test runner docs](https://docs.cypress.io/guides/core-concepts/test-runner.html#Overview).
+
+
 # Copyright and license
 
 
