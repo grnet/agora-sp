@@ -38,9 +38,9 @@ pip install -r requirements.txt
 
 Then run `yarn` inside the `ui` directory to install npm depending libraries.
 
-## Configuration
+### Configuration
 
-### Backend configuration
+#### Backend configuration
 
 You can create a configuration file in order to override the default settings for the agora project. The default location of the .conf file is `/etc/agora/settings.conf`
 
@@ -78,7 +78,7 @@ Example:
 ```
 
 
-### UI configuration
+#### UI configuration
 
 You can edit the `ui/config/environment.js` file to set the default configuration options. You can alter the value of `rootURL` and `appURL` that define where the ui is served and what is the main endpoint  where the backend is located.
 
@@ -91,7 +91,7 @@ var ENV = {
 }
 ```
 
-### UI Customization
+#### UI Customization
 
 You can customize the appearance of your installation by adding your own logo, style and domestic login method text.
 
@@ -140,7 +140,7 @@ python manage.py fixtures/users.json
 * observer/12345
 
 
-### Development
+### Serving
 
 Serve ui files by running the command from inside `ui/` directory:
 
@@ -192,7 +192,7 @@ If you want to attach to the running process use:
 # docker attach agora-backend
 ```
 
-## Running without docker-compose:
+### Running without docker-compose:
 - To use the containers without docker-compose, you will have to build the containers, create and start them. You can check docker-compose.yml for info on options to use during container creation.
 
 
