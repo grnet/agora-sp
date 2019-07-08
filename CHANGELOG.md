@@ -10,6 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Expose components to anonymous users.
 - Expose component connections to service versions to anonymous users.
+- Basic setup of e2e testing using Cypress.
+- Provide dummy user data for Dockerfile.
 
 ## [0.9.15](https://github.com/grnet/agora-sp/compare/v0.9.14...v0.9.15) - 2019-06-19
 

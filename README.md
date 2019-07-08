@@ -38,9 +38,9 @@ pip install -r requirements.txt
 
 Then run `yarn` inside the `ui` directory to install npm depending libraries.
 
-## Configuration
+### Configuration
 
-### Backend configuration
+#### Backend configuration
 
 You can create a configuration file in order to override the default settings for the agora project. The default location of the .conf file is `/etc/agora/settings.conf`
 
@@ -78,7 +78,7 @@ Example:
 ```
 
 
-### UI configuration
+#### UI configuration
 
 You can edit the `ui/config/environment.js` file to set the default configuration options. You can alter the value of `rootURL` and `appURL` that define where the ui is served and what is the main endpoint  where the backend is located.
 
@@ -91,7 +91,7 @@ var ENV = {
 }
 ```
 
-### UI Customization
+#### UI Customization
 
 You can customize the appearance of your installation by adding your own logo, style and domestic login method text.
 
@@ -120,14 +120,27 @@ var ENV = {
 
 Run all migrations in order to construct the database schema.
 
-You should run:
+Move inside `agora` folder, and run:
 
 ```
 python manage.py migrate
 ```
 
+You can load some initial data by running:
+```
+python manage.py fixtures/users.json
+```
 
-### Development
+`users.json` will create users with usernames/passwords:
+
+* superadmin/12345
+* admin/12345
+* service_admin_1/12345
+* service_admin_2/12345
+* observer/12345
+
+
+### Serving
 
 Serve ui files by running the command from inside `ui/` directory:
 
@@ -137,7 +150,7 @@ Serve ui files by running the command from inside `ui/` directory:
 
 This will create a `dist` , that will be served by Agora to deliver the UI.
 
-Finally, run `python manage.py runserver` to test that the application is installed properly.
+Finally, run `python manage.py runserver` from inside `agora` folder to test that the application is installed properly.
 
 You can now view your application in `http://127.0.0.1:8000/`
 
@@ -159,6 +172,16 @@ To check the output of the container use docker logs, e.g. `docker logs [-f] ago
 
 The database will be created in the backend directory (agora/mydb-docker.sqlite3) and will be reused across docker builds. If you want to reset it, just remove the file. If you want to use an existing database, overwrite it. You'll probably need root, as Docker runs and therefore creates/modifies files as root.
 
+The database will be populated with some initial data. The users with username/password:
+
+* superadmin/12345
+* admin/12345
+* service_admin_1/12345
+* service_admin_2/12345
+* observer/12345
+
+will be created.
+
 If you want to run a shell in a container use
 ```
 # docker exec -it agora-backend bash
@@ -169,8 +192,25 @@ If you want to attach to the running process use:
 # docker attach agora-backend
 ```
 
-## Running without docker-compose:
+### Running without docker-compose:
 - To use the containers without docker-compose, you will have to build the containers, create and start them. You can check docker-compose.yml for info on options to use during container creation.
+
+
+## Testing
+
+We use [pytest](https://docs.pytest.org/en/latest/index.html) to run API testing and [cypress](https://www.cypress.io/) for e2e testing.
+
+In order to test API, you must run
+```
+pytest 
+```
+from inside `agora` folder with virtualenv activated.
+
+For e2e testing, open cypress using yarn:
+```
+yarn run cypress open
+```
+and follow the instruction in [cypress test runner docs](https://docs.cypress.io/guides/core-concepts/test-runner.html#Overview).
 
 
 # Copyright and license
