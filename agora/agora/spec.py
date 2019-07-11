@@ -846,8 +846,61 @@ SERVICES = {
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
         '.action-template.django.partial_update': {},
+
+        'delete': {
+            'processors': {
+                'post_delete_message': {
+                    '.processor': {},
+                    'module_path': 'service.models.PostDeleteMessage',
+                    'read_keys': {'=': (
+                        'backend/instance',
+                    )},
+                    'write_keys': {'=': (
+                        'backend/raw_response',
+                    )},
+                },
+            },
+        },
+        'update': {
+            'processors': {
+                'post_update_message': {
+                    '.processor': {},
+                    'module_path': 'service.models.PostUpdateMessage',
+                    'read_keys': {'=': (
+                        'response/content',
+                    )},
+                    'write_keys': {'=': (
+                        'response/content',
+                    )},
+                },
+            },
+        },
+        'partial_update': {
+            'processors': {
+                'post_partial_update_message': {
+                    '.processor': {},
+                    'module_path': 'service.models.PostUpdateMessage',
+                    'read_keys': {'=': (
+                        'response/content',
+                    )},
+                    'write_keys': {'=': (
+                        'response/content',
+                    )},
+                },
+            },
+        },
         'create': {
             'processors': {
+                'post_create_message': {
+                    '.processor': {},
+                    'module_path': 'service.models.PostCreateMessage',
+                    'read_keys': {'=': (
+                        'response/content',
+                    )},
+                    'write_keys': {'=': (
+                        'response/content',
+                    )},
+                },
                 'custom_post_create': {
                     '.processor': {},
                     'module_path': 'service.models.PostCreateService',

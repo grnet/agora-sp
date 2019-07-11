@@ -93,10 +93,19 @@ _root_url = deploy_config[':root_url']
 def get_root_url():
     return _root_url
 
-def publishMessage(instance, action):
-    ams = ArgoMessagingService(endpoint=AMS_ENDPOINT, project=AMS_PROJECT, token=AMS_TOKEN)
-    endpoint =  '{0}{1}'.format(get_root_url(), '/api/v2/ext-services/'+str(instance.id))
-    serialized_service = serializers.serialize('json', [ instance, ])
+
+def publishMessage(service, action):
+    service_id = str(service.get('id'))
+    service_name = service.get('name')
+    service_data = service.get('data', {})
+    ams = ArgoMessagingService(endpoint=AMS_ENDPOINT,
+                               project=AMS_PROJECT,
+                               token=AMS_TOKEN)
+    endpoint = '{0}{1}'.format(get_root_url(),
+                               '/api/v2/ext-services/'+service_id)
+    # The value of the data property must be unicode in order to be
+    # encoded in base64 format in AmsMessage
+    data = json.dumps(service_data)
 
     try:
         if not ams.has_topic(AMS_TOPIC):
@@ -105,12 +114,20 @@ def publishMessage(instance, action):
         print e
         raise SystemExit(1)
 
-    msg = AmsMessage(data=serialized_service, attributes={"method": action, "service_id": str(instance.id), "service_name": instance.name, "endpoint": endpoint}).dict()
+    msg = AmsMessage(data=data,
+                     attributes={
+                        "method": action,
+                        "service_id": service_id,
+                        "service_name": service_name,
+                        "endpoint": endpoint
+                      }
+                     ).dict()
     try:
         ret = ams.publish(AMS_TOPIC, msg)
         print ret
     except AmsException as e:
         print e
+
 
 def clean_html_fields(instance):
     class_fields = instance.__class__._meta.get_fields()

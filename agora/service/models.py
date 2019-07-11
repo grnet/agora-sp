@@ -200,19 +200,8 @@ class Service(models.Model):
     def save(self, *args, **kwargs):
         self.name = self.name.strip()
         clean_html_fields(self)
-
-        if self._state.adding is True:
-            mode = 'create'
-        else:
-            mode = 'update'
-
         super(Service, self).save(*args, **kwargs)
-        publishMessage(self, mode)
 
-    def delete(self, *args, **kwargs):
-        del_service = deepcopy(self)
-        super(Service, self).delete(*args, **kwargs)
-        publishMessage(del_service, 'delete')
 
     @property
     def logo_absolute_path(self):
@@ -406,6 +395,43 @@ class PostCreateService(ProcessorFactory):
                 service=service,
                 admin=user,
                 state='approved')
+        return {}
+
+
+class PostCreateMessage(ProcessorFactory):
+    def process(self, data):
+        content = data['response/content']
+        service = {
+            'data': content,
+            'id': content.get('id'),
+            'name': content.get('name'),
+        }
+
+        publishMessage(service, 'create')
+        return {}
+
+class PostUpdateMessage(ProcessorFactory):
+    def process(self, data):
+        content = data['response/content']
+        service = {
+            'data': content,
+            'id': content.get('id'),
+            'name': content.get('name'),
+        }
+
+        publishMessage(service, 'update')
+        return {}
+
+class PostDeleteMessage(ProcessorFactory):
+    def process(self, data):
+        content = data['backend/instance']
+        service = {
+            'data': '',
+            'id': content.id,
+            'name': content.name,
+        }
+
+        publishMessage(service, 'delete')
         return {}
 
 
