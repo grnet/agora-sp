@@ -1,29 +1,22 @@
 import os
 import json
 import re
-from bs4 import BeautifulSoup, Comment
-from HTMLParser import HTMLParseError
-from ckeditor_uploader.fields import RichTextUploadingField
-from django.core import serializers
-
 from collections import defaultdict
+from HTMLParser import HTMLParseError
+from bs4 import BeautifulSoup, Comment
+from ckeditor_uploader.fields import RichTextUploadingField
+
 from argo_ams_library import ArgoMessagingService, AmsMessage, AmsException
 
 from django.conf import settings
-
-from collections import defaultdict
-
-from django.conf import settings
-from agora.permissions import get_rules
 import accounts.models
-
+from agora.permissions import get_rules
 from agora.settings import (
-     AMS_TOKEN,
-     AMS_ENDPOINT,
-     AMS_PROJECT,
-     AMS_TOPIC,
+    AMS_TOKEN,
+    AMS_ENDPOINT,
+    AMS_PROJECT,
+    AMS_TOPIC,
 )
-
 
 
 _root_url = None
@@ -116,12 +109,11 @@ def publishMessage(service, action):
 
     msg = AmsMessage(data=data,
                      attributes={
-                        "method": action,
-                        "service_id": service_id,
-                        "service_name": service_name,
-                        "endpoint": endpoint
-                      }
-                     ).dict()
+                         "method": action,
+                         "service_id": service_id,
+                         "service_name": service_name,
+                         "endpoint": endpoint
+                     }).dict()
     try:
         ret = ams.publish(AMS_TOPIC, msg)
         print ret
@@ -181,7 +173,7 @@ def safe_html(html):
             tag.attrs = []
 
     # scripts can be executed from comments in some cases
-    comments = soup.findAll(text=lambda text:isinstance(text, Comment))
+    comments = soup.findAll(text=lambda text: isinstance(text, Comment))
     for comment in comments:
         comment.extract()
 
