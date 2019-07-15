@@ -854,9 +854,10 @@ SERVICES = {
                     'module_path': 'service.models.PostDeleteMessage',
                     'read_keys': {'=': (
                         'backend/instance',
+                        'guards/transaction_commit',
                     )},
                     'write_keys': {'=': (
-                        'backend/raw_response',
+                        'guards/transaction_commit',
                     )},
                 },
             },
