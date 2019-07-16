@@ -7,10 +7,11 @@ from common import helper
 from accounts.models import User, Organisation
 from ckeditor_uploader.fields import RichTextUploadingField
 from agora.utils import SERVICE_ADMINSHIP_STATES, clean_html_fields, \
-    publishMessage
+    publish_message
 from agora.emails import send_email_application_created, \
     send_email_service_admin_assigned, send_email_application_evaluated
 from apimas.base import ProcessorFactory
+from copy import deepcopy
 
 
 class ServiceCategory(models.Model):
@@ -200,7 +201,7 @@ class Service(models.Model):
         self.name = self.name.strip()
         clean_html_fields(self)
         super(Service, self).save(*args, **kwargs)
-        publishMessage(self)
+
 
     @property
     def logo_absolute_path(self):
@@ -287,7 +288,6 @@ class ServiceDetails(models.Model):
     def save(self, *args, **kwargs):
         clean_html_fields(self)
         super(ServiceDetails, self).save(*args, **kwargs)
-        publishMessage(self)
 
     @property
     def service_admins_ids(self):
@@ -395,6 +395,43 @@ class PostCreateService(ProcessorFactory):
                 service=service,
                 admin=user,
                 state='approved')
+        return {}
+
+
+class PostCreateMessage(ProcessorFactory):
+    def process(self, data):
+        content = data['response/content']
+        service = {
+            'data': content,
+            'id': content.get('id'),
+            'name': content.get('name'),
+        }
+
+        publish_message(service, 'create')
+        return {}
+
+class PostUpdateMessage(ProcessorFactory):
+    def process(self, data):
+        content = data['response/content']
+        service = {
+            'data': content,
+            'id': content.get('id'),
+            'name': content.get('name'),
+        }
+
+        publish_message(service, 'update')
+        return {}
+
+class PostDeleteMessage(ProcessorFactory):
+    def process(self, data):
+        content = data['backend/instance']
+        service = {
+            'data': '',
+            'id': content.id,
+            'name': content.name,
+        }
+
+        publish_message(service, 'delete')
         return {}
 
 
