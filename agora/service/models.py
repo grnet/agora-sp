@@ -7,7 +7,7 @@ from common import helper
 from accounts.models import User, Organisation
 from ckeditor_uploader.fields import RichTextUploadingField
 from agora.utils import SERVICE_ADMINSHIP_STATES, clean_html_fields, \
-    publishMessage
+    publish_message
 from agora.emails import send_email_application_created, \
     send_email_service_admin_assigned, send_email_application_evaluated
 from apimas.base import ProcessorFactory
@@ -407,7 +407,7 @@ class PostCreateMessage(ProcessorFactory):
             'name': content.get('name'),
         }
 
-        publishMessage(service, 'create')
+        publish_message(service, 'create')
         return {}
 
 class PostUpdateMessage(ProcessorFactory):
@@ -419,7 +419,7 @@ class PostUpdateMessage(ProcessorFactory):
             'name': content.get('name'),
         }
 
-        publishMessage(service, 'update')
+        publish_message(service, 'update')
         return {}
 
 class PostDeleteMessage(ProcessorFactory):
@@ -431,7 +431,7 @@ class PostDeleteMessage(ProcessorFactory):
             'name': content.name,
         }
 
-        publishMessage(service, 'delete')
+        publish_message(service, 'delete')
         return {}
 
 

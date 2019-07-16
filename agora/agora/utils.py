@@ -87,15 +87,18 @@ def get_root_url():
     return _root_url
 
 
-def publishMessage(service, action):
+def publish_message(service, action):
+    """
+    Send a message using argo messaging service when an action upon a service
+    takes place.
+    """
     service_id = str(service.get('id'))
     service_name = service.get('name')
     service_data = service.get('data', {})
     ams = ArgoMessagingService(endpoint=AMS_ENDPOINT,
                                project=AMS_PROJECT,
                                token=AMS_TOKEN)
-    endpoint = '{0}{1}'.format(get_root_url(),
-                               '/api/v2/ext-services/'+service_id)
+    endpoint = '{0}/api/v2/ext-services/{1}'.format(get_root_url(), service_id)
     # The value of the data property must be unicode in order to be
     # encoded in base64 format in AmsMessage
     data = json.dumps(service_data)
