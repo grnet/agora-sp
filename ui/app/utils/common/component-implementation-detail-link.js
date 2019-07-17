@@ -1,5 +1,11 @@
 import { field } from 'ember-gen';
 
+const {
+  get,
+  computed,
+} = Ember;
+
+
 const COMPONENT_EDIT_FIELDSET = {
   label: 'cidl.cards.components',
   fields: [
@@ -43,14 +49,30 @@ const SERVICE_EDIT_FIELDSET = {
 
 const SERVICE_EDIT_FIELDSET_LIMITED = {
   label: 'cidl.cards.service_version',
-  fields: [
-    field('my_service', {
-      label: 'service_item.belongs.name'
-    }),
-    field('my_service_version', {
-      label: 'service_version.belongs.version'
-    }),
-  ],
+  fields: computed(function() {
+    var user_id = get(this, 'session.session.authenticated.id');
+    return [
+      field(
+        'service_id', {
+          label: 'service_item.belongs.name',
+          query: (table, store, field, params) => {
+            return store.query('service-item', { adminships__user_id: user_id }).then(function(services) {
+              return services.filter(function(service){
+                let rejected = get(service, 'rejected_service_admins_ids').split(',');
+                let pending = get(service, 'pending_service_admins_ids').split(',');
+                let not = rejected.concat(pending);
+                return !not.includes(user_id.toString());
+
+              })
+            });
+          },
+        }
+      ),
+      field('service_details_id', {
+        label: 'service_version.belongs.version'
+      }),
+    ];
+  }),
   layout: {
     flex: [100, 100]
   }
