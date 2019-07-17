@@ -370,7 +370,7 @@ class Roles(models.Model):
 
 
 class ServiceAdminship(models.Model):
-    service = models.ForeignKey(Service)
+    service = models.ForeignKey(Service, related_name="serviceadminships")
     admin = models.ForeignKey(User)
     state = models.CharField(
             choices=SERVICE_ADMINSHIP_STATES,

@@ -176,6 +176,24 @@ SERVICE_FIELDS_INT = {
                             'to': 'api/v2/providers'},
         }
     },
+    'adminships': {
+        '.field.collection.django': {},
+        ':filter_compat': True,
+        '.flag.nullable.default': {},
+        '.flag.filterable': {},
+        'model': 'service.models.ServiceAdminship',
+        'source': 'serviceadminships',
+        'bound': 'service',
+        'fields': {
+            'id': {
+                '.field.serial': {}},
+            'user_id': {
+                '.field.integer': {},
+                '.flag.nowrite': {},
+                '.flag.filterable': {},
+                'source': 'admin.pk'},
+        }
+    },
     'required_services': {
         '.field.collection.django': {},
         '.flag.nullable.default': {},
