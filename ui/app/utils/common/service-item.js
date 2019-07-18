@@ -348,7 +348,7 @@ const DETAILS_BASIC_INFO_FIELDSET = {
   },
 };
 
-const CUSTOM_VERSIONS_FIELDSET = {
+const CUSTOM_VERSIONS_FIELDSET_EDIT = {
   label: 'service_version.belongs.cards.title',
   layout: {
     flex: [100, 100],
@@ -357,7 +357,7 @@ const CUSTOM_VERSIONS_FIELDSET = {
     field('versions', {
       label: '',
       modelName: 'service_version',
-      displayComponent: 'gen-display-field-table',
+      formComponent: 'gen-display-field-table',
       valueQuery: (store, params, model, value) => {
         if (model.get('id')) {
           return store.query('service_version', {
@@ -422,12 +422,62 @@ const CUSTOM_VERSIONS_FIELDSET = {
       },
     }),
     field('service_version_url', {
-      displayComponent: 'cta-btn',
+      formComponent: 'cta-btn',
       displayAttrs: {
         hideLabel: true,
-        //classNames: ['cta-btn cta-btn--text-right']
       },
       label: 'service_item.links.create_service_version',
+    }),
+  ],
+};
+
+const CUSTOM_VERSIONS_FIELDSET_DETAILS = {
+  label: 'service_version.belongs.cards.title',
+  layout: {
+    flex: [100, 100],
+  },
+  fields: [
+    field('versions', {
+      label: '',
+      modelName: 'service_version',
+      displayComponent: 'gen-display-field-table',
+      valueQuery: (store, params, model, value) => {
+        if (model.get('id')) {
+          return store.query('service_version', {
+            id_service: model.get('id'),
+          });
+        }
+      },
+      modelMeta: {
+        row: {
+          actions: ['goToDetails'],
+          actionsMap: {
+            goToDetails: {
+              label: 'details',
+              icon: 'remove red eye',
+              action(route, model) {
+                let resource = model.get('_internalModel.modelName'),
+                  dest_route = `${resource}.record.index`;
+                route.transitionTo(dest_route, model);
+              },
+            },
+          },
+          fields: [
+            field('version', {
+              label: 'service_version.fields.version',
+            }),
+            field('status.value', {
+              label: 'service_status.belongs.value',
+            }),
+            field('is_in_catalogue', {
+              label: 'service_version.fields.in_catalogue',
+            }),
+            field('visible_to_marketplace', {
+              label: 'service_version.fields.visible_to_marketplace',
+            }),
+          ],
+        },
+      },
     }),
   ],
 };
@@ -588,11 +638,11 @@ const DEPENDENCIES_FIELDSET = {
 
 const DETAILS_FIELDSETS = [
   DETAILS_BASIC_INFO_FIELDSET,
+  CUSTOM_VERSIONS_FIELDSET_DETAILS,
   MATURITY_FIELDSET,
   CLASSIFICATION_FIELDSET,
   MANAGEMENT_FIELDSET,
   //this creates a new referenced table inside another gen
-  CUSTOM_VERSIONS_FIELDSET,
   DEPENDENCIES_FIELDSET,
   PROVIDERS_FIELDSET,
 ];
@@ -628,6 +678,7 @@ const EDIT_FIELDSETS = [
       flex: [100, 50, 50, 50, 50, 100],
     },
   },
+  CUSTOM_VERSIONS_FIELDSET_EDIT,
   MATURITY_FIELDSET,
   CLASSIFICATION_FIELDSET,
   MANAGEMENT_FIELDSET,
