@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import ServiceItemGen from '../gen/service-item';
+import { get_my_services } from '../utils/common/common';
 
 const {
   get,
@@ -18,13 +19,7 @@ export default ServiceItemGen.extend({
       params.adminships__user_id = user_id;
 
       return this.store.query('service-item', params).then(function(services) {
-        return services.filter(function(service){
-          let rejected = get(service, 'rejected_service_admins_ids').split(',');
-          let pending = get(service, 'pending_service_admins_ids').split(',');
-          let not = rejected.concat(pending);
-
-          return !not.includes(user_id.toString());
-        })
+        return get_my_services(services, user_id);
       });
     },
     page: {

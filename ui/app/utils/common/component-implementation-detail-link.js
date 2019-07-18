@@ -1,4 +1,5 @@
 import { field } from 'ember-gen';
+import { get_my_services } from '../common/common';
 
 const {
   get,
@@ -57,13 +58,7 @@ const SERVICE_EDIT_FIELDSET_LIMITED = {
           label: 'service_item.belongs.name',
           query: (table, store, field, params) => {
             return store.query('service-item', { adminships__user_id: user_id }).then(function(services) {
-              return services.filter(function(service){
-                let rejected = get(service, 'rejected_service_admins_ids').split(',');
-                let pending = get(service, 'pending_service_admins_ids').split(',');
-                let not = rejected.concat(pending);
-                return !not.includes(user_id.toString());
-
-              })
+              return get_my_services(services, user_id);
             });
           },
         }
