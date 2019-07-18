@@ -171,20 +171,6 @@ class Service(object):
             raise ValidationError(_('Unauthorized organisation(s)'))
 
 
-    @staticmethod
-    def filter_owned(context):
-        """List only the Services a serviceadmins owns.
-
-        List all the Services that belong to a ServiceAdminship where the admin
-        is the user and are in state 'approved'.
-        """
-        auth_user = context['auth/user']
-        auth_user_id = str(auth_user.id)
-        user_sa = sa_m.objects.filter(admin__id=auth_user_id, state='approved')
-        services = [x.service.id for x in user_sa]
-        return Q(id__in=services)
-
-
 class User(object):
 
     @staticmethod
@@ -321,7 +307,6 @@ class ServiceVersion(object):
 
 class Organisation(object):
 
-
     @staticmethod
     def filter_belongs(context):
         """
@@ -330,4 +315,3 @@ class Organisation(object):
         auth_user = context['auth/user']
         organisations = [x.id for x in auth_user.organisations.all()]
         return Q(id__in=organisations)
-
