@@ -32,7 +32,7 @@ export default ServiceItemGen.extend({
         return role === 'serviceadmin';
       }),
       label: 'service_item.my_menu',
-      icon: 'favorite',
+      icon: 'book',
     },
   },
 });

@@ -57,7 +57,7 @@ export default AgoraGen.extend({
     },
     menu: {
       label: 'service_version.menu',
-      icon: 'bookmark_border',
+      icon: 'bookmarks',
     },
     sort: {
       serverSide: true,
