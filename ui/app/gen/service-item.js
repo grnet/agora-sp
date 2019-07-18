@@ -58,6 +58,7 @@ export default AgoraGen.extend({
     },
     menu: {
       label: 'service_item.menu',
+      icon: 'bookmark',
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],

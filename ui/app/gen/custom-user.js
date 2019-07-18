@@ -39,6 +39,7 @@ export default AgoraGen.extend({
     },
     menu: {
       label: 'custom_user.menu',
+      icon : 'face',
     },
     filter: {
       active: false,

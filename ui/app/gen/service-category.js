@@ -18,7 +18,10 @@ export default AgoraGen.extend({
     },
     menu: {
       label: 'service_category.menu',
-      group: 'settings'
+      group: {
+        name: 'settings',
+        icon: 'settings',
+      },
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],

@@ -10,7 +10,7 @@ const {
 export default ServiceItemGen.extend({
   name: 'my-services',
   path: 'my-services',
-  order: 2,
+  order: 3,
   list: {
     getModel: function(params) {
       let user_id = get(this, 'session.session.authenticated.id');
@@ -32,6 +32,7 @@ export default ServiceItemGen.extend({
         return role === 'serviceadmin';
       }),
       label: 'service_item.my_menu',
+      icon: 'favorite',
     },
   },
 });

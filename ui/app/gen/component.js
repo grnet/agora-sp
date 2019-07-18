@@ -20,7 +20,8 @@ export default AgoraGen.extend({
       group: {
         name: 'components',
         label: 'Service Components',
-        order: 3
+        order: 3,
+        icon: 'view_list',
       }
     },
     row: {

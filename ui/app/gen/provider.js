@@ -38,6 +38,7 @@ export default AgoraGen.extend({
       group: {
         name: 'user-information',
         order: 100,
+        label: 'search',
       },
 
     },
