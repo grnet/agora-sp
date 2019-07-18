@@ -41,6 +41,7 @@ export default AgoraGen.extend({
       group: {
         name: 'settings',
         label: 'Settings',
+        icon: 'settings',
         order: 500
       }
     },

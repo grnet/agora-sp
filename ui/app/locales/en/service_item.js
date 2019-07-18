@@ -84,12 +84,13 @@ const service_item = {
     'related_platform': 'E.g.: WeNMR Suite',
   },
   'belongs': {
-    'name': 'Service Name'
+    'name': 'Service Name',
   },
   'links': {
-    'create_service_version': 'Create a new service version'
+    'create_service_version': 'Create a new service version',
   },
   'menu': 'Services',
+  'my_menu': 'My Services',
   'placeholders': {
     'search': 'Search by name or short desciption',
   },

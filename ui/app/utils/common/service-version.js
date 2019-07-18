@@ -1,4 +1,6 @@
 import { field } from 'ember-gen';
+import { get_my_services } from '../common/common';
+
 
 const {
   get,
@@ -267,33 +269,41 @@ const BASIC_INFO_CREATE_FIELDSET_LIMITED = {
   layout: {
     flex: [50, 50, 25, 25, 100, 100, 100],
   },
-  fields: [
-    field(
-      'version', {
-        label: 'service_version.fields.version',
-        type: 'text'
-      }
-    ),
-    field(
-      'my_service', {
-        label: 'service_item.belongs.name',
-      }
-    ),
-    field(
-      'is_in_catalogue', {
-        label: 'service_version.fields.in_catalogue',
-        hint: 'service_version.hints.in_catalogue',
-        disabled: true,
-      }
-    ),
-    field(
-      'visible_to_marketplace', {
-        label: 'service_version.fields.visible_to_marketplace',
-        hint: 'service_version.hints.visible_to_marketplace',
-        disabled: true,
-      }
-    ),
-  ]
+  fields: computed(function() {
+    var user_id = get(this, 'session.session.authenticated.id');
+    return [
+      field(
+        'version', {
+          label: 'service_version.fields.version',
+          type: 'text'
+        }
+      ),
+      field(
+        'id_service', {
+          label: 'service_item.belongs.name',
+          query: (table, store, field, params) => {
+            return store.query('service-item', { adminships__user_id: user_id }).then(function(services) {
+              return get_my_services(services, user_id);
+            });
+          },
+        }
+      ),
+      field(
+        'is_in_catalogue', {
+          label: 'service_version.fields.in_catalogue',
+          hint: 'service_version.hints.in_catalogue',
+          disabled: true,
+        }
+      ),
+      field(
+        'visible_to_marketplace', {
+          label: 'service_version.fields.visible_to_marketplace',
+          hint: 'service_version.hints.visible_to_marketplace',
+          disabled: true,
+        }
+      ),
+    ]
+  })
 };
 
 

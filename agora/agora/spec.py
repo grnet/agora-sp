@@ -176,6 +176,24 @@ SERVICE_FIELDS_INT = {
                             'to': 'api/v2/providers'},
         }
     },
+    'adminships': {
+        '.field.collection.django': {},
+        ':filter_compat': True,
+        '.flag.nullable.default': {},
+        '.flag.filterable': {},
+        'model': 'service.models.ServiceAdminship',
+        'source': 'serviceadminships',
+        'bound': 'service',
+        'fields': {
+            'id': {
+                '.field.serial': {}},
+            'user_id': {
+                '.field.integer': {},
+                '.flag.nowrite': {},
+                '.flag.filterable': {},
+                'source': 'admin.pk'},
+        }
+    },
     'required_services': {
         '.field.collection.django': {},
         '.flag.nullable.default': {},
@@ -918,26 +936,6 @@ SERVICES = {
     },
 }
 
-MY_SERVICES = {
-    '.collection.django': {},
-    'model': 'service.models.Service',
-    'fields': {
-        'id': {
-            '.field.uuid': {},
-            '.flag.nowrite': {}},
-        'name': {
-            '.field.string': {},
-            '.flag.filterable': {},
-            '.flag.searchable': {},
-            '.flag.orderable': {}},
-    },
-    ':permissions_namespace': 'agora.checks.Service',
-    'actions': {
-        '.action-template.django.list': {},
-        '.action-template.django.retrieve': {},
-    },
-}
-
 
 EXT_SERVICES = {
     '.collection.django': {},
@@ -1400,7 +1398,6 @@ APP_CONFIG = {
                 'component-implementation-detail-links': COMPONENT_IMPLEMENTATION_DETAIL_LINKS,
                 'ext-components': EXT_COMPONENTS,
                 'ext-component-connections': EXT_COMPONENT_CONNECTIONS,
-                'my-services': MY_SERVICES,
                 'providers': ORGANISATIONS,
                 'my-providers': MY_ORGANISATIONS,
                 'access-policies': ACCESS_POLICIES,

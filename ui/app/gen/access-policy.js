@@ -34,6 +34,7 @@ export default AgoraGen.extend({
     },
     menu: {
       label: 'access_policy.menu',
+      icon: 'accessibility',
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],
