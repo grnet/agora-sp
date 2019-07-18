@@ -13,6 +13,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Basic setup of e2e testing using Cypress.
 - Provide dummy user data for Dockerfile.
 - Messages using Argo Messaging Service contain more information.
+- Add new menu item "My Services" for serviceadmin users.
+
+### Removed
+- Remove unused /api/v2/my-services endpoint.
 
 ## [0.9.15](https://github.com/grnet/agora-sp/compare/v0.9.14...v0.9.15) - 2019-06-19
 
