@@ -15,9 +15,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Messages using Argo Messaging Service contain more information.
 - Add new menu item "My Services" for serviceadmin users.
 - Add icons to navigation menu items.
+- Add profile page.
 
 ### Removed
 - Remove unused /api/v2/my-services endpoint.
+- Hide "Service Versions" from sidebar menu for serviceadmin users.
 
 ## [0.9.15](https://github.com/grnet/agora-sp/compare/v0.9.14...v0.9.15) - 2019-06-19
 
