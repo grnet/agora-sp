@@ -1,0 +1,12 @@
+Source: agora
+Section: contrib/python
+Priority: optional
+Maintainer: GRNET Agora Team <agora@dev.grnet.gr>
+Build-Depends: debhelper (>= 9), python-dev, dh-python
+XS-Python-Version: >= 2.7
+Standards-Version: 3.9.6
+
+Package: agora
+Architecture: all
+Depends: ${shlibs:Depends}, ${misc:Depends}, python, python:any (<< 2.8), python:any (>= 2.7.5-5~), python-django (>= 1:1.11), python-django (< 2.0), python-django-model-utils (<= 2.6), python-stdnum (<= 1.6), python-memcache (<= 1.58), shared-mime-info (>= 1.3)
+Description: Software for GRNET's Agora service.

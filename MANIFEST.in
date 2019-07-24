@@ -1,0 +1,5 @@
+include *.txt *.md
+recursive-include docs *
+recursive-include ui/dist *
+recursive-include agora/templates *
+prune agora/tests
