@@ -2,6 +2,8 @@ import logging
 import json
 import re
 import urlparse
+import os
+from os import path
 
 from agora.utils import load_permissions, get_root_url
 
@@ -27,6 +29,7 @@ TOKEN_LOGIN_URL = getattr(settings, 'TOKEN_LOGIN_URL', '/ui/auth/login')
 AAI_ID_KEY = getattr(settings, 'AAI_ID_KEY', 'id')
 API_ENDPOINT = getattr(settings, 'API_ENDPOINT', 'api/v2')
 MEDIA_URL = getattr(settings, 'MEDIA_URL', 'media/')
+BASE_DIR = getattr(settings, 'BASE_DIR')
 
 
 def config(request):
@@ -35,13 +38,18 @@ def config(request):
     shibboleth_endpoint = reverse('shibboleth_login')
     backend_host = urlparse.urljoin(get_root_url(), API_ENDPOINT)
     backend_media_root = urlparse.urljoin(get_root_url(), MEDIA_URL)
+    version_file = os.path.join(BASE_DIR, '../version')
+
+    with open(version_file) as f:
+        version = f.read().replace('\n', '')
 
     config_data = {
         'permissions': permissions,
         'shibboleth_login_url': shibboleth_endpoint,
         'backend_host': backend_host,
         'backend_media_root': backend_media_root,
-        'resources': load_resources()
+        'resources': load_resources(),
+        'version': version
     }
     return HttpResponse(json.dumps(config_data),
                         content_type='application/json')
