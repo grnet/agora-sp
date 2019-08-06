@@ -78,7 +78,30 @@ const CREATE_OR_EDIT_FIELDSETS = [{
 }]
 
 
+const PROFILE_FIELDSETS = [{
+  label: 'profile.cards.basic_information',
+  text: 'profile.cards.basic_hint',
+  fields: computed('role', 'model.role', function() {
+    let role = get(this, 'role');
+    let model_role = get(this, 'model.role');
+    let fields = [
+      field('username', {class: 'skata', fattrs: {class: 'skata'}}),
+      'email',
+      'role',
+      'full_name',
+    ];
+    if (model_role === 'serviceadmin') {
+      fields.push(providers);
+    }
+    return fields;
+  }),
+  layout: {
+    flex: [50, 50, 50, 50, 100]
+  }
+}]
+
 export {
+  PROFILE_FIELDSETS,
   DETAILS_FIELDSETS,
   CREATE_OR_EDIT_FIELDSETS,
 }
