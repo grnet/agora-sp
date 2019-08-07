@@ -19,6 +19,20 @@
       .contains('form', 'login')
       .submit()
  })
+
+ Cypress.Commands.add("check_menu", (location_contains) => {
+
+    // expand all expandable sidebar menu items
+    cy.get('.menu-link[href=""]').click({ multiple: true })
+
+    // visit all menu items that are note expandable
+    cy.get('.menu-link[href!=""]')
+      .should('have.length', location_contains.length)
+      .each(($el, i, $list) => {
+        cy.wrap($el).should('have.attr', 'href').and('include', location_contains[i])
+      })
+
+ })
 //
 //
 // -- This is a child command --
