@@ -27,7 +27,7 @@ export default AgoraGen.extend({
     organisation_owned: true,
     owned: computed('model.service_admins_ids', 'user.id', function() {
       let ids = get(this, 'model.service_admins_ids');
-      let user_id = get(this, 'user.id').toString();
+      let user_id = get(this, 'user.id') && get(this, 'user.id').toString();
 
       if (!ids) {
         return false;
