@@ -71,7 +71,14 @@ body .model-form md-content[data-form-field-component='gen-form-field-select-tab
 
 }
 
-footer .footer-info {
+footer {
+  padding:1rem 1rem  0;
   font-size: 13px;
-  margin-right: 1em;
+  p {
+    text-align: center;
+  }
+  img {
+    height: 40px;
+    margin: 0 3px;
+  }
 }

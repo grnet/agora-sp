@@ -3,6 +3,6 @@ import ENV from '../config/environment';
 
 export default Ember.Component.extend({
   tagName: 'footer',
-  classNames: ['flex', 'layout-row', 'layout-align-end-end', 'md-padding'],
+  classNames: ['flex', 'layout-column', 'layout-align-end'],
   version: ENV.APP.version,
 });
