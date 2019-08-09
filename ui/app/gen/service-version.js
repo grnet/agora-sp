@@ -43,7 +43,7 @@ export default AgoraGen.extend({
     }),
     update_owns_service: computed('model.service_admins_ids', 'user.id', function(){
       let ids = get(this, 'model.service_admins_ids');
-      let user_id = get(this, 'user.id').toString();
+      let user_id = get(this, 'user.id') && get(this, 'user.id').toString();
 
       if (!ids) { return false; }
       let ids_arr = ids.split(',');

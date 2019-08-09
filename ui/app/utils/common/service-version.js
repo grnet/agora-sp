@@ -135,7 +135,7 @@ const COMPONENT_LINKS_FIELDSET = {
     let role = get(this, 'role');
     let is_serviceadmin = role === 'serviceadmin';
     let admins_ids = get(this, 'model.service_admins_ids');
-    let user_id = get(this, 'user.id').toString();
+    let user_id = get(this, 'user.id') && get(this, 'user.id').toString();
 
     // Component creation button is visible if the user is admin/superadmin
     // or is serviceadmin and owns the service of the service version
