@@ -1,18 +1,22 @@
 <div class="layout-row layout-align-space-between-center">
   <div>
-    <img src="http://grnet.github.io/grnet-media-pack/grnet/logos/grnet_logo_en.svg" alt="grnet"  />
-    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg" alt="europe" />
+    {{{ logos }}}
   </div>
   <div>
     <p>
-    Copyright © 2016-2019
-    <br>
-    Agora is a service developed and maintained by <a href="https://grnet.gr/en/">GRNET</a> co-funded by <a href="">EOSC-Hub</a> and <a href="">EUDAT CDI</a>
-    <br>
-    v{{version}}
-    | contact@example.com
+    {{{ copyright }}}
+    {{{ info }}}
+    {{{ version_contact }}}
     </p>
   </div>
-  <div><a href="">Privacy Policy</a></div>
+  <div>
+    {{#if policy_text}}
+      {{#if policy_url}}
+        <a href="{{ policy_url }}" title="{{ policy_text}}" target="_blank">{{ policy_text }}</a>
+      {{else}}
+        {{#link-to "policy" target="_blank"}}{{ policy_text }} {{/link-to}}
+      {{/if}}
+    {{/if}}
+  </div>
 </div>
 

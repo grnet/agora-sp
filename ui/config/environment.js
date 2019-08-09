@@ -29,8 +29,23 @@ module.exports = function(environment) {
       default_route: 'service-item.index',
       domestic_login_msg: 'Log in with Check-in',
 
-      // Here you can pass flags/options to your application instance
-      // when it is created
+      footer: {
+        copyright_years: '2018-2019',
+        contact: 'contact@example.com',
+        info: 'Agora is a service developed and maintained by <a href="https://grnet.gr/en/" alt="grnet">GRNET</a> co-funded by <a href="" alt="https://www.eosc-hub.eu/">EOSC-Hub</a> and <a href="https://www.eudat.eu/eudat-collaborative-data-infrastructure-cdi">EUDAT CDI</a>',
+        // If set, a link will <policy_text> text will be visible in footer.
+        policy_text: 'Privacy Policy',
+        // If set, <policy_text> link will  redirect to <policy_url>. If not set,
+        // <policy_text> link will point to policy.hbs template.
+        policy_url: 'http://www.example.com',
+        logos: [{
+          url: 'http://grnet.github.io/grnet-media-pack/grnet/logos/grnet_logo_en.svg',
+          alt: 'grnet',
+        }, {
+          url: 'https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg',
+          alt: 'europe',
+        }],
+      },
     }
   };
 
