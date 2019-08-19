@@ -374,6 +374,10 @@ const CUSTOM_VERSIONS_FIELDSET_EDIT = {
               icon: 'delete',
               confirm: true,
               warn: true,
+              hidden: computed('role', function(){
+                let is_superadmin = get(this, 'role') === 'superadmin';
+                return !is_superadmin;
+              }),
               prompt: {
                 title: 'Remove service version',
                 message:
