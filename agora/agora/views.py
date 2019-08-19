@@ -3,24 +3,18 @@ import json
 import re
 import urlparse
 import os
-from os import path
-
-from agora.utils import load_permissions, get_root_url
-
-from django.http import JsonResponse
-from rest_framework.views import exception_handler
-from django.http import HttpResponse
-from django.conf import settings
-from django.core.urlresolvers import reverse
-from accounts.models import User
-from rest_framework.authtoken.models import Token
-from django.http import HttpResponseRedirect
-from django.contrib.auth import user_logged_in
-from agora.emails import send_email_shib_user_created
-from agora.utils import load_resources
-from agora.serializers import UserMeSerializer
 
 from djoser import views as djoser_views
+from rest_framework.views import exception_handler
+from rest_framework.authtoken.models import Token
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+from django.conf import settings
+from django.core.urlresolvers import reverse
+from django.contrib.auth import user_logged_in
+from accounts.models import User
+from agora.emails import send_email_shib_user_created
+from agora.utils import load_resources, load_permissions, get_root_url
+from agora.serializers import UserMeSerializer
 
 
 logger = logging.getLogger(__name__)
