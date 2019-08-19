@@ -116,6 +116,43 @@ var ENV = {
 
 ```
 
+You can additionally customize the content of the footer. 
+The available options can be found in `ui/config/environment.js` file:
+
+```javascript
+APP: {
+  footer: {
+    // If set, "Copyright © <copyright_years>" will appear in footer.
+    copyright_years: '2018-2019',
+    // If set, contact info  will be visible next to version in footer.
+    contact: 'contact@example.com',
+    // If set, <info> will be visible in footer.
+    info: 'Agora is a service developed and maintained by <a href="https://grnet.gr/en/" alt="grnet">GRNET</a> co-funded by <a href="" alt="https://www.eosc-hub.eu/">EOSC-Hub</a> and <a href="https://www.eudat.eu/eudat-collaborative-data-infrastructure-cdi">EUDAT CDI</a>',
+    // If set, a link will <policy_text> text will be visible in footer.
+    policy_text: 'Privacy Policies',
+    // If set, <policy_text> link will  redirect to <policy_url>. If not set,
+    // <policy_text> link will point to policy.hbs template.
+    policy_url: 'http://www.example.com',
+    // If  set, logos will be visible in footer.
+    logos: [{
+      url: 'http://grnet.github.io/grnet-media-pack/grnet/logos/grnet_logo_en.svg',
+      alt: 'grnet',
+    }, {
+      url: 'https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg',
+      alt: 'europe',
+    }],
+  },
+}
+```
+
+They are all optional. 
+
+If you wish to use `policy.hbs` template for you policy page, you can alter the title and the content by editing `ui/app/locales/en/policy.js` file.
+
+
+ 
+
+
 ### Migrations
 
 Run all migrations in order to construct the database schema.
