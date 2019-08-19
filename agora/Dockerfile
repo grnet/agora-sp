@@ -2,6 +2,7 @@ FROM python:2
 
 ADD requirements.txt /srv/agora/requirements.txt
 ADD requirements_dev.txt /srv/agora/requirements_dev.txt
+ADD version /srv/agora/version
 WORKDIR /srv/agora
 RUN pip install -r requirements_dev.txt
 
