@@ -1,10 +1,12 @@
+import routes from 'ember-gen/lib/routes';
 import gen from 'ember-gen/lib/gen';
 import AuthGen from 'ember-gen/lib/auth';
 import ENV from 'agora-admin/config/environment';
 
-//export default gen.CRUDGen.extend({
-//  modelName: 'auth'
-//});
+import {
+  PROFILE_FIELDSETS,
+} from '../utils/common/custom-user';
+
 
 const {
     computed: { reads, not, equal },
@@ -79,5 +81,38 @@ export default AuthGen.extend({
 
 
     }]
-  }
+  },
+
+  profile: {
+    modelName: 'custom-user',
+    name: 'profile',
+    gens: {
+      details: gen.GenRoutedObject.extend({
+        routeBaseClass: routes.DetailsRoute,
+        component: 'gen-details',
+        getModel() {
+          let id = get(this, 'session.session.authenticated.id');
+          return get(this, 'store').findRecord('custom-user', id);
+        },
+        fieldsets: PROFILE_FIELDSETS,
+      })
+    },
+    page: {
+      title: 'profile.menu',
+    },
+    menu: {
+      order: 1,
+      display: true,
+      icon: 'portrait',
+      label: 'profile.menu',
+    },
+    getModel() {
+      let id = get(this, 'session.session.authenticated.id');
+      return get(this, 'store').findRecord('custom-user', id).then((user)=>{
+        this.transitionTo('auth.profile.details');
+      })
+    },
+  },
+
 });
+

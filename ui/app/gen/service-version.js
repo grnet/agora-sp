@@ -57,7 +57,12 @@ export default AgoraGen.extend({
     },
     menu: {
       label: 'service_version.menu',
-      icon: 'bookmark_border',
+      icon: 'bookmarks',
+      display:  computed('role', function(){
+        let role = get(this, 'session.session.authenticated.role');
+
+        return role !== 'serviceadmin';
+      }),
     },
     sort: {
       serverSide: true,

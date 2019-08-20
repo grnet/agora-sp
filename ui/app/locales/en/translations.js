@@ -17,6 +17,7 @@ import { access_policy } from './access_policy';
 import { federation_member } from './federation_member';
 import { common } from './common';
 import { login } from './login';
+import { profile } from './profile';
 
 export default {
   'service_item': service_item,
@@ -47,5 +48,6 @@ export default {
   'select': common.select,
   'row': common.row,
   'common': common,
+  'profile': profile,
 };
 
