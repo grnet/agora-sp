@@ -1,0 +1,20 @@
+{{paper-chips
+  content=content
+  readOnly=readOnly
+  addItem=(action "addItem")
+  removeItem=(action "removeItem")
+}}
+<label class={{concat 'md-label' (if errors.length ' invalid' '')}}>{{ label }}</label>
+<div class="md-errors-spacer"></div>
+{{#if errors.length }}
+<div class="md-input-messages-animation md-auto-hide" ng-messages>
+  {{#each errors as |error index|}}
+    <div
+      id="error-{{index}}"
+      class="md-input-error no-position">
+      {{error}}
+    </div>
+  {{/each}}
+</div>
+{{/if}}
+

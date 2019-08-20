@@ -85,3 +85,26 @@ footer {
     margin: 0 3px;
   }
 }
+
+md-input-container.md-default-theme.md-input-invalid {
+  md-chips.md-default-theme .md-chips, md-chips .md-chips {
+    box-shadow: 0 2px #d50000;
+    margin-bottom: 5px;
+  }
+}
+
+md-chips-wrap.md-focused + label {
+  background: pink;
+}
+
+md-input-container md-chips+label:not(.md-container-ignore)  {
+  bottom: auto;
+  top: 0;
+}
+
+md-input-container.md-input-focused md-chips+label:not(.md-no-float),
+md-input-container.md-input-has-placeholder md-chips+label:not(.md-no-float),
+md-input-container.md-input-has-value md-chips+  label:not(.md-no-float) {
+  bottom: 100%;
+  top: auto;
+}
