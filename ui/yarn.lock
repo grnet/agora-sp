@@ -2779,17 +2779,19 @@ ember-cli-broccoli-sane-watcher@^2.0.3:
     rsvp "^3.0.18"
     sane "^1.1.1"
 
-ember-cli-gen-apimas@0.0.12:
-  version "0.0.12"
-  resolved "https://registry.yarnpkg.com/ember-cli-gen-apimas/-/ember-cli-gen-apimas-0.0.12.tgz#fbc335eb67fb0e599cb39fe54c971b0dbe2a8f90"
+ember-cli-gen-apimas@0.0.18:
+  version "0.0.18"
+  resolved "https://registry.yarnpkg.com/ember-cli-gen-apimas/-/ember-cli-gen-apimas-0.0.18.tgz#b8c24c7a9e2abd0e9efc003222e0c4b7f8a626b9"
+  integrity sha512-A5yptQ9oYcx+/fAt0ub/8ifaaqdtKy0gfhLeiTnWvYfteUhKMvbs2u+0kiymHawpledPjI3avLHZA5Ffwxp3sw==
   dependencies:
     ember-cli-babel "^5.1.7"
     ember-django-adapter "1.1.3"
     ember-lodash "0.0.10"
 
-ember-cli-gen@1.0.6:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/ember-cli-gen/-/ember-cli-gen-1.0.6.tgz#a03250260a186fcef7c1cb3a28dabb6ada9f3882"
+ember-cli-gen@1.0.19:
+  version "1.0.19"
+  resolved "https://registry.yarnpkg.com/ember-cli-gen/-/ember-cli-gen-1.0.19.tgz#d268f7677156d979cc8e11dcb9c4107e6e30ea1a"
+  integrity sha512-R1Gz7O+KT4itGhEMOHuB383EONl5cU3VBH4lxsCrO6gJUyhBHRbTZR/F+eNZ39LC5DWusa3RksyE4G2AbT0CWg==
   dependencies:
     ember-array-contains-helper "1.3.0"
     ember-can "0.8.1"
@@ -3307,9 +3309,9 @@ ember-network@0.3.1:
     node-fetch "^1.3.3"
     whatwg-fetch "^0.11.0"
 
-"ember-paper@git+https://github.com/vinilios/ember-paper.git#173fb6c026bf189cf297709620c8a234833d378a":
+"ember-paper@git+https://github.com/vinilios/ember-paper.git#ember-gen-beta":
   version "1.0.0-alpha.11"
-  resolved "git+https://github.com/vinilios/ember-paper.git#173fb6c026bf189cf297709620c8a234833d378a"
+  resolved "git+https://github.com/vinilios/ember-paper.git#02e2cabe3c7dd42248b54c248657ed419840a9b8"
   dependencies:
     angular-material-source angular/material#v1.0.6
     broccoli-autoprefixer "^3.0.0"
