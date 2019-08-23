@@ -3,6 +3,7 @@ import BaseFieldMixin from 'ember-gen/lib/base-field';
 
 const {
   get,
+  set,
   computed,
 } = Ember;
 
@@ -13,6 +14,8 @@ export default Ember.Component.extend(BaseFieldMixin, {
     'disabled:field-disabled',
     'isEmpty',
     'errors.length:md-input-invalid',
+    'focused:md-focused',
+    'focused:md-input-focused',
   ],
 
   newVal: computed('content.@each', function(){
@@ -43,6 +46,14 @@ export default Ember.Component.extend(BaseFieldMixin, {
   },
 
   actions: {
+
+    focusIn: function() {
+      set(this, 'focused', true);
+    },
+
+    focusOut: function() {
+      set(this, 'focused', false);
+    },
 
     removeItem(item) {
       let content = get(this, 'content');
