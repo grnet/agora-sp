@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import {  countries }  from '../resources';
 
 export default DS.Model.extend({
   name: DS.attr({
@@ -33,6 +34,11 @@ export default DS.Model.extend({
     defaultValue: 'Europe',
     label: 'access_policy.fields.geo_availability',
     hint: 'access_policy.hints.geo_availability',
+    formComponent: 'agora-chips',
+    formAttrs: {
+      options: countries,
+      exactMatch: true,
+    }
   }),
   access_policy_url: DS.attr({
     label: 'access_policy.fields.access_policy_url',
