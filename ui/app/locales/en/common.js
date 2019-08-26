@@ -55,6 +55,10 @@ const common = {
   'placeholders': {
     'search': 'Search',
   },
+  'chips': {
+    'noMatchFound': 'No results found',
+    'noMatchFoundClickToAdd': 'No match found. Click to add',
+  }
 };
 
 export { common };

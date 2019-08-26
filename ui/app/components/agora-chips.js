@@ -5,9 +5,20 @@ const {
   get,
   set,
   computed,
+  computed: { reads },
 } = Ember;
 
+/*
+ *  Agora-chips component is based on ember-paper's paper-chips component.
+ *  In order to be used, the field must have formComponent: agora-chips,
+ *  and the following formAttrs are available:
+ *  - options (array): The available options for autocompleting the field
+ *  - exactMatch (boolean): If set to true, the value typed by the user
+ *  must be an exact match of one of the options.
+ *
+ * */
 export default Ember.Component.extend(BaseFieldMixin, {
+  i18n: Ember.inject.service(),
   tagName: 'md-input-container',
   classNames: ['md-default-theme'],
   classNameBindings: [
@@ -17,6 +28,32 @@ export default Ember.Component.extend(BaseFieldMixin, {
     'focused:md-focused',
     'focused:md-input-focused',
   ],
+  exactMatch: reads('fattrs.exactMatch'),
+  options: reads('fattrs.options'),
+
+  requireMatch: computed('exactMatch', 'options', function(){
+    let exactMatch = get(this, 'exactMatch');
+    let options = get(this, 'options');
+
+    if (options) {
+      return exactMatch? exactMatch: false;
+    } else {
+      return null;
+    }
+  }),
+
+  noMatchesMessage: computed('requireMatch', function(){
+    const i18n = this.get('i18n');
+    let requireMatch = get(this, 'requireMatch');
+    if (requireMatch) {
+      return i18n.t('common.chips.noMatchFound');
+    } else if (requireMatch === false) {
+      return i18n.t('common.chips.noMatchFoundClickToAdd');
+    } else {
+      return null;
+    }
+
+  }),
 
   newVal: computed('content.@each', function(){
     return get(this, 'content').join(', ');
@@ -69,6 +106,7 @@ export default Ember.Component.extend(BaseFieldMixin, {
       content.pushObject(item);
       this.onChange(get(this, 'newVal'));
     },
+
   },
 
 })
