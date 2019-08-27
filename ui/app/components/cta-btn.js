@@ -7,4 +7,9 @@ export default Ember.Component.extend({
     const concatCLS = this.classNames.concat(clsNames);
     this.set('classNames', concatCLS);
   },
+
+  didInsertElement() {
+    let a = this.element.querySelector('a.md-button');
+    a.target="_blank";
+  }
 });
