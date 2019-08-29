@@ -1,0 +1,20 @@
+{{#gen-page classNames=(if gen.nested 'nested' '') as |page|}}
+  {{page.toolbar}}
+
+  {{#page.content}}
+    <md-content>
+      {{#paper-content class="md-padding"}}
+        {{#paper-card}}
+          {{#paper-card-title}}
+            {{#paper-card-title-text}}
+              <h4>{{t 'policy.page.title'}}</h4>
+              <div>
+                {{{t 'policy.page.content'}}}
+              </div>
+            {{/paper-card-title-text}}
+          {{/paper-card-title}}
+        {{/paper-card}}
+      {{/paper-content}}
+    </md-content>
+  {{/page.content}}
+{{/gen-page}}

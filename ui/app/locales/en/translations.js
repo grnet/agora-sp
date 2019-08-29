@@ -18,6 +18,7 @@ import { federation_member } from './federation_member';
 import { common } from './common';
 import { login } from './login';
 import { profile } from './profile';
+import { policy } from './policy';
 
 export default {
   'service_item': service_item,
@@ -49,5 +50,6 @@ export default {
   'row': common.row,
   'common': common,
   'profile': profile,
+  'policy': policy,
 };
 

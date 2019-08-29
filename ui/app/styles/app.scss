@@ -70,3 +70,18 @@ body .model-form md-content[data-form-field-component='gen-form-field-select-tab
   margin-bottom: 2em;
 
 }
+
+footer {
+  padding:1rem 1rem  0;
+  font-size: 13px;
+  p {
+    text-align: center;
+    span {
+      display: block;
+    }
+  }
+  img {
+    height: 40px;
+    margin: 0 3px;
+  }
+}

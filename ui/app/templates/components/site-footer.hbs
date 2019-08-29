@@ -1,0 +1,22 @@
+<div class="layout-row layout-align-space-between-center">
+  <div>
+    {{{ logos }}}
+  </div>
+  <div>
+    <p>
+    {{{ copyright }}}
+    {{{ info }}}
+    {{{ version_contact }}}
+    </p>
+  </div>
+  <div>
+    {{#if policy_text}}
+      {{#if policy_url}}
+        <a href="{{ policy_url }}" title="{{ policy_text}}" target="_blank">{{ policy_text }}</a>
+      {{else}}
+        {{#link-to "policy" target="_blank"}}{{ policy_text }} {{/link-to}}
+      {{/if}}
+    {{/if}}
+  </div>
+</div>
+
