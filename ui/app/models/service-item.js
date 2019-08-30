@@ -2,6 +2,7 @@ import DS from 'ember-data';
 import Ember from 'ember';
 import ENV from '../config/environment';
 import { shorten } from '../utils/common/common';
+import { disciplines } from '../resources';
 
 const {
   get,
@@ -31,8 +32,16 @@ let model = DS.Model.extend({
   competitors: DS.attr(),
   logo: DS.attr(),
   service_category_ext: DS.attr(),
-  tags: DS.attr(),
-  scientific_fields: DS.attr(),
+  tags: DS.attr({
+    formComponent: 'agora-chips',
+  }),
+  scientific_fields: DS.attr({
+    formComponent: 'agora-chips',
+    formAttrs: {
+      options: disciplines,
+      exactMatch: true,
+    },
+  }),
   service_categories_names: DS.attr(),
   customer_facing: DS.attr({
     type: 'boolean',
