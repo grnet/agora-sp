@@ -237,7 +237,7 @@ class ServiceDetails(models.Model):
         verbose_name_plural = "02. Service Versions"
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
-    id_service = models.ForeignKey(Service)
+    id_service = models.ForeignKey(Service, related_name="services")
     version = models.CharField(max_length=255, default=None, blank=True)
     status = models.ForeignKey(ServiceStatus, default=None, blank=True) # allow empty field
     terms_of_use_url = models.CharField(max_length=255, default=None, blank=True, null=True)

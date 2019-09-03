@@ -108,6 +108,30 @@ SERVICE_FIELDS_COMMON = {
     'related_platform': {
         '.field.string': {},
         '.flag.nullable.default': {}},
+    'service_versions': {
+        '.field.collection.django': {},
+        ':filter_compat': True,
+        '.flag.nullable.default': {},
+        '.flag.filterable': {},
+        'model': 'service.models.ServiceDetails',
+        'source': 'services',
+        'bound': 'id_service',
+        'fields': {
+            'id': {
+                '.field.serial': {}},
+            'version': {
+                '.field.string': {},
+                '.flag.nowrite': {}},
+            'is_in_catalogue': {
+                '.field.boolean': {},
+                '.flag.nowrite': {},
+                '.flag.filterable': {}},
+            'visible_to_marketplace': {
+                '.field.boolean': {},
+                '.flag.nowrite': {},
+                '.flag.filterable': {}},
+        }
+    },
 }
 
 
@@ -202,6 +226,7 @@ SERVICE_FIELDS_INT = {
                 'source': 'admin.pk'},
         }
     },
+
     'required_services': {
         '.field.collection.django': {},
         '.flag.nullable.default': {},
