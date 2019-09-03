@@ -116,6 +116,8 @@ class Service(models.Model):
                                               related_name='set_as_related_by')
     other_related_services = RichTextUploadingField(default=None, blank=True, null=True)
     related_platform = RichTextUploadingField(default=None, blank=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     # Unused fields
     service_category = models.ForeignKey(ServiceCategory, blank=False, null=True)

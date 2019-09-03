@@ -84,6 +84,14 @@ SERVICE_FIELDS_COMMON = {
         '.field.string': {},
         '.flag.orderable': {},
         '.flag.nullable.default': {}},
+    'created_at': {
+        '.field.datetime': {},
+        '.flag.nullable': {},
+        '.flag.nowrite': {}},
+    'updated_at': {
+        '.field.datetime': {},
+        '.flag.nullable': {},
+        '.flag.nowrite': {}},
     'service_categories_names': {
         '.field.string': {},
         '.flag.nowrite': {}},
