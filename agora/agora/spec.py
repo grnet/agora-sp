@@ -1106,6 +1106,14 @@ SERVICE_VERSIONS = {
             '.flag.orderable': {},
             '.flag.filterable': {},
             '.flag.nullable.default': {}},
+        'created_at': {
+            '.field.datetime': {},
+            '.flag.nullable': {},
+            '.flag.nowrite': {}},
+        'updated_at': {
+            '.field.datetime': {},
+            '.flag.nullable': {},
+            '.flag.nowrite': {}},
         # extended fields
         'id_service_ext': {
             '.field.string': {},

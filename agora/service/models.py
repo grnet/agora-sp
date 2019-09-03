@@ -252,6 +252,8 @@ class ServiceDetails(models.Model):
     training_information = models.TextField(default=None, blank=True, null=True)
     maintenance_url = models.CharField(max_length=255, default=None, blank=True, null=True)
     service_trl = models.ForeignKey(ServiceTrl, null=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     # Unused fields
     features_current = RichTextUploadingField(default=None, blank=True, null=True)
