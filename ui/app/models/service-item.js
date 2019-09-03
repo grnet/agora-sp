@@ -2,7 +2,7 @@ import DS from 'ember-data';
 import Ember from 'ember';
 import ENV from '../config/environment';
 import { shorten } from '../utils/common/common';
-import { disciplines } from '../resources';
+import { disciplines, language_codes } from '../resources';
 
 const {
   get,
@@ -23,7 +23,14 @@ let model = DS.Model.extend({
   target_customers: DS.attr(),
   target_users: DS.attr(),
   screenshots_videos: DS.attr(),
-  languages: DS.attr(),
+  languages: DS.attr({
+    formComponent: 'agora-chips',
+    formAttrs: {
+      options: language_codes,
+      exactMatch: true,
+    },
+
+  }),
   standards: DS.attr(),
   certifications: DS.attr(),
   risks: DS.attr(),
