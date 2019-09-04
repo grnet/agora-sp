@@ -957,6 +957,31 @@ EXT_SERVICES = {
     },
 }
 
+
+SERVICES_MARKETPLACE = {
+    '.collection.django': {},
+    'model': 'service.models.Service',
+    'fields': SERVICE_FIELDS_EXTERNAL,
+    ':permissions_namespace': 'agora.checks.Service',
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+SERVICES_CATALOGUE = {
+    '.collection.django': {},
+    'model': 'service.models.Service',
+    'fields': SERVICE_FIELDS_EXTERNAL,
+    ':permissions_namespace': 'agora.checks.Service',
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
 SERVICE_TYPES_FIELDS = {
     'id': {
         '.field.uuid': {},
@@ -1404,6 +1429,8 @@ APP_CONFIG = {
                 'users': USERS,
                 'services': SERVICES,
                 'ext-services': EXT_SERVICES,
+                'services-in-marketplace': SERVICES_MARKETPLACE,
+                'services-in-catalogue': SERVICES_CATALOGUE,
                 'service-types': SERVICE_TYPES,
                 'service-versions': SERVICE_VERSIONS,
                 'user-customers': USER_CUSTOMERS,

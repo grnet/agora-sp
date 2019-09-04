@@ -170,6 +170,41 @@ class Service(object):
         if not set(service_orgs_ids).issubset(set(user_orgs_ids)):
             raise ValidationError(_('Unauthorized organisation(s)'))
 
+    @staticmethod
+    def check_all_version_in_marketplace(response, context):
+        """
+        List services that have at least one service version in marketplace.
+        """
+        return response.filter(Q(service_versions__visible_to_marketplace=True)).distinct()
+
+    @staticmethod
+    def check_all_version_in_catalogue(response, context):
+        """
+        List services that have at least one service version in catalogue.
+        """
+        return response.filter(Q(service_versions__is_in_catalogue=True)).distinct()
+
+    @staticmethod
+    def check_one_version_in_marketplace(instance, context):
+        """
+        Return the service if it has at least one service version in
+        marketplace.
+        """
+        if instance.service_versions.filter(visible_to_marketplace=True).count() > 0:
+            return instance
+        else:
+            return None
+
+    @staticmethod
+    def check_one_version_in_catalogue(instance, context):
+        """
+        Return the service if it has at least one service version in catalogue.
+        """
+        if instance.service_versions.filter(is_in_catalogue=True).count() > 0:
+            return instance
+        else:
+            return None
+
 
 class User(object):
 

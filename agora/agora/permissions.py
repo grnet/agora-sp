@@ -65,6 +65,13 @@ def get_rules():
         ('api/v2/ext-services', 'list', 'anonymous', '*', '*', '*', '*'),
         ('api/v2/ext-services', 'retrieve', 'anonymous', '*', '*', '*', '*'),
 
+
+        ('api/v2/services-in-marketplace', 'list', 'anonymous', '*', 'check_all_version_in_marketplace', '*', '*'),
+        ('api/v2/services-in-marketplace', 'retrieve', 'anonymous', '*', 'check_one_version_in_marketplace', '*', '*'),
+
+        ('api/v2/services-in-catalogue', 'list', 'anonymous', '*', 'check_all_version_in_catalogue', '*', '*'),
+        ('api/v2/services-in-catalogue', 'retrieve', 'anonymous', '*', 'check_one_version_in_catalogue', '*', '*'),
+
         ('api/v2/service-types', 'list', 'anonymous', '*', '*', '*', '*'),
         ('api/v2/service-types', 'retrieve', 'anonymous', '*', '*', '*', '*'),
 
