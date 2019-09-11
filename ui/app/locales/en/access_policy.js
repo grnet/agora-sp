@@ -17,7 +17,7 @@ const access_policy = {
     'payment_model': 'The price scheme for this service in case the customer is charged for access/usage.',
     'pricing': '',
     'conditions': 'More information about the access policy, including any restrictions regarding the users who might want to use your service.',
-    'geo_availability': 'The countries in which your service is available to the users. If the service is European-wide, please list "Europe".',
+    'geo_availability': 'The countries in which your service is available to the users.<br>If the service is European-wide, please list "Europe".If the service is universal, please list "Worldwide".',
     'access_policy_url': 'URL to a webpage from the service provider with more information on the procedure for getting access',
   },
   'belongs': {

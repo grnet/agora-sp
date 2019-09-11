@@ -1,4 +1,5 @@
 const countries = [
+  'Worldwide',
   'Europe',
   'Andorra',
   'United Arab Emirates',
