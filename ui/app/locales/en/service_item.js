@@ -63,9 +63,9 @@ const service_item = {
   'hints': {
     'logo': '',
     'tagline': 'Short catch-phrase for marketing and advertising purposes (1 line). It will be usually displayed close the service name and should refer to the main value or purpose of the service.',
-    'languages': 'add the language codes separated by comma using the <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" target="_blank">2-letter codes from the ISO</a>',
-    'tags': 'Comma-separated list of keywords associated to the service to be used to simplify search by relevant keywords',
-    'scientific_fields': 'Comma-separated list of the scientific fields that are related to this service. Refer to level 2 of this classification: <a href="https://wiki.egi.eu/wiki/Scientific_Disciplines" target="_blank">Scientific Disciplines</a>). If not in classification, please list "Other"..',
+    'languages': 'Add the language codes using the <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" target="_blank">2-letter codes from the ISO</a>',
+    'tags': 'List of keywords associated to the service to be used to simplify search by relevant keywords.<br>Hit ENTER to register your tag.',
+    'scientific_fields': 'List of the scientific fields that are related to this service. Refer to level 2 of this classification: <a href="https://wiki.egi.eu/wiki/Scientific_Disciplines" target="_blank">Scientific Disciplines</a>). If not in classification, please list "Other"..',
     'owner_name': 'Name of the person who has accountability for the whole service from a management point of view from the service provider',
     'owner_contact': 'E-mail contact of the service owner',
     'support_name': 'Name of the person for use by the federator to request technical/operational support',
