@@ -7,7 +7,7 @@ const {
 
 export default Ember.Component.extend({
   tagName: 'footer',
-  classNames: ['flex', 'layout-column', 'layout-align-end'],
+  classNames: ['layout-align-end'],
   policy_url: ENV.APP.footer['policy_url'],
   policy_text: ENV.APP.footer['policy_text'],
 
