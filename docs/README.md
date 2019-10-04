@@ -92,4 +92,6 @@ The administrator provides a valid Agora API Feed, selects which fields wants to
 
 [User Documentation](https://docs.google.com/document/d/1nLoHAx8w5o1RanERNOf5DlgrSvu4ZJ4fd-mQfBNNf18/edit?usp=sharing )
 
+[API Documentation](https://documenter.getpostman.com/view/4618746/S11NLwX7?version=latest)
+
 [Presentations](https://docs.google.com/presentation/d/e/2PACX-1vRSJGpvJyNb5FInJuGNSae-p1Y2AjaXA5FxhYHKTRTtWamH19Fgp91uxxaIrCgoCOjNrJOAUDolSuk0/pub?start=false&loop=false&delayms=3000&slide=id.p3) 
