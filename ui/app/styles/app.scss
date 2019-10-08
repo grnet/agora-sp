@@ -94,10 +94,6 @@ md-input-container.md-default-theme.md-input-invalid {
   }
 }
 
-md-chips-wrap.md-focused + label {
-  background: pink;
-}
-
 md-input-container md-chips+label:not(.md-container-ignore)  {
   bottom: auto;
   top: 0;
