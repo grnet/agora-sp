@@ -4,16 +4,23 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-##  [Unreleased]
+## [0.9.17](https://github.com/grnet/agora-sp/compare/v0.9.16...v0.9.17) - 2019-12-09
 
 ###  Added
-
 - Add footer.
+- Add services-in-marketplace & services-in-catalogue endpoints.
+- Add material-ui chips component.
+
+### Changed
+- Add created_at/updated_at fields to service version model.
+- Add created_at/updated_at fields to service model.
+
+### Fixed
+- Fix bug with safari rendering flexbox.
 
 ## [0.9.16](https://github.com/grnet/agora-sp/compare/v0.9.15...v0.9.16) - 2019-08-27
 
 ### Added
-
 - Expose components to anonymous users.
 - Expose component connections to service versions to anonymous users.
 - Basic setup of e2e testing using Cypress.
