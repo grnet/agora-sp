@@ -73,7 +73,7 @@ Example:
 
 ```
 {
-    ":root_url": "localhost"
+    ":root_url": "http://127.0.0.1:8000"
 }
 ```
 
@@ -87,7 +87,7 @@ Example options:
 ```
 var ENV = {
   rootURL: '/ui/'
-  appURL: 'api/v2/',
+  appURL: '/api/v2/',
 }
 ```
 
@@ -165,7 +165,7 @@ python manage.py migrate
 
 You can load some initial data by running:
 ```
-python manage.py fixtures/users.json
+python manage.py loaddata fixtures/users.json
 ```
 
 `users.json` will create users with usernames/passwords:
@@ -241,7 +241,7 @@ In order to test API, you must run
 ```
 pytest 
 ```
-from inside `agora` folder with virtualenv activated.
+from inside `agora` folder with virtualenv activated. Make sure you have already installed the development requirements by issuing: `pip install -r requirements_dev.txt`. This will install the required version of `pytest` along with the needed dependencies `pytest-env` and `pytest-django`.
 
 For e2e testing, open cypress using yarn:
 ```
