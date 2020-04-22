@@ -9,6 +9,7 @@ const provider = {
     'name': 'Service provider Name',
     'contact': 'Contact',
     'pd_bai_3_legal_entity': 'PD.BAI.3 Legal Entity',
+    'pd_bai_3_legal_status': 'PD.BAI.3 Legal Status'
   },
   'hints': {
     'name': '',
@@ -16,6 +17,7 @@ const provider = {
     'logo': '',
     'contact': 'Contact email',
     'pd_bai_3_legal_entity': 'Is the provider a legal entity?',
+    'pd_bai_3_legal_status': 'Legal Status of the Service Provider'
   },
   'belongs': {
     'name': 'Service provider',

@@ -1302,7 +1302,9 @@ ORGANISATIONS = {
         'pd_bai_3_legal_entity': {
             '.field.boolean': {},
             'default': False},
-
+        'pd_bai_3_legal_status': {
+          '.field.string': {},
+      }
     },
     'actions': {
         '.action-template.django.list': {},

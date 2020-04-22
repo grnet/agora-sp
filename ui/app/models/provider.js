@@ -1,5 +1,6 @@
 import DS from 'ember-data';
 import { shorten } from '../utils/common/common';
+import ENV from '../config/environment';
 
 const {
   get,
@@ -30,6 +31,13 @@ export default DS.Model.extend({
     label: 'provider.fields.pd_bai_3_legal_entity',
     hint: 'provider.hints.pd_bai_3_legal_entity',
   }),
+  pd_bai_3_legal_status: DS.attr({
+    type: 'select',
+    choices: ENV.APP.resources.LEGAL_STATUSES,
+    label: 'provider.fields.pd_bai_3_legal_status',
+    hint: 'provider.hints.pd_bai_3_legal_status',
+  }),
+
   // computed
   short_desc: computed('description', function() {
     return shorten(get(this, 'description'));
