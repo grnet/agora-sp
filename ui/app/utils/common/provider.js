@@ -10,7 +10,7 @@ const DETAILS_FIELDSETS = [{
   label: 'provider.cards.basic_information',
   text: 'provider.cards.basic_hint',
   layout: {
-    flex: [100, 100, 100, 100]
+    flex: [100, 100, 100, 100,50]
   },
   fields: [
     'name',
@@ -29,6 +29,7 @@ const DETAILS_FIELDSETS = [{
         img: true
       }
     ),
+    'pd_bai_3_legal_entity',
   ]
 }]
 
@@ -41,7 +42,7 @@ const EDIT_FIELDSETS = [{
   label: 'provider.cards.basic_information',
   text: 'provider.cards.basic_hint',
   layout: {
-    flex: [100, 100, 100, 100]
+    flex: [100, 100, 100, 50]
   },
   fields: [
     'name',
@@ -59,6 +60,7 @@ const EDIT_FIELDSETS = [{
         img: true
       }
     ),
+    'pd_bai_3_legal_entity',
   ]
 }]
 
@@ -72,7 +74,7 @@ const CREATE_FIELDSETS = [{
   label: 'provider.cards.basic_information',
   text: 'provider.cards.basic_hint',
   layout: {
-    flex: [100, 100, 100, 100]
+    flex: [100, 100, 100, 50]
   },
   fields: [
     'name',
@@ -84,6 +86,7 @@ const CREATE_FIELDSETS = [{
         formComponent: 'text-editor',
       }
     ),
+    'pd_bai_3_legal_entity',
   ]
 }]
 

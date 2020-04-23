@@ -1299,6 +1299,9 @@ ORGANISATIONS = {
         'logo': {
             '.field.file': {},
             'default': ''},
+        'pd_bai_3_legal_entity': {
+            '.field.boolean': {},
+            'default': False},
 
     },
     'actions': {

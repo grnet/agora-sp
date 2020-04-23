@@ -24,6 +24,12 @@ export default DS.Model.extend({
     label: 'provider.fields.contact',
     hint: 'provider.hints.contact',
   }),
+  pd_bai_3_legal_entity: DS.attr({
+    type: 'boolean',
+    defaultValue: false,
+    label: 'provider.fields.pd_bai_3_legal_entity',
+    hint: 'provider.hints.pd_bai_3_legal_entity',
+  }),
   // computed
   short_desc: computed('description', function() {
     return shorten(get(this, 'description'));
