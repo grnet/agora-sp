@@ -20,6 +20,7 @@ import { login } from './login';
 import { profile } from './profile';
 import { policy } from './policy';
 import { resource } from './resource';
+import { target_user } from './target_user';
 
 export default {
   'service_item': service_item,
@@ -53,5 +54,6 @@ export default {
   'profile': profile,
   'policy': policy,
   resource,
+  target_user,
 };
 
