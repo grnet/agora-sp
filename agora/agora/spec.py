@@ -1415,6 +1415,57 @@ FEDERATION_MEMBERS = {
 }
 
 
+RESOURCES = {
+    '.collection.django': {},
+    'model': 'service.models.Resource',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'rd_bai_0_id': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'rd_bai_1_name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'rd_bai_2_service_organisation': {
+            '.field.ref': {},
+            'source': 'rd_bai_2_organisation_id',
+            'to': '/api/v2/providers',
+            '.flag.filterable': {},
+            '.flag.nullable.default': {}},
+        'rd_bai_4_webpage': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'rd_bai_3_service_providers': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'organisation',
+            'model': 'service.models.Resource.rd_bai_3_providers.through',
+            'source': 'rd_bai_3_providers',
+            'bound': 'resource',
+            'fields': {
+                'organisation': {'.field.ref': {},
+                                'source': 'organisation_id',
+                                'to': 'api/v2/providers'},
+            }},
+        'providers_names': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
 APP_CONFIG = {
     '.apimas_app': {},
     ':permission_rules': 'agora.permissions.get_rules',
@@ -1459,6 +1510,7 @@ APP_CONFIG = {
                 'my-providers': MY_ORGANISATIONS,
                 'access-policies': ACCESS_POLICIES,
                 'federation-members': FEDERATION_MEMBERS,
+                'resources': RESOURCES,
             },
         },
     },
