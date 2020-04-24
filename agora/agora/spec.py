@@ -1300,11 +1300,29 @@ ORGANISATIONS = {
             '.field.file': {},
             'default': ''},
         'pd_bai_3_legal_entity': {
-            '.field.boolean': {},
-            'default': False},
+          '.field.boolean': {},
+          'default': False},
+        'pd_bai_0_id': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+        'pd_bai_1_name': {
+          '.field.string': {},
+          '.flag.filterable': {},
+          '.flag.searchable': {},
+        },
+        'pd_bai_2_abbreviation': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
         'pd_bai_3_legal_status': {
           '.field.string': {},
-      }
+          '.flag.nullable.default': {},
+        },
+        'pd_bai_4_website': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
     },
     'actions': {
         '.action-template.django.list': {},

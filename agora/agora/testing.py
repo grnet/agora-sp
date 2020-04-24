@@ -209,11 +209,19 @@ RESOURCES_CRUD = {
             'description': '<p>Description</p>',
             'pd_bai_3_legal_status': "NPP",
             'pd_bai_3_legal_entity': False,
+            'pd_bai_0_id': 'id',
+            'pd_bai_1_name': 'pd_name',
+            'pd_bai_2_abbreviation': 'pd_abb',
+            'pd_bai_4_website': 'pd_website',
         },
         'edit_data': {
             'name': 'FBI',
             'pd_bai_3_legal_entity': True,
-            'pd_bai_3_legal_status': "NPP"
+            'pd_bai_3_legal_status': "NPP",
+            'pd_bai_0_id': 'id',
+            'pd_bai_1_name': 'pd_name',
+            'pd_bai_2_abbreviation': 'pd_abb',
+            'pd_bai_4_website': 'pd_website',
         },
     },
     'access_policies': {

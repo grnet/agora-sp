@@ -53,11 +53,19 @@ class Organisation(models.Model):
     logo = models.ImageField(upload_to=helper.organisation_image_path)
     contact = models.CharField(max_length=255,
                                default=None, blank=True, null=True)
-    pd_bai_3_legal_entity = models.BooleanField(('PD.BAI.3 Legal entity'),default=False)  
+    pd_bai_3_legal_entity = models.BooleanField(('PD.BAI.3 Legal entity'),default=False)
 
     pd_bai_3_legal_status = models.CharField('PB.BAI.3_Legal_Status',
                                              max_length=255,
                                              choices=LEGAL_STATUSES)
+
+    pd_bai_0_id = models.TextField('PD.BAI.0_ID', default=None, blank=True, null=True)
+
+    pd_bai_1_name = models.CharField('PD.BAI.1_Name', max_length=100, default=None, blank=True, null=True)
+
+    pd_bai_2_abbreviation = models.CharField('PD.BAI.2_Abbreviation', max_length=30, default=None, blank=True, null=True)
+
+    pd_bai_4_website = models.TextField('PD.BAI.4_Website', default=None, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)

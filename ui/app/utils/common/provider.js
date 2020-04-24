@@ -9,12 +9,16 @@ const DETAILS_FIELDSETS = [{
   label: 'provider.cards.basic_information',
   text: 'provider.cards.basic_hint',
   layout: {
-    flex: [100, 100, 100, 100,50]
+    flex: [100, 100, 100, 100, 100, 100, 100, 100, 100, 50]
   },
   fields: [
     'name',
     'contact',
+    'pd_bai_0_id',
+    'pd_bai_1_name',
+    'pd_bai_2_abbreviation',
     'pd_bai_3_legal_status',
+    'pd_bai_4_website',
     field(
       'description', {
         type: 'text',
@@ -42,12 +46,16 @@ const EDIT_FIELDSETS = [{
   label: 'provider.cards.basic_information',
   text: 'provider.cards.basic_hint',
   layout: {
-    flex: [100, 100, 100, 50]
+    flex: [100, 100, 100, 100, 100, 100, 50]
   },
   fields: [
     'name',
     'contact',
+    'pd_bai_0_id',
+    'pd_bai_1_name',
+    'pd_bai_2_abbreviation',
     'pd_bai_3_legal_status',
+    'pd_bai_4_website',
     field(
       'description', {
         type: 'text',
@@ -75,12 +83,16 @@ const CREATE_FIELDSETS = [{
   label: 'provider.cards.basic_information',
   text: 'provider.cards.basic_hint',
   layout: {
-    flex: [100, 100, 100, 50]
+    flex: [100, 100, 100, 100, 100, 100, 50]
   },
   fields: [
     'name',
     'contact',
+    'pd_bai_0_id',
+    'pd_bai_1_name',
+    'pd_bai_2_abbreviation',
     'pd_bai_3_legal_status',
+    'pd_bai_4_website',
     field(
       'description', {
         type: 'text',
