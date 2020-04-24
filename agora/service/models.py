@@ -467,3 +467,37 @@ class FederationMember(models.Model):
     logo = models.ImageField(default=settings.FEDERATION_MEMBER_LOGO,
                              upload_to=helper.federation_member_image_path)
     country = models.CharField(max_length=2, default=None)
+
+
+class Resource(models.Model):
+
+    # Basic Information fields
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    rd_bai_0_id = models.CharField(max_length=255, unique=True)
+    rd_bai_1_name = models.CharField(max_length=255,
+            default=None,
+            unique=False)
+    rd_bai_2_organisation = models.ForeignKey(Organisation,
+            blank=True,
+            null=True,
+            related_name="organisation_services")
+    rd_bai_3_providers = models.ManyToManyField(Organisation,
+            blank=True,
+            related_name="provided_services")
+    rd_bai_4_webpage = models.CharField(max_length=255,
+            default=None,
+            blank=True,
+            null=True)
+
+    def __unicode__(self):
+        return str(self.rd_bai_0_id)
+
+    @property
+    def providers_names(self):
+        return ", ".join(o.name for o in self.rd_bai_3_providers.all())
+
+    def save(self, *args, **kwargs):
+        self.rd_bai_0_id = self.rd_bai_0_id.strip()
+        self.rd_bai_1_name = self.rd_bai_1_name.strip()
+        clean_html_fields(self)
+        super(Resource, self).save(*args, **kwargs)
