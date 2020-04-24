@@ -1414,6 +1414,31 @@ FEDERATION_MEMBERS = {
     },
 }
 
+TARGET_USERS = {
+    '.collection.django': {},
+    'model': 'service.models.TargetUser',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'user': {
+            '.field.string': {},
+            '.flag.filterable': {},
+            '.flag.orderable': {}},
+        'description': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
 
 RESOURCES = {
     '.collection.django': {},
@@ -1511,6 +1536,7 @@ APP_CONFIG = {
                 'access-policies': ACCESS_POLICIES,
                 'federation-members': FEDERATION_MEMBERS,
                 'resources': RESOURCES,
+                'target-users': TARGET_USERS,
             },
         },
     },

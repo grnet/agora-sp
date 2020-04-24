@@ -469,6 +469,18 @@ class FederationMember(models.Model):
     country = models.CharField(max_length=2, default=None)
 
 
+class TargetUser(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.CharField(max_length=255, unique=True)
+    description = RichTextUploadingField(default=None, blank=True, null=True)
+
+    def __unicode__(self):
+        return str(self.user)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(TargetUser, self).save(*args, **kwargs)
+
 class Resource(models.Model):
 
     # Basic Information fields
