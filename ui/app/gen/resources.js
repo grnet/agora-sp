@@ -18,6 +18,8 @@ export default AgoraGen.extend({
       rd_bai_1_name: [validate.presence(true)],
       rd_bai_2_service_organisation: [validate.presence(true)],
       rd_bai_4_webpage: [validate.format({ type: 'url' })],
+      rd_mri_4_mulitimedia: [validate.format({ type: 'url', allowBlank: true })],
+      rd_mri_3_logo: [validate.format({ type: 'url', allowBlank: true })],
     },
   },
   list: {
