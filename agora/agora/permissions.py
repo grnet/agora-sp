@@ -414,5 +414,23 @@ def get_rules():
         ('api/v2/resources', 'partial_update', 'admin', '*', '*', '*', '*'),
         ('api/v2/resources', 'destroy', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/resources', 'delete', 'superadmin', '*', '*', '*', '*'),
+
+        ('api/v2/target-users', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/target-users', 'list', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/target-users', 'list', 'admin', '*', '*', '*', '*'),
+        ('api/v2/target-users', 'list', 'serviceadmin', '*', '*', '*', '*'),
+        ('api/v2/target-users', 'list', 'observer', '*', '*', '*', '*'),
+        ('api/v2/target-users', 'retrieve', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/target-users', 'retrieve', 'admin', '*', '*', '*', '*'),
+        ('api/v2/target-users', 'retrieve', 'serviceadmin', '*', '*', '*', '*'),
+        ('api/v2/target-users', 'retrieve', 'observer', '*', '*', '*', '*'),
+        ('api/v2/target-users', 'create', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/target-users', 'create', 'admin', '*', '*', '*', '*'),
+        ('api/v2/target-users', 'update', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/target-users', 'update', 'admin', '*', '*', '*', '*'),
+        ('api/v2/target-users', 'partial_update', 'admin', '*', '*', '*', '*'),
+        ('api/v2/target-users', 'partial_update', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/target-users', 'destroy', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/target-users', 'delete', 'superadmin', '*', '*', '*', '*'),
     ]
     return rules

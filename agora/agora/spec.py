@@ -1414,6 +1414,31 @@ FEDERATION_MEMBERS = {
     },
 }
 
+TARGET_USERS = {
+    '.collection.django': {},
+    'model': 'service.models.TargetUser',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'user': {
+            '.field.string': {},
+            '.flag.filterable': {},
+            '.flag.orderable': {}},
+        'description': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
 
 RESOURCES = {
     '.collection.django': {},
@@ -1456,6 +1481,45 @@ RESOURCES = {
         'providers_names': {
             '.field.string': {},
             '.flag.nowrite': {}},
+        'rd_mri_1_description': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
+        'rd_mri_2_tagline': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
+        'rd_mri_3_logo': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'rd_mri_4_mulitimedia': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'rd_mri_5_target_users': {
+            '.field.collection.django': {},
+            ':filter_compat': True,
+            '.flag.nullable.default': {},
+            'flat': True,
+            'id_field': 'target_user',
+            'model': 'service.models.Resource.rd_mri_5_target_users.through',
+            'source': 'rd_mri_5_target_users',
+            'bound': 'resource',
+            'fields': {
+                'target_user': {'.field.ref': {},
+                                'source': 'targetuser_id',
+                                'to': 'api/v2/target-users'},
+            }},
+        'rd_mri_5_target_users_verbose': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
+        'rd_mri_6_target_customer_tags': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
+        'rd_mri_7_use_cases': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -1511,6 +1575,7 @@ APP_CONFIG = {
                 'access-policies': ACCESS_POLICIES,
                 'federation-members': FEDERATION_MEMBERS,
                 'resources': RESOURCES,
+                'target-users': TARGET_USERS,
             },
         },
     },

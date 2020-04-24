@@ -469,6 +469,18 @@ class FederationMember(models.Model):
     country = models.CharField(max_length=2, default=None)
 
 
+class TargetUser(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.CharField(max_length=255, unique=True)
+    description = RichTextUploadingField(default=None, blank=True, null=True)
+
+    def __unicode__(self):
+        return str(self.user)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(TargetUser, self).save(*args, **kwargs)
+
 class Resource(models.Model):
 
     # Basic Information fields
@@ -489,12 +501,25 @@ class Resource(models.Model):
             blank=True,
             null=True)
 
+    # Marketing Information fields
+    rd_mri_1_description = RichTextUploadingField(default=None, blank=True, null=True)
+    rd_mri_2_tagline = models.TextField(default=None, blank=True, null=True)
+    rd_mri_3_logo = models.CharField(max_length=255, default=None, blank=True, null=True)
+    rd_mri_4_mulitimedia = models.CharField(max_length=255, default=None, blank=True, null=True)
+    rd_mri_5_target_users = models.ManyToManyField(TargetUser, blank=True)
+    rd_mri_6_target_customer_tags = models.TextField(default=None, blank=True, null=True)
+    rd_mri_7_use_cases = RichTextUploadingField(default=None, blank=True, null=True)
+
     def __unicode__(self):
         return str(self.rd_bai_0_id)
 
     @property
     def providers_names(self):
         return ", ".join(o.name for o in self.rd_bai_3_providers.all())
+
+    @property
+    def rd_mri_5_target_users_verbose(self):
+        return ", ".join(o.user for o in self.rd_mri_5_target_users.all())
 
     def save(self, *args, **kwargs):
         self.rd_bai_0_id = self.rd_bai_0_id.strip()

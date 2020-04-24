@@ -9,6 +9,16 @@ const providers = field('rd_bai_3_service_providers', {
   },
 });
 
+const targetUsers = field('rd_mri_5_target_users', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: ['user'],
+    },
+  },
+
+});
+
 const SORT_FIELDS = [
   'rd_bai_0_id',
   'rd_bai_1_name',
@@ -32,6 +42,38 @@ const DETAILS_BASIC_INFO_FIELDSET = {
   ],
   layout: {
     flex: [50, 50, 100, 100, 100],
+  },
+};
+
+const DETAILS_MARKETING_FIELDSET = {
+  label: 'resource.cards.marketing',
+  fields: [
+    'rd_mri_1_description',
+    'rd_mri_2_tagline',
+    'rd_mri_3_logo',
+    'rd_mri_4_mulitimedia',
+    'rd_mri_5_target_users_verbose',
+    'rd_mri_6_target_customer_tags',
+    'rd_mri_7_use_cases',
+  ],
+  layout: {
+    flex: [100, 100, 50, 50, 100, 100, 100]
+  },
+};
+
+const EDIT_OR_CREATE_MARKETING_FIELDSET = {
+  label: 'resource.cards.marketing',
+  fields: [
+    'rd_mri_1_description',
+    'rd_mri_2_tagline',
+    'rd_mri_3_logo',
+    'rd_mri_4_mulitimedia',
+    targetUsers,
+    'rd_mri_6_target_customer_tags',
+    'rd_mri_7_use_cases',
+  ],
+  layout: {
+    flex: [100, 100, 50, 50, 100, 100, 100]
   },
 };
 
@@ -65,14 +107,17 @@ const CREATE_BASIC_INFO_FIELDSET = {
 
 const DETAILS_FIELDSETS = [
   DETAILS_BASIC_INFO_FIELDSET,
+  DETAILS_MARKETING_FIELDSET,
 ];
 
 const CREATE_FIELDSETS = [
   CREATE_BASIC_INFO_FIELDSET,
+  EDIT_OR_CREATE_MARKETING_FIELDSET,
 ];
 
 const EDIT_FIELDSETS = [
   EDIT_BASIC_INFO_FIELDSET,
+  EDIT_OR_CREATE_MARKETING_FIELDSET,
 ];
 
 export {
