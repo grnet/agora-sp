@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+
 import Ember from 'ember';
 import ENV from '../config/environment';
 import { shorten } from '../utils/common/common';
