@@ -8,9 +8,8 @@ const {
 
 
 const SORT_FIELDS = [
-  'name',
-  'owner_name',
-  'service_type',
+  'rd_bai_0_id',
+  'rd_bai_1_name',
 ];
 
 const my_providers = field('my_providers', {

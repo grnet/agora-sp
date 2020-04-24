@@ -19,6 +19,7 @@ import { common } from './common';
 import { login } from './login';
 import { profile } from './profile';
 import { policy } from './policy';
+import { resource } from './resource';
 
 export default {
   'service_item': service_item,
@@ -51,5 +52,6 @@ export default {
   'common': common,
   'profile': profile,
   'policy': policy,
+  resource,
 };
 
