@@ -1,4 +1,5 @@
 import DS from 'ember-data';
+import { countries, language_codes } from '../resources';
 
 export default DS.Model.extend({
   // Basic Inforamation
@@ -67,6 +68,27 @@ export default DS.Model.extend({
   }),
   rd_mri_5_target_users_verbose: DS.attr({
     label: 'resource.fields.rd_mri_5_target_users'
+  }),
+
+  // Geographical and Language availability fields
+  rd_gla_1_geographical_availability: DS.attr({
+    defaultValue: 'Europe',
+    label: 'resource.fields.rd_gla_1_geographical_availability',
+    hint: 'resource.hints.rd_gla_1_geographical_availability',
+    formComponent: 'agora-chips',
+    formAttrs: {
+      options: countries,
+      exactMatch: true,
+    }
+  }),
+  rd_gla_2_language: DS.attr({
+    formComponent: 'agora-chips',
+    label: 'resource.fields.rd_gla_2_language',
+    hint: 'resource.hints.rd_gla_2_language',
+    formAttrs: {
+      options: language_codes,
+      exactMatch: true,
+    },
   }),
 
   __api__: {

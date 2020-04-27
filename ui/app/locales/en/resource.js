@@ -1,7 +1,9 @@
 const resource = {
   cards: {
-    basic_information: 'Basic information',
+    basic: 'Basic information',
     basic_hint: '',
+    marketing: 'Marketing Information',
+    geo: 'Geographical and Language Availability Information',
   },
   fields: {
     rd_bai_0_id: 'RD.BAI.0 - ID',
@@ -17,6 +19,8 @@ const resource = {
     rd_mri_5_target_users: 'RD.MRI.5 - Target Users',
     rd_mri_6_target_customer_tags: 'RD.MRI.6 - Customer Tags',
     rd_mri_7_use_cases: 'RD.MRI.7 - Use Cases/Case Studies',
+    rd_gla_1_geographical_availability: 'RD.GLA.1 - Geographical Availability',
+    rd_gla_2_language: 'RD.GLA.2 - Language',
   },
   hints: {
     rd_bai_0_id: 'Global unique and persistent identifier of the resource. The first part denotes the Resource Provider and the second part the unique identifier of the resource.<br />Example: openaire.foo',
@@ -31,6 +35,8 @@ const resource = {
     rd_mri_6_target_customer_tags: 'This field will be used in the search function to prioritise results.<br/>Hit ENTER to register your tag.',
     rd_mri_5_target_users: '',
     rd_mri_7_use_cases: 'Provide either descriptive text or URL of the webpage describing the use case, or both',
+    rd_gla_1_geographical_availability: 'The countries in which your service is available to the users.<br>If the service is European-wide, please list "Europe".If the service is universal, please list "World".',
+    rd_gla_2_language: 'Add the language codes using the <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" target="_blank">2-letter codes from the ISO</a>',
   },
   table: {
     rd_bai_0_id: 'ID',

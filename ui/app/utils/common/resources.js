@@ -32,7 +32,7 @@ const TABLE_FIELDS = [
 
 
 const DETAILS_BASIC_INFO_FIELDSET = {
-  label: 'resource.cards.basic_information',
+  label: 'resource.cards.basic',
   fields: [
     'rd_bai_0_id',
     'rd_bai_1_name',
@@ -78,7 +78,7 @@ const EDIT_OR_CREATE_MARKETING_FIELDSET = {
 };
 
 const EDIT_BASIC_INFO_FIELDSET = {
-  label: 'resource.cards.basic_information',
+  label: 'resource.cards.basic',
   fields: [
     field('rd_bai_0_id'),
     'rd_bai_1_name',
@@ -92,7 +92,7 @@ const EDIT_BASIC_INFO_FIELDSET = {
 };
 
 const CREATE_BASIC_INFO_FIELDSET = {
-  label: 'resource.cards.basic_information',
+  label: 'resource.cards.basic',
   fields: [
     field('rd_bai_0_id'),
     'rd_bai_1_name',
@@ -105,19 +105,33 @@ const CREATE_BASIC_INFO_FIELDSET = {
   },
 };
 
+const GEO_FIELDSET = {
+  label: 'resource.cards.geo',
+  fields: [
+    'rd_gla_1_geographical_availability',
+    'rd_gla_2_language',
+  ],
+  layout: {
+    flex: [100, 100],
+  },
+};
+
 const DETAILS_FIELDSETS = [
   DETAILS_BASIC_INFO_FIELDSET,
   DETAILS_MARKETING_FIELDSET,
+  GEO_FIELDSET,
 ];
 
 const CREATE_FIELDSETS = [
   CREATE_BASIC_INFO_FIELDSET,
   EDIT_OR_CREATE_MARKETING_FIELDSET,
+  GEO_FIELDSET,
 ];
 
 const EDIT_FIELDSETS = [
   EDIT_BASIC_INFO_FIELDSET,
   EDIT_OR_CREATE_MARKETING_FIELDSET,
+  GEO_FIELDSET,
 ];
 
 export {
