@@ -1572,6 +1572,20 @@ RESOURCES = {
         'rd_gla_2_language': {
             '.field.string': {},
             '.flag.nullable.default': {}},
+        'main_contact': {
+            '.field.ref': {},
+            'source': 'main_contact_id',
+            'to': '/api/v2/contact-information',
+            '.flag.nullable.default': {}},
+        'public_contact': {
+            '.field.ref': {},
+            'source': 'public_contact_id',
+            'to': '/api/v2/contact-information',
+            '.flag.nullable.default': {}},
+        'rd_coi_1_first_name': {
+            '.field.string': {},
+            'source': 'main_contact.first_name',
+            '.flag.nullable.default': {}},
     },
     'actions': {
         '.action-template.django.list': {},
