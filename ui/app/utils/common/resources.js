@@ -116,22 +116,34 @@ const GEO_FIELDSET = {
   },
 };
 
+const CONTACT_FIELDSET = {
+  label: 'resource.cards.contact',
+  fields: [
+    'main_contact',
+  ],
+  layout: {
+    flex: [100],
+  },
+};
 const DETAILS_FIELDSETS = [
   DETAILS_BASIC_INFO_FIELDSET,
   DETAILS_MARKETING_FIELDSET,
   GEO_FIELDSET,
+  CONTACT_FIELDSET,
 ];
 
 const CREATE_FIELDSETS = [
   CREATE_BASIC_INFO_FIELDSET,
   EDIT_OR_CREATE_MARKETING_FIELDSET,
   GEO_FIELDSET,
+  CONTACT_FIELDSET,
 ];
 
 const EDIT_FIELDSETS = [
   EDIT_BASIC_INFO_FIELDSET,
   EDIT_OR_CREATE_MARKETING_FIELDSET,
   GEO_FIELDSET,
+  CONTACT_FIELDSET,
 ];
 
 export {
