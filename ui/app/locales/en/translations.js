@@ -21,6 +21,7 @@ import { profile } from './profile';
 import { policy } from './policy';
 import { resource } from './resource';
 import { target_user } from './target_user';
+import { contact_information } from './contact_information';
 
 export default {
   'service_item': service_item,
@@ -55,5 +56,6 @@ export default {
   'policy': policy,
   resource,
   target_user,
+  contact_information,
 };
 
