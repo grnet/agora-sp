@@ -1520,6 +1520,12 @@ RESOURCES = {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
+        'rd_gla_1_geographical_availability': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'rd_gla_2_language': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
     },
     'actions': {
         '.action-template.django.list': {},

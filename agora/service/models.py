@@ -510,6 +510,13 @@ class Resource(models.Model):
     rd_mri_6_target_customer_tags = models.TextField(default=None, blank=True, null=True)
     rd_mri_7_use_cases = RichTextUploadingField(default=None, blank=True, null=True)
 
+    # Geographical and Language Availability fields
+    rd_gla_1_geographical_availability = models.CharField(max_length=255,
+        default=None,
+        blank=True,
+        null=True)
+    rd_gla_2_language = models.TextField(default=None, blank=True, null=True)
+
     def __unicode__(self):
         return str(self.rd_bai_0_id)
 
