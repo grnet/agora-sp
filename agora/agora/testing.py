@@ -207,11 +207,13 @@ RESOURCES_CRUD = {
         'create_data': {
             'name': 'CIA',
             'description': '<p>Description</p>',
+            'pd_bai_3_legal_status': "NPP",
             'pd_bai_3_legal_entity': False,
         },
         'edit_data': {
             'name': 'FBI',
             'pd_bai_3_legal_entity': True,
+            'pd_bai_3_legal_status': "NPP"
         },
     },
     'access_policies': {

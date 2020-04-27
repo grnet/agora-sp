@@ -1,7 +1,6 @@
 import { field } from 'ember-gen';
 import { fileField } from '../../lib/common';
 
-
 /********************************************
                 DETAILS VIEW
 ********************************************/
@@ -15,6 +14,7 @@ const DETAILS_FIELDSETS = [{
   fields: [
     'name',
     'contact',
+    'pd_bai_3_legal_status',
     field(
       'description', {
         type: 'text',
@@ -47,6 +47,7 @@ const EDIT_FIELDSETS = [{
   fields: [
     'name',
     'contact',
+    'pd_bai_3_legal_status',
     field(
       'description', {
         type: 'text',
@@ -79,6 +80,7 @@ const CREATE_FIELDSETS = [{
   fields: [
     'name',
     'contact',
+    'pd_bai_3_legal_status',
     field(
       'description', {
         type: 'text',

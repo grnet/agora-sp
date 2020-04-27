@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.utils import timezone
 from ckeditor_uploader.fields import RichTextUploadingField
-from agora.utils import USER_ROLES, clean_html_fields
+from agora.utils import USER_ROLES, LEGAL_STATUSES, clean_html_fields
 from common import helper
 
 class UserManager(BaseUserManager):
@@ -46,6 +46,7 @@ class Organisation(models.Model):
     """
     The organisation providing the Service
     """
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
     description = RichTextUploadingField(default=None, blank=True, null=True)
@@ -53,6 +54,10 @@ class Organisation(models.Model):
     contact = models.CharField(max_length=255,
                                default=None, blank=True, null=True)
     pd_bai_3_legal_entity = models.BooleanField(('PD.BAI.3 Legal entity'),default=False)  
+
+    pd_bai_3_legal_status = models.CharField('PB.BAI.3_Legal_Status',
+                                             max_length=255,
+                                             choices=LEGAL_STATUSES)
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)
