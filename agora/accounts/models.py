@@ -67,6 +67,14 @@ class Organisation(models.Model):
 
     pd_bai_4_website = models.TextField('PD.BAI.4_Website', default=None, blank=True, null=True)
 
+    # Location section
+    pd_loi_1_street_name_and_number = models.CharField('PD.LOI.1 Street Name and Number', max_length=50, default=None, blank=True, null=True)
+    pd_loi_2_postal_code = models.CharField('PD.LOI.1 Postal Code', max_length=20, default=None, blank=True, null=True)
+    pd_loi_3_city = models.CharField('PD.LOI.1 City', max_length=20, default=None, blank=True, null=True)
+    pd_loi_4_region = models.CharField('PD.LOI.1 Region', max_length=20, default=None, blank=True, null=True)
+    pd_loi_5_country_or_territory = models.CharField('PD.LOI.1 Country or Territory', max_length=50, default=None, blank=True, null=True)
+
+
     def save(self, *args, **kwargs):
         clean_html_fields(self)
         super(Organisation, self).save(*args, **kwargs)

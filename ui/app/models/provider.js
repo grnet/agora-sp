@@ -1,5 +1,6 @@
 import DS from 'ember-data';
 import { shorten } from '../utils/common/common';
+import { countries } from '../resources';
 import ENV from '../config/environment';
 
 const {
@@ -52,6 +53,36 @@ export default DS.Model.extend({
   pd_bai_4_website: DS.attr({
     label: 'provider.fields.pd_bai_4_website',
     hint: 'provider.hints.pd_bai_4_website',
+  }),
+  // location information
+  pd_loi_1_street_name_and_number: DS.attr({
+    label: 'provider.fields.pd_loi_1_street_name_and_number',
+    hint: 'provider.hints.pd_loi_1_street_name_and_number',
+  }),
+  pd_loi_2_postal_code: DS.attr({
+    label: 'provider.fields.pd_loi_2_postal_code',
+    hint: 'provider.hints.pd_loi_2_postal_code',
+  }),
+  pd_loi_3_city: DS.attr({
+    label: 'provider.fields.pd_loi_3_city',
+    hint: 'provider.hints.pd_loi_3_city',
+  }),
+  pd_loi_4_region: DS.attr({
+    label: 'provider.fields.pd_loi_4_region',
+    hint: 'provider.hints.pd_loi_4_region',
+  }),
+  pd_loi_5_country_or_territory: DS.attr({
+    type: 'select',
+    // Quickly bake an appropriate select-friendly array from original countries resource
+    choices: function(){
+      let countrySel = []
+      for (let country of countries) {
+        countrySel.push([country.toLowerCase(),country]);
+      }
+      return countrySel;
+    }(),
+    label: 'provider.fields.pd_loi_5_country_or_territory',
+    hint: 'provider.hints.pd_loi_5_country_or_territory',
   }),
   // computed
   short_desc: computed('description', function() {

@@ -1316,10 +1316,28 @@ ORGANISATIONS = {
           '.flag.nullable.default': {},
         },
         'pd_bai_3_legal_status': {
+          '.field.string': {}},
+        'pd_bai_4_website': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'pd_bai_4_website': {
+        'pd_loi_1_street_name_and_number': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+        'pd_loi_2_postal_code': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+        'pd_loi_3_city': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+        'pd_loi_4_region': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+        'pd_loi_5_country_or_territory': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },

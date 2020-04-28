@@ -213,6 +213,11 @@ RESOURCES_CRUD = {
             'pd_bai_1_name': 'pd_name',
             'pd_bai_2_abbreviation': 'pd_abb',
             'pd_bai_4_website': 'pd_website',
+            'pd_loi_1_street_name_and_number': 'Kings Cross 7',
+            'pd_loi_2_postal_code': '938393',
+            'pd_loi_3_city': 'London',
+            'pd_loi_4_region': 'Greater London',
+            'pd_loi_5_country_or_territory': 'United Kingdom'
         },
         'edit_data': {
             'name': 'FBI',
@@ -222,6 +227,11 @@ RESOURCES_CRUD = {
             'pd_bai_1_name': 'pd_name',
             'pd_bai_2_abbreviation': 'pd_abb',
             'pd_bai_4_website': 'pd_website',
+            'pd_loi_1_street_name_and_number': 'Kings Cross 17',
+            'pd_loi_2_postal_code': '538393',
+            'pd_loi_3_city': 'London',
+            'pd_loi_4_region': 'Major London',
+            'pd_loi_5_country_or_territory': 'Great Britain'
         },
     },
     'access_policies': {

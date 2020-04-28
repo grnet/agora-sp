@@ -16,6 +16,12 @@ export default AgoraGen.extend({
     validators: {
       name: [validate.presence(true)],
       contact: [validate.format({type: 'email', allowBlank: true})],
+      pd__1_geographical_availability: [validate.presence(true)],
+      pd_loi_1_street_name_and_number: [validate.presence(true)],
+      pd_loi_2_postal_code: [validate.presence(true)],
+      pd_loi_3_city: [validate.presence(true)],
+      pd_loi_5_country_or_territory: [validate.presence(true)],
+
     },
   },
   list: {

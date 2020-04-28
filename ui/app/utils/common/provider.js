@@ -35,6 +35,20 @@ const DETAILS_FIELDSETS = [{
     ),
     'pd_bai_3_legal_entity',
   ]
+},
+{
+  label: 'provider.cards.location',
+  text: 'provider.cards.location_hint',
+  layout: {
+    flex: [100, 100, 100, 100, 100]
+  },
+  fields: [
+    'pd_loi_1_street_name_and_number',
+    'pd_loi_2_postal_code',
+    'pd_loi_3_city',
+    'pd_loi_4_region',
+    'pd_loi_5_country_or_territory',
+  ]
 }]
 
 
@@ -71,6 +85,20 @@ const EDIT_FIELDSETS = [{
     ),
     'pd_bai_3_legal_entity',
   ]
+},
+{
+  label: 'provider.cards.location',
+  text: 'provider.cards.location_hint',
+  layout: {
+    flex: [100, 100, 100, 100, 100]
+  },
+  fields: [
+    'pd_loi_1_street_name_and_number',
+    'pd_loi_2_postal_code',
+    'pd_loi_3_city',
+    'pd_loi_4_region',
+    'pd_loi_5_country_or_territory',
+  ]
 }]
 
 
@@ -101,6 +129,20 @@ const CREATE_FIELDSETS = [{
       }
     ),
     'pd_bai_3_legal_entity',
+  ]
+},
+{
+  label: 'provider.cards.location',
+  text: 'provider.cards.location_hint',
+  layout: {
+    flex: [100, 100, 100, 100, 100]
+  },
+  fields: [
+    'pd_loi_1_street_name_and_number',
+    'pd_loi_2_postal_code',
+    'pd_loi_3_city',
+    'pd_loi_4_region',
+    'pd_loi_5_country_or_territory',
   ]
 }]
 
