@@ -34,4 +34,11 @@ export default DS.Model.extend({
 
     return `${first_name} ${last_name}`;
   }),
+
+  displayInfo: Ember.computed('full_name', 'organisation.name', function() {
+    const full_name = this.get('full_name');
+    const org = this.get('organisation.name');
+
+    return `${full_name} (${org})`;
+  }),
 });

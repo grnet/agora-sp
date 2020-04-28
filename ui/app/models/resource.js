@@ -91,7 +91,14 @@ export default DS.Model.extend({
     },
   }),
 
-  main_contact: DS.belongsTo('contact-information'),
+  main_contact: DS.belongsTo('contact-information', {
+    label: 'resource.fields.main_contact',
+    hint: 'resource.hints.main_contact',
+  }),
+  public_contact: DS.belongsTo('contact-information', {
+    label: 'resource.fields.public_contact',
+    hint: 'resource.hints.public_contact',
+  }),
 
   __api__: {
     serialize: function(hash) {

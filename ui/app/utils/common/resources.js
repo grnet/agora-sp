@@ -119,17 +119,58 @@ const GEO_FIELDSET = {
 const CONTACT_FIELDSET = {
   label: 'resource.cards.contact',
   fields: [
-    'main_contact',
+    field(
+      'main_contact', {
+        displayAttr: 'displayInfo'
+      }
+    ),
+    field(
+      'public_contact', {
+        displayAttr: 'displayInfo'
+      }
+    ),
   ],
   layout: {
-    flex: [100],
+    flex: [100, 100],
+  },
+};
+
+const DETAILS_CONTACT_MAIN_FIELDSET = {
+  label: 'resource.cards.main_contact',
+  fields: [
+    field('main_contact.first_name', {label: 'resource.fields.mc_first_name'}),
+    field('main_contact.last_name', {label: 'resource.fields.mc_last_name'}),
+    field('main_contact.email', {label: 'resource.fields.mc_email'}),
+    field('main_contact.phone', {label: 'resource.fields.mc_phone'}),
+    field('main_contact.position', {label: 'resource.fields.mc_position'}),
+    field('main_contact.organisation.name', {label: 'resource.fields.mc_organisation'}),
+  ],
+  layout: {
+    flex: [50, 50, 50, 50, 50, 50],
+  },
+};
+
+
+const DETAILS_CONTACT_PUBLIC_FIELDSET = {
+  label: 'resource.cards.public_contact',
+  fields: [
+    field('public_contact.first_name', {label: 'resource.fields.pc_first_name'}),
+    field('public_contact.last_name', {label: 'resource.fields.pc_last_name'}),
+    field('public_contact.email', {label: 'resource.fields.pc_email'}),
+    field('public_contact.phone', {label: 'resource.fields.pc_phone'}),
+    field('public_contact.position', {label: 'resource.fields.pc_position'}),
+    field('public_contact.organisation.name', {label: 'resource.fields.pc_organisation'}),
+  ],
+  layout: {
+    flex: [50, 50, 50, 50, 50, 50],
   },
 };
 const DETAILS_FIELDSETS = [
   DETAILS_BASIC_INFO_FIELDSET,
   DETAILS_MARKETING_FIELDSET,
   GEO_FIELDSET,
-  CONTACT_FIELDSET,
+  DETAILS_CONTACT_MAIN_FIELDSET,
+  DETAILS_CONTACT_PUBLIC_FIELDSET,
 ];
 
 const CREATE_FIELDSETS = [
