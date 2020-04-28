@@ -1620,8 +1620,66 @@ RESOURCES = {
             '.flag.nullable.default': {}},
         'rd_coi_1_first_name': {
             '.field.string': {},
+            '.flag.nowrite': {},
             'source': 'main_contact.first_name',
             '.flag.nullable.default': {}},
+        'rd_coi_2_last_name': {
+            '.field.string': {},
+            'source': 'main_contact.last_name',
+            '.flag.nowrite': {},
+            '.flag.nullable.default': {}},
+        'rd_coi_3_email': {
+            '.field.string': {},
+            'source': 'main_contact.email',
+            '.flag.nowrite': {},
+            '.flag.nullable.default': {}},
+        'rd_coi_4_phone': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            'source': 'main_contact.phone',
+            '.flag.nullable.default': {}},
+        'rd_coi_5_position': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            'source': 'main_contact.position',
+            '.flag.nullable.default': {}},
+        'rd_coi_6_organisation': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            'source': 'main_contact.organisation.name',
+            '.flag.nullable.default': {}},
+
+        'rd_coi_7_first_name': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            'source': 'public_contact.first_name',
+            '.flag.nullable.default': {}},
+        'rd_coi_8_last_name': {
+            '.field.string': {},
+            'source': 'public_contact.last_name',
+            '.flag.nowrite': {},
+            '.flag.nullable.default': {}},
+        'rd_coi_9_email': {
+            '.field.string': {},
+            'source': 'public_contact.email',
+            '.flag.nowrite': {},
+            '.flag.nullable.default': {}},
+        'rd_coi_10_phone': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            'source': 'public_contact.phone',
+            '.flag.nullable.default': {}},
+        'rd_coi_11_position': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            'source': 'public_contact.position',
+            '.flag.nullable.default': {}},
+        'rd_coi_12_organisation': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            'source': 'public_contact.organisation.name',
+            '.flag.nullable.default': {}},
+
     },
     'actions': {
         '.action-template.django.list': {},
