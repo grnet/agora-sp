@@ -172,8 +172,6 @@ def get_rules():
         ('api/v2/service-admins', 'destroy', 'serviceadmin', '*', 'self_pending', '*', '*'),
         ('api/v2/service-admins', 'delete', 'serviceadmin', '*', 'self_pending', '*', '*'),
 
-
-
         ('api/v2/contact-information', 'list', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/contact-information', 'list', 'admin', '*', '*', '*', '*'),
         ('api/v2/contact-information', 'list', 'serviceadmin', '*', '*', '*', '*'),

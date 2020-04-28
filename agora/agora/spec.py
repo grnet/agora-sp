@@ -1442,6 +1442,50 @@ TARGET_USERS = {
 }
 
 
+CONTACT_INFORMATION = {
+    '.collection.django': {},
+    'model': 'owner.models.ContactInformation',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'first_name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'last_name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'email': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'phone': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'position': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'organisation': {
+            '.field.ref': {},
+            'source': 'organisation_id',
+            'to': '/api/v2/providers',
+            '.flag.filterable': {},
+            '.flag.nullable.default': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
 RESOURCES = {
     '.collection.django': {},
     'model': 'service.models.Resource',
@@ -1528,6 +1572,20 @@ RESOURCES = {
         'rd_gla_2_language': {
             '.field.string': {},
             '.flag.nullable.default': {}},
+        'main_contact': {
+            '.field.ref': {},
+            'source': 'main_contact_id',
+            'to': '/api/v2/contact-information',
+            '.flag.nullable.default': {}},
+        'public_contact': {
+            '.field.ref': {},
+            'source': 'public_contact_id',
+            'to': '/api/v2/contact-information',
+            '.flag.nullable.default': {}},
+        'rd_coi_1_first_name': {
+            '.field.string': {},
+            'source': 'main_contact.first_name',
+            '.flag.nullable.default': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -1584,6 +1642,7 @@ APP_CONFIG = {
                 'federation-members': FEDERATION_MEMBERS,
                 'resources': RESOURCES,
                 'target-users': TARGET_USERS,
+                'contact-information': CONTACT_INFORMATION,
             },
         },
     },

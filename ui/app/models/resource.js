@@ -91,6 +91,8 @@ export default DS.Model.extend({
     },
   }),
 
+  main_contact: DS.belongsTo('contact-information'),
+
   __api__: {
     serialize: function(hash) {
       // do not send readonly keys to backend

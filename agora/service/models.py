@@ -517,6 +517,16 @@ class Resource(models.Model):
         null=True)
     rd_gla_2_language = models.TextField(default=None, blank=True, null=True)
 
+    # Contact Information
+    main_contact = models.ForeignKey(ContactInformation,
+        blank=True,
+        null=True,
+        related_name="main_contact_services")
+    public_contact = models.ForeignKey(ContactInformation,
+        blank=True,
+        null=True,
+        related_name="public_contact_services")
+
     def __unicode__(self):
         return str(self.rd_bai_0_id)
 
