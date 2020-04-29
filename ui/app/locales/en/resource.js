@@ -67,6 +67,7 @@ const resource = {
     search: 'Search by ID or Name',
   },
   menu: 'Resources',
+  my_menu: 'My Resources',
 };
 
 export { resource }

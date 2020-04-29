@@ -1,15 +1,15 @@
 import Ember from 'ember';
-import ServiceItemGen from '../gen/service-item';
-import { get_my_services } from '../utils/common/common';
+import ResourceGen from '../gen/resource';
+import { get_my_resources } from '../utils/common/common';
 
 const {
   get,
   computed,
 } = Ember;
 
-export default ServiceItemGen.extend({
-  name: 'my-services',
-  path: 'my-services',
+export default ResourceGen.extend({
+  name: 'my-resources',
+  path: 'my-resources',
   order: 3,
   list: {
     getModel: function(params) {
@@ -18,12 +18,12 @@ export default ServiceItemGen.extend({
       params = params || {};
       params.adminships__user_id = user_id;
 
-      return this.store.query('service-item', params).then(function(services) {
-        return get_my_services(services, user_id);
+      return this.store.query('resource', params).then(function(resources) {
+        return get_my_services(resources, user_id);
       });
     },
     page: {
-      title: 'service_item.my_menu',
+      title: 'resource.my_menu',
     },
     menu: {
       display: computed('role', function(){
@@ -31,7 +31,7 @@ export default ServiceItemGen.extend({
 
         return role === 'serviceadmin';
       }),
-      label: 'service_item.my_menu',
+      label: 'resource.my_menu',
       icon: 'book',
     },
   },
