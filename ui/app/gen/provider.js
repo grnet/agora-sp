@@ -41,11 +41,7 @@ export default AgoraGen.extend({
     menu: {
       label: 'provider.menu',
       order: 50,
-      group: {
-        name: 'user-information',
-        order: 100,
-        label: 'search',
-      },
+      icon: 'account_balance'
 
     },
     filter: {

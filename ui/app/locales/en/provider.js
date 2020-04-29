@@ -3,6 +3,7 @@ const provider = {
     'basic_information': 'Basic information',
     'basic_hint': '',
     'location': 'Location information',
+    'location_hint': '',
   },
   'fields': {
     'logo': 'Service provider Logo',
@@ -39,10 +40,10 @@ const provider = {
     'pd_loi_5_country_or_territory': 'Select a Country or Territory that the Provider is located in.<br />example: Greece'
   },
   'belongs': {
-    'name': 'Service provider',
+    'name': 'Provider',
     'hint': ''
   },
-  'menu': 'Service Providers'
+  'menu': 'Providers'
 };
 
 export { provider };
