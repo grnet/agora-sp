@@ -1,3 +1,4 @@
+// UNUSED
 import { AgoraGen } from '../lib/common';
 
 export default AgoraGen.extend({
@@ -6,6 +7,7 @@ export default AgoraGen.extend({
   resourceName: 'users',
   list: {
     menu: {
+      display: false,
       label: 'Users',
     }
   }

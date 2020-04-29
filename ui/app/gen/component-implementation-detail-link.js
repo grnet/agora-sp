@@ -1,3 +1,4 @@
+// UNUSED
 import validate from 'ember-gen/validate';
 import { AgoraGen } from '../lib/common';
 import {
@@ -54,6 +55,7 @@ export default AgoraGen.extend({
       title: 'cidl.menu',
     },
     menu: {
+      display: false,
       label: 'cidl.menu',
       group: 'components',
     },

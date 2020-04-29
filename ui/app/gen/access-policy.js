@@ -1,3 +1,4 @@
+// UNUSED
 import { AgoraGen } from '../lib/common';
 import validate from 'ember-gen/validate';
 
@@ -33,6 +34,7 @@ export default AgoraGen.extend({
       title: 'access_policy.menu',
     },
     menu: {
+      display: false,
       label: 'access_policy.menu',
       icon: 'lock_open',
     },

@@ -1,3 +1,4 @@
+// UNUSED
 import { AgoraGen } from '../lib/common';
 import {
   CREATE_FIELDSETS,
@@ -16,6 +17,7 @@ export default AgoraGen.extend({
       title: 'component.menu'
     },
     menu: {
+      display: false,
       label: 'component.menu',
       group: {
         name: 'components',

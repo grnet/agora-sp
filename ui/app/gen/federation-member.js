@@ -1,3 +1,4 @@
+// UNUSED
 import validate from 'ember-gen/validate';
 import { field } from 'ember-gen';
 import { AgoraGen } from '../lib/common';
@@ -27,6 +28,7 @@ export default AgoraGen.extend({
       fields: ['name', 'webpage', 'country'],
     },
     menu: {
+      display: false,
       label: 'federation_member.menu',
       order: 500,
       group: {

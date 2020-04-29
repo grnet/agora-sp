@@ -1,3 +1,4 @@
+// UNUSED
 import { AgoraGen } from '../lib/common';
 import { field } from 'ember-gen';
 
@@ -37,6 +38,7 @@ export default AgoraGen.extend({
       title: 'service_status.menu'
     },
     menu: {
+      display: false,
       label: 'service_status.menu',
       group: {
         name: 'settings',
