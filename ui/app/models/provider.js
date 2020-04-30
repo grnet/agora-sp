@@ -72,17 +72,30 @@ export default DS.Model.extend({
     hint: 'provider.hints.pd_loi_4_region',
   }),
   pd_loi_5_country_or_territory: DS.attr({
-    type: 'select',
-    // Quickly bake an appropriate select-friendly array from original countries resource
-    choices: function(){
-      let countrySel = []
-      for (let country of countries) {
-        countrySel.push([country.toLowerCase(),country]);
-      }
-      return countrySel;
-    }(),
-    label: 'provider.fields.pd_loi_5_country_or_territory',
-    hint: 'provider.hints.pd_loi_5_country_or_territory',
+  type: 'select',
+  // Quickly bake an appropriate select-friendly array from original countries resource
+  choices: function () {
+    let countrySel = []
+    for (let country of countries) {
+      countrySel.push([country.toLowerCase(), country]);
+    }
+    return countrySel;
+  }(),
+  label: 'provider.fields.pd_loi_5_country_or_territory',
+  hint: 'provider.hints.pd_loi_5_country_or_territory',
+  }),
+  // marketing information
+  pd_mri_1_description: DS.attr({
+    label: 'provider.fields.pd_mri_1_description',
+    hint: 'provider.hints.pd_mri_1_description',
+  }),
+  pd_mri_2_logo: DS.attr({
+    label: 'provider.fields.pd_mri_2_logo',
+    hint: 'provider.hints.pd_mri_2_logo',
+  }),
+  pd_mri_3_multimedia: DS.attr({
+    label: 'provider.fields.pd_mri_3_multimedia',
+    hint: 'provider.hints.pd_mri_3_multimedia',
   }),
   // computed
   short_desc: computed('description', function() {

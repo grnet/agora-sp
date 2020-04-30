@@ -4,6 +4,8 @@ const provider = {
     'basic_hint': '',
     'location': 'Location information',
     'location_hint': '',
+    'marketing': 'Marketing Information',
+    'marketing_hint': 'Marketing Information for the Provider'
   },
   'fields': {
     'logo': 'Service provider Logo',
@@ -20,7 +22,10 @@ const provider = {
     'pd_loi_2_postal_code': 'PD.LOI.2 - Postal Code',
     'pd_loi_3_city': 'PD.LOI.3 - City',
     'pd_loi_4_region': 'PD.LOI.4 - Region',
-    'pd_loi_5_country_or_territory': 'PD.LOI.5 - Country or Territory'
+    'pd_loi_5_country_or_territory': 'PD.LOI.5 - Country or Territory',
+    'pd_mri_1_description': 'PD.MRI.1 - Description',
+    'pd_mri_2_logo': 'PD.MRI.2 - Logo',
+    'pd_mri_3_multimedia': 'PD.MRI.3 - Multimedia'
   },
   'hints': {
     'name': '',
@@ -37,7 +42,10 @@ const provider = {
     'pd_loi_2_postal_code': 'Postal code of the Provider\'s physical location.<br />example: 10561',
     'pd_loi_3_city': 'City that the Provider is located in.<br />example: Athens',
     'pd_loi_4_region': 'Region that the Provider is located in.<br />example: Attika',
-    'pd_loi_5_country_or_territory': 'Select a Country or Territory that the Provider is located in.<br />example: Greece'
+    'pd_loi_5_country_or_territory': 'Select a Country or Territory that the Provider is located in.<br />example: Greece',
+    'pd_mri_1_description': 'The description of the Provider',
+    'pd_mri_2_logo': 'Link to the logo/visual identity of the Provider',
+    'pd_mri_3_multimedia': 'Link to video,slideshow,photos,screenshots with details of the Provider'
   },
   'belongs': {
     'name': 'Provider',

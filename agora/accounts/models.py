@@ -74,6 +74,12 @@ class Organisation(models.Model):
     pd_loi_4_region = models.CharField('PD.LOI.1 Region', max_length=20, default=None, blank=True, null=True)
     pd_loi_5_country_or_territory = models.CharField('PD.LOI.1 Country or Territory', max_length=50, default=None, blank=True, null=True)
 
+    # Marketing section
+    pd_mri_1_description = models.CharField('PD.MRI.1_Description', max_length=100, default=None, blank=True, null=True)
+
+    pd_mri_2_logo = models.TextField('PD.MRI.2_Logo', default=None, blank=True, null=True)
+
+    pd_mri_3_multimedia = models.TextField('PD.MRI.3_Multimedia', default=None, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)

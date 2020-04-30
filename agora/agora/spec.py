@@ -1341,6 +1341,18 @@ ORGANISATIONS = {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
+        'pd_mri_1_description': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+        'pd_mri_2_logo': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+        'pd_mri_3_multimedia': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
     },
     'actions': {
         '.action-template.django.list': {},

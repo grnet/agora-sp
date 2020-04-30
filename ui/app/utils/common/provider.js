@@ -49,6 +49,18 @@ const DETAILS_FIELDSETS = [{
     'pd_loi_4_region',
     'pd_loi_5_country_or_territory',
   ]
+},
+{
+  label: 'provider.cards.marketing',
+  text: 'provider.cards.marketing_hint',
+  layout: {
+    flex: [100, 100, 100]
+  },
+  fields: [
+  'pd_mri_1_description',
+  'pd_mri_2_logo',
+  'pd_mri_3_multimedia',
+]
 }]
 
 
@@ -60,7 +72,7 @@ const EDIT_FIELDSETS = [{
   label: 'provider.cards.basic_information',
   text: 'provider.cards.basic_hint',
   layout: {
-    flex: [100, 100, 100, 100, 100, 100, 50]
+    flex: [100, 100, 100, 100, 100, 100, 100, 100, 100, 50]
   },
   fields: [
     'name',
@@ -99,6 +111,18 @@ const EDIT_FIELDSETS = [{
     'pd_loi_4_region',
     'pd_loi_5_country_or_territory',
   ]
+},
+{
+  label: 'provider.cards.marketing',
+  text: 'provider.cards.marketing_hint',
+  layout: {
+    flex: [100, 100, 100]
+  },
+  fields: [
+  'pd_mri_1_description',
+  'pd_mri_2_logo',
+  'pd_mri_3_multimedia',
+]
 }]
 
 
@@ -111,7 +135,7 @@ const CREATE_FIELDSETS = [{
   label: 'provider.cards.basic_information',
   text: 'provider.cards.basic_hint',
   layout: {
-    flex: [100, 100, 100, 100, 100, 100, 50]
+    flex: [100, 100, 100, 100, 100, 100, 100, 100, 100, 50]
   },
   fields: [
     'name',
@@ -144,6 +168,18 @@ const CREATE_FIELDSETS = [{
     'pd_loi_4_region',
     'pd_loi_5_country_or_territory',
   ]
+},
+{
+  label: 'provider.cards.marketing',
+  text: 'provider.cards.marketing_hint',
+  layout: {
+    flex: [100, 100, 100]
+  },
+  fields: [
+  'pd_mri_1_description',
+  'pd_mri_2_logo',
+  'pd_mri_3_multimedia',
+]
 }]
 
 

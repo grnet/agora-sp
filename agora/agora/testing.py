@@ -217,7 +217,10 @@ RESOURCES_CRUD = {
             'pd_loi_2_postal_code': '938393',
             'pd_loi_3_city': 'London',
             'pd_loi_4_region': 'Greater London',
-            'pd_loi_5_country_or_territory': 'United Kingdom'
+            'pd_loi_5_country_or_territory': 'United Kingdom',
+            'pd_mri_1_description': 'short provider description',
+            'pd_mri_2_logo': 'https://example.com/provider.png',
+            'pd_mri_3_multimedia': 'https://vimeo.com/1001010938',
         },
         'edit_data': {
             'name': 'FBI',
@@ -231,7 +234,10 @@ RESOURCES_CRUD = {
             'pd_loi_2_postal_code': '538393',
             'pd_loi_3_city': 'London',
             'pd_loi_4_region': 'Major London',
-            'pd_loi_5_country_or_territory': 'Great Britain'
+            'pd_loi_5_country_or_territory': 'Great Britain',
+            'pd_mri_1_description': 'short provider description',
+            'pd_mri_2_logo': 'https://example.com/provider.png',
+            'pd_mri_3_multimedia': 'https://vimeo.com/1001010938',
         },
     },
     'access_policies': {
