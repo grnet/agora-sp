@@ -6,7 +6,7 @@ const {
 } = Ember;
 
 
-const DEFAULT_ROUTE = ENV.APP.default_route || 'component.index';
+const DEFAULT_ROUTE = ENV.APP.default_route || 'resource.index';
 
 export default Ember.Route.extend({
   session: Ember.inject.service(),

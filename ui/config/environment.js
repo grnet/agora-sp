@@ -26,7 +26,7 @@ module.exports = function(environment) {
     },
     APP: {
       date_format: 'DD/MM/YYYY',
-      default_route: 'service-item.index',
+      default_route: 'resource.index',
       domestic_login_msg: 'Log in with Check-in',
 
       footer: {
