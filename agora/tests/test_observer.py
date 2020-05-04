@@ -29,77 +29,28 @@ def assertions_crud(resource, user, superadmin):
 
 # Tests for resources with no foreign keys or special handling
 
-def test_user_roles(observer, superadmin):
-    assertions_crud('user_roles', observer, superadmin)
-
-
-def test_service_trls(observer, superadmin):
-    assertions_crud('service_trls', observer, superadmin)
-
-
-def test_service_status(observer, superadmin):
-    assertions_crud('service_status', observer, superadmin)
-
-
-def test_service_categories(observer, superadmin):
-    assertions_crud('service_categories', observer, superadmin)
-
-
-def test_services(observer, superadmin):
-    assertions_crud('services', observer, superadmin)
-
-
-def test_components(observer, superadmin):
-    assertions_crud('components', observer, superadmin)
-
-
-def test_access_policies(observer, superadmin):
-    assertions_crud('access_policies', observer, superadmin)
-
-
-def test_federation_members(observer, superadmin):
-    assertions_crud('federation_members', observer, superadmin)
+def test_target_users(observer, superadmin):
+    assertions_crud('target_users', observer, superadmin)
 
 
 # Tests for ServiceAdminship
 
-def test_serviceadminship(observer, superadmin):
-    """
-    Observer cannot list  ServiceAdminships
-    Observer cannot create  ServiceAdminships
-    """
-    service_url = RESOURCES_CRUD['services']['url']
-    service_data = RESOURCES_CRUD['services']['create_data']
-    resp = superadmin.post(service_url, service_data)
+# def test_serviceadminship(observer, superadmin):
+    # """
+    # Observer cannot list  ServiceAdminships
+    # Observer cannot create  ServiceAdminships
+    # """
+    # service_url = RESOURCES_CRUD['services']['url']
+    # service_data = RESOURCES_CRUD['services']['create_data']
+    # resp = superadmin.post(service_url, service_data)
 
-    sa_url = RESOURCES_CRUD['service_admins']['url']
+    # sa_url = RESOURCES_CRUD['service_admins']['url']
 
-    resp = observer.get(sa_url)
-    assert resp.status_code == 403
+    # resp = observer.get(sa_url)
+    # assert resp.status_code == 403
 
-    resp = observer.post(sa_url, {'admin': 1, 'service': 1})
-    assert resp.status_code == 403
+    # resp = observer.post(sa_url, {'admin': 1, 'service': 1})
+    # assert resp.status_code == 403
 
 
 # Tests for resources with related data
-
-def test_component_implementations(observer, superadmin, component_id):
-    url = '/api/v2/component-implementations/'
-    data = {
-        'name': 'component category',
-        'component_id': component_id
-    }
-    resp = observer.post(url, data)
-    assert resp.status_code == 403
-
-
-def test_component_implementations_details(observer, superadmin, component_id,
-                                           component_implementation_id):
-    url = '/api/v2/component-implementation-details/'
-    data = {
-        'version': '1.0.0',
-        'component_id': component_id,
-        'component_implementation_id': component_implementation_id
-    }
-    resp = observer.post(url, data)
-    assert resp.status_code == 403
