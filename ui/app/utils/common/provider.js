@@ -1,6 +1,55 @@
 import { field } from 'ember-gen';
 import { fileField } from '../../lib/common';
 
+
+const CONTACT_FIELDSET = {
+  label: 'provider.cards.contact',
+  fields: [
+    field(
+      'main_contact', {
+        displayAttr: 'displayInfo'
+      }
+    ),
+    field(
+      'public_contact', {
+        displayAttr: 'displayInfo'
+      }
+    ),
+  ],
+  layout: {
+    flex: [100, 100],
+  },
+};
+
+const DETAILS_CONTACT_MAIN_FIELDSET = {
+  label: 'provider.cards.main_contact',
+  fields: [
+    field('main_contact.first_name', {label: 'provider.fields.mc_first_name'}),
+    field('main_contact.last_name', {label: 'provider.fields.mc_last_name'}),
+    field('main_contact.email', {label: 'provider.fields.mc_email'}),
+    field('main_contact.phone', {label: 'provider.fields.mc_phone'}),
+    field('main_contact.position', {label: 'provider.fields.mc_position'}),
+  ],
+  layout: {
+    flex: [50, 50, 50, 50, 50],
+  },
+};
+
+
+const DETAILS_CONTACT_PUBLIC_FIELDSET = {
+  label: 'provider.cards.public_contact',
+  fields: [
+    field('public_contact.first_name', {label: 'provider.fields.pc_first_name'}),
+    field('public_contact.last_name', {label: 'provider.fields.pc_last_name'}),
+    field('public_contact.email', {label: 'provider.fields.pc_email'}),
+    field('public_contact.phone', {label: 'provider.fields.pc_phone'}),
+    field('public_contact.position', {label: 'provider.fields.pc_position'}),
+  ],
+  layout: {
+    flex: [50, 50, 50, 50, 50],
+  },
+};
+
 /********************************************
                 DETAILS VIEW
 ********************************************/
@@ -61,7 +110,10 @@ const DETAILS_FIELDSETS = [{
   'pd_mri_2_logo',
   'pd_mri_3_multimedia',
 ]
-}]
+},
+DETAILS_CONTACT_MAIN_FIELDSET,
+DETAILS_CONTACT_PUBLIC_FIELDSET,
+]
 
 
 /********************************************
@@ -123,7 +175,9 @@ const EDIT_FIELDSETS = [{
   'pd_mri_2_logo',
   'pd_mri_3_multimedia',
 ]
-}]
+},
+CONTACT_FIELDSET
+]
 
 
 
@@ -180,8 +234,9 @@ const CREATE_FIELDSETS = [{
   'pd_mri_2_logo',
   'pd_mri_3_multimedia',
 ]
-}]
-
+},
+CONTACT_FIELDSET,
+]
 
 export {
   DETAILS_FIELDSETS,

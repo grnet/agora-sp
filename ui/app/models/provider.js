@@ -101,4 +101,15 @@ export default DS.Model.extend({
   short_desc: computed('description', function() {
     return shorten(get(this, 'description'));
   }),
+  main_contact: DS.belongsTo('contact-information', {
+    label: 'provider.fields.main_contact',
+    hint: 'provider.hints.main_contact',
+    inverse: null
+  }),
+  public_contact: DS.belongsTo('contact-information', {
+    label: 'provider.fields.public_contact',
+    hint: 'provider.hints.public_contact',
+    inverse: null
+  }),
+
 });

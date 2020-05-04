@@ -5,7 +5,11 @@ const provider = {
     'location': 'Location information',
     'location_hint': '',
     'marketing': 'Marketing Information',
-    'marketing_hint': 'Marketing Information for the Provider'
+    'marketing_hint': 'Marketing Information for the Provider',
+    'contact': 'Contact Information',
+    'main_contact': 'Main Contact/Service Owner',
+    'public_contact': 'Public Contact',
+
   },
   'fields': {
     'logo': 'Service provider Logo',
@@ -25,7 +29,19 @@ const provider = {
     'pd_loi_5_country_or_territory': 'PD.LOI.5 - Country or Territory',
     'pd_mri_1_description': 'PD.MRI.1 - Description',
     'pd_mri_2_logo': 'PD.MRI.2 - Logo',
-    'pd_mri_3_multimedia': 'PD.MRI.3 - Multimedia'
+    'pd_mri_3_multimedia': 'PD.MRI.3 - Multimedia',
+    'main_contact': 'Main Contact/Service Owner',
+    'public_contact': 'Public Contact',
+    'mc_first_name': 'PD.COI.1 - First Name',
+    'mc_last_name': 'PD.COI.2 - Last Name',
+    'mc_email': 'PD.COI.3 - Email',
+    'mc_phone': 'PD.COI.4 - Phone',
+    'mc_position': 'PD.COI.5 - Position',
+    'pc_first_name': 'PD.COI.6 - First Name',
+    'pc_last_name': 'PD.COI.7 - Last Name',
+    'pc_email': 'PD.COI.8 - Email',
+    'pc_phone': 'PD.COI.9 - Phone',
+    'pc_position': 'PD.COI.10 - Position',
   },
   'hints': {
     'name': '',
@@ -45,7 +61,9 @@ const provider = {
     'pd_loi_5_country_or_territory': 'Select a Country or Territory that the Provider is located in.<br />example: Greece',
     'pd_mri_1_description': 'The description of the Provider',
     'pd_mri_2_logo': 'Link to the logo/visual identity of the Provider',
-    'pd_mri_3_multimedia': 'Link to video,slideshow,photos,screenshots with details of the Provider'
+    'pd_mri_3_multimedia': 'Link to video,slideshow,photos,screenshots with details of the Provider',
+    'main_contact': 'This info will not be publicly exposed',
+    'public_contact': 'This info will be exposed to public API ',
   },
   'belongs': {
     'name': 'Provider',

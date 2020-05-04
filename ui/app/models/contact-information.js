@@ -20,10 +20,12 @@ export default DS.Model.extend({
   position: DS.attr({
     label: 'contact_information.fields.position',
     hint: 'contact_information.hints.position',
+    inverse: null,
   }),
   organisation: DS.belongsTo('provider', {
     label: 'contact_information.fields.organisation',
     hint: 'contact_information.hints.organisation',
+    inverse: null,
     formAttrs: {
       optionLabelAttr: 'name',
     },

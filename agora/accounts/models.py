@@ -81,6 +81,10 @@ class Organisation(models.Model):
 
     pd_mri_3_multimedia = models.TextField('PD.MRI.3_Multimedia', default=None, blank=True, null=True)
 
+    main_contact = models.ForeignKey('owner.ContactInformation', blank=True, null=True, related_name="main_contact_provders")
+
+    public_contact = models.ForeignKey('owner.ContactInformation', blank=True, null=True, related_name="public_contact_providers")
+
     def save(self, *args, **kwargs):
         clean_html_fields(self)
         super(Organisation, self).save(*args, **kwargs)
