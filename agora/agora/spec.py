@@ -566,6 +566,12 @@ CUSTOM_USERS = {
             '.flag.orderable': {},
             '.flag.filterable': {},
             '.field.string': {}},
+        'organisation': {
+            '.field.ref': {},
+            'source': 'organisation_id',
+            'to': '/api/v2/providers',
+            '.flag.filterable': {},
+            '.flag.nullable.default': {}},
         'providers': {
             '.field.collection.django': {},
             ':filter_compat': True,
