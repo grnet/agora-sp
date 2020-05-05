@@ -1,6 +1,19 @@
 # COLUMNS = ('collection', 'action', 'role', 'filter', 'check' 'fields', 'comment')
 def get_rules():
     rules = [
+
+        ('api/v2/custom-users', 'list', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/custom-users', 'list', 'admin', '*', '*', '*', '*'),
+        ('api/v2/custom-users', 'retrieve', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/custom-users', 'retrieve', 'admin', '*', '*', '*', '*'),
+        ('api/v2/custom-users', 'retrieve', 'serviceadmin', 'me', '*', '*', '*'),
+        ('api/v2/custom-users', 'update', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/custom-users', 'update', 'admin', '*', '*', '*', '*'),
+        ('api/v2/custom-users', 'partial_update', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/custom-users', 'partial_update', 'admin', '*', '*', '*', '*'),
+        ('api/v2/custom-users', 'destroy', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/custom-users', 'delete', 'superadmin', '*', '*', '*', '*'),
+
         ('api/v2/service-admins', 'list', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/service-admins', 'list', 'admin', '*', '*', '*', '*'),
         ('api/v2/service-admins', 'list', 'serviceadmin', 'manages_or_self_pending', '*', '*', '*'),
