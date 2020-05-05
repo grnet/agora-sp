@@ -57,5 +57,6 @@ export default {
   resource,
   target_user,
   contact_information,
+  'Service Admin': 'Resource Admin',
 };
 

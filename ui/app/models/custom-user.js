@@ -1,11 +1,14 @@
 import DS from 'ember-data';
 import moment from 'moment';
 import ENV from '../config/environment';
+import { computeI18NChoice  } from '../lib/common';
+const { computed, get } = Ember;
 
 const DATE_FORMAT = ENV.APP.date_format,
     CHOICES = ENV.APP.resources;
 
 export default DS.Model.extend({
+  i18n: Ember.inject.service(),
   username: DS.attr({
     label: 'custom_user.fields.username',
     hint: 'custom_user.hints.username',
@@ -42,7 +45,7 @@ export default DS.Model.extend({
     label: 'custom_user.fields.shibboleth_id',
     hint: 'custom_user.hint.shibboleth_id',
   }),
-  date_joined_format: Ember.computed('date_joined', function(){
+  date_joined_format: computed('date_joined', function(){
     const date = this.get('date_joined');
 
     return date ? moment(date).format(DATE_FORMAT) : '-';
@@ -58,7 +61,15 @@ export default DS.Model.extend({
     choices: CHOICES.USER_ROLES,
     defaultValue: 'observer',
   }),
+  role_verbose: computeI18NChoice('role', CHOICES.USER_ROLES),
   providers: DS.hasMany('provider'),
+  organisation: DS.belongsTo('provider', {
+    label: 'custom_user.fields.organisation',
+    displayAttr: 'name',
+    formAttrs: {
+      optionLabelAttr: 'name',
+    },
+  }),
   __api__: {
     serialize: function(hash, serializer) {
       // do not send readonly keys to backend
