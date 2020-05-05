@@ -1,5 +1,6 @@
 import { CRUDGen } from 'ember-gen/lib/gen';
 import { field } from 'ember-gen';
+import _ from 'lodash/lodash';
 
 const {
   get,
@@ -55,8 +56,25 @@ function fileField(key, path, kind, attrs, formAttrs) {
   }, attrs || {}));
 }
 
+function computeI18NChoice(key, choices, ...args) {
+    if (typeof lastArg === 'function') {
+          hook = args.pop();
+        }
+    let choicesValues = choices.map(key => key[0]);
+
+    return computed(key, 'i18n.locale', ...args, function() {
+          let i18n = get(this, 'i18n');
+          let value = get(this, key);
+          let i18nKey = '';
+          if (choicesValues.indexOf(value) >= 0) {
+                  i18nKey = choices[choicesValues.indexOf(value)][1];
+                }
+          return value && i18nKey && i18n.t(i18nKey);
+        });
+}
 
 export {
   AgoraGen,
-  fileField
+  fileField,
+  computeI18NChoice,
 };
