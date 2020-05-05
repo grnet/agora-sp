@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.utils import timezone
 from ckeditor_uploader.fields import RichTextUploadingField
-from agora.utils import USER_ROLES, LEGAL_STATUSES, clean_html_fields
+from agora.utils import USER_ROLES, LEGAL_STATUSES, LIFECYCLE_STATUSES ,clean_html_fields
 from common import helper
 
 class UserManager(BaseUserManager):
@@ -81,9 +81,18 @@ class Organisation(models.Model):
 
     pd_mri_3_multimedia = models.TextField('PD.MRI.3_Multimedia', default=None, blank=True, null=True)
 
+    # Contact Information
     main_contact = models.ForeignKey('owner.ContactInformation', blank=True, null=True, related_name="main_contact_provders")
 
     public_contact = models.ForeignKey('owner.ContactInformation', blank=True, null=True, related_name="public_contact_providers")
+
+    # Maturity Information
+    pd_mti_1_life_cycle_status = models.CharField('PD.MTI.1_Life_Cycle_Status', max_length=255,
+                                                  default=None, blank=True, null=True,
+                                                  choices=LIFECYCLE_STATUSES)
+
+    pd_mti_2_certifications = models.CharField('PD.MTI.2_Certifications', default=None, blank=True, null=True,
+                                               max_length=250)
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)

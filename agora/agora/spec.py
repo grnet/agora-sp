@@ -1413,6 +1413,14 @@ ORGANISATIONS = {
           '.flag.nowrite': {},
           'source': 'public_contact.position',
           '.flag.nullable.default': {}},
+        'pd_mti_1_life_cycle_status': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+        'pd_mti_2_certifications': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
     },
     'actions': {
         '.action-template.django.list': {},
