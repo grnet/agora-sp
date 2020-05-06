@@ -566,6 +566,12 @@ CUSTOM_USERS = {
             '.flag.orderable': {},
             '.flag.filterable': {},
             '.field.string': {}},
+        'organisation': {
+            '.field.ref': {},
+            'source': 'organisation_id',
+            'to': '/api/v2/providers',
+            '.flag.filterable': {},
+            '.flag.nullable.default': {}},
         'providers': {
             '.field.collection.django': {},
             ':filter_compat': True,
@@ -1177,10 +1183,9 @@ SERVICE_VERSIONS = {
     },
 }
 
-SERVICE_ADMINS = {
+RESOURCE_ADMINS = {
     '.collection.django': {},
-    'model': 'service.models.ServiceAdminship',
-    ':permissions_namespace': 'agora.checks.ServiceAdminship',
+    'model': 'service.models.ResourceAdminship',
     'fields': {
         'id': {
             '.field.uuid': {},
@@ -1190,17 +1195,17 @@ SERVICE_ADMINS = {
             'default': 'pending',
             '.flag.filterable': {},
             '.flag.orderable': {}},
-        'service': {
+        'resource': {
             '.field.ref': {},
-            'source': 'service_id',
-            'to': '/api/v2/services',
+            'source': 'resource_id',
+            'to': '/api/v2/resources',
             '.flag.nullable.default': {},
             '.flag.filterable': {}},
-        'service_name': {
+        'resource_name': {
             '.field.string': {},
             '.flag.nowrite': {},
             '.flag.orderable': {},
-            'source': 'service.name'},
+            'source': 'resource.rd_bai_1_name'},
         'admin_email': {
             '.field.string': {},
             '.flag.nowrite': {},
@@ -1241,39 +1246,6 @@ SERVICE_ADMINS = {
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
         '.action-template.django.partial_update': {},
-        'create': {
-            'processors': {
-                'custom_post_create': {
-                    '.processor': {},
-                    'module_path': 'service.models.PostCreateServiceadminship',
-                    'read_keys': {'=': (
-                        'backend/raw_response',
-                        'auth/user',
-                        'request/meta/headers',
-                    )},
-                    'write_keys': {'=': (
-                        'backend/raw_response',  # declared to ensure chaining
-                    )},
-                },
-            },
-        },
-       'partial_update': {
-           'processors': {
-               'custom_post_partial_update': {
-                   '.processor': {},
-                   'module_path': 'service.models.PostPartialUpdateServiceadminship',
-                   'read_keys': {'=': (
-                       'backend/raw_response',
-                       'auth/user',
-                       'request/meta/headers',
-                   )},
-                   'write_keys': {'=': (
-                       'backend/raw_response',  # declared to ensure chaining
-                   )},
-               },
-           },
-       },
-
     },
 }
 
@@ -1605,6 +1577,7 @@ CONTACT_INFORMATION = {
 RESOURCES = {
     '.collection.django': {},
     'model': 'service.models.Resource',
+    ':permissions_namespace': 'agora.checks.Resource',
     'fields': {
         'id': {
             '.field.uuid': {},
@@ -1759,7 +1732,28 @@ RESOURCES = {
             '.flag.nowrite': {},
             'source': 'public_contact.organisation.name',
             '.flag.nullable.default': {}},
+        'resource_admins_ids': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
 
+        'adminships': {
+            '.field.collection.django': {},
+            ':filter_compat': True,
+            '.flag.nullable.default': {},
+            '.flag.filterable': {},
+            'model': 'service.models.ResourceAdminship',
+            'source': 'resourceadminships',
+            'bound': 'resource',
+            'fields': {
+                'id': {
+                    '.field.serial': {}},
+                'user_id': {
+                    '.field.integer': {},
+                    '.flag.nowrite': {},
+                    '.flag.filterable': {},
+                    'source': 'admin.pk'},
+            }
+        },
     },
     'actions': {
         '.action-template.django.list': {},
@@ -1768,8 +1762,24 @@ RESOURCES = {
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
         '.action-template.django.partial_update': {},
+        'create': {
+            'processors': {
+                'custom_post_create': {
+                    '.processor': {},
+                    'module_path': 'service.models.PostCreateResource',
+                    'read_keys': {'=': (
+                        'backend/raw_response',
+                        'auth/user',
+                    )},
+                    'write_keys': {'=': (
+                        'backend/raw_response',
+                    )},
+                },
+            },
+        },
     },
 }
+
 APP_CONFIG = {
     '.apimas_app': {},
     ':permission_rules': 'agora.permissions.get_rules',
@@ -1784,10 +1794,9 @@ APP_CONFIG = {
         'api': {
             'prefix': 'api/v2',
             'collections': {
-                'service-admins': SERVICE_ADMINS,
+                'resource-admins': RESOURCE_ADMINS,
                 'custom-users': CUSTOM_USERS,
                 'providers': ORGANISATIONS,
-                'my-providers': MY_ORGANISATIONS,
                 'resources': RESOURCES,
                 'target-users': TARGET_USERS,
                 'contact-information': CONTACT_INFORMATION,

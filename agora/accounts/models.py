@@ -114,6 +114,7 @@ class User(AbstractBaseUser, PermissionsMixin):
                                      unique=True, null=True, default=None)
     role = models.CharField(choices=USER_ROLES, max_length=20, default='observer')
     organisations = models.ManyToManyField(Organisation, blank=True)
+    organisation = models.ForeignKey(Organisation, blank=True, null=True, related_name='organisation_users')
 
     # Unused fields
     is_staff = models.BooleanField(('staff status'), default=False)

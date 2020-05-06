@@ -44,6 +44,7 @@ export default AgoraGen.extend({
       title: 'service_admin.menu',
     },
     menu: {
+      display: false,
       label: 'service_admin.menu',
       group: {
         name: 'user-information',

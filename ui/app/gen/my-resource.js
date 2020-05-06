@@ -1,6 +1,5 @@
 import Ember from 'ember';
 import ResourceGen from '../gen/resource';
-import { get_my_resources } from '../utils/common/common';
 
 const {
   get,
@@ -18,9 +17,7 @@ export default ResourceGen.extend({
       params = params || {};
       params.adminships__user_id = user_id;
 
-      return this.store.query('resource', params).then(function(resources) {
-        return get_my_services(resources, user_id);
-      });
+      return this.store.query('resource', params)
     },
     page: {
       title: 'resource.my_menu',

@@ -8,10 +8,33 @@ import {
   SORT_FIELDS,
 } from '../utils/common/resources';
 
+const { get, set, computed } = Ember;
+
 export default AgoraGen.extend({
   modelName: 'resource',
   path: 'resources',
   resourceName: 'api/v2/resources',
+  abilityStates: {
+    // a servicedmin can create a resource if he belongs to an organisation
+    organisation_owned: computed('role', 'user.organisation', function() {
+      let role = get(this, 'role');
+      if (role === 'serviceadmin') {
+        return get(this, 'user.organisation');
+      }
+      return true;
+    }),
+    owned: computed('model.resource_admins_ids', 'user.id', function() {
+      let ids = get(this, 'model.resource_admins_ids');
+      let user_id = get(this, 'user.id') && get(this, 'user.id').toString();
+
+      if (!ids) {
+        return false;
+      }
+      let ids_arr = ids.split(',');
+
+      return ids_arr.includes(user_id);
+    }),
+  },
   common: {
     validators: {
       rd_bai_0_id: [validate.presence(true)],
@@ -57,6 +80,26 @@ export default AgoraGen.extend({
   },
   create: {
     fieldsets: CREATE_FIELDSETS,
+
+    // If the user creating the Resource is a serviceadmin, the
+    // rd_bai_2_service_organisation should be prefilled with
+    // user's organisation
+    getModel(params) {
+      const store = get(this, 'store');
+      const role = get(this, 'session.session.authenticated.role')
+      const org_id = get(this, 'session.session.authenticated.organisation')
+      if (role === 'serviceadmin') {
+
+        let org = store.findRecord('provider', org_id);
+        return org.then(function(organisation) {
+          return store.createRecord('resource', {
+            rd_bai_2_service_organisation: organisation
+          })
+        })
+
+      }
+      return store.createRecord('resource');
+    },
     onSubmit(model) {
       this.transitionTo('resource.record.edit', model);
     },

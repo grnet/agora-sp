@@ -1,4 +1,9 @@
 import { field } from 'ember-gen';
+const {
+  get,
+  computed,
+} = Ember;
+
 
 const providers = field('rd_bai_3_service_providers', {
   displayComponent: 'gen-display-field-table',
@@ -77,33 +82,29 @@ const EDIT_OR_CREATE_MARKETING_FIELDSET = {
   },
 };
 
-const EDIT_BASIC_INFO_FIELDSET = {
+const EDIT_OR_CREATE_BASIC_INFO_FIELDSET = {
   label: 'resource.cards.basic',
-  fields: [
-    field('rd_bai_0_id'),
-    'rd_bai_1_name',
-    'rd_bai_2_service_organisation',
-    providers,
-    'rd_bai_4_webpage',
-  ],
+  fields: computed('role', function() {
+    const role = get(this, 'role');
+    // serviceadmins cannot change resource organsation
+    const disabled = role === 'serviceadmin';
+
+    return [
+      field('rd_bai_0_id'),
+      'rd_bai_1_name',
+      field('rd_bai_2_service_organisation', {
+        disabled
+      }),
+      providers,
+      'rd_bai_4_webpage',
+    ]
+
+  }),
   layout: {
     flex: [100, 50, 50, 100, 100],
   },
 };
 
-const CREATE_BASIC_INFO_FIELDSET = {
-  label: 'resource.cards.basic',
-  fields: [
-    field('rd_bai_0_id'),
-    'rd_bai_1_name',
-    'rd_bai_2_service_organisation',
-    providers,
-    'rd_bai_4_webpage',
-  ],
-  layout: {
-    flex: [100, 50, 50, 100, 100],
-  },
-};
 
 const GEO_FIELDSET = {
   label: 'resource.cards.geo',
@@ -174,14 +175,14 @@ const DETAILS_FIELDSETS = [
 ];
 
 const CREATE_FIELDSETS = [
-  CREATE_BASIC_INFO_FIELDSET,
+  EDIT_OR_CREATE_BASIC_INFO_FIELDSET,
   EDIT_OR_CREATE_MARKETING_FIELDSET,
   GEO_FIELDSET,
   CONTACT_FIELDSET,
 ];
 
 const EDIT_FIELDSETS = [
-  EDIT_BASIC_INFO_FIELDSET,
+  EDIT_OR_CREATE_BASIC_INFO_FIELDSET,
   EDIT_OR_CREATE_MARKETING_FIELDSET,
   GEO_FIELDSET,
   CONTACT_FIELDSET,

@@ -543,3 +543,51 @@ class Resource(models.Model):
         self.rd_bai_1_name = self.rd_bai_1_name.strip()
         clean_html_fields(self)
         super(Resource, self).save(*args, **kwargs)
+
+    @property
+    def resource_admins_ids(self):
+        resource_adminships = ResourceAdminship.objects.filter(
+            resource=self,
+            state="approved")
+        res = []
+        for r in resource_adminships:
+            res.append(str(r.admin.pk))
+
+        return ','.join(res)
+
+    @property
+    def resource_admins(self):
+        resource_adminships = ResourceAdminship.objects.filter(
+            resource=self,
+            state="approved")
+        res = []
+        for r in resource_adminships:
+            res.append(r.admin)
+        return res
+
+class ResourceAdminship(models.Model):
+    resource = models.ForeignKey(Resource, related_name="resourceadminships")
+    admin = models.ForeignKey(User)
+    state = models.CharField(
+            choices=SERVICE_ADMINSHIP_STATES,
+            max_length=30,
+            default='pending')
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = (("resource", "admin"),)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(ResourceAdminship, self).save(*args, **kwargs)
+
+class PostCreateResource(ProcessorFactory):
+    def process(self, data):
+        user = data['auth/user']
+        resource = data['backend/raw_response']
+        ResourceAdminship.objects.create(
+                resource=resource,
+                admin=user,
+                state='approved')
+        return {}

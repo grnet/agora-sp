@@ -22,6 +22,7 @@ import { policy } from './policy';
 import { resource } from './resource';
 import { target_user } from './target_user';
 import { contact_information } from './contact_information';
+import { resource_admin } from './resource_admin';
 
 export default {
   'service_item': service_item,
@@ -57,5 +58,7 @@ export default {
   resource,
   target_user,
   contact_information,
+  'Service Admin': 'Resource Admin',
+  resource_admin,
 };
 

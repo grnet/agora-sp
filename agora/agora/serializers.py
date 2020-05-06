@@ -6,4 +6,4 @@ class UserMeSerializer(djoser_serializers.UserSerializer):
 
     class Meta:
         model = User
-        fields = ('username', 'role', 'id', 'auth_token', 'admins_services')
+        fields = ('username', 'role', 'id', 'auth_token', 'admins_services', 'organisation')
