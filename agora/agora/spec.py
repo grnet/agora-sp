@@ -1611,6 +1611,7 @@ CONTACT_INFORMATION = {
 RESOURCES = {
     '.collection.django': {},
     'model': 'service.models.Resource',
+    ':permissions_namespace': 'agora.checks.Resource',
     'fields': {
         'id': {
             '.field.uuid': {},
@@ -1765,7 +1766,9 @@ RESOURCES = {
             '.flag.nowrite': {},
             'source': 'public_contact.organisation.name',
             '.flag.nullable.default': {}},
-
+        'resource_admins_ids': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -1774,8 +1777,24 @@ RESOURCES = {
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
         '.action-template.django.partial_update': {},
+        'create': {
+            'processors': {
+                'custom_post_create': {
+                    '.processor': {},
+                    'module_path': 'service.models.PostCreateResource',
+                    'read_keys': {'=': (
+                        'backend/raw_response',
+                        'auth/user',
+                    )},
+                    'write_keys': {'=': (
+                        'backend/raw_response',
+                    )},
+                },
+            },
+        },
     },
 }
+
 APP_CONFIG = {
     '.apimas_app': {},
     ':permission_rules': 'agora.permissions.get_rules',

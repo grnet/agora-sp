@@ -100,10 +100,13 @@ export default DS.Model.extend({
     hint: 'resource.hints.public_contact',
   }),
 
+  resource_admins_ids: DS.attr(),
+
   __api__: {
     serialize: function(hash) {
       // do not send readonly keys to backend
       delete hash['providers_names'];
+      delete hash['resource_admins_ids'];
       delete hash['rd_mri_5_target_users_verbose'];
       return hash;
     },
