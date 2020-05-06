@@ -1812,7 +1812,6 @@ APP_CONFIG = {
                 'service-admins': SERVICE_ADMINS,
                 'custom-users': CUSTOM_USERS,
                 'providers': ORGANISATIONS,
-                'my-providers': MY_ORGANISATIONS,
                 'resources': RESOURCES,
                 'target-users': TARGET_USERS,
                 'contact-information': CONTACT_INFORMATION,
