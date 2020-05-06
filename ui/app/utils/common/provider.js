@@ -35,6 +35,7 @@ const structure = field('pd_oth_5_structure_type', {
   },
 });
 
+
 const CONTACT_FIELDSET = {
   label: 'provider.cards.contact',
   fields: [
@@ -86,22 +87,26 @@ const DETAILS_CONTACT_PUBLIC_FIELDSET = {
 const DETAILS_OTHER_FIELDSET = {
   label: 'provider.cards.other',
   fields: [
+    'affiliation_names',
     'network_names',
-    'structure_names'
+    'structure_names',
+    
   ],
   layout: {
-    flex: [100,100],
+    flex: [100,100,100],
   },
 };
 
 const OTHER_FIELDSET = {
   label: 'provider.cards.other',
   fields: [
+    affiliations,
     networks,
     structure,
+    
   ],
   layout: {
-    flex: [100,100],
+    flex: [100,100,100],
   },
 };
 

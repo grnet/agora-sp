@@ -59,6 +59,14 @@ class Structure(models.Model):
         clean_html_fields(self)
         super(Structure, self).save(*args, **kwargs)
 
+class Affiliation(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, unique=True)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(Affiliation, self).save(*args, **kwargs)
+
 
 
 class Organisation(models.Model):
@@ -112,6 +120,8 @@ class Organisation(models.Model):
 
     pd_mti_2_certifications = models.CharField('PD.MTI.2_Certifications', default=None, blank=True, null=True,
                                                max_length=250)
+
+
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)

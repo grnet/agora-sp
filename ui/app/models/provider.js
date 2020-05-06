@@ -124,6 +124,13 @@ export default DS.Model.extend({
     inverse: null
   }),
   // other information
+  pd_oth_3_affiliations: DS.hasMany('affiliation', {
+    label: 'provider.fields.pd_oth_3_affiliations',
+    hint: 'provider.hints.pd_oth_3_affiliations',
+  }),
+  affiliation_names: DS.attr({
+    label: 'provider.fields.affiliation_names',
+  }),
   pd_oth_4_networks: DS.hasMany('network', {
     label: 'provider.fields.pd_oth_4_networks',
     hint: 'provider.hints.pd_oth_4_networks',
@@ -142,6 +149,7 @@ export default DS.Model.extend({
   __api__: {
     serialize: function(hash, _) {
       // do not send readonly keys to backend
+      delete hash['affiliation_names'];
       delete hash['network_names'];
       delete hash['structure_names'];
       return hash;

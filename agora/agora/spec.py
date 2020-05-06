@@ -1294,6 +1294,28 @@ STRUCTURES = {
     },
 }
 
+AFFILIATIONS = {
+    '.collection.django': {},
+    'model': 'accounts.models.Affiliation',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
 
 ORGANISATIONS = {
     '.collection.django': {},
@@ -1846,6 +1868,7 @@ APP_CONFIG = {
                 'resources': RESOURCES,
                 'target-users': TARGET_USERS,
                 'contact-information': CONTACT_INFORMATION,
+                'affiliations': AFFILIATIONS,
                 'networks': NETWORKS,
                 'structures': STRUCTURES,
             },
