@@ -163,6 +163,23 @@ def get_rules():
         ('api/v2/structures', 'destroy', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/structures', 'delete', 'superadmin', '*', '*', '*', '*'),
 
+        ('api/v2/esfridomains', 'list', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/esfridomains', 'list', 'admin', '*', '*', '*', '*'),
+        ('api/v2/esfridomains', 'list', 'serviceadmin', '*', '*', '*', '*'),
+        ('api/v2/esfridomains', 'list', 'observer', '*', '*', '*', '*'),
+        ('api/v2/esfridomains', 'retrieve', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/esfridomains', 'retrieve', 'admin', '*', '*', '*', '*'),
+        ('api/v2/esfridomains', 'retrieve', 'serviceadmin', '*', '*', '*', '*'),
+        ('api/v2/esfridomains', 'retrieve', 'observer', '*', '*', '*', '*'),
+        ('api/v2/esfridomains', 'create', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/esfridomains', 'create', 'admin', '*', '*', '*', '*'),
+        ('api/v2/esfridomains', 'update', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/esfridomains', 'update', 'admin', '*', '*', '*', '*'),
+        ('api/v2/esfridomains', 'partial_update', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/esfridomains', 'partial_update', 'admin', '*', '*', '*', '*'),
+        ('api/v2/esfridomains', 'destroy', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/esfridomains', 'delete', 'superadmin', '*', '*', '*', '*'),
+
 
 
     ]

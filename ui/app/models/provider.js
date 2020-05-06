@@ -145,6 +145,13 @@ export default DS.Model.extend({
   structure_names: DS.attr({
     label: 'provider.fields.structure_names',
   }),
+  pd_oth_6_esfri_domain: DS.hasMany('esfridomain', {
+    label: 'provider.fields.pd_oth_6_esfri_domain',
+    hint: 'provider.hints.pd_oth_6_esfri_domain',
+  }),
+  esfridomain_names: DS.attr({
+    label: 'provider.fields.esfridomain_names',
+  }),
 
   __api__: {
     serialize: function(hash, _) {
@@ -152,6 +159,7 @@ export default DS.Model.extend({
       delete hash['affiliation_names'];
       delete hash['network_names'];
       delete hash['structure_names'];
+      delete hash['esfridomain_names'];
       return hash;
     },
   },

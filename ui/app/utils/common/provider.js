@@ -35,6 +35,15 @@ const structure = field('pd_oth_5_structure_type', {
   },
 });
 
+const esfridomain = field('pd_oth_6_esfri_domain', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: ['name'],
+    },
+  },
+});
+
 
 const CONTACT_FIELDSET = {
   label: 'provider.cards.contact',
@@ -90,10 +99,11 @@ const DETAILS_OTHER_FIELDSET = {
     'affiliation_names',
     'network_names',
     'structure_names',
+    'esfridomain_names',
     
   ],
   layout: {
-    flex: [100,100,100],
+    flex: [100,100,100,100],
   },
 };
 
@@ -103,10 +113,11 @@ const OTHER_FIELDSET = {
     affiliations,
     networks,
     structure,
+    esfridomain,
     
   ],
   layout: {
-    flex: [100,100,100],
+    flex: [100,100,100,100],
   },
 };
 
