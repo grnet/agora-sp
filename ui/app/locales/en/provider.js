@@ -48,6 +48,8 @@ const provider = {
     'pc_email': 'PD.COI.8 - Email',
     'pc_phone': 'PD.COI.9 - Phone',
     'pc_position': 'PD.COI.10 - Position',
+    'pd_oth_1_hosting_legal_entity': 'PD.OTH.1 - Hosting Legal Entity',
+    'pd_oth_2_participating_countries': 'PD.OTH.2 - Participating Countries',
     'pd_oth_3_affiliations': 'PD.OTH.3 - Affiliations',
     'pd_oth_4_networks': 'PD.OTH.4 - Networks',
     'pd_oth_5_structure_type': 'PD.OTH.5 - Structure Type',
@@ -61,6 +63,7 @@ const provider = {
     'esfridomain_names': 'PD.OTH.6 - ESFRI Domain',
     'activity_names': 'PD.OTH.8 - Areas of activity',
     'challenge_names': 'PD.OTH.9 - Societal Grand challenges',
+    'pd_oth_10_national_roadmaps': 'PD.OTH.10 - National Roadmaps',
     
 
   },
@@ -86,6 +89,8 @@ const provider = {
     'pd_mti_2_certifications': 'List of certifications obtained for the Provider (including the certification body and any certificate number).',
     'main_contact': 'This info will not be publicly exposed',
     'public_contact': 'This info will be exposed to public API ',
+    'pd_oth_1_hosting_legal_entity': 'Name of the organisation/institution legally hosting (housing) the provider/research infrastructure or its coordinating centre.',
+    'pd_oth_2_participating_countries': 'Providers/Research Infrastructures that are funded by several countries should list here all supporting countries (including the Coordinating country).',
     'pd_oth_3_affiliations': '<br />Select the provider\'s affiliations',
     'pd_oth_4_networks': '<br />Select the networks the Provider is participating in.',
     'pd_oth_5_structure_type': '<br />Define the providers structure types',
@@ -93,6 +98,7 @@ const provider = {
     'pd_oth_7_esfri_type': '<br />If the research infrastructure is (part of) an ESFRI project indicate how the RI participates',
     'pd_oth_8_areas_of_activity': '<br />Basic research, Applied research or Technological development',
     'pd_oth_9_societal_grand_challenges': '<br />Provider’s participation in the grand societal challenges as defined by the European Commission',
+    'pd_oth_10_national_roadmaps': 'Provider being part of a national roadmap for research infrastructures',
   },
   'belongs': {
     'name': 'Provider',

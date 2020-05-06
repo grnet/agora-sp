@@ -124,6 +124,20 @@ export default DS.Model.extend({
     inverse: null
   }),
   // other information
+  pd_oth_1_hosting_legal_entity: DS.attr({
+    label: 'provider.fields.pd_oth_1_hosting_legal_entity',
+    hint: 'provider.hints.pd_oth_1_hosting_legal_entity',
+  }),
+  pd_oth_2_participating_countries: DS.attr({
+    defaultValue: 'Europe',
+    label: 'provider.fields.pd_oth_2_participating_countries',
+    hint: 'provider.hints.pd_oth_2_participating_countries',
+    formComponent: 'agora-chips',
+    formAttrs: {
+      options: countries,
+      exactMatch: true,
+    }
+  }),
   pd_oth_3_affiliations: DS.hasMany('affiliation', {
     label: 'provider.fields.pd_oth_3_affiliations',
     hint: 'provider.hints.pd_oth_3_affiliations',
@@ -173,6 +187,10 @@ export default DS.Model.extend({
   }),
   challenge_names: DS.attr({
     label: 'provider.fields.challenge_names',
+  }),
+  pd_oth_10_national_roadmaps: DS.attr({
+    label: 'provider.fields.pd_oth_10_national_roadmaps',
+    hint: 'provider.hints.pd_oth_10_national_roadmaps',
   }),
 
   __api__: {

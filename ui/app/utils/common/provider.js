@@ -113,6 +113,8 @@ const DETAILS_CONTACT_PUBLIC_FIELDSET = {
 const DETAILS_OTHER_FIELDSET = {
   label: 'provider.cards.other',
   fields: [
+    'pd_oth_1_hosting_legal_entity',
+    'pd_oth_2_participating_countries',
     'affiliation_names',
     'network_names',
     'structure_names',
@@ -120,27 +122,31 @@ const DETAILS_OTHER_FIELDSET = {
     'pd_oth_7_esfri_type',
     'activity_names',
     'challenge_names',
+    'pd_oth_10_national_roadmaps',
     
   ],
   layout: {
-    flex: [100,100,100,100,100,100,100],
+    flex: [100,100,100,100,100,100,100,100,100,100],
   },
 };
 
 const OTHER_FIELDSET = {
   label: 'provider.cards.other',
   fields: [
+    'pd_oth_1_hosting_legal_entity',
+    'pd_oth_2_participating_countries',
     affiliations,
     networks,
     structure,
     esfridomain,
     'pd_oth_7_esfri_type',
     activity,
-    challenge
+    challenge,
+    'pd_oth_10_national_roadmaps',
     
   ],
   layout: {
-    flex: [100,100,100,100,100,100,100],
+    flex: [100,100,100,100,100,100,100,100,100,100],
   },
 };
 
