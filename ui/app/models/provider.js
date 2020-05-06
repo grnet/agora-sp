@@ -101,6 +101,18 @@ export default DS.Model.extend({
   short_desc: computed('description', function() {
     return shorten(get(this, 'description'));
   }),
+  pd_mti_1_life_cycle_status: DS.attr({
+    type: 'select',
+    choices: ENV.APP.resources.PROVIDER_LIFE_CYCLE_STATUSES,
+    label: 'provider.fields.pd_mti_1_life_cycle_status',
+    hint: 'provider.hints.pd_mti_1_life_cycle_status',
+  }),
+  // maturity information
+  pd_mti_2_certifications: DS.attr({
+    label: 'provider.fields.pd_mti_2_certifications',
+    hint: 'provider.hints.pd_mti_2_certifications',
+  }),
+  // contact information
   main_contact: DS.belongsTo('contact-information', {
     label: 'provider.fields.main_contact',
     hint: 'provider.hints.main_contact',

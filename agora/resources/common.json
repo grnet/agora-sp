@@ -17,6 +17,24 @@
       "Superadmin"
     ]
   ],
+  "PROVIDER_LIFE_CYCLE_STATUSES": [
+    [
+      "Under Construction",
+      "Under Construction"
+    ],
+    [
+      "Operational",
+      "Operational"
+    ],
+    [
+      "Being Upgraded",
+      "Being Upgraded"
+    ],
+    [
+      "Other",
+      "Other"
+    ]
+  ],
   "SERVICE_ADMINSHIP_STATES": [
     [
       "pending",

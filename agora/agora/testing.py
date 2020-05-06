@@ -122,6 +122,8 @@ RESOURCES_CRUD = {
             'pd_mri_1_description': 'short provider description',
             'pd_mri_2_logo': 'https://example.com/provider.png',
             'pd_mri_3_multimedia': 'https://vimeo.com/1001010938',
+            'pd_mti_1_life_cycle_status': 'Operational',
+            'pd_mti_2_certifications': 'ISO-27001'
         },
         'edit_data': {
             'name': 'FBI',
@@ -139,6 +141,8 @@ RESOURCES_CRUD = {
             'pd_mri_1_description': 'short provider description',
             'pd_mri_2_logo': 'https://example.com/provider.png',
             'pd_mri_3_multimedia': 'https://vimeo.com/1001010938',
+            'pd_mti_1_life_cycle_status': 'Operational',
+            'pd_mti_2_certifications': 'ISO-27001'
         },
     },
 }

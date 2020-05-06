@@ -1,6 +1,30 @@
 import { field } from 'ember-gen';
 import { fileField } from '../../lib/common';
 
+const MARKETING_FIELDSET = {
+  label: 'provider.cards.marketing',
+  text: 'provider.cards.marketing_hint',
+  fields: [
+  'pd_mri_1_description',
+  'pd_mri_2_logo',
+  'pd_mri_3_multimedia',
+  ],
+  layout: {
+    flex: [100, 100, 100]
+  },
+};
+
+const MATURITY_FIELDSET = {
+  label: 'provider.cards.maturity',
+  text: 'provider.cards.maturity_hint',
+  fields: [
+  'pd_mti_1_life_cycle_status',
+  'pd_mti_2_certifications',
+  ],
+  layout: {
+    flex: [100, 100]
+  },
+};
 
 const CONTACT_FIELDSET = {
   label: 'provider.cards.contact',
@@ -99,18 +123,8 @@ const DETAILS_FIELDSETS = [{
     'pd_loi_5_country_or_territory',
   ]
 },
-{
-  label: 'provider.cards.marketing',
-  text: 'provider.cards.marketing_hint',
-  layout: {
-    flex: [100, 100, 100]
-  },
-  fields: [
-  'pd_mri_1_description',
-  'pd_mri_2_logo',
-  'pd_mri_3_multimedia',
-]
-},
+MARKETING_FIELDSET,
+MATURITY_FIELDSET,
 DETAILS_CONTACT_MAIN_FIELDSET,
 DETAILS_CONTACT_PUBLIC_FIELDSET,
 ]
@@ -164,18 +178,8 @@ const EDIT_FIELDSETS = [{
     'pd_loi_5_country_or_territory',
   ]
 },
-{
-  label: 'provider.cards.marketing',
-  text: 'provider.cards.marketing_hint',
-  layout: {
-    flex: [100, 100, 100]
-  },
-  fields: [
-  'pd_mri_1_description',
-  'pd_mri_2_logo',
-  'pd_mri_3_multimedia',
-]
-},
+MARKETING_FIELDSET,
+MATURITY_FIELDSET,
 CONTACT_FIELDSET
 ]
 
@@ -223,18 +227,8 @@ const CREATE_FIELDSETS = [{
     'pd_loi_5_country_or_territory',
   ]
 },
-{
-  label: 'provider.cards.marketing',
-  text: 'provider.cards.marketing_hint',
-  layout: {
-    flex: [100, 100, 100]
-  },
-  fields: [
-  'pd_mri_1_description',
-  'pd_mri_2_logo',
-  'pd_mri_3_multimedia',
-]
-},
+MARKETING_FIELDSET,
+MATURITY_FIELDSET,
 CONTACT_FIELDSET,
 ]
 
