@@ -1183,10 +1183,9 @@ SERVICE_VERSIONS = {
     },
 }
 
-SERVICE_ADMINS = {
+RESOURCE_ADMINS = {
     '.collection.django': {},
-    'model': 'service.models.ServiceAdminship',
-    ':permissions_namespace': 'agora.checks.ServiceAdminship',
+    'model': 'service.models.ResourceAdminship',
     'fields': {
         'id': {
             '.field.uuid': {},
@@ -1196,17 +1195,17 @@ SERVICE_ADMINS = {
             'default': 'pending',
             '.flag.filterable': {},
             '.flag.orderable': {}},
-        'service': {
+        'resource': {
             '.field.ref': {},
-            'source': 'service_id',
-            'to': '/api/v2/services',
+            'source': 'resource_id',
+            'to': '/api/v2/resources',
             '.flag.nullable.default': {},
             '.flag.filterable': {}},
-        'service_name': {
+        'resource_name': {
             '.field.string': {},
             '.flag.nowrite': {},
             '.flag.orderable': {},
-            'source': 'service.name'},
+            'source': 'resource.rd_bai_1_name'},
         'admin_email': {
             '.field.string': {},
             '.flag.nowrite': {},
@@ -1247,39 +1246,6 @@ SERVICE_ADMINS = {
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
         '.action-template.django.partial_update': {},
-        'create': {
-            'processors': {
-                'custom_post_create': {
-                    '.processor': {},
-                    'module_path': 'service.models.PostCreateServiceadminship',
-                    'read_keys': {'=': (
-                        'backend/raw_response',
-                        'auth/user',
-                        'request/meta/headers',
-                    )},
-                    'write_keys': {'=': (
-                        'backend/raw_response',  # declared to ensure chaining
-                    )},
-                },
-            },
-        },
-       'partial_update': {
-           'processors': {
-               'custom_post_partial_update': {
-                   '.processor': {},
-                   'module_path': 'service.models.PostPartialUpdateServiceadminship',
-                   'read_keys': {'=': (
-                       'backend/raw_response',
-                       'auth/user',
-                       'request/meta/headers',
-                   )},
-                   'write_keys': {'=': (
-                       'backend/raw_response',  # declared to ensure chaining
-                   )},
-               },
-           },
-       },
-
     },
 }
 
@@ -1828,7 +1794,7 @@ APP_CONFIG = {
         'api': {
             'prefix': 'api/v2',
             'collections': {
-                'service-admins': SERVICE_ADMINS,
+                'resource-admins': RESOURCE_ADMINS,
                 'custom-users': CUSTOM_USERS,
                 'providers': ORGANISATIONS,
                 'resources': RESOURCES,

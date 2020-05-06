@@ -31,6 +31,11 @@ def get_rules():
         ('api/v2/service-admins', 'destroy', 'serviceadmin', '*', 'self_pending', '*', '*'),
         ('api/v2/service-admins', 'delete', 'serviceadmin', '*', 'self_pending', '*', '*'),
 
+        ('api/v2/resource-admins', 'list', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/resource-admins', 'list', 'admin', '*', '*', '*', '*'),
+        ('api/v2/resource-admins', 'retrieve', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/resource-admins', 'retrieve', 'admin', '*', '*', '*', '*'),
+
         ('api/v2/contact-information', 'list', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/contact-information', 'list', 'admin', '*', '*', '*', '*'),
         ('api/v2/contact-information', 'list', 'serviceadmin', '*', '*', '*', '*'),
