@@ -52,6 +52,7 @@ const provider = {
     'pd_oth_4_networks': 'PD.OTH.4 - Networks',
     'pd_oth_5_structure_type': 'PD.OTH.5 - Structure Type',
     'pd_oth_6_esfri_domain': 'PD.OTH.6 - ESFRI Domain',
+    'pd_oth_7_esfri_type': 'PD.OTH.7 - ESFRI Type',
     'affiliation_names': 'PD.OTH.3 - Affiliations',
     'network_names': 'PD.OTH.4 - Networks',
     'structure_names': 'PD.OTH.5 - Structure Type',
@@ -85,6 +86,7 @@ const provider = {
     'pd_oth_4_networks': '<br />Select the networks the Provider is participating in.',
     'pd_oth_5_structure_type': '<br />Define the providers structure types',
     'pd_oth_6_esfri_domain': '<br />ESFRI domain classification.',
+    'pd_oth_7_esfri_type': 'PD.OTH.7 - If the research infrastructure is (part of) an ESFRI project indicate how the RI participates',
   },
   'belongs': {
     'name': 'Provider',

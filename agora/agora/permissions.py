@@ -180,6 +180,23 @@ def get_rules():
         ('api/v2/esfridomains', 'destroy', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/esfridomains', 'delete', 'superadmin', '*', '*', '*', '*'),
 
+        ('api/v2/esfritypes', 'list', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/esfritypes', 'list', 'admin', '*', '*', '*', '*'),
+        ('api/v2/esfritypes', 'list', 'serviceadmin', '*', '*', '*', '*'),
+        ('api/v2/esfritypes', 'list', 'observer', '*', '*', '*', '*'),
+        ('api/v2/esfritypes', 'retrieve', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/esfritypes', 'retrieve', 'admin', '*', '*', '*', '*'),
+        ('api/v2/esfritypes', 'retrieve', 'serviceadmin', '*', '*', '*', '*'),
+        ('api/v2/esfritypes', 'retrieve', 'observer', '*', '*', '*', '*'),
+        ('api/v2/esfritypes', 'create', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/esfritypes', 'create', 'admin', '*', '*', '*', '*'),
+        ('api/v2/esfritypes', 'update', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/esfritypes', 'update', 'admin', '*', '*', '*', '*'),
+        ('api/v2/esfritypes', 'partial_update', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/esfritypes', 'partial_update', 'admin', '*', '*', '*', '*'),
+        ('api/v2/esfritypes', 'destroy', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/esfritypes', 'delete', 'superadmin', '*', '*', '*', '*'),
+
 
 
     ]

@@ -75,6 +75,14 @@ class EsfriDomain(models.Model):
         clean_html_fields(self)
         super(EsfriDomain, self).save(*args, **kwargs)
 
+class EsfriType(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, unique=True)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(EsfriType, self).save(*args, **kwargs)
+
 
 
 class Organisation(models.Model):

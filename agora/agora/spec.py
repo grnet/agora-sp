@@ -1338,6 +1338,28 @@ ESFRI_DOMAINS= {
     },
 }
 
+ESFRI_TYPES= {
+    '.collection.django': {},
+    'model': 'accounts.models.EsfriType',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
 
 ORGANISATIONS = {
     '.collection.django': {},
@@ -1894,6 +1916,7 @@ APP_CONFIG = {
                 'networks': NETWORKS,
                 'structures': STRUCTURES,
                 'esfridomains': ESFRI_DOMAINS,
+                'esfritypes': ESFRI_TYPES,
             },
         },
     },

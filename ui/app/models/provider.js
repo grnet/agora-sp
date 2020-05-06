@@ -152,6 +152,14 @@ export default DS.Model.extend({
   esfridomain_names: DS.attr({
     label: 'provider.fields.esfridomain_names',
   }),
+  pd_oth_7_esfri_type: DS.belongsTo('esfritype', {
+    label: 'provider.fields.pd_oth_7_esfri_type',
+    hint: 'provider.hints.pd_oth_7_esfri_type',
+    inverse: null,
+    formAttrs: {
+      optionLabelAttr: 'name',
+    },
+  }),
 
   __api__: {
     serialize: function(hash, _) {
