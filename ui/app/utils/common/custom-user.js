@@ -89,7 +89,7 @@ const PROFILE_FIELDSETS = [{
       'full_name',
     ];
     if (model_role === 'serviceadmin') {
-      fields.push(providers);
+      fields.push('organisation');
     }
     return fields;
   }),
