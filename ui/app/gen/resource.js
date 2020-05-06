@@ -15,8 +15,14 @@ export default AgoraGen.extend({
   path: 'resources',
   resourceName: 'api/v2/resources',
   abilityStates: {
-    organisation_owned: true,
-
+    // a servicedmin can create a resource if he belongs to an organisation
+    organisation_owned: computed('role', 'user.organisation', function() {
+      let role = get(this, 'role');
+      if (role === 'serviceadmin') {
+        return get(this, 'user.organisation');
+      }
+      return true;
+    }),
     owned: computed('model.resource_admins_ids', 'user.id', function() {
       let ids = get(this, 'model.resource_admins_ids');
       let user_id = get(this, 'user.id') && get(this, 'user.id').toString();
