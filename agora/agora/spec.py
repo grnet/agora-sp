@@ -1550,6 +1550,16 @@ ORGANISATIONS = {
           '.flag.nullable.default': {},
         },
 
+        'pd_oth_1_hosting_legal_entity': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+
+        'pd_oth_2_participating_countries': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+
         'pd_oth_3_affiliations': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},

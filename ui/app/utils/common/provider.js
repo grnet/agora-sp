@@ -26,6 +26,24 @@ const MATURITY_FIELDSET = {
   },
 };
 
+const affiliations = field('pd_oth_3_affiliations', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: ['name'],
+    },
+  },
+});
+
+const networks = field('pd_oth_4_networks', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: ['name'],
+    },
+  },
+});
+
 const structure = field('pd_oth_5_structure_type', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
@@ -257,7 +275,8 @@ const EDIT_FIELDSETS = [{
 },
 MARKETING_FIELDSET,
 MATURITY_FIELDSET,
-CONTACT_FIELDSET
+CONTACT_FIELDSET,
+OTHER_FIELDSET,
 ]
 
 

@@ -153,6 +153,68 @@ class Organisation(models.Model):
     pd_mti_2_certifications = models.CharField('PD.MTI.2_Certifications', default=None, blank=True, null=True,
                                                max_length=250)
 
+   # Other information section
+
+    pd_oth_1_hosting_legal_entity = models.CharField('PD.OTH.1 Hosting Legal Entity', max_length=80, default=None, blank=True, null=True)
+    pd_oth_2_participating_countries = models.TextField('PD.OTH.2 Participating Countries',default=None, blank=True, null=True)
+
+    pd_oth_3_affiliations = models.ManyToManyField(
+        Affiliation,
+        blank=True,
+        verbose_name='PD.OTH.3 Affiliations',
+        related_name='affiliated_providers')
+
+    pd_oth_4_networks = models.ManyToManyField(
+        Network,
+        blank=True,
+        verbose_name='PD.OTH.4 Networks',
+        related_name='networked_providers')
+    
+    pd_oth_5_structure_type = models.ManyToManyField(
+        Structure,
+        blank=True,
+        verbose_name='PD.OTH.5 Structure Type',
+        related_name='structured_providers')
+
+    pd_oth_6_esfri_domain = models.ManyToManyField(
+        EsfriDomain,
+        blank=True,
+        verbose_name='PD.OTH.6 ESFRI Domain',
+        related_name='esfridomain_providers')
+
+    pd_oth_7_esfri_type = models.ForeignKey(
+        'accounts.EsfriType',
+        blank=True,
+        null=True,
+        verbose_name='PD.OTH.7 ESFRI Type',
+        related_name='esfritype_providers')
+
+    pd_oth_8_areas_of_activity = models.ManyToManyField(
+        Activity,
+        blank=True,
+        verbose_name='PD.OTH.8 ESFRI Areas Of Activity',
+        related_name='activity_providers')
+
+    pd_oth_9_societal_grand_challenges = models.ManyToManyField(
+        Challenge,
+        blank=True,
+        verbose_name='PD.OTH.9 Societal Grand Challenges',
+        related_name='challenge_providers')
+
+    pd_oth_10_national_roadmaps = models.CharField('PD.OTH.10 National Roadmaps', max_length=80, default=None, blank=True, null=True)
+
+    @property
+    def affiliation_names(self):
+        return ", ".join(o.name for o in self.pd_oth_3_affiliations.all())
+
+    @property
+    def network_names(self):
+        return ", ".join(o.name for o in self.pd_oth_4_networks.all())
+
+    @property
+    def structure_names(self):
+        return ", ".join(o.name for o in self.pd_oth_5_structure_type.all())
+
     @property
     def esfridomain_names(self):
         return ", ".join(o.name for o in self.pd_oth_6_esfri_domain.all())
@@ -164,6 +226,7 @@ class Organisation(models.Model):
     @property
     def challenge_names(self):
         return ", ".join(o.name for o in self.pd_oth_9_societal_grand_challenges.all())
+
 
 
 
