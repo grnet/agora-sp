@@ -57,8 +57,11 @@ def get_rules():
         ('api/v2/providers', 'retrieve', 'serviceadmin', '*', '*', '*', '*'),
         ('api/v2/providers', 'retrieve', 'observer', '*', '*', '*', '*'),
         ('api/v2/providers', 'create', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/providers', 'create', 'admin', '*', '*', '*', '*'),
         ('api/v2/providers', 'update', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/providers', 'update', 'admin', '*', '*', '*', '*'),
         ('api/v2/providers', 'partial_update', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/providers', 'partial_update', 'admin', '*', '*', '*', '*'),
         ('api/v2/providers', 'destroy', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/providers', 'delete', 'superadmin', '*', '*', '*', '*'),
 
