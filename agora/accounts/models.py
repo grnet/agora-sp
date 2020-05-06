@@ -134,7 +134,7 @@ class Organisation(models.Model):
     pd_loi_5_country_or_territory = models.CharField('PD.LOI.1 Country or Territory', max_length=50, default=None, blank=True, null=True)
 
     # Marketing section
-    pd_mri_1_description = models.CharField('PD.MRI.1_Description', max_length=100, default=None, blank=True, null=True)
+    pd_mri_1_description = RichTextUploadingField('PD.MRI.1_Description', max_length=100, default=None, blank=True, null=True)
 
     pd_mri_2_logo = models.TextField('PD.MRI.2_Logo', default=None, blank=True, null=True)
 

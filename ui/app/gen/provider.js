@@ -14,14 +14,18 @@ export default AgoraGen.extend({
   resourceName: 'api/v2/providers',
   common: {
     validators: {
-      name: [validate.presence(true)],
-      contact: [validate.format({type: 'email', allowBlank: true})],
+      pd_bai_0_id: [validate.presence(true)],
+      pd_bai_1_name: [validate.presence(true)],
+      pd_bai_2_abbreviation: [validate.presence(true)],
+      pd_bai_4_website: [validate.format({ type: 'url', allowBlank: true })],
       pd__1_geographical_availability: [validate.presence(true)],
       pd_loi_1_street_name_and_number: [validate.presence(true)],
       pd_loi_2_postal_code: [validate.presence(true)],
       pd_loi_3_city: [validate.presence(true)],
       pd_loi_5_country_or_territory: [validate.presence(true)],
-
+      pd_mri_1_description : [validate.presence(true)],
+      pd_mri_2_logo : [validate.format({ type: 'url', allowBlank: false })],
+      pd_mri_3_multimedia: [validate.format({ type: 'url', allowBlank: true })],
     },
   },
   list: {
