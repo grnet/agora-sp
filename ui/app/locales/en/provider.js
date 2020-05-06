@@ -48,7 +48,8 @@ const provider = {
     'pc_email': 'PD.COI.8 - Email',
     'pc_phone': 'PD.COI.9 - Phone',
     'pc_position': 'PD.COI.10 - Position',
-    'pd_oth_4_networks': 'PD.OTH.4 Networks'
+    'pd_oth_4_networks': 'PD.OTH.4 - Networks',
+    'pd_oth_5_structure_type': 'PD.OTH.5 - Structure Type'
   },
   'hints': {
     'name': '',
@@ -72,7 +73,8 @@ const provider = {
     'pd_mti_2_certifications': 'List of certifications obtained for the Provider (including the certification body and any certificate number).',
     'main_contact': 'This info will not be publicly exposed',
     'public_contact': 'This info will be exposed to public API ',
-    'pd_oth_4_networks': '<br />Select the networks the Provider is participating in.'
+    'pd_oth_4_networks': '<br />Select the networks the Provider is participating in.',
+    'pd_oth_5_structure_type': '<br />Define the providers structure types'
   },
   'belongs': {
     'name': 'Provider',

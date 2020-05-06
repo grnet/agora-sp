@@ -131,11 +131,19 @@ export default DS.Model.extend({
   network_names: DS.attr({
     label: 'provider.fields.network_names',
   }),
+  pd_oth_5_structure_type: DS.hasMany('structure', {
+    label: 'provider.fields.pd_oth_5_structure_type',
+    hint: 'provider.hints.pd_oth_5_structure_type',
+  }),
+  structure_names: DS.attr({
+    label: 'provider.fields.structure_names',
+  }),
 
   __api__: {
     serialize: function(hash, _) {
       // do not send readonly keys to backend
       delete hash['network_names'];
+      delete hash['structure_names'];
       return hash;
     },
   },

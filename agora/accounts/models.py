@@ -41,6 +41,8 @@ class UserManager(BaseUserManager):
         return self._create_user(username, email, password, True, True,
                                  **extra_fields)
 
+# Smaller models used to provide other information for provider fields
+
 class Network(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
@@ -48,6 +50,14 @@ class Network(models.Model):
     def save(self, *args, **kwargs):
         clean_html_fields(self)
         super(Network, self).save(*args, **kwargs)
+
+class Structure(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, unique=True)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(Structure, self).save(*args, **kwargs)
 
 
 

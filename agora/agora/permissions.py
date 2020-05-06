@@ -129,5 +129,24 @@ def get_rules():
         ('api/v2/networks', 'destroy', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/networks', 'delete', 'superadmin', '*', '*', '*', '*'),
 
+        ('api/v2/structures', 'list', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/structures', 'list', 'admin', '*', '*', '*', '*'),
+        ('api/v2/structures', 'list', 'serviceadmin', '*', '*', '*', '*'),
+        ('api/v2/structures', 'list', 'observer', '*', '*', '*', '*'),
+        ('api/v2/structures', 'retrieve', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/structures', 'retrieve', 'admin', '*', '*', '*', '*'),
+        ('api/v2/structures', 'retrieve', 'serviceadmin', '*', '*', '*', '*'),
+        ('api/v2/structures', 'retrieve', 'observer', '*', '*', '*', '*'),
+        ('api/v2/structures', 'create', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/structures', 'create', 'admin', '*', '*', '*', '*'),
+        ('api/v2/structures', 'update', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/structures', 'update', 'admin', '*', '*', '*', '*'),
+        ('api/v2/structures', 'partial_update', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/structures', 'partial_update', 'admin', '*', '*', '*', '*'),
+        ('api/v2/structures', 'destroy', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/structures', 'delete', 'superadmin', '*', '*', '*', '*'),
+
+
+
     ]
     return rules

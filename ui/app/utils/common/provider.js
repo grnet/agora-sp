@@ -26,6 +26,15 @@ const MATURITY_FIELDSET = {
   },
 };
 
+const structure = field('pd_oth_5_structure_type', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: ['name'],
+    },
+  },
+});
+
 const CONTACT_FIELDSET = {
   label: 'provider.cards.contact',
   fields: [
@@ -78,9 +87,10 @@ const DETAILS_OTHER_FIELDSET = {
   label: 'provider.cards.other',
   fields: [
     'network_names',
+    'structure_names'
   ],
   layout: {
-    flex: [50],
+    flex: [100,100],
   },
 };
 
@@ -88,9 +98,10 @@ const OTHER_FIELDSET = {
   label: 'provider.cards.other',
   fields: [
     networks,
+    structure,
   ],
   layout: {
-    flex: [50],
+    flex: [100,100],
   },
 };
 

@@ -1272,6 +1272,28 @@ NETWORKS = {
     },
 }
 
+STRUCTURES = {
+    '.collection.django': {},
+    'model': 'accounts.models.Structure',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
 
 ORGANISATIONS = {
     '.collection.django': {},
@@ -1825,6 +1847,7 @@ APP_CONFIG = {
                 'target-users': TARGET_USERS,
                 'contact-information': CONTACT_INFORMATION,
                 'networks': NETWORKS,
+                'structures': STRUCTURES,
             },
         },
     },

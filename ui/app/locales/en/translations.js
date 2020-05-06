@@ -46,7 +46,6 @@ export default {
   'access_policy': access_policy,
   'form': common.form,
   'login': login,
-  'network': network,
   'group_menu': common.group_menu,
   'confirm': common.confirm,
   'Service_type should be unique': cidl.errors.service_type_unique,
