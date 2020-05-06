@@ -20,7 +20,6 @@ export default AgoraGen.extend({
     owned: computed('model.resource_admins_ids', 'user.id', function() {
       let ids = get(this, 'model.resource_admins_ids');
       let user_id = get(this, 'user.id') && get(this, 'user.id').toString();
-      console.log(user_id, ids)
 
       if (!ids) {
         return false;
@@ -75,6 +74,26 @@ export default AgoraGen.extend({
   },
   create: {
     fieldsets: CREATE_FIELDSETS,
+
+    // If the user creating the Resource is a serviceadmin, the
+    // rd_bai_2_service_organisation should be prefilled with
+    // user's organisation
+    getModel(params) {
+      const store = get(this, 'store');
+      const role = get(this, 'session.session.authenticated.role')
+      const org_id = get(this, 'session.session.authenticated.organisation')
+      if (role === 'serviceadmin') {
+
+        let org = store.findRecord('provider', org_id);
+        return org.then(function(organisation) {
+          return store.createRecord('resource', {
+            rd_bai_2_service_organisation: organisation
+          })
+        })
+
+      }
+      return store.createRecord('resource');
+    },
     onSubmit(model) {
       this.transitionTo('resource.record.edit', model);
     },
