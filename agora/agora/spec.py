@@ -1769,6 +1769,25 @@ RESOURCES = {
         'resource_admins_ids': {
             '.field.string': {},
             '.flag.nowrite': {}},
+
+        'adminships': {
+            '.field.collection.django': {},
+            ':filter_compat': True,
+            '.flag.nullable.default': {},
+            '.flag.filterable': {},
+            'model': 'service.models.ResourceAdminship',
+            'source': 'resourceadminships',
+            'bound': 'resource',
+            'fields': {
+                'id': {
+                    '.field.serial': {}},
+                'user_id': {
+                    '.field.integer': {},
+                    '.flag.nowrite': {},
+                    '.flag.filterable': {},
+                    'source': 'admin.pk'},
+            }
+        },
     },
     'actions': {
         '.action-template.django.list': {},
