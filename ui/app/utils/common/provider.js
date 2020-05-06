@@ -44,6 +44,23 @@ const esfridomain = field('pd_oth_6_esfri_domain', {
   },
 });
 
+const activity = field('pd_oth_8_areas_of_activity', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: ['name'],
+    },
+  },
+});
+
+const challenge = field('pd_oth_9_societal_grand_challenges', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: ['name'],
+    },
+  },
+});
 
 const CONTACT_FIELDSET = {
   label: 'provider.cards.contact',
@@ -100,11 +117,13 @@ const DETAILS_OTHER_FIELDSET = {
     'network_names',
     'structure_names',
     'esfridomain_names',
-    'pd_oth_7_esfri_type'
+    'pd_oth_7_esfri_type',
+    'activity_names',
+    'challenge_names',
     
   ],
   layout: {
-    flex: [100,100,100,100,100],
+    flex: [100,100,100,100,100,100,100],
   },
 };
 
@@ -116,10 +135,12 @@ const OTHER_FIELDSET = {
     structure,
     esfridomain,
     'pd_oth_7_esfri_type',
+    activity,
+    challenge
     
   ],
   layout: {
-    flex: [100,100,100,100,100],
+    flex: [100,100,100,100,100,100,100],
   },
 };
 

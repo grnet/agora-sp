@@ -83,6 +83,22 @@ class EsfriType(models.Model):
         clean_html_fields(self)
         super(EsfriType, self).save(*args, **kwargs)
 
+class Activity(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, unique=True)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(Activity, self).save(*args, **kwargs)
+
+class Challenge(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, unique=True)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(Challenge, self).save(*args, **kwargs)
+
 
 
 class Organisation(models.Model):
@@ -140,6 +156,14 @@ class Organisation(models.Model):
     @property
     def esfridomain_names(self):
         return ", ".join(o.name for o in self.pd_oth_6_esfri_domain.all())
+
+    @property
+    def activity_names(self):
+        return ", ".join(o.name for o in self.pd_oth_8_areas_of_activity.all())
+
+    @property
+    def challenge_names(self):
+        return ", ".join(o.name for o in self.pd_oth_9_societal_grand_challenges.all())
 
 
 

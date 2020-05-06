@@ -160,6 +160,20 @@ export default DS.Model.extend({
       optionLabelAttr: 'name',
     },
   }),
+  pd_oth_8_areas_of_activity: DS.hasMany('activity', {
+    label: 'provider.fields.pd_oth_8_areas_of_activity:',
+    hint: 'provider.hints.pd_oth_8_areas_of_activity:',
+  }),
+  activity_names: DS.attr({
+    label: 'provider.fields.activity_names',
+  }),
+  pd_oth_9_societal_grand_challenges: DS.hasMany('challenge', {
+    label: 'provider.fields.pd_oth_9_societal_grand_challenges',
+    hint: 'provider.hints.pd_oth_9_societal_grand_challenges',
+  }),
+  challenge_names: DS.attr({
+    label: 'provider.fields.challenge_names',
+  }),
 
   __api__: {
     serialize: function(hash, _) {
@@ -168,6 +182,8 @@ export default DS.Model.extend({
       delete hash['network_names'];
       delete hash['structure_names'];
       delete hash['esfridomain_names'];
+      delete hash['activity_names'];
+      delete hash['challenge_names'];
       return hash;
     },
   },

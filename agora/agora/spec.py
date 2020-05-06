@@ -1360,6 +1360,50 @@ ESFRI_TYPES= {
     },
 }
 
+ACTIVITIES= {
+    '.collection.django': {},
+    'model': 'accounts.models.Activity',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+CHALLENGES= {
+    '.collection.django': {},
+    'model': 'accounts.models.Challenge',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
 
 ORGANISATIONS = {
     '.collection.django': {},
@@ -1917,6 +1961,8 @@ APP_CONFIG = {
                 'structures': STRUCTURES,
                 'esfridomains': ESFRI_DOMAINS,
                 'esfritypes': ESFRI_TYPES,
+                'activities': ACTIVITIES,
+                'challenges': CHALLENGES,
             },
         },
     },
