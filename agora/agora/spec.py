@@ -1549,6 +1549,129 @@ ORGANISATIONS = {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
+
+        'pd_oth_3_affiliations': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'affiliation',
+            'model': 'accounts.models.Organisation.pd_oth_3_affiliations.through',
+            'source': 'pd_oth_3_affiliations',
+            'bound': 'organisation',
+            'fields': {
+                'affiliation': {'.field.ref': {},
+                                'source': 'affiliation_id',
+                                'to': 'api/v2/affiliations'},
+            }},
+        'affiliation_names': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
+
+        'pd_oth_4_networks': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'network',
+            'model': 'accounts.models.Organisation.pd_oth_4_networks.through',
+            'source': 'pd_oth_4_networks',
+            'bound': 'organisation',
+            'fields': {
+                'network': {'.field.ref': {},
+                                'source': 'network_id',
+                                'to': 'api/v2/networks'},
+            }},
+        'network_names': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
+
+        'pd_oth_5_structure_type': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'structure',
+            'model': 'accounts.models.Organisation.pd_oth_5_structure_type.through',
+            'source': 'pd_oth_5_structure_type',
+            'bound': 'organisation',
+            'fields': {
+                'structure': {'.field.ref': {},
+                                'source': 'structure_id',
+                                'to': 'api/v2/structures'},
+            }},
+        'structure_names': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
+
+        'pd_oth_6_esfri_domain': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'esfridomain',
+            'model': 'accounts.models.Organisation.pd_oth_6_esfri_domain.through',
+            'source': 'pd_oth_6_esfri_domain',
+            'bound': 'organisation',
+            'fields': {
+                'esfridomain': {'.field.ref': {},
+                                'source': 'esfridomain_id',
+                                'to': 'api/v2/esfridomains'},
+            }},
+        'esfridomain_names': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
+
+        'pd_oth_7_esfri_type': {
+            '.field.ref': {},
+            'source': 'pd_oth_7_esfri_type_id',
+            'to': '/api/v2/esfritypes',
+            '.flag.filterable': {},
+            '.flag.nullable.default': {}},
+
+        'pd_oth_8_areas_of_activity': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'activity',
+            'model': 'accounts.models.Organisation.pd_oth_8_areas_of_activity.through',
+            'source': 'pd_oth_8_areas_of_activity',
+            'bound': 'organisation',
+            'fields': {
+                'activity': {'.field.ref': {},
+                                'source': 'activity_id',
+                                'to': 'api/v2/activities'},
+            }},
+        'activity_names': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
+            
+        'pd_oth_9_societal_grand_challenges': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'challenge',
+            'model': 'accounts.models.Organisation.pd_oth_9_societal_grand_challenges.through',
+            'source': 'pd_oth_9_societal_grand_challenges',
+            'bound': 'organisation',
+            'fields': {
+                'challenge': {'.field.ref': {},
+                                'source': 'challenge_id',
+                                'to': 'api/v2/challenges'},
+            }},
+        'challenge_names': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
+
+        'pd_oth_10_national_roadmaps': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+        
+        
+
     },
     'actions': {
         '.action-template.django.list': {},

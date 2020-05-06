@@ -119,7 +119,7 @@ const DETAILS_OTHER_FIELDSET = {
     'network_names',
     'structure_names',
     'esfridomain_names',
-    'pd_oth_7_esfri_type',
+    'pd_oth_7_esfri_type.name',
     'activity_names',
     'challenge_names',
     'pd_oth_10_national_roadmaps',
