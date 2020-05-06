@@ -41,6 +41,9 @@ def assertions_crud(resource, user):
 def test_target_users(superadmin):
     assertions_crud('target_users', superadmin)
 
+def test_providers(superadmin):
+    assertions_crud('providers', superadmin)
+
 # Tests for ServiceAdminship
 
 # def test_serviceadminship_create(superadmin):

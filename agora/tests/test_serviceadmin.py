@@ -33,6 +33,9 @@ def assertions_crud(resource, user, superadmin):
 def test_target_users(serviceadmin, superadmin):
     assertions_crud('target_users', serviceadmin, superadmin)
 
+def test_providers(serviceadmin, superadmin):
+    assertions_crud('providers', serviceadmin, superadmin)
+
 # def test_services(serviceadmin, serviceadmin2, superadmin):
     # """
     # Flow:

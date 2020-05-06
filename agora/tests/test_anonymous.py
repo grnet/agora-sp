@@ -43,3 +43,6 @@ def assertions_crud(resource, user, superadmin):
 
 def test_target_users(superadmin):
     assertions_crud('target_users', client, superadmin)
+
+def test_providers(superadmin):
+    assertions_crud('providers', client, superadmin)
