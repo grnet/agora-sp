@@ -111,5 +111,23 @@ def get_rules():
         ('api/v2/target-users', 'partial_update', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/target-users', 'destroy', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/target-users', 'delete', 'superadmin', '*', '*', '*', '*'),
+
+        ('api/v2/networks', 'list', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/networks', 'list', 'admin', '*', '*', '*', '*'),
+        ('api/v2/networks', 'list', 'serviceadmin', '*', '*', '*', '*'),
+        ('api/v2/networks', 'list', 'observer', '*', '*', '*', '*'),
+        ('api/v2/networks', 'retrieve', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/networks', 'retrieve', 'admin', '*', '*', '*', '*'),
+        ('api/v2/networks', 'retrieve', 'serviceadmin', '*', '*', '*', '*'),
+        ('api/v2/networks', 'retrieve', 'observer', '*', '*', '*', '*'),
+        ('api/v2/networks', 'create', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/networks', 'create', 'admin', '*', '*', '*', '*'),
+        ('api/v2/networks', 'update', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/networks', 'update', 'admin', '*', '*', '*', '*'),
+        ('api/v2/networks', 'partial_update', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/networks', 'partial_update', 'admin', '*', '*', '*', '*'),
+        ('api/v2/networks', 'destroy', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/networks', 'delete', 'superadmin', '*', '*', '*', '*'),
+
     ]
     return rules

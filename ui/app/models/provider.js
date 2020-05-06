@@ -123,5 +123,24 @@ export default DS.Model.extend({
     hint: 'provider.hints.public_contact',
     inverse: null
   }),
+  // other information
+  pd_oth_4_networks: DS.hasMany('network', {
+    label: 'provider.fields.pd_oth_4_networks',
+    hint: 'provider.hints.pd_oth_4_networks',
+  }),
+  network_names: DS.attr({
+    label: 'provider.fields.network_names',
+  }),
+
+  __api__: {
+    serialize: function(hash, _) {
+      // do not send readonly keys to backend
+      delete hash['network_names'];
+      return hash;
+    },
+  },
+
+
+
 
 });

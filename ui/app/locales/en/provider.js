@@ -11,6 +11,8 @@ const provider = {
     'contact': 'Contact Information',
     'main_contact': 'Main Contact/Service Owner',
     'public_contact': 'Public Contact',
+    'other': 'Other Information',
+    'other_hint': '',
 
   },
   'fields': {
@@ -46,6 +48,7 @@ const provider = {
     'pc_email': 'PD.COI.8 - Email',
     'pc_phone': 'PD.COI.9 - Phone',
     'pc_position': 'PD.COI.10 - Position',
+    'pd_oth_4_networks': 'PD.OTH.4 Networks'
   },
   'hints': {
     'name': '',
@@ -69,6 +72,7 @@ const provider = {
     'pd_mti_2_certifications': 'List of certifications obtained for the Provider (including the certification body and any certificate number).',
     'main_contact': 'This info will not be publicly exposed',
     'public_contact': 'This info will be exposed to public API ',
+    'pd_oth_4_networks': '<br />Select the networks the Provider is participating in.'
   },
   'belongs': {
     'name': 'Provider',

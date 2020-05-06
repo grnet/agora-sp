@@ -74,6 +74,26 @@ const DETAILS_CONTACT_PUBLIC_FIELDSET = {
   },
 };
 
+const DETAILS_OTHER_FIELDSET = {
+  label: 'provider.cards.other',
+  fields: [
+    'network_names',
+  ],
+  layout: {
+    flex: [50],
+  },
+};
+
+const OTHER_FIELDSET = {
+  label: 'provider.cards.other',
+  fields: [
+    networks,
+  ],
+  layout: {
+    flex: [50],
+  },
+};
+
 /********************************************
                 DETAILS VIEW
 ********************************************/
@@ -127,6 +147,7 @@ MARKETING_FIELDSET,
 MATURITY_FIELDSET,
 DETAILS_CONTACT_MAIN_FIELDSET,
 DETAILS_CONTACT_PUBLIC_FIELDSET,
+DETAILS_OTHER_FIELDSET,
 ]
 
 
@@ -230,6 +251,7 @@ const CREATE_FIELDSETS = [{
 MARKETING_FIELDSET,
 MATURITY_FIELDSET,
 CONTACT_FIELDSET,
+OTHER_FIELDSET,
 ]
 
 export {
