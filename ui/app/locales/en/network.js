@@ -1,6 +1,6 @@
 const network = {
     'cards': {
-      'basic_information': 'Basic information',
+      'basic': 'Basic information',
       'basic_hint': '',
   
     },
