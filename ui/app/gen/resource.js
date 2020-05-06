@@ -8,10 +8,28 @@ import {
   SORT_FIELDS,
 } from '../utils/common/resources';
 
+const { get, set, computed } = Ember;
+
 export default AgoraGen.extend({
   modelName: 'resource',
   path: 'resources',
   resourceName: 'api/v2/resources',
+  abilityStates: {
+    organisation_owned: true,
+
+    owned: computed('model.resource_admins_ids', 'user.id', function() {
+      let ids = get(this, 'model.resource_admins_ids');
+      let user_id = get(this, 'user.id') && get(this, 'user.id').toString();
+      console.log(user_id, ids)
+
+      if (!ids) {
+        return false;
+      }
+      let ids_arr = ids.split(',');
+
+      return ids_arr.includes(user_id);
+    }),
+  },
   common: {
     validators: {
       rd_bai_0_id: [validate.presence(true)],

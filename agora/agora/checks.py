@@ -350,3 +350,43 @@ class Organisation(object):
         auth_user = context['auth/user']
         organisations = [x.id for x in auth_user.organisations.all()]
         return Q(id__in=organisations)
+
+
+class Resource(object):
+
+    @staticmethod
+    def owned(backend_input, instance, context):
+        """Servicadmins can update Resources they own.
+
+        A serviceadmin owns a Resource if resource's resource_admins_ids
+        computed property contains the id of the user.
+        The resource's organisations must be the same as the one the
+        serviceadmin belongs to.
+        """
+        auth_user = context['auth/user']
+        auth_user_id = str(auth_user.id)
+        service_admins_ids = instance.resource_admins_ids.split(",")
+        resource_org_id = str(backend_input.get('rd_bai_2_organisation_id'))
+        user_org_id = str(auth_user.organisation.id)
+
+        if not user_org_id == resource_org_id:
+            raise ValidationError(_('Unauthorized organisation(s)'))
+
+        if auth_user_id in service_admins_ids:
+            return
+        else:
+            raise ValidationError(_('Unauthorized action'))
+
+    @staticmethod
+    def organisation_owned(backend_input, instance, context):
+        """Servicadmins must belong to Resource's organisation.
+
+        The resource's organisations must be the same as the one the
+        serviceadmin belongs to.
+        """
+        auth_user = context['auth/user']
+        resource_org_id = str(backend_input.get('rd_bai_2_organisation_id'))
+        user_org_id = str(auth_user.organisation.id)
+
+        if not user_org_id == resource_org_id:
+            raise ValidationError(_('Unauthorized organisation(s)'))

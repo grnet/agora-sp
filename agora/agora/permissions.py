@@ -80,10 +80,13 @@ def get_rules():
         ('api/v2/resources', 'retrieve', 'observer', '*', '*', '*', '*'),
         ('api/v2/resources', 'create', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/resources', 'create', 'admin', '*', '*', '*', '*'),
+        ('api/v2/resources', 'create', 'serviceadmin', '*', 'organisation_owned', '*', '*'),
         ('api/v2/resources', 'update', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/resources', 'update', 'admin', '*', '*', '*', '*'),
+        ('api/v2/resources', 'update', 'serviceadmin', '*', 'owned', '*', '*'),
         ('api/v2/resources', 'partial_update', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/resources', 'partial_update', 'admin', '*', '*', '*', '*'),
+        ('api/v2/resources', 'partial_update', 'serviceadmin', '*', 'owned', '*', '*'),
         ('api/v2/resources', 'destroy', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/resources', 'delete', 'superadmin', '*', '*', '*', '*'),
 
