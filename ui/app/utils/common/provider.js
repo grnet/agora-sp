@@ -5,7 +5,13 @@ const MARKETING_FIELDSET = {
   label: 'provider.cards.marketing',
   text: 'provider.cards.marketing_hint',
   fields: [
-  'pd_mri_1_description',
+  field(
+      'pd_mri_1_description', {
+        type: 'text',
+        htmlSafe: true,
+        formComponent: 'text-editor',
+      }
+    ),
   'pd_mri_2_logo',
   'pd_mri_3_multimedia',
   ],
@@ -176,31 +182,15 @@ const DETAILS_FIELDSETS = [{
   label: 'provider.cards.basic_information',
   text: 'provider.cards.basic_hint',
   layout: {
-    flex: [100, 100, 100, 100, 100, 100, 100, 100, 100, 50]
+    flex: [100, 100, 100, 50, 50, 100]
   },
   fields: [
-    'name',
-    'contact',
     'pd_bai_0_id',
     'pd_bai_1_name',
     'pd_bai_2_abbreviation',
+    'pd_bai_3_legal_entity',
     'pd_bai_3_legal_status',
     'pd_bai_4_website',
-    field(
-      'description', {
-        type: 'text',
-        htmlSafe: true,
-        formComponent: 'text-editor',
-      }
-    ),
-    fileField(
-      'logo', 'provider', 'logo', {
-        readonly: true,
-      }, {
-        img: true
-      }
-    ),
-    'pd_bai_3_legal_entity',
   ]
 },
 {
@@ -233,30 +223,15 @@ const EDIT_FIELDSETS = [{
   label: 'provider.cards.basic_information',
   text: 'provider.cards.basic_hint',
   layout: {
-    flex: [100, 100, 100, 100, 100, 100, 100, 100, 100, 50]
+    flex: [100, 100, 100, 50, 50, 100]
   },
   fields: [
-    'name',
-    'contact',
     'pd_bai_0_id',
     'pd_bai_1_name',
     'pd_bai_2_abbreviation',
+    'pd_bai_3_legal_entity',
     'pd_bai_3_legal_status',
     'pd_bai_4_website',
-    field(
-      'description', {
-        type: 'text',
-        htmlSafe: true,
-        formComponent: 'text-editor',
-      }
-    ),
-    fileField(
-      'logo', 'provider', 'logo', {
-      }, {
-        img: true
-      }
-    ),
-    'pd_bai_3_legal_entity',
   ]
 },
 {
@@ -289,24 +264,15 @@ const CREATE_FIELDSETS = [{
   label: 'provider.cards.basic_information',
   text: 'provider.cards.basic_hint',
   layout: {
-    flex: [100, 100, 100, 100, 100, 100, 100, 100, 100, 50]
+    flex: [100, 100, 100, 50, 50, 100]
   },
   fields: [
-    'name',
-    'contact',
     'pd_bai_0_id',
     'pd_bai_1_name',
     'pd_bai_2_abbreviation',
+    'pd_bai_3_legal_entity',
     'pd_bai_3_legal_status',
     'pd_bai_4_website',
-    field(
-      'description', {
-        type: 'text',
-        htmlSafe: true,
-        formComponent: 'text-editor',
-      }
-    ),
-    'pd_bai_3_legal_entity',
   ]
 },
 {
