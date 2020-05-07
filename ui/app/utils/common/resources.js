@@ -50,6 +50,24 @@ const DETAILS_BASIC_INFO_FIELDSET = {
   },
 };
 
+const MANAGEMENT_INFORMATION_FIELDSET = {
+  label: 'resource.cards.management_information',
+  fields: [
+    'rd_mgi_1_helpdesk_webpage',
+    'rd_mgi_2_helpdesk_email',
+    'rd_mgi_3_user_manual',
+    'rd_mgi_4_terms_of_use',
+    'rd_mgi_5_privacy_policy',
+    'rd_mgi_6_sla_specification',
+    'rd_mgi_7_training_information',
+    'rd_mgi_8_status_monitoring',
+    'rd_mgi_9_maintenance',
+  ],
+  layout: {
+    flex: [50, 50, 50, 50, 50, 50, 50, 50, 100]
+  },
+};
+
 const DETAILS_MARKETING_FIELDSET = {
   label: 'resource.cards.marketing',
   fields: [
@@ -169,6 +187,7 @@ const DETAILS_CONTACT_PUBLIC_FIELDSET = {
 const DETAILS_FIELDSETS = [
   DETAILS_BASIC_INFO_FIELDSET,
   DETAILS_MARKETING_FIELDSET,
+  MANAGEMENT_INFORMATION_FIELDSET,
   GEO_FIELDSET,
   DETAILS_CONTACT_MAIN_FIELDSET,
   DETAILS_CONTACT_PUBLIC_FIELDSET,
@@ -177,6 +196,7 @@ const DETAILS_FIELDSETS = [
 const CREATE_FIELDSETS = [
   EDIT_OR_CREATE_BASIC_INFO_FIELDSET,
   EDIT_OR_CREATE_MARKETING_FIELDSET,
+  MANAGEMENT_INFORMATION_FIELDSET,
   GEO_FIELDSET,
   CONTACT_FIELDSET,
 ];
@@ -184,6 +204,7 @@ const CREATE_FIELDSETS = [
 const EDIT_FIELDSETS = [
   EDIT_OR_CREATE_BASIC_INFO_FIELDSET,
   EDIT_OR_CREATE_MARKETING_FIELDSET,
+  MANAGEMENT_INFORMATION_FIELDSET,
   GEO_FIELDSET,
   CONTACT_FIELDSET,
 ];

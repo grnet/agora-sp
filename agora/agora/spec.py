@@ -1656,7 +1656,7 @@ ORGANISATIONS = {
         'activity_names': {
             '.field.string': {},
             '.flag.nowrite': {}},
-            
+
         'pd_oth_9_societal_grand_challenges': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
@@ -1679,8 +1679,8 @@ ORGANISATIONS = {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        
-        
+
+
 
     },
     'actions': {
@@ -1944,6 +1944,35 @@ RESOURCES = {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
+
+        'rd_mgi_1_helpdesk_webpage': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+        'rd_mgi_2_helpdesk_email': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+        'rd_mgi_3_user_manual': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+        'rd_mgi_4_terms_of_use': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+        'rd_mgi_5_privacy_policy': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+        'rd_mgi_6_sla_specification': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+        'rd_mgi_7_training_information': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+        'rd_mgi_8_status_monitoring': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+        'rd_mgi_9_maintenance': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+
         'rd_gla_1_geographical_availability': {
             '.field.string': {},
             '.flag.nullable.default': {}},

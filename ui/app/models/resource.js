@@ -69,7 +69,43 @@ export default DS.Model.extend({
   rd_mri_5_target_users_verbose: DS.attr({
     label: 'resource.fields.rd_mri_5_target_users'
   }),
-
+  // Management Information
+  rd_mgi_1_helpdesk_webpage: DS.attr({
+    label: 'resource.fields.rd_mgi_1_helpdesk_webpage',
+    hint: 'resource.hints.rd_mgi_1_helpdesk_webpage',
+  }),
+  rd_mgi_2_helpdesk_email: DS.attr({
+    label: 'resource.fields.rd_mgi_2_helpdesk_email',
+    hint: 'resource.hints.rd_mgi_2_helpdesk_email',
+  }),
+  rd_mgi_3_user_manual: DS.attr({
+    label: 'resource.fields.rd_mgi_3_user_manual',
+    hint: 'resource.hints.rd_mgi_3_user_manual',
+  }),
+  rd_mgi_4_terms_of_use: DS.attr({
+    label: 'resource.fields.rd_mgi_4_terms_of_use',
+    hint: 'resource.hints.rd_mgi_4_terms_of_use',
+  }),
+  rd_mgi_5_privacy_policy: DS.attr({
+    label: 'resource.fields.rd_mgi_5_privacy_policy',
+    hint: 'resource.hints.rd_mgi_5_privacy_policy',
+  }),
+  rd_mgi_6_sla_specification: DS.attr({
+    label: 'resource.fields.rd_mgi_6_sla_specification',
+    hint: 'resource.hints.rd_mgi_6_sla_specification',
+  }),
+  rd_mgi_7_training_information: DS.attr({
+    label: 'resource.fields.rd_mgi_7_training_information',
+    hint: 'resource.hints.rd_mgi_7_training_information',
+  }),
+  rd_mgi_8_status_monitoring: DS.attr({
+    label: 'resource.fields.rd_mgi_8_status_monitoring',
+    hint: 'resource.hints.rd_mgi_8_status_monitoring',
+  }),
+  rd_mgi_9_maintenance: DS.attr({
+    label: 'resource.fields.rd_mgi_9_maintenance',
+    hint: 'resource.hints.rd_mgi_9_maintenance',
+  }),
   // Geographical and Language availability fields
   rd_gla_1_geographical_availability: DS.attr({
     defaultValue: 'Europe',
