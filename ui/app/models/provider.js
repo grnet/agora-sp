@@ -123,5 +123,90 @@ export default DS.Model.extend({
     hint: 'provider.hints.public_contact',
     inverse: null
   }),
+  // other information
+  pd_oth_1_hosting_legal_entity: DS.attr({
+    label: 'provider.fields.pd_oth_1_hosting_legal_entity',
+    hint: 'provider.hints.pd_oth_1_hosting_legal_entity',
+  }),
+  pd_oth_2_participating_countries: DS.attr({
+    defaultValue: 'Europe',
+    label: 'provider.fields.pd_oth_2_participating_countries',
+    hint: 'provider.hints.pd_oth_2_participating_countries',
+    formComponent: 'agora-chips',
+    formAttrs: {
+      options: countries,
+      exactMatch: true,
+    }
+  }),
+  pd_oth_3_affiliations: DS.hasMany('affiliation', {
+    label: 'provider.fields.pd_oth_3_affiliations',
+    hint: 'provider.hints.pd_oth_3_affiliations',
+  }),
+  affiliation_names: DS.attr({
+    label: 'provider.fields.affiliation_names',
+  }),
+  pd_oth_4_networks: DS.hasMany('network', {
+    label: 'provider.fields.pd_oth_4_networks',
+    hint: 'provider.hints.pd_oth_4_networks',
+  }),
+  network_names: DS.attr({
+    label: 'provider.fields.network_names',
+  }),
+  pd_oth_5_structure_type: DS.hasMany('structure', {
+    label: 'provider.fields.pd_oth_5_structure_type',
+    hint: 'provider.hints.pd_oth_5_structure_type',
+  }),
+  structure_names: DS.attr({
+    label: 'provider.fields.structure_names',
+  }),
+  pd_oth_6_esfri_domain: DS.hasMany('esfridomain', {
+    label: 'provider.fields.pd_oth_6_esfri_domain',
+    hint: 'provider.hints.pd_oth_6_esfri_domain',
+  }),
+  esfridomain_names: DS.attr({
+    label: 'provider.fields.esfridomain_names',
+  }),
+  pd_oth_7_esfri_type: DS.belongsTo('esfritype', {
+    label: 'provider.fields.pd_oth_7_esfri_type',
+    hint: 'provider.hints.pd_oth_7_esfri_type',
+    inverse: null,
+    formAttrs: {
+      optionLabelAttr: 'name',
+    },
+  }),
+  pd_oth_8_areas_of_activity: DS.hasMany('activity', {
+    label: 'provider.fields.pd_oth_8_areas_of_activity:',
+    hint: 'provider.hints.pd_oth_8_areas_of_activity:',
+  }),
+  activity_names: DS.attr({
+    label: 'provider.fields.activity_names',
+  }),
+  pd_oth_9_societal_grand_challenges: DS.hasMany('challenge', {
+    label: 'provider.fields.pd_oth_9_societal_grand_challenges',
+    hint: 'provider.hints.pd_oth_9_societal_grand_challenges',
+  }),
+  challenge_names: DS.attr({
+    label: 'provider.fields.challenge_names',
+  }),
+  pd_oth_10_national_roadmaps: DS.attr({
+    label: 'provider.fields.pd_oth_10_national_roadmaps',
+    hint: 'provider.hints.pd_oth_10_national_roadmaps',
+  }),
+
+  __api__: {
+    serialize: function(hash, _) {
+      // do not send readonly keys to backend
+      delete hash['affiliation_names'];
+      delete hash['network_names'];
+      delete hash['structure_names'];
+      delete hash['esfridomain_names'];
+      delete hash['activity_names'];
+      delete hash['challenge_names'];
+      return hash;
+    },
+  },
+
+
+
 
 });

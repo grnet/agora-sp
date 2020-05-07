@@ -23,6 +23,13 @@ import { resource } from './resource';
 import { target_user } from './target_user';
 import { contact_information } from './contact_information';
 import { resource_admin } from './resource_admin';
+import { network } from './network'; 
+import { structure } from './structure';
+import { affiliation } from './affiliation';
+import { esfridomain } from './esfridomain';
+import { esfritype } from './esfritype';
+import { activity } from './activity';
+import { challenge } from './challenge';
 
 export default {
   'service_item': service_item,
@@ -60,5 +67,12 @@ export default {
   contact_information,
   'Service Admin': 'Resource Admin',
   resource_admin,
+  'affiliation': affiliation,
+  'network': network,
+  'structure': structure,
+  'esfridomain': esfridomain,
+  'esfritype': esfritype,
+  'activity': activity,
+  'challenge': challenge,
 };
 

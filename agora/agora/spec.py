@@ -1249,6 +1249,162 @@ RESOURCE_ADMINS = {
     },
 }
 
+
+NETWORKS = {
+    '.collection.django': {},
+    'model': 'accounts.models.Network',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+STRUCTURES = {
+    '.collection.django': {},
+    'model': 'accounts.models.Structure',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+AFFILIATIONS = {
+    '.collection.django': {},
+    'model': 'accounts.models.Affiliation',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+ESFRI_DOMAINS= {
+    '.collection.django': {},
+    'model': 'accounts.models.EsfriDomain',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+ESFRI_TYPES= {
+    '.collection.django': {},
+    'model': 'accounts.models.EsfriType',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+ACTIVITIES= {
+    '.collection.django': {},
+    'model': 'accounts.models.Activity',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+CHALLENGES= {
+    '.collection.django': {},
+    'model': 'accounts.models.Challenge',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+
 ORGANISATIONS = {
     '.collection.django': {},
     'model': 'accounts.models.Organisation',
@@ -1393,6 +1549,139 @@ ORGANISATIONS = {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
+
+        'pd_oth_1_hosting_legal_entity': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+
+        'pd_oth_2_participating_countries': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+
+        'pd_oth_3_affiliations': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'affiliation',
+            'model': 'accounts.models.Organisation.pd_oth_3_affiliations.through',
+            'source': 'pd_oth_3_affiliations',
+            'bound': 'organisation',
+            'fields': {
+                'affiliation': {'.field.ref': {},
+                                'source': 'affiliation_id',
+                                'to': 'api/v2/affiliations'},
+            }},
+        'affiliation_names': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
+
+        'pd_oth_4_networks': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'network',
+            'model': 'accounts.models.Organisation.pd_oth_4_networks.through',
+            'source': 'pd_oth_4_networks',
+            'bound': 'organisation',
+            'fields': {
+                'network': {'.field.ref': {},
+                                'source': 'network_id',
+                                'to': 'api/v2/networks'},
+            }},
+        'network_names': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
+
+        'pd_oth_5_structure_type': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'structure',
+            'model': 'accounts.models.Organisation.pd_oth_5_structure_type.through',
+            'source': 'pd_oth_5_structure_type',
+            'bound': 'organisation',
+            'fields': {
+                'structure': {'.field.ref': {},
+                                'source': 'structure_id',
+                                'to': 'api/v2/structures'},
+            }},
+        'structure_names': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
+
+        'pd_oth_6_esfri_domain': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'esfridomain',
+            'model': 'accounts.models.Organisation.pd_oth_6_esfri_domain.through',
+            'source': 'pd_oth_6_esfri_domain',
+            'bound': 'organisation',
+            'fields': {
+                'esfridomain': {'.field.ref': {},
+                                'source': 'esfridomain_id',
+                                'to': 'api/v2/esfridomains'},
+            }},
+        'esfridomain_names': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
+
+        'pd_oth_7_esfri_type': {
+            '.field.ref': {},
+            'source': 'pd_oth_7_esfri_type_id',
+            'to': '/api/v2/esfritypes',
+            '.flag.filterable': {},
+            '.flag.nullable.default': {}},
+
+        'pd_oth_8_areas_of_activity': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'activity',
+            'model': 'accounts.models.Organisation.pd_oth_8_areas_of_activity.through',
+            'source': 'pd_oth_8_areas_of_activity',
+            'bound': 'organisation',
+            'fields': {
+                'activity': {'.field.ref': {},
+                                'source': 'activity_id',
+                                'to': 'api/v2/activities'},
+            }},
+        'activity_names': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
+            
+        'pd_oth_9_societal_grand_challenges': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'challenge',
+            'model': 'accounts.models.Organisation.pd_oth_9_societal_grand_challenges.through',
+            'source': 'pd_oth_9_societal_grand_challenges',
+            'bound': 'organisation',
+            'fields': {
+                'challenge': {'.field.ref': {},
+                                'source': 'challenge_id',
+                                'to': 'api/v2/challenges'},
+            }},
+        'challenge_names': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
+
+        'pd_oth_10_national_roadmaps': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+        
+        
+
     },
     'actions': {
         '.action-template.django.list': {},
@@ -1800,6 +2089,13 @@ APP_CONFIG = {
                 'resources': RESOURCES,
                 'target-users': TARGET_USERS,
                 'contact-information': CONTACT_INFORMATION,
+                'affiliations': AFFILIATIONS,
+                'networks': NETWORKS,
+                'structures': STRUCTURES,
+                'esfridomains': ESFRI_DOMAINS,
+                'esfritypes': ESFRI_TYPES,
+                'activities': ACTIVITIES,
+                'challenges': CHALLENGES,
             },
         },
     },

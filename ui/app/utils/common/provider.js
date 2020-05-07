@@ -26,6 +26,60 @@ const MATURITY_FIELDSET = {
   },
 };
 
+const affiliations = field('pd_oth_3_affiliations', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: ['name'],
+    },
+  },
+});
+
+const networks = field('pd_oth_4_networks', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: ['name'],
+    },
+  },
+});
+
+const structure = field('pd_oth_5_structure_type', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: ['name'],
+    },
+  },
+});
+
+const esfridomain = field('pd_oth_6_esfri_domain', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: ['name'],
+    },
+  },
+});
+
+const activity = field('pd_oth_8_areas_of_activity', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: ['name'],
+    },
+  },
+});
+
+const challenge = field('pd_oth_9_societal_grand_challenges', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: ['name'],
+    },
+  },
+});
+
 const CONTACT_FIELDSET = {
   label: 'provider.cards.contact',
   fields: [
@@ -71,6 +125,46 @@ const DETAILS_CONTACT_PUBLIC_FIELDSET = {
   ],
   layout: {
     flex: [50, 50, 50, 50, 50],
+  },
+};
+
+const DETAILS_OTHER_FIELDSET = {
+  label: 'provider.cards.other',
+  fields: [
+    'pd_oth_1_hosting_legal_entity',
+    'pd_oth_2_participating_countries',
+    'affiliation_names',
+    'network_names',
+    'structure_names',
+    'esfridomain_names',
+    'pd_oth_7_esfri_type.name',
+    'activity_names',
+    'challenge_names',
+    'pd_oth_10_national_roadmaps',
+    
+  ],
+  layout: {
+    flex: [100,100,100,100,100,100,100,100,100,100],
+  },
+};
+
+const OTHER_FIELDSET = {
+  label: 'provider.cards.other',
+  fields: [
+    'pd_oth_1_hosting_legal_entity',
+    'pd_oth_2_participating_countries',
+    affiliations,
+    networks,
+    structure,
+    esfridomain,
+    'pd_oth_7_esfri_type',
+    activity,
+    challenge,
+    'pd_oth_10_national_roadmaps',
+    
+  ],
+  layout: {
+    flex: [100,100,100,100,100,100,100,100,100,100],
   },
 };
 
@@ -127,6 +221,7 @@ MARKETING_FIELDSET,
 MATURITY_FIELDSET,
 DETAILS_CONTACT_MAIN_FIELDSET,
 DETAILS_CONTACT_PUBLIC_FIELDSET,
+DETAILS_OTHER_FIELDSET,
 ]
 
 
@@ -180,7 +275,8 @@ const EDIT_FIELDSETS = [{
 },
 MARKETING_FIELDSET,
 MATURITY_FIELDSET,
-CONTACT_FIELDSET
+CONTACT_FIELDSET,
+OTHER_FIELDSET,
 ]
 
 
@@ -230,6 +326,7 @@ const CREATE_FIELDSETS = [{
 MARKETING_FIELDSET,
 MATURITY_FIELDSET,
 CONTACT_FIELDSET,
+OTHER_FIELDSET,
 ]
 
 export {
