@@ -1249,6 +1249,55 @@ RESOURCE_ADMINS = {
     },
 }
 
+DOMAINS = {
+    '.collection.django': {},
+    'model': 'accounts.models.Domain',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+SUBDOMAINS = {
+    '.collection.django': {},
+    'model': 'accounts.models.Subdomain',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'domain': {
+            '.field.ref': {},
+            'source': 'domain_id',
+            'to': '/api/v2/domains',
+            '.flag.filterable': {},
+            '.flag.nullable.default': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
 
 NETWORKS = {
     '.collection.django': {},
@@ -2125,6 +2174,8 @@ APP_CONFIG = {
                 'esfritypes': ESFRI_TYPES,
                 'activities': ACTIVITIES,
                 'challenges': CHALLENGES,
+                'domains': DOMAINS,
+                'subdomains': SUBDOMAINS,
             },
         },
     },

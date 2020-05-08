@@ -99,7 +99,22 @@ class Challenge(models.Model):
         clean_html_fields(self)
         super(Challenge, self).save(*args, **kwargs)
 
+class Domain(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, unique=True)
 
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(Domain, self).save(*args, **kwargs)
+
+class Subdomain(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    domain = models.ForeignKey('accounts.Domain', blank=True, null=True, related_name='domain_subdomain')
+    name = models.CharField(max_length=255, unique=True)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(Subdomain, self).save(*args, **kwargs)
 
 class Organisation(models.Model):
     """
