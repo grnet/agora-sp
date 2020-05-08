@@ -1498,6 +1498,47 @@ ORGANISATIONS = {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
+        'pd_cli_1_scientific_domain': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'domain',
+            'model': 'accounts.models.Organisation.pd_cli_1_scientific_domain.through',
+            'source': 'pd_cli_1_scientific_domain',
+            'bound': 'organisation',
+            'fields': {
+                'domain': {'.field.ref': {},
+                                'source': 'domain_id',
+                                'to': 'api/v2/domains'},
+            }},
+        'domain_names': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
+        'pd_cli_2_scientific_subdomain': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'subdomain',
+            'model': 'accounts.models.Organisation.pd_cli_2_scientific_subdomain.through',
+            'source': 'pd_cli_2_scientific_subdomain',
+            'bound': 'organisation',
+            'fields': {
+                'subdomain': {'.field.ref': {},
+                                'source': 'subdomain_id',
+                                'to': 'api/v2/subdomains'},
+            }},
+        'subdomain_names': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
+        'pd_cli_3_tags': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
+        'affiliation_names': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
         'pd_loi_1_street_name_and_number': {
           '.field.string': {},
           '.flag.nullable.default': {},
