@@ -510,6 +510,17 @@ class Resource(models.Model):
     rd_mri_6_target_customer_tags = models.TextField(default=None, blank=True, null=True)
     rd_mri_7_use_cases = RichTextUploadingField(default=None, blank=True, null=True)
 
+    # Management Information
+    rd_mgi_1_helpdesk_webpage = models.CharField(max_length=255, default=None, blank=True, null=True)
+    rd_mgi_2_helpdesk_email = models.CharField(max_length=255, default=None, blank=True, null=True)
+    rd_mgi_3_user_manual = models.CharField(max_length=255, default=None, blank=True, null=True)
+    rd_mgi_4_terms_of_use = models.CharField(max_length=255, default=None, blank=True, null=True)
+    rd_mgi_5_privacy_policy = models.CharField(max_length=255, default=None, blank=True, null=True)
+    rd_mgi_6_sla_specification = models.CharField(max_length=255, default=None, blank=True, null=True)
+    rd_mgi_7_training_information = models.CharField(max_length=255, default=None, blank=True, null=True)
+    rd_mgi_8_status_monitoring = models.CharField(max_length=255, default=None, blank=True, null=True)
+    rd_mgi_9_maintenance = models.CharField(max_length=255, default=None, blank=True, null=True)
+
     # Geographical and Language Availability fields
     rd_gla_1_geographical_availability = models.CharField(max_length=255,
         default=None,
