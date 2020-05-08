@@ -4,7 +4,8 @@ import { AgoraGen } from '../lib/common';
 import {
   CREATE_FIELDSETS,
   EDIT_FIELDSETS,
-  DETAILS_FIELDSETS
+  DETAILS_FIELDSETS,
+  PROVIDER_TABLE_FIELDS
 } from '../utils/common/provider';
 
 
@@ -34,13 +35,7 @@ export default AgoraGen.extend({
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],
-      fields: [
-        'name',
-        'contact',
-        field('short_desc', {
-          label: 'provider.fields.description',
-        }),
-      ]
+      fields: PROVIDER_TABLE_FIELDS,
     },
     menu: {
       label: 'provider.menu',

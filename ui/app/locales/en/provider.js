@@ -18,10 +18,6 @@ const provider = {
 
   },
   'fields': {
-    'logo': 'Service provider Logo',
-    'description': 'Service provider Description',
-    'name': 'Service provider Name',
-    'contact': 'Contact',
     'pd_bai_3_legal_entity': 'PD.BAI.3 - Legal Entity',
     'pd_bai_3_legal_status': 'PD.BAI.3 - Legal Status',
     'pd_bai_0_id': 'PD.BAI.0 - ID',
@@ -69,14 +65,10 @@ const provider = {
     'activity_names': 'PD.OTH.8 - Areas of activity',
     'challenge_names': 'PD.OTH.9 - Societal Grand challenges',
     'pd_oth_10_national_roadmaps': 'PD.OTH.10 - National Roadmaps',
-    
+
 
   },
   'hints': {
-    'name': '',
-    'description': '',
-    'logo': '',
-    'contact': 'Contact email',
     'pd_bai_3_legal_entity': 'Is the provider a legal entity?',
     'pd_bai_3_legal_status': 'Legal Status of the Service Provider',
     'pd_bai_0_id': 'Unique identifier of the provider',
@@ -107,6 +99,11 @@ const provider = {
     'pd_oth_8_areas_of_activity': '<br />Basic research, Applied research or Technological development',
     'pd_oth_9_societal_grand_challenges': '<br />Provider’s participation in the grand societal challenges as defined by the European Commission',
     'pd_oth_10_national_roadmaps': 'Provider being part of a national roadmap for research infrastructures',
+  },
+  table: {
+    pd_bai_0_id: 'ID',
+    pd_bai_1_name: 'Name',
+    pd_bai_2_abbreviation: 'Abbreviation',
   },
   'belongs': {
     'name': 'Provider',

@@ -1461,21 +1461,6 @@ ORGANISATIONS = {
         'id': {
             '.field.uuid': {},
             '.flag.nowrite': {}},
-        'name': {
-            '.field.string': {},
-            '.flag.orderable': {},
-            '.flag.searchable': {}},
-        'description': {
-            '.field.string': {},
-            '.flag.nullable.default': {}},
-         'contact': {
-            '.field.string': {},
-            '.flag.orderable': {},
-            '.flag.searchable': {},
-            '.flag.nullable.default': {}},
-        'logo': {
-            '.field.file': {},
-            'default': ''},
         'pd_bai_3_legal_entity': {
           '.field.boolean': {},
           'default': False},
@@ -1493,7 +1478,9 @@ ORGANISATIONS = {
           '.flag.nullable.default': {},
         },
         'pd_bai_3_legal_status': {
-          '.field.string': {}},
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
         'pd_bai_4_website': {
           '.field.string': {},
           '.flag.nullable.default': {},

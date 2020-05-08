@@ -191,7 +191,7 @@ const DETAILS_OTHER_FIELDSET = {
     'activity_names',
     'challenge_names',
     'pd_oth_10_national_roadmaps',
-    
+
   ],
   layout: {
     flex: [100,100,100,100,100,100,100,100,100,100],
@@ -213,7 +213,7 @@ const OTHER_FIELDSET = {
     activity,
     challenge,
     'pd_oth_10_national_roadmaps',
-    
+
   ],
   layout: {
     flex: [100,100,100,100,100,100,100,100,100,100],
@@ -344,8 +344,16 @@ CONTACT_FIELDSET,
 OTHER_FIELDSET,
 ]
 
+
+const PROVIDER_TABLE_FIELDS = [
+  field('pd_bai_0_id', {label: 'provider.table.pd_bai_0_id'}),
+  field('pd_bai_1_name', {label: 'provider.table.pd_bai_1_name'}),
+  field('pd_bai_2_abbreviation', {label: 'provider.table.pd_bai_2_abbreviation'}),
+];
+
 export {
   DETAILS_FIELDSETS,
   EDIT_FIELDSETS,
-  CREATE_FIELDSETS
+  CREATE_FIELDSETS,
+  PROVIDER_TABLE_FIELDS
 };
