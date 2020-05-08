@@ -9,7 +9,7 @@ const providers = field('rd_bai_3_service_providers', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
-      fields: ['name'],
+      fields: ['pd_bai_1_name'],
     },
   },
 });
