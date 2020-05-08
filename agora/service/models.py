@@ -141,7 +141,7 @@ class Service(models.Model):
 
     @property
     def organisations_names(self):
-        return ", ".join(o.name for o in self.organisations.all())
+        return ", ".join(o.pd_bai_1_name for o in self.organisations.all())
 
     @property
     def service_categories_names(self):
@@ -543,7 +543,7 @@ class Resource(models.Model):
 
     @property
     def providers_names(self):
-        return ", ".join(o.name for o in self.rd_bai_3_providers.all())
+        return ", ".join(o.pd_bai_1_name for o in self.rd_bai_3_providers.all())
 
     @property
     def rd_mri_5_target_users_verbose(self):
