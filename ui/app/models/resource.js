@@ -15,7 +15,7 @@ export default DS.Model.extend({
     label: 'resource.fields.rd_bai_2_service_organisation',
     hint: 'resource.hints.rd_bai_2_service_organisation',
     formAttrs: {
-      optionLabelAttr: 'name',
+      optionLabelAttr: 'pd_bai_1_name',
     },
   }),
   rd_bai_3_service_providers: DS.hasMany('provider', {

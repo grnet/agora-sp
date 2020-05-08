@@ -2094,7 +2094,7 @@ RESOURCES = {
         'rd_coi_6_organisation': {
             '.field.string': {},
             '.flag.nowrite': {},
-            'source': 'main_contact.organisation.name',
+            'source': 'main_contact.organisation.pd_bai_1_name',
             '.flag.nullable.default': {}},
 
         'rd_coi_7_first_name': {
@@ -2125,7 +2125,7 @@ RESOURCES = {
         'rd_coi_12_organisation': {
             '.field.string': {},
             '.flag.nowrite': {},
-            'source': 'public_contact.organisation.name',
+            'source': 'public_contact.organisation.pd_bai_1_name',
             '.flag.nullable.default': {}},
         'resource_admins_ids': {
             '.field.string': {},
