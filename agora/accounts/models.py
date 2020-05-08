@@ -142,7 +142,7 @@ class Organisation(models.Model):
     pd_bai_4_website = models.TextField('PD.BAI.4_Website', default=None, blank=True, null=True)
 
     # Classification section 
-    pd_cli_1_scientific_domain = models.ManyToManyField(
+    pd_cli_1_scientific_domain = models.ManyToManyField(    
         Domain,
         blank=True,
         verbose_name='PD.CLI.1 Scientific Domain',
@@ -264,7 +264,7 @@ class Organisation(models.Model):
 
     @property
     def subdomain_names(self):
-        return ", ".join(o.name for o in self.pd_cli_1_scientific_subdomain.all())
+        return ", ".join(o.name for o in self.pd_cli_2_scientific_subdomain.all())
 
 
 

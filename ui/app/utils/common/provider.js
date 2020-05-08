@@ -32,6 +32,25 @@ const MATURITY_FIELDSET = {
   },
 };
 
+const domain = field('pd_cli_1_scientific_domain', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: ['name'],
+    },
+  },
+});
+
+const subdomain = field('pd_cli_2_scientific_subdomain', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: ['domain.name','name'],
+    },
+  },
+});
+
+
 const affiliations = field('pd_oth_3_affiliations', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
@@ -134,6 +153,31 @@ const DETAILS_CONTACT_PUBLIC_FIELDSET = {
   },
 };
 
+const DETAILS_CLASSIFICATION_FIELDSET = {
+  label: 'provider.cards.classification',
+  fields: [
+    'domain_names',
+    'subdomain_names',
+    'pd_cli_3_tags',
+  ],
+  layout: {
+    flex: [100,100,100],
+  },
+};
+
+const CLASSIFICATION_FIELDSET = {
+  label: 'provider.cards.classification',
+  fields: [
+    domain,
+    subdomain,
+    'pd_cli_3_tags',
+  ],
+  layout: {
+    flex: [100,100,100],
+  },
+};
+
+
 const DETAILS_OTHER_FIELDSET = {
   label: 'provider.cards.other',
   fields: [
@@ -153,6 +197,8 @@ const DETAILS_OTHER_FIELDSET = {
     flex: [100,100,100,100,100,100,100,100,100,100],
   },
 };
+
+
 
 const OTHER_FIELDSET = {
   label: 'provider.cards.other',
@@ -193,6 +239,7 @@ const DETAILS_FIELDSETS = [{
     'pd_bai_4_website',
   ]
 },
+DETAILS_CLASSIFICATION_FIELDSET,
 {
   label: 'provider.cards.location',
   text: 'provider.cards.location_hint',
@@ -234,6 +281,7 @@ const EDIT_FIELDSETS = [{
     'pd_bai_4_website',
   ]
 },
+CLASSIFICATION_FIELDSET,
 {
   label: 'provider.cards.location',
   text: 'provider.cards.location_hint',
@@ -275,6 +323,7 @@ const CREATE_FIELDSETS = [{
     'pd_bai_4_website',
   ]
 },
+CLASSIFICATION_FIELDSET,
 {
   label: 'provider.cards.location',
   text: 'provider.cards.location_hint',
