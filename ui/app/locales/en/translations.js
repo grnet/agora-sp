@@ -30,6 +30,8 @@ import { esfridomain } from './esfridomain';
 import { esfritype } from './esfritype';
 import { activity } from './activity';
 import { challenge } from './challenge';
+import { domain } from './domain';
+import { subdomain } from './subdomain';
 
 export default {
   'service_item': service_item,
@@ -74,5 +76,7 @@ export default {
   'esfritype': esfritype,
   'activity': activity,
   'challenge': challenge,
+  'domain': domain,
+  'subdomain': subdomain,
 };
 

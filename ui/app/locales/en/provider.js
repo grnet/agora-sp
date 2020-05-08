@@ -13,6 +13,8 @@ const provider = {
     'public_contact': 'Public Contact',
     'other': 'Other Information',
     'other_hint': '',
+    'classification': 'Classification Information',
+    'classification_hint': '',
 
   },
   'fields': {
@@ -26,6 +28,9 @@ const provider = {
     'pd_bai_1_name': 'PD.BAI.1 - Name',
     'pd_bai_2_abbreviation': 'PD.BAI.2 - Abbreviation',
     'pd_bai_4_website': 'PD.BAI.4 - Website',
+    'pd_cli_1_scientific_domain': 'PD.CLI.1 - Scientific Domain',
+    'pd_cli_2_scientific_subdomain': 'PD.CLI.2 - Scientific Subdomain',
+    'pd_cli_3_tags': 'PD.CLI.3 - Tags',
     'pd_loi_1_street_name_and_number': 'PD.LOI.1 - Street Name and Number',
     'pd_loi_2_postal_code': 'PD.LOI.2 - Postal Code',
     'pd_loi_3_city': 'PD.LOI.3 - City',
@@ -78,6 +83,9 @@ const provider = {
     'pd_bai_1_name': 'Full Name of the Provider offering the resource and acting as main contact point.',
     'pd_bai_2_abbreviation': 'Abbreviation or Short name of the Provider',
     'pd_bai_4_website': 'Website with information about the Provider.',
+    'pd_cli_1_scientific_domain': 'A named group of providers that offer access to the same type of resource or capabilities.',
+    'pd_cli_2_scientific_subdomain': 'Scientific SubdomainA named group of providers that offer access to the same type of resource or capabilities, within the defined domain.',
+    'pd_cli_3_tags': 'Keywords associated to the Provider to simplify search by relevant keywords.',
     'pd_loi_1_street_name_and_number': 'Street and number of the Provider\'s physical location.<br />example: Christou Lada Str.',
     'pd_loi_2_postal_code': 'Postal code of the Provider\'s physical location.<br />example: 10561',
     'pd_loi_3_city': 'City that the Provider is located in.<br />example: Athens',

@@ -54,6 +54,27 @@ export default DS.Model.extend({
     label: 'provider.fields.pd_bai_4_website',
     hint: 'provider.hints.pd_bai_4_website',
   }),
+  // classification information
+  pd_cli_1_scientific_domain: DS.hasMany('domain', {
+    label: 'provider.fields.pd_cli_1_scientific_domain',
+    hint: 'provider.hints.pd_cli_1_scientific_domain',
+  }),
+  domain_names: DS.attr({
+    label: 'provider.fields.domain_names',
+  }),
+  // TODO: Filter subdomain's ManyArray results according to domain selections
+  pd_cli_2_scientific_subdomain: DS.hasMany('subdomain', {
+    label: 'provider.fields.pd_cli_2_scientific_subdomain',
+    hint: 'provider.hints.pd_cli_2_scientific_subdomain',
+  }),
+  subdomain_names: DS.attr({
+    label: 'provider.fields.subdomain_names',
+  }),
+  pd_cli_3_tags: DS.attr({
+    label: 'provider.fields.pd_cli_3_tags',
+    hint: 'provider.hints.pd_cli_3_tags',
+    formComponent: 'agora-chips',
+  }),
   // location information
   pd_loi_1_street_name_and_number: DS.attr({
     label: 'provider.fields.pd_loi_1_street_name_and_number',
@@ -202,6 +223,8 @@ export default DS.Model.extend({
       delete hash['esfridomain_names'];
       delete hash['activity_names'];
       delete hash['challenge_names'];
+      delete hash['domain_names'];
+      delete hash['subdomain_names'];
       return hash;
     },
   },

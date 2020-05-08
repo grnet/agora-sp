@@ -99,7 +99,22 @@ class Challenge(models.Model):
         clean_html_fields(self)
         super(Challenge, self).save(*args, **kwargs)
 
+class Domain(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, unique=True)
 
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(Domain, self).save(*args, **kwargs)
+
+class Subdomain(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    domain = models.ForeignKey('accounts.Domain', blank=True, null=True, related_name='domain_subdomain')
+    name = models.CharField(max_length=255, unique=True)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(Subdomain, self).save(*args, **kwargs)
 
 class Organisation(models.Model):
     """
@@ -125,6 +140,22 @@ class Organisation(models.Model):
     pd_bai_2_abbreviation = models.CharField('PD.BAI.2_Abbreviation', max_length=30, default=None, blank=True, null=True)
 
     pd_bai_4_website = models.TextField('PD.BAI.4_Website', default=None, blank=True, null=True)
+
+    # Classification section 
+    pd_cli_1_scientific_domain = models.ManyToManyField(    
+        Domain,
+        blank=True,
+        verbose_name='PD.CLI.1 Scientific Domain',
+        related_name='domain_providers')
+
+    pd_cli_2_scientific_subdomain = models.ManyToManyField(
+        Subdomain,
+        blank=True,
+        verbose_name='PD.CLI.2 Scientific Subdomain',
+        related_name='subdomain_providers')
+    
+    pd_cli_3_tags = models.TextField('PD.CLI.2 Scientific Subdomain',default=None, blank=True, null=True)
+
 
     # Location section
     pd_loi_1_street_name_and_number = models.CharField('PD.LOI.1 Street Name and Number', max_length=50, default=None, blank=True, null=True)
@@ -226,6 +257,14 @@ class Organisation(models.Model):
     @property
     def challenge_names(self):
         return ", ".join(o.name for o in self.pd_oth_9_societal_grand_challenges.all())
+
+    @property
+    def domain_names(self):
+        return ", ".join(o.name for o in self.pd_cli_1_scientific_domain.all())
+
+    @property
+    def subdomain_names(self):
+        return ", ".join(o.name for o in self.pd_cli_2_scientific_subdomain.all())
 
 
 
