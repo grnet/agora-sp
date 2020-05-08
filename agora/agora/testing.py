@@ -106,8 +106,6 @@ RESOURCES_CRUD = {
     'providers': {
         'url': '/api/v2/providers/',
         'create_data': {
-            'name': 'CIA',
-            'description': '<p>Description</p>',
             'pd_bai_3_legal_status': "NPP",
             'pd_bai_3_legal_entity': False,
             'pd_bai_0_id': 'id',
@@ -126,7 +124,6 @@ RESOURCES_CRUD = {
             'pd_mti_2_certifications': 'ISO-27001'
         },
         'edit_data': {
-            'name': 'FBI',
             'pd_bai_3_legal_entity': True,
             'pd_bai_3_legal_status': "NPP",
             'pd_bai_0_id': 'id',

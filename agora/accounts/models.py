@@ -122,27 +122,24 @@ class Organisation(models.Model):
     """
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255, unique=True)
-    description = RichTextUploadingField(default=None, blank=True, null=True)
-    logo = models.ImageField(upload_to=helper.organisation_image_path)
-    contact = models.CharField(max_length=255,
-                               default=None, blank=True, null=True)
+
     pd_bai_3_legal_entity = models.BooleanField(('PD.BAI.3 Legal entity'),default=False)
 
     pd_bai_3_legal_status = models.CharField('PB.BAI.3_Legal_Status',
                                              max_length=255,
+                                             default=None, blank=True, null=True,
                                              choices=LEGAL_STATUSES)
 
     pd_bai_0_id = models.TextField('PD.BAI.0_ID', default=None, blank=True, null=True)
 
-    pd_bai_1_name = models.CharField('PD.BAI.1_Name', max_length=100, default=None, blank=True, null=True)
+    pd_bai_1_name = models.CharField('PD.BAI.1_Name', unique=True, max_length=100, default=None, blank=True, null=True)
 
     pd_bai_2_abbreviation = models.CharField('PD.BAI.2_Abbreviation', max_length=30, default=None, blank=True, null=True)
 
     pd_bai_4_website = models.TextField('PD.BAI.4_Website', default=None, blank=True, null=True)
 
-    # Classification section 
-    pd_cli_1_scientific_domain = models.ManyToManyField(    
+    # Classification section
+    pd_cli_1_scientific_domain = models.ManyToManyField(
         Domain,
         blank=True,
         verbose_name='PD.CLI.1 Scientific Domain',
@@ -153,7 +150,7 @@ class Organisation(models.Model):
         blank=True,
         verbose_name='PD.CLI.2 Scientific Subdomain',
         related_name='subdomain_providers')
-    
+
     pd_cli_3_tags = models.TextField('PD.CLI.2 Scientific Subdomain',default=None, blank=True, null=True)
 
 
@@ -200,7 +197,7 @@ class Organisation(models.Model):
         blank=True,
         verbose_name='PD.OTH.4 Networks',
         related_name='networked_providers')
-    
+
     pd_oth_5_structure_type = models.ManyToManyField(
         Structure,
         blank=True,
