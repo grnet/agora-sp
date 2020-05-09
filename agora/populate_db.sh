@@ -1,4 +1,10 @@
 # Populate db with initial data
+echo populate supercategories...
+python manage.py loaddata ./fixtures/supercategories.json
+echo populate categories
+python manage.py loaddata ./fixtures/categories.json
+echo populate subcategories
+python manage.py loaddata ./fixtures/subcategories.json
 echo populating scientific domains...
 python manage.py loaddata ./fixtures/scientific_domains.json
 echo populating scientific subdomains...
