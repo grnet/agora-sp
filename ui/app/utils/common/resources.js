@@ -9,7 +9,7 @@ const providers = field('rd_bai_3_service_providers', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
-      fields: ['name'],
+      fields: ['pd_bai_1_name'],
     },
   },
 });
@@ -32,7 +32,7 @@ const SORT_FIELDS = [
 const TABLE_FIELDS = [
   field('rd_bai_0_id', {label: 'resource.table.rd_bai_0_id'}),
   field('rd_bai_1_name', {label: 'resource.table.rd_bai_1_name'}),
-  field('rd_bai_2_service_organisation.name', {label: 'resource.table.rd_bai_2_service_organisation'}),
+  field('rd_bai_2_service_organisation.pd_bai_1_name', {label: 'resource.table.rd_bai_2_service_organisation'}),
 ];
 
 
@@ -41,7 +41,7 @@ const DETAILS_BASIC_INFO_FIELDSET = {
   fields: [
     'rd_bai_0_id',
     'rd_bai_1_name',
-    field('rd_bai_2_service_organisation.name', {label: 'resource.fields.rd_bai_2_service_organisation'}),
+    field('rd_bai_2_service_organisation.pd_bai_1_name', {label: 'resource.fields.rd_bai_2_service_organisation'}),
     'providers_names',
     'rd_bai_4_webpage',
   ],
@@ -162,7 +162,7 @@ const DETAILS_CONTACT_MAIN_FIELDSET = {
     field('main_contact.email', {label: 'resource.fields.mc_email'}),
     field('main_contact.phone', {label: 'resource.fields.mc_phone'}),
     field('main_contact.position', {label: 'resource.fields.mc_position'}),
-    field('main_contact.organisation.name', {label: 'resource.fields.mc_organisation'}),
+    field('main_contact.organisation.pd_bai_1_name', {label: 'resource.fields.mc_organisation'}),
   ],
   layout: {
     flex: [50, 50, 50, 50, 50, 50],
@@ -178,7 +178,7 @@ const DETAILS_CONTACT_PUBLIC_FIELDSET = {
     field('public_contact.email', {label: 'resource.fields.pc_email'}),
     field('public_contact.phone', {label: 'resource.fields.pc_phone'}),
     field('public_contact.position', {label: 'resource.fields.pc_position'}),
-    field('public_contact.organisation.name', {label: 'resource.fields.pc_organisation'}),
+    field('public_contact.organisation.pd_bai_1_name', {label: 'resource.fields.pc_organisation'}),
   ],
   layout: {
     flex: [50, 50, 50, 50, 50, 50],

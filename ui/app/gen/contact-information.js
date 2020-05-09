@@ -31,7 +31,7 @@ export default AgoraGen.extend({
         'full_name',
         'email',
         'position',
-        'organisation.name',
+        'organisation.pd_bai_1_name',
       ]
     },
     menu: {
@@ -57,7 +57,7 @@ export default AgoraGen.extend({
         'email',
         'phone',
         'position',
-        'organisation.name',
+        'organisation.pd_bai_1_name',
       ],
       layout: {
         flex: [50, 50, 50, 50, 50, 50],
