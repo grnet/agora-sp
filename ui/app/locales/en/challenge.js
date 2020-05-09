@@ -14,6 +14,12 @@ const challenge = {
       'name': 'Societal Grand Challenge',
       'hint': ''
     },
+    'table': {
+      'name': 'Societal Grand Challenge',
+    }, 
+    'placeholder':{
+      'search': 'Search by Societal Grand Challenge',
+    },
     'menu': 'Societal Grand Challenges'
   };
   

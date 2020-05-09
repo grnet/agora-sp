@@ -14,6 +14,12 @@ const esfritype = {
       'name': 'ESFRI Type',
       'hint': ''
     },
+    'table': {
+      'name': 'ESFRI Type',
+    }, 
+    'placeholder':{
+      'search': 'Search by ESFRI type',
+    },
     'menu': 'ESFRI Types'
   };
   

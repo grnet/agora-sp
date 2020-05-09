@@ -11,8 +11,14 @@ const activity = {
       'name': '',
     },
     'belongs': {
-      'name': 'Are of Activity',
+      'name': 'Area of Activity',
       'hint': ''
+    },
+    'table': {
+      'name': 'Area of Activity',
+    }, 
+    'placeholder':{
+      'search': 'Search by Area of Activity',
     },
     'menu': 'Areas of Activity'
   };
