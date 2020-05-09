@@ -481,6 +481,35 @@ class TargetUser(models.Model):
         clean_html_fields(self)
         super(TargetUser, self).save(*args, **kwargs)
 
+class Supercategory(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, unique=True)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(Supercategory, self).save(*args, **kwargs)
+
+class Category(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    supercategory = models.ForeignKey('service.Supercategory', blank=True, null=True, related_name='supercategory_category')
+    name = models.CharField(max_length=255, unique=True)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(Category, self).save(*args, **kwargs)
+
+class Subcategory(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    category = models.ForeignKey('service.Category', blank=True, null=True, related_name='category_subcategory')
+    name = models.CharField(max_length=255)
+
+    class Meta:
+        unique_together = ('category', 'name')
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(Subcategory, self).save(*args, **kwargs)
+
 class Resource(models.Model):
 
     # Basic Information fields

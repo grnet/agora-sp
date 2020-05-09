@@ -32,6 +32,10 @@ import { activity } from './activity';
 import { challenge } from './challenge';
 import { domain } from './domain';
 import { subdomain } from './subdomain';
+import { supercategory } from './supercategory';
+import { category } from './category';
+import { subcategory } from './subcategory';
+
 
 export default {
   'service_item': service_item,
@@ -78,5 +82,8 @@ export default {
   'challenge': challenge,
   'domain': domain,
   'subdomain': subdomain,
+  'supercategory': supercategory,
+  'category': category,
+  'subcategory': subcategory,
 };
 

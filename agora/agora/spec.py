@@ -1299,6 +1299,84 @@ SUBDOMAINS = {
     },
 }
 
+SUPERCATEGORIES = {
+    '.collection.django': {},
+    'model': 'service.models.Supercategory',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+CATEGORIES = {
+    '.collection.django': {},
+    'model': 'service.models.Category',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'supercategory': {
+            '.field.ref': {},
+            'source': 'supercategory_id',
+            'to': '/api/v2/supercategories',
+            '.flag.filterable': {},
+            '.flag.nullable.default': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+SUBCATEGORIES = {
+    '.collection.django': {},
+    'model': 'service.models.Subcategory',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'category': {
+            '.field.ref': {},
+            'source': 'category_id',
+            'to': '/api/v2/categories',
+            '.flag.filterable': {},
+            '.flag.nullable.default': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
 NETWORKS = {
     '.collection.django': {},
     'model': 'accounts.models.Network',
@@ -2243,6 +2321,9 @@ APP_CONFIG = {
                 'challenges': CHALLENGES,
                 'domains': DOMAINS,
                 'subdomains': SUBDOMAINS,
+                'supercategories': SUPERCATEGORIES,
+                'categories': CATEGORIES,
+                'subcategories': SUBCATEGORIES,
             },
         },
     },
