@@ -2022,6 +2022,45 @@ RESOURCES = {
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
 
+        'rd_cli_1_scientific_domain': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'domain',
+            'model': 'service.models.Resource.rd_cli_1_scientific_domain.through',
+            'source': 'rd_cli_1_scientific_domain',
+            'bound': 'resource',
+            'fields': {
+                'domain': {'.field.ref': {},
+                                'source': 'domain_id',
+                                'to': 'api/v2/domains'},
+            }},
+        'domain_names': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
+        'rd_cli_2_scientific_subdomain': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'subdomain',
+            'model': 'service.models.Resource.rd_cli_2_scientific_subdomain.through',
+            'source': 'rd_cli_2_scientific_subdomain',
+            'bound': 'resource',
+            'fields': {
+                'subdomain': {'.field.ref': {},
+                                'source': 'subdomain_id',
+                                'to': 'api/v2/subdomains'},
+            }},
+        'subdomain_names': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
+        'rd_cli_5_tags': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
+
         'rd_mgi_1_helpdesk_webpage': {
           '.field.string': {},
           '.flag.nullable.default': {}},

@@ -4,7 +4,7 @@ from django.db import models
 import uuid
 from owner.models import ServiceOwner, ContactInformation
 from common import helper
-from accounts.models import User, Organisation
+from accounts.models import User, Organisation, Domain, Subdomain
 from ckeditor_uploader.fields import RichTextUploadingField
 from agora.utils import SERVICE_ADMINSHIP_STATES, clean_html_fields, \
     publish_message
@@ -510,6 +510,22 @@ class Resource(models.Model):
     rd_mri_6_target_customer_tags = models.TextField(default=None, blank=True, null=True)
     rd_mri_7_use_cases = RichTextUploadingField(default=None, blank=True, null=True)
 
+    # Classification information
+    rd_cli_1_scientific_domain = models.ManyToManyField(
+        Domain,
+        blank=True,
+        verbose_name='RD.CLI.1 Scientific Domain',
+        related_name='domain_resources')
+
+    rd_cli_2_scientific_subdomain = models.ManyToManyField(
+        Subdomain,
+        blank=True,
+        verbose_name='RD.CLI.2 Scientific Subdomain',
+        related_name='subdomain_resources')
+
+    rd_cli_5_tags = models.TextField('RD.CLI.5 Scientific Subdomain',default=None, blank=True, null=True)
+
+
     # Management Information
     rd_mgi_1_helpdesk_webpage = models.CharField(max_length=255, default=None, blank=True, null=True)
     rd_mgi_2_helpdesk_email = models.CharField(max_length=255, default=None, blank=True, null=True)
@@ -540,6 +556,14 @@ class Resource(models.Model):
 
     def __unicode__(self):
         return str(self.rd_bai_0_id)
+
+    @property
+    def domain_names(self):
+        return ", ".join(o.name for o in self.rd_cli_1_scientific_domain.all())
+
+    @property
+    def subdomain_names(self):
+        return ", ".join(o.name for o in self.rd_cli_2_scientific_subdomain.all())
 
     @property
     def providers_names(self):

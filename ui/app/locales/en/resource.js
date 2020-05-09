@@ -7,7 +7,9 @@ const resource = {
     contact: 'Contact Information',
     main_contact: 'Main Contact/Service Owner',
     public_contact: 'Public Contact',
-    management_information: 'Management Information'
+    management_information: 'Management Information',
+    classification: 'Classification Information',
+    classification_hint: '',
   },
   fields: {
     rd_bai_0_id: 'RD.BAI.0 - ID',
@@ -23,6 +25,9 @@ const resource = {
     rd_mri_5_target_users: 'RD.MRI.5 - Target Users',
     rd_mri_6_target_customer_tags: 'RD.MRI.6 - Customer Tags',
     rd_mri_7_use_cases: 'RD.MRI.7 - Use Cases/Case Studies',
+    rd_cli_1_scientific_domain: 'RD.CLI.1 - Scientific Domain',
+    rd_cli_2_scientific_subdomain: 'RD.CLI.2 - Scientific Subdomain',
+    rd_cli_5_tags: 'RD.CLI.5 - Tags',
     rd_mgi_1_helpdesk_webpage: 'RD.MGI.1 - Heldesk Webpage',
     rd_mgi_2_helpdesk_email: 'RD.MGI.2 - Heldesk Email',
     rd_mgi_3_user_manual: 'RD.MGI.3 - User Manual',
@@ -33,6 +38,7 @@ const resource = {
     rd_mgi_8_status_monitoring: 'RD.MGI.8 - Status Monitoring',
     rd_mgi_9_maintenance: 'RD.MGI.9 - Maintenance',
     rd_gla_1_geographical_availability: 'RD.GLA.1 - Geographical Availability',
+
     rd_gla_2_language: 'RD.GLA.2 - Language',
     main_contact: 'Main Contact/Service Owner',
     public_contact: 'Public Contact',
@@ -63,6 +69,9 @@ const resource = {
     rd_mri_6_target_customer_tags: 'This field will be used in the search function to prioritise results.<br/>Hit ENTER to register your tag.',
     rd_mri_5_target_users: '',
     rd_mri_7_use_cases: 'Provide either descriptive text or URL of the webpage describing the use case, or both',
+    rd_cli_1_scientific_domain: 'The branch of science, scientific discipline that is related to the service/resource.',
+    rd_cli_2_scientific_subdomain: 'The subbranch of science, scientific subdicipline that is related to the service/resource.',
+    rd_cli_5_tags: 'Keywords associated to the service/resource to simplify search by relevant keywords.',
     rd_mgi_1_helpdesk_webpage: 'The URL to a webpage with the contact person or helpdesk to ask more information from the service/resource provider about this service',
     rd_mgi_2_helpdesk_email: 'Email of the heldpesk department',
     rd_mgi_3_user_manual: 'Link to the service/resource user manual and documentation.',

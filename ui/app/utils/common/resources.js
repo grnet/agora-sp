@@ -4,6 +4,23 @@ const {
   computed,
 } = Ember;
 
+const domain = field('rd_cli_1_scientific_domain', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: ['name'],
+    },
+  },
+});
+
+const subdomain = field('rd_cli_2_scientific_subdomain', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: ['domain.name','name'],
+    },
+  },
+});
 
 const providers = field('rd_bai_3_service_providers', {
   displayComponent: 'gen-display-field-table',
@@ -47,6 +64,30 @@ const DETAILS_BASIC_INFO_FIELDSET = {
   ],
   layout: {
     flex: [50, 50, 100, 100, 100],
+  },
+};
+
+const DETAILS_CLASSIFICATION_FIELDSET = {
+  label: 'provider.cards.classification',
+  fields: [
+    'domain_names',
+    'subdomain_names',
+    'rd_cli_5_tags',
+  ],
+  layout: {
+    flex: [100,100,100],
+  },
+};
+
+const CLASSIFICATION_FIELDSET = {
+  label: 'provider.cards.classification',
+  fields: [
+    domain,
+    subdomain,
+    'rd_cli_5_tags',
+  ],
+  layout: {
+    flex: [100,100,100],
   },
 };
 
@@ -187,6 +228,7 @@ const DETAILS_CONTACT_PUBLIC_FIELDSET = {
 const DETAILS_FIELDSETS = [
   DETAILS_BASIC_INFO_FIELDSET,
   DETAILS_MARKETING_FIELDSET,
+  DETAILS_CLASSIFICATION_FIELDSET,
   MANAGEMENT_INFORMATION_FIELDSET,
   GEO_FIELDSET,
   DETAILS_CONTACT_MAIN_FIELDSET,
@@ -196,6 +238,7 @@ const DETAILS_FIELDSETS = [
 const CREATE_FIELDSETS = [
   EDIT_OR_CREATE_BASIC_INFO_FIELDSET,
   EDIT_OR_CREATE_MARKETING_FIELDSET,
+  CLASSIFICATION_FIELDSET,
   MANAGEMENT_INFORMATION_FIELDSET,
   GEO_FIELDSET,
   CONTACT_FIELDSET,
@@ -204,6 +247,7 @@ const CREATE_FIELDSETS = [
 const EDIT_FIELDSETS = [
   EDIT_OR_CREATE_BASIC_INFO_FIELDSET,
   EDIT_OR_CREATE_MARKETING_FIELDSET,
+  CLASSIFICATION_FIELDSET,
   MANAGEMENT_INFORMATION_FIELDSET,
   GEO_FIELDSET,
   CONTACT_FIELDSET,
