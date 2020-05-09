@@ -552,6 +552,18 @@ class Resource(models.Model):
         verbose_name='RD.CLI.2 Scientific Subdomain',
         related_name='subdomain_resources')
 
+    rd_cli_3_category = models.ManyToManyField(
+        Category,
+        blank=True,
+        verbose_name='RD.CLI.3 Category',
+        related_name='categorized_resources')
+
+    rd_cli_4_subcategory = models.ManyToManyField(
+        Subcategory,
+        blank=True,
+        verbose_name='RD.CLI.4 Subcategory',
+        related_name='subcategorized_resources')
+
     rd_cli_5_tags = models.TextField('RD.CLI.5 Scientific Subdomain',default=None, blank=True, null=True)
 
 
@@ -585,6 +597,14 @@ class Resource(models.Model):
 
     def __unicode__(self):
         return str(self.rd_bai_0_id)
+
+    @property
+    def category_names(self):
+        return ", ".join(o.name for o in self.rd_cli_3_category.all())
+
+    @property
+    def subcategory_names(self):
+        return ", ".join(o.name for o in self.rd_cli_4_subcategory.all())
 
     @property
     def domain_names(self):

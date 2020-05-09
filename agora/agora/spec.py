@@ -2134,6 +2134,40 @@ RESOURCES = {
         'subdomain_names': {
             '.field.string': {},
             '.flag.nowrite': {}},
+        'rd_cli_3_category': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'category',
+            'model': 'service.models.Resource.rd_cli_3_category.through',
+            'source': 'rd_cli_3_category',
+            'bound': 'resource',
+            'fields': {
+                'category': {'.field.ref': {},
+                                'source': 'category_id',
+                                'to': 'api/v2/categories'},
+            }},
+        'category_names': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
+        'rd_cli_4_subcategory': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'subcategory',
+            'model': 'service.models.Resource.rd_cli_4_subcategory.through',
+            'source': 'rd_cli_4_subcategory',
+            'bound': 'resource',
+            'fields': {
+                'subcategory': {'.field.ref': {},
+                                'source': 'subcategory_id',
+                                'to': 'api/v2/subcategories'},
+            }},
+        'subcategory_names': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
         'rd_cli_5_tags': {
             '.field.string': {},
             '.flag.searchable': {},

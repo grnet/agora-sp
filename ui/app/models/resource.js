@@ -85,6 +85,21 @@ export default DS.Model.extend({
   subdomain_names: DS.attr({
     label: 'resource.fields.subdomain_names',
   }),
+  rd_cli_3_category: DS.hasMany('category', {
+    label: 'resource.fields.rd_cli_3_category',
+    hint: 'resource.hints.rd_cli_3_category',
+  }),
+  category_names: DS.attr({
+    label: 'resource.fields.category_names',
+  }),
+  // TODO: Filter subcategory's ManyArray results according to category selections
+  rd_cli_4_subcategory: DS.hasMany('subcategory', {
+      label: 'resource.fields.rd_cli_4_subcategory',
+      hint: 'resource.hints.rd_cli_4_subcategory',
+    }),
+  subcategory_names: DS.attr({
+      label: 'resource.fields.subcategory_names',
+    }),
   rd_cli_5_tags: DS.attr({
     label: 'resource.fields.rd_cli_5_tags',
     hint: 'resource.hints.rd_cli_5_tags',
@@ -167,6 +182,8 @@ export default DS.Model.extend({
       delete hash['rd_mri_5_target_users_verbose'];
       delete hash['domain_names'];
       delete hash['subdomain_names'];
+      delete hash['category_names'];
+      delete hash['subcategory_names'];
       return hash;
     },
   },

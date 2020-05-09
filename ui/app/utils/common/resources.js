@@ -22,6 +22,24 @@ const subdomain = field('rd_cli_2_scientific_subdomain', {
   },
 });
 
+const category = field('rd_cli_3_category', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: ['supercategory.name', 'name'],
+    },
+  },
+});
+
+const subcategory = field('rd_cli_4_subcategory', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: ['category.name', 'name'],
+    },
+  },
+});
+
 const providers = field('rd_bai_3_service_providers', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
@@ -72,10 +90,12 @@ const DETAILS_CLASSIFICATION_FIELDSET = {
   fields: [
     'domain_names',
     'subdomain_names',
+    'category_names',
+    'subcategory_names',
     'rd_cli_5_tags',
   ],
   layout: {
-    flex: [100,100,100],
+    flex: [100,100,100,100,100],
   },
 };
 
@@ -84,10 +104,12 @@ const CLASSIFICATION_FIELDSET = {
   fields: [
     domain,
     subdomain,
+    category,
+    subcategory,
     'rd_cli_5_tags',
   ],
   layout: {
-    flex: [100,100,100],
+    flex: [100,100,100,100,100],
   },
 };
 
