@@ -14,6 +14,12 @@ const network = {
       'name': 'Network',
       'hint': ''
     },
+    'table': {
+      'name': 'Network name',
+    }, 
+    'placeholder':{
+      'search': 'Search by Network name',
+    },
     'menu': 'Networks'
   };
   

@@ -14,6 +14,12 @@ const affiliation = {
       'name': 'Affiliation',
       'hint': ''
     },
+    'table': {
+      'name': 'Affiliation name',
+    }, 
+    'placeholder':{
+      'search': 'Search by Affiliation name',
+    },
     'menu': 'Affiliations'
   };
   

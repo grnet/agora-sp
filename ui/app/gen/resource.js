@@ -54,6 +54,10 @@ export default AgoraGen.extend({
       rd_mgi_7_training_information: [validate.format({ type: 'url', allowBlank: true })],
       rd_mgi_8_status_monitoring: [validate.format({ type: 'url', allowBlank: true })],
       rd_mgi_9_maintenance: [validate.format({ type: 'url', allowBlank: true })],
+      rd_cli_1_scientific_domain: [validate.presence(true)],
+      rd_cli_2_scientific_subdomain: [validate.presence(true)],
+      rd_cli_3_category: [validate.presence(true)],
+      rd_cli_4_subcategory: [validate.presence(true)],
     },
   },
   list: {

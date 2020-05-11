@@ -14,6 +14,12 @@ const esfridomain = {
       'name': 'ESFRI domain',
       'hint': ''
     },
+    'table': {
+      'name': 'ESFRI DOmain',
+    }, 
+    'placeholder':{
+      'search': 'Search by ESFRI Domain name',
+    },
     'menu': 'ESFRI Domains'
   };
   

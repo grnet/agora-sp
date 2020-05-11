@@ -4,7 +4,7 @@ from django.db import models
 import uuid
 from owner.models import ServiceOwner, ContactInformation
 from common import helper
-from accounts.models import User, Organisation
+from accounts.models import User, Organisation, Domain, Subdomain
 from ckeditor_uploader.fields import RichTextUploadingField
 from agora.utils import SERVICE_ADMINSHIP_STATES, clean_html_fields, \
     publish_message
@@ -481,6 +481,35 @@ class TargetUser(models.Model):
         clean_html_fields(self)
         super(TargetUser, self).save(*args, **kwargs)
 
+class Supercategory(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, unique=True)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(Supercategory, self).save(*args, **kwargs)
+
+class Category(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    supercategory = models.ForeignKey('service.Supercategory', blank=True, null=True, related_name='supercategory_category')
+    name = models.CharField(max_length=255, unique=True)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(Category, self).save(*args, **kwargs)
+
+class Subcategory(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    category = models.ForeignKey('service.Category', blank=True, null=True, related_name='category_subcategory')
+    name = models.CharField(max_length=255)
+
+    class Meta:
+        unique_together = ('category', 'name')
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(Subcategory, self).save(*args, **kwargs)
+
 class Resource(models.Model):
 
     # Basic Information fields
@@ -509,6 +538,34 @@ class Resource(models.Model):
     rd_mri_5_target_users = models.ManyToManyField(TargetUser, blank=True)
     rd_mri_6_target_customer_tags = models.TextField(default=None, blank=True, null=True)
     rd_mri_7_use_cases = RichTextUploadingField(default=None, blank=True, null=True)
+
+    # Classification information
+    rd_cli_1_scientific_domain = models.ManyToManyField(
+        Domain,
+        blank=True,
+        verbose_name='RD.CLI.1 Scientific Domain',
+        related_name='domain_resources')
+
+    rd_cli_2_scientific_subdomain = models.ManyToManyField(
+        Subdomain,
+        blank=True,
+        verbose_name='RD.CLI.2 Scientific Subdomain',
+        related_name='subdomain_resources')
+
+    rd_cli_3_category = models.ManyToManyField(
+        Category,
+        blank=True,
+        verbose_name='RD.CLI.3 Category',
+        related_name='categorized_resources')
+
+    rd_cli_4_subcategory = models.ManyToManyField(
+        Subcategory,
+        blank=True,
+        verbose_name='RD.CLI.4 Subcategory',
+        related_name='subcategorized_resources')
+
+    rd_cli_5_tags = models.TextField('RD.CLI.5 Scientific Subdomain',default=None, blank=True, null=True)
+
 
     # Management Information
     rd_mgi_1_helpdesk_webpage = models.CharField(max_length=255, default=None, blank=True, null=True)
@@ -540,6 +597,22 @@ class Resource(models.Model):
 
     def __unicode__(self):
         return str(self.rd_bai_0_id)
+
+    @property
+    def category_names(self):
+        return ", ".join(o.name for o in self.rd_cli_3_category.all())
+
+    @property
+    def subcategory_names(self):
+        return ", ".join(o.name for o in self.rd_cli_4_subcategory.all())
+
+    @property
+    def domain_names(self):
+        return ", ".join(o.name for o in self.rd_cli_1_scientific_domain.all())
+
+    @property
+    def subdomain_names(self):
+        return ", ".join(o.name for o in self.rd_cli_2_scientific_subdomain.all())
 
     @property
     def providers_names(self):

@@ -14,6 +14,12 @@ const structure = {
       'name': 'Structure',
       'hint': ''
     },
+    'table': {
+      'name': 'Structure Type',
+    }, 
+    'placeholder':{
+      'search': 'Search by Structure type',
+    },
     'menu': 'Structures'
   };
   

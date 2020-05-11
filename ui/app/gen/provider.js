@@ -27,6 +27,8 @@ export default AgoraGen.extend({
       pd_mri_1_description : [validate.presence(true)],
       pd_mri_2_logo : [validate.format({ type: 'url', allowBlank: false })],
       pd_mri_3_multimedia: [validate.format({ type: 'url', allowBlank: true })],
+      pd_cli_1_scientific_domain: [validate.presence(true)],
+      pd_cli_2_scientific_subdomain: [validate.presence(true)],
     },
   },
   list: {

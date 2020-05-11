@@ -14,16 +14,16 @@ const subdomain = {
     },
     'belongs': {
       'name': 'Subdomain',
-      'hint': ''
+      'hint': '',
     },
     'table': {
       'domain': 'Domain',
-      'name': 'Subdomain Title'
+      'name': 'Subdomain Title',
     }, 
     'placeholder':{
-      'search': 'Search by Domain or Subdomain Title'
+      'search': 'Search by Domain or Subdomain Title',
     },
-    'menu': 'Scientific Subdomains'
+    'menu': 'Scientific Subdomains',
   };
 
 

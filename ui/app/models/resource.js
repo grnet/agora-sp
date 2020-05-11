@@ -69,6 +69,42 @@ export default DS.Model.extend({
   rd_mri_5_target_users_verbose: DS.attr({
     label: 'resource.fields.rd_mri_5_target_users'
   }),
+  // classification information
+  rd_cli_1_scientific_domain: DS.hasMany('domain', {
+    label: 'resource.fields.rd_cli_1_scientific_domain',
+    hint: 'resource.hints.rd_cli_1_scientific_domain',
+  }),
+  domain_names: DS.attr({
+    label: 'resource.fields.domain_names',
+  }),
+  // TODO: Filter subdomain's ManyArray results according to domain selections
+  rd_cli_2_scientific_subdomain: DS.hasMany('subdomain', {
+    label: 'resource.fields.rd_cli_2_scientific_subdomain',
+    hint: 'resource.hints.rd_cli_2_scientific_subdomain',
+  }),
+  subdomain_names: DS.attr({
+    label: 'resource.fields.subdomain_names',
+  }),
+  rd_cli_3_category: DS.hasMany('category', {
+    label: 'resource.fields.rd_cli_3_category',
+    hint: 'resource.hints.rd_cli_3_category',
+  }),
+  category_names: DS.attr({
+    label: 'resource.fields.category_names',
+  }),
+  // TODO: Filter subcategory's ManyArray results according to category selections
+  rd_cli_4_subcategory: DS.hasMany('subcategory', {
+      label: 'resource.fields.rd_cli_4_subcategory',
+      hint: 'resource.hints.rd_cli_4_subcategory',
+    }),
+  subcategory_names: DS.attr({
+      label: 'resource.fields.subcategory_names',
+    }),
+  rd_cli_5_tags: DS.attr({
+    label: 'resource.fields.rd_cli_5_tags',
+    hint: 'resource.hints.rd_cli_5_tags',
+    formComponent: 'agora-chips',
+  }),
   // Management Information
   rd_mgi_1_helpdesk_webpage: DS.attr({
     label: 'resource.fields.rd_mgi_1_helpdesk_webpage',
@@ -144,6 +180,10 @@ export default DS.Model.extend({
       delete hash['providers_names'];
       delete hash['resource_admins_ids'];
       delete hash['rd_mri_5_target_users_verbose'];
+      delete hash['domain_names'];
+      delete hash['subdomain_names'];
+      delete hash['category_names'];
+      delete hash['subcategory_names'];
       return hash;
     },
   },
