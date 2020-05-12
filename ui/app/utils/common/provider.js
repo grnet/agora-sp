@@ -64,7 +64,7 @@ const networks = field('pd_oth_4_networks', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
-      fields: ['name'],
+      fields: ['abbreviation','name'],
     },
   },
 });

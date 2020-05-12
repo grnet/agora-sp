@@ -5,4 +5,8 @@ export default DS.Model.extend({
     label: 'network.fields.name',
     hint: 'network.hints.name'
   }),
+  abbreviation: DS.attr({
+    label: 'network.fields.abbreviation',
+    hint: 'network.hints.abbreviation'
+  }),
 });
