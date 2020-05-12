@@ -13,7 +13,7 @@ const custom_user = {
     'is_staff': 'Staff',
     'date_joined': 'Date joined',
     'shibboleth_id': 'Shibboleth ID',
-    'organisation':'Organisation',
+    'organisation':'Provider',
     'role': 'Role',
   },
   'hints': {
