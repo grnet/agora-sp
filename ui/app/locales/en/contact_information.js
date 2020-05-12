@@ -9,7 +9,7 @@ const contact_information = {
     'email': 'Email',
     'phone': 'Phone',
     'position': 'Position',
-    'organisation': 'Organisation',
+    'organisation': 'Provider',
   },
   'hints': {
     'first_name': '',
