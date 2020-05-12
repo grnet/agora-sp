@@ -2,10 +2,12 @@ import { field } from 'ember-gen';
 
 
 const SORT_FIELDS = [
+  'abbreviation',
   'name',
 ];
 
 const TABLE_FIELDS = [
+  field('abbreviation', {label: 'network.table.abbreviation'}),
   field('name', {label: 'network.table.name'}),
 ];
 
@@ -14,9 +16,11 @@ const DETAILS_BASIC_INFO_FIELDSET = {
   label: 'network.cards.basic',
   fields: [
     'name',
+    'abbreviation',
+    
   ],
   layout: {
-    flex: [100],
+    flex: [100,100],
   },
 };
 
@@ -25,9 +29,10 @@ const BASIC_INFO_FIELDSET = {
   label: 'network.cards.basic',
   fields: [
     'name',
+    'abbreviation',
   ],
   layout: {
-    flex: [100],
+    flex: [100,100],
   },
 };
 

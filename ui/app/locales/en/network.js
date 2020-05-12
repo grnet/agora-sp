@@ -6,9 +6,11 @@ const network = {
     },
     'fields': {
       'name': 'Network name',
+      'abbreviation': 'Abbreviation'
     },
     'hints': {
       'name': '',
+      'abbreviation': ''
     },
     'belongs': {
       'name': 'Network',
@@ -16,6 +18,7 @@ const network = {
     },
     'table': {
       'name': 'Network name',
+      'abbreviation': 'Abbreviation'
     }, 
     'placeholder':{
       'search': 'Search by Network name',

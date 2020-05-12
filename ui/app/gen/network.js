@@ -16,6 +16,7 @@ export default AgoraGen.extend({
     validators: {
       id: [validate.presence(true)],
       name: [validate.presence(true)],
+      abbreviation: [validate.presence(true)],
     },
   },
   list: {

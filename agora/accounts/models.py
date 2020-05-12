@@ -46,6 +46,7 @@ class UserManager(BaseUserManager):
 class Network(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
+    abbreviation = models.CharField(max_length=20, default=None)
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)
@@ -237,7 +238,7 @@ class Organisation(models.Model):
 
     @property
     def network_names(self):
-        return ", ".join(o.name for o in self.pd_oth_4_networks.all())
+        return ", ".join(o.name + " (" + o.abbreviation + ")" for o in self.pd_oth_4_networks.all())
 
     @property
     def structure_names(self):

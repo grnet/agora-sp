@@ -1,4 +1,6 @@
 # Populate db with initial data
+echo populate networks...
+python manage.py loaddata ./fixtures/networks.json
 echo populate supercategories...
 python manage.py loaddata ./fixtures/resource_supercategories.json
 echo populate categories
