@@ -26,6 +26,7 @@ export default AgoraGen.extend({
       label: 'challenge.menu',
       icon: 'eco',
       group: 'settings',
+      order: 38,
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],

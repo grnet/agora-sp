@@ -26,6 +26,7 @@ export default AgoraGen.extend({
       label: 'supercategory.menu',
       icon: 'local_offer',
       group: 'settings',
+      order: 50,
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],

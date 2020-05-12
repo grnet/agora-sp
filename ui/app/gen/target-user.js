@@ -11,7 +11,9 @@ export default AgoraGen.extend({
     },
     menu: {
       label: 'target_user.menu',
-      group: 'settings'
+      icon: 'person-pin',
+      group: 'settings',
+      order: 5,
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],

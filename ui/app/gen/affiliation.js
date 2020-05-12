@@ -26,6 +26,7 @@ export default AgoraGen.extend({
       label: 'affiliation.menu',
       icon: 'flag',
       group: 'settings',
+      order: 30,
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],

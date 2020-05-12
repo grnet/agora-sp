@@ -26,6 +26,7 @@ export default AgoraGen.extend({
       label: 'activity.menu',
       icon: 'landscape',
       group: 'settings',
+      order: 37,
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],

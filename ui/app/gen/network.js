@@ -27,6 +27,7 @@ export default AgoraGen.extend({
       label: 'network.menu',
       icon: 'device_hub',
       group: 'settings',
+      order: 32,
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],
