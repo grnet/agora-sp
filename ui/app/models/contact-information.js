@@ -27,7 +27,7 @@ export default DS.Model.extend({
     hint: 'contact_information.hints.organisation',
     inverse: null,
     formAttrs: {
-      optionLabelAttr: 'name',
+      optionLabelAttr: 'pd_bai_1_name',
     },
   }),
   full_name: Ember.computed('first_name', 'last_name', function() {
