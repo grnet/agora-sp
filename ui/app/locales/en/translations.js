@@ -38,6 +38,7 @@ import { subcategory } from './subcategory';
 
 
 export default {
+  'value.not.set': '',
   'service_item': service_item,
   'service_trl': service_trl,
   'service_version': service_version,
