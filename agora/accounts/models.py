@@ -46,7 +46,7 @@ class UserManager(BaseUserManager):
 class Network(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
-    abbreviation = models.CharField(max_length=20, default=None)
+    abbreviation = models.CharField(max_length=60, default=None)
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)
