@@ -1,4 +1,5 @@
 import { AgoraGen } from '../lib/common';
+import { field } from 'ember-gen';
 
 export default AgoraGen.extend({
   modelName: 'contact-information',
@@ -31,7 +32,7 @@ export default AgoraGen.extend({
         'full_name',
         'email',
         'position',
-        'organisation.pd_bai_1_name',
+        field('organisation.pd_bai_1_name',{label:'Organisation'}),
       ]
     },
     menu: {
@@ -57,7 +58,7 @@ export default AgoraGen.extend({
         'email',
         'phone',
         'position',
-        'organisation.pd_bai_1_name',
+        field('organisation.pd_bai_1_name',{label:'Organisation'}),
       ],
       layout: {
         flex: [50, 50, 50, 50, 50, 50],
