@@ -73,7 +73,7 @@ Example:
 
 ```
 {
-    ":root_url": "localhost"
+    ":root_url": "http://localhost"
 }
 ```
 
