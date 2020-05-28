@@ -514,80 +514,67 @@ class Resource(models.Model):
 
     # Basic Information fields
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    rd_bai_0_id = models.CharField(max_length=255, unique=True, verbose_name='RD.BAI.0')
-    rd_bai_1_name = models.CharField(max_length=80,
-            default=None,
-            unique=False,
-            verbose_name='RD.BAI.1')
+    rd_bai_0_id = models.CharField(max_length=255, unique=True)
+    rd_bai_1_name = models.CharField(max_length=80, default=None, unique=False)
     rd_bai_2_organisation = models.ForeignKey(Organisation,
             blank=False,
             null=True,
-            related_name="organisation_services",
-            verbose_name='RD.BAI.2')
+            related_name="organisation_services")
     rd_bai_3_providers = models.ManyToManyField(Organisation,
             blank=True,
-            related_name="provided_services",
-            verbose_name='RD.BAI.3')
-    rd_bai_4_webpage = models.EmailField(default=None,
-            blank=False,
-            null=True,
-            verbose_name='RD.BAI.4')
+            related_name="provided_services")
+    rd_bai_4_webpage = models.EmailField(default=None, blank=False, null=True)
 
     # Marketing Information fields
-    rd_mri_1_description = RichTextUploadingField(verbose_name='RD.MRI.1',max_length=1000, default=None, blank=True,  null=True)
-    rd_mri_2_tagline = models.TextField(verbose_name='RD.MRI.2', max_length=100, default=None, blank=True, null=True)
-    rd_mri_3_logo = models.EmailField(verbose_name='RD.MRI.3', default=None, blank=True, null=True)
-    rd_mri_4_mulitimedia = models.EmailField(verbose_name='RD.MRI.4', default=None, blank=True, null=True)
-    rd_mri_5_target_users = models.ManyToManyField(TargetUser, verbose_name='RD.MRI.5', blank=True)
-    rd_mri_6_target_customer_tags = models.TextField(verbose_name='RD.MRI.6', default=None, blank=True, null=True)
-    rd_mri_7_use_cases = RichTextUploadingField(verbose_name='RD.MRI.7', max_length=100, default=None, blank=True,  null=True)
+    rd_mri_1_description = RichTextUploadingField(max_length=1000, default=None, blank=True,  null=True)
+    rd_mri_2_tagline = models.TextField(max_length=100, default=None, blank=True, null=True)
+    rd_mri_3_logo = models.EmailField(default=None, blank=True, null=True)
+    rd_mri_4_mulitimedia = models.EmailField(default=None, blank=True, null=True)
+    rd_mri_5_target_users = models.ManyToManyField(TargetUser, blank=True)
+    rd_mri_6_target_customer_tags = models.TextField(default=None, blank=True, null=True)
+    rd_mri_7_use_cases = RichTextUploadingField(max_length=100, default=None, blank=True,  null=True)
 
     # Classification information
     rd_cli_1_scientific_domain = models.ManyToManyField(
         Domain,
         blank=True,
-        verbose_name='RD.CLI.1 Scientific Domain',
         related_name='domain_resources')
 
     rd_cli_2_scientific_subdomain = models.ManyToManyField(
         Subdomain,
         blank=True,
-        verbose_name='RD.CLI.2 Scientific Subdomain',
         related_name='subdomain_resources')
 
     rd_cli_3_category = models.ManyToManyField(
         Category,
         blank=True,
-        verbose_name='RD.CLI.3 Category',
         related_name='categorized_resources')
 
     rd_cli_4_subcategory = models.ManyToManyField(
         Subcategory,
         blank=True,
-        verbose_name='RD.CLI.4 Subcategory',
         related_name='subcategorized_resources')
 
-    rd_cli_5_tags = models.TextField('RD.CLI.5 Scientific Subdomain', max_length=50, default=None, blank=True, null=True)
+    rd_cli_5_tags = models.TextField(max_length=50, default=None, blank=True, null=True)
 
 
     # Management Information
-    rd_mgi_1_helpdesk_webpage       = models.URLField(verbose_name='RD.MGI.1 Helpdesk Webpage',         max_length=255, default=None, blank=True, null=True)
-    rd_mgi_2_helpdesk_email         = models.EmailField(verbose_name='RD.MGI.2 Helpdesk Email',         max_length=255, default=None, blank=True, null=True)
-    rd_mgi_3_user_manual            = models.URLField(verbose_name='RD.MGI.3 User Manual',              max_length=255, default=None, blank=True, null=True)
-    rd_mgi_4_terms_of_use           = models.URLField(verbose_name='RD.MGI.4 Terms Of Use',             max_length=255, default=None, blank=True, null=True)
-    rd_mgi_5_privacy_policy         = models.URLField(verbose_name='RD.MGI.5 Privacy Policy',           max_length=255, default=None, blank=True, null=True)
-    rd_mgi_6_sla_specification      = models.URLField(verbose_name='RD.MGI.6 Service Level Agreement',  max_length=255, default=None, blank=True, null=True)
-    rd_mgi_7_training_information   = models.URLField(verbose_name='RD.MGI.7 Training Information',     max_length=255, default=None, blank=True, null=True)
-    rd_mgi_8_status_monitoring      = models.URLField(verbose_name='RD.MGI.8 Status Monitoring',        max_length=255, default=None, blank=True, null=True)
-    rd_mgi_9_maintenance            = models.URLField(verbose_name='RD.MGI.9 Maintenance',              max_length=255, default=None, blank=True, null=True)
+    rd_mgi_1_helpdesk_webpage       = models.URLField(max_length=255, default=None, blank=True, null=True)
+    rd_mgi_2_helpdesk_email         = models.EmailField(max_length=255, default=None, blank=True, null=True)
+    rd_mgi_3_user_manual            = models.URLField(max_length=255, default=None, blank=True, null=True)
+    rd_mgi_4_terms_of_use           = models.URLField(max_length=255, default=None, blank=True, null=True)
+    rd_mgi_5_privacy_policy         = models.URLField(max_length=255, default=None, blank=True, null=True)
+    rd_mgi_6_sla_specification      = models.URLField(max_length=255, default=None, blank=True, null=True)
+    rd_mgi_7_training_information   = models.URLField(max_length=255, default=None, blank=True, null=True)
+    rd_mgi_8_status_monitoring      = models.URLField(max_length=255, default=None, blank=True, null=True)
+    rd_mgi_9_maintenance            = models.URLField(max_length=255, default=None, blank=True, null=True)
 
     # Geographical and Language Availability fields
     rd_gla_1_geographical_availability = models.CharField(max_length=255,
         default=None,
         blank=True,
-        null=True,
-        verbose_name='RD.GLA.1')
-    rd_gla_2_language = models.TextField(default=None, blank=True, null=True, verbose_name='RD.GLA.2')
+        null=True)
+    rd_gla_2_language = models.TextField(default=None, blank=True, null=True)
 
     # Contact Information
     main_contact = models.ForeignKey(ContactInformation,

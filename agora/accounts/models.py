@@ -138,29 +138,27 @@ class Organisation(models.Model):
     pd_cli_1_scientific_domain = models.ManyToManyField(
         Domain,
         blank=True,
-        verbose_name='PD.CLI.1 Scientific Domain',
         related_name='domain_providers')
 
     pd_cli_2_scientific_subdomain = models.ManyToManyField(
         Subdomain,
         blank=True,
-        verbose_name='PD.CLI.2 Scientific Subdomain',
         related_name='subdomain_providers')
 
     pd_cli_3_tags = models.TextField('PD.CLI.3 Tags', default=None, blank=True, null=True)
 
 
     # Location section
-    pd_loi_1_street_name_and_number = models.CharField('PD.LOI.1 Street Name and Number', max_length=50, default=None, blank=True, null=True)
-    pd_loi_2_postal_code = models.CharField('PD.LOI.2 Postal Code', max_length=20, default=None, blank=True, null=True)
-    pd_loi_3_city = models.CharField('PD.LOI.3 City', max_length=20, default=None, blank=True, null=True)
-    pd_loi_4_region = models.CharField('PD.LOI.4 Region', max_length=50, default=None, blank=True, null=True)
-    pd_loi_5_country_or_territory = models.CharField('PD.LOI.5 Country or Territory', max_length=50, default=None, blank=True, null=True)
+    pd_loi_1_street_name_and_number = models.CharField(max_length=50, default=None, blank=True, null=True)
+    pd_loi_2_postal_code = models.CharField(max_length=20, default=None, blank=True, null=True)
+    pd_loi_3_city = models.CharField(max_length=20, default=None, blank=True, null=True)
+    pd_loi_4_region = models.CharField(max_length=50, default=None, blank=True, null=True)
+    pd_loi_5_country_or_territory = models.CharField(max_length=50, default=None, blank=True, null=True)
 
     # Marketing section
-    pd_mri_1_description = RichTextUploadingField('PD.MRI.1_Description', max_length=1000, default=None, blank=True, null=True)
-    pd_mri_2_logo = models.TextField('PD.MRI.2_Logo', default=None, blank=True, null=True)
-    pd_mri_3_multimedia = models.TextField('PD.MRI.3_Multimedia', default=None, blank=True, null=True)
+    pd_mri_1_description = RichTextUploadingField(max_length=1000, default=None, blank=True, null=True)
+    pd_mri_2_logo = models.TextField(default=None, blank=True, null=True)
+    pd_mri_3_multimedia = models.TextField(default=None, blank=True, null=True)
 
     # Contact Information
     main_contact = models.ForeignKey('owner.ContactInformation', blank=True, null=True, related_name="main_contact_provders")
@@ -182,47 +180,40 @@ class Organisation(models.Model):
     pd_oth_3_affiliations = models.ManyToManyField(
         Affiliation,
         blank=True,
-        verbose_name='PD.OTH.3 Affiliations',
         related_name='affiliated_providers')
 
     pd_oth_4_networks = models.ManyToManyField(
         Network,
         blank=True,
-        verbose_name='PD.OTH.4 Networks',
         related_name='networked_providers')
 
     pd_oth_5_structure_type = models.ManyToManyField(
         Structure,
         blank=True,
-        verbose_name='PD.OTH.5 Structure Type',
         related_name='structured_providers')
 
     pd_oth_6_esfri_domain = models.ManyToManyField(
         EsfriDomain,
         blank=True,
-        verbose_name='PD.OTH.6 ESFRI Domain',
         related_name='esfridomain_providers')
 
     pd_oth_7_esfri_type = models.ForeignKey(
         'accounts.EsfriType',
         blank=True,
         null=True,
-        verbose_name='PD.OTH.7 ESFRI Type',
         related_name='esfritype_providers')
 
     pd_oth_8_areas_of_activity = models.ManyToManyField(
         Activity,
         blank=True,
-        verbose_name='PD.OTH.8 ESFRI Areas Of Activity',
         related_name='activity_providers')
 
     pd_oth_9_societal_grand_challenges = models.ManyToManyField(
         Challenge,
         blank=True,
-        verbose_name='PD.OTH.9 Societal Grand Challenges',
         related_name='challenge_providers')
 
-    pd_oth_10_national_roadmaps = models.CharField('PD.OTH.10 National Roadmaps', max_length=80, default=None, blank=True, null=True)
+    pd_oth_10_national_roadmaps = models.CharField(max_length=80, default=None, blank=True, null=True)
 
     @property
     def affiliation_names(self):
