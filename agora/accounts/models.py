@@ -123,21 +123,16 @@ class Organisation(models.Model):
     """
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-
     pd_bai_3_legal_entity = models.BooleanField(('PD.BAI.3 Legal entity'),default=False)
-
     pd_bai_3_legal_status = models.CharField('PB.BAI.3_Legal_Status',
                                              max_length=255,
                                              default=None, blank=True, null=True,
                                              choices=LEGAL_STATUSES)
 
     pd_bai_0_id = models.TextField('PD.BAI.0_ID', max_length=100, default=None, blank=True, null=True)
-
     pd_bai_1_name = models.CharField('PD.BAI.1_Name', unique=True, max_length=100, default=None, blank=False, null=True)
-
     pd_bai_2_abbreviation = models.CharField('PD.BAI.2_Abbreviation', max_length=30, default=None, blank=False, null=True)
-
-    pd_bai_4_website = models.TextField('PD.BAI.4_Website', default=None, blank=False, null=True)
+    pd_bai_4_website = models.TextField('PD.BAI.4_Website', default=None, blank=True, null=True)
 
     # Classification section
     pd_cli_1_scientific_domain = models.ManyToManyField(
@@ -152,26 +147,23 @@ class Organisation(models.Model):
         verbose_name='PD.CLI.2 Scientific Subdomain',
         related_name='subdomain_providers')
 
-    pd_cli_3_tags = models.TextField('PD.CLI.2 Scientific Subdomain', max_length=20, default=None, blank=True, null=True)
+    pd_cli_3_tags = models.TextField('PD.CLI.3 Tags', default=None, blank=True, null=True)
 
 
     # Location section
-    pd_loi_1_street_name_and_number = models.CharField('PD.LOI.1 Street Name and Number', max_length=50, default=None, blank=False, null=True)
-    pd_loi_2_postal_code = models.CharField('PD.LOI.2 Postal Code', max_length=20, default=None, blank=False, null=True)
-    pd_loi_3_city = models.CharField('PD.LOI.3 City', max_length=20, default=None, blank=False, null=True)
+    pd_loi_1_street_name_and_number = models.CharField('PD.LOI.1 Street Name and Number', max_length=50, default=None, blank=True, null=True)
+    pd_loi_2_postal_code = models.CharField('PD.LOI.2 Postal Code', max_length=20, default=None, blank=True, null=True)
+    pd_loi_3_city = models.CharField('PD.LOI.3 City', max_length=20, default=None, blank=True, null=True)
     pd_loi_4_region = models.CharField('PD.LOI.4 Region', max_length=50, default=None, blank=True, null=True)
-    pd_loi_5_country_or_territory = models.CharField('PD.LOI.5 Country or Territory', max_length=50, default=None, blank=False, null=True)
+    pd_loi_5_country_or_territory = models.CharField('PD.LOI.5 Country or Territory', max_length=50, default=None, blank=True, null=True)
 
     # Marketing section
-    pd_mri_1_description = RichTextUploadingField('PD.MRI.1_Description', max_length=1000, default=None, blank=False, null=True)
-
-    pd_mri_2_logo = models.TextField('PD.MRI.2_Logo', default=None, blank=False, null=True)
-
+    pd_mri_1_description = RichTextUploadingField('PD.MRI.1_Description', max_length=1000, default=None, blank=True, null=True)
+    pd_mri_2_logo = models.TextField('PD.MRI.2_Logo', default=None, blank=True, null=True)
     pd_mri_3_multimedia = models.TextField('PD.MRI.3_Multimedia', default=None, blank=True, null=True)
 
     # Contact Information
     main_contact = models.ForeignKey('owner.ContactInformation', blank=True, null=True, related_name="main_contact_provders")
-
     public_contact = models.ForeignKey('owner.ContactInformation', blank=True, null=True, related_name="public_contact_providers")
 
     # Maturity Information

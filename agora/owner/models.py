@@ -28,13 +28,13 @@ class ServiceOwner(models.Model):
 
 
 class ContactInformation(models.Model):
-    id = models.UUIDField(              primary_key=True,   default=uuid.uuid4,     editable=False)
-    first_name = models.CharField(      verbose_name='PD.COI.1',     max_length=50,  default=None,   blank=False,    null=True)
-    last_name = models.CharField(       verbose_name='PD.COI.2',     max_length=50,  default=None,   blank=False,    null=True)
-    email = models.EmailField(          verbose_name='PD.COI.3',     default=None,   blank=False,    null=False)
-    phone = models.CharField(           verbose_name='PD.COI.4',     max_length=20,  default=None,   blank=True, null=True)
-    position = models.CharField(        verbose_name='PD.COI.5',     max_length=50,  default=None,   blank=True, null=True)
-    organisation = models.ForeignKey(   verbose_name='PD.COI.1',     Organisation,   related_name="contacts")
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    first_name = models.CharField(max_length=50, default=None, blank=False, null=True)
+    last_name = models.CharField(max_length=50, default=None, blank=False,  null=True)
+    email = models.EmailField(default=None, blank=False, null=False)
+    phone = models.CharField(max_length=20, default=None, blank=True, null=True)
+    position = models.CharField(max_length=50, default=None, blank=True, null=True)
+    organisation = models.ForeignKey(Organisation,   related_name="contacts")
 
 class Internal(models.Model):
     """
