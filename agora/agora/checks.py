@@ -366,7 +366,7 @@ class Resource(object):
         auth_user = context['auth/user']
         auth_user_id = str(auth_user.id)
         service_admins_ids = instance.resource_admins_ids.split(",")
-        resource_org_id = str(backend_input.get('rd_bai_2_organisation_id'))
+        resource_org_id = str(backend_input.get('erp_bai_2_organisation_id'))
         user_org_id = str(auth_user.organisation.id)
 
         if not user_org_id == resource_org_id:
@@ -385,7 +385,7 @@ class Resource(object):
         serviceadmin belongs to.
         """
         auth_user = context['auth/user']
-        resource_org_id = str(backend_input.get('rd_bai_2_organisation_id'))
+        resource_org_id = str(backend_input.get('erp_bai_2_organisation_id'))
         user_org_id = str(auth_user.organisation.id)
 
         if not user_org_id == resource_org_id:
