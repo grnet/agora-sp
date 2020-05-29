@@ -73,8 +73,6 @@ def get_rules():
         ('api/v2/my-providers', 'list', 'serviceadmin', 'filter_belongs', '*', '*', '*'),
         ('api/v2/my-providers', 'retrieve', 'serviceadmin', '*', '*', '*', '*'),
 
-        ('api/v2/resources', 'list', 'anonymous', '*', '*', '*', '*'),
-        ('api/v2/resources', 'retrieve', 'anonymous', '*', '*', '*', '*'),
         ('api/v2/resources', 'list', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/resources', 'list', 'admin', '*', '*', '*', '*'),
         ('api/v2/resources', 'list', 'serviceadmin', '*', '*', '*', '*'),
