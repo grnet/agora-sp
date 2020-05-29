@@ -37,27 +37,27 @@ export default AgoraGen.extend({
   },
   common: {
     validators: {
-      rd_bai_0_id: [validate.presence(true)],
-      rd_bai_1_name: [validate.presence(true)],
-      rd_bai_2_service_organisation: [validate.presence(true)],
-      rd_bai_4_webpage: [validate.format({ type: 'url' })],
-      rd_mri_4_mulitimedia: [validate.format({ type: 'url', allowBlank: true })],
-      rd_mri_3_logo: [validate.format({ type: 'url', allowBlank: true })],
-      rd_gla_1_geographical_availability: [validate.presence(true)],
-      rd_gla_2_language: [validate.presence(true)],
-      rd_mgi_1_helpdesk_webpage: [validate.format({ type: 'url', allowBlank: false })],
-      rd_mgi_2_helpdesk_email: [validate.format({type: 'email', allowBlank: true})],
-      rd_mgi_3_user_manual: [validate.format({ type: 'url', allowBlank: false })],
-      rd_mgi_4_terms_of_use: [validate.format({ type: 'url', allowBlank: false })],
-      rd_mgi_5_privacy_policy: [validate.format({ type: 'url', allowBlank: false })],
-      rd_mgi_6_sla_specification: [validate.format({ type: 'url', allowBlank: true })],
-      rd_mgi_7_training_information: [validate.format({ type: 'url', allowBlank: true })],
-      rd_mgi_8_status_monitoring: [validate.format({ type: 'url', allowBlank: true })],
-      rd_mgi_9_maintenance: [validate.format({ type: 'url', allowBlank: true })],
-      rd_cli_1_scientific_domain: [validate.presence(true)],
-      rd_cli_2_scientific_subdomain: [validate.presence(true)],
-      rd_cli_3_category: [validate.presence(true)],
-      rd_cli_4_subcategory: [validate.presence(true)],
+      erp_bai_0_id: [validate.presence(true)],
+      erp_bai_1_name: [validate.presence(true)],
+      erp_bai_2_service_organisation: [validate.presence(true)],
+      erp_bai_4_webpage: [validate.format({ type: 'url' })],
+      erp_mri_4_mulitimedia: [validate.format({ type: 'url', allowBlank: true })],
+      erp_mri_3_logo: [validate.format({ type: 'url', allowBlank: true })],
+      erp_gla_1_geographical_availability: [validate.presence(true)],
+      erp_gla_2_language: [validate.presence(true)],
+      erp_mgi_1_helpdesk_webpage: [validate.format({ type: 'url', allowBlank: false })],
+      erp_mgi_2_helpdesk_email: [validate.format({type: 'email', allowBlank: true})],
+      erp_mgi_3_user_manual: [validate.format({ type: 'url', allowBlank: false })],
+      erp_mgi_4_terms_of_use: [validate.format({ type: 'url', allowBlank: false })],
+      erp_mgi_5_privacy_policy: [validate.format({ type: 'url', allowBlank: false })],
+      erp_mgi_6_sla_specification: [validate.format({ type: 'url', allowBlank: true })],
+      erp_mgi_7_training_information: [validate.format({ type: 'url', allowBlank: true })],
+      erp_mgi_8_status_monitoring: [validate.format({ type: 'url', allowBlank: true })],
+      erp_mgi_9_maintenance: [validate.format({ type: 'url', allowBlank: true })],
+      erp_cli_1_scientific_domain: [validate.presence(true)],
+      erp_cli_2_scientific_subdomain: [validate.presence(true)],
+      erp_cli_3_category: [validate.presence(true)],
+      erp_cli_4_subcategory: [validate.presence(true)],
     },
   },
   list: {
@@ -95,7 +95,7 @@ export default AgoraGen.extend({
     fieldsets: CREATE_FIELDSETS,
 
     // If the user creating the Resource is a serviceadmin, the
-    // rd_bai_2_service_organisation should be prefilled with
+    // erp_bai_2_service_organisation should be prefilled with
     // user's organisation
     getModel(params) {
       const store = get(this, 'store');
@@ -106,7 +106,7 @@ export default AgoraGen.extend({
         let org = store.findRecord('provider', org_id);
         return org.then(function(organisation) {
           return store.createRecord('resource', {
-            rd_bai_2_service_organisation: organisation
+            erp_bai_2_service_organisation: organisation
           })
         })
 

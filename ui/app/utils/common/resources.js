@@ -4,7 +4,7 @@ const {
   computed,
 } = Ember;
 
-const domain = field('rd_cli_1_scientific_domain', {
+const domain = field('erp_cli_1_scientific_domain', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -13,7 +13,7 @@ const domain = field('rd_cli_1_scientific_domain', {
   },
 });
 
-const subdomain = field('rd_cli_2_scientific_subdomain', {
+const subdomain = field('erp_cli_2_scientific_subdomain', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -22,7 +22,7 @@ const subdomain = field('rd_cli_2_scientific_subdomain', {
   },
 });
 
-const category = field('rd_cli_3_category', {
+const category = field('erp_cli_3_category', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -31,7 +31,7 @@ const category = field('rd_cli_3_category', {
   },
 });
 
-const subcategory = field('rd_cli_4_subcategory', {
+const subcategory = field('erp_cli_4_subcategory', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -40,16 +40,16 @@ const subcategory = field('rd_cli_4_subcategory', {
   },
 });
 
-const providers = field('rd_bai_3_service_providers', {
+const providers = field('erp_bai_3_service_providers', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
-      fields: ['pd_bai_1_name'],
+      fields: ['epp_bai_1_name'],
     },
   },
 });
 
-const targetUsers = field('rd_mri_5_target_users', {
+const targetUsers = field('erp_mri_5_target_users', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -60,25 +60,25 @@ const targetUsers = field('rd_mri_5_target_users', {
 });
 
 const SORT_FIELDS = [
-  'rd_bai_0_id',
-  'rd_bai_1_name',
+  'erp_bai_0_id',
+  'erp_bai_1_name',
 ];
 
 const TABLE_FIELDS = [
-  field('rd_bai_0_id', {label: 'resource.table.rd_bai_0_id'}),
-  field('rd_bai_1_name', {label: 'resource.table.rd_bai_1_name'}),
-  field('rd_bai_2_service_organisation.pd_bai_1_name', {label: 'resource.table.rd_bai_2_service_organisation'}),
+  field('erp_bai_0_id', {label: 'resource.table.erp_bai_0_id'}),
+  field('erp_bai_1_name', {label: 'resource.table.erp_bai_1_name'}),
+  field('erp_bai_2_service_organisation.epp_bai_1_name', {label: 'resource.table.erp_bai_2_service_organisation'}),
 ];
 
 
 const DETAILS_BASIC_INFO_FIELDSET = {
   label: 'resource.cards.basic',
   fields: [
-    'rd_bai_0_id',
-    'rd_bai_1_name',
-    field('rd_bai_2_service_organisation.pd_bai_1_name', {label: 'resource.fields.rd_bai_2_service_organisation'}),
+    'erp_bai_0_id',
+    'erp_bai_1_name',
+    field('erp_bai_2_service_organisation.epp_bai_1_name', {label: 'resource.fields.erp_bai_2_service_organisation'}),
     'providers_names',
-    'rd_bai_4_webpage',
+    'erp_bai_4_webpage',
   ],
   layout: {
     flex: [50, 50, 100, 100, 100],
@@ -92,7 +92,7 @@ const DETAILS_CLASSIFICATION_FIELDSET = {
     'subdomain_names',
     'category_names',
     'subcategory_names',
-    'rd_cli_5_tags',
+    'erp_cli_5_tags',
   ],
   layout: {
     flex: [100,100,100,100,100],
@@ -106,7 +106,7 @@ const CLASSIFICATION_FIELDSET = {
     subdomain,
     category,
     subcategory,
-    'rd_cli_5_tags',
+    'erp_cli_5_tags',
   ],
   layout: {
     flex: [100,100,100,100,100],
@@ -116,15 +116,15 @@ const CLASSIFICATION_FIELDSET = {
 const MANAGEMENT_INFORMATION_FIELDSET = {
   label: 'resource.cards.management_information',
   fields: [
-    'rd_mgi_1_helpdesk_webpage',
-    'rd_mgi_2_helpdesk_email',
-    'rd_mgi_3_user_manual',
-    'rd_mgi_4_terms_of_use',
-    'rd_mgi_5_privacy_policy',
-    'rd_mgi_6_sla_specification',
-    'rd_mgi_7_training_information',
-    'rd_mgi_8_status_monitoring',
-    'rd_mgi_9_maintenance',
+    'erp_mgi_1_helpdesk_webpage',
+    'erp_mgi_2_helpdesk_email',
+    'erp_mgi_3_user_manual',
+    'erp_mgi_4_terms_of_use',
+    'erp_mgi_5_privacy_policy',
+    'erp_mgi_6_sla_specification',
+    'erp_mgi_7_training_information',
+    'erp_mgi_8_status_monitoring',
+    'erp_mgi_9_maintenance',
   ],
   layout: {
     flex: [50, 50, 50, 50, 50, 50, 50, 50, 100]
@@ -134,13 +134,13 @@ const MANAGEMENT_INFORMATION_FIELDSET = {
 const DETAILS_MARKETING_FIELDSET = {
   label: 'resource.cards.marketing',
   fields: [
-    'rd_mri_1_description',
-    'rd_mri_2_tagline',
-    'rd_mri_3_logo',
-    'rd_mri_4_mulitimedia',
-    'rd_mri_5_target_users_verbose',
-    'rd_mri_6_target_customer_tags',
-    'rd_mri_7_use_cases',
+    'erp_mri_1_description',
+    'erp_mri_2_tagline',
+    'erp_mri_3_logo',
+    'erp_mri_4_mulitimedia',
+    'erp_mri_5_target_users_verbose',
+    'erp_mri_6_target_customer_tags',
+    'erp_mri_7_use_cases',
   ],
   layout: {
     flex: [100, 100, 50, 50, 100, 100, 100]
@@ -150,13 +150,13 @@ const DETAILS_MARKETING_FIELDSET = {
 const EDIT_OR_CREATE_MARKETING_FIELDSET = {
   label: 'resource.cards.marketing',
   fields: [
-    'rd_mri_1_description',
-    'rd_mri_2_tagline',
-    'rd_mri_3_logo',
-    'rd_mri_4_mulitimedia',
+    'erp_mri_1_description',
+    'erp_mri_2_tagline',
+    'erp_mri_3_logo',
+    'erp_mri_4_mulitimedia',
     targetUsers,
-    'rd_mri_6_target_customer_tags',
-    'rd_mri_7_use_cases',
+    'erp_mri_6_target_customer_tags',
+    'erp_mri_7_use_cases',
   ],
   layout: {
     flex: [100, 100, 50, 50, 100, 100, 100]
@@ -171,13 +171,13 @@ const EDIT_OR_CREATE_BASIC_INFO_FIELDSET = {
     const disabled = role === 'serviceadmin';
 
     return [
-      field('rd_bai_0_id'),
-      'rd_bai_1_name',
-      field('rd_bai_2_service_organisation', {
+      field('erp_bai_0_id'),
+      'erp_bai_1_name',
+      field('erp_bai_2_service_organisation', {
         disabled
       }),
       providers,
-      'rd_bai_4_webpage',
+      'erp_bai_4_webpage',
     ]
 
   }),
@@ -190,8 +190,8 @@ const EDIT_OR_CREATE_BASIC_INFO_FIELDSET = {
 const GEO_FIELDSET = {
   label: 'resource.cards.geo',
   fields: [
-    'rd_gla_1_geographical_availability',
-    'rd_gla_2_language',
+    'erp_gla_1_geographical_availability',
+    'erp_gla_2_language',
   ],
   layout: {
     flex: [100, 100],
@@ -225,7 +225,7 @@ const DETAILS_CONTACT_MAIN_FIELDSET = {
     field('main_contact.email', {label: 'resource.fields.mc_email'}),
     field('main_contact.phone', {label: 'resource.fields.mc_phone'}),
     field('main_contact.position', {label: 'resource.fields.mc_position'}),
-    field('main_contact.organisation.pd_bai_1_name', {label: 'resource.fields.mc_organisation'}),
+    field('main_contact.organisation.epp_bai_1_name', {label: 'resource.fields.mc_organisation'}),
   ],
   layout: {
     flex: [50, 50, 50, 50, 50, 50],
@@ -241,7 +241,7 @@ const DETAILS_CONTACT_PUBLIC_FIELDSET = {
     field('public_contact.email', {label: 'resource.fields.pc_email'}),
     field('public_contact.phone', {label: 'resource.fields.pc_phone'}),
     field('public_contact.position', {label: 'resource.fields.pc_position'}),
-    field('public_contact.organisation.pd_bai_1_name', {label: 'resource.fields.pc_organisation'}),
+    field('public_contact.organisation.epp_bai_1_name', {label: 'resource.fields.pc_organisation'}),
   ],
   layout: {
     flex: [50, 50, 50, 50, 50, 50],

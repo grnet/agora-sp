@@ -27,7 +27,7 @@ export default DS.Model.extend({
     hint: 'contact_information.hints.organisation',
     inverse: null,
     formAttrs: {
-      optionLabelAttr: 'pd_bai_1_name',
+      optionLabelAttr: 'epp_bai_1_name',
     },
   }),
   full_name: Ember.computed('first_name', 'last_name', function() {
@@ -37,10 +37,10 @@ export default DS.Model.extend({
     return `${first_name} ${last_name}`;
   }),
 
-  displayInfo: Ember.computed('full_name', 'organisation.pd_bai_1_name', function() {
+  displayInfo: Ember.computed('full_name', 'organisation.epp_bai_1_name', function() {
 
     const full_name = this.get('full_name');
-    const org = this.get('organisation.pd_bai_1_name');
+    const org = this.get('organisation.epp_bai_1_name');
 
     return `${full_name} (${org})`;
   }),

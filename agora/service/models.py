@@ -141,7 +141,7 @@ class Service(models.Model):
 
     @property
     def organisations_names(self):
-        return ", ".join(o.pd_bai_1_name for o in self.organisations.all())
+        return ", ".join(o.epp_bai_1_name for o in self.organisations.all())
 
     @property
     def service_categories_names(self):
@@ -514,76 +514,67 @@ class Resource(models.Model):
 
     # Basic Information fields
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    rd_bai_0_id = models.CharField(max_length=255, unique=True)
-    rd_bai_1_name = models.CharField(max_length=255,
-            default=None,
-            unique=False)
-    rd_bai_2_organisation = models.ForeignKey(Organisation,
-            blank=True,
+    erp_bai_0_id = models.CharField(max_length=255, unique=True)
+    erp_bai_1_name = models.CharField(max_length=80, default=None, unique=False)
+    erp_bai_2_organisation = models.ForeignKey(Organisation,
+            blank=False,
             null=True,
             related_name="organisation_services")
-    rd_bai_3_providers = models.ManyToManyField(Organisation,
+    erp_bai_3_providers = models.ManyToManyField(Organisation,
             blank=True,
             related_name="provided_services")
-    rd_bai_4_webpage = models.CharField(max_length=255,
-            default=None,
-            blank=True,
-            null=True)
+    erp_bai_4_webpage = models.EmailField(default=None, blank=False, null=True)
 
     # Marketing Information fields
-    rd_mri_1_description = RichTextUploadingField(default=None, blank=True, null=True)
-    rd_mri_2_tagline = models.TextField(default=None, blank=True, null=True)
-    rd_mri_3_logo = models.CharField(max_length=255, default=None, blank=True, null=True)
-    rd_mri_4_mulitimedia = models.CharField(max_length=255, default=None, blank=True, null=True)
-    rd_mri_5_target_users = models.ManyToManyField(TargetUser, blank=True)
-    rd_mri_6_target_customer_tags = models.TextField(default=None, blank=True, null=True)
-    rd_mri_7_use_cases = RichTextUploadingField(default=None, blank=True, null=True)
+    erp_mri_1_description = RichTextUploadingField(max_length=1000, default=None, blank=True,  null=True)
+    erp_mri_2_tagline = models.TextField(max_length=100, default=None, blank=True, null=True)
+    erp_mri_3_logo = models.EmailField(default=None, blank=True, null=True)
+    erp_mri_4_mulitimedia = models.EmailField(default=None, blank=True, null=True)
+    erp_mri_5_target_users = models.ManyToManyField(TargetUser, blank=True)
+    erp_mri_6_target_customer_tags = models.TextField(default=None, blank=True, null=True)
+    erp_mri_7_use_cases = RichTextUploadingField(max_length=100, default=None, blank=True,  null=True)
 
     # Classification information
-    rd_cli_1_scientific_domain = models.ManyToManyField(
+    erp_cli_1_scientific_domain = models.ManyToManyField(
         Domain,
         blank=True,
-        verbose_name='RD.CLI.1 Scientific Domain',
         related_name='domain_resources')
 
-    rd_cli_2_scientific_subdomain = models.ManyToManyField(
+    erp_cli_2_scientific_subdomain = models.ManyToManyField(
         Subdomain,
         blank=True,
-        verbose_name='RD.CLI.2 Scientific Subdomain',
         related_name='subdomain_resources')
 
-    rd_cli_3_category = models.ManyToManyField(
+    erp_cli_3_category = models.ManyToManyField(
         Category,
         blank=True,
-        verbose_name='RD.CLI.3 Category',
         related_name='categorized_resources')
 
-    rd_cli_4_subcategory = models.ManyToManyField(
+    erp_cli_4_subcategory = models.ManyToManyField(
         Subcategory,
         blank=True,
-        verbose_name='RD.CLI.4 Subcategory',
         related_name='subcategorized_resources')
 
-    rd_cli_5_tags = models.TextField('RD.CLI.5 Scientific Subdomain',default=None, blank=True, null=True)
+    erp_cli_5_tags = models.TextField(max_length=50, default=None, blank=True, null=True)
 
 
     # Management Information
-    rd_mgi_1_helpdesk_webpage = models.CharField(max_length=255, default=None, blank=True, null=True)
-    rd_mgi_2_helpdesk_email = models.CharField(max_length=255, default=None, blank=True, null=True)
-    rd_mgi_3_user_manual = models.CharField(max_length=255, default=None, blank=True, null=True)
-    rd_mgi_4_terms_of_use = models.CharField(max_length=255, default=None, blank=True, null=True)
-    rd_mgi_5_privacy_policy = models.CharField(max_length=255, default=None, blank=True, null=True)
-    rd_mgi_6_sla_specification = models.CharField(max_length=255, default=None, blank=True, null=True)
-    rd_mgi_7_training_information = models.CharField(max_length=255, default=None, blank=True, null=True)
-    rd_mgi_8_status_monitoring = models.CharField(max_length=255, default=None, blank=True, null=True)
-    rd_mgi_9_maintenance = models.CharField(max_length=255, default=None, blank=True, null=True)
+    erp_mgi_1_helpdesk_webpage       = models.URLField(max_length=255, default=None, blank=True, null=True)
+    erp_mgi_2_helpdesk_email         = models.EmailField(max_length=255, default=None, blank=True, null=True)
+    erp_mgi_3_user_manual            = models.URLField(max_length=255, default=None, blank=True, null=True)
+    erp_mgi_4_terms_of_use           = models.URLField(max_length=255, default=None, blank=True, null=True)
+    erp_mgi_5_privacy_policy         = models.URLField(max_length=255, default=None, blank=True, null=True)
+    erp_mgi_6_sla_specification      = models.URLField(max_length=255, default=None, blank=True, null=True)
+    erp_mgi_7_training_information   = models.URLField(max_length=255, default=None, blank=True, null=True)
+    erp_mgi_8_status_monitoring      = models.URLField(max_length=255, default=None, blank=True, null=True)
+    erp_mgi_9_maintenance            = models.URLField(max_length=255, default=None, blank=True, null=True)
 
     # Geographical and Language Availability fields
-    rd_gla_1_geographical_availability = models.CharField(max_length=255,
+    erp_gla_1_geographical_availability = models.CharField(max_length=255,
         default=None,
         blank=True,
         null=True)
-    rd_gla_2_language = models.TextField(default=None, blank=True, null=True)
+    erp_gla_2_language = models.TextField(default=None, blank=True, null=True)
 
     # Contact Information
     main_contact = models.ForeignKey(ContactInformation,
@@ -596,35 +587,35 @@ class Resource(models.Model):
         related_name="public_contact_services")
 
     def __unicode__(self):
-        return str(self.rd_bai_0_id)
+        return str(self.erp_bai_0_id)
 
     @property
     def category_names(self):
-        return ", ".join(o.name for o in self.rd_cli_3_category.all())
+        return ", ".join(o.name for o in self.erp_cli_3_category.all())
 
     @property
     def subcategory_names(self):
-        return ", ".join(o.name for o in self.rd_cli_4_subcategory.all())
+        return ", ".join(o.name for o in self.erp_cli_4_subcategory.all())
 
     @property
     def domain_names(self):
-        return ", ".join(o.name for o in self.rd_cli_1_scientific_domain.all())
+        return ", ".join(o.name for o in self.erp_cli_1_scientific_domain.all())
 
     @property
     def subdomain_names(self):
-        return ", ".join(o.name for o in self.rd_cli_2_scientific_subdomain.all())
+        return ", ".join(o.name for o in self.erp_cli_2_scientific_subdomain.all())
 
     @property
     def providers_names(self):
-        return ", ".join(o.pd_bai_1_name for o in self.rd_bai_3_providers.all())
+        return ", ".join(o.epp_bai_1_name for o in self.erp_bai_3_providers.all())
 
     @property
-    def rd_mri_5_target_users_verbose(self):
-        return ", ".join(o.user for o in self.rd_mri_5_target_users.all())
+    def erp_mri_5_target_users_verbose(self):
+        return ", ".join(o.user for o in self.erp_mri_5_target_users.all())
 
     def save(self, *args, **kwargs):
-        self.rd_bai_0_id = self.rd_bai_0_id.strip()
-        self.rd_bai_1_name = self.rd_bai_1_name.strip()
+        self.erp_bai_0_id = self.erp_bai_0_id.strip()
+        self.erp_bai_1_name = self.erp_bai_1_name.strip()
         clean_html_fields(self)
         super(Resource, self).save(*args, **kwargs)
 
