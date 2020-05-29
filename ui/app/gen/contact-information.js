@@ -32,7 +32,7 @@ export default AgoraGen.extend({
         'full_name',
         'email',
         'position',
-        field('organisation.pd_bai_1_name', {label: 'contact_information.fields.organisation'}),
+        field('organisation.epp_bai_1_name', {label: 'contact_information.fields.organisation'}),
       ]
     },
     menu: {
@@ -58,7 +58,7 @@ export default AgoraGen.extend({
         'email',
         'phone',
         'position',
-        field('organisation.pd_bai_1_name',{label:'contact_information.fields.organisation'}),
+        field('organisation.epp_bai_1_name',{label:'contact_information.fields.organisation'}),
       ],
       layout: {
         flex: [50, 50, 50, 50, 50, 50],

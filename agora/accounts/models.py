@@ -123,129 +123,129 @@ class Organisation(models.Model):
     """
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    pd_bai_3_legal_entity = models.BooleanField(('PD.BAI.3 Legal entity'),default=False)
-    pd_bai_3_legal_status = models.CharField('PB.BAI.3_Legal_Status',
+    epp_bai_3_legal_entity = models.BooleanField(('PD.BAI.3 Legal entity'),default=False)
+    epp_bai_3_legal_status = models.CharField('PB.BAI.3_Legal_Status',
                                              max_length=255,
                                              default=None, blank=True, null=True,
                                              choices=LEGAL_STATUSES)
 
-    pd_bai_0_id = models.TextField('PD.BAI.0_ID', max_length=100, default=None, blank=True, null=True)
-    pd_bai_1_name = models.CharField('PD.BAI.1_Name', unique=True, max_length=100, default=None, blank=False, null=True)
-    pd_bai_2_abbreviation = models.CharField('PD.BAI.2_Abbreviation', max_length=30, default=None, blank=False, null=True)
-    pd_bai_4_website = models.TextField('PD.BAI.4_Website', default=None, blank=True, null=True)
+    epp_bai_0_id = models.TextField('PD.BAI.0_ID', max_length=100, default=None, blank=True, null=True)
+    epp_bai_1_name = models.CharField('PD.BAI.1_Name', unique=True, max_length=100, default=None, blank=False, null=True)
+    epp_bai_2_abbreviation = models.CharField('PD.BAI.2_Abbreviation', max_length=30, default=None, blank=False, null=True)
+    epp_bai_4_website = models.TextField('PD.BAI.4_Website', default=None, blank=True, null=True)
 
     # Classification section
-    pd_cli_1_scientific_domain = models.ManyToManyField(
+    epp_cli_1_scientific_domain = models.ManyToManyField(
         Domain,
         blank=True,
         related_name='domain_providers')
 
-    pd_cli_2_scientific_subdomain = models.ManyToManyField(
+    epp_cli_2_scientific_subdomain = models.ManyToManyField(
         Subdomain,
         blank=True,
         related_name='subdomain_providers')
 
-    pd_cli_3_tags = models.TextField('PD.CLI.3 Tags', default=None, blank=True, null=True)
+    epp_cli_3_tags = models.TextField('PD.CLI.3 Tags', default=None, blank=True, null=True)
 
 
     # Location section
-    pd_loi_1_street_name_and_number = models.CharField(max_length=50, default=None, blank=True, null=True)
-    pd_loi_2_postal_code = models.CharField(max_length=20, default=None, blank=True, null=True)
-    pd_loi_3_city = models.CharField(max_length=20, default=None, blank=True, null=True)
-    pd_loi_4_region = models.CharField(max_length=50, default=None, blank=True, null=True)
-    pd_loi_5_country_or_territory = models.CharField(max_length=50, default=None, blank=True, null=True)
+    epp_loi_1_street_name_and_number = models.CharField(max_length=50, default=None, blank=True, null=True)
+    epp_loi_2_postal_code = models.CharField(max_length=20, default=None, blank=True, null=True)
+    epp_loi_3_city = models.CharField(max_length=20, default=None, blank=True, null=True)
+    epp_loi_4_region = models.CharField(max_length=50, default=None, blank=True, null=True)
+    epp_loi_5_country_or_territory = models.CharField(max_length=50, default=None, blank=True, null=True)
 
     # Marketing section
-    pd_mri_1_description = RichTextUploadingField(max_length=1000, default=None, blank=True, null=True)
-    pd_mri_2_logo = models.TextField(default=None, blank=True, null=True)
-    pd_mri_3_multimedia = models.TextField(default=None, blank=True, null=True)
+    epp_mri_1_description = RichTextUploadingField(max_length=1000, default=None, blank=True, null=True)
+    epp_mri_2_logo = models.TextField(default=None, blank=True, null=True)
+    epp_mri_3_multimedia = models.TextField(default=None, blank=True, null=True)
 
     # Contact Information
     main_contact = models.ForeignKey('owner.ContactInformation', blank=True, null=True, related_name="main_contact_provders")
     public_contact = models.ForeignKey('owner.ContactInformation', blank=True, null=True, related_name="public_contact_providers")
 
     # Maturity Information
-    pd_mti_1_life_cycle_status = models.CharField('PD.MTI.1_Life_Cycle_Status', max_length=255,
+    epp_mti_1_life_cycle_status = models.CharField('PD.MTI.1_Life_Cycle_Status', max_length=255,
                                                   default=None, blank=True, null=True,
                                                   choices=LIFECYCLE_STATUSES)
 
-    pd_mti_2_certifications = models.CharField('PD.MTI.2_Certifications', default=None, blank=True, null=True,
+    epp_mti_2_certifications = models.CharField('PD.MTI.2_Certifications', default=None, blank=True, null=True,
                                                max_length=250)
 
    # Other information section
 
-    pd_oth_1_hosting_legal_entity = models.CharField('PD.OTH.1 Hosting Legal Entity', max_length=80, default=None, blank=True, null=True)
-    pd_oth_2_participating_countries = models.TextField('PD.OTH.2 Participating Countries',default=None, blank=True, null=True)
+    epp_oth_1_hosting_legal_entity = models.CharField('PD.OTH.1 Hosting Legal Entity', max_length=80, default=None, blank=True, null=True)
+    epp_oth_2_participating_countries = models.TextField('PD.OTH.2 Participating Countries',default=None, blank=True, null=True)
 
-    pd_oth_3_affiliations = models.ManyToManyField(
+    epp_oth_3_affiliations = models.ManyToManyField(
         Affiliation,
         blank=True,
         related_name='affiliated_providers')
 
-    pd_oth_4_networks = models.ManyToManyField(
+    epp_oth_4_networks = models.ManyToManyField(
         Network,
         blank=True,
         related_name='networked_providers')
 
-    pd_oth_5_structure_type = models.ManyToManyField(
+    epp_oth_5_structure_type = models.ManyToManyField(
         Structure,
         blank=True,
         related_name='structured_providers')
 
-    pd_oth_6_esfri_domain = models.ManyToManyField(
+    epp_oth_6_esfri_domain = models.ManyToManyField(
         EsfriDomain,
         blank=True,
         related_name='esfridomain_providers')
 
-    pd_oth_7_esfri_type = models.ForeignKey(
+    epp_oth_7_esfri_type = models.ForeignKey(
         'accounts.EsfriType',
         blank=True,
         null=True,
         related_name='esfritype_providers')
 
-    pd_oth_8_areas_of_activity = models.ManyToManyField(
+    epp_oth_8_areas_of_activity = models.ManyToManyField(
         Activity,
         blank=True,
         related_name='activity_providers')
 
-    pd_oth_9_societal_grand_challenges = models.ManyToManyField(
+    epp_oth_9_societal_grand_challenges = models.ManyToManyField(
         Challenge,
         blank=True,
         related_name='challenge_providers')
 
-    pd_oth_10_national_roadmaps = models.CharField(max_length=80, default=None, blank=True, null=True)
+    epp_oth_10_national_roadmaps = models.CharField(max_length=80, default=None, blank=True, null=True)
 
     @property
     def affiliation_names(self):
-        return ", ".join(o.name for o in self.pd_oth_3_affiliations.all())
+        return ", ".join(o.name for o in self.epp_oth_3_affiliations.all())
 
     @property
     def network_names(self):
-        return ", ".join(o.name + " (" + o.abbreviation + ")" for o in self.pd_oth_4_networks.all())
+        return ", ".join(o.name + " (" + o.abbreviation + ")" for o in self.epp_oth_4_networks.all())
 
     @property
     def structure_names(self):
-        return ", ".join(o.name for o in self.pd_oth_5_structure_type.all())
+        return ", ".join(o.name for o in self.epp_oth_5_structure_type.all())
 
     @property
     def esfridomain_names(self):
-        return ", ".join(o.name for o in self.pd_oth_6_esfri_domain.all())
+        return ", ".join(o.name for o in self.epp_oth_6_esfri_domain.all())
 
     @property
     def activity_names(self):
-        return ", ".join(o.name for o in self.pd_oth_8_areas_of_activity.all())
+        return ", ".join(o.name for o in self.epp_oth_8_areas_of_activity.all())
 
     @property
     def challenge_names(self):
-        return ", ".join(o.name for o in self.pd_oth_9_societal_grand_challenges.all())
+        return ", ".join(o.name for o in self.epp_oth_9_societal_grand_challenges.all())
 
     @property
     def domain_names(self):
-        return ", ".join(o.name for o in self.pd_cli_1_scientific_domain.all())
+        return ", ".join(o.name for o in self.epp_cli_1_scientific_domain.all())
 
     @property
     def subdomain_names(self):
-        return ", ".join(o.name for o in self.pd_cli_2_scientific_subdomain.all())
+        return ", ".join(o.name for o in self.epp_cli_2_scientific_subdomain.all())
 
 
 

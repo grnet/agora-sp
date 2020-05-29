@@ -33,7 +33,7 @@ export default AgoraGen.extend({
         'username',
         'full_name',
         'email',
-        field('organisation.pd_bai_1_name', {
+        field('organisation.epp_bai_1_name', {
           label: 'custom_user.fields.organisation',
         }) ,
         field('role_verbose', {
