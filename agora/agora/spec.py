@@ -1186,6 +1186,7 @@ SERVICE_VERSIONS = {
 RESOURCE_ADMINS = {
     '.collection.django': {},
     'model': 'service.models.ResourceAdminship',
+    ':permissions_namespace': 'agora.checks.ResourceAdminship',
     'fields': {
         'id': {
             '.field.uuid': {},
@@ -2285,6 +2286,13 @@ RESOURCES = {
         'resource_admins_ids': {
             '.field.string': {},
             '.flag.nowrite': {}},
+        'pending_resource_admins_ids': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
+        'rejected_resource_admins_ids': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
+
 
         'adminships': {
             '.field.collection.django': {},

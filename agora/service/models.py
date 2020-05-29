@@ -627,7 +627,6 @@ class Resource(models.Model):
         res = []
         for r in resource_adminships:
             res.append(str(r.admin.pk))
-
         return ','.join(res)
 
     @property
@@ -639,6 +638,27 @@ class Resource(models.Model):
         for r in resource_adminships:
             res.append(r.admin)
         return res
+
+    @property
+    def pending_resource_admins_ids(self):
+        resource_adminships = ResourceAdminship.objects.filter(
+            resource=self,
+            state="pending")
+        res = []
+        for r in resource_adminships:
+            res.append(str(r.admin.pk))
+        return ','.join(res)
+
+    @property
+    def rejected_resource_admins_ids(self):
+        resource_adminships = ResourceAdminship.objects.filter(
+            resource=self,
+            state="rejected")
+        res = []
+        for r in resource_adminships:
+            res.append(str(r.admin.pk))
+        return ','.join(res)
+
 
 class ResourceAdminship(models.Model):
     resource = models.ForeignKey(Resource, related_name="resourceadminships")
