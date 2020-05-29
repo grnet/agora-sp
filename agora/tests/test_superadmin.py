@@ -17,6 +17,7 @@ def assertions_crud(resource, user):
     edit_data = RESOURCES_CRUD[resource]['edit_data']
     assert user.get(url).json() == []
     resp = user.post(url, data)
+    print resp
     assert resp.status_code == 201
     for key, value in data.iteritems():
         assert resp.json()[key] == value
@@ -43,6 +44,11 @@ def test_target_users(superadmin):
 
 def test_providers(superadmin):
     assertions_crud('providers', superadmin)
+
+def test_resources(superadmin):
+    assertions_crud('resources', superadmin)
+
+
 
 # Tests for ServiceAdminship
 

@@ -103,6 +103,21 @@ RESOURCES_CRUD = {
             'description': 'Even better boss'
         }
     },
+    'resource_admins': {
+      'url': '/api/v2/resource-admins/',
+    },
+    'resources': {
+        'url': '/api/v2/resources/',
+        'create_data': {
+            'erp_bai_0_id': 'aw',
+            'erp_bai_1_name': 'Athens Warriors1',
+            'erp_bai_4_webpage': 'www.test.com',
+            'erp_gla_1_geographical_availability': 'Europe'
+        },
+        'edit_data': {
+            'erp_gla_1_geographical_availability': 'Africa'
+        },
+    },
     'providers': {
         'url': '/api/v2/providers/',
         'create_data': {

@@ -46,3 +46,7 @@ def test_target_users(superadmin):
 
 def test_providers(superadmin):
     assertions_crud('providers', client, superadmin)
+
+def test_resources(superadmin):
+    assertions_crud('resources', client, superadmin)
+
