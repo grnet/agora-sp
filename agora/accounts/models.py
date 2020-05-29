@@ -123,16 +123,15 @@ class Organisation(models.Model):
     """
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    epp_bai_3_legal_entity = models.BooleanField(('PD.BAI.3 Legal entity'),default=False)
-    epp_bai_3_legal_status = models.CharField('PB.BAI.3_Legal_Status',
-                                             max_length=255,
+    epp_bai_3_legal_entity = models.BooleanField(default=False)
+    epp_bai_3_legal_status = models.CharField(max_length=255,
                                              default=None, blank=True, null=True,
                                              choices=LEGAL_STATUSES)
 
-    epp_bai_0_id = models.TextField('PD.BAI.0_ID', max_length=100, default=None, blank=True, null=True)
-    epp_bai_1_name = models.CharField('PD.BAI.1_Name', unique=True, max_length=100, default=None, blank=False, null=True)
-    epp_bai_2_abbreviation = models.CharField('PD.BAI.2_Abbreviation', max_length=30, default=None, blank=False, null=True)
-    epp_bai_4_website = models.TextField('PD.BAI.4_Website', default=None, blank=True, null=True)
+    epp_bai_0_id = models.TextField(max_length=100, default=None, blank=True, null=True)
+    epp_bai_1_name = models.CharField(unique=True, max_length=100, default=None, blank=False, null=True)
+    epp_bai_2_abbreviation = models.CharField(max_length=30, default=None, blank=False, null=True)
+    epp_bai_4_website = models.TextField(default=None, blank=True, null=True)
 
     # Classification section
     epp_cli_1_scientific_domain = models.ManyToManyField(
@@ -145,7 +144,7 @@ class Organisation(models.Model):
         blank=True,
         related_name='subdomain_providers')
 
-    epp_cli_3_tags = models.TextField('PD.CLI.3 Tags', default=None, blank=True, null=True)
+    epp_cli_3_tags = models.TextField(default=None, blank=True, null=True)
 
 
     # Location section
@@ -165,17 +164,16 @@ class Organisation(models.Model):
     public_contact = models.ForeignKey('owner.ContactInformation', blank=True, null=True, related_name="public_contact_providers")
 
     # Maturity Information
-    epp_mti_1_life_cycle_status = models.CharField('PD.MTI.1_Life_Cycle_Status', max_length=255,
+    epp_mti_1_life_cycle_status = models.CharField(max_length=255,
                                                   default=None, blank=True, null=True,
                                                   choices=LIFECYCLE_STATUSES)
 
-    epp_mti_2_certifications = models.CharField('PD.MTI.2_Certifications', default=None, blank=True, null=True,
-                                               max_length=250)
+    epp_mti_2_certifications = models.CharField(default=None, blank=True, null=True, max_length=250)
 
    # Other information section
 
-    epp_oth_1_hosting_legal_entity = models.CharField('PD.OTH.1 Hosting Legal Entity', max_length=80, default=None, blank=True, null=True)
-    epp_oth_2_participating_countries = models.TextField('PD.OTH.2 Participating Countries',default=None, blank=True, null=True)
+    epp_oth_1_hosting_legal_entity = models.CharField(max_length=80, default=None, blank=True, null=True)
+    epp_oth_2_participating_countries = models.TextField(default=None, blank=True, null=True)
 
     epp_oth_3_affiliations = models.ManyToManyField(
         Affiliation,
