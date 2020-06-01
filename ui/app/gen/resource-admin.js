@@ -35,7 +35,7 @@ export default AgoraGen.extend({
 
       return this.store.query('resource-admin', params).then((sa) => {
         let user_id = get(this, 'session.session.authenticated.id');
-        let res = sa.filter(el => get(el, 'admin_id') !== user_id);
+        let res = sa.filter(el => get(el, 'admin_id').toString() !== user_id.toString());
 
         return res;
       });
@@ -98,7 +98,7 @@ export default AgoraGen.extend({
 
       return store.createRecord('resource-admin', {
         state: 'approved',
-      })
+      });
     },
     fields : [
       field('admin', {
