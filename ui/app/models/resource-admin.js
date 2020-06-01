@@ -11,7 +11,7 @@ let model = DS.Model.extend({
   }),
   resource: DS.belongsTo('resource', {
     formAttrs: {
-      optionLabelAttr: 'name',
+      optionLabelAttr: 'erp_bai_1_name',
     },
   }),
   resource_name: DS.attr({

@@ -8,6 +8,12 @@ import {
   SORT_FIELDS,
 } from '../utils/common/resources';
 
+import {
+  applyResourceAdminship,
+  revokeResourceAdminship,
+  informAdminshipRejected,
+} from '../utils/common/actions';
+
 const { get, set, computed } = Ember;
 
 export default AgoraGen.extend({
@@ -87,6 +93,19 @@ export default AgoraGen.extend({
   },
   details: {
     fieldsets: DETAILS_FIELDSETS,
+    actions: [
+      'gen:details',
+      'gen:edit',
+      'remove',
+      'applyResourceAdminship',
+      'revokeResourceAdminship',
+      'informAdminshipRejected',
+    ],
+    actionsMap: {
+      applyResourceAdminship,
+      revokeResourceAdminship,
+      informAdminshipRejected,
+    },
   },
   edit: {
     fieldsets: EDIT_FIELDSETS,

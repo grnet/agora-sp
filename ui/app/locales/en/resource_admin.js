@@ -37,7 +37,7 @@ const resource_admin = {
   },
   'apply': {
     'label': 'Apply for admin',
-    'message': 'resource admins can edit resource details.<br> Are you sure you want to apply?',
+    'message': 'Resource admins can edit resources.<br> Are you sure you want to apply?',
     'title': 'Apply for admin',
     'success': 'You will be informed via email when your application gets reviewed.',
     'error': 'Error',
