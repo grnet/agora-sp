@@ -2,7 +2,7 @@ from django.db.models import Q
 from django.utils.translation import ugettext as _
 from apimas.errors import ValidationError
 from service.models import ResourceAdminship as sa_m
-from service.models import ServiceAdminship
+from service.models import Resource as r_m
 from component.models import ServiceDetailsComponent as cidl_m
 from accounts.models import User as user_m
 
@@ -15,13 +15,19 @@ class ResourceAdminship(object):
 
         Admins/superadmins can create a new ResourceAdminship instance
         for a given resource and a given user, only if the user has role
-        'serviceadmin' and she/he does not already admin the resource.
+        'serviceadmin', she/he does not already admin the resource and
+        user's Organisation is the same as the Resource's Organisation.
         The ResourceAdminship created by admins/superadmins has state
         'approved'.
         """
         admin = user_m.objects.get(id=backend_input['admin_id'])
         if admin.role != 'serviceadmin':
             raise ValidationError(_('Wrong admin role'))
+
+        resource = r_m.objects.get(pk=backend_input['resource_id'])
+        resource_org_id = resource.erp_bai_2_organisation.pk
+        if resource_org_id != admin.organisation.id:
+            raise ValidationError(_('Forbidden Resource Organisation'))
         try:
             sa_m.objects.get(admin=backend_input['admin_id'],
                              resource=backend_input['resource_id'])
@@ -35,11 +41,16 @@ class ResourceAdminship(object):
         """Serviceadmins can request ResourceAdminships.
 
         A user can create a ResourceAdminship instance only if she/he does not
-        already admin the resource.
+        already admin the resource and user's Organisation is the same as the
+        resource's Organisation.
         The ResourceAdminship created is not yet approved/rejected, so it is
         created with state 'pending'.
         """
         auth_user = context['auth/user']
+        resource = r_m.objects.get(pk=backend_input['resource_id'])
+        resource_org_id = resource.erp_bai_2_organisation.pk
+        if resource_org_id != auth_user.organisation.id:
+            raise ValidationError(_('Forbidden Resource Organisation'))
         try:
             sa_m.objects.get(admin=auth_user.id,
                              resource=backend_input['resource_id'])

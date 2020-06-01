@@ -181,8 +181,14 @@ let model = DS.Model.extend({
   pending_resource_admins_ids: DS.attr(),
   rejected_resource_admins_ids: DS.attr(),
 
-  can_apply_adminship: Ember.computed('resource_admins_ids', 'pending_resource_admins_ids', 'rejected_resource_admins_ids', function(){
+  can_apply_adminship: Ember.computed('resource_admins_ids', 'pending_resource_admins_ids', 'rejected_resource_admins_ids', 'erp_bai_2_service_organisation.id', function(){
     let role = get(this, 'session.session.authenticated.role');
+    let user_org_id = get(this, 'session.session.authenticated.organisation');
+    let resource_org_id = get(this, 'erp_bai_2_service_organisation.id');
+
+    if (resource_org_id != user_org_id) {
+      return false;
+    }
 
     if (role !== 'serviceadmin') { return false; }
     let approved = get(this, 'resource_admins_ids').split(',');

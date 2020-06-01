@@ -122,7 +122,8 @@ const applyResourceAdminship = {
         m.setSuccess('resource_admin.apply.success');
       })
     }, (error) => {
-      m.setError('resource_admin.apply.error');
+      let msg = error.errors && error.errors[0].detail || 'resource_admin.apply.error'
+      m.setError(msg);
     });
   },
   hidden: computed('model.can_apply_adminship', function(){
