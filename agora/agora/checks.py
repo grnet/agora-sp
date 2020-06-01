@@ -1,7 +1,8 @@
 from django.db.models import Q
 from django.utils.translation import ugettext as _
 from apimas.errors import ValidationError
-from service.models import ServiceAdminship as sa_m
+from service.models import ResourceAdminship as sa_m
+from service.models import ServiceAdminship
 from component.models import ServiceDetailsComponent as cidl_m
 from accounts.models import User as user_m
 
