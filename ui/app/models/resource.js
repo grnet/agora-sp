@@ -200,13 +200,11 @@ let model = DS.Model.extend({
 
     let pending = get(this, 'pending_resource_admins_ids').split(',');
     let user_id = get(this, 'session.session.authenticated.id').toString();
-    console.log(pending, user_id)
     return pending.includes(user_id);
   }),
 
   has_rejected_adminship: Ember.computed('rejected_resource_admins_ids', function(){
     let role = get(this, 'session.session.authenticated.role');
-    console.log(role, 'sssss')
 
     if (role !== 'serviceadmin') { return false; }
 
