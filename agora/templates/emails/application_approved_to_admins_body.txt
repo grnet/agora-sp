@@ -3,6 +3,6 @@
 
 The user
 {% include "emails/applicant_details.txt" %}
-has been approved as administrator of the service {{ service.name }}.
+has been approved as administrator of the resource {{ resource.erp_bai_1_name }}.
 
 {% endblock content %}

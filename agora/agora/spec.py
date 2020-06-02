@@ -1247,6 +1247,40 @@ RESOURCE_ADMINS = {
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
         '.action-template.django.partial_update': {},
+         'create': {
+            'processors': {
+                'custom_post_create': {
+                    '.processor': {},
+                    'module_path': 'service.models.PostCreateResourceadminship',
+                    'read_keys': {'=': (
+                        'backend/raw_response',
+                        'auth/user',
+                        'request/meta/headers',
+                    )},
+                    'write_keys': {'=': (
+                        'backend/raw_response',  # declared to ensure chaining
+                    )},
+                },
+            },
+        },
+       'partial_update': {
+           'processors': {
+               'custom_post_partial_update': {
+                   '.processor': {},
+                   'module_path': 'service.models.PostPartialUpdateResourceadminship',
+                   'read_keys': {'=': (
+                       'backend/raw_response',
+                       'auth/user',
+                       'request/meta/headers',
+                   )},
+                   'write_keys': {'=': (
+                       'backend/raw_response',  # declared to ensure chaining
+                   )},
+               },
+           },
+       },
+
+
     },
 }
 
