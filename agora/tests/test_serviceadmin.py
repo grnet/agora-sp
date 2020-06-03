@@ -1,5 +1,6 @@
 import json
 from agora.testing import *
+from accounts.models import Organisation, User
 
 
 def assertions_crud(resource, user, superadmin):
@@ -37,6 +38,19 @@ def test_providers(serviceadmin, superadmin):
     assertions_crud('providers', serviceadmin, superadmin)
 
 # def test_resources(serviceadmin, serviceadmin2, superadmin):
+
+    # # Prepare tests: Create a Provider, a resource belonging to
+    # # this Provider and a serviceadmin that also belongs to
+    # # this Provider.
+    # provider_url = RESOURCES_CRUD['providers']['url']
+    # provider_data = RESOURCES_CRUD['providers']['create_data']
+    # resp = superadmin.post(provider_url, provider_data)
+    # provider_id = resp.json()['id']
+    # provider = Organisation.objects.get(pk=provider_id)
+    # serviceadmin_id = str(User.objects.get(username='serviceadmin').id)
+    # serviceadmin2_id = str(User.objects.get(username='serviceadmin2').id)
+
+
     # """
     # Flow:
     # Serviceadmin creates resource
@@ -51,12 +65,20 @@ def test_providers(serviceadmin, superadmin):
     # """
     # url = RESOURCES_CRUD['resources']['url']
     # data = RESOURCES_CRUD['resources']['create_data']
+    # extended_data = data.copy()
+    # extended_data['erp_bai_2_service_organisation_id'] = provider_id
     # edit_data = RESOURCES_CRUD['resources']['edit_data']
-    # print serviceadmin.organisation.id
+    # resp = superadmin.patch('/api/v2/custom-users/' + serviceadmin_id + '/',
+        # json.dumps({'organisation': provider_id}),
+                              # content_type='application/json')
 
-    # serviceadmin.post(url, data)
-    # print serviceadmin.get(url)
-    # print url, data
+    # resp = superadmin.patch('/api/v2/custom-users/' + serviceadmin2_id + '/',
+        # json.dumps({'organisation': provider_id}),
+                              # content_type='application/json')
+
+    # resp = serviceadmin.post(url, extended_data)
+
+
     # assert len(serviceadmin.get(url).json()) == 1
     # resp = serviceadmin.get(url)
     # id = resp.json()[0]['id']
@@ -70,12 +92,12 @@ def test_providers(serviceadmin, superadmin):
         # assert resp.status_code == 200
         # for key, value in edit_data.iteritems():
             # assert resp.json()[key] == value
-    # resp = resourceadmin.delete(url + id + '/')
+    # resp = serviceadmin.delete(url + id + '/')
     # assert resp.status_code == 403
     # resp = superadmin.delete(url + id + '/')
     # assert resp.status_code == 204
 
-    # serviceadmin2.post(url, data)
+    # serviceadmin2.post(url, extended_data)
     # assert len(serviceadmin.get(url).json()) == 1
     # resp = serviceadmin.get(url)
     # id = resp.json()[0]['id']
@@ -90,5 +112,4 @@ def test_providers(serviceadmin, superadmin):
     # resp = superadmin.delete(url + id + '/')
     # assert resp.status_code == 204
 
-
-# Tests for resources with related data
+    # superadmin.delete(provider_url + provider_id + '/')

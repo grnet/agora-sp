@@ -1,6 +1,6 @@
 import json
 from agora.testing import *
-from accounts.models import User
+from accounts.models import User, Organisation
 
 
 def assertions_crud(resource, user):
@@ -17,7 +17,6 @@ def assertions_crud(resource, user):
     edit_data = RESOURCES_CRUD[resource]['edit_data']
     assert user.get(url).json() == []
     resp = user.post(url, data)
-    print resp
     assert resp.status_code == 201
     for key, value in data.iteritems():
         assert resp.json()[key] == value
@@ -50,102 +49,122 @@ def test_resources(superadmin):
 
 
 
-# Tests for ServiceAdminship
+# Tests for ResourceAdminship
 
-# def test_serviceadminship_create(superadmin):
+def test_resourceadminship_create(superadmin):
 
-    # service_url = RESOURCES_CRUD['services']['url']
-    # service_data = RESOURCES_CRUD['services']['create_data']
-    # resp = superadmin.post(service_url, service_data)
+    # Prepare tests: Create a Provider, a resource belonging to
+    # this Provider and a serviceadmin that also belongs to
+    # this Provider.
+    provider_url = RESOURCES_CRUD['providers']['url']
+    provider_data = RESOURCES_CRUD['providers']['create_data']
+    resp = superadmin.post(provider_url, provider_data)
+    provider_id = resp.json()['id']
+    provider = Organisation.objects.get(pk=provider_id)
 
-    # service_id = resp.json()['id']
-    # test_user, created = User.objects.get_or_create(
-        # username='test_user',
-        # email='test_user@test.org',
-        # role='serviceadmin')
-    # test_user.set_password('12345')
-    # test_user.save()
-    # sa_url = RESOURCES_CRUD['service_admins']['url']
+    resource_url = RESOURCES_CRUD['resources']['url']
+    resource_data = RESOURCES_CRUD['resources']['create_data']
+    resource_data['erp_bai_2_service_organisation'] = provider_id
+    resp = superadmin.post(resource_url, resource_data)
 
-    # """
-    # Superadmin creates ServiceAdminship with status 'approved'.
-    # Superadmin can delete a serviceAdminship
-    # """
-    # resp = superadmin.post(sa_url,
-                           # {'admin': test_user.id, 'service': service_id})
-    # sa_id = resp.json()['id']
-    # assert resp.status_code == 201
-    # assert resp.json()['state'] == 'approved'
+    resource_id = resp.json()['id']
+    test_user, _ = User.objects.get_or_create(
+        username='test_user',
+        email='test_user@test.org',
+        organisation=provider,
+        role='serviceadmin')
+    test_user.set_password('12345')
+    test_user.save()
+    ra_url = RESOURCES_CRUD['resource_admins']['url']
 
-    # resp = superadmin.delete(sa_url + sa_id + '/')
-    # assert resp.status_code == 204
+    """
+    Superadmin creates ResourceAdminship with status 'approved'.
+    Superadmin can delete a ResrouceAdminship.
+    """
+    resp = superadmin.post(ra_url,
+                           {'admin': test_user.id, 'resource': resource_id})
+    assert resp.status_code == 201
+    assert resp.json()['state'] == 'approved'
+    ra_id = resp.json()['id']
 
-    # resp = superadmin.delete(service_url + service_id + '/')
-    # assert resp.status_code == 204
+    resp = superadmin.delete(ra_url + ra_id + '/')
+    assert resp.status_code == 204
 
-    # resp = superadmin.post(service_url, service_data)
-    # service_id = resp.json()['id']
-    # test_user, created = User.objects.get_or_create(
-        # username='test_user',
-        # email='test_user@test.org')
-    # """
-    # Superadmin cannot create ServiceAdminship for user with roles 'observer',
-    # 'superadmin' or 'admin'.
-    # """
-    # for role in ['observer', 'superadmin', 'admin']:
-        # test_user.role = role
-        # test_user.save()
+    resp = superadmin.delete(resource_url + resource_id + '/')
+    assert resp.status_code == 204
 
-        # resp = superadmin.post(sa_url,
-                               # {'admin': test_user.id, 'service': service_id})
-        # assert resp.status_code == 400
+    resp = superadmin.post(resource_url, resource_data)
+    resource_id = resp.json()['id']
+    test_user, _ = User.objects.get_or_create(
+        username='test_user',
+        email='test_user@test.org')
+    """
+    Superadmin cannot create ResourceAdminship for user with roles 'observer',
+    'superadmin' or 'admin'.
+    """
+    for role in ['observer', 'superadmin', 'admin']:
+        test_user.role = role
+        test_user.save()
 
-    # superadmin.delete(service_url + service_id + '/')
+        resp = superadmin.post(ra_url,
+                               {'admin': test_user.id, 'resource': resource_id})
+        assert resp.status_code == 400
 
-
-# def test_serviceadminship_update(superadmin):
-    # """
-    # Allowed state transitions are:
-    # ('pending', 'approved'),
-    # ('pending', 'rejected'),
-    # ('rejected', 'pending'),
-    # ('approved', 'pending'),
-    # """
-
-    # service_url = RESOURCES_CRUD['services']['url']
-    # service_data = RESOURCES_CRUD['services']['create_data']
-    # resp = superadmin.post(service_url, service_data)
-
-    # service_id = resp.json()['id']
-    # test_user, created = User.objects.get_or_create(
-        # username='test_user',
-        # email='test_user@test.org',
-        # role='serviceadmin')
-    # test_user.set_password('12345')
-    # test_user.save()
-    # sa_url = RESOURCES_CRUD['service_admins']['url']
-
-    # resp = superadmin.post(sa_url,
-                           # {'admin': test_user.id, 'service': service_id})
-    # sa_id = resp.json()['id']
-
-    # resp = superadmin.patch(
-        # sa_url + sa_id + '/',
-        # json.dumps({'state': 'rejected'}),
-        # content_type='application/json')
-    # assert resp.status_code == 400
-
-    # resp = superadmin.patch(
-        # sa_url + sa_id + '/',
-        # json.dumps({'state': 'approved'}),
-        # content_type='application/json')
-    # assert resp.status_code == 400
-
-    # resp = superadmin.patch(
-        # sa_url + sa_id + '/',
-        # json.dumps({'state': 'pending'}),
-        # content_type='application/json')
-    # assert resp.status_code == 200
+    superadmin.delete(resource_url + resource_id + '/')
+    superadmin.delete(provider_url + provider_id + '/')
 
 
-# Tests for resources with related data
+def test_resourceadminship_update(superadmin):
+    """
+    Allowed state transitions are:
+    ('pending', 'approved'),
+    ('pending', 'rejected'),
+    ('rejected', 'pending'),
+    ('approved', 'pending'),
+    """
+
+    # Prepare tests: Create a Provider, a resource belonging to
+    # this Provider and a serviceadmin that also belongs to
+    # this Provider.
+    provider_url = RESOURCES_CRUD['providers']['url']
+    provider_data = RESOURCES_CRUD['providers']['create_data']
+    resp = superadmin.post(provider_url, provider_data)
+    provider_id = resp.json()['id']
+    provider = Organisation.objects.get(pk=provider_id)
+
+    resource_url = RESOURCES_CRUD['resources']['url']
+    resource_data = RESOURCES_CRUD['resources']['create_data']
+    resource_data['erp_bai_2_service_organisation'] = provider_id
+    resp = superadmin.post(resource_url, resource_data)
+
+    resource_id = resp.json()['id']
+    test_user, _ = User.objects.get_or_create(
+        username='test_user',
+        email='test_user@test.org',
+        organisation=provider,
+        role='serviceadmin')
+    test_user.set_password('12345')
+    test_user.save()
+    ra_url = RESOURCES_CRUD['resource_admins']['url']
+
+    resp = superadmin.post(ra_url,
+                           {'admin': test_user.id, 'resource': resource_id})
+    ra_id = resp.json()['id']
+
+    resp = superadmin.patch(
+        ra_url + ra_id + '/',
+        json.dumps({'state': 'rejected'}),
+        content_type='application/json')
+    assert resp.status_code == 400
+
+    resp = superadmin.patch(
+        ra_url + ra_id + '/',
+        json.dumps({'state': 'approved'}),
+        content_type='application/json')
+    assert resp.status_code == 400
+
+    resp = superadmin.patch(
+        ra_url + ra_id + '/',
+        json.dumps({'state': 'pending'}),
+        content_type='application/json')
+    assert resp.status_code == 200
