@@ -35,25 +35,27 @@ def test_target_users(observer, superadmin):
 def test_providers(observer, superadmin):
     assertions_crud('providers', observer, superadmin)
 
+def test_resources(observer, superadmin):
+    assertions_crud('resources', observer, superadmin)
 
-# Tests for ServiceAdminship
+# Tests for ResourceAdminship
 
-# def test_serviceadminship(observer, superadmin):
-    # """
-    # Observer cannot list  ServiceAdminships
-    # Observer cannot create  ServiceAdminships
-    # """
-    # service_url = RESOURCES_CRUD['services']['url']
-    # service_data = RESOURCES_CRUD['services']['create_data']
-    # resp = superadmin.post(service_url, service_data)
+def test_resourceadminship(observer, superadmin):
+    """
+    Observer cannot list  ResourceAdminships
+    Observer cannot create  ResourceAdminships
+    """
+    resource_url = RESOURCES_CRUD['resources']['url']
+    resource_data = RESOURCES_CRUD['resources']['create_data']
+    resp = superadmin.post(resource_url, resource_data)
 
-    # sa_url = RESOURCES_CRUD['service_admins']['url']
+    sa_url = RESOURCES_CRUD['resource_admins']['url']
 
-    # resp = observer.get(sa_url)
-    # assert resp.status_code == 403
+    resp = observer.get(sa_url)
+    assert resp.status_code == 403
 
-    # resp = observer.post(sa_url, {'admin': 1, 'service': 1})
-    # assert resp.status_code == 403
+    resp = observer.post(sa_url, {'admin': 1, 'resource': 1})
+    assert resp.status_code == 403
 
 
 # Tests for resources with related data

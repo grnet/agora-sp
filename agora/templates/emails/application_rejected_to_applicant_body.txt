@@ -1,6 +1,6 @@
 {% extends "emails/email_base.txt" %}
 {% block content %}
 
-Your application as administrator of the service {{ service.name }} has not been approved.
+Your application as administrator of the resource {{ resource.erp_bai_1_name }} has not been approved.
 
 {% endblock content %}

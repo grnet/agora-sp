@@ -1,7 +1,12 @@
 import DS from 'ember-data';
 import { countries, language_codes } from '../resources';
 
-export default DS.Model.extend({
+const {
+  get,
+} = Ember;
+
+let model = DS.Model.extend({
+  session: Ember.inject.service(),
   // Basic Inforamation
   erp_bai_0_id: DS.attr({
     label: 'resource.fields.erp_bai_0_id',
@@ -173,12 +178,54 @@ export default DS.Model.extend({
   }),
 
   resource_admins_ids: DS.attr(),
+  pending_resource_admins_ids: DS.attr(),
+  rejected_resource_admins_ids: DS.attr(),
+
+  can_apply_adminship: Ember.computed('resource_admins_ids', 'pending_resource_admins_ids', 'rejected_resource_admins_ids', 'erp_bai_2_service_organisation.id', function(){
+    let role = get(this, 'session.session.authenticated.role');
+    let user_org_id = get(this, 'session.session.authenticated.organisation');
+    let resource_org_id = get(this, 'erp_bai_2_service_organisation.id');
+
+    if (resource_org_id != user_org_id) {
+      return false;
+    }
+
+    if (role !== 'serviceadmin') { return false; }
+    let approved = get(this, 'resource_admins_ids').split(',');
+    let pending = get(this, 'pending_resource_admins_ids').split(',');
+    let rejected = get(this, 'rejected_resource_admins_ids').split(',');
+
+    let all = [...approved, ...pending, ...rejected];
+    let user_id = get(this, 'session.session.authenticated.id').toString();
+    return !all.includes(user_id);
+  }),
+  can_revoke_adminship: Ember.computed('pending_resource_admins_ids', function(){
+    let role = get(this, 'session.session.authenticated.role');
+
+    if (role !== 'serviceadmin') { return false; }
+
+    let pending = get(this, 'pending_resource_admins_ids').split(',');
+    let user_id = get(this, 'session.session.authenticated.id').toString();
+    return pending.includes(user_id);
+  }),
+
+  has_rejected_adminship: Ember.computed('rejected_resource_admins_ids', function(){
+    let role = get(this, 'session.session.authenticated.role');
+
+    if (role !== 'serviceadmin') { return false; }
+
+    let rejected = get(this, 'rejected_resource_admins_ids').split(',');
+    let user_id = get(this, 'session.session.authenticated.id').toString();
+    return rejected.includes(user_id);
+  }),
 
   __api__: {
     serialize: function(hash) {
       // do not send readonly keys to backend
       delete hash['providers_names'];
       delete hash['resource_admins_ids'];
+      delete hash['pending_resource_admins_ids'];
+      delete hash['rejected_resource_admins_ids'];
       delete hash['erp_mri_5_target_users_verbose'];
       delete hash['domain_names'];
       delete hash['subdomain_names'];
@@ -188,3 +235,7 @@ export default DS.Model.extend({
     },
   },
 });
+
+model.reopenClass({ apimasResourceName: 'api/v2/resources' });
+
+export default model;

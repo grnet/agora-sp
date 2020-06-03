@@ -52,18 +52,18 @@ def send_user_email(user, tpl_subject, tpl_body, extra_context=()):
     logger.info('%s email sent to %s' % (tpl_body, str(user.id)))
 
 
-def serviceadminship_context(sa):
+def resourceadminship_context(sa):
     return {
         'applicant': sa.admin,
-        'service': sa.service,
-        'service_url': current_site_baseurl() + '/services/'+str(sa.service.pk),
-        'service_admins_url': current_site_baseurl() + '/service-admins/'
+        'resource': sa.resource,
+        'resource_url': current_site_baseurl() + '/resources/'+str(sa.resource.pk),
+        'resource_admins_url': current_site_baseurl() + '/resource-admins/'
     }
 
 
 def send_email_application_created(sa, http_host):
-    recipients = sa.service.service_admins
-    extra_context = serviceadminship_context(sa)
+    recipients = sa.resource.resource_admins
+    extra_context = resourceadminship_context(sa)
     extra_context['http_host'] = http_host
 
     for recipient in recipients:
@@ -77,10 +77,10 @@ def send_email_application_created(sa, http_host):
 
 def send_email_sa_admins_applicant(sa, http_host, tpl_subject, tpl_body_admins,
                                    tpl_body_applicant):
-    recipients = sa.service.service_admins
+    recipients = sa.resource.resource_admins
     if sa.admin in recipients:
         recipients.remove(sa.admin)
-    extra_context = serviceadminship_context(sa)
+    extra_context = resourceadminship_context(sa)
     extra_context['http_host'] = http_host
 
     # Send email to applicant
@@ -101,10 +101,10 @@ def send_email_sa_admins_applicant(sa, http_host, tpl_subject, tpl_body_admins,
         )
 
 
-def send_email_service_admin_assigned(sa, http_host):
-    tpl_subject = 'emails/service_admin_assigned_subject.txt'
-    tpl_body_admins = 'emails/service_admin_assigned_to_admins_body.txt'
-    tpl_body_applicant = 'emails/service_admin_assigned_to_applicant_body.txt'
+def send_email_resource_admin_assigned(sa, http_host):
+    tpl_subject = 'emails/resource_admin_assigned_subject.txt'
+    tpl_body_admins = 'emails/resource_admin_assigned_to_admins_body.txt'
+    tpl_body_applicant = 'emails/resource_admin_assigned_to_applicant_body.txt'
 
     send_email_sa_admins_applicant(sa, http_host, tpl_subject, tpl_body_admins,
                                    tpl_body_applicant)

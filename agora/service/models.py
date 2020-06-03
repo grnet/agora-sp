@@ -9,7 +9,7 @@ from ckeditor_uploader.fields import RichTextUploadingField
 from agora.utils import SERVICE_ADMINSHIP_STATES, clean_html_fields, \
     publish_message
 from agora.emails import send_email_application_created, \
-    send_email_service_admin_assigned, send_email_application_evaluated
+    send_email_resource_admin_assigned, send_email_application_evaluated
 from apimas.base import ProcessorFactory
 from copy import deepcopy
 
@@ -439,7 +439,7 @@ class PostDeleteMessage(ProcessorFactory):
         return {}
 
 
-class PostCreateServiceadminship(ProcessorFactory):
+class PostCreateResourceadminship(ProcessorFactory):
     def process(self, data):
         user = data['auth/user']
         http_host = data['request/meta/headers'].get('HTTP_HOST', 'Agora')
@@ -448,11 +448,11 @@ class PostCreateServiceadminship(ProcessorFactory):
         if sa.state == 'pending':
             send_email_application_created(sa, http_host)
         if sa.admin != user:
-            send_email_service_admin_assigned(sa, http_host)
+            send_email_resource_admin_assigned(sa, http_host)
         return {}
 
 
-class PostPartialUpdateServiceadminship(ProcessorFactory):
+class PostPartialUpdateResourceadminship(ProcessorFactory):
     def process(self, data):
         http_host = data['request/meta/headers'].get('HTTP_HOST', 'Agora')
         send_email_application_evaluated(data['backend/raw_response'], http_host)
@@ -627,7 +627,6 @@ class Resource(models.Model):
         res = []
         for r in resource_adminships:
             res.append(str(r.admin.pk))
-
         return ','.join(res)
 
     @property
@@ -639,6 +638,27 @@ class Resource(models.Model):
         for r in resource_adminships:
             res.append(r.admin)
         return res
+
+    @property
+    def pending_resource_admins_ids(self):
+        resource_adminships = ResourceAdminship.objects.filter(
+            resource=self,
+            state="pending")
+        res = []
+        for r in resource_adminships:
+            res.append(str(r.admin.pk))
+        return ','.join(res)
+
+    @property
+    def rejected_resource_admins_ids(self):
+        resource_adminships = ResourceAdminship.objects.filter(
+            resource=self,
+            state="rejected")
+        res = []
+        for r in resource_adminships:
+            res.append(str(r.admin.pk))
+        return ','.join(res)
+
 
 class ResourceAdminship(models.Model):
     resource = models.ForeignKey(Resource, related_name="resourceadminships")

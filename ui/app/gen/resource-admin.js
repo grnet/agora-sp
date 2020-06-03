@@ -1,7 +1,15 @@
 import Ember from 'ember';
+import validate from 'ember-gen/validate';
 import { field } from 'ember-gen';
+import ENV from '../config/environment';
 import { AgoraGen } from '../lib/common';
+import {
+  approveResourceAdminship,
+  rejectResourceAdminship,
+  undoResourceAdminship,
+} from '../utils/common/actions';
 
+const CHOICES = ENV.APP.resources;
 
 const {
   get,
@@ -12,13 +20,22 @@ export default AgoraGen.extend({
   order: 100,
   path: 'resource-admins',
   resourceName: 'api/v2/resource-admins',
+  abilityStates: {
+    check_create_other: true,
+ },
+  common: {
+    validators: {
+      resource: [validate.presence(true)],
+      admin: [validate.presence(true)],
+    },
+  },
   list: {
     getModel(params) {
       params = params || {};
 
       return this.store.query('resource-admin', params).then((sa) => {
         let user_id = get(this, 'session.session.authenticated.id');
-        let res = sa.filter(el => get(el, 'admin_id') != user_id);
+        let res = sa.filter(el => get(el, 'admin_id').toString() !== user_id.toString());
 
         return res;
       });
@@ -42,6 +59,12 @@ export default AgoraGen.extend({
         'admin_email',
         'state',
       ],
+      actions: ['gen:details', 'remove', 'approveResourceAdminship', 'rejectResourceAdminship', 'undoResourceAdminship'],
+      actionsMap: {
+        rejectResourceAdminship,
+        approveResourceAdminship,
+        undoResourceAdminship,
+      },
     },
     sort: {
       serverSide: true,
@@ -49,10 +72,42 @@ export default AgoraGen.extend({
       fields: ['resource_name', 'admin_email', 'state'],
     },
     filter: {
-      active: false,
+      active: true,
       serverSide: true,
       search: false,
+      meta: {
+        fields: [
+          field('state', {
+            type: 'select',
+            choices: CHOICES.SERVICE_ADMINSHIP_STATES,
+          }),
+          field(
+            'resource', {
+              modelName:'resource',
+              type: 'model',
+              displayAttr: 'erp_bai_1_name',
+            }
+          ),
+        ],
+      },
     },
+  },
+  create: {
+    getModel(params) {
+      let store = get(this, 'store');
+
+      return store.createRecord('resource-admin', {
+        state: 'approved',
+      });
+    },
+    fields : [
+      field('admin', {
+        query: (table, store, field, params) => {
+          return store.query('custom-user', { role: 'serviceadmin' });
+        },
+      }),
+      'resource',
+    ],
   },
   details: {
     fieldsets: [{

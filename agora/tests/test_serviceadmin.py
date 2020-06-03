@@ -36,24 +36,27 @@ def test_target_users(serviceadmin, superadmin):
 def test_providers(serviceadmin, superadmin):
     assertions_crud('providers', serviceadmin, superadmin)
 
-# def test_services(serviceadmin, serviceadmin2, superadmin):
+# def test_resources(serviceadmin, serviceadmin2, superadmin):
     # """
     # Flow:
-    # Serviceadmin creates service
-    # Serviceadmin can retrieve service
-    # Serviceadmin can update service
-    # Serviceadmin cannot delete service
-    # Superadmin deletes service
-    # Serviceadmin2 creates service2
-    # Serviceadmin can retrieve service2
-    # Serviceadmin cannot update service2
-    # Superadmin deletes service2
+    # Serviceadmin creates resource
+    # Serviceadmin can retrieve resource
+    # Serviceadmin can update resource
+    # Serviceadmin cannot delete resource
+    # Superadmin deletes resource
+    # Serviceadmin2 creates resource2
+    # Serviceadmin can retrieve resource2
+    # Serviceadmin cannot update resource2
+    # Superadmin deletes resource2
     # """
-    # url = RESOURCES_CRUD['services']['url']
-    # data = RESOURCES_CRUD['services']['create_data']
-    # edit_data = RESOURCES_CRUD['services']['edit_data']
+    # url = RESOURCES_CRUD['resources']['url']
+    # data = RESOURCES_CRUD['resources']['create_data']
+    # edit_data = RESOURCES_CRUD['resources']['edit_data']
+    # print serviceadmin.organisation.id
 
     # serviceadmin.post(url, data)
+    # print serviceadmin.get(url)
+    # print url, data
     # assert len(serviceadmin.get(url).json()) == 1
     # resp = serviceadmin.get(url)
     # id = resp.json()[0]['id']
@@ -67,7 +70,7 @@ def test_providers(serviceadmin, superadmin):
         # assert resp.status_code == 200
         # for key, value in edit_data.iteritems():
             # assert resp.json()[key] == value
-    # resp = serviceadmin.delete(url + id + '/')
+    # resp = resourceadmin.delete(url + id + '/')
     # assert resp.status_code == 403
     # resp = superadmin.delete(url + id + '/')
     # assert resp.status_code == 204

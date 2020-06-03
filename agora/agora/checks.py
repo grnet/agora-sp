@@ -1,29 +1,36 @@
 from django.db.models import Q
 from django.utils.translation import ugettext as _
 from apimas.errors import ValidationError
-from service.models import ServiceAdminship as sa_m
+from service.models import ResourceAdminship as sa_m
+from service.models import Resource as r_m
 from component.models import ServiceDetailsComponent as cidl_m
 from accounts.models import User as user_m
 
 
-class ServiceAdminship(object):
+class ResourceAdminship(object):
 
     @staticmethod
     def check_create_other(backend_input, instance, context):
-        """Admins/superadmins can create ServiceAdminships.
+        """Admins/superadmins can create ResourceAdminships.
 
-        Admins/superadmins can create a new ServiceAdminship instance
-        for a given service and a given user, only if the user has role
-        'serviceadmin' and she/he does not already admin the service.
-        The ServiceAdminship created by admins/superadmins has state
+        Admins/superadmins can create a new ResourceAdminship instance
+        for a given resource and a given user, only if the user has role
+        'serviceadmin', she/he does not already admin the resource and
+        user's Organisation is the same as the Resource's Organisation.
+        The ResourceAdminship created by admins/superadmins has state
         'approved'.
         """
         admin = user_m.objects.get(id=backend_input['admin_id'])
         if admin.role != 'serviceadmin':
             raise ValidationError(_('Wrong admin role'))
+
+        resource = r_m.objects.get(pk=backend_input['resource_id'])
+        resource_org_id = resource.erp_bai_2_organisation.pk
+        if resource_org_id != admin.organisation.id:
+            raise ValidationError(_('Forbidden Resource Organisation'))
         try:
             sa_m.objects.get(admin=backend_input['admin_id'],
-                             service=backend_input['service_id'])
+                             resource=backend_input['resource_id'])
             raise ValidationError(_('Object exists'))
         except sa_m.DoesNotExist:
             backend_input['state'] = 'approved'
@@ -31,17 +38,22 @@ class ServiceAdminship(object):
 
     @staticmethod
     def check_create_self(backend_input, instance, context):
-        """Serviceadmins can request ServiceAdminships.
+        """Serviceadmins can request ResourceAdminships.
 
-        A user can create a ServiceAdminship instance only if she/he does not
-        already admin the service.
-        The ServiceAdminship created is not yet approved/rejected, so it is
+        A user can create a ResourceAdminship instance only if she/he does not
+        already admin the resource and user's Organisation is the same as the
+        resource's Organisation.
+        The ResourceAdminship created is not yet approved/rejected, so it is
         created with state 'pending'.
         """
         auth_user = context['auth/user']
+        resource = r_m.objects.get(pk=backend_input['resource_id'])
+        resource_org_id = resource.erp_bai_2_organisation.pk
+        if resource_org_id != auth_user.organisation.id:
+            raise ValidationError(_('Forbidden Resource Organisation'))
         try:
             sa_m.objects.get(admin=auth_user.id,
-                             service=backend_input['service_id'])
+                             resource=backend_input['resource_id'])
             raise ValidationError(_('Object exists'))
         except sa_m.DoesNotExist:
             backend_input['admin_id'] = auth_user.id
@@ -50,18 +62,18 @@ class ServiceAdminship(object):
 
     @staticmethod
     def is_involved(instance, context):
-        """Serviceadmins retrieve ServiceAdminships they are involved in.
+        """Serviceadmins retrieve ResourceAdminships they are involved in.
 
-        Serviceadmins can retrieve ServiceAdminships of Services they admin, so
-        that they can reject/approve these ServiceAdminships.
-        Serviceadmins can also retrieve the ServiceAdminship for which they are
+        Serviceadmins can retrieve ResourceAdminships of Resources they admin, so
+        that they can reject/approve these ResourceAdminships.
+        Serviceadmins can also retrieve the ResourceAdminship for which they are
         admins regardlress of the state, so that they can view a
-        ServiceAdminship request or revoke one.
+        ResourceAdminship request or revoke one.
         """
         auth_user = context['auth/user']
         user_sa = sa_m.objects.filter(admin=auth_user, state='approved')
-        user_services = [x.service for x in user_sa]
-        if instance.service in user_services:
+        user_resources = [x.resource for x in user_sa]
+        if instance.resource in user_resources:
             return instance
         if instance.admin == auth_user:
             return instance
@@ -69,7 +81,7 @@ class ServiceAdminship(object):
 
     @staticmethod
     def check_update(backend_input, instance, context):
-        """Check allowed transitions between ServiceAdminship instances.
+        """Check allowed transitions between ResourceAdminship instances.
 
         The transition between 'approved' and 'rejected' must go via 'pending'.
         """
@@ -88,40 +100,40 @@ class ServiceAdminship(object):
 
     @staticmethod
     def manages(context):
-        """Serviceadmins can partially update some ServiceAdminships.
+        """Serviceadmins can partially update some ResourceAdminships.
 
-        A serviceadmin can partially update ServiceAdminships of services
+        A serviceadmin can partially update ResourceAdminships of resources
         he/she admins.
         """
         auth_user = context['auth/user']
         user_sa = sa_m.objects.filter(admin=auth_user, state='approved')
-        user_services = [x.service for x in user_sa]
+        user_resources = [x.resource for x in user_sa]
 
-        return Q(service__in=user_services) & ~Q(admin=auth_user)
+        return Q(resource__in=user_resources) & ~Q(admin=auth_user)
 
     @staticmethod
     def manages_or_self_pending(context):
-        """Serviceadmins list a subset of ServiceAdminships.
+        """Serviceadmins list a subset of ResourceAdminships.
 
-        A serviceadmin can list ServiceAdminships if he/she has applied for
-        a ServiceAdminship and is still in state 'pending' so that he/she can
-        revoke it, if he/she has an approved ServiceAdminship, or if he/she
-        admins the service of the ServiceAdminship.
+        A serviceadmin can list ResourceAdminships if he/she has applied for
+        a ResourceAdminship and is still in state 'pending' so that he/she can
+        revoke it, if he/she has an approved ResourceAdminship, or if he/she
+        admins the resource of the ResourceAdminship.
         """
         auth_user = context['auth/user']
         user_sa = sa_m.objects.filter(admin=auth_user, state='approved')
-        services = [x.service for x in user_sa]
+        resources = [x.resource for x in user_sa]
         self_pending = Q(admin=auth_user, state='pending')
 
-        return (Q(service__in=services) & ~Q(admin=auth_user)) | self_pending
+        return (Q(resource__in=resources) & ~Q(admin=auth_user)) | self_pending
 
     @staticmethod
     def self_pending(context):
-        """A serviceadmin can delete a ServiceAdminship.
+        """A serviceadmin can delete a ResourceAdminship.
 
-        A serviceadmin can delete a ServiceAdminship so that she/he can
-        revoke the ServiceAdminship application.
-        The ServiceAdminship should still be in state 'pending' and the admin
+        A serviceadmin can delete a ResourceAdminship so that she/he can
+        revoke the ResourceAdminship application.
+        The ResourceAdminship should still be in state 'pending' and the admin
         should be the user.
         """
         auth_user = context['auth/user']
