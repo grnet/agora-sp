@@ -64,6 +64,13 @@ export default DS.Model.extend({
   }),
   // TODO: Filter subdomain's ManyArray results according to domain selections
   epp_cli_2_scientific_subdomain: DS.hasMany('subdomain', {
+    formComponent: 'table-onchange',
+    formAttrs: {
+      lookupField: 'epp_cli_1_scientific_domain',
+      changedChoices: function(store, value) {
+        return store.query('subdomain', {'domain': Ember.get(value, 'id')});
+      },
+    },
     label: 'provider.fields.epp_cli_2_scientific_subdomain',
     hint: 'provider.hints.epp_cli_2_scientific_subdomain',
   }),

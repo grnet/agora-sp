@@ -45,7 +45,7 @@ const subdomain = field('epp_cli_2_scientific_subdomain', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
-      fields: ['domain.name','name'],
+      fields: ['domain.name11','name'],
     },
   },
 });
@@ -308,40 +308,26 @@ OTHER_FIELDSET,
                 CREATE  VIEW
 ********************************************/
 
-const CREATE_FIELDSETS = [{
-  label: 'provider.cards.basic_information',
-  text: 'provider.cards.basic_hint',
-  layout: {
-    flex: [100, 100, 100, 50, 50, 100]
-  },
-  fields: [
-    'epp_bai_0_id',
-    'epp_bai_1_name',
-    'epp_bai_2_abbreviation',
-    'epp_bai_3_legal_entity',
-    'epp_bai_3_legal_status',
-    'epp_bai_4_website',
-  ]
-},
+const CREATE_FIELDSETS = [
 CLASSIFICATION_FIELDSET,
-{
-  label: 'provider.cards.location',
-  text: 'provider.cards.location_hint',
-  layout: {
-    flex: [100, 100, 100, 100, 100]
-  },
-  fields: [
-    'epp_loi_1_street_name_and_number',
-    'epp_loi_2_postal_code',
-    'epp_loi_3_city',
-    'epp_loi_4_region',
-    'epp_loi_5_country_or_territory',
-  ]
-},
-MARKETING_FIELDSET,
-MATURITY_FIELDSET,
-CONTACT_FIELDSET,
-OTHER_FIELDSET,
+//{
+  //label: 'provider.cards.location',
+  //text: 'provider.cards.location_hint',
+  //layout: {
+    //flex: [100, 100, 100, 100, 100]
+  //},
+  //fields: [
+    //'epp_loi_1_street_name_and_number',
+    //'epp_loi_2_postal_code',
+    //'epp_loi_3_city',
+    //'epp_loi_4_region',
+    //'epp_loi_5_country_or_territory',
+  //]
+//},
+//MARKETING_FIELDSET,
+//MATURITY_FIELDSET,
+//CONTACT_FIELDSET,
+//OTHER_FIELDSET,
 ]
 
 
