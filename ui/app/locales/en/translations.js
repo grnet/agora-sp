@@ -86,5 +86,6 @@ export default {
   'supercategory': supercategory,
   'category': category,
   'subcategory': subcategory,
+  'username': login.default.label,
 };
 
