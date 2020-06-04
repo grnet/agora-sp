@@ -1,6 +1,7 @@
 const contact_information = {
   'cards': {
     'basic_info': 'Basic information',
+    'basic_hint': 'All fields are required',
   },
   'fields': {
     'first_name': 'First Name',

@@ -1,5 +1,6 @@
 import { AgoraGen } from '../lib/common';
 import { field } from 'ember-gen';
+import validate from 'ember-gen/validate';
 
 export default AgoraGen.extend({
   modelName: 'contact-information',
@@ -7,7 +8,20 @@ export default AgoraGen.extend({
   path: 'contact-information',
   resourceName: 'api/v2/contact-information',
   common: {
+    validators: {
+      first_name: [validate.presence(true)],
+      last_name: [validate.presence(true)],
+      email: [validate.format({type: 'email'})],
+      phone: [
+        validate.presence(true),
+        validate.number({ integer: true }),
+        validate.length({ min: 10, max: 20 }),
+      ],
+      position: [validate.presence(true)],
+      organisation: [validate.presence(true)],
+    },
     fieldsets: [ {
+      text: 'contact_information.cards.basic_hint',
       label: 'contact_information.cards.basic_info',
       fields: [
         'first_name',
