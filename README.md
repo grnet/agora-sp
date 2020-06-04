@@ -253,8 +253,12 @@ and follow the instruction in [cypress test runner docs](https://docs.cypress.io
 
 # Copyright and license
 
+The work represented by this software was partially funded by:
+- EOSC-Hub project European Union (EU) Horizon 2020 program under Grant number 77753642. 
+- EUDAT2020 European Union’s H2020 Program under Contract No. 654065.
+- EUDAT s Framework Programme 7 under Contract No. 283304.
 
-Copyright (C) 2017-2019 GRNET S.A.
+Copyright (C) 2017-2020 GRNET S.A.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
