@@ -514,8 +514,8 @@ class Resource(models.Model):
 
     # Basic Information fields
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    erp_bai_0_id = models.CharField(max_length=255, unique=True)
-    erp_bai_1_name = models.CharField(max_length=80, default=None, unique=False)
+    erp_bai_0_id = models.CharField(max_length=100, unique=True)
+    erp_bai_1_name = models.CharField(max_length=100, unique=True)
     erp_bai_2_organisation = models.ForeignKey(Organisation,
             blank=False,
             null=True,

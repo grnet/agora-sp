@@ -128,8 +128,8 @@ class Organisation(models.Model):
                                              default=None, blank=True, null=True,
                                              choices=LEGAL_STATUSES)
 
-    epp_bai_0_id = models.TextField(max_length=100, default=None, blank=True, null=True)
-    epp_bai_1_name = models.CharField(unique=True, max_length=100, default=None, blank=False, null=True)
+    epp_bai_0_id = models.CharField(unique=True, max_length=100)
+    epp_bai_1_name = models.CharField(unique=True, max_length=100)
     epp_bai_2_abbreviation = models.CharField(max_length=30, default=None, blank=False, null=True)
     epp_bai_4_website = models.TextField(default=None, blank=True, null=True)
 
