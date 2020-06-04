@@ -71,8 +71,8 @@ const provider = {
   'hints': {
     'epp_bai_3_legal_entity': 'Is the provider a legal entity?',
     'epp_bai_3_legal_status': 'Legal Status of the Service Provider',
-    'epp_bai_0_id': 'Unique identifier of the provider',
-    'epp_bai_1_name': 'Full Name of the Provider offering the resource and acting as main contact point.',
+    'epp_bai_0_id': '<strong>Unique</strong> identifier of the provider',
+    'epp_bai_1_name': '<strong>Unique</strong> Full Name of the Provider offering the resource and acting as main contact point.',
     'epp_bai_2_abbreviation': 'Abbreviation or Short name of the Provider',
     'epp_bai_4_website': 'Website with information about the Provider.',
     'epp_cli_1_scientific_domain': 'The branch of science, scientific discipline that is related to the service/resource.',

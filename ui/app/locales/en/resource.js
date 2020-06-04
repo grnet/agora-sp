@@ -59,8 +59,8 @@ const resource = {
 
   },
   hints: {
-    erp_bai_0_id: 'Global unique and persistent identifier of the resource. The first part denotes the Resource Provider and the second part the unique identifier of the resource.<br />Example: openaire.foo',
-    erp_bai_1_name: 'Brief and descriptive name of resource',
+    erp_bai_0_id: 'Global <strong>unique and persistent</strong> identifier of the resource. The first part denotes the Resource Provider and the second part the unique identifier of the resource.<br />Example: openaire.foo',
+    erp_bai_1_name: '<strong>Unique</strong> brief and descriptive name of resource',
     erp_bai_2_service_organisation: 'The organisation that manages and delivers the resource, or the organisation which takes lead in coordinating resource delivery and communicates with customers in case of a federated scenario',
     erp_bai_3_service_providers: 'The organisation(s) that participate in resource delivery in case of a federated scenario',
     erp_bai_4_webpage: 'Webpage with information about the resource',
