@@ -2,7 +2,6 @@ import { field } from 'ember-gen';
 
 
 const SORT_FIELDS = [
-  'domain.name',
   'name',
 ];
 
