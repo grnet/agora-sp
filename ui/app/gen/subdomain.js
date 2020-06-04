@@ -1,5 +1,6 @@
 import validate from 'ember-gen/validate';
 import { AgoraGen } from '../lib/common';
+import { field } from 'ember-gen';
 import {
   CREATE_FIELDSETS,
   EDIT_FIELDSETS,
@@ -32,16 +33,26 @@ export default AgoraGen.extend({
       actions: ['gen:details', 'gen:edit', 'remove'],
       fields: TABLE_FIELDS,
     },
+
     filter: {
-      active: false,
+      active: true,
       serverSide: true,
-      search: true,
+      search: false,
       searchPlaceholder: 'subdomain.placeholders.search',
+      meta: {
+        fields: [
+          field(
+            'domain', {
+              modelName:'domain',
+              type: 'model',
+              displayAttr: 'name',
+            }
+          ),
+        ],
+      },
     },
-    // Turned client-side sorting due to issues with sorting by domain foreign key. 
-    // TODO: Mitigate the issue and re-enable server side sorting     
     sort: {
-      serverSide: false,
+      serverSide: true,
       active: true,
       fields: SORT_FIELDS,
     },
