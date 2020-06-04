@@ -196,8 +196,8 @@ export default DS.Model.extend({
     },
   }),
   epp_oth_8_areas_of_activity: DS.hasMany('activity', {
-    label: 'provider.fields.epp_oth_8_areas_of_activity:',
-    hint: 'provider.hints.epp_oth_8_areas_of_activity:',
+    label: 'provider.fields.epp_oth_8_areas_of_activity',
+    hint: 'provider.hints.epp_oth_8_areas_of_activity',
   }),
   activity_names: DS.attr({
     label: 'provider.fields.activity_names',
