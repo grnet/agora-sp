@@ -243,6 +243,18 @@ const DETAILS_CONTACT_PUBLIC_FIELDSET = {
     flex: [50, 50, 50, 50, 50, 50],
   },
 };
+
+const FINANCIAL_FIELDSET = {
+  label: 'resource.cards.financial',
+  fields: [
+    'erp_fni_1_payment_model',
+    'erp_fni_2_pricing',
+  ],
+  layout: {
+    flex: [50, 50],
+  },
+};
+
 const DETAILS_FIELDSETS = [
   DETAILS_BASIC_INFO_FIELDSET,
   DETAILS_MARKETING_FIELDSET,
@@ -251,6 +263,7 @@ const DETAILS_FIELDSETS = [
   GEO_FIELDSET,
   DETAILS_CONTACT_MAIN_FIELDSET,
   DETAILS_CONTACT_PUBLIC_FIELDSET,
+  FINANCIAL_FIELDSET,
 ];
 
 const CREATE_FIELDSETS = [
@@ -260,6 +273,7 @@ const CREATE_FIELDSETS = [
   MANAGEMENT_INFORMATION_FIELDSET,
   GEO_FIELDSET,
   CONTACT_FIELDSET,
+  FINANCIAL_FIELDSET,
 ];
 
 const EDIT_FIELDSETS = [
@@ -269,6 +283,7 @@ const EDIT_FIELDSETS = [
   MANAGEMENT_INFORMATION_FIELDSET,
   GEO_FIELDSET,
   CONTACT_FIELDSET,
+  FINANCIAL_FIELDSET,
 ];
 
 export {

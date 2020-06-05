@@ -10,6 +10,7 @@ const resource = {
     management_information: 'Management Information',
     classification: 'Classification Information',
     classification_hint: '',
+    financial: 'Financial Information',
   },
   fields: {
     erp_bai_0_id: 'ERP.BAI.0 - ID',
@@ -41,6 +42,8 @@ const resource = {
     erp_mgi_9_maintenance: 'ERP.MGI.9 - Maintenance',
     erp_gla_1_geographical_availability: 'ERP.GLA.1 - Geographical Availability',
     erp_gla_2_language: 'ERP.GLA.2 - Language Availability',
+    erp_fni_1_payment_model: 'ERP.FNI.1 - Payment Model',
+    erp_fni_2_pricing: 'ERP.FNI.2 - Pricing',
     main_contact: 'Main Contact/Service Owner',
     public_contact: 'Public Contact',
     mc_first_name: 'ERP.COI.1 - First Name',
@@ -87,6 +90,8 @@ const resource = {
     erp_gla_2_language: 'Add the language codes using the <a href="https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes" target="_blank">2-letter codes from the ISO</a>',
     main_contact: 'This info will not be publicly exposed',
     public_contact: 'This info will be exposed to public API ',
+    erp_fni_1_payment_model: 'Webpage with the supported payment models and restrictions that apply to each of them.',
+    erp_fni_2_pricing: 'Webpage with the information on the price scheme for this Resource in case the customer is charged for.',
   },
   table: {
     erp_bai_0_id: 'ID',

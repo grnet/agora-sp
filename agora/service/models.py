@@ -585,6 +585,11 @@ class Resource(models.Model):
         null=True,
         related_name="public_contact_services")
 
+    # Financial Information
+    erp_fni_1_payment_model = models.URLField(default=None, blank=True, null=True)
+    erp_fni_2_pricing = models.URLField(default=None, blank=True, null=True)
+
+
     def __unicode__(self):
         return str(self.erp_bai_0_id)
 

@@ -170,6 +170,15 @@ let model = DS.Model.extend({
     label: 'resource.fields.public_contact',
     hint: 'resource.hints.public_contact',
   }),
+  // Financial information
+  erp_fni_1_payment_model: DS.attr({
+    label: 'resource.fields.erp_fni_1_payment_model',
+    hint: 'resource.hints.erp_fni_1_payment_model',
+  }),
+  erp_fni_2_pricing: DS.attr({
+    label: 'resource.fields.erp_fni_2_pricing',
+    hint: 'resource.hints.erp_fni_2_pricing',
+  }),
 
   resource_admins_ids: DS.attr(),
   pending_resource_admins_ids: DS.attr(),
