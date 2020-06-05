@@ -7,7 +7,8 @@ const {
 
 let model = DS.Model.extend({
   session: Ember.inject.service(),
-  // Basic Inforamation
+
+  // Basic Information
   erp_bai_0_id: DS.attr({
     label: 'resource.fields.erp_bai_0_id',
     hint: 'resource.hints.erp_bai_0_id',
@@ -55,24 +56,9 @@ let model = DS.Model.extend({
     label: 'resource.fields.erp_mri_4_mulitimedia',
     hint: 'resource.hints.erp_mri_4_mulitimedia',
   }),
-  erp_cli_5_target_users: DS.hasMany('target-user', {
-    label: 'resource.fields.erp_cli_5_target_users',
-    hint: 'resource.hints.erp_cli_5_target_users',
-  }),
-  erp_mri_6_target_customer_tags: DS.attr({
-    label: 'resource.fields.erp_mri_6_target_customer_tags',
-    hint: 'resource.hints.erp_mri_6_target_customer_tags',
-    formComponent: 'agora-chips',
-  }),
-  erp_mri_7_use_cases: DS.attr({
-    label: 'resource.fields.erp_mri_7_use_cases',
-    hint: 'resource.hints.erp_mri_7_use_cases',
-    type: 'text',
-    formComponent: 'text-editor',
-    htmlSafe: true
-  }),
-  erp_cli_5_target_users_verbose: DS.attr({
-    label: 'resource.fields.erp_cli_5_target_users'
+  erp_mri_5_use_cases: DS.attr({
+    label: 'resource.fields.erp_mri_5_use_cases',
+    hint: 'resource.hints.erp_mri_5_use_cases',
   }),
   // classification information
   erp_cli_1_scientific_domain: DS.hasMany('domain', {
@@ -105,6 +91,13 @@ let model = DS.Model.extend({
   subcategory_names: DS.attr({
       label: 'resource.fields.subcategory_names',
     }),
+  erp_cli_5_target_users: DS.hasMany('target-user', {
+    label: 'resource.fields.erp_cli_5_target_users',
+    hint: 'resource.hints.erp_cli_5_target_users',
+  }),
+  erp_cli_5_target_users_verbose: DS.attr({
+    label: 'resource.fields.erp_cli_5_target_users'
+  }),
   erp_cli_5_tags: DS.attr({
     label: 'resource.fields.erp_cli_5_tags',
     hint: 'resource.hints.erp_cli_5_tags',

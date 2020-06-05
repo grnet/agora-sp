@@ -609,8 +609,8 @@ class Resource(models.Model):
         return ", ".join(o.epp_bai_1_name for o in self.erp_bai_3_providers.all())
 
     @property
-    def erp_mri_5_target_users_verbose(self):
-        return ", ".join(o.user for o in self.erp_mri_5_target_users.all())
+    def erp_cli_5_target_users_verbose(self):
+        return ", ".join(o.user for o in self.erp_cli_5_target_users.all())
 
     def save(self, *args, **kwargs):
         self.erp_bai_0_id = self.erp_bai_0_id.strip()

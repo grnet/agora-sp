@@ -2130,10 +2130,6 @@ RESOURCES = {
         'erp_cli_5_target_users_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
-        'erp_mri_6_target_customer_tags': {
-            '.field.string': {},
-            '.flag.searchable': {},
-            '.flag.nullable.default': {}},
         'erp_mri_5_use_cases': {
             '.field.string': {},
             '.flag.searchable': {},
