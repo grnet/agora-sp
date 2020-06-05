@@ -152,6 +152,7 @@ let model = DS.Model.extend({
     }
   }),
   erp_gla_2_language: DS.attr({
+    defaultValue: 'en',
     formComponent: 'agora-chips',
     label: 'resource.fields.erp_gla_2_language',
     hint: 'resource.hints.erp_gla_2_language',

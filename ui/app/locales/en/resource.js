@@ -40,8 +40,7 @@ const resource = {
     erp_mgi_8_status_monitoring: 'ERP.MGI.8 - Status Monitoring',
     erp_mgi_9_maintenance: 'ERP.MGI.9 - Maintenance',
     erp_gla_1_geographical_availability: 'ERP.GLA.1 - Geographical Availability',
-
-    erp_gla_2_language: 'ERP.GLA.2 - Language',
+    erp_gla_2_language: 'ERP.GLA.2 - Language Availability',
     main_contact: 'Main Contact/Service Owner',
     public_contact: 'Public Contact',
     mc_first_name: 'ERP.COI.1 - First Name',
