@@ -53,6 +53,8 @@ export default AgoraGen.extend({
       erp_cli_4_subcategory: [validate.presence(true)],
       erp_gla_1_geographical_availability: [validate.presence(true)],
       erp_gla_2_language: [validate.presence(true)],
+      erp_coi_13_helpdesk_email: [validate.format({type: 'email', allowBlank: true})],
+      erp_coi_14_security_contact_email: [validate.format({type: 'email', allowBlank: true})],
       erp_mgi_1_helpdesk_webpage: [validate.format({ type: 'url', allowBlank: true })],
       erp_mgi_2_helpdesk_email: [validate.format({type: 'email', allowBlank: true})],
       erp_mgi_3_user_manual: [validate.format({ type: 'url', allowBlank: true })],

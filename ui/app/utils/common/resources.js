@@ -207,9 +207,11 @@ const CONTACT_FIELDSET = {
         displayAttr: 'displayInfo'
       }
     ),
+    'erp_coi_13_helpdesk_email',
+    'erp_coi_14_security_contact_email',
   ],
   layout: {
-    flex: [100, 100],
+    flex: [100, 100, 50, 50],
   },
 };
 
@@ -244,6 +246,18 @@ const DETAILS_CONTACT_PUBLIC_FIELDSET = {
   },
 };
 
+
+const DETAILS_CONTACT_OTHER_FIELDSET = {
+  label: 'resource.cards.other_contact',
+  fields: [
+    'erp_coi_13_helpdesk_email',
+    'erp_coi_14_security_contact_email',
+  ],
+  layout: {
+    flex: [50, 50],
+  },
+};
+
 const FINANCIAL_FIELDSET = {
   label: 'resource.cards.financial',
   fields: [
@@ -263,6 +277,7 @@ const DETAILS_FIELDSETS = [
   GEO_FIELDSET,
   DETAILS_CONTACT_MAIN_FIELDSET,
   DETAILS_CONTACT_PUBLIC_FIELDSET,
+  DETAILS_CONTACT_OTHER_FIELDSET,
   FINANCIAL_FIELDSET,
 ];
 

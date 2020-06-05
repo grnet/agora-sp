@@ -2312,6 +2312,12 @@ RESOURCES = {
             '.flag.nowrite': {},
             'source': 'public_contact.organisation.epp_bai_1_name',
             '.flag.nullable.default': {}},
+        'erp_coi_13_helpdesk_email': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+        'erp_coi_14_security_contact_email': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
         'erp_fni_1_payment_model': {
           '.field.string': {},
           '.flag.nullable.default': {}},

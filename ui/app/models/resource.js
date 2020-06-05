@@ -170,6 +170,15 @@ let model = DS.Model.extend({
     label: 'resource.fields.public_contact',
     hint: 'resource.hints.public_contact',
   }),
+  erp_coi_13_helpdesk_email: DS.attr({
+    label: 'resource.fields.erp_coi_13_helpdesk_email',
+    hint: 'resource.hints.erp_coi_13_helpdesk_email',
+  }),
+  erp_coi_14_security_contact_email: DS.attr({
+    label: 'resource.fields.erp_coi_14_security_contact_email',
+    hint: 'resource.hints.erp_coi_14_security_contact_email',
+  }),
+
   // Financial information
   erp_fni_1_payment_model: DS.attr({
     label: 'resource.fields.erp_fni_1_payment_model',
