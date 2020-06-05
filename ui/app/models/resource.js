@@ -55,9 +55,9 @@ let model = DS.Model.extend({
     label: 'resource.fields.erp_mri_4_mulitimedia',
     hint: 'resource.hints.erp_mri_4_mulitimedia',
   }),
-  erp_mri_5_target_users: DS.hasMany('target-user', {
-    label: 'resource.fields.erp_mri_5_target_users',
-    hint: 'resource.hints.erp_mri_5_target_users',
+  erp_cli_5_target_users: DS.hasMany('target-user', {
+    label: 'resource.fields.erp_cli_5_target_users',
+    hint: 'resource.hints.erp_cli_5_target_users',
   }),
   erp_mri_6_target_customer_tags: DS.attr({
     label: 'resource.fields.erp_mri_6_target_customer_tags',
@@ -71,8 +71,8 @@ let model = DS.Model.extend({
     formComponent: 'text-editor',
     htmlSafe: true
   }),
-  erp_mri_5_target_users_verbose: DS.attr({
-    label: 'resource.fields.erp_mri_5_target_users'
+  erp_cli_5_target_users_verbose: DS.attr({
+    label: 'resource.fields.erp_cli_5_target_users'
   }),
   // classification information
   erp_cli_1_scientific_domain: DS.hasMany('domain', {
@@ -226,7 +226,7 @@ let model = DS.Model.extend({
       delete hash['resource_admins_ids'];
       delete hash['pending_resource_admins_ids'];
       delete hash['rejected_resource_admins_ids'];
-      delete hash['erp_mri_5_target_users_verbose'];
+      delete hash['erp_cli_5_target_users_verbose'];
       delete hash['domain_names'];
       delete hash['subdomain_names'];
       delete hash['category_names'];

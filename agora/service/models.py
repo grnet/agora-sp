@@ -530,7 +530,7 @@ class Resource(models.Model):
     erp_mri_2_tagline = models.TextField(max_length=100, default=None, blank=True, null=True)
     erp_mri_3_logo = models.EmailField(default=None, blank=True, null=True)
     erp_mri_4_mulitimedia = models.EmailField(default=None, blank=True, null=True)
-    erp_mri_5_target_users = models.ManyToManyField(TargetUser, blank=True)
+    erp_cli_5_target_users = models.ManyToManyField(TargetUser, blank=True)
     erp_mri_6_target_customer_tags = models.TextField(default=None, blank=True, null=True)
     erp_mri_7_use_cases = RichTextUploadingField(max_length=100, default=None, blank=True,  null=True)
 

@@ -49,7 +49,7 @@ const providers = field('erp_bai_3_service_providers', {
   },
 });
 
-const targetUsers = field('erp_mri_5_target_users', {
+const targetUsers = field('erp_cli_5_target_users', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -138,7 +138,7 @@ const DETAILS_MARKETING_FIELDSET = {
     'erp_mri_2_tagline',
     'erp_mri_3_logo',
     'erp_mri_4_mulitimedia',
-    'erp_mri_5_target_users_verbose',
+    'erp_cli_5_target_users_verbose',
     'erp_mri_6_target_customer_tags',
     'erp_mri_7_use_cases',
   ],

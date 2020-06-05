@@ -2113,21 +2113,21 @@ RESOURCES = {
         'erp_mri_4_mulitimedia': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_mri_5_target_users': {
+        'erp_cli_5_target_users': {
             '.field.collection.django': {},
             ':filter_compat': True,
             '.flag.nullable.default': {},
             'flat': True,
             'id_field': 'target_user',
-            'model': 'service.models.Resource.erp_mri_5_target_users.through',
-            'source': 'erp_mri_5_target_users',
+            'model': 'service.models.Resource.erp_cli_5_target_users.through',
+            'source': 'erp_cli_5_target_users',
             'bound': 'resource',
             'fields': {
                 'target_user': {'.field.ref': {},
                                 'source': 'targetuser_id',
                                 'to': 'api/v2/target-users'},
             }},
-        'erp_mri_5_target_users_verbose': {
+        'erp_cli_5_target_users_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
         'erp_mri_6_target_customer_tags': {
