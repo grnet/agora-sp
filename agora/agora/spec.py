@@ -2134,11 +2134,10 @@ RESOURCES = {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
-        'erp_mri_7_use_cases': {
+        'erp_mri_5_use_cases': {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
-
         'erp_cli_1_scientific_domain': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
