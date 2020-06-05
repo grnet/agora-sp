@@ -77,7 +77,7 @@ const provider = {
     'epp_bai_4_website': 'Website with information about the Provider.',
     'epp_cli_1_scientific_domain': 'The branch of science, scientific discipline that is related to the service/resource.',
     'epp_cli_2_scientific_subdomain': 'The subbranch of science, scientific subdicipline that is related to the service/resource.',
-    'epp_cli_3_tags': 'Keywords associated to the service/resource to simplify search by relevant keywords. <br/>Hit <strong>ENTER</strong> to register your tag.',
+    'epp_cli_3_tags': 'Keywords associated to the Provider to simplify search by relevant keywords. <br/>Hit <strong>ENTER</strong> to register your tag.',
     'epp_loi_1_street_name_and_number': 'Street and number of the Provider\'s physical location.<br />example: Christou Lada Str.',
     'epp_loi_2_postal_code': 'Postal code of the Provider\'s physical location.<br />example: 10561',
     'epp_loi_3_city': 'City that the Provider is located in.<br />example: Athens',
