@@ -11,7 +11,10 @@ export default AgoraGen.extend({
     validators: {
       first_name: [validate.presence(true)],
       last_name: [validate.presence(true)],
-      email: [validate.format({type: 'email'})],
+      email: [
+        validate.presence(true),
+        validate.format({type: 'email'})
+      ],
       phone: [
         validate.presence(true),
         validate.number({ integer: true }),
