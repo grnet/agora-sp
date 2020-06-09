@@ -530,9 +530,7 @@ class Resource(models.Model):
     erp_mri_2_tagline = models.TextField(max_length=100, default=None, blank=True, null=True)
     erp_mri_3_logo = models.EmailField(default=None, blank=True, null=True)
     erp_mri_4_mulitimedia = models.EmailField(default=None, blank=True, null=True)
-    erp_mri_5_target_users = models.ManyToManyField(TargetUser, blank=True)
-    erp_mri_6_target_customer_tags = models.TextField(default=None, blank=True, null=True)
-    erp_mri_7_use_cases = RichTextUploadingField(max_length=100, default=None, blank=True,  null=True)
+    erp_mri_5_use_cases = models.TextField(default=None, blank=True, null=True)
 
     # Classification information
     erp_cli_1_scientific_domain = models.ManyToManyField(
@@ -554,6 +552,7 @@ class Resource(models.Model):
         Subcategory,
         blank=True,
         related_name='subcategorized_resources')
+    erp_cli_5_target_users = models.ManyToManyField(TargetUser, blank=True)
 
     erp_cli_5_tags = models.TextField(max_length=50, default=None, blank=True, null=True)
 
@@ -585,6 +584,13 @@ class Resource(models.Model):
         blank=True,
         null=True,
         related_name="public_contact_services")
+    erp_coi_13_helpdesk_email = models.EmailField(default=None, blank=True, null=True)
+    erp_coi_14_security_contact_email = models.EmailField(default=None, blank=True, null=True)
+
+    # Financial Information
+    erp_fni_1_payment_model = models.URLField(default=None, blank=True, null=True)
+    erp_fni_2_pricing = models.URLField(default=None, blank=True, null=True)
+
 
     def __unicode__(self):
         return str(self.erp_bai_0_id)
@@ -610,8 +616,8 @@ class Resource(models.Model):
         return ", ".join(o.epp_bai_1_name for o in self.erp_bai_3_providers.all())
 
     @property
-    def erp_mri_5_target_users_verbose(self):
-        return ", ".join(o.user for o in self.erp_mri_5_target_users.all())
+    def erp_cli_5_target_users_verbose(self):
+        return ", ".join(o.user for o in self.erp_cli_5_target_users.all())
 
     def save(self, *args, **kwargs):
         self.erp_bai_0_id = self.erp_bai_0_id.strip()

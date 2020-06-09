@@ -2113,32 +2113,27 @@ RESOURCES = {
         'erp_mri_4_mulitimedia': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_mri_5_target_users': {
+        'erp_cli_5_target_users': {
             '.field.collection.django': {},
             ':filter_compat': True,
             '.flag.nullable.default': {},
             'flat': True,
             'id_field': 'target_user',
-            'model': 'service.models.Resource.erp_mri_5_target_users.through',
-            'source': 'erp_mri_5_target_users',
+            'model': 'service.models.Resource.erp_cli_5_target_users.through',
+            'source': 'erp_cli_5_target_users',
             'bound': 'resource',
             'fields': {
                 'target_user': {'.field.ref': {},
                                 'source': 'targetuser_id',
                                 'to': 'api/v2/target-users'},
             }},
-        'erp_mri_5_target_users_verbose': {
+        'erp_cli_5_target_users_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
-        'erp_mri_6_target_customer_tags': {
+        'erp_mri_5_use_cases': {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
-        'erp_mri_7_use_cases': {
-            '.field.string': {},
-            '.flag.searchable': {},
-            '.flag.nullable.default': {}},
-
         'erp_cli_1_scientific_domain': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
@@ -2317,6 +2312,18 @@ RESOURCES = {
             '.flag.nowrite': {},
             'source': 'public_contact.organisation.epp_bai_1_name',
             '.flag.nullable.default': {}},
+        'erp_coi_13_helpdesk_email': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+        'erp_coi_14_security_contact_email': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+        'erp_fni_1_payment_model': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+        'erp_fni_2_pricing': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
         'resource_admins_ids': {
             '.field.string': {},
             '.flag.nowrite': {}},

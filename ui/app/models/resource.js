@@ -7,7 +7,8 @@ const {
 
 let model = DS.Model.extend({
   session: Ember.inject.service(),
-  // Basic Inforamation
+
+  // Basic Information
   erp_bai_0_id: DS.attr({
     label: 'resource.fields.erp_bai_0_id',
     hint: 'resource.hints.erp_bai_0_id',
@@ -55,24 +56,9 @@ let model = DS.Model.extend({
     label: 'resource.fields.erp_mri_4_mulitimedia',
     hint: 'resource.hints.erp_mri_4_mulitimedia',
   }),
-  erp_mri_5_target_users: DS.hasMany('target-user', {
-    label: 'resource.fields.erp_mri_5_target_users',
-    hint: 'resource.hints.erp_mri_5_target_users',
-  }),
-  erp_mri_6_target_customer_tags: DS.attr({
-    label: 'resource.fields.erp_mri_6_target_customer_tags',
-    hint: 'resource.hints.erp_mri_6_target_customer_tags',
-    formComponent: 'agora-chips',
-  }),
-  erp_mri_7_use_cases: DS.attr({
-    label: 'resource.fields.erp_mri_7_use_cases',
-    hint: 'resource.hints.erp_mri_7_use_cases',
-    type: 'text',
-    formComponent: 'text-editor',
-    htmlSafe: true
-  }),
-  erp_mri_5_target_users_verbose: DS.attr({
-    label: 'resource.fields.erp_mri_5_target_users'
+  erp_mri_5_use_cases: DS.attr({
+    label: 'resource.fields.erp_mri_5_use_cases',
+    hint: 'resource.hints.erp_mri_5_use_cases',
   }),
   // classification information
   erp_cli_1_scientific_domain: DS.hasMany('domain', {
@@ -105,6 +91,13 @@ let model = DS.Model.extend({
   subcategory_names: DS.attr({
       label: 'resource.fields.subcategory_names',
     }),
+  erp_cli_5_target_users: DS.hasMany('target-user', {
+    label: 'resource.fields.erp_cli_5_target_users',
+    hint: 'resource.hints.erp_cli_5_target_users',
+  }),
+  erp_cli_5_target_users_verbose: DS.attr({
+    label: 'resource.fields.erp_cli_5_target_users'
+  }),
   erp_cli_5_tags: DS.attr({
     label: 'resource.fields.erp_cli_5_tags',
     hint: 'resource.hints.erp_cli_5_tags',
@@ -159,6 +152,7 @@ let model = DS.Model.extend({
     }
   }),
   erp_gla_2_language: DS.attr({
+    defaultValue: 'en',
     formComponent: 'agora-chips',
     label: 'resource.fields.erp_gla_2_language',
     hint: 'resource.hints.erp_gla_2_language',
@@ -175,6 +169,24 @@ let model = DS.Model.extend({
   public_contact: DS.belongsTo('contact-information', {
     label: 'resource.fields.public_contact',
     hint: 'resource.hints.public_contact',
+  }),
+  erp_coi_13_helpdesk_email: DS.attr({
+    label: 'resource.fields.erp_coi_13_helpdesk_email',
+    hint: 'resource.hints.erp_coi_13_helpdesk_email',
+  }),
+  erp_coi_14_security_contact_email: DS.attr({
+    label: 'resource.fields.erp_coi_14_security_contact_email',
+    hint: 'resource.hints.erp_coi_14_security_contact_email',
+  }),
+
+  // Financial information
+  erp_fni_1_payment_model: DS.attr({
+    label: 'resource.fields.erp_fni_1_payment_model',
+    hint: 'resource.hints.erp_fni_1_payment_model',
+  }),
+  erp_fni_2_pricing: DS.attr({
+    label: 'resource.fields.erp_fni_2_pricing',
+    hint: 'resource.hints.erp_fni_2_pricing',
   }),
 
   resource_admins_ids: DS.attr(),
@@ -226,7 +238,7 @@ let model = DS.Model.extend({
       delete hash['resource_admins_ids'];
       delete hash['pending_resource_admins_ids'];
       delete hash['rejected_resource_admins_ids'];
-      delete hash['erp_mri_5_target_users_verbose'];
+      delete hash['erp_cli_5_target_users_verbose'];
       delete hash['domain_names'];
       delete hash['subdomain_names'];
       delete hash['category_names'];

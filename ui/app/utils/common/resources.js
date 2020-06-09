@@ -49,7 +49,7 @@ const providers = field('erp_bai_3_service_providers', {
   },
 });
 
-const targetUsers = field('erp_mri_5_target_users', {
+const targetUsers = field('erp_cli_5_target_users', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -138,12 +138,10 @@ const DETAILS_MARKETING_FIELDSET = {
     'erp_mri_2_tagline',
     'erp_mri_3_logo',
     'erp_mri_4_mulitimedia',
-    'erp_mri_5_target_users_verbose',
-    'erp_mri_6_target_customer_tags',
-    'erp_mri_7_use_cases',
+    'erp_mri_5_use_cases',
   ],
   layout: {
-    flex: [100, 100, 50, 50, 100, 100, 100]
+    flex: [100, 100, 100, 100, 100]
   },
 };
 
@@ -154,12 +152,10 @@ const EDIT_OR_CREATE_MARKETING_FIELDSET = {
     'erp_mri_2_tagline',
     'erp_mri_3_logo',
     'erp_mri_4_mulitimedia',
-    targetUsers,
-    'erp_mri_6_target_customer_tags',
-    'erp_mri_7_use_cases',
+    'erp_mri_5_use_cases',
   ],
   layout: {
-    flex: [100, 100, 50, 50, 100, 100, 100]
+    flex: [100, 100, 100, 100, 100]
   },
 };
 
@@ -211,9 +207,11 @@ const CONTACT_FIELDSET = {
         displayAttr: 'displayInfo'
       }
     ),
+    'erp_coi_13_helpdesk_email',
+    'erp_coi_14_security_contact_email',
   ],
   layout: {
-    flex: [100, 100],
+    flex: [100, 100, 50, 50],
   },
 };
 
@@ -247,6 +245,30 @@ const DETAILS_CONTACT_PUBLIC_FIELDSET = {
     flex: [50, 50, 50, 50, 50, 50],
   },
 };
+
+
+const DETAILS_CONTACT_OTHER_FIELDSET = {
+  label: 'resource.cards.other_contact',
+  fields: [
+    'erp_coi_13_helpdesk_email',
+    'erp_coi_14_security_contact_email',
+  ],
+  layout: {
+    flex: [50, 50],
+  },
+};
+
+const FINANCIAL_FIELDSET = {
+  label: 'resource.cards.financial',
+  fields: [
+    'erp_fni_1_payment_model',
+    'erp_fni_2_pricing',
+  ],
+  layout: {
+    flex: [50, 50],
+  },
+};
+
 const DETAILS_FIELDSETS = [
   DETAILS_BASIC_INFO_FIELDSET,
   DETAILS_MARKETING_FIELDSET,
@@ -255,6 +277,8 @@ const DETAILS_FIELDSETS = [
   GEO_FIELDSET,
   DETAILS_CONTACT_MAIN_FIELDSET,
   DETAILS_CONTACT_PUBLIC_FIELDSET,
+  DETAILS_CONTACT_OTHER_FIELDSET,
+  FINANCIAL_FIELDSET,
 ];
 
 const CREATE_FIELDSETS = [
@@ -264,6 +288,7 @@ const CREATE_FIELDSETS = [
   MANAGEMENT_INFORMATION_FIELDSET,
   GEO_FIELDSET,
   CONTACT_FIELDSET,
+  FINANCIAL_FIELDSET,
 ];
 
 const EDIT_FIELDSETS = [
@@ -273,6 +298,7 @@ const EDIT_FIELDSETS = [
   MANAGEMENT_INFORMATION_FIELDSET,
   GEO_FIELDSET,
   CONTACT_FIELDSET,
+  FINANCIAL_FIELDSET,
 ];
 
 export {
