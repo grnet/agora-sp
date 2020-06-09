@@ -12,7 +12,7 @@ const order_type = {
       'name': 'Order Type',
       'hint': '',
     },
-    'menu': 'Resource Order Types',
+    'menu': 'Order Types',
   };
 
 
