@@ -59,6 +59,36 @@ const targetUsers = field('erp_cli_5_target_users', {
 
 });
 
+const required_resources = field('required_resources', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: [
+        'erp_bai_0_id',
+        'erp_bai_1_name',
+        field('erp_bai_2_service_organisation.epp_bai_1_name', {
+          label: 'resource.fields.erp_bai_2_service_organisation',
+        }),
+      ],
+    },
+  },
+});
+
+const related_resources = field('related_resources', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: [
+        'erp_bai_0_id',
+        'erp_bai_1_name',
+        field('erp_bai_2_service_organisation.epp_bai_1_name', {
+          label: 'resource.fields.erp_bai_2_service_organisation',
+        }),
+      ],
+    },
+  },
+});
+
 const SORT_FIELDS = [
   'erp_bai_0_id',
   'erp_bai_1_name',
@@ -258,6 +288,16 @@ const DETAILS_CONTACT_OTHER_FIELDSET = {
   },
 };
 
+const ACCESS_ORDER_FIELDSET = {
+  label: 'resource.cards.access_order',
+  fields: [
+    'erp_aoi_1_order_type',
+    'erp_aoi_2_order',
+  ],
+  layout: {
+    flex: [50, 50],
+  },
+};
 const FINANCIAL_FIELDSET = {
   label: 'resource.cards.financial',
   fields: [
@@ -269,6 +309,18 @@ const FINANCIAL_FIELDSET = {
   },
 };
 
+const DEPENDENCIES_FIELDSET = {
+  label: 'resource.cards.dependencies',
+  fields: [
+    required_resources,
+    related_resources,
+    'erp_dei_3_related_platforms',
+  ],
+  layout: {
+    flex: [ 100, 100, 100 ]
+  }
+};
+
 const DETAILS_FIELDSETS = [
   DETAILS_BASIC_INFO_FIELDSET,
   DETAILS_MARKETING_FIELDSET,
@@ -278,6 +330,8 @@ const DETAILS_FIELDSETS = [
   DETAILS_CONTACT_MAIN_FIELDSET,
   DETAILS_CONTACT_PUBLIC_FIELDSET,
   DETAILS_CONTACT_OTHER_FIELDSET,
+  DEPENDENCIES_FIELDSET,
+  ACCESS_ORDER_FIELDSET,
   FINANCIAL_FIELDSET,
 ];
 
@@ -288,6 +342,8 @@ const CREATE_FIELDSETS = [
   MANAGEMENT_INFORMATION_FIELDSET,
   GEO_FIELDSET,
   CONTACT_FIELDSET,
+  DEPENDENCIES_FIELDSET,
+  ACCESS_ORDER_FIELDSET,
   FINANCIAL_FIELDSET,
 ];
 
@@ -298,6 +354,8 @@ const EDIT_FIELDSETS = [
   MANAGEMENT_INFORMATION_FIELDSET,
   GEO_FIELDSET,
   CONTACT_FIELDSET,
+  DEPENDENCIES_FIELDSET,
+  ACCESS_ORDER_FIELDSET,
   FINANCIAL_FIELDSET,
 ];
 

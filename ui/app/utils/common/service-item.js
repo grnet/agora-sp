@@ -71,7 +71,7 @@ const required_services = field('required_services', {
     row: {
       fields: [
         'name',
-        field('service_categories_names', {
+        field('erp_bai_1_name', {
           label: 'service_item.fields.service_categories',
         }),
         field('providers_names', {

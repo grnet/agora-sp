@@ -510,6 +510,16 @@ class Subcategory(models.Model):
         clean_html_fields(self)
         super(Subcategory, self).save(*args, **kwargs)
 
+
+class OrderType(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, unique=True)
+    description = models.TextField(default=None, blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(OrderType, self).save(*args, **kwargs)
+
 class Resource(models.Model):
 
     # Basic Information fields
@@ -587,6 +597,22 @@ class Resource(models.Model):
     erp_coi_13_helpdesk_email = models.EmailField(default=None, blank=True, null=True)
     erp_coi_14_security_contact_email = models.EmailField(default=None, blank=True, null=True)
 
+    # Dependencies Information fields
+    required_resources = models.ManyToManyField('self', blank=True,
+                                               symmetrical=False,
+                                               related_name='is_required_by')
+    related_resources = models.ManyToManyField('self', blank=True,
+                                              symmetrical=False,
+                                              related_name='set_as_related_by')
+    erp_dei_3_related_platforms = models.TextField(default=None, blank=True, null=True)
+
+    # Access and Order Information
+    erp_aoi_1_order_type = models.ForeignKey(OrderType,
+                                              blank=True,
+                                              null=True,
+                                              related_name='resources')
+    erp_aoi_2_order = models.URLField(default=None, blank=True, null=True)
+
     # Financial Information
     erp_fni_1_payment_model = models.URLField(default=None, blank=True, null=True)
     erp_fni_2_pricing = models.URLField(default=None, blank=True, null=True)
@@ -614,6 +640,14 @@ class Resource(models.Model):
     @property
     def providers_names(self):
         return ", ".join(o.epp_bai_1_name for o in self.erp_bai_3_providers.all())
+
+    @property
+    def required_resources_ids(self):
+        return ", ".join(o.erp_bai_0_id for o in self.required_resources.all())
+
+    @property
+    def related_resources_ids(self):
+        return ", ".join(o.erp_bai_0_id for o in self.related_resources.all())
 
     @property
     def erp_cli_5_target_users_verbose(self):
