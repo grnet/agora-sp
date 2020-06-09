@@ -520,6 +520,14 @@ class OrderType(models.Model):
         clean_html_fields(self)
         super(OrderType, self).save(*args, **kwargs)
 
+class FundingBody(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, unique=True)
+
+class FundingProgram(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, unique=True)
+
 class Resource(models.Model):
 
     # Basic Information fields

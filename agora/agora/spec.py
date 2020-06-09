@@ -1548,6 +1548,50 @@ ACTIVITIES= {
     },
 }
 
+FUNDING_BODIES= {
+    '.collection.django': {},
+    'model': 'service.models.FundingBody',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+FUNDING_PROGRAMS = {
+    '.collection.django': {},
+    'model': 'service.models.FundingProgram',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
 ORDER_TYPES= {
     '.collection.django': {},
     'model': 'service.models.OrderType',
@@ -2489,6 +2533,8 @@ APP_CONFIG = {
                 'supercategories': SUPERCATEGORIES,
                 'categories': CATEGORIES,
                 'subcategories': SUBCATEGORIES,
+                'funding-programs': FUNDING_PROGRAMS,
+                'funding-bodies': FUNDING_BODIES,
             },
         },
     },
