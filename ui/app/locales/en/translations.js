@@ -23,7 +23,7 @@ import { resource } from './resource';
 import { target_user } from './target_user';
 import { contact_information } from './contact_information';
 import { resource_admin } from './resource_admin';
-import { network } from './network'; 
+import { network } from './network';
 import { structure } from './structure';
 import { affiliation } from './affiliation';
 import { esfridomain } from './esfridomain';
@@ -35,6 +35,7 @@ import { subdomain } from './subdomain';
 import { supercategory } from './supercategory';
 import { category } from './category';
 import { subcategory } from './subcategory';
+import { order_type } from './order_type';
 
 
 export default {
@@ -87,5 +88,6 @@ export default {
   'category': category,
   'subcategory': subcategory,
   'username': login.default.label,
+  order_type,
 };
 

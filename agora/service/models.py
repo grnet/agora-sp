@@ -510,6 +510,16 @@ class Subcategory(models.Model):
         clean_html_fields(self)
         super(Subcategory, self).save(*args, **kwargs)
 
+
+class OrderType(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, unique=True)
+    description = models.TextField(default=None, blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(OrderType, self).save(*args, **kwargs)
+
 class Resource(models.Model):
 
     # Basic Information fields
@@ -595,6 +605,13 @@ class Resource(models.Model):
                                               symmetrical=False,
                                               related_name='set_as_related_by')
     erp_dei_3_related_platforms = models.TextField(default=None, blank=True, null=True)
+
+    # Access and Order Information
+    erp_aoi_1_order_type = models.ForeignKey(OrderType,
+                                              blank=True,
+                                              null=True,
+                                              related_name='resources')
+    erp_aoi_2_order = models.URLField(default=None, blank=True, null=True)
 
     # Financial Information
     erp_fni_1_payment_model = models.URLField(default=None, blank=True, null=True)

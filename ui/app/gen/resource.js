@@ -69,6 +69,7 @@ export default AgoraGen.extend({
       erp_mri_5_use_cases: [validate.format({ type: 'url', allowBlank: true })],
       erp_fni_1_payment_model: [validate.format({ type: 'url', allowBlank:true })],
       erp_fni_2_pricing: [validate.format({ type: 'url', allowBlank:true })],
+      erp_aoi_2_order: [validate.format({ type: 'url', allowBlank:true })],
     },
   },
   list: {

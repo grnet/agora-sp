@@ -195,6 +195,23 @@ let model = DS.Model.extend({
     hint: 'resource.hints.erp_dei_3_related_platforms',
   }),
 
+
+  // Access and Order Information
+  erp_aoi_1_order_type: DS.belongsTo('order-type', {
+    autocomplete: true,
+    type: 'select',
+    label: 'resource.fields.erp_aoi_1_order_type',
+    hint: 'resource.hints.erp_aoi_1_order_type',
+    displayAttr: 'name',
+    formAttrs: {
+      optionLabelAttr: 'name',
+    },
+  }),
+  erp_aoi_2_order: DS.attr({
+    label: 'resource.fields.erp_aoi_2_order',
+    hint: 'resource.hints.erp_aoi_2_order',
+  }),
+
   // Financial information
   erp_fni_1_payment_model: DS.attr({
     label: 'resource.fields.erp_fni_1_payment_model',

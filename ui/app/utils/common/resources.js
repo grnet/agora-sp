@@ -288,6 +288,16 @@ const DETAILS_CONTACT_OTHER_FIELDSET = {
   },
 };
 
+const ACCESS_ORDER_FIELDSET = {
+  label: 'resource.cards.access_order',
+  fields: [
+    'erp_aoi_1_order_type',
+    'erp_aoi_2_order',
+  ],
+  layout: {
+    flex: [50, 50],
+  },
+};
 const FINANCIAL_FIELDSET = {
   label: 'resource.cards.financial',
   fields: [
@@ -321,6 +331,7 @@ const DETAILS_FIELDSETS = [
   DETAILS_CONTACT_PUBLIC_FIELDSET,
   DETAILS_CONTACT_OTHER_FIELDSET,
   DEPENDENCIES_FIELDSET,
+  ACCESS_ORDER_FIELDSET,
   FINANCIAL_FIELDSET,
 ];
 
@@ -332,6 +343,7 @@ const CREATE_FIELDSETS = [
   GEO_FIELDSET,
   CONTACT_FIELDSET,
   DEPENDENCIES_FIELDSET,
+  ACCESS_ORDER_FIELDSET,
   FINANCIAL_FIELDSET,
 ];
 
@@ -343,6 +355,7 @@ const EDIT_FIELDSETS = [
   GEO_FIELDSET,
   CONTACT_FIELDSET,
   DEPENDENCIES_FIELDSET,
+  ACCESS_ORDER_FIELDSET,
   FINANCIAL_FIELDSET,
 ];
 

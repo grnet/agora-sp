@@ -1548,6 +1548,31 @@ ACTIVITIES= {
     },
 }
 
+ORDER_TYPES= {
+    '.collection.django': {},
+    'model': 'service.models.OrderType',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'description': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
 CHALLENGES= {
     '.collection.django': {},
     'model': 'accounts.models.Challenge',
@@ -2318,6 +2343,15 @@ RESOURCES = {
         'erp_coi_14_security_contact_email': {
           '.field.string': {},
           '.flag.nullable.default': {}},
+        'erp_aoi_1_order_type': {
+            '.field.ref': {},
+            'source': 'erp_aoi_1_order_type_id',
+            'to': '/api/v2/order-types',
+            '.flag.filterable': {},
+            '.flag.nullable.default': {}},
+        'erp_aoi_2_order': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
         'erp_fni_1_payment_model': {
           '.field.string': {},
           '.flag.nullable.default': {}},
@@ -2448,6 +2482,7 @@ APP_CONFIG = {
                 'esfridomains': ESFRI_DOMAINS,
                 'esfritypes': ESFRI_TYPES,
                 'activities': ACTIVITIES,
+                'order-types': ORDER_TYPES,
                 'challenges': CHALLENGES,
                 'domains': DOMAINS,
                 'subdomains': SUBDOMAINS,
