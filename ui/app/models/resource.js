@@ -179,6 +179,22 @@ let model = DS.Model.extend({
     hint: 'resource.hints.erp_coi_14_security_contact_email',
   }),
 
+  // Dependencies Information
+  required_resources: DS.hasMany('resource', {
+    label: 'resource.fields.erp_dei_1_required_resources',
+    hint: 'resource.hints.erp_dei_1_required_resources',
+    inverse: null,
+  }),
+  related_resources: DS.hasMany('resource', {
+    label: 'resource.fields.erp_dei_2_related_resources',
+    hint: 'resource.hints.erp_dei_2_related_resources',
+    inverse: null,
+  }),
+  erp_dei_3_related_platforms: DS.attr({
+    label: 'resource.fields.erp_dei_3_related_platforms',
+    hint: 'resource.hints.erp_dei_3_related_platforms',
+  }),
+
   // Financial information
   erp_fni_1_payment_model: DS.attr({
     label: 'resource.fields.erp_fni_1_payment_model',

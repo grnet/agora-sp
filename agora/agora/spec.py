@@ -2353,7 +2353,50 @@ RESOURCES = {
                     'source': 'admin.pk'},
             }
         },
-    },
+        'required_resources': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'resource',
+            'model': 'service.models.Resource.required_resources.through',
+            'source': 'required_resources',
+            'bound': 'from_resource',
+            'fields': {
+                'resource': {'.field.ref': {},
+                            'source': 'to_resource_id',
+                            'to': 'api/v2/resources'},
+            },
+        },
+        'related_resources': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'resource',
+            'model': 'service.models.Resource.related_resources.through',
+            'source': 'related_resources',
+            'bound': 'from_resource',
+            'fields': {
+                'resource': {'.field.ref': {},
+                            'source': 'to_resource_id',
+                            'to': 'api/v2/resources'},
+            },
+        },
+        'erp_dei_1_required_resources': {
+            '.field.string': {},
+            'source': 'required_resources_ids',
+            '.flag.nowrite': {},
+            '.flag.nullable.default': {}},
+        'erp_dei_2_related_resources': {
+            '.field.string': {},
+            'source': 'related_resources_ids',
+            '.flag.nowrite': {},
+            '.flag.nullable.default': {}},
+        'erp_dei_3_related_platforms': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        },
     'actions': {
         '.action-template.django.list': {},
         '.action-template.django.retrieve': {},

@@ -587,6 +587,15 @@ class Resource(models.Model):
     erp_coi_13_helpdesk_email = models.EmailField(default=None, blank=True, null=True)
     erp_coi_14_security_contact_email = models.EmailField(default=None, blank=True, null=True)
 
+    # Dependencies Information fields
+    required_resources = models.ManyToManyField('self', blank=True,
+                                               symmetrical=False,
+                                               related_name='is_required_by')
+    related_resources = models.ManyToManyField('self', blank=True,
+                                              symmetrical=False,
+                                              related_name='set_as_related_by')
+    erp_dei_3_related_platforms = models.TextField(default=None, blank=True, null=True)
+
     # Financial Information
     erp_fni_1_payment_model = models.URLField(default=None, blank=True, null=True)
     erp_fni_2_pricing = models.URLField(default=None, blank=True, null=True)
@@ -614,6 +623,14 @@ class Resource(models.Model):
     @property
     def providers_names(self):
         return ", ".join(o.epp_bai_1_name for o in self.erp_bai_3_providers.all())
+
+    @property
+    def required_resources_ids(self):
+        return ", ".join(o.erp_bai_0_id for o in self.required_resources.all())
+
+    @property
+    def related_resources_ids(self):
+        return ", ".join(o.erp_bai_0_id for o in self.related_resources.all())
 
     @property
     def erp_cli_5_target_users_verbose(self):
