@@ -46,6 +46,7 @@ export default DS.Model.extend({
   }),
   epp_bai_3_legal_status: DS.attr({
     type: 'select',
+    autocomplete: true,
     choices: ENV.APP.resources.LEGAL_STATUSES,
     label: 'provider.fields.epp_bai_3_legal_status',
     hint: 'provider.hints.epp_bai_3_legal_status',
@@ -73,7 +74,6 @@ export default DS.Model.extend({
   epp_cli_3_tags: DS.attr({
     label: 'provider.fields.epp_cli_3_tags',
     hint: 'provider.hints.epp_cli_3_tags',
-    formComponent: 'agora-chips',
   }),
   // location information
   epp_loi_1_street_name_and_number: DS.attr({
@@ -93,17 +93,18 @@ export default DS.Model.extend({
     hint: 'provider.hints.epp_loi_4_region',
   }),
   epp_loi_5_country_or_territory: DS.attr({
-  type: 'select',
-  // Quickly bake an appropriate select-friendly array from original countries resource
-  choices: function () {
-    let countrySel = []
-    for (let country of countries) {
-      countrySel.push([country.toLowerCase(), country]);
-    }
-    return countrySel;
-  }(),
-  label: 'provider.fields.epp_loi_5_country_or_territory',
-  hint: 'provider.hints.epp_loi_5_country_or_territory',
+    type: 'select',
+    autocomplete: true,
+    // Quickly bake an appropriate select-friendly array from original countries resource
+    choices: function () {
+      let countrySel = []
+      for (let country of countries) {
+        countrySel.push([country.toLowerCase(), country]);
+      }
+      return countrySel;
+    }(),
+    label: 'provider.fields.epp_loi_5_country_or_territory',
+    hint: 'provider.hints.epp_loi_5_country_or_territory',
   }),
   // marketing information
   epp_mri_1_description: DS.attr({
@@ -135,11 +136,15 @@ export default DS.Model.extend({
   }),
   // contact information
   main_contact: DS.belongsTo('contact-information', {
+    autocomplete: true,
+    type: 'select',
     label: 'provider.fields.main_contact',
     hint: 'provider.hints.main_contact',
     inverse: null
   }),
   public_contact: DS.belongsTo('contact-information', {
+    autocomplete: true,
+    type: 'select',
     label: 'provider.fields.public_contact',
     hint: 'provider.hints.public_contact',
     inverse: null
@@ -188,6 +193,8 @@ export default DS.Model.extend({
     label: 'provider.fields.esfridomain_names',
   }),
   epp_oth_7_esfri_type: DS.belongsTo('esfritype', {
+    autocomplete: true,
+    type: 'select',
     label: 'provider.fields.epp_oth_7_esfri_type',
     hint: 'provider.hints.epp_oth_7_esfri_type',
     inverse: null,

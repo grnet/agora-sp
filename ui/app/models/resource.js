@@ -18,6 +18,8 @@ let model = DS.Model.extend({
     hint: 'resource.hints.erp_bai_1_name',
   }),
   erp_bai_2_service_organisation: DS.belongsTo('provider', {
+    autocomplete: true,
+    type: 'select',
     label: 'resource.fields.erp_bai_2_service_organisation',
     hint: 'resource.hints.erp_bai_2_service_organisation',
     formAttrs: {
@@ -101,7 +103,6 @@ let model = DS.Model.extend({
   erp_cli_5_tags: DS.attr({
     label: 'resource.fields.erp_cli_5_tags',
     hint: 'resource.hints.erp_cli_5_tags',
-    formComponent: 'agora-chips',
   }),
   // Management Information
   erp_mgi_1_helpdesk_webpage: DS.attr({
@@ -163,10 +164,14 @@ let model = DS.Model.extend({
   }),
 
   main_contact: DS.belongsTo('contact-information', {
+    autocomplete: true,
+    type: 'select',
     label: 'resource.fields.main_contact',
     hint: 'resource.hints.main_contact',
   }),
   public_contact: DS.belongsTo('contact-information', {
+    autocomplete: true,
+    type: 'select',
     label: 'resource.fields.public_contact',
     hint: 'resource.hints.public_contact',
   }),

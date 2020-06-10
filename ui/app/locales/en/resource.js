@@ -89,7 +89,7 @@ const resource = {
     erp_cli_2_scientific_subdomain: 'The subbranch of science, scientific subdicipline that is related to the service/resource.',
     erp_cli_3_category: 'A named group of services/resources that offer access to the same type of resource or capabilities.',
     erp_cli_4_subcategory: 'A named group of services/resources that offer access to the same type of resource or capabilities, within the defined service category',
-    erp_cli_5_tags: 'Keywords associated to the service/resource to simplify search by relevant keywords. <br/>Hit <strong>ENTER</strong> to register your tag.',
+    erp_cli_5_tags: '<strong>Comma separated</strong> keywords associated to the service/resource to simplify search by relevant keywords.',
     erp_cli_5_target_users: '',
     erp_mgi_1_helpdesk_webpage: 'The URL to a webpage to ask more information from the Provider about this Resource.',
     erp_mgi_2_user_manual: 'Link to the Resource user manual and documentation.',
