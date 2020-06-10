@@ -108,21 +108,21 @@ let model = DS.Model.extend({
     label: 'resource.fields.erp_mgi_1_helpdesk_webpage',
     hint: 'resource.hints.erp_mgi_1_helpdesk_webpage',
   }),
-  erp_mgi_2_helpdesk_email: DS.attr({
-    label: 'resource.fields.erp_mgi_2_helpdesk_email',
-    hint: 'resource.hints.erp_mgi_2_helpdesk_email',
+  erp_mgi_2_user_manual: DS.attr({
+    label: 'resource.fields.erp_mgi_2_user_manual',
+    hint: 'resource.hints.erp_mgi_2_user_manual',
   }),
-  erp_mgi_3_user_manual: DS.attr({
-    label: 'resource.fields.erp_mgi_3_user_manual',
-    hint: 'resource.hints.erp_mgi_3_user_manual',
+  erp_mgi_3_terms_of_use: DS.attr({
+    label: 'resource.fields.erp_mgi_3_terms_of_use',
+    hint: 'resource.hints.erp_mgi_3_terms_of_use',
   }),
-  erp_mgi_4_terms_of_use: DS.attr({
-    label: 'resource.fields.erp_mgi_4_terms_of_use',
-    hint: 'resource.hints.erp_mgi_4_terms_of_use',
+  erp_mgi_4_privacy_policy: DS.attr({
+    label: 'resource.fields.erp_mgi_4_privacy_policy',
+    hint: 'resource.hints.erp_mgi_4_privacy_policy',
   }),
-  erp_mgi_5_privacy_policy: DS.attr({
-    label: 'resource.fields.erp_mgi_5_privacy_policy',
-    hint: 'resource.hints.erp_mgi_5_privacy_policy',
+  erp_mgi_5_access_policy: DS.attr({
+    label: 'resource.fields.erp_mgi_5_access_policy',
+    hint: 'resource.hints.erp_mgi_5_access_policy',
   }),
   erp_mgi_6_sla_specification: DS.attr({
     label: 'resource.fields.erp_mgi_6_sla_specification',
