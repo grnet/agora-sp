@@ -614,6 +614,21 @@ class Resource(models.Model):
                                               related_name='set_as_related_by')
     erp_dei_3_related_platforms = models.TextField(default=None, blank=True, null=True)
 
+    # Attribution Information
+    erp_ati_1_funding_body = models.ManyToManyField(
+        FundingBody,
+        blank=True,
+        related_name='funded_body_resources')
+
+    erp_ati_2_funding_program = models.ManyToManyField(
+        FundingProgram,
+        blank=True,
+        related_name='funded_program_resources')
+    erp_ati_3_grant_project_name = models.CharField(max_length=255,
+        default=None,
+        blank=True,
+        null=True)
+
     # Access and Order Information
     erp_aoi_1_order_type = models.ForeignKey(OrderType,
                                               blank=True,
