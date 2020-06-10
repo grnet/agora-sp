@@ -18,6 +18,8 @@ let model = DS.Model.extend({
     hint: 'resource.hints.erp_bai_1_name',
   }),
   erp_bai_2_service_organisation: DS.belongsTo('provider', {
+    autocomplete: true,
+    type: 'select',
     label: 'resource.fields.erp_bai_2_service_organisation',
     hint: 'resource.hints.erp_bai_2_service_organisation',
     formAttrs: {
@@ -101,28 +103,27 @@ let model = DS.Model.extend({
   erp_cli_5_tags: DS.attr({
     label: 'resource.fields.erp_cli_5_tags',
     hint: 'resource.hints.erp_cli_5_tags',
-    formComponent: 'agora-chips',
   }),
   // Management Information
   erp_mgi_1_helpdesk_webpage: DS.attr({
     label: 'resource.fields.erp_mgi_1_helpdesk_webpage',
     hint: 'resource.hints.erp_mgi_1_helpdesk_webpage',
   }),
-  erp_mgi_2_helpdesk_email: DS.attr({
-    label: 'resource.fields.erp_mgi_2_helpdesk_email',
-    hint: 'resource.hints.erp_mgi_2_helpdesk_email',
+  erp_mgi_2_user_manual: DS.attr({
+    label: 'resource.fields.erp_mgi_2_user_manual',
+    hint: 'resource.hints.erp_mgi_2_user_manual',
   }),
-  erp_mgi_3_user_manual: DS.attr({
-    label: 'resource.fields.erp_mgi_3_user_manual',
-    hint: 'resource.hints.erp_mgi_3_user_manual',
+  erp_mgi_3_terms_of_use: DS.attr({
+    label: 'resource.fields.erp_mgi_3_terms_of_use',
+    hint: 'resource.hints.erp_mgi_3_terms_of_use',
   }),
-  erp_mgi_4_terms_of_use: DS.attr({
-    label: 'resource.fields.erp_mgi_4_terms_of_use',
-    hint: 'resource.hints.erp_mgi_4_terms_of_use',
+  erp_mgi_4_privacy_policy: DS.attr({
+    label: 'resource.fields.erp_mgi_4_privacy_policy',
+    hint: 'resource.hints.erp_mgi_4_privacy_policy',
   }),
-  erp_mgi_5_privacy_policy: DS.attr({
-    label: 'resource.fields.erp_mgi_5_privacy_policy',
-    hint: 'resource.hints.erp_mgi_5_privacy_policy',
+  erp_mgi_5_access_policy: DS.attr({
+    label: 'resource.fields.erp_mgi_5_access_policy',
+    hint: 'resource.hints.erp_mgi_5_access_policy',
   }),
   erp_mgi_6_sla_specification: DS.attr({
     label: 'resource.fields.erp_mgi_6_sla_specification',
@@ -163,10 +164,14 @@ let model = DS.Model.extend({
   }),
 
   main_contact: DS.belongsTo('contact-information', {
+    autocomplete: true,
+    type: 'select',
     label: 'resource.fields.main_contact',
     hint: 'resource.hints.main_contact',
   }),
   public_contact: DS.belongsTo('contact-information', {
+    autocomplete: true,
+    type: 'select',
     label: 'resource.fields.public_contact',
     hint: 'resource.hints.public_contact',
   }),
