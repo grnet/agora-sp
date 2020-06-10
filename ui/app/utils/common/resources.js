@@ -122,10 +122,11 @@ const DETAILS_CLASSIFICATION_FIELDSET = {
     'subdomain_names',
     'category_names',
     'subcategory_names',
-    'erp_cli_5_tags',
+    'erp_cli_5_target_users',
+    'erp_cli_8_tags',
   ],
   layout: {
-    flex: [100,100,100,100,100],
+    flex: [100,100,100,100,100, 100],
   },
 };
 
@@ -136,7 +137,8 @@ const CLASSIFICATION_FIELDSET = {
     subdomain,
     category,
     subcategory,
-    'erp_cli_5_tags',
+    'erp_cli_5_target_users',
+    'erp_cli_8_tags',
   ],
   layout: {
     flex: [100,100,100,100,100],
