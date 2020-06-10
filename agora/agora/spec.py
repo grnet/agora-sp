@@ -2279,16 +2279,16 @@ RESOURCES = {
         'erp_mgi_1_helpdesk_webpage': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_mgi_2_helpdesk_email': {
+        'erp_mgi_2_user_manual': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_mgi_3_user_manual': {
+        'erp_mgi_3_terms_of_use': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_mgi_4_terms_of_use': {
+        'erp_mgi_4_privacy_policy': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_mgi_5_privacy_policy': {
+        'erp_mgi_5_access_policy': {
           '.field.string': {},
           '.flag.nullable.default': {}},
         'erp_mgi_6_sla_specification': {
