@@ -2271,7 +2271,7 @@ RESOURCES = {
         'subcategory_names': {
             '.field.string': {},
             '.flag.nowrite': {}},
-        'erp_cli_5_tags': {
+        'erp_cli_8_tags': {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},

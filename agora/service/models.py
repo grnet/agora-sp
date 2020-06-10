@@ -572,7 +572,7 @@ class Resource(models.Model):
         related_name='subcategorized_resources')
     erp_cli_5_target_users = models.ManyToManyField(TargetUser, blank=True)
 
-    erp_cli_5_tags = models.TextField(max_length=50, default=None, blank=True, null=True)
+    erp_cli_8_tags = models.TextField(max_length=255, default=None, blank=True, null=True)
 
 
     # Management Information
