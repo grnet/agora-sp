@@ -195,6 +195,19 @@ let model = DS.Model.extend({
     hint: 'resource.hints.erp_dei_3_related_platforms',
   }),
 
+  // Attribution Information
+  erp_ati_1_funding_body: DS.hasMany('funding_body', {
+    label: 'resource.fields.erp_ati_1_funding_body',
+    hint: 'resource.hints.erp_ati_1_funding_body',
+  }),
+  erp_ati_2_funding_program: DS.hasMany('funding_program', {
+    label: 'resource.fields.erp_ati_2_funding_program',
+    hint: 'resource.hints.erp_ati_2_funding_program',
+  }),
+  erp_ati_3_grant_project_name: DS.attr({
+    label: 'resource.fields.erp_ati_3_grant_project_name',
+    hint: 'resource.hints.erp_ati_3_grant_project_name',
+  }),
 
   // Access and Order Information
   erp_aoi_1_order_type: DS.belongsTo('order-type', {

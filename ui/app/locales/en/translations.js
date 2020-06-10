@@ -36,6 +36,8 @@ import { supercategory } from './supercategory';
 import { category } from './category';
 import { subcategory } from './subcategory';
 import { order_type } from './order_type';
+import { funding_program } from './funding_program';
+import { funding_body } from './funding_body';
 
 
 export default {
@@ -89,5 +91,7 @@ export default {
   'subcategory': subcategory,
   'username': login.default.label,
   order_type,
+  funding_program,
+  funding_body,
 };
 

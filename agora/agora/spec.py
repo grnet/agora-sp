@@ -1548,6 +1548,50 @@ ACTIVITIES= {
     },
 }
 
+FUNDING_BODIES= {
+    '.collection.django': {},
+    'model': 'service.models.FundingBody',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+FUNDING_PROGRAMS = {
+    '.collection.django': {},
+    'model': 'service.models.FundingProgram',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
 ORDER_TYPES= {
     '.collection.django': {},
     'model': 'service.models.OrderType',
@@ -2430,7 +2474,41 @@ RESOURCES = {
         'erp_dei_3_related_platforms': {
             '.field.string': {},
             '.flag.nullable.default': {}},
+        'erp_ati_1_funding_body': {
+            '.field.collection.django': {},
+            ':filter_compat': True,
+            '.flag.nullable.default': {},
+            'flat': True,
+            'id_field': 'funding_body',
+            'model': 'service.models.Resource.erp_ati_1_funding_body.through',
+            'source': 'erp_ati_1_funding_body',
+            'bound': 'resource',
+            'fields': {
+                'funding_body': {'.field.ref': {},
+                                'source': 'fundingbody_id',
+                                'to': 'api/v2/funding-bodies'},
+            }
         },
+        'erp_ati_2_funding_program': {
+            '.field.collection.django': {},
+            ':filter_compat': True,
+            '.flag.nullable.default': {},
+            'flat': True,
+            'id_field': 'funding_program',
+            'model': 'service.models.Resource.erp_ati_2_funding_program.through',
+            'source': 'erp_ati_2_funding_program',
+            'bound': 'resource',
+            'fields': {
+                'funding_program': {'.field.ref': {},
+                                'source': 'fundingprogram_id',
+                                'to': 'api/v2/funding-programs'},
+            }
+        },
+        'erp_ati_3_grant_project_name': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
+    },
     'actions': {
         '.action-template.django.list': {},
         '.action-template.django.retrieve': {},
@@ -2489,6 +2567,8 @@ APP_CONFIG = {
                 'supercategories': SUPERCATEGORIES,
                 'categories': CATEGORIES,
                 'subcategories': SUBCATEGORIES,
+                'funding-programs': FUNDING_PROGRAMS,
+                'funding-bodies': FUNDING_BODIES,
             },
         },
     },
