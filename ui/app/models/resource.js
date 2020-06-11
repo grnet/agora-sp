@@ -100,6 +100,14 @@ let model = DS.Model.extend({
   erp_cli_5_target_users_verbose: DS.attr({
     label: 'resource.fields.erp_cli_5_target_users'
   }),
+  erp_cli_6_access_type: DS.hasMany('access_type', {
+    label: 'resource.fields.erp_cli_6_access_type',
+    hint: 'resource.hints.erp_cli_6_access_type',
+  }),
+  erp_cli_7_access_mode: DS.hasMany('access_mode', {
+    label: 'resource.fields.erp_cli_7_access_mode',
+    hint: 'resource.hints.erp_cli_7_access_mode',
+  }),
   erp_cli_8_tags: DS.attr({
     label: 'resource.fields.erp_cli_8_tags',
     hint: 'resource.hints.erp_cli_8_tags',
