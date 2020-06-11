@@ -68,7 +68,7 @@ let model = DS.Model.extend({
     hint: 'resource.hints.erp_cli_1_scientific_domain',
   }),
   domain_names: DS.attr({
-    label: 'resource.fields.domain_names',
+    label: 'resource.fields.erp_cli_1_scientific_domain',
   }),
   // TODO: Filter subdomain's ManyArray results according to domain selections
   erp_cli_2_scientific_subdomain: DS.hasMany('subdomain', {
@@ -76,14 +76,14 @@ let model = DS.Model.extend({
     hint: 'resource.hints.erp_cli_2_scientific_subdomain',
   }),
   subdomain_names: DS.attr({
-    label: 'resource.fields.subdomain_names',
+    label: 'resource.fields.erp_cli_2_scientific_subdomain',
   }),
   erp_cli_3_category: DS.hasMany('category', {
     label: 'resource.fields.erp_cli_3_category',
     hint: 'resource.hints.erp_cli_3_category',
   }),
   category_names: DS.attr({
-    label: 'resource.fields.category_names',
+    label: 'resource.fields.erp_cli_3_category',
   }),
   // TODO: Filter subcategory's ManyArray results according to category selections
   erp_cli_4_subcategory: DS.hasMany('subcategory', {
@@ -91,7 +91,7 @@ let model = DS.Model.extend({
       hint: 'resource.hints.erp_cli_4_subcategory',
     }),
   subcategory_names: DS.attr({
-      label: 'resource.fields.subcategory_names',
+      label: 'resource.fields.erp_cli_4_subcategory',
     }),
   erp_cli_5_target_users: DS.hasMany('target-user', {
     label: 'resource.fields.erp_cli_5_target_users',
@@ -100,9 +100,17 @@ let model = DS.Model.extend({
   erp_cli_5_target_users_verbose: DS.attr({
     label: 'resource.fields.erp_cli_5_target_users'
   }),
-  erp_cli_5_tags: DS.attr({
-    label: 'resource.fields.erp_cli_5_tags',
-    hint: 'resource.hints.erp_cli_5_tags',
+  erp_cli_6_access_type: DS.hasMany('access_type', {
+    label: 'resource.fields.erp_cli_6_access_type',
+    hint: 'resource.hints.erp_cli_6_access_type',
+  }),
+  erp_cli_7_access_mode: DS.hasMany('access_mode', {
+    label: 'resource.fields.erp_cli_7_access_mode',
+    hint: 'resource.hints.erp_cli_7_access_mode',
+  }),
+  erp_cli_8_tags: DS.attr({
+    label: 'resource.fields.erp_cli_8_tags',
+    hint: 'resource.hints.erp_cli_8_tags',
   }),
   // Management Information
   erp_mgi_1_helpdesk_webpage: DS.attr({

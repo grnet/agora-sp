@@ -528,6 +528,18 @@ class FundingProgram(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
 
+class AccessType(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, unique=True)
+    description = models.TextField(default=None, blank=True, null=True)
+
+
+class AccessMode(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, unique=True)
+    description = models.TextField(default=None, blank=True, null=True)
+
+
 class Resource(models.Model):
 
     # Basic Information fields
@@ -572,7 +584,10 @@ class Resource(models.Model):
         related_name='subcategorized_resources')
     erp_cli_5_target_users = models.ManyToManyField(TargetUser, blank=True)
 
-    erp_cli_5_tags = models.TextField(max_length=50, default=None, blank=True, null=True)
+    erp_cli_6_access_type = models.ManyToManyField(AccessType, blank=True)
+    erp_cli_7_access_mode = models.ManyToManyField(AccessMode, blank=True)
+
+    erp_cli_8_tags = models.TextField(max_length=255, default=None, blank=True, null=True)
 
 
     # Management Information
