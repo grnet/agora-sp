@@ -2323,6 +2323,37 @@ RESOURCES = {
         'subcategory_names': {
             '.field.string': {},
             '.flag.nowrite': {}},
+
+        'erp_cli_6_access_type': {
+            '.field.collection.django': {},
+            ':filter_compat': True,
+            '.flag.nullable.default': {},
+            'flat': True,
+            'id_field': 'access_type',
+            'model': 'service.models.Resource.erp_cli_6_access_type.through',
+            'source': 'erp_cli_6_access_type',
+            'bound': 'resource',
+            'fields': {
+                'access_type': {'.field.ref': {},
+                                'source': 'accesstype_id',
+                                'to': 'api/v2/access-types'},
+            }
+        },
+        'erp_cli_7_access_mode': {
+            '.field.collection.django': {},
+            ':filter_compat': True,
+            '.flag.nullable.default': {},
+            'flat': True,
+            'id_field': 'access_mode',
+            'model': 'service.models.Resource.erp_cli_7_access_mode.through',
+            'source': 'erp_cli_7_access_mode',
+            'bound': 'resource',
+            'fields': {
+                'access_mode': {'.field.ref': {},
+                                'source': 'accessmode_id',
+                                'to': 'api/v2/access-modes'},
+            }
+        },
         'erp_cli_8_tags': {
             '.field.string': {},
             '.flag.searchable': {},
