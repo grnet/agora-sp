@@ -38,6 +38,8 @@ import { subcategory } from './subcategory';
 import { order_type } from './order_type';
 import { funding_program } from './funding_program';
 import { funding_body } from './funding_body';
+import { access_type } from './access_type';
+import { access_mode } from './access_mode';
 
 
 export default {
@@ -93,5 +95,7 @@ export default {
   order_type,
   funding_program,
   funding_body,
+  access_type,
+  access_mode,
 };
 
