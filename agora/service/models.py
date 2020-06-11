@@ -528,6 +528,18 @@ class FundingProgram(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
 
+class AccessType(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, unique=True)
+    description = models.TextField(default=None, blank=True, null=True)
+
+
+class AccessMode(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, unique=True)
+    description = models.TextField(default=None, blank=True, null=True)
+
+
 class Resource(models.Model):
 
     # Basic Information fields
