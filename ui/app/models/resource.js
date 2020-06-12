@@ -201,6 +201,60 @@ let model = DS.Model.extend({
     label: 'resource.fields.erp_coi_14_security_contact_email',
     hint: 'resource.hints.erp_coi_14_security_contact_email',
   }),
+  erp_mti_1_technology_readiness_level: DS.belongsTo('trl', {
+    autocomplete: true,
+    type: 'select',
+    label: 'resource.fields.erp_mti_1_technology_readiness_level',
+    hint: 'resource.hints.erp_mti_1_technology_readiness_level',
+    formAttrs: {
+      optionLabelAttr: 'name',
+    },
+  }),
+  erp_mti_2_life_cycle_status: DS.belongsTo('resource-lifecycle-status', {
+    autocomplete: true,
+    type: 'select',
+    label: 'resource.fields.erp_mti_2_life_cycle_status',
+    hint: 'resource.hints.erp_mti_2_life_cycle_status',
+    formAttrs: {
+      optionLabelAttr: 'name',
+    },
+  }),
+  erp_mti_3_certifications: DS.attr({
+    label: 'resource.fields.erp_mti_3_certifications',
+    hint: 'resource.hints.erp_mti_3_certifications',
+    type: 'text',
+    formComponent: 'text-editor',
+    htmlSafe: true
+  }),
+  erp_mti_4_standards: DS.attr({
+    label: 'resource.fields.erp_mti_4_standards',
+    hint: 'resource.hints.erp_mti_4_standards',
+    type: 'text',
+    formComponent: 'text-editor',
+    htmlSafe: true
+  }),
+  erp_mti_5_open_source_technologies: DS.attr({
+    label: 'resource.fields.erp_mti_5_open_source_technologies',
+    hint: 'resource.hints.erp_mti_5_open_source_technologies',
+    type: 'text',
+    formComponent: 'text-editor',
+    htmlSafe: true
+  }),
+  erp_mti_6_version: DS.attr({
+    label: 'resource.fields.erp_mti_6_version',
+    hint: 'resource.hints.erp_mti_6_version',
+  }),
+  erp_mti_7_last_update: DS.attr('date', {
+    label: 'resource.fields.erp_mti_7_last_update',
+    hint: 'resource.hints.erp_mti_7_last_update',
+  }),
+  erp_mti_8_changelog: DS.attr({
+    label: 'resource.fields.erp_mti_8_changelog',
+    hint: 'resource.hints.erp_mti_8_changelog',
+    type: 'text',
+    formComponent: 'text-editor',
+    htmlSafe: true
+  }),
 
   // Dependencies Information
   required_resources: DS.hasMany('resource', {

@@ -322,6 +322,22 @@ const FINANCIAL_FIELDSET = {
   },
 };
 
+const MATURITY_FIELDSET = {
+  label: 'resource.cards.maturity',
+  fields: [
+    'erp_mti_1_technology_readiness_level',
+    'erp_mti_2_life_cycle_status',
+    'erp_mti_3_certifications',
+    'erp_mti_4_standards',
+    'erp_mti_5_open_source_technologies',
+    'erp_mti_6_version',
+    'erp_mti_7_last_update',
+    'erp_mti_8_changelog',
+  ],
+  layout: {
+    flex: [50, 50, 100, 100, 100, 50, 50, 100]
+  },
+};
 const DEPENDENCIES_FIELDSET = {
   label: 'resource.cards.dependencies',
   fields: [
@@ -356,6 +372,7 @@ const DETAILS_FIELDSETS = [
   DETAILS_CONTACT_MAIN_FIELDSET,
   DETAILS_CONTACT_PUBLIC_FIELDSET,
   DETAILS_CONTACT_OTHER_FIELDSET,
+  MATURITY_FIELDSET,
   DEPENDENCIES_FIELDSET,
   ATTRIBUTION_FIELDSET,
   ACCESS_ORDER_FIELDSET,
@@ -370,6 +387,7 @@ const CREATE_FIELDSETS = [
   GEO_FIELDSET,
   LOCATION_FIELDSET,
   CONTACT_FIELDSET,
+  MATURITY_FIELDSET,
   DEPENDENCIES_FIELDSET,
   ATTRIBUTION_FIELDSET,
   ACCESS_ORDER_FIELDSET,
@@ -384,6 +402,7 @@ const EDIT_FIELDSETS = [
   GEO_FIELDSET,
   LOCATION_FIELDSET,
   CONTACT_FIELDSET,
+  MATURITY_FIELDSET,
   DEPENDENCIES_FIELDSET,
   ATTRIBUTION_FIELDSET,
   ACCESS_ORDER_FIELDSET,
