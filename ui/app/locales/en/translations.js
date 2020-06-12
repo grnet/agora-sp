@@ -39,6 +39,7 @@ import { funding_program } from './funding_program';
 import { funding_body } from './funding_body';
 import { access_type } from './access_type';
 import { access_mode } from './access_mode';
+import { trl } from './trl';
 
 
 export default {
@@ -90,10 +91,12 @@ export default {
   'category': category,
   'subcategory': subcategory,
   'username': login.default.label,
+  'search.input.placeholder': 'Search',
   order_type,
   funding_program,
   funding_body,
   access_type,
   access_mode,
+  trl,
 };
 
