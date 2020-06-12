@@ -40,6 +40,7 @@ import { funding_body } from './funding_body';
 import { access_type } from './access_type';
 import { access_mode } from './access_mode';
 import { trl } from './trl';
+import { resource_lcs } from './resource_lcs';
 
 
 export default {
@@ -98,5 +99,6 @@ export default {
   access_type,
   access_mode,
   trl,
+  resource_lcs,
 };
 
