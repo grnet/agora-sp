@@ -2551,7 +2551,7 @@ RESOURCES = {
             '.flag.nullable.default': {}},
         'erp_mti_7_last_update': {
             '.field.string': {},
-            '.flag.nullable': {}},
+            '.flag.nullable.default': {}},
         'erp_mti_8_changelog': {
             '.field.string': {},
             '.flag.nullable.default': {}},
