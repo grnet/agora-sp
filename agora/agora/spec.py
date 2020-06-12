@@ -2032,14 +2032,14 @@ ORGANISATIONS = {
             '.flag.filterable': {},
             '.flag.nullable.default': {}},
 
-        'epp_oth_8_areas_of_activity': {
+        'epp_oth_10_areas_of_activity': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
             'flat': True,
             'id_field': 'activity',
-            'model': 'accounts.models.Organisation.epp_oth_8_areas_of_activity.through',
-            'source': 'epp_oth_8_areas_of_activity',
+            'model': 'accounts.models.Organisation.epp_oth_10_areas_of_activity.through',
+            'source': 'epp_oth_10_areas_of_activity',
             'bound': 'organisation',
             'fields': {
                 'activity': {'.field.ref': {},
@@ -2050,14 +2050,14 @@ ORGANISATIONS = {
             '.field.string': {},
             '.flag.nowrite': {}},
 
-        'epp_oth_9_societal_grand_challenges': {
+        'epp_oth_11_societal_grand_challenges': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
             'flat': True,
             'id_field': 'challenge',
-            'model': 'accounts.models.Organisation.epp_oth_9_societal_grand_challenges.through',
-            'source': 'epp_oth_9_societal_grand_challenges',
+            'model': 'accounts.models.Organisation.epp_oth_11_societal_grand_challenges.through',
+            'source': 'epp_oth_11_societal_grand_challenges',
             'bound': 'organisation',
             'fields': {
                 'challenge': {'.field.ref': {},
@@ -2068,7 +2068,7 @@ ORGANISATIONS = {
             '.field.string': {},
             '.flag.nowrite': {}},
 
-        'epp_oth_10_national_roadmaps': {
+        'epp_oth_12_national_roadmaps': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },

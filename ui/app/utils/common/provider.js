@@ -87,7 +87,7 @@ const esfridomain = field('epp_oth_6_esfri_domain', {
   },
 });
 
-const activity = field('epp_oth_8_areas_of_activity', {
+const activity = field('epp_oth_10_areas_of_activity', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -96,7 +96,7 @@ const activity = field('epp_oth_8_areas_of_activity', {
   },
 });
 
-const challenge = field('epp_oth_9_societal_grand_challenges', {
+const challenge = field('epp_oth_11_societal_grand_challenges', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -190,7 +190,7 @@ const DETAILS_OTHER_FIELDSET = {
     field('epp_oth_7_esfri_type.name',{label:'provider.fields.epp_oth_7_esfri_type'}),
     'activity_names',
     'challenge_names',
-    'epp_oth_10_national_roadmaps',
+    'epp_oth_12_national_roadmaps',
 
   ],
   layout: {
@@ -212,7 +212,7 @@ const OTHER_FIELDSET = {
     'epp_oth_7_esfri_type',
     activity,
     challenge,
-    'epp_oth_10_national_roadmaps',
+    'epp_oth_12_national_roadmaps',
 
   ],
   layout: {

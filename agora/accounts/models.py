@@ -211,17 +211,17 @@ class Organisation(models.Model):
         null=True,
         related_name='esfritype_providers')
 
-    epp_oth_8_areas_of_activity = models.ManyToManyField(
+    epp_oth_10_areas_of_activity = models.ManyToManyField(
         Activity,
         blank=True,
         related_name='activity_providers')
 
-    epp_oth_9_societal_grand_challenges = models.ManyToManyField(
+    epp_oth_11_societal_grand_challenges = models.ManyToManyField(
         Challenge,
         blank=True,
         related_name='challenge_providers')
 
-    epp_oth_10_national_roadmaps = models.CharField(max_length=80, default=None, blank=True, null=True)
+    epp_oth_12_national_roadmaps = models.CharField(max_length=80, default=None, blank=True, null=True)
 
     @property
     def affiliation_names(self):

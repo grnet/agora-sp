@@ -214,23 +214,23 @@ export default DS.Model.extend({
       optionLabelAttr: 'name',
     },
   }),
-  epp_oth_8_areas_of_activity: DS.hasMany('activity', {
-    label: 'provider.fields.epp_oth_8_areas_of_activity',
-    hint: 'provider.hints.epp_oth_8_areas_of_activity',
+  epp_oth_10_areas_of_activity: DS.hasMany('activity', {
+    label: 'provider.fields.epp_oth_10_areas_of_activity',
+    hint: 'provider.hints.epp_oth_10_areas_of_activity',
   }),
   activity_names: DS.attr({
     label: 'provider.fields.activity_names',
   }),
-  epp_oth_9_societal_grand_challenges: DS.hasMany('challenge', {
-    label: 'provider.fields.epp_oth_9_societal_grand_challenges',
-    hint: 'provider.hints.epp_oth_9_societal_grand_challenges',
+  epp_oth_11_societal_grand_challenges: DS.hasMany('challenge', {
+    label: 'provider.fields.epp_oth_11_societal_grand_challenges',
+    hint: 'provider.hints.epp_oth_11_societal_grand_challenges',
   }),
   challenge_names: DS.attr({
     label: 'provider.fields.challenge_names',
   }),
-  epp_oth_10_national_roadmaps: DS.attr({
-    label: 'provider.fields.epp_oth_10_national_roadmaps',
-    hint: 'provider.hints.epp_oth_10_national_roadmaps',
+  epp_oth_12_national_roadmaps: DS.attr({
+    label: 'provider.fields.epp_oth_12_national_roadmaps',
+    hint: 'provider.hints.epp_oth_12_national_roadmaps',
   }),
 
   __api__: {
