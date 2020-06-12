@@ -2525,6 +2525,36 @@ RESOURCES = {
         'erp_coi_14_security_contact_email': {
           '.field.string': {},
           '.flag.nullable.default': {}},
+        'erp_mti_1_technology_readiness_level': {
+            '.field.ref': {},
+            'source': 'erp_mti_1_technology_readiness_level_id',
+            'to': '/api/v2/trls',
+            '.flag.filterable': {},
+            '.flag.nullable.default': {}},
+        'erp_mti_2_life_cycle_status': {
+            '.field.ref': {},
+            'source': 'erp_mti_2_life_cycle_status_id',
+            'to': '/api/v2/resource-lifecycle-statuses',
+            '.flag.filterable': {},
+            '.flag.nullable.default': {}},
+        'erp_mti_3_certifications': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'erp_mti_4_standards': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'erp_mti_5_open_source_technologies': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'erp_mti_6_version': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'erp_mti_7_last_update': {
+            '.field.string': {},
+            '.flag.nullable': {}},
+        'erp_mti_8_changelog': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
         'erp_aoi_1_order_type': {
             '.field.ref': {},
             'source': 'erp_aoi_1_order_type_id',
