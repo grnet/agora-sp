@@ -1,4 +1,3 @@
-import { service_trl } from './service_trl';
 import { service_item } from './service_item';
 import { service_version } from './service_version';
 import { service_admin } from './service_admin';
@@ -40,12 +39,13 @@ import { funding_program } from './funding_program';
 import { funding_body } from './funding_body';
 import { access_type } from './access_type';
 import { access_mode } from './access_mode';
+import { trl } from './trl';
+import { resource_lcs } from './resource_lcs';
 
 
 export default {
   'value.not.set': '',
   'service_item': service_item,
-  'service_trl': service_trl,
   'service_version': service_version,
   'service_admin': service_admin,
   'service_status': service_status,
@@ -92,10 +92,13 @@ export default {
   'category': category,
   'subcategory': subcategory,
   'username': login.default.label,
+  'search.input.placeholder': 'Search',
   order_type,
   funding_program,
   funding_body,
   access_type,
   access_mode,
+  trl,
+  resource_lcs,
 };
 

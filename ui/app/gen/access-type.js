@@ -37,6 +37,7 @@ export default AgoraGen.extend({
       group: {
         name: 'resource_settings',
         label: 'group_menu.resource_settings',
+        icon: 'settings',
         order: 300,
       },
     },

@@ -7,25 +7,33 @@ const {
 } = Ember;
 
 export default AgoraGen.extend({
-  modelName: 'funding-body',
-  path: 'funding-bodies',
-  resourceName: 'api/v2/funding-bodies',
+  modelName: 'trl',
+  path: 'trls',
+  resourceName: 'api/v2/trls',
   common: {
+    fieldsets: [
+      {
+        label: 'trl.cards.basic',
+        fields: [
+          'name',
+          'description'
+        ],
+        layout: {
+          flex: [100, 100],
+        },
+      }
+    ],
     validators: {
       name: [validate.presence(true)],
     },
   },
   list: {
     page: {
-      title: 'funding_body.menu',
+      title: 'trl.menu',
     },
     menu: {
-      display: computed('role', function(){
-        let role = get(this, 'session.session.authenticated.role');
-        return role !== 'serviceadmin';
-      }),
-      label: 'funding_body.menu',
-      icon: 'attach_money',
+      label: 'trl.menu',
+      icon: 'verified',
       group: 'resource_settings',
     },
     row: {
@@ -35,11 +43,11 @@ export default AgoraGen.extend({
       active: false,
       serverSide: true,
       search: true,
-      searchPlaceholder: 'Search by name',
     },
     sort: {
       serverSide: true,
       active: true,
+      sortBy: 'name',
       fields: ['name'],
     },
   },

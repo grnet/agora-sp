@@ -31,12 +31,7 @@ export default AgoraGen.extend({
       }),
       label: 'order_type.menu',
       icon: 'attach_money',
-      group: {
-        name: 'resource_settings',
-        label: 'group_menu.resource_settings',
-        order: 100,
-          icon: 'settings',
-      },
+      group: 'resource_settings',
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],

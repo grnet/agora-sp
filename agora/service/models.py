@@ -539,6 +539,15 @@ class AccessMode(models.Model):
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField(default=None, blank=True, null=True)
 
+class TRL(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, unique=True)
+    description = models.TextField(default=None, blank=True, null=True)
+
+class LifeCycleStatus(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, unique=True)
+    description = models.TextField(default=None, blank=True, null=True)
 
 class Resource(models.Model):
 
@@ -622,6 +631,16 @@ class Resource(models.Model):
         related_name="public_contact_services")
     erp_coi_13_helpdesk_email = models.EmailField(default=None, blank=True, null=True)
     erp_coi_14_security_contact_email = models.EmailField(default=None, blank=True, null=True)
+
+    # Maturity Information
+    erp_mti_1_technology_readiness_level = models.ForeignKey(TRL, blank=False, null=True)
+    erp_mti_2_life_cycle_status = models.ForeignKey(LifeCycleStatus, blank=False, null=True)
+    erp_mti_3_certifications = RichTextUploadingField(default=None, blank=True, null=True)
+    erp_mti_4_standards = RichTextUploadingField(default=None, blank=True, null=True)
+    erp_mti_5_open_source_technologies = RichTextUploadingField(default=None, blank=True, null=True)
+    erp_mti_6_version = models.CharField(max_length=255, default=None, blank=True, null=True)
+    erp_mti_7_last_update = models.CharField(max_length=255, blank=True, null=True)
+    erp_mti_8_changelog = RichTextUploadingField(default=None, blank=True, null=True)
 
     # Dependencies Information fields
     required_resources = models.ManyToManyField('self', blank=True,

@@ -1669,6 +1669,58 @@ ACCESS_MODES= {
     },
 }
 
+TRLS= {
+    '.collection.django': {},
+    'model': 'service.models.TRL',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'description': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+RESOURCE_LIFECYCLE_STATUSES= {
+    '.collection.django': {},
+    'model': 'service.models.LifeCycleStatus',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'description': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
 CHALLENGES= {
     '.collection.django': {},
     'model': 'accounts.models.Challenge',
@@ -2473,6 +2525,36 @@ RESOURCES = {
         'erp_coi_14_security_contact_email': {
           '.field.string': {},
           '.flag.nullable.default': {}},
+        'erp_mti_1_technology_readiness_level': {
+            '.field.ref': {},
+            'source': 'erp_mti_1_technology_readiness_level_id',
+            'to': '/api/v2/trls',
+            '.flag.filterable': {},
+            '.flag.nullable.default': {}},
+        'erp_mti_2_life_cycle_status': {
+            '.field.ref': {},
+            'source': 'erp_mti_2_life_cycle_status_id',
+            'to': '/api/v2/resource-lifecycle-statuses',
+            '.flag.filterable': {},
+            '.flag.nullable.default': {}},
+        'erp_mti_3_certifications': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'erp_mti_4_standards': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'erp_mti_5_open_source_technologies': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'erp_mti_6_version': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'erp_mti_7_last_update': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'erp_mti_8_changelog': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
         'erp_aoi_1_order_type': {
             '.field.ref': {},
             'source': 'erp_aoi_1_order_type_id',
@@ -2657,6 +2739,8 @@ APP_CONFIG = {
                 'funding-bodies': FUNDING_BODIES,
                 'access-types': ACCESS_TYPES,
                 'access-modes': ACCESS_MODES,
+                'trls': TRLS,
+                'resource-lifecycle-statuses': RESOURCE_LIFECYCLE_STATUSES,
             },
         },
     },
