@@ -1,4 +1,3 @@
-import { service_trl } from './service_trl';
 import { service_item } from './service_item';
 import { service_version } from './service_version';
 import { service_admin } from './service_admin';
@@ -45,7 +44,6 @@ import { access_mode } from './access_mode';
 export default {
   'value.not.set': '',
   'service_item': service_item,
-  'service_trl': service_trl,
   'service_version': service_version,
   'service_admin': service_admin,
   'service_status': service_status,
