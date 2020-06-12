@@ -1,0 +1,59 @@
+import validate from 'ember-gen/validate';
+import { AgoraGen } from '../lib/common';
+import {
+  CREATE_FIELDSETS,
+  EDIT_FIELDSETS,
+  DETAILS_FIELDSETS,
+  TABLE_FIELDS,
+  SORT_FIELDS,
+} from '../utils/common/legalstatus';
+
+export default AgoraGen.extend({
+  modelName: 'legalstatus',
+  path: 'legalstatuses',
+  resourceName: 'api/v2/legalstatuses',
+  common: {
+    validators: {
+      id: [validate.presence(true)],
+      name: [validate.presence(true)],
+    },
+  },
+  list: {
+    page: {
+      title: 'legalstatus.menu',
+    },
+    menu: {
+      label: 'legalstatus.menu',
+      icon: 'gavel',
+      group: 'settings',
+      order: 32,
+    },
+    row: {
+      actions: ['gen:details', 'gen:edit', 'remove'],
+      fields: TABLE_FIELDS,
+    },
+    filter: {
+      active: false,
+      serverSide: true,
+      search: true,
+      searchPlaceholder: 'legalstatus.placeholders.search',
+    },
+    sort: {
+      serverSide: true,
+      active: true,
+      fields: SORT_FIELDS,
+    },
+  },
+  details: {
+    fieldsets: DETAILS_FIELDSETS,
+  },
+  edit: {
+    fieldsets: EDIT_FIELDSETS,
+  },
+  create: {
+    fieldsets: CREATE_FIELDSETS,
+    onSubmit(model) {
+      this.transitionTo('legalstatus.record.edit', model);
+    },
+  },
+});

@@ -1412,6 +1412,29 @@ SUBCATEGORIES = {
     },
 }
 
+LEGALSTATUSES = {
+    '.collection.django': {},
+    'model': 'accounts.models.LegalStatus',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+
 NETWORKS = {
     '.collection.django': {},
     'model': 'accounts.models.Network',
@@ -1751,9 +1774,6 @@ ORGANISATIONS = {
         'id': {
             '.field.uuid': {},
             '.flag.nowrite': {}},
-        'epp_bai_3_legal_entity': {
-          '.field.boolean': {},
-          'default': False},
         'epp_bai_0_id': {
           '.field.string': {},
           '.flag.nullable.default': {},
@@ -1767,14 +1787,20 @@ ORGANISATIONS = {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_bai_3_legal_status': {
+        'epp_bai_3_website': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_bai_4_website': {
-          '.field.string': {},
-          '.flag.nullable.default': {},
-        },
+        'epp_bai_4_legal_entity': {
+          '.field.boolean': {},
+          'default': False},
+        'epp_bai_5_legal_status': {
+            '.field.ref': {},
+            'source': 'epp_bai_5_legal_status_id',
+            'to': '/api/v2/legalstatuses',
+            '.flag.filterable': {},
+            '.flag.nullable.default': {}},
+
         'epp_cli_1_scientific_domain': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
@@ -2722,6 +2748,7 @@ APP_CONFIG = {
                 'resources': RESOURCES,
                 'target-users': TARGET_USERS,
                 'contact-information': CONTACT_INFORMATION,
+                'legalstatuses': LEGALSTATUSES,
                 'affiliations': AFFILIATIONS,
                 'networks': NETWORKS,
                 'structures': STRUCTURES,

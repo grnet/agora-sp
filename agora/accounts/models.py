@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.utils import timezone
 from ckeditor_uploader.fields import RichTextUploadingField
-from agora.utils import USER_ROLES, LEGAL_STATUSES, LIFECYCLE_STATUSES ,clean_html_fields
+from agora.utils import USER_ROLES, LIFECYCLE_STATUSES ,clean_html_fields
 from common import helper
 
 class UserManager(BaseUserManager):
@@ -117,21 +117,31 @@ class Subdomain(models.Model):
         clean_html_fields(self)
         super(Subdomain, self).save(*args, **kwargs)
 
+class LegalStatus(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, unique=True)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(LegalStatus, self).save(*args, **kwargs)
+
 class Organisation(models.Model):
     """
     The organisation providing the Service
     """
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    epp_bai_3_legal_entity = models.BooleanField(default=False)
-    epp_bai_3_legal_status = models.CharField(max_length=255,
-                                             default=None, blank=True, null=True,
-                                             choices=LEGAL_STATUSES)
-
     epp_bai_0_id = models.CharField(unique=True, max_length=100)
     epp_bai_1_name = models.CharField(unique=True, max_length=100)
     epp_bai_2_abbreviation = models.CharField(max_length=30, default=None, blank=False, null=True)
-    epp_bai_4_website = models.TextField(default=None, blank=True, null=True)
+    epp_bai_3_website = models.TextField(default=None, blank=True, null=True)
+
+    epp_bai_4_legal_entity = models.BooleanField(default=False)
+    epp_bai_5_legal_status =  models.ForeignKey(
+        'accounts.LegalStatus',
+        blank=True,
+        null=True,
+        related_name='legalstatus_providers')
 
     # Classification section
     epp_cli_1_scientific_domain = models.ManyToManyField(

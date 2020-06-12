@@ -79,6 +79,7 @@ export default {
   contact_information,
   'Service Admin': 'Resource Admin',
   resource_admin,
+  'legalstatus': legalstatus,
   'affiliation': affiliation,
   'network': network,
   'structure': structure,

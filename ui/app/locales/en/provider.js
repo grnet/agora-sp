@@ -18,12 +18,12 @@ const provider = {
 
   },
   'fields': {
-    'epp_bai_3_legal_entity': 'EPP.BAI.3 - Legal Entity',
-    'epp_bai_3_legal_status': 'EPP.BAI.3 - Legal Status',
     'epp_bai_0_id': 'EPP.BAI.0 - ID',
     'epp_bai_1_name': 'EPP.BAI.1 - Name',
     'epp_bai_2_abbreviation': 'EPP.BAI.2 - Abbreviation',
-    'epp_bai_4_website': 'EPP.BAI.4 - Website',
+    'epp_bai_3_website': 'EPP.BAI.3 - Website',
+    'epp_bai_4_legal_entity': 'EPP.BAI.4 - Legal Entity',
+    'epp_bai_5_legal_status': 'EPP.BAI.5 - Legal Status',
     'epp_cli_1_scientific_domain': 'EPP.CLI.1 - Scientific Domain',
     'epp_cli_2_scientific_subdomain': 'EPP.CLI.2 - Scientific Subdomain',
     'epp_cli_3_tags': 'EPP.CLI.3 - Tags',
@@ -69,12 +69,12 @@ const provider = {
 
   },
   'hints': {
-    'epp_bai_3_legal_entity': 'Is the provider a legal entity?',
-    'epp_bai_3_legal_status': 'Legal Status of the Service Provider',
     'epp_bai_0_id': '<strong>Unique</strong> identifier of the provider',
     'epp_bai_1_name': '<strong>Unique</strong> Full Name of the Provider offering the resource and acting as main contact point.',
     'epp_bai_2_abbreviation': 'Abbreviation or Short name of the Provider',
-    'epp_bai_4_website': 'Website with information about the Provider.',
+    'epp_bai_3_website': 'Website with information about the Provider.',
+    'epp_bai_4_legal_entity': 'Is the provider a legal entity?',
+    'epp_bai_5_legal_status': 'Legal Status of the Service Provider',
     'epp_cli_1_scientific_domain': 'The branch of science, scientific discipline that is related to the service/resource.',
     'epp_cli_2_scientific_subdomain': 'The subbranch of science, scientific subdicipline that is related to the service/resource.',
     'epp_cli_3_tags': '<strong>Comma separated </strong>keywords associated to the Provider to simplify search by relevant keywords.',
