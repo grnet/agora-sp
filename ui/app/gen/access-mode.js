@@ -34,11 +34,8 @@ export default AgoraGen.extend({
     menu: {
       label: 'access_mode.menu',
       icon: 'lock_open',
-      group: {
-        name: 'resource_settings',
-        label: 'group_menu.resource_settings',
-        order: 300,
-      },
+      group: 'resource_settings',
+      order: 10,
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],

@@ -26,11 +26,7 @@ export default AgoraGen.extend({
       }),
       label: 'funding_program.menu',
       icon: 'attach_money',
-      group: {
-        name: 'resource_settings',
-        label: 'group_menu.resource_settings',
-        order: 200,
-      },
+      group: 'resource_settings',
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],
