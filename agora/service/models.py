@@ -608,6 +608,9 @@ class Resource(models.Model):
         null=True)
     erp_gla_2_language = models.TextField(default=None, blank=True, null=True)
 
+    # Resource Location Information
+    erp_rli_1_geographic_location = models.TextField(default='Other', blank=True, null=True)
+
     # Contact Information
     main_contact = models.ForeignKey(ContactInformation,
         blank=True,
