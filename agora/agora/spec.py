@@ -1695,6 +1695,32 @@ TRLS= {
     },
 }
 
+RESOURCE_LIFECYCLE_STATUSES= {
+    '.collection.django': {},
+    'model': 'service.models.LifeCycleStatus',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'description': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
 CHALLENGES= {
     '.collection.django': {},
     'model': 'accounts.models.Challenge',
@@ -2684,6 +2710,7 @@ APP_CONFIG = {
                 'access-types': ACCESS_TYPES,
                 'access-modes': ACCESS_MODES,
                 'trls': TRLS,
+                'resource-lifecycle-statuses': RESOURCE_LIFECYCLE_STATUSES,
             },
         },
     },
