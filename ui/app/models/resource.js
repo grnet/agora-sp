@@ -1,5 +1,5 @@
 import DS from 'ember-data';
-import { countries, language_codes } from '../resources';
+import { countries, language_codes, locations } from '../resources';
 
 const {
   get,
@@ -169,6 +169,16 @@ let model = DS.Model.extend({
       options: language_codes,
       exactMatch: true,
     },
+  }),
+  erp_rli_1_geographic_location: DS.attr({
+    defaultValue: 'Other',
+    label: 'resource.fields.erp_rli_1_geographic_location',
+    hint: 'resource.hints.erp_rli_1_geographic_location',
+    formComponent: 'agora-chips',
+    formAttrs: {
+      options: locations,
+      exactMatch: true,
+    }
   }),
 
   main_contact: DS.belongsTo('contact-information', {

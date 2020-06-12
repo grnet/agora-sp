@@ -2393,6 +2393,9 @@ RESOURCES = {
         'erp_gla_2_language': {
             '.field.string': {},
             '.flag.nullable.default': {}},
+        'erp_rli_1_geographic_location': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
         'main_contact': {
             '.field.ref': {},
             'source': 'main_contact_id',

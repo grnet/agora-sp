@@ -763,8 +763,20 @@ const language_codes = [
   'zu',
 ];
 
+const areas = [
+  'Worldwide (WW)',
+  'Europe (EO)',
+  'European Union (EU)',
+  'Euro Zone (EZ)',
+  'Schengen Area (AH)',
+];
+
+
+const locations = countries.concat(areas)
+
 export {
   countries,
+  locations,
   disciplines,
   language_codes,
 }
