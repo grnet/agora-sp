@@ -6,9 +6,11 @@ const structure = {
     },
     'fields': {
       'name': 'Structure type name',
+      'description': 'Structure description'
     },
     'hints': {
       'name': '',
+      'description': '',
     },
     'belongs': {
       'name': 'Structure',

@@ -1527,6 +1527,10 @@ STRUCTURES = {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
+        'description': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
     },
     'actions': {
         '.action-template.django.list': {},
