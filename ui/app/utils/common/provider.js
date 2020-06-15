@@ -46,7 +46,7 @@ const merilsubdomain = field('epp_oth_9_meril_scientific_subdomain', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
-      fields: ['domain.name','name'],
+      fields: ['domain.name','name','description'],
     },
   },
 });
@@ -92,7 +92,7 @@ const structure = field('epp_oth_5_structure_type', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
-      fields: ['name'],
+      fields: ['name','description'],
     },
   },
 });
@@ -101,7 +101,7 @@ const esfridomain = field('epp_oth_6_esfri_domain', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
-      fields: ['name'],
+      fields: ['name','description'],
     },
   },
 });

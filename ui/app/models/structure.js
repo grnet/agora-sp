@@ -6,7 +6,7 @@ export default DS.Model.extend({
     hint: 'structure.hints.name'
   }),
   description: DS.attr({
-    label: 'esfridomain.fields.description',
-    hint: 'esfridomain.hints.description'
+    label: 'structure.fields.description',
+    hint: 'structure.hints.description'
   }),
 });
