@@ -2858,6 +2858,8 @@ APP_CONFIG = {
                 'access-modes': ACCESS_MODES,
                 'trls': TRLS,
                 'resource-lifecycle-statuses': RESOURCE_LIFECYCLE_STATUSES,
+                'merildomains': MERIL_DOMAINS,
+                'merilsubdomains': MERIL_SUBDOMAINS,
             },
         },
     },
