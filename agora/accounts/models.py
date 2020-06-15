@@ -108,6 +108,14 @@ class Domain(models.Model):
         clean_html_fields(self)
         super(Domain, self).save(*args, **kwargs)
 
+class MerilDomain(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, unique=True)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(MerilDomain, self).save(*args, **kwargs)
+
 class Subdomain(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     domain = models.ForeignKey('accounts.Domain', blank=True, null=True, related_name='domain_subdomain')
@@ -116,6 +124,16 @@ class Subdomain(models.Model):
     def save(self, *args, **kwargs):
         clean_html_fields(self)
         super(Subdomain, self).save(*args, **kwargs)
+
+class MerilSubdomain(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    domain = models.ForeignKey('accounts.MerilDomain', blank=True, null=True, related_name='merildomain_merilsubdomain')
+    name = models.CharField(max_length=255, unique=False)
+    description = models.TextField(default=None, blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(MerilSubdomain, self).save(*args, **kwargs)
 
 class LegalStatus(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -211,6 +229,16 @@ class Organisation(models.Model):
         null=True,
         related_name='esfritype_providers')
 
+    epp_oth_8_meril_scientific_domain = models.ManyToManyField(
+        MerilDomain,
+        blank=True,
+        related_name='meril_domain_providers')
+
+    epp_oth_9_meril_scientific_subdomain = models.ManyToManyField(
+        MerilSubdomain,
+        blank=True,
+        related_name='meril_subdomain_providers')
+
     epp_oth_10_areas_of_activity = models.ManyToManyField(
         Activity,
         blank=True,
@@ -254,6 +282,14 @@ class Organisation(models.Model):
     @property
     def subdomain_names(self):
         return ", ".join(o.name for o in self.epp_cli_2_scientific_subdomain.all())
+
+    @property
+    def merildomain_names(self):
+        return ", ".join(o.name for o in self.epp_oth_8_meril_scientific_domain.all())
+
+    @property
+    def merilsubdomain_names(self):
+        return ", ".join(o.name for o in self.epp_oth_9_meril_scientific_subdomain.all())
 
 
 

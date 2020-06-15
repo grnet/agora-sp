@@ -1284,6 +1284,29 @@ RESOURCE_ADMINS = {
     },
 }
 
+MERIL_DOMAINS = {
+    '.collection.django': {},
+    'model': 'accounts.models.MerilDomain',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+
 DOMAINS = {
     '.collection.django': {},
     'model': 'accounts.models.Domain',
@@ -1292,6 +1315,38 @@ DOMAINS = {
             '.field.uuid': {},
             '.flag.nowrite': {}},
         'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+MERIL_SUBDOMAINS = {
+    '.collection.django': {},
+    'model': 'accounts.models.MerilSubdomain',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'domain': {
+            '.field.ref': {},
+            'source': 'domain_id',
+            'to': '/api/v2/merildomains',
+            '.flag.filterable': {},
+            '.flag.nullable.default': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'description': {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
@@ -1412,7 +1467,7 @@ SUBCATEGORIES = {
     },
 }
 
-LEGALSTATUSES = {
+LEGAL_STATUSES = {
     '.collection.django': {},
     'model': 'accounts.models.LegalStatus',
     'fields': {
@@ -2031,6 +2086,41 @@ ORGANISATIONS = {
             'to': '/api/v2/esfritypes',
             '.flag.filterable': {},
             '.flag.nullable.default': {}},
+
+        'epp_oth_8_meril_scientific_domain': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'merildomain',
+            'model': 'accounts.models.Organisation.epp_oth_8_meril_scientific_domain.through',
+            'source': 'epp_oth_8_meril_scientific_domain',
+            'bound': 'organisation',
+            'fields': {
+                'merildomain': {'.field.ref': {},
+                                'source': 'merildomain_id',
+                                'to': 'api/v2/merildomains'},
+            }},
+        'meril_domain_names': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
+        'epp_oth_9_meril_scientific_subdomain': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'merilsubdomain',
+            'model': 'accounts.models.Organisation.epp_oth_9_meril_scientific_subdomain.through',
+            'source': 'epp_oth_9_meril_scientific_subdomain',
+            'bound': 'organisation',
+            'fields': {
+                'merilsubdomain': {'.field.ref': {},
+                                'source': 'merilsubdomain_id',
+                                'to': 'api/v2/merilsubdomains'},
+            }},
+        'subdomain_names': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
 
         'epp_oth_10_areas_of_activity': {
             '.field.collection.django': {},
@@ -2748,7 +2838,7 @@ APP_CONFIG = {
                 'resources': RESOURCES,
                 'target-users': TARGET_USERS,
                 'contact-information': CONTACT_INFORMATION,
-                'legalstatuses': LEGALSTATUSES,
+                'legalstatuses': LEGAL_STATUSES,
                 'affiliations': AFFILIATIONS,
                 'networks': NETWORKS,
                 'structures': STRUCTURES,

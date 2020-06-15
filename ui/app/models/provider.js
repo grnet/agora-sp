@@ -39,18 +39,12 @@ export default DS.Model.extend({
     label: 'provider.fields.epp_bai_2_abbreviation',
     hint: 'provider.hints.epp_bai_2_abbreviation',
   }),
-<<<<<<< HEAD
   epp_bai_3_legal_status: DS.attr({
     type: 'select',
     autocomplete: true,
     choices: ENV.APP.resources.LEGAL_STATUSES,
     label: 'provider.fields.epp_bai_3_legal_status',
     hint: 'provider.hints.epp_bai_3_legal_status',
-=======
-  epp_bai_3_website: DS.attr({
-    label: 'provider.fields.epp_bai_3_website',
-    hint: 'provider.hints.epp_bai_3_website',
->>>>>>> Provider fixes and additions
   }),
   epp_bai_4_legal_entity: DS.attr({
     type: 'boolean',
