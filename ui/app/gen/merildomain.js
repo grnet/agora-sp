@@ -26,7 +26,7 @@ export default AgoraGen.extend({
       label: 'merildomain.menu',
       icon: 'local_offer',
       group: 'settings',
-      order: 150,
+      order: 950,
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],

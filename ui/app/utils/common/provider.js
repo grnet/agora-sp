@@ -32,6 +32,25 @@ const MATURITY_FIELDSET = {
   },
 };
 
+
+const merildomain = field('epp_oth_8_meril_scientific_domain', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: ['name'],
+    },
+  },
+});
+
+const merilsubdomain = field('epp_oth_9_meril_scientific_subdomain', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: ['domain.name','name'],
+    },
+  },
+});
+
 const domain = field('epp_cli_1_scientific_domain', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
@@ -188,6 +207,8 @@ const DETAILS_OTHER_FIELDSET = {
     'structure_names',
     'esfridomain_names',
     field('epp_oth_7_esfri_type.name',{label:'provider.fields.epp_oth_7_esfri_type'}),
+    'merildomain_names',
+    'merilsubdomain_names',
     'activity_names',
     'challenge_names',
     'epp_oth_12_national_roadmaps',
@@ -210,6 +231,8 @@ const OTHER_FIELDSET = {
     structure,
     esfridomain,
     'epp_oth_7_esfri_type',
+    merildomain,
+    merilsubdomain,
     activity,
     challenge,
     'epp_oth_12_national_roadmaps',

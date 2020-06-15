@@ -208,6 +208,21 @@ export default DS.Model.extend({
       optionLabelAttr: 'name',
     },
   }),
+  epp_oth_8_meril_scientific_domain: DS.hasMany('merildomain', {
+    label: 'provider.fields.epp_oth_8_meril_scientific_domain',
+    hint: 'provider.hints.epp_oth_8_meril_scientific_domain',
+  }),
+  merildomain_names: DS.attr({
+    label: 'provider.fields.merildomain_names',
+  }),
+  // TODO: Filter meril subdomain's ManyArray results according to domain selections
+  epp_oth_9_meril_scientific_subdomain: DS.hasMany('merilsubdomain', {
+    label: 'provider.fields.epp_oth_9_meril_scientific_subdomain',
+    hint: 'provider.hints.epp_oth_9_meril_scientific_subdomain',
+  }),
+  subdomain_names: DS.attr({
+    label: 'provider.fields.merilsubdomain_names',
+  }),
   epp_oth_10_areas_of_activity: DS.hasMany('activity', {
     label: 'provider.fields.epp_oth_10_areas_of_activity',
     hint: 'provider.hints.epp_oth_10_areas_of_activity',
@@ -238,6 +253,8 @@ export default DS.Model.extend({
       delete hash['challenge_names'];
       delete hash['domain_names'];
       delete hash['subdomain_names'];
+      delete hash['merildomain_names'];
+      delete hash['merilsubdomain_names'];
       return hash;
     },
   },
