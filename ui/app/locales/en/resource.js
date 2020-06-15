@@ -36,7 +36,7 @@ const resource = {
     erp_cli_3_category: 'ERP.CLI.3 - Category',
     erp_cli_4_subcategory: 'ERP.CLI.4 - Subcategory',
     erp_cli_5_target_users: 'ERP.CLI.5 - Target Users',
-    erp_cli_6_access_type: 'ERP.CLI.6 - Access Types',
+    erp_cli_6_access_type: 'ERP.CLI.6 - Access Type',
     erp_cli_7_access_mode: 'ERP.CLI.7 - Access Mode',
     erp_cli_8_tags: 'ERP.CLI.8 - Tags',
     erp_mgi_1_helpdesk_webpage: 'ERP.MGI.1 - Heldesk Page',

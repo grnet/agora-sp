@@ -139,9 +139,9 @@ const CLASSIFICATION_FIELDSET = {
     subdomain,
     category,
     subcategory,
+    'erp_cli_5_target_users',
     'erp_cli_6_access_type',
     'erp_cli_7_access_mode',
-    'erp_cli_5_target_users',
     'erp_cli_8_tags',
   ],
   layout: {
