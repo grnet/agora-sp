@@ -14,9 +14,10 @@ const DETAILS_BASIC_INFO_FIELDSET = {
   label: 'esfridomain.cards.basic',
   fields: [
     'name',
+    'description',
   ],
   layout: {
-    flex: [100],
+    flex: [100,100],
   },
 };
 
@@ -25,9 +26,10 @@ const BASIC_INFO_FIELDSET = {
   label: 'esfridomain.cards.basic',
   fields: [
     'name',
+    'description'
   ],
   layout: {
-    flex: [100],
+    flex: [100,100],
   },
 };
 
