@@ -2101,7 +2101,7 @@ ORGANISATIONS = {
                                 'source': 'merildomain_id',
                                 'to': 'api/v2/merildomains'},
             }},
-        'meril_domain_names': {
+        'merildomain_names': {
             '.field.string': {},
             '.flag.nowrite': {}},
         'epp_oth_9_meril_scientific_subdomain': {
@@ -2118,7 +2118,7 @@ ORGANISATIONS = {
                                 'source': 'merilsubdomain_id',
                                 'to': 'api/v2/merilsubdomains'},
             }},
-        'subdomain_names': {
+        'merilsubdomain_names': {
             '.field.string': {},
             '.flag.nowrite': {}},
 

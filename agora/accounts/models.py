@@ -269,11 +269,11 @@ class Organisation(models.Model):
 
     @property
     def activity_names(self):
-        return ", ".join(o.name for o in self.epp_oth_8_areas_of_activity.all())
+        return ", ".join(o.name for o in self.epp_oth_10_areas_of_activity.all())
 
     @property
     def challenge_names(self):
-        return ", ".join(o.name for o in self.epp_oth_9_societal_grand_challenges.all())
+        return ", ".join(o.name for o in self.epp_oth_11_societal_grand_challenges.all())
 
     @property
     def domain_names(self):
