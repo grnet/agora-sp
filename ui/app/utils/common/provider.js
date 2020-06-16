@@ -215,7 +215,7 @@ const DETAILS_OTHER_FIELDSET = {
 
   ],
   layout: {
-    flex: [100,100,100,100,100,100,100,100,100,100],
+    flex: [100,100,100,100,100,100,100,100,100,100,100,100],
   },
 };
 
@@ -239,7 +239,7 @@ const OTHER_FIELDSET = {
 
   ],
   layout: {
-    flex: [100,100,100,100,100,100,100,100,100,100],
+    flex: [100,100,100,100,100,100,100,100,100,100,100,100],
   },
 };
 
@@ -251,7 +251,7 @@ const DETAILS_FIELDSETS = [{
   label: 'provider.cards.basic_information',
   text: 'provider.cards.basic_hint',
   layout: {
-    flex: [100, 100, 100, 50, 50, 100]
+    flex: [100, 100, 100, 100, 50, 50]
   },
   fields: [
     'epp_bai_0_id',
@@ -293,7 +293,7 @@ const EDIT_FIELDSETS = [{
   label: 'provider.cards.basic_information',
   text: 'provider.cards.basic_hint',
   layout: {
-    flex: [100, 100, 100, 50, 50, 100]
+    flex: [100, 100, 100, 100, 50, 50]
   },
   fields: [
     'epp_bai_0_id',
@@ -335,7 +335,7 @@ const CREATE_FIELDSETS = [{
   label: 'provider.cards.basic_information',
   text: 'provider.cards.basic_hint',
   layout: {
-    flex: [100, 100, 100, 50, 50, 100]
+    flex: [100, 100, 100, 100, 50, 50]
   },
   fields: [
     'epp_bai_0_id',

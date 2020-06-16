@@ -1348,8 +1348,8 @@ MERIL_SUBDOMAINS = {
             '.flag.searchable': {}},
         'description': {
             '.field.string': {},
-            '.flag.orderable': {},
-            '.flag.searchable': {}},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
     },
     'actions': {
         '.action-template.django.list': {},

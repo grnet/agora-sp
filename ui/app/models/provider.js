@@ -39,12 +39,9 @@ export default DS.Model.extend({
     label: 'provider.fields.epp_bai_2_abbreviation',
     hint: 'provider.hints.epp_bai_2_abbreviation',
   }),
-  epp_bai_3_legal_status: DS.attr({
-    type: 'select',
-    autocomplete: true,
-    choices: ENV.APP.resources.LEGAL_STATUSES,
-    label: 'provider.fields.epp_bai_3_legal_status',
-    hint: 'provider.hints.epp_bai_3_legal_status',
+  epp_bai_3_website: DS.attr({
+    label: 'provider.fields.epp_bai_3_website',
+    hint: 'provider.hints.epp_bai_3_website',
   }),
   epp_bai_4_legal_entity: DS.attr({
     type: 'boolean',
@@ -220,7 +217,7 @@ export default DS.Model.extend({
     label: 'provider.fields.epp_oth_9_meril_scientific_subdomain',
     hint: 'provider.hints.epp_oth_9_meril_scientific_subdomain',
   }),
-  subdomain_names: DS.attr({
+  merilsubdomain_names: DS.attr({
     label: 'provider.fields.merilsubdomain_names',
   }),
   epp_oth_10_areas_of_activity: DS.hasMany('activity', {

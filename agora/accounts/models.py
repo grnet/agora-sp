@@ -114,10 +114,6 @@ class MerilDomain(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
 
-    def save(self, *args, **kwargs):
-        clean_html_fields(self)
-        super(MerilDomain, self).save(*args, **kwargs)
-
 class Subdomain(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     domain = models.ForeignKey('accounts.Domain', blank=True, null=True, related_name='domain_subdomain')
