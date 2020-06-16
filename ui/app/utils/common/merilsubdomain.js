@@ -6,30 +6,33 @@ const SORT_FIELDS = [
 ];
 
 const TABLE_FIELDS = [
-  field('name', {label: 'structure.table.name'}),
+  field('domain.name', {label: 'merilsubdomain.table.domain'}),
+  field('name', {label: 'merilsubdomain.table.name'}),
 ];
 
 
 const DETAILS_BASIC_INFO_FIELDSET = {
-  label: 'structure.cards.basic',
+  label: 'subdomain.cards.basic',
   fields: [
+    'domain.name',
     'name',
-    'description',
+    'description'
   ],
   layout: {
-    flex: [100,100],
+    flex: [100,100,100],
   },
 };
 
 
 const BASIC_INFO_FIELDSET = {
-  label: 'structure.cards.basic',
+  label: 'subdomain.cards.basic',
   fields: [
+    'domain',
     'name',
-    'description',
+    'description'
   ],
   layout: {
-    flex: [100,100],
+    flex: [100,100,100],
   },
 };
 

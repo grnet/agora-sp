@@ -5,4 +5,8 @@ export default DS.Model.extend({
     label: 'structure.fields.name',
     hint: 'structure.hints.name'
   }),
+  description: DS.attr({
+    label: 'structure.fields.description',
+    hint: 'structure.hints.description'
+  }),
 });

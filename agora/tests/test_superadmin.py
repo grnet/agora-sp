@@ -59,6 +59,7 @@ def test_resourceadminship_create(superadmin):
     provider_url = RESOURCES_CRUD['providers']['url']
     provider_data = RESOURCES_CRUD['providers']['create_data']
     resp = superadmin.post(provider_url, provider_data)
+
     provider_id = resp.json()['id']
     provider = Organisation.objects.get(pk=provider_id)
 

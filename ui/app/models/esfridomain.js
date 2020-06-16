@@ -5,4 +5,8 @@ export default DS.Model.extend({
     label: 'esfridomain.fields.name',
     hint: 'esfridomain.hints.name'
   }),
+  description: DS.attr({
+    label: 'esfridomain.fields.description',
+    hint: 'esfridomain.hints.description'
+  }),
 });

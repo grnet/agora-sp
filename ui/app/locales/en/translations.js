@@ -41,6 +41,9 @@ import { access_type } from './access_type';
 import { access_mode } from './access_mode';
 import { trl } from './trl';
 import { resource_lcs } from './resource_lcs';
+import { legalstatus } from './legalstatus';
+import { merildomain} from './merildomain';
+import { merilsubdomain} from './merilsubdomain';
 
 
 export default {
@@ -79,6 +82,7 @@ export default {
   contact_information,
   'Service Admin': 'Resource Admin',
   resource_admin,
+  'legalstatus': legalstatus,
   'affiliation': affiliation,
   'network': network,
   'structure': structure,
@@ -91,6 +95,8 @@ export default {
   'supercategory': supercategory,
   'category': category,
   'subcategory': subcategory,
+  'merildomain': merildomain,
+  'merilsubdomain': merilsubdomain,
   'username': login.default.label,
   'search.input.placeholder': 'Search',
   order_type,

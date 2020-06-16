@@ -1284,6 +1284,29 @@ RESOURCE_ADMINS = {
     },
 }
 
+MERIL_DOMAINS = {
+    '.collection.django': {},
+    'model': 'accounts.models.MerilDomain',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+
 DOMAINS = {
     '.collection.django': {},
     'model': 'accounts.models.Domain',
@@ -1295,6 +1318,38 @@ DOMAINS = {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+MERIL_SUBDOMAINS = {
+    '.collection.django': {},
+    'model': 'accounts.models.MerilSubdomain',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'domain': {
+            '.field.ref': {},
+            'source': 'domain_id',
+            'to': '/api/v2/merildomains',
+            '.flag.filterable': {},
+            '.flag.nullable.default': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'description': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -1412,6 +1467,29 @@ SUBCATEGORIES = {
     },
 }
 
+LEGAL_STATUSES = {
+    '.collection.django': {},
+    'model': 'accounts.models.LegalStatus',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
+
+
 NETWORKS = {
     '.collection.django': {},
     'model': 'accounts.models.Network',
@@ -1446,6 +1524,10 @@ STRUCTURES = {
             '.field.uuid': {},
             '.flag.nowrite': {}},
         'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'description': {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
@@ -1490,6 +1572,10 @@ ESFRI_DOMAINS= {
             '.field.uuid': {},
             '.flag.nowrite': {}},
         'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'description': {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
@@ -1751,9 +1837,6 @@ ORGANISATIONS = {
         'id': {
             '.field.uuid': {},
             '.flag.nowrite': {}},
-        'epp_bai_3_legal_entity': {
-          '.field.boolean': {},
-          'default': False},
         'epp_bai_0_id': {
           '.field.string': {},
           '.flag.nullable.default': {},
@@ -1767,14 +1850,20 @@ ORGANISATIONS = {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_bai_3_legal_status': {
+        'epp_bai_3_website': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_bai_4_website': {
-          '.field.string': {},
-          '.flag.nullable.default': {},
-        },
+        'epp_bai_4_legal_entity': {
+          '.field.boolean': {},
+          'default': False},
+        'epp_bai_5_legal_status': {
+            '.field.ref': {},
+            'source': 'epp_bai_5_legal_status_id',
+            'to': '/api/v2/legalstatuses',
+            '.flag.filterable': {},
+            '.flag.nullable.default': {}},
+
         'epp_cli_1_scientific_domain': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
@@ -2006,14 +2095,49 @@ ORGANISATIONS = {
             '.flag.filterable': {},
             '.flag.nullable.default': {}},
 
-        'epp_oth_8_areas_of_activity': {
+        'epp_oth_8_meril_scientific_domain': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'merildomain',
+            'model': 'accounts.models.Organisation.epp_oth_8_meril_scientific_domain.through',
+            'source': 'epp_oth_8_meril_scientific_domain',
+            'bound': 'organisation',
+            'fields': {
+                'merildomain': {'.field.ref': {},
+                                'source': 'merildomain_id',
+                                'to': 'api/v2/merildomains'},
+            }},
+        'merildomain_names': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
+        'epp_oth_9_meril_scientific_subdomain': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'merilsubdomain',
+            'model': 'accounts.models.Organisation.epp_oth_9_meril_scientific_subdomain.through',
+            'source': 'epp_oth_9_meril_scientific_subdomain',
+            'bound': 'organisation',
+            'fields': {
+                'merilsubdomain': {'.field.ref': {},
+                                'source': 'merilsubdomain_id',
+                                'to': 'api/v2/merilsubdomains'},
+            }},
+        'merilsubdomain_names': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
+
+        'epp_oth_10_areas_of_activity': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
             'flat': True,
             'id_field': 'activity',
-            'model': 'accounts.models.Organisation.epp_oth_8_areas_of_activity.through',
-            'source': 'epp_oth_8_areas_of_activity',
+            'model': 'accounts.models.Organisation.epp_oth_10_areas_of_activity.through',
+            'source': 'epp_oth_10_areas_of_activity',
             'bound': 'organisation',
             'fields': {
                 'activity': {'.field.ref': {},
@@ -2024,14 +2148,14 @@ ORGANISATIONS = {
             '.field.string': {},
             '.flag.nowrite': {}},
 
-        'epp_oth_9_societal_grand_challenges': {
+        'epp_oth_11_societal_grand_challenges': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
             'flat': True,
             'id_field': 'challenge',
-            'model': 'accounts.models.Organisation.epp_oth_9_societal_grand_challenges.through',
-            'source': 'epp_oth_9_societal_grand_challenges',
+            'model': 'accounts.models.Organisation.epp_oth_11_societal_grand_challenges.through',
+            'source': 'epp_oth_11_societal_grand_challenges',
             'bound': 'organisation',
             'fields': {
                 'challenge': {'.field.ref': {},
@@ -2042,7 +2166,7 @@ ORGANISATIONS = {
             '.field.string': {},
             '.flag.nowrite': {}},
 
-        'epp_oth_10_national_roadmaps': {
+        'epp_oth_12_national_roadmaps': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
@@ -2722,6 +2846,7 @@ APP_CONFIG = {
                 'resources': RESOURCES,
                 'target-users': TARGET_USERS,
                 'contact-information': CONTACT_INFORMATION,
+                'legalstatuses': LEGAL_STATUSES,
                 'affiliations': AFFILIATIONS,
                 'networks': NETWORKS,
                 'structures': STRUCTURES,
@@ -2741,6 +2866,8 @@ APP_CONFIG = {
                 'access-modes': ACCESS_MODES,
                 'trls': TRLS,
                 'resource-lifecycle-statuses': RESOURCE_LIFECYCLE_STATUSES,
+                'merildomains': MERIL_DOMAINS,
+                'merilsubdomains': MERIL_SUBDOMAINS,
             },
         },
     },

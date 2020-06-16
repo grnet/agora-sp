@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.utils import timezone
 from ckeditor_uploader.fields import RichTextUploadingField
-from agora.utils import USER_ROLES, LEGAL_STATUSES, LIFECYCLE_STATUSES ,clean_html_fields
+from agora.utils import USER_ROLES, LIFECYCLE_STATUSES ,clean_html_fields
 from common import helper
 
 class UserManager(BaseUserManager):
@@ -55,6 +55,7 @@ class Network(models.Model):
 class Structure(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
+    description = models.TextField(default=None, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)
@@ -71,6 +72,7 @@ class Affiliation(models.Model):
 class EsfriDomain(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
+    description = models.TextField(default=None, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)
@@ -108,6 +110,10 @@ class Domain(models.Model):
         clean_html_fields(self)
         super(Domain, self).save(*args, **kwargs)
 
+class MerilDomain(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, unique=True)
+
 class Subdomain(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     domain = models.ForeignKey('accounts.Domain', blank=True, null=True, related_name='domain_subdomain')
@@ -117,21 +123,41 @@ class Subdomain(models.Model):
         clean_html_fields(self)
         super(Subdomain, self).save(*args, **kwargs)
 
+class MerilSubdomain(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    domain = models.ForeignKey('accounts.MerilDomain', blank=True, null=True, related_name='merildomain_merilsubdomain')
+    name = models.CharField(max_length=255, unique=False)
+    description = models.TextField(default=None, blank=True, null=True)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(MerilSubdomain, self).save(*args, **kwargs)
+
+class LegalStatus(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=255, unique=True)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(LegalStatus, self).save(*args, **kwargs)
+
 class Organisation(models.Model):
     """
     The organisation providing the Service
     """
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    epp_bai_3_legal_entity = models.BooleanField(default=False)
-    epp_bai_3_legal_status = models.CharField(max_length=255,
-                                             default=None, blank=True, null=True,
-                                             choices=LEGAL_STATUSES)
-
     epp_bai_0_id = models.CharField(unique=True, max_length=100)
     epp_bai_1_name = models.CharField(unique=True, max_length=100)
     epp_bai_2_abbreviation = models.CharField(max_length=30, default=None, blank=False, null=True)
-    epp_bai_4_website = models.TextField(default=None, blank=True, null=True)
+    epp_bai_3_website = models.TextField(default=None, blank=True, null=True)
+
+    epp_bai_4_legal_entity = models.BooleanField(default=False)
+    epp_bai_5_legal_status =  models.ForeignKey(
+        'accounts.LegalStatus',
+        blank=True,
+        null=True,
+        related_name='legalstatus_providers')
 
     # Classification section
     epp_cli_1_scientific_domain = models.ManyToManyField(
@@ -201,17 +227,27 @@ class Organisation(models.Model):
         null=True,
         related_name='esfritype_providers')
 
-    epp_oth_8_areas_of_activity = models.ManyToManyField(
+    epp_oth_8_meril_scientific_domain = models.ManyToManyField(
+        MerilDomain,
+        blank=True,
+        related_name='meril_domain_providers')
+
+    epp_oth_9_meril_scientific_subdomain = models.ManyToManyField(
+        MerilSubdomain,
+        blank=True,
+        related_name='meril_subdomain_providers')
+
+    epp_oth_10_areas_of_activity = models.ManyToManyField(
         Activity,
         blank=True,
         related_name='activity_providers')
 
-    epp_oth_9_societal_grand_challenges = models.ManyToManyField(
+    epp_oth_11_societal_grand_challenges = models.ManyToManyField(
         Challenge,
         blank=True,
         related_name='challenge_providers')
 
-    epp_oth_10_national_roadmaps = models.CharField(max_length=80, default=None, blank=True, null=True)
+    epp_oth_12_national_roadmaps = models.CharField(max_length=80, default=None, blank=True, null=True)
 
     @property
     def affiliation_names(self):
@@ -231,11 +267,11 @@ class Organisation(models.Model):
 
     @property
     def activity_names(self):
-        return ", ".join(o.name for o in self.epp_oth_8_areas_of_activity.all())
+        return ", ".join(o.name for o in self.epp_oth_10_areas_of_activity.all())
 
     @property
     def challenge_names(self):
-        return ", ".join(o.name for o in self.epp_oth_9_societal_grand_challenges.all())
+        return ", ".join(o.name for o in self.epp_oth_11_societal_grand_challenges.all())
 
     @property
     def domain_names(self):
@@ -244,6 +280,14 @@ class Organisation(models.Model):
     @property
     def subdomain_names(self):
         return ", ".join(o.name for o in self.epp_cli_2_scientific_subdomain.all())
+
+    @property
+    def merildomain_names(self):
+        return ", ".join(o.name for o in self.epp_oth_8_meril_scientific_domain.all())
+
+    @property
+    def merilsubdomain_names(self):
+        return ", ".join(o.name for o in self.epp_oth_9_meril_scientific_subdomain.all())
 
 
 

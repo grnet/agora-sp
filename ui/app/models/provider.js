@@ -26,12 +26,7 @@ export default DS.Model.extend({
     label: 'provider.fields.contact',
     hint: 'provider.hints.contact',
   }),
-  epp_bai_3_legal_entity: DS.attr({
-    type: 'boolean',
-    defaultValue: false,
-    label: 'provider.fields.epp_bai_3_legal_entity',
-    hint: 'provider.hints.epp_bai_3_legal_entity',
-  }),
+
   epp_bai_0_id: DS.attr({
     label: 'provider.fields.epp_bai_0_id',
     hint: 'provider.hints.epp_bai_0_id',
@@ -44,17 +39,25 @@ export default DS.Model.extend({
     label: 'provider.fields.epp_bai_2_abbreviation',
     hint: 'provider.hints.epp_bai_2_abbreviation',
   }),
-  epp_bai_3_legal_status: DS.attr({
-    type: 'select',
-    autocomplete: true,
-    choices: ENV.APP.resources.LEGAL_STATUSES,
-    label: 'provider.fields.epp_bai_3_legal_status',
-    hint: 'provider.hints.epp_bai_3_legal_status',
+  epp_bai_3_website: DS.attr({
+    label: 'provider.fields.epp_bai_3_website',
+    hint: 'provider.hints.epp_bai_3_website',
   }),
-  epp_bai_4_website: DS.attr({
-    label: 'provider.fields.epp_bai_4_website',
-    hint: 'provider.hints.epp_bai_4_website',
+  epp_bai_4_legal_entity: DS.attr({
+    type: 'boolean',
+    defaultValue: false,
+    label: 'provider.fields.epp_bai_4_legal_entity',
+    hint: 'provider.hints.epp_bai_4_legal_entity',
   }),
+  epp_bai_5_legal_status: DS.belongsTo('legalstatus', {
+    label: 'provider.fields.epp_bai_5_legal_status',
+    hint: 'provider.hints.epp_bai_5_legal_status',
+    inverse: null,
+    formAttrs: {
+      optionLabelAttr: 'name',
+    },
+  }),
+
   // classification information
   epp_cli_1_scientific_domain: DS.hasMany('domain', {
     label: 'provider.fields.epp_cli_1_scientific_domain',
@@ -202,23 +205,38 @@ export default DS.Model.extend({
       optionLabelAttr: 'name',
     },
   }),
-  epp_oth_8_areas_of_activity: DS.hasMany('activity', {
-    label: 'provider.fields.epp_oth_8_areas_of_activity',
-    hint: 'provider.hints.epp_oth_8_areas_of_activity',
+  epp_oth_8_meril_scientific_domain: DS.hasMany('merildomain', {
+    label: 'provider.fields.epp_oth_8_meril_scientific_domain',
+    hint: 'provider.hints.epp_oth_8_meril_scientific_domain',
+  }),
+  merildomain_names: DS.attr({
+    label: 'provider.fields.merildomain_names',
+  }),
+  // TODO: Filter meril subdomain's ManyArray results according to domain selections
+  epp_oth_9_meril_scientific_subdomain: DS.hasMany('merilsubdomain', {
+    label: 'provider.fields.epp_oth_9_meril_scientific_subdomain',
+    hint: 'provider.hints.epp_oth_9_meril_scientific_subdomain',
+  }),
+  merilsubdomain_names: DS.attr({
+    label: 'provider.fields.merilsubdomain_names',
+  }),
+  epp_oth_10_areas_of_activity: DS.hasMany('activity', {
+    label: 'provider.fields.epp_oth_10_areas_of_activity',
+    hint: 'provider.hints.epp_oth_10_areas_of_activity',
   }),
   activity_names: DS.attr({
     label: 'provider.fields.activity_names',
   }),
-  epp_oth_9_societal_grand_challenges: DS.hasMany('challenge', {
-    label: 'provider.fields.epp_oth_9_societal_grand_challenges',
-    hint: 'provider.hints.epp_oth_9_societal_grand_challenges',
+  epp_oth_11_societal_grand_challenges: DS.hasMany('challenge', {
+    label: 'provider.fields.epp_oth_11_societal_grand_challenges',
+    hint: 'provider.hints.epp_oth_11_societal_grand_challenges',
   }),
   challenge_names: DS.attr({
     label: 'provider.fields.challenge_names',
   }),
-  epp_oth_10_national_roadmaps: DS.attr({
-    label: 'provider.fields.epp_oth_10_national_roadmaps',
-    hint: 'provider.hints.epp_oth_10_national_roadmaps',
+  epp_oth_12_national_roadmaps: DS.attr({
+    label: 'provider.fields.epp_oth_12_national_roadmaps',
+    hint: 'provider.hints.epp_oth_12_national_roadmaps',
   }),
 
   __api__: {
@@ -232,6 +250,8 @@ export default DS.Model.extend({
       delete hash['challenge_names'];
       delete hash['domain_names'];
       delete hash['subdomain_names'];
+      delete hash['merildomain_names'];
+      delete hash['merilsubdomain_names'];
       return hash;
     },
   },
