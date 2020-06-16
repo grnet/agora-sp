@@ -68,7 +68,7 @@ const resource = {
     erp_dei_1_required_resources: 'ERP.DEI.1 - Required Resources',
     erp_dei_2_related_resources: 'ERP.DEI.2 - Related Resources',
     erp_dei_3_related_platforms: 'ERP.DEI.3 - Related Platforms',
-    erp_coi_13_helpdesk_email: 'EPR.COI.13 - Helpdesk Email',
+    erp_coi_13_helpdesk_email: 'ERP.COI.13 - Helpdesk Email',
     erp_coi_14_security_contact_email: 'ERP.COI.14 - Security Contact Email',
     erp_ati_1_funding_body: 'ERP.ATI.1 - Funding Body',
     erp_ati_2_funding_program: 'ERP.ATI.2 - Funding Program',
