@@ -50,6 +50,8 @@ export default DS.Model.extend({
     hint: 'provider.hints.epp_bai_4_legal_entity',
   }),
   epp_bai_5_legal_status: DS.belongsTo('legalstatus', {
+    autocomplete: true,
+    type: 'select',
     label: 'provider.fields.epp_bai_5_legal_status',
     hint: 'provider.hints.epp_bai_5_legal_status',
     inverse: null,
@@ -128,6 +130,7 @@ export default DS.Model.extend({
   }),
   epp_mti_1_life_cycle_status: DS.attr({
     type: 'select',
+    autocomplete: true,
     choices: ENV.APP.resources.PROVIDER_LIFE_CYCLE_STATUSES,
     label: 'provider.fields.epp_mti_1_life_cycle_status',
     hint: 'provider.hints.epp_mti_1_life_cycle_status',
