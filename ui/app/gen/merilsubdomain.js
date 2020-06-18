@@ -26,8 +26,8 @@ export default AgoraGen.extend({
     menu: {
       label: 'merilsubdomain.menu',
       icon: 'style',
-      group: 'settings',
-      order: 951,
+      group: 'provider_settings',
+      order: 94,
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],

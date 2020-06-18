@@ -25,7 +25,12 @@ export default AgoraGen.extend({
     menu: {
       label: 'affiliation.menu',
       icon: 'flag',
-      group: 'settings',
+      group: {
+        name: 'provider_settings',
+        label: 'group_menu.provider_settings',
+        icon: 'settings',
+        order: 510,
+      },
       order: 30,
     },
     row: {
