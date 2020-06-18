@@ -49,7 +49,7 @@ export default AgoraGen.extend({
       group: {
         name: 'user-information',
         label: 'group_menu.user_information',
-        order: 400,
+        order: 300,
           icon: 'people',
       },
     },

@@ -25,8 +25,8 @@ export default AgoraGen.extend({
     menu: {
       label: 'esfritype.menu',
       icon: 'label',
-      group: 'settings',
-      order: 36,
+      group: 'provider_settings',
+      order: 90,
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],

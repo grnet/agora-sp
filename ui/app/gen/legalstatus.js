@@ -25,7 +25,7 @@ export default AgoraGen.extend({
     menu: {
       label: 'legalstatus.menu',
       icon: 'gavel',
-      group: 'settings',
+      group: 'provider_settings',
       order: 32,
     },
     row: {

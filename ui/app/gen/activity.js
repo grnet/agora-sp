@@ -25,7 +25,7 @@ export default AgoraGen.extend({
     menu: {
       label: 'activity.menu',
       icon: 'landscape',
-      group: 'settings',
+      group: 'provider_settings',
       order: 37,
     },
     row: {

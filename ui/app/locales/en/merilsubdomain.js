@@ -25,7 +25,7 @@ const merilsubdomain = {
     'placeholder':{
       'search': 'Search by Meril Domain or Subdomain Title',
     },
-    'menu': 'Meril Scientific Subdomains',
+    'menu': 'MERIL Scientific Subdomains',
   };
 
 

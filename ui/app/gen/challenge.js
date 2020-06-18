@@ -25,7 +25,7 @@ export default AgoraGen.extend({
     menu: {
       label: 'challenge.menu',
       icon: 'eco',
-      group: 'settings',
+      group: 'provider_settings',
       order: 38,
     },
     row: {

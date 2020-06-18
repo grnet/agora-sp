@@ -20,7 +20,7 @@ const merildomain = {
     'placeholder':{
       'search': 'Search by Meril Domain Title'
     },
-    'menu': 'Meril Scientific Domains'
+    'menu': 'MERIL Scientific Domains'
   };
   
   export { merildomain };

@@ -25,7 +25,12 @@ export default AgoraGen.extend({
     menu: {
       label: 'category.menu',
       icon: 'style',
-      group: 'settings',
+      group: {
+        name: 'class_settings',
+        label: 'group_menu.class_settings',
+        icon: 'settings',
+        order: 520,
+      },
       order: 511,
     },
     row: {

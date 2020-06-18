@@ -25,7 +25,7 @@ export default AgoraGen.extend({
     menu: {
       label: 'structure.menu',
       icon: 'apartment',
-      group: 'settings',
+      group: 'provider_settings',
       order: 32,
     },
     row: {

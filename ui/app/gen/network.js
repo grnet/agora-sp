@@ -26,7 +26,7 @@ export default AgoraGen.extend({
     menu: {
       label: 'network.menu',
       icon: 'device_hub',
-      group: 'settings',
+      group: 'provider_settings',
       order: 32,
     },
     row: {
