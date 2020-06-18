@@ -24,7 +24,7 @@ export default DS.Model.extend({
   }),
   organisation: DS.belongsTo('provider', {
     type: 'select',
-    autocompete: true,
+    autocomplete: true,
     label: 'contact_information.fields.organisation',
     hint: 'contact_information.hints.organisation',
     inverse: null,
