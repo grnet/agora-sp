@@ -23,7 +23,7 @@ def delete_success(delete_button):
     sleep(1)
 
     delete_button.find_element_by_xpath('//button[text()="OK"]').click()
-
+    sleep(0.5)
     form_response_message = delete_button.find_element_by_class_name("toast-level-success").text.split("\n")[0]
     assert "Form Saved" in form_response_message
     if delete_button.find_element_by_class_name("toast-level-success"):
