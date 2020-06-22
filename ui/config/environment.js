@@ -31,9 +31,9 @@ module.exports = function(environment) {
 
       footer: {
         // If set, "Copyright © <copyright_years>" will appear in footer.
-        copyright_years: '2018-2019',
+        copyright_years: '2018-2020',
         // If set, contact info  will be visible next to version in footer.
-        contact: 'contact@example.com',
+        contact: 'agora@grnet.gr',
         // If set, <info> will be visible in footer.
         info: 'Agora is a service developed and maintained by <a href="https://grnet.gr/en/" alt="grnet">GRNET</a> co-funded by <a href="" alt="https://www.eosc-hub.eu/">EOSC-Hub</a> and <a href="https://www.eudat.eu/eudat-collaborative-data-infrastructure-cdi">EUDAT CDI</a>',
         // If set, a link will <policy_text> text will be visible in footer.
