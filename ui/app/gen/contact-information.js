@@ -1,0 +1,85 @@
+import { AgoraGen } from '../lib/common';
+import { field } from 'ember-gen';
+import validate from 'ember-gen/validate';
+
+export default AgoraGen.extend({
+  modelName: 'contact-information',
+  order: 600,
+  path: 'contact-information',
+  resourceName: 'api/v2/contact-information',
+  common: {
+    validators: {
+      first_name: [validate.presence(true)],
+      last_name: [validate.presence(true)],
+      email: [
+        validate.presence(true),
+        validate.format({type: 'email'})
+      ],
+      phone: [
+        validate.presence(true),
+        validate.number({ integer: true }),
+        validate.length({ min: 10, max: 20 }),
+      ],
+      position: [validate.presence(true)],
+      organisation: [validate.presence(true)],
+    },
+    fieldsets: [ {
+      text: 'contact_information.cards.basic_hint',
+      label: 'contact_information.cards.basic_info',
+      fields: [
+        'first_name',
+        'last_name',
+        'email',
+        'phone',
+        'position',
+        'organisation',
+      ],
+      layout: {
+        flex: [50, 50, 50, 50, 50, 50],
+      },
+    }],
+  },
+  list: {
+    page: {
+      title: 'contact_information.menu'
+    },
+    row: {
+      actions: ['gen:details', 'gen:edit', 'remove'],
+      fields: [
+        'full_name',
+        'email',
+        'position',
+        field('organisation.epp_bai_1_name', {label: 'contact_information.fields.organisation'}),
+      ]
+    },
+    menu: {
+      label: 'contact_information.menu',
+      group: {
+        name: 'user-information',
+        order: 100,
+      },
+    },
+    sort: {
+      serverSide: true,
+      active: true,
+      fields: ['email', 'position']
+    },
+  },
+  details: {
+
+    fieldsets: [ {
+      label: 'contact_information.cards.basic_info',
+      fields: [
+        'first_name',
+        'last_name',
+        'email',
+        'phone',
+        'position',
+        field('organisation.epp_bai_1_name',{label:'contact_information.fields.organisation'}),
+      ],
+      layout: {
+        flex: [50, 50, 50, 50, 50, 50],
+      },
+    }],
+  }
+});

@@ -1,7 +1,7 @@
 from __future__ import unicode_literals
 import uuid
 from django.db import models
-from accounts.models import User as CustomUser
+from accounts.models import User as CustomUser, Organisation
 
 class Institution(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -28,16 +28,13 @@ class ServiceOwner(models.Model):
 
 
 class ContactInformation(models.Model):
-    """
-    Unused model
-    """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    first_name = models.CharField(max_length=255, default=None, blank=True, null=True)
-    last_name = models.CharField(max_length=255, default=None, blank=True, null=True)
-    email = models.EmailField(default=None, blank=True, null=True)
-    phone = models.CharField(max_length=255, default=None, blank=True, null=True)
-    url = models.CharField(max_length=255, default=None, blank=True, null=True)
-
+    first_name = models.CharField(max_length=50, default=None, blank=False, null=True)
+    last_name = models.CharField(max_length=50, default=None, blank=False,  null=True)
+    email = models.EmailField(unique=True)
+    phone = models.CharField(max_length=20, default=None, blank=True, null=True)
+    position = models.CharField(max_length=50, default=None, blank=True, null=True)
+    organisation = models.ForeignKey(Organisation,   related_name="contacts")
 
 class Internal(models.Model):
     """

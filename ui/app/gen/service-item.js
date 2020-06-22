@@ -1,3 +1,4 @@
+// UNUSED
 import Ember from 'ember';
 import validate from 'ember-gen/validate';
 import { field } from 'ember-gen';
@@ -57,6 +58,7 @@ export default AgoraGen.extend({
       title: 'service_item.menu',
     },
     menu: {
+      display: false,
       label: 'service_item.menu',
       icon: 'bookmark',
     },

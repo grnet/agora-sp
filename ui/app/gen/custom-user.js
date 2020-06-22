@@ -1,4 +1,5 @@
 import { AgoraGen } from '../lib/common';
+import { field } from 'ember-gen';
 import validate from 'ember-gen/validate';
 import {
   CREATE_OR_EDIT_FIELDSETS,
@@ -32,14 +33,18 @@ export default AgoraGen.extend({
         'username',
         'full_name',
         'email',
-        'is_staff',
-        'is_active',
-        'role',
+        field('organisation.epp_bai_1_name', {
+          label: 'custom_user.fields.organisation',
+        }) ,
+        field('role_verbose', {
+          label: 'custom_user.fields.role',
+        }),
       ]
     },
     menu: {
       label: 'custom_user.menu',
       icon : 'face',
+      order: '500',
     },
     filter: {
       active: false,

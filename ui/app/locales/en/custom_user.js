@@ -12,7 +12,9 @@ const custom_user = {
     'is_active': 'Active',
     'is_staff': 'Staff',
     'date_joined': 'Date joined',
-    'shibboleth_id': 'Shibboleth ID'
+    'shibboleth_id': 'Shibboleth ID',
+    'organisation':'Provider',
+    'role': 'Role',
   },
   'hints': {
     'username': '',

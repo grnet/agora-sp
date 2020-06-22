@@ -90,149 +90,69 @@ def observer(django_user_model):
                          'observer')
 
 
-@pytest.fixture('function')
-def component():
-    component, _ = ServiceComponent.objects.get_or_create(
-        name='Servers',
-        description='category description')
-    return component
-
-
-@pytest.fixture('function')
-def component_id(component):
-    return component.id
-
-
-@pytest.fixture('function')
-def component_implementation_id(component):
-    component_implementation, _ = ServiceComponentImplementation.\
-            objects.get_or_create(name='Apache',
-                                  component_id=component,
-                                  description='component description')
-    return component_implementation.id
-
 
 RESOURCES_CRUD = {
-    'user_roles': {
-        'url': '/api/v2/user-roles/',
+    'target_users': {
+        'url': '/api/v2/target-users/',
         'create_data': {
-            'name': 'test-name'
+            'user': 'Manager',
+            'description': 'Cool manager'
         },
         'edit_data': {
-            'name': 'test-name-edit'
+            'user': 'Boss',
+            'description': 'Even better boss'
         }
     },
-    'service_trls': {
-        'url': '/api/v2/service-trls/',
+    'resource_admins': {
+      'url': '/api/v2/resource-admins/',
+    },
+    'resources': {
+        'url': '/api/v2/resources/',
         'create_data': {
-            'value': 'test-value',
-            'order': 1
+            'erp_bai_0_id': 'aw',
+            'erp_bai_1_name': 'Athens Warriors1',
+            'erp_bai_4_webpage': 'www.test.com',
+            'erp_gla_1_geographical_availability': 'Europe'
         },
         'edit_data': {
-            'value': 'test-value-edit',
-            'order': 2
-        }
-    },
-    'service_status': {
-        'url': '/api/v2/service-status/',
-        'create_data': {
-            'value': 'test-value',
-            'description': 'description',
+            'erp_gla_1_geographical_availability': 'Africa'
         },
-        'edit_data': {
-            'value': 'test-value-edit',
-            'description': 'description changed',
-        }
-    },
-    'service_categories': {
-        'url': '/api/v2/service-categories/',
-        'create_data': {
-            'name': 'Sports',
-            'description': '<p>My awesome category</p>'
-        },
-        'edit_data': {
-            'name': 'Games',
-            'description': '<p>All the games I like</p>'
-        }
-    },
-    'services': {
-        'url': '/api/v2/services/',
-        'create_data': {
-            "name": "Test service",
-            "internal": False,
-            "customer_facing": True,
-            "other_required_services": "Other service",
-            "other_related_services": "Related service",
-            "related_platform": "Platform",
-        },
-        'create_data_2': {
-            "name": "Test service 2",
-            "internal": False,
-            "customer_facing": True,
-        },
-        'edit_data': {
-            "name": "Test service 2",
-            "internal": True,
-            "customer_facing": False,
-            "other_required_services": "Other service2",
-            "other_related_services": "Related service2",
-            "related_platform": "Platform2",
-        }
-    },
-    'service_admins': {
-        'url': '/api/v2/service-admins/'
-    },
-    'components': {
-        'url': '/api/v2/components/',
-        'create_data': {
-            'name': 'Paros',
-            'description': '<p>Description</p>',
-        },
-        'edit_data': {
-            'name': 'Antiparos',
-            'description': '<p>Description 2</p>',
-        },
-    },
-    'component-implementation-details': {
-        'url': '/api/v2/component-implementation-details/',
-    },
-    'ext-components': {
-        'url': '/api/v2/ext-component',
-    },
-    'service_versions': {
-        'url': '/api/v2/service-versions/'
     },
     'providers': {
         'url': '/api/v2/providers/',
         'create_data': {
-            'name': 'CIA',
-            'description': '<p>Description</p>',
-            'pd_bai_3_legal_entity': False,
+            'epp_bai_0_id': 'id',
+            'epp_bai_1_name': 'epp_name',
+            'epp_bai_2_abbreviation': 'epp_abb',
+            'epp_bai_3_website': 'epp_website',
+            'epp_bai_4_legal_entity': False,
+            'epp_loi_1_street_name_and_number': 'Kings Cross 7',
+            'epp_loi_2_postal_code': '938393',
+            'epp_loi_3_city': 'London',
+            'epp_loi_4_region': 'Greater London',
+            'epp_loi_5_country_or_territory': 'United Kingdom',
+            'epp_mri_1_description': '<p>short provider description</p>',
+            'epp_mri_2_logo': 'https://example.com/provider.png',
+            'epp_mri_3_multimedia': 'https://vimeo.com/1001010938',
+            'epp_mti_1_life_cycle_status': 'Operational',
+            'epp_mti_2_certifications': 'ISO-27001'
         },
         'edit_data': {
-            'name': 'FBI',
-            'pd_bai_3_legal_entity': True,
-        },
-    },
-    'access_policies': {
-        'url': '/api/v2/access-policies/',
-        'create_data': {
-            'name': 'Excellence-driven',
-            'geo_availability': 'Europe',
-        },
-        'edit_data': {
-            'name': 'Market-driven',
-        },
-    },
-    'federation_members': {
-        'url': '/api/v2/federation-members/',
-        'create_data': {
-            'name': 'Federation Member',
-            'country': 'FR',
-            'webpage': 'https://example.com',
-        },
-        'edit_data': {
-            'name': 'Federation Member modified',
+            'epp_bai_0_id': 'id',
+            'epp_bai_1_name': 'epp_name',
+            'epp_bai_2_abbreviation': 'epp_abb',
+            'epp_bai_3_website': 'epp_website',
+            'epp_bai_4_legal_entity': False,
+            'epp_loi_1_street_name_and_number': 'Kings Cross 17',
+            'epp_loi_2_postal_code': '538393',
+            'epp_loi_3_city': 'London',
+            'epp_loi_4_region': 'Major London',
+            'epp_loi_5_country_or_territory': 'Great Britain',
+            'epp_mri_1_description': '<p>short provider description</p>',
+            'epp_mri_2_logo': 'https://example.com/provider.png',
+            'epp_mri_3_multimedia': 'https://vimeo.com/1001010938',
+            'epp_mti_1_life_cycle_status': 'Operational',
+            'epp_mti_2_certifications': 'ISO-27001'
         },
     },
 }

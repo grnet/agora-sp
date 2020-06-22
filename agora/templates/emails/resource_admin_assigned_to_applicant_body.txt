@@ -1,0 +1,8 @@
+{% extends "emails/email_base.txt" %}
+{% block content %}
+
+Your have been set as administrator of the resource {{ resource.erp_bai_1_name }}.
+
+You can edit the resource by signing in your account ({{ login_url }}) and visiting the link {{ resource_url }}.
+
+{% endblock content %}

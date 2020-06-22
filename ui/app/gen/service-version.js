@@ -1,3 +1,4 @@
+// UNUSED
 import Ember from 'ember';
 import { AgoraGen } from '../lib/common';
 import { field } from 'ember-gen';
@@ -58,11 +59,7 @@ export default AgoraGen.extend({
     menu: {
       label: 'service_version.menu',
       icon: 'bookmarks',
-      display:  computed('role', function(){
-        let role = get(this, 'session.session.authenticated.role');
-
-        return role !== 'serviceadmin';
-      }),
+      display: false,
     },
     sort: {
       serverSide: true,

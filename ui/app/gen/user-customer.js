@@ -1,3 +1,4 @@
+// UNUSED
 import { AgoraGen } from '../lib/common';
 import { field } from 'ember-gen';
 import validate from 'ember-gen/validate';
@@ -32,6 +33,7 @@ export default AgoraGen.extend({
       title: 'user_customer.menu'
     },
     menu: {
+      display: false,
       label: 'user_customer.menu',
       group: 'settings'
     },

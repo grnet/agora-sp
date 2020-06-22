@@ -39,12 +39,12 @@ const DETAILS_FIELDSETS = [{
       }),
       'shibboleth_id',
       'email',
-      'is_active',
-      'is_staff',
-      'role'
+      field('role_verbose', {
+        label: 'custom_user.fields.role',
+      })
     ];
     if (role === 'superadmin' && model_role === 'serviceadmin') {
-      fields.push(providers);
+      fields.push('organisation');
     }
     return fields;
   }),
@@ -66,12 +66,10 @@ const CREATE_OR_EDIT_FIELDSETS = [{
       'first_name',
       'last_name',
       'email',
-      'is_active',
-      'is_staff',
       'role',
     ];
     if (role === 'superadmin' && model_role === 'serviceadmin') {
-      fields.push(providers);
+      fields.push('organisation');
     }
     return fields;
   }),
@@ -91,7 +89,7 @@ const PROFILE_FIELDSETS = [{
       'full_name',
     ];
     if (model_role === 'serviceadmin') {
-      fields.push(providers);
+      fields.push('organisation');
     }
     return fields;
   }),

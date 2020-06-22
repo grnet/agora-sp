@@ -1,3 +1,4 @@
+// UNUSED
 import Ember from 'ember';
 import gen from 'ember-gen/lib/gen';
 

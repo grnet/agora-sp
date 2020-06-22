@@ -23,6 +23,10 @@ const common = {
   },
   'group_menu': {
     'user_information': 'Owners',
+    'resource_settings': 'Resource Settings',
+    'provider_settings': 'Provider Settings',
+    'class_settings': 'Classification Settings',
+    'user_settings': 'User Settings',
   },
   'confirm': {
     'message': 'Are you sure you want to delete this item?<br> The action cannot be undone',

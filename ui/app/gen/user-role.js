@@ -1,3 +1,4 @@
+// UNUSED
 import { AgoraGen } from '../lib/common';
 
 export default AgoraGen.extend({
@@ -10,6 +11,7 @@ export default AgoraGen.extend({
       title: 'user_role.menu'
     },
     menu: {
+      display: false,
       label: 'user_role.menu',
       group: 'settings'
     },

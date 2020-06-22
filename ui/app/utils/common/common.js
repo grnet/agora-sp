@@ -26,11 +26,11 @@ function strip(html) {
   return txt;
 }
 
-function get_my_services(services, user_id) {
+function get_my_resources(resources, user_id) {
 
-  return services.filter(function(service){
-    let rejected = get(service, 'rejected_service_admins_ids').split(',');
-    let pending = get(service, 'pending_service_admins_ids').split(',');
+  return resources.filter(function(resource){
+    let rejected = get(resource, 'rejected_service_admins_ids').split(',');
+    let pending = get(resource, 'pending_service_admins_ids').split(',');
     let not = rejected.concat(pending);
 
     return !not.includes(user_id.toString());
@@ -40,5 +40,5 @@ function get_my_services(services, user_id) {
 export {
   shorten,
   strip,
-  get_my_services,
+  get_my_resources,
 };

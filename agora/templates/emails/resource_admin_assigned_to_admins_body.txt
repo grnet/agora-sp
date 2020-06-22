@@ -1,0 +1,10 @@
+{% extends "emails/email_base.txt" %}
+{% block content %}
+
+A user with:
+
+{% include "emails/applicant_details.txt" %}
+
+has been set as administrator for the resource {{ resource.erp_bai_1_name }} that you administer.
+
+{% endblock content %}

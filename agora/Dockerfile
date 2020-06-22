@@ -1,4 +1,4 @@
-FROM python:2
+FROM python:2.7.15
 
 ADD requirements.txt /srv/agora/requirements.txt
 ADD requirements_dev.txt /srv/agora/requirements_dev.txt

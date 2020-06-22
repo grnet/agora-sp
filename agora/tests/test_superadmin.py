@@ -1,6 +1,6 @@
 import json
 from agora.testing import *
-from accounts.models import User
+from accounts.models import User, Organisation
 
 
 def assertions_crud(resource, user):
@@ -38,96 +38,84 @@ def assertions_crud(resource, user):
 
 # Tests for resources with no foreign keys
 
-def test_user_roles(superadmin):
-    assertions_crud('user_roles', superadmin)
-
-
-def test_service_trls(superadmin):
-    assertions_crud('service_trls', superadmin)
-
-
-def test_service_status(superadmin):
-    assertions_crud('service_status', superadmin)
-
-
-def test_service_categories(superadmin):
-    assertions_crud('service_categories', superadmin)
-
-
-def test_services(superadmin):
-    assertions_crud('services', superadmin)
-
-
-def test_components(superadmin):
-    assertions_crud('components', superadmin)
-
+def test_target_users(superadmin):
+    assertions_crud('target_users', superadmin)
 
 def test_providers(superadmin):
     assertions_crud('providers', superadmin)
 
-
-def test_access_policies(superadmin):
-    assertions_crud('access_policies', superadmin)
-
-
-def test_federation_members(superadmin):
-    assertions_crud('federation_members', superadmin)
+def test_resources(superadmin):
+    assertions_crud('resources', superadmin)
 
 
-# Tests for ServiceAdminship
 
-def test_serviceadminship_create(superadmin):
+# Tests for ResourceAdminship
 
-    service_url = RESOURCES_CRUD['services']['url']
-    service_data = RESOURCES_CRUD['services']['create_data']
-    resp = superadmin.post(service_url, service_data)
+def test_resourceadminship_create(superadmin):
 
-    service_id = resp.json()['id']
-    test_user, created = User.objects.get_or_create(
+    # Prepare tests: Create a Provider, a resource belonging to
+    # this Provider and a serviceadmin that also belongs to
+    # this Provider.
+    provider_url = RESOURCES_CRUD['providers']['url']
+    provider_data = RESOURCES_CRUD['providers']['create_data']
+    resp = superadmin.post(provider_url, provider_data)
+
+    provider_id = resp.json()['id']
+    provider = Organisation.objects.get(pk=provider_id)
+
+    resource_url = RESOURCES_CRUD['resources']['url']
+    resource_data = RESOURCES_CRUD['resources']['create_data']
+    resource_data['erp_bai_2_service_organisation'] = provider_id
+    resp = superadmin.post(resource_url, resource_data)
+
+    resource_id = resp.json()['id']
+    test_user, _ = User.objects.get_or_create(
         username='test_user',
         email='test_user@test.org',
+        organisation=provider,
         role='serviceadmin')
     test_user.set_password('12345')
     test_user.save()
-    sa_url = RESOURCES_CRUD['service_admins']['url']
+    ra_url = RESOURCES_CRUD['resource_admins']['url']
 
     """
-    Superadmin creates ServiceAdminship with status 'approved'.
-    Superadmin can delete a serviceAdminship
+    Superadmin creates ResourceAdminship with status 'approved'.
+    Superadmin can delete a ResrouceAdminship.
     """
-    resp = superadmin.post(sa_url,
-                           {'admin': test_user.id, 'service': service_id})
-    sa_id = resp.json()['id']
+    resp = superadmin.post(ra_url,
+                           {'admin': test_user.id, 'resource': resource_id})
     assert resp.status_code == 201
     assert resp.json()['state'] == 'approved'
+    ra_id = resp.json()['id']
 
-    resp = superadmin.delete(sa_url + sa_id + '/')
+    resp = superadmin.delete(ra_url + ra_id + '/')
     assert resp.status_code == 204
 
-    resp = superadmin.delete(service_url + service_id + '/')
+    resp = superadmin.delete(resource_url + resource_id + '/')
     assert resp.status_code == 204
 
-    resp = superadmin.post(service_url, service_data)
-    service_id = resp.json()['id']
-    test_user, created = User.objects.get_or_create(
+    resp = superadmin.post(resource_url, resource_data)
+    resource_id = resp.json()['id']
+    test_user, _ = User.objects.get_or_create(
         username='test_user',
         email='test_user@test.org')
     """
-    Superadmin cannot create ServiceAdminship for user with roles 'observer',
+    Superadmin cannot create ResourceAdminship for user with roles 'observer',
     'superadmin' or 'admin'.
     """
     for role in ['observer', 'superadmin', 'admin']:
         test_user.role = role
         test_user.save()
 
-        resp = superadmin.post(sa_url,
-                               {'admin': test_user.id, 'service': service_id})
+        resp = superadmin.post(ra_url,
+                               {'admin': test_user.id, 'resource': resource_id})
         assert resp.status_code == 400
 
-    superadmin.delete(service_url + service_id + '/')
+    superadmin.delete(resource_url + resource_id + '/')
+    superadmin.delete(provider_url + provider_id + '/')
 
 
-def test_serviceadminship_update(superadmin):
+def test_resourceadminship_update(superadmin):
     """
     Allowed state transitions are:
     ('pending', 'approved'),
@@ -136,61 +124,48 @@ def test_serviceadminship_update(superadmin):
     ('approved', 'pending'),
     """
 
-    service_url = RESOURCES_CRUD['services']['url']
-    service_data = RESOURCES_CRUD['services']['create_data']
-    resp = superadmin.post(service_url, service_data)
+    # Prepare tests: Create a Provider, a resource belonging to
+    # this Provider and a serviceadmin that also belongs to
+    # this Provider.
+    provider_url = RESOURCES_CRUD['providers']['url']
+    provider_data = RESOURCES_CRUD['providers']['create_data']
+    resp = superadmin.post(provider_url, provider_data)
+    provider_id = resp.json()['id']
+    provider = Organisation.objects.get(pk=provider_id)
 
-    service_id = resp.json()['id']
-    test_user, created = User.objects.get_or_create(
+    resource_url = RESOURCES_CRUD['resources']['url']
+    resource_data = RESOURCES_CRUD['resources']['create_data']
+    resource_data['erp_bai_2_service_organisation'] = provider_id
+    resp = superadmin.post(resource_url, resource_data)
+
+    resource_id = resp.json()['id']
+    test_user, _ = User.objects.get_or_create(
         username='test_user',
         email='test_user@test.org',
+        organisation=provider,
         role='serviceadmin')
     test_user.set_password('12345')
     test_user.save()
-    sa_url = RESOURCES_CRUD['service_admins']['url']
+    ra_url = RESOURCES_CRUD['resource_admins']['url']
 
-    resp = superadmin.post(sa_url,
-                           {'admin': test_user.id, 'service': service_id})
-    sa_id = resp.json()['id']
+    resp = superadmin.post(ra_url,
+                           {'admin': test_user.id, 'resource': resource_id})
+    ra_id = resp.json()['id']
 
     resp = superadmin.patch(
-        sa_url + sa_id + '/',
+        ra_url + ra_id + '/',
         json.dumps({'state': 'rejected'}),
         content_type='application/json')
     assert resp.status_code == 400
 
     resp = superadmin.patch(
-        sa_url + sa_id + '/',
+        ra_url + ra_id + '/',
         json.dumps({'state': 'approved'}),
         content_type='application/json')
     assert resp.status_code == 400
 
     resp = superadmin.patch(
-        sa_url + sa_id + '/',
+        ra_url + ra_id + '/',
         json.dumps({'state': 'pending'}),
         content_type='application/json')
     assert resp.status_code == 200
-
-
-# Tests for resources with related data
-
-def test_component_implementations(superadmin, component_id):
-    url = '/api/v2/component-implementations/'
-    data = {
-        'name': 'component category',
-        'component_id': component_id
-    }
-    resp = superadmin.post(url, data)
-    assert resp.status_code == 201
-
-
-def test_component_implementations_details(superadmin, component_id,
-                                           component_implementation_id):
-    url = '/api/v2/component-implementation-details/'
-    data = {
-        'version': '1.0.0',
-        'component_id': component_id,
-        'component_implementation_id': component_implementation_id
-    }
-    resp = superadmin.post(url, data)
-    assert resp.status_code == 201

@@ -26,7 +26,7 @@ module.exports = function(environment) {
     },
     APP: {
       date_format: 'DD/MM/YYYY',
-      default_route: 'service-item.index',
+      default_route: 'resource.index',
       domestic_login_msg: 'Log in with Check-in',
 
       footer: {
@@ -40,10 +40,10 @@ module.exports = function(environment) {
         policy_text: 'Privacy Policy',
         // If set, <policy_text> link will  redirect to <policy_url>. If not set,
         // <policy_text> link will point to policy.hbs template.
-        policy_url: 'http://www.example.com',
+        policy_url: 'https://www.example.com',
         // If  set, logos will be visible in footer.
         logos: [{
-          url: 'http://grnet.github.io/grnet-media-pack/grnet/logos/grnet_logo_en.svg',
+          url: 'https://grnet.github.io/grnet-media-pack/grnet/logos/grnet_logo_en.svg',
           alt: 'grnet',
         }, {
           url: 'https://upload.wikimedia.org/wikipedia/commons/b/b7/Flag_of_Europe.svg',

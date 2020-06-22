@@ -44,11 +44,12 @@ export default AgoraGen.extend({
       title: 'service_admin.menu',
     },
     menu: {
+      display: false,
       label: 'service_admin.menu',
       group: {
         name: 'user-information',
         label: 'group_menu.user_information',
-        order: 400,
+        order: 300,
           icon: 'people',
       },
     },

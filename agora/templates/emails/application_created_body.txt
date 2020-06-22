@@ -3,9 +3,9 @@
 
 User with:
 {% include "emails/applicant_details.txt" %}
-has applied for adminship for the service {{ service.name }} for which you are administator.
+has applied for adminship for the resource {{ resource.erp_bai_1_name }} for which you are administator.
 
-You can approve or reject the user application by signing in your account ({{ login_url }}) and visiting the link {{ service_admins_url }}.
+You can approve or reject the user application by signing in your account ({{ login_url }}) and visiting the link {{ resource_admins_url }}.
 
 
 {% endblock content %}

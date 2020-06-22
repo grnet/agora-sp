@@ -69,7 +69,7 @@ Finally, you should also create a `deployment.conf` file which should specify th
 
 The default location of `deployment.conf` is in '/etc/agora/`.
 
-Example: 
+Example:
 
 ```
 {
@@ -116,7 +116,7 @@ var ENV = {
 
 ```
 
-You can additionally customize the content of the footer. 
+You can additionally customize the content of the footer.
 The available options can be found in `ui/config/environment.js` file:
 
 ```javascript
@@ -145,12 +145,12 @@ APP: {
 }
 ```
 
-They are all optional. 
+They are all optional.
 
 If you wish to use `policy.hbs` template for you policy page, you can alter the title and the content by editing `ui/app/locales/en/policy.js` file.
 
 
- 
+
 
 
 ### Migrations
@@ -166,6 +166,7 @@ python manage.py migrate
 You can load some initial data by running:
 ```
 python manage.py loaddata fixtures/users.json
+python manage.py loaddata fixtures/target_users.json
 ```
 
 `users.json` will create users with usernames/passwords:
@@ -235,14 +236,27 @@ If you want to attach to the running process use:
 
 ## Testing
 
-We use [pytest](https://docs.pytest.org/en/latest/index.html) to run API testing and [cypress](https://www.cypress.io/) for e2e testing.
+### Selenium
+We use [**Selenium**](selenium.dev/) with **Python 3** to do UI testing.
+The code of the Selenium tests is in the path :
+`https://gitlab.grnet.gr/devs/agora/agora-sp/-/tree/devel/ui/selenium_tests`.
+To run the end-to-end selenium tests you just need a python environment with [`selenium` package installed](https://pypi.org/project/selenium/).
+
+Here’s how you can run the Selenium tests :
+```
+python agora_ui_tests.py
+```
+
+### Pytest
+We also use [pytest](https://docs.pytest.org/en/latest/index.html) to run API testing and [cypress](https://www.cypress.io/) for some e2e testing.
 
 In order to test API, you must run
 ```
-pytest 
+pytest
 ```
 from inside `agora` folder with virtualenv activated. Make sure you have already installed the development requirements by issuing: `pip install -r requirements_dev.txt`. This will install the required version of `pytest` along with the needed dependencies `pytest-env` and `pytest-django`.
 
+### Cypress
 For e2e testing, open cypress using yarn:
 ```
 yarn run cypress open
@@ -252,8 +266,12 @@ and follow the instruction in [cypress test runner docs](https://docs.cypress.io
 
 # Copyright and license
 
+The work represented by this software was partially funded by:
+- EOSC-Hub project European Union (EU) Horizon 2020 program under Grant number 77753642.
+- EUDAT2020 European Union’s H2020 Program under Contract No. 654065.
+- EUDAT s Framework Programme 7 under Contract No. 283304.
 
-Copyright (C) 2017-2019 GRNET S.A.
+Copyright (C) 2017-2020 GRNET S.A.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
