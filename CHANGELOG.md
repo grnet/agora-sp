@@ -4,6 +4,26 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+
+## [1.0](https://github.com/grnet/agora-sp/compare/v0.9.17...v1.0) - 2020-06-22
+
+###  Added
+- Add Resource model.
+- Add fields according to SDTv3.0.
+- Add support models for Resource and Provider.
+
+### Changed
+- Replace Service and ServiceDetails models with Resource.
+- A serviceadmin can belong to just one Organisation.
+- Use Provider instead of Organisation.
+- Rearrange sidebar menu.
+
+### Fixed
+- Fix bug with select not working well with ember-chips.
+
+### Removed
+- Remove unused /api/v2/ endpoints.
+
 ## [0.9.17](https://github.com/grnet/agora-sp/compare/v0.9.16...v0.9.17) - 2019-12-09
 
 ###  Added
