@@ -52,6 +52,7 @@ export default DS.Model.extend({
   epp_bai_5_legal_status: DS.belongsTo('legalstatus', {
     autocomplete: true,
     type: 'select',
+    displayAttr: 'name',
     label: 'provider.fields.epp_bai_5_legal_status',
     hint: 'provider.hints.epp_bai_5_legal_status',
     inverse: null,

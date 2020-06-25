@@ -204,6 +204,7 @@ let model = DS.Model.extend({
   erp_mti_1_technology_readiness_level: DS.belongsTo('trl', {
     autocomplete: true,
     type: 'select',
+    displayAttr: 'name',
     label: 'resource.fields.erp_mti_1_technology_readiness_level',
     hint: 'resource.hints.erp_mti_1_technology_readiness_level',
     formAttrs: {
@@ -213,6 +214,7 @@ let model = DS.Model.extend({
   erp_mti_2_life_cycle_status: DS.belongsTo('resource-lifecycle-status', {
     autocomplete: true,
     type: 'select',
+    displayAttr: 'name',
     label: 'resource.fields.erp_mti_2_life_cycle_status',
     hint: 'resource.hints.erp_mti_2_life_cycle_status',
     formAttrs: {
