@@ -105,6 +105,17 @@ var ENV = {
 }
 ```
 
+Moreover, you have add the compiled style file in `ui/ember-cli-build.js`:
+
+```
+app: {
+  css: {
+    'my-theme': '/assets/my-theme.css',
+  }
+}
+
+```
+
 In case you want to alter the text for domestic login method, you can change the configuration option in `config/environment.js` as follows:
 
 ```
