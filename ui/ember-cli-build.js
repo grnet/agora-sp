@@ -9,6 +9,7 @@ module.exports = function(defaults) {
         css: {
           'theme-eosc': '/assets/theme-eosc.css',
           'theme-ni4os': '/assets/theme-ni4os.css',
+          'theme-egi': '/assets/theme-egi.css',
         },
       },
     },
