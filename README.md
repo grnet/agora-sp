@@ -176,8 +176,12 @@ python manage.py migrate
 
 You can load some initial data by running:
 ```
+./populate.db
+```
+
+If you want to add duymmy users to agora, for developoment purposes, run:
+```
 python manage.py loaddata fixtures/users.json
-python manage.py loaddata fixtures/target_users.json
 ```
 
 `users.json` will create users with usernames/passwords:
