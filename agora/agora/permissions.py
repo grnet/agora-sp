@@ -7,6 +7,7 @@ def get_rules():
         ('api/v2/custom-users', 'retrieve', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/custom-users', 'retrieve', 'admin', '*', '*', '*', '*'),
         ('api/v2/custom-users', 'retrieve', 'serviceadmin', 'me', '*', '*', '*'),
+        ('api/v2/custom-users', 'retrieve', 'observer', 'me', '*', '*', '*'),
         ('api/v2/custom-users', 'update', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/custom-users', 'update', 'admin', '*', '*', '*', '*'),
         ('api/v2/custom-users', 'partial_update', 'superadmin', '*', '*', '*', '*'),
