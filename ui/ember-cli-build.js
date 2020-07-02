@@ -10,9 +10,13 @@ module.exports = function(defaults) {
           'theme-eosc': '/assets/theme-eosc.css',
           'theme-ni4os': '/assets/theme-ni4os.css',
           'theme-egi': '/assets/theme-egi.css',
+          'theme-eudat': '/assets/theme-eudat.css',
         },
       },
     },
+    fingerprint: {
+      exclude: ['assets/logo*.png'],
+    }
   });
 
   return app.toTree();
