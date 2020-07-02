@@ -14,6 +14,9 @@ module.exports = function(defaults) {
         },
       },
     },
+    fingerprint: {
+      exclude: ['assets/logo*.png'],
+    }
   });
 
   return app.toTree();
