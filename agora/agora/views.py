@@ -160,7 +160,7 @@ def shibboleth_login(request):
     shibboleth_id = user_data.get('shibboleth_id')
     if not shibboleth_id:
         e = 'No shibboleth id'
-        return HttpResponseRedirect(TOKEN_LOGIN_URL + "#error=foo" % e)
+        return HttpResponseRedirect(TOKEN_LOGIN_URL + "#error=%s" % e)
 
     try:
         user = User.objects.get(shibboleth_id=shibboleth_id)

@@ -95,14 +95,26 @@ var ENV = {
 
 You can customize the appearance of your installation by adding your own logo, style and domestic login method text.
 
-You can place your own logo inside `public/assets` directory under the name `logo.png`.
+You can place your own logo inside `public/assets` directory, whose name you must set in `ui/config/environment.js`.
 You can also use a custom preprocessed stylesheet, which you should place inside `styles` folder.
-In order to process it and import it, you have to edit `ui/config/environment.js` file and set the `theme` option to match the name of the stylesheet `my-themes.scss`:
+In order to process and and import the theme, you have to edit `ui/config/environment.js` file and set the `theme` option to match the name of the stylesheet `my-themes.scss`:
 
 ```
 var ENV = {
     theme: 'my-theme',
+    logo: 'my-logo.name.png',
 }
+```
+
+Moreover, you have add the compiled style file in `ui/ember-cli-build.js`:
+
+```
+app: {
+  css: {
+    'my-theme': '/assets/my-theme.css',
+  }
+}
+
 ```
 
 In case you want to alter the text for domestic login method, you can change the configuration option in `config/environment.js` as follows:
@@ -165,8 +177,12 @@ python manage.py migrate
 
 You can load some initial data by running:
 ```
+./populate.db
+```
+
+If you want to add duymmy users to agora, for developoment purposes, run:
+```
 python manage.py loaddata fixtures/users.json
-python manage.py loaddata fixtures/target_users.json
 ```
 
 `users.json` will create users with usernames/passwords:

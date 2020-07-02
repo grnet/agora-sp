@@ -2,7 +2,7 @@ argo-ams-library==0.4.2
 apimas-django==0.4a4
 apimas==0.4a4
 specular==0.4a4
-Django==1.11.23
+Django==1.11.29
 django-ckeditor==5.2.2
 django-cors-headers==1.1.0
 django-rest-swagger==0.3.10
@@ -11,5 +11,5 @@ django-suit==0.2.25
 djangorestframework==3.9.1
 djoser==0.5.2
 future==0.15.2
-Pillow==4.1.1
+Pillow==6.2.0
 beautifulsoup4==4.6.3
