@@ -28,7 +28,7 @@ let model = DS.Model.extend({
   }),
   erp_bai_3_service_providers: DS.hasMany('provider', {
     label: 'resource.fields.erp_bai_3_service_providers',
-    hint: 'resource.hints.erp_bai_2_service_organisation',
+    hint: 'resource.hints.erp_bai_3_service_providers',
   }),
   erp_bai_4_webpage: DS.attr({
     label: 'resource.fields.erp_bai_4_webpage',
