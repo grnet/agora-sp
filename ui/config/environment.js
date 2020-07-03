@@ -41,7 +41,7 @@ module.exports = function(environment) {
         policy_text: 'Privacy Policy',
         // If set, <policy_text> link will  redirect to <policy_url>. If not set,
         // <policy_text> link will point to policy.hbs template.
-        policy_url: '/ui/assets/privacy/privacy-policy-agora-ni4os.pdf',
+        policy_url: 'https://www.example.com',
         // If  set, logos will be visible in footer.
         logos: [{
           url: 'https://grnet.github.io/grnet-media-pack/grnet/logos/grnet_logo_en.svg',
