@@ -89,6 +89,26 @@ const related_resources = field('related_resources', {
   },
 });
 
+const contact = function(field_name) {
+  return field(
+    field_name, {
+      type: 'model',
+      displayAttr: 'displayInfo',
+      query: Ember.computed('model.changeset.erp_bai_2_service_organisation', 'model.erp_bai_2_service_organisation', function() {
+        let org_id_changed = get(this, 'model.changeset.erp_bai_2_service_organisation.id');
+        let org_id = get(this, 'model.erp_bai_2_service_organisation.id');
+        let organisation = org_id_changed || org_id;
+        return function(select, store, field, params) {
+          params = params || {};
+          params.organisation = organisation;
+          return store.query('contact-information', params);
+        }
+      })
+    }
+  );
+}
+
+
 const SORT_FIELDS = [
   'erp_bai_0_id',
   'erp_bai_1_name',
@@ -240,16 +260,8 @@ const LOCATION_FIELDSET = {
 const CONTACT_FIELDSET = {
   label: 'resource.cards.contact',
   fields: [
-    field(
-      'main_contact', {
-        displayAttr: 'displayInfo'
-      }
-    ),
-    field(
-      'public_contact', {
-        displayAttr: 'displayInfo'
-      }
-    ),
+    contact('main_contact'),
+    contact('public_contact'),
     'erp_coi_13_helpdesk_email',
     'erp_coi_14_security_contact_email',
   ],
