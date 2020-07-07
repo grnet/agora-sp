@@ -11,9 +11,8 @@ __email__ = 'tasos@admin.grnet.gr'
 from agora.providers.providers import Providers
 from agora.utils.emberJS_fields import input_field, suggestion_input_field, table_select_field, textarea_field, \
     checkbox_field
-from agora.validations.delete_responses import delete_success
+from agora.validations.delete_responses import delete_success, delete_from_listView
 from agora.validations.save_responses import save_success
-from time import sleep
 
 
 class CreateProvider(Providers):
@@ -96,14 +95,6 @@ class CreateProvider(Providers):
         The create new provider page is here: https://testvm.agora.grnet.gr/ui/providers/create
         It calls all the methods they undertake to fill all the areas of the form.
 
-        **Προσοχή**
-            1.Λόγο ίσος ιδιαιτερώτητας και την σελίδας μας με το EmberJS, εν τέλει εφόσον το Selenium συνδεθεί
-        και καλέσει αυτή την συνάρτηση, τότε θα πρέπει να κάνω click στους providers από το αριστερό menu ώστε να με
-        πάει στην σελίδα `https://testvm.agora.grnet.gr/ui/providers/create`. Αλλιώς δεν με πηγαίνει. Αν κάνω ξανά
-        request, και ας έχω συνδεθεί πρωτήτερα, πάλι μου ζητάει κωδικούς.
-            2. Κάνω click σε href και όχι σε button! - Κατ' ουσία μάλλον δεν υπάρχει button εκεί, απλώς ένα href.
-
-
         @param required_only: Fill in only the required fields or not?
         @return: True if all goes well otherwise False.
         """
@@ -118,7 +109,12 @@ class CreateProvider(Providers):
             self.other_information(required_only)
 
         save_success(self.driver)
-        delete_success(self.driver)
+
+        # Search
+        self.providers_page()
+        self.search_field()
+        delete_from_listView(self.driver)
+        # delete_success(self.driver)
         self.close()
 
     def basic_information(self, required_only=False):
@@ -268,43 +264,9 @@ class CreateProvider(Providers):
         # *.OTH.9 - MERIL Scientific Subdomain
         table_select_field(self.driver, self.fields_prefix + "oth_9_meril_scientific_subdomain", 5)
         # *.OTH.10 - Areas of activity
-        table_select_field(self.driver, self.fields_prefix + "oth_10_areas_of_activity", 5)
+        table_select_field(self.driver, self.fields_prefix + "oth_10_areas_of_activity", 2)
         # *.OTH.11 - Societal Grand challenges
         table_select_field(self.driver, self.fields_prefix + "oth_11_societal_grand_challenges", 5)
         # *.OTH.12 - National Roadmaps
         input_field(self.driver, self.fields_prefix + "oth_12_national_roadmaps", "SELENIUM")
 
-    # def save_new_provider(self):
-    #     """
-    #     Save the new Provider.
-    #
-    #     It tries to save the form and checks the response from the page.
-    #     @return: True if all goes well otherwise False.
-    #     """
-    #     self.driver.find_element_by_xpath('//button[text()="save"]').click()
-    #     sleep(self.sleep_time)
-    #
-    #     try:
-    #         if self.driver.find_element_by_class_name("toast-level-success"):
-    #             print("The page was successful saved.")
-    #     except:
-    #         pass
-    #         # raise exception_class(message, screen, stacktrace)
-    #         # selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: .toast-level-success
-    #
-    #     try:
-    #         if self.driver.find_element_by_class_name("toast-level-warning"):
-    #             print("The page wasn't saved. Form invalid.")
-    #
-    #     except:
-    #         pass
-    #         # raise exception_class(message, screen, stacktrace)
-    #         # selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: .toast-level-success
-    #
-    #     try:
-    #         if self.driver.find_element_by_class_name("toast-level-error"):
-    #             print("The page wasn't saved. Form Error.")
-    #     except:
-    #         pass
-    #         # raise exception_class(message, screen, stacktrace)
-    #         # selenium.common.exceptions.NoSuchElementException: Message: Unable to locate element: .toast-level-success

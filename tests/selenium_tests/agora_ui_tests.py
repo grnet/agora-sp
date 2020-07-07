@@ -18,12 +18,15 @@ from agora.resources.resource_create import ResourceCreate
 from agora.resources.resource_form_validations import ResourceFormValidations
 from agora.resources.resources_operations import ResourcesOperations
 import argparse
+import time
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--url", help="URL of the host to execute on the selenium tests", required=True)
     args = parser.parse_args()
+    # starting time
+    start = time.time()
 
     # Field Validations.
     ContactFormValidations("Firefox", headless=True, instance=args.url)
@@ -44,3 +47,8 @@ if __name__ == '__main__':
 
     resource = ResourceCreate("Firefox", headless=True, instance=args.url)
     resource.create_new_resource(required_only=False)
+
+    # end time
+    end = time.time()
+    e = int(end - start)
+    print('\n\nExecution time of the Selenium UI tests is : {:02d}:{:02d}:{:02d}\n\n'.format(e // 3600, (e % 3600 // 60), e % 60))

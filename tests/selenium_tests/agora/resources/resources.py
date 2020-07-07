@@ -9,8 +9,8 @@ __author__ = 'Tas-sos'
 __email__ = 'tasos@admin.grnet.gr'
 
 from agora.Agora import Agora
-from time import sleep
-from abc import abstractmethod
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
 
 class Resources(Agora):
@@ -46,9 +46,8 @@ class Resources(Agora):
         @requires the successful execution of the following methods :
             1. basic_authentication
         """
-        sleep(self.sleep_time)
+        self.wait.until(EC.presence_of_element_located((By.XPATH, "//a[@href='/ui/resources']")))
         self.driver.find_element_by_xpath("//a[@href='/ui/resources']").click()
-        sleep(self.sleep_time)
 
     def resources_create_new_page(self):
         """
@@ -61,7 +60,6 @@ class Resources(Agora):
         Checks if the following exist:
             - Create (href)
         """
+        self.wait.until(EC.presence_of_element_located((By.XPATH, "//a[@href='/ui/resources/create']")))
         assert "create" in self.driver.find_element_by_xpath("//a[@href='/ui/resources/create']").text
         self.driver.find_element_by_xpath("//a[@href='/ui/resources/create']").click()
-        sleep(self.sleep_time)
-

@@ -8,7 +8,9 @@ __maintainer__ = 'Tas-sos'
 __author__ = 'Tas-sos'
 __email__ = 'tasos@admin.grnet.gr'
 
-from time import sleep
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
 
 
 def save_success(save_button):
@@ -18,10 +20,12 @@ def save_success(save_button):
     It tries to save the form and checks the response from the page.
     @return: True if the form returns an success message otherwise False.
     """
-    sleep(0.5)
+    # Wait at most 10 seconds.
+    wait = WebDriverWait(save_button, 10)
+    wait.until(EC.presence_of_element_located((By.XPATH, '//button[text()="save"]')))
     save_button.find_element_by_xpath('//button[text()="save"]').click()
-    sleep(1.5)
 
+    wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'toast-level-success')))
     form_response_message = save_button.find_element_by_class_name("toast-level-success").text.split("\n")[0]
     assert "Form Saved" in form_response_message
     if save_button.find_element_by_class_name("toast-level-success"):
@@ -39,10 +43,12 @@ def save_invalid(save_button):
 
     @return: True if the form returns an invalid message otherwise False.
     """
-    sleep(0.5)
+    # Wait at most 10 seconds.
+    wait = WebDriverWait(save_button, 10)
+    wait.until(EC.presence_of_element_located((By.XPATH, '//button[text()="save"]')))
     save_button.find_element_by_xpath('//button[text()="save"]').click()
-    sleep(1.5)
 
+    wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'toast-level-warning')))
     form_response_message = save_button.find_element_by_class_name("toast-level-warning").text.split("\n")[0]
     assert "Form Invalid" in form_response_message
     if save_button.find_element_by_class_name("toast-level-warning"):
