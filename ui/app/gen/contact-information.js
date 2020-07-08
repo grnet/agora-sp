@@ -12,9 +12,9 @@ export default AgoraGen.extend({
   abilityStates: {
     // a servicedmin can edit a contact if they belongs
     // to the same organisation
-    update_organisation_owned: computed('model.organisation', 'user.organisation', function() {
+    update_organisation_owned: computed('model.organisation_id', 'user.organisation', function() {
       let user_org =  get(this, 'user.organisation');
-      let contact_org =  get(this, 'model.organisation.id');
+      let contact_org =  get(this, 'model.organisation_id');
       return user_org === contact_org;
     }),
     create_organisation_owned: true,

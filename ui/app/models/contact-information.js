@@ -32,6 +32,7 @@ export default DS.Model.extend({
       optionLabelAttr: 'epp_bai_1_name',
     },
   }),
+  organisation_id: DS.attr(),
   full_name: Ember.computed('first_name', 'last_name', function() {
     const first_name = this.get('first_name');
     const last_name = this.get('last_name');
@@ -46,4 +47,12 @@ export default DS.Model.extend({
 
     return `${full_name} (${org})`;
   }),
+
+  __api__: {
+    serialize: function(hash) {
+      // do not send readonly keys to backend
+      delete hash['organisation_id'];
+      return hash;
+    },
+  },
 });
