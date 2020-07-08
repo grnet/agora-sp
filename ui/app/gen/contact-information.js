@@ -61,7 +61,8 @@ export default AgoraGen.extend({
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],
       fields: [
-        'full_name',
+        'first_name',
+        'last_name',
         'email',
         'position',
         field('organisation.epp_bai_1_name', {label: 'contact_information.fields.organisation'}),
@@ -77,7 +78,22 @@ export default AgoraGen.extend({
     sort: {
       serverSide: true,
       active: true,
-      fields: ['email', 'position']
+      fields: ['email', 'position', 'first_name', 'last_name'],
+    },
+    filter: {
+      active: true,
+      serverSide: true,
+      search: true,
+      meta: {
+        fields: [
+          field('organisation', {
+            modelName:'provider',
+            label: 'contact_information.fields.organisation',
+            type: 'model',
+            displayAttr: 'epp_bai_1_name',
+          }),
+        ],
+      },
     },
   },
   details: {
