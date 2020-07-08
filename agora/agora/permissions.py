@@ -42,10 +42,13 @@ def get_rules():
         ('api/v2/contact-information', 'retrieve', 'observer', '*', '*', '*', '*'),
         ('api/v2/contact-information', 'create', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/contact-information', 'create', 'admin', '*', '*', '*', '*'),
+        ('api/v2/contact-information', 'create', 'serviceadmin', '*', 'create_organisation_owned', '*', '*'),
         ('api/v2/contact-information', 'update', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/contact-information', 'update', 'admin', '*', '*', '*', '*'),
+        ('api/v2/contact-information', 'update', 'serviceadmin', '*', 'update_organisation_owned', '*', '*'),
         ('api/v2/contact-information', 'partial_update', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/contact-information', 'partial_update', 'admin', '*', '*', '*', '*'),
+        ('api/v2/contact-information', 'partial_update', 'serviceadmin', '*', 'update_organisation_owned', '*', '*'),
         ('api/v2/contact-information', 'destroy', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/contact-information', 'delete', 'superadmin', '*', '*', '*', '*'),
 
