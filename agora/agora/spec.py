@@ -2344,6 +2344,9 @@ CONTACT_INFORMATION = {
             'to': '/api/v2/providers',
             '.flag.filterable': {},
             '.flag.nullable.default': {}},
+        'organisation_id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
     },
     'actions': {
         '.action-template.django.list': {},
