@@ -70,10 +70,8 @@ export default AgoraGen.extend({
     },
     menu: {
       label: 'contact_information.menu',
-      group: {
-        name: 'user-information',
-        order: 100,
-      },
+      icon: 'ContactMail',
+      order: 60,
     },
     sort: {
       serverSide: true,
