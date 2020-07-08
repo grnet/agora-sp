@@ -402,3 +402,29 @@ class Resource(object):
 
         if not user_org_id == resource_org_id:
             raise ValidationError(_('Unauthorized organisation(s)'))
+
+class ContactInformation(object):
+
+    @staticmethod
+    def create_organisation_owned(backend_input, instance, context):
+        """Servicadmins must belong to the same Organisation as the
+        Contact Information they are about to create.
+        """
+        auth_user = context['auth/user']
+        user_org_id = str(auth_user.organisation.id)
+        contact_org_id = str(backend_input.get('organisation_id'))
+
+        if not contact_org_id == user_org_id:
+            raise ValidationError(_('Unauthorized organisation(s)'))
+
+    @staticmethod
+    def update_organisation_owned(backend_input, instance, context):
+        """Servicadmins must belong to the same Organisation as the
+        Contact Information they are about to edit.
+        """
+        auth_user = context['auth/user']
+        user_org_id = str(auth_user.organisation.id)
+        contact_org_id = str(backend_input.get('organisation_id'))
+
+        if not contact_org_id == user_org_id:
+            raise ValidationError(_('Unauthorized organisation(s)'))

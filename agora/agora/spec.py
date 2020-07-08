@@ -2313,6 +2313,7 @@ TARGET_USERS = {
 CONTACT_INFORMATION = {
     '.collection.django': {},
     'model': 'owner.models.ContactInformation',
+    ':permissions_namespace': 'agora.checks.ContactInformation',
     'fields': {
         'id': {
             '.field.uuid': {},
