@@ -1837,26 +1837,33 @@ ORGANISATIONS = {
         'id': {
             '.field.uuid': {},
             '.flag.nowrite': {}},
+            '.flag.orderable': {},
         'epp_bai_0_id': {
-          '.field.string': {},
-          '.flag.nullable.default': {},
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {},
         },
         'epp_bai_1_name': {
-          '.field.string': {},
-          '.flag.filterable': {},
-          '.flag.searchable': {},
+            '.field.string': {},
+            '.flag.filterable': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {},
         },
         'epp_bai_2_abbreviation': {
-          '.field.string': {},
-          '.flag.nullable.default': {},
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {},
         },
         'epp_bai_3_website': {
-          '.field.string': {},
-          '.flag.nullable.default': {},
+            '.field.string': {},
+            '.flag.nullable.default': {},
         },
         'epp_bai_4_legal_entity': {
-          '.field.boolean': {},
-          'default': False},
+            '.field.boolean': {},
+            'default': False
+        },
         'epp_bai_5_legal_status': {
             '.field.ref': {},
             'source': 'epp_bai_5_legal_status_id',
@@ -2294,9 +2301,11 @@ TARGET_USERS = {
         'user': {
             '.field.string': {},
             '.flag.filterable': {},
+            '.flag.searchable': {},
             '.flag.orderable': {}},
         'description': {
             '.field.string': {},
+            '.flag.searchable': {},
             '.flag.nullable.default': {}},
     },
     'actions': {
