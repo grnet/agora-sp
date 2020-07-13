@@ -37,12 +37,13 @@ export default AgoraGen.extend({
       active: false,
       serverSide: true,
       search: true,
-      searchPlaceholder: 'network.placeholders.search',
+      searchPlaceholder: 'common.placeholders.search',
     },
     sort: {
       serverSide: true,
       active: true,
-      fields: SORT_FIELDS,
+      sortBy: 'abbreviation',
+      fields: ['name', 'abbreviation',],
     },
   },
   details: {

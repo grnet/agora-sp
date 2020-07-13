@@ -49,12 +49,12 @@ export default AgoraGen.extend({
       active: false,
       serverSide: true,
       search: true,
-      searchPlaceholder: 'service_item.placeholders.search',
+      searchPlaceholder: 'provider.placeholders.search',
     },
     sort: {
       serverSide: true,
       active: true,
-      fields: ['name']
+      fields: ['epp_bai_1_name', 'epp_bai_0_id', 'epp_bai_2_abbreviation']
     },
   },
   details: {

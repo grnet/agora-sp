@@ -2,7 +2,7 @@ const activity = {
     'cards': {
       'basic': 'Basic information',
       'basic_hint': '',
-  
+
     },
     'fields': {
       'name': 'Area of Activity name',
@@ -16,11 +16,11 @@ const activity = {
     },
     'table': {
       'name': 'Area of Activity',
-    }, 
+    },
     'placeholder':{
-      'search': 'Search by Area of Activity',
+      'search': 'Search by area of activity',
     },
     'menu': 'Areas of Activity'
   };
-  
+
   export { activity };

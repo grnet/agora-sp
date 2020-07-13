@@ -2,7 +2,7 @@ const merilsubdomain = {
     'cards': {
       'basic': 'Basic information',
       'basic_hint': '',
-  
+
     },
     'fields': {
       'domain': 'Meril Scientific Domain',
@@ -21,9 +21,9 @@ const merilsubdomain = {
     'table': {
       'domain': 'Meril Domain',
       'name': 'Meril Subdomain Title',
-    }, 
+    },
     'placeholder':{
-      'search': 'Search by Meril Domain or Subdomain Title',
+      'search': 'Search by meril domain or subdomain title',
     },
     'menu': 'MERIL Scientific Subdomains',
   };

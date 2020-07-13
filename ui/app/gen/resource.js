@@ -1,4 +1,5 @@
 import validate from 'ember-gen/validate';
+import { field } from 'ember-gen';
 import { AgoraGen } from '../lib/common';
 import {
   CREATE_FIELDSETS,
@@ -88,13 +89,33 @@ export default AgoraGen.extend({
     filter: {
       active: false,
       serverSide: true,
-      search: true,
-      searchPlaceholder: 'resource.placeholders.search',
     },
     sort: {
       serverSide: true,
       active: true,
       fields: SORT_FIELDS,
+    },
+    filter: {
+      active: true,
+      search: true,
+      searchPlaceholder: 'resource.placeholders.search',
+      serverSide: true,
+      meta: {
+        fields: [
+          field('erp_bai_2_service_organisation', {
+            modelName:'provider',
+            label: 'resource.table.erp_bai_2_service_organisation',
+            type: 'model',
+            displayAttr: 'epp_bai_1_name',
+          }),
+          field('erp_mti_1_technology_readiness_level', {
+            modelName:'trl',
+            label: 'resource.table.erp_mti_1_technology_readiness_level',
+            type: 'model',
+            displayAttr: 'name',
+          }),
+        ],
+      },
     },
   },
   details: {

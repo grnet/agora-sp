@@ -22,10 +22,17 @@ export default AgoraGen.extend({
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],
     },
+    filter: {
+      active: false,
+      serverSide: true,
+      search: true,
+      searchPlaceholder: 'common.placeholders.search',
+    },
     sort: {
       serverSide: true,
       active: true,
-      fields: ['user']
+      sortBy: 'user',
+      fields: ['user'],
     },
   },
 

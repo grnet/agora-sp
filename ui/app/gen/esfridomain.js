@@ -36,11 +36,12 @@ export default AgoraGen.extend({
       active: false,
       serverSide: true,
       search: true,
-      searchPlaceholder: 'esfridomain.placeholders.search',
+      searchPlaceholder: 'common.placeholders.search',
     },
     sort: {
       serverSide: true,
       active: true,
+      sortBy: 'name',
       fields: SORT_FIELDS,
     },
   },

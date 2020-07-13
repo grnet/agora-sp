@@ -2,7 +2,7 @@ const esfridomain = {
     'cards': {
       'basic': 'Basic information',
       'basic_hint': '',
-  
+
     },
     'fields': {
       'name': 'ESFRI Domain name',
@@ -18,11 +18,11 @@ const esfridomain = {
     },
     'table': {
       'name': 'ESFRI Domain',
-    }, 
+    },
     'placeholder':{
-      'search': 'Search by ESFRI Domain name',
+      'search': 'Search by ESFRI domain name',
     },
     'menu': 'ESFRI Domains'
   };
-  
+
   export { esfridomain };

@@ -145,9 +145,10 @@ const resource = {
     erp_bai_0_id: 'ID',
     erp_bai_1_name: 'Name',
     erp_bai_2_service_organisation: 'Organisation',
+    erp_mti_1_technology_readiness_level: 'TRL',
   },
   placeholders: {
-    search: 'Search by ID or Name',
+    search: 'Search by ID or name',
   },
   menu: 'Resources',
   my_menu: 'My Resources',

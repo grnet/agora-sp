@@ -118,6 +118,7 @@ const TABLE_FIELDS = [
   field('erp_bai_0_id', {label: 'resource.table.erp_bai_0_id'}),
   field('erp_bai_1_name', {label: 'resource.table.erp_bai_1_name'}),
   field('erp_bai_2_service_organisation.epp_bai_1_name', {label: 'resource.table.erp_bai_2_service_organisation'}),
+  field('erp_mti_1_technology_readiness_level.name', {label: 'resource.table.erp_mti_1_technology_readiness_level'}),
 ];
 
 

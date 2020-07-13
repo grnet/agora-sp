@@ -2,7 +2,7 @@ const subdomain = {
     'cards': {
       'basic': 'Basic information',
       'basic_hint': '',
-  
+
     },
     'fields': {
       'domain': 'Scientific Domain',
@@ -19,9 +19,9 @@ const subdomain = {
     'table': {
       'domain': 'Domain',
       'name': 'Subdomain Title',
-    }, 
+    },
     'placeholder':{
-      'search': 'Search by Domain or Subdomain Title',
+      'search': 'Search by domain or subdomain Title',
     },
     'menu': 'Scientific Subdomains',
   };
