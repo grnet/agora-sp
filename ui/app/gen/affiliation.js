@@ -41,12 +41,13 @@ export default AgoraGen.extend({
       active: false,
       serverSide: true,
       search: true,
-      searchPlaceholder: 'affiliation.placeholders.search',
+      searchPlaceholder: 'common.placeholders.search',
     },
     sort: {
       serverSide: true,
       active: true,
-      fields: SORT_FIELDS,
+      sortBy: 'name',
+      fields: ['name'],
     },
   },
   details: {

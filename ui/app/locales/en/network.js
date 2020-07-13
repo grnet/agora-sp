@@ -2,7 +2,7 @@ const network = {
     'cards': {
       'basic': 'Basic information',
       'basic_hint': '',
-  
+
     },
     'fields': {
       'name': 'Network name',
@@ -19,11 +19,11 @@ const network = {
     'table': {
       'name': 'Network name',
       'abbreviation': 'Abbreviation'
-    }, 
+    },
     'placeholder':{
-      'search': 'Search by Network name',
+      'search': 'Search by network name',
     },
     'menu': 'Networks'
   };
-  
+
   export { network };

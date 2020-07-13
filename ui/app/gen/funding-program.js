@@ -40,6 +40,7 @@ export default AgoraGen.extend({
     sort: {
       serverSide: true,
       active: true,
+      sortBy: 'name',
       fields: ['name'],
     },
   },

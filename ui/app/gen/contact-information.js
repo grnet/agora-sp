@@ -82,6 +82,7 @@ export default AgoraGen.extend({
       active: true,
       serverSide: true,
       search: true,
+      searchPlaceholder: 'contact_information.placeholders.search',
       meta: {
         fields: [
           field('organisation', {

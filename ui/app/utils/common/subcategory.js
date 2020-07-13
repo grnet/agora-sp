@@ -2,13 +2,12 @@ import { field } from 'ember-gen';
 
 
 const SORT_FIELDS = [
-  'category.name',
   'name',
 ];
 
 const TABLE_FIELDS = [
-  field('category.name', {label: 'subcategory.table.domain'}),
   field('name', {label: 'subcategory.table.name'}),
+  field('category.name', {label: 'subcategory.table.category'}),
 ];
 
 

@@ -6,8 +6,8 @@ const SORT_FIELDS = [
 ];
 
 const TABLE_FIELDS = [
-  field('domain.name', {label: 'subdomain.table.domain'}),
   field('name', {label: 'subdomain.table.name'}),
+  field('domain.name', {label: 'subdomain.table.domain'}),
 ];
 
 

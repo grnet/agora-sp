@@ -2,7 +2,7 @@ const domain = {
     'cards': {
       'basic': 'Basic information',
       'basic_hint': '',
-  
+
     },
     'fields': {
       'name': 'Scientific Domain name',
@@ -16,11 +16,11 @@ const domain = {
     },
     'table': {
       'name': 'Domain Title'
-    }, 
+    },
     'placeholder':{
-      'search': 'Search by Domain Title'
+      'search': 'Search by domain title'
     },
     'menu': 'Scientific Domains'
   };
-  
+
   export { domain };

@@ -44,7 +44,7 @@ export default AgoraGen.extend({
       active: false,
       serverSide: true,
       search: true,
-      searchPlaceholder: 'Search by Access Mode or Description',
+      searchPlaceholder: 'Search by access mode or description',
     },
     sort: {
       serverSide: true,

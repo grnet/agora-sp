@@ -115,7 +115,10 @@ const provider = {
     'name': 'Provider',
     'hint': ''
   },
-  'menu': 'Providers'
+  'menu': 'Providers',
+  placeholders: {
+    search: 'Search by ID, name or abbreviation',
+  }
 };
 
 export { provider };

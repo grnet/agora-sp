@@ -2,7 +2,7 @@ const affiliation = {
     'cards': {
       'basic': 'Basic information',
       'basic_hint': '',
-  
+
     },
     'fields': {
       'name': 'Affiliation name',
@@ -16,11 +16,11 @@ const affiliation = {
     },
     'table': {
       'name': 'Affiliation name',
-    }, 
+    },
     'placeholder':{
-      'search': 'Search by Affiliation name',
+      'search': 'Search by affiliation name',
     },
     'menu': 'Affiliations'
   };
-  
+
   export { affiliation };
