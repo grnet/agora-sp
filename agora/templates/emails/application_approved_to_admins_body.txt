@@ -1,8 +1,6 @@
 {% extends "emails/email_base.txt" %}
 {% block content %}
-
 The user
 {% include "emails/applicant_details.txt" %}
 has been approved as administrator of the resource {{ resource.erp_bai_1_name }}.
-
 {% endblock content %}
