@@ -1,1 +1,154 @@
-[{"model": "service.category", "pk": "063268e6-e990-44e2-af1d-5d1711caba89", "fields": {"supercategory": "35a2d688-739b-431b-b856-e5ac26ea7a53", "name": "Security & Identity"}}, {"model": "service.category", "pk": "09148c1e-775a-4925-9e5c-3df2375cb9d8", "fields": {"supercategory": "6c609f4c-22ea-44ae-967f-c8921cbf84b0", "name": "Data"}}, {"model": "service.category", "pk": "0e22ebcf-1545-4662-983c-8e2b9f5bed83", "fields": {"supercategory": "ef1e6a6b-22f3-48d7-8386-d66ab524d784", "name": "Material Storage"}}, {"model": "service.category", "pk": "133d9c60-ef9e-4cb4-9dba-13a38048637c", "fields": {"supercategory": "d4dca882-2738-4d35-b3ec-3d7767b26a10", "name": "Consultancy & Support"}}, {"model": "service.category", "pk": "1abceb33-321b-479d-ba0a-0c05c5b6012e", "fields": {"supercategory": "6c609f4c-22ea-44ae-967f-c8921cbf84b0", "name": "Scholarly Communication"}}, {"model": "service.category", "pk": "3ddaf0af-4e7e-4c23-86ef-d5db4ae5312c", "fields": {"supercategory": "ef1e6a6b-22f3-48d7-8386-d66ab524d784", "name": "Data Storage"}}, {"model": "service.category", "pk": "48b736ef-9541-45de-a1e1-dea2f98f1891", "fields": {"supercategory": "35a2d688-739b-431b-b856-e5ac26ea7a53", "name": "Operations & Infrastructure Management Services"}}, {"model": "service.category", "pk": "59aeb559-7952-4852-9421-ce44e79538bc", "fields": {"supercategory": "6c609f4c-22ea-44ae-967f-c8921cbf84b0", "name": "Samples"}}, {"model": "service.category", "pk": "5ad63f0b-e3bf-4544-8d4c-30f0a1808db2", "fields": {"supercategory": "6c609f4c-22ea-44ae-967f-c8921cbf84b0", "name": "Applications"}}, {"model": "service.category", "pk": "7c4b272b-6f58-4778-9eba-5fbac6cc9fa3", "fields": {"supercategory": "d4dca882-2738-4d35-b3ec-3d7767b26a10", "name": "Education & Training"}}, {"model": "service.category", "pk": "941eea82-491a-46db-92ef-bd25cbb4060c", "fields": {"supercategory": "ef1e6a6b-22f3-48d7-8386-d66ab524d784", "name": "Instrument & Equipment"}}, {"model": "service.category", "pk": "94d4e542-f996-4bb1-b4de-d57d2430e7fb", "fields": {"supercategory": "de968f83-3d9b-4f2e-b729-6d8a6ea80e89", "name": "Data Analysis"}}, {"model": "service.category", "pk": "9db04160-522e-4785-bbf7-ab82b3c434f7", "fields": {"supercategory": "ef1e6a6b-22f3-48d7-8386-d66ab524d784", "name": "Network"}}, {"model": "service.category", "pk": "a05700b7-81a8-476c-9ba3-c3952092280a", "fields": {"supercategory": "6c609f4c-22ea-44ae-967f-c8921cbf84b0", "name": "Software"}}, {"model": "service.category", "pk": "a5d1f298-abd7-4b31-94ba-58cb8eb1d44a", "fields": {"supercategory": "de968f83-3d9b-4f2e-b729-6d8a6ea80e89", "name": "Measurement & Materials Analysis"}}, {"model": "service.category", "pk": "abad8012-42f9-4c70-94e1-dd58d0e934ab", "fields": {"supercategory": "a5e189dc-989f-448a-b84f-eb587a3331c3", "name": "Aggregators & Integrators"}}, {"model": "service.category", "pk": "dca17a04-2569-406f-8609-465716a685ce", "fields": {"supercategory": "de968f83-3d9b-4f2e-b729-6d8a6ea80e89", "name": "Data Management"}}, {"model": "service.category", "pk": "e331cddc-2644-465c-981d-0e3eeceaedf4", "fields": {"supercategory": "6c609f4c-22ea-44ae-967f-c8921cbf84b0", "name": "Development Resources"}}, {"model": "service.category", "pk": "ee0c7cb0-e861-4de3-9319-074015419d4f", "fields": {"supercategory": "ef1e6a6b-22f3-48d7-8386-d66ab524d784", "name": "Compute"}}]
+[
+    {
+        "fields": {
+            "name": "Security & Identity",
+            "supercategory": "35a2d688-739b-431b-b856-e5ac26ea7a53"
+        },
+        "model": "service.category",
+        "pk": "063268e6-e990-44e2-af1d-5d1711caba89"
+    },
+    {
+        "fields": {
+            "name": "Data",
+            "supercategory": "6c609f4c-22ea-44ae-967f-c8921cbf84b0"
+        },
+        "model": "service.category",
+        "pk": "09148c1e-775a-4925-9e5c-3df2375cb9d8"
+    },
+    {
+        "fields": {
+            "name": "Material Storage",
+            "supercategory": "ef1e6a6b-22f3-48d7-8386-d66ab524d784"
+        },
+        "model": "service.category",
+        "pk": "0e22ebcf-1545-4662-983c-8e2b9f5bed83"
+    },
+    {
+        "fields": {
+            "name": "Consultancy & Support",
+            "supercategory": "d4dca882-2738-4d35-b3ec-3d7767b26a10"
+        },
+        "model": "service.category",
+        "pk": "133d9c60-ef9e-4cb4-9dba-13a38048637c"
+    },
+    {
+        "fields": {
+            "name": "Scholarly Communication",
+            "supercategory": "6c609f4c-22ea-44ae-967f-c8921cbf84b0"
+        },
+        "model": "service.category",
+        "pk": "1abceb33-321b-479d-ba0a-0c05c5b6012e"
+    },
+    {
+        "fields": {
+            "name": "Data Storage",
+            "supercategory": "ef1e6a6b-22f3-48d7-8386-d66ab524d784"
+        },
+        "model": "service.category",
+        "pk": "3ddaf0af-4e7e-4c23-86ef-d5db4ae5312c"
+    },
+    {
+        "fields": {
+            "name": "Operations & Infrastructure Management Services",
+            "supercategory": "35a2d688-739b-431b-b856-e5ac26ea7a53"
+        },
+        "model": "service.category",
+        "pk": "48b736ef-9541-45de-a1e1-dea2f98f1891"
+    },
+    {
+        "fields": {
+            "name": "Samples",
+            "supercategory": "6c609f4c-22ea-44ae-967f-c8921cbf84b0"
+        },
+        "model": "service.category",
+        "pk": "59aeb559-7952-4852-9421-ce44e79538bc"
+    },
+    {
+        "fields": {
+            "name": "Applications",
+            "supercategory": "6c609f4c-22ea-44ae-967f-c8921cbf84b0"
+        },
+        "model": "service.category",
+        "pk": "5ad63f0b-e3bf-4544-8d4c-30f0a1808db2"
+    },
+    {
+        "fields": {
+            "name": "Education & Training",
+            "supercategory": "d4dca882-2738-4d35-b3ec-3d7767b26a10"
+        },
+        "model": "service.category",
+        "pk": "7c4b272b-6f58-4778-9eba-5fbac6cc9fa3"
+    },
+    {
+        "fields": {
+            "name": "Instrument & Equipment",
+            "supercategory": "ef1e6a6b-22f3-48d7-8386-d66ab524d784"
+        },
+        "model": "service.category",
+        "pk": "941eea82-491a-46db-92ef-bd25cbb4060c"
+    },
+    {
+        "fields": {
+            "name": "Data Analysis",
+            "supercategory": "de968f83-3d9b-4f2e-b729-6d8a6ea80e89"
+        },
+        "model": "service.category",
+        "pk": "94d4e542-f996-4bb1-b4de-d57d2430e7fb"
+    },
+    {
+        "fields": {
+            "name": "Network",
+            "supercategory": "ef1e6a6b-22f3-48d7-8386-d66ab524d784"
+        },
+        "model": "service.category",
+        "pk": "9db04160-522e-4785-bbf7-ab82b3c434f7"
+    },
+    {
+        "fields": {
+            "name": "Software",
+            "supercategory": "6c609f4c-22ea-44ae-967f-c8921cbf84b0"
+        },
+        "model": "service.category",
+        "pk": "a05700b7-81a8-476c-9ba3-c3952092280a"
+    },
+    {
+        "fields": {
+            "name": "Measurement & Materials Analysis",
+            "supercategory": "de968f83-3d9b-4f2e-b729-6d8a6ea80e89"
+        },
+        "model": "service.category",
+        "pk": "a5d1f298-abd7-4b31-94ba-58cb8eb1d44a"
+    },
+    {
+        "fields": {
+            "name": "Aggregators & Integrators",
+            "supercategory": "a5e189dc-989f-448a-b84f-eb587a3331c3"
+        },
+        "model": "service.category",
+        "pk": "abad8012-42f9-4c70-94e1-dd58d0e934ab"
+    },
+    {
+        "fields": {
+            "name": "Data Management",
+            "supercategory": "de968f83-3d9b-4f2e-b729-6d8a6ea80e89"
+        },
+        "model": "service.category",
+        "pk": "dca17a04-2569-406f-8609-465716a685ce"
+    },
+    {
+        "fields": {
+            "name": "Development Resources",
+            "supercategory": "6c609f4c-22ea-44ae-967f-c8921cbf84b0"
+        },
+        "model": "service.category",
+        "pk": "e331cddc-2644-465c-981d-0e3eeceaedf4"
+    },
+    {
+        "fields": {
+            "name": "Compute",
+            "supercategory": "ef1e6a6b-22f3-48d7-8386-d66ab524d784"
+        },
+        "model": "service.category",
+        "pk": "ee0c7cb0-e861-4de3-9319-074015419d4f"
+    }
+]

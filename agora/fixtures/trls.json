@@ -1,1 +1,74 @@
-[{"model": "service.trl", "pk": "2cb99d96-6404-425f-a1c8-2d7a7e87ea4e", "fields": {"name": "TRL8", "description": "System complete and qualified"}}, {"model": "service.trl", "pk": "50726038-a9b1-4be2-bfb0-c5302ea6230d", "fields": {"name": "TRL5", "description": "Technology validated in relevant environment (industrially relevant environment in the case of key enabling technologies)"}}, {"model": "service.trl", "pk": "556c1481-9dc6-4d67-ab78-cf1a0140bb36", "fields": {"name": "TRL1", "description": "Basic principles observed"}}, {"model": "service.trl", "pk": "5af323ad-f244-415e-9cd0-9367e7948300", "fields": {"name": "TRL9", "description": "Actual system proven in operational environment (competitive manufacturing in the case of key enabling technologies; or in space)"}}, {"model": "service.trl", "pk": "8050357e-2d36-40e3-9e77-d7813919659b", "fields": {"name": "TRL7", "description": "System prototype demonstration in operational environment"}}, {"model": "service.trl", "pk": "99830473-2e10-4563-bad7-9f2b017105e7", "fields": {"name": "TRL6", "description": "Technology demonstrated in relevant environment (industrially relevant environment in the case of key enabling technologies)"}}, {"model": "service.trl", "pk": "b0eb02a5-dcf6-417b-ad22-456e9ee5b4cd", "fields": {"name": "TRL2", "description": "Technology concept formulated"}}, {"model": "service.trl", "pk": "bd26118c-2e7e-45ff-9113-33820a4af938", "fields": {"name": "TRL3", "description": "Experimental proof of concept"}}, {"model": "service.trl", "pk": "faeaadde-926f-4fbf-ac15-3760175e261f", "fields": {"name": "TRL4", "description": "Technology validated in lab"}}]
+[
+    {
+        "fields": {
+            "description": "System complete and qualified",
+            "name": "TRL8"
+        },
+        "model": "service.trl",
+        "pk": "2cb99d96-6404-425f-a1c8-2d7a7e87ea4e"
+    },
+    {
+        "fields": {
+            "description": "Technology validated in relevant environment (industrially relevant environment in the case of key enabling technologies)",
+            "name": "TRL5"
+        },
+        "model": "service.trl",
+        "pk": "50726038-a9b1-4be2-bfb0-c5302ea6230d"
+    },
+    {
+        "fields": {
+            "description": "Basic principles observed",
+            "name": "TRL1"
+        },
+        "model": "service.trl",
+        "pk": "556c1481-9dc6-4d67-ab78-cf1a0140bb36"
+    },
+    {
+        "fields": {
+            "description": "Actual system proven in operational environment (competitive manufacturing in the case of key enabling technologies; or in space)",
+            "name": "TRL9"
+        },
+        "model": "service.trl",
+        "pk": "5af323ad-f244-415e-9cd0-9367e7948300"
+    },
+    {
+        "fields": {
+            "description": "System prototype demonstration in operational environment",
+            "name": "TRL7"
+        },
+        "model": "service.trl",
+        "pk": "8050357e-2d36-40e3-9e77-d7813919659b"
+    },
+    {
+        "fields": {
+            "description": "Technology demonstrated in relevant environment (industrially relevant environment in the case of key enabling technologies)",
+            "name": "TRL6"
+        },
+        "model": "service.trl",
+        "pk": "99830473-2e10-4563-bad7-9f2b017105e7"
+    },
+    {
+        "fields": {
+            "description": "Technology concept formulated",
+            "name": "TRL2"
+        },
+        "model": "service.trl",
+        "pk": "b0eb02a5-dcf6-417b-ad22-456e9ee5b4cd"
+    },
+    {
+        "fields": {
+            "description": "Experimental proof of concept",
+            "name": "TRL3"
+        },
+        "model": "service.trl",
+        "pk": "bd26118c-2e7e-45ff-9113-33820a4af938"
+    },
+    {
+        "fields": {
+            "description": "Technology validated in lab",
+            "name": "TRL4"
+        },
+        "model": "service.trl",
+        "pk": "faeaadde-926f-4fbf-ac15-3760175e261f"
+    }
+]
