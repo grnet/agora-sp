@@ -11,7 +11,7 @@ __email__ = 'tasos@admin.grnet.gr'
 from agora.resources.resources import Resources
 from agora.utils.emberJS_fields import input_field, suggestion_input_field, table_select_field, textarea_field, \
     date_field
-from agora.validations.delete_responses import delete_success
+from agora.validations.delete_responses import delete_success, delete_from_listView
 from agora.validations.save_responses import save_success
 
 
@@ -143,7 +143,12 @@ class ResourceCreate(Resources):
             self.financial_information()
 
         save_success(self.driver)
-        delete_success(self.driver)
+
+        # Search
+        self.resources_page()
+        self.search_field()
+        delete_from_listView(self.driver)
+        # delete_success(self.driver)
         self.close()
 
     def basic_information(self, required_only=False):

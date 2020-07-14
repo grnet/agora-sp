@@ -9,8 +9,8 @@ __author__ = 'Tas-sos'
 __email__ = 'tasos@admin.grnet.gr'
 
 from agora.Agora import Agora
-from time import sleep
-from abc import abstractmethod
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
 
 class Providers(Agora):
@@ -46,8 +46,8 @@ class Providers(Agora):
         @requires the successful execution of the following methods :
             1. basic_authentication
         """
+        self.wait.until(EC.presence_of_element_located((By.XPATH, "//a[@href='/ui/providers']")))
         self.driver.find_element_by_xpath("//a[@href='/ui/providers']").click()
-        sleep(self.sleep_time)
 
     def provider_create_new_page(self):
         """
@@ -60,7 +60,5 @@ class Providers(Agora):
         Checks if the following exist:
             - Create (href)
         """
-        sleep(self.sleep_time)
+        self.wait.until(EC.presence_of_element_located((By.XPATH, "//a[@href='/ui/providers/create']")))
         self.driver.find_element_by_xpath("//a[@href='/ui/providers/create']").click()
-        sleep(self.sleep_time)
-

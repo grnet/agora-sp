@@ -8,6 +8,10 @@ __maintainer__ = 'Tas-sos'
 __author__ = 'Tas-sos'
 __email__ = 'tasos@admin.grnet.gr'
 
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.wait import WebDriverWait
+
 
 def url_input_validation(page, field_name):
     """
@@ -18,6 +22,8 @@ def url_input_validation(page, field_name):
     @note: If there are more than one field, then a loop could be created so that all fields can be managed in one way.
     @return: True if it appears below the field, the message that should appear or False if it does not appear.
     """
+    wait = WebDriverWait(page, 5)
+    wait.until(EC.presence_of_element_located((By.XPATH, "//input[@name='" + field_name + "']")))
     input_field = page.find_element_by_xpath("//input[@name='" + field_name + "']")
     input_field.clear()
     input_field.send_keys("123")
@@ -42,6 +48,8 @@ def email_input_validation(page, field_name):
     @note: If there are more than one field, then a loop could be created so that all fields can be managed in one way.
     @return: True if it appears below the field, the message that should appear or False if it does not appear.
     """
+    wait = WebDriverWait(page, 5)
+    wait.until(EC.presence_of_element_located((By.XPATH, "//input[@name='" + field_name + "']")))
     input_field = page.find_element_by_xpath("//input[@name='" + field_name + "']")
     input_field.clear()
     input_field.send_keys("123")
@@ -67,6 +75,8 @@ def phone_input_validation(page, field_name):
     @note: If there are more than one field, then a loop could be created so that all fields can be managed in one way.
     @return: True if it appears below the field, the message that should appear or False if it does not appear.
     """
+    wait = WebDriverWait(page, 5)
+    wait.until(EC.presence_of_element_located((By.XPATH, "//input[@name='" + field_name + "']")))
     input_field = page.find_element_by_xpath("//input[@name='" + field_name + "']")
     input_field.clear()
     input_field.send_keys("GNU/Linux")
