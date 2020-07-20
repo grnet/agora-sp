@@ -73,7 +73,6 @@ INSTALLED_APPS = [
     'corsheaders',
     'reversion',
     'component',
-    'options',
     'owner',
     'common',
     'service',
