@@ -23,7 +23,6 @@ class ServiceOwner(models.Model):
     last_name = models.CharField(max_length=255, default=None, blank=True, null=True)
     email = models.EmailField(default=None, blank=True, unique=True)
     phone = models.CharField(max_length=255, default=None, blank=True, null=True)
-    id_service_owner = models.ForeignKey(Institution, null=True)
     id_account = models.ForeignKey(CustomUser, null=True, blank=True, default=None)
 
 
