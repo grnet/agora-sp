@@ -154,50 +154,6 @@ class Service(models.Model):
     def required_services_names(self):
         return ", ".join(o.name for o in self.required_services.all())
 
-    @property
-    def service_admins_ids(self):
-        service_adminships = ServiceAdminship.objects.filter(
-            service=self,
-            state="approved")
-        res = []
-        for s in service_adminships:
-            res.append(str(s.admin.pk))
-
-        return ','.join(res)
-
-    @property
-    def service_admins(self):
-        service_adminships = ServiceAdminship.objects.filter(
-            service=self,
-            state="approved")
-        res = []
-        for s in service_adminships:
-            res.append(s.admin)
-        return res
-
-    @property
-    def pending_service_admins_ids(self):
-        service_adminships = ServiceAdminship.objects.filter(
-            service=self,
-            state="pending")
-        res = []
-        for s in service_adminships:
-            res.append(str(s.admin.pk))
-
-        return ','.join(res)
-
-    @property
-    def rejected_service_admins_ids(self):
-        service_adminships = ServiceAdminship.objects.filter(
-            service=self,
-            state="rejected")
-        res = []
-        for s in service_adminships:
-            res.append(str(s.admin.pk))
-
-        return ','.join(res)
-
-
     def save(self, *args, **kwargs):
         self.name = self.name.strip()
         clean_html_fields(self)
@@ -292,10 +248,6 @@ class ServiceDetails(models.Model):
         clean_html_fields(self)
         super(ServiceDetails, self).save(*args, **kwargs)
 
-    @property
-    def service_admins_ids(self):
-        return self.id_service.service_admins_ids
-
 
 class UserRole(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
@@ -308,23 +260,6 @@ class UserRole(models.Model):
         clean_html_fields(self)
         super(UserRole, self).save(*args, **kwargs)
 
-
-class ServiceAdminship(models.Model):
-    service = models.ForeignKey(Service, related_name="serviceadminships")
-    admin = models.ForeignKey(User)
-    state = models.CharField(
-            choices=SERVICE_ADMINSHIP_STATES,
-            max_length=30,
-            default='pending')
-    created_at = models.DateTimeField(auto_now_add=True)
-    updated_at = models.DateTimeField(auto_now=True)
-
-    class Meta:
-        unique_together = (("service", "admin"),)
-
-    def save(self, *args, **kwargs):
-        clean_html_fields(self)
-        super(ServiceAdminship, self).save(*args, **kwargs)
 
 
 class PostCreateMessage(ProcessorFactory):
