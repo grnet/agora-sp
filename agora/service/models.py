@@ -14,64 +14,6 @@ from apimas.base import ProcessorFactory
 from copy import deepcopy
 
 
-class ServiceCategory(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255, default=None, blank=True, null=True)
-    icon = models.ImageField(default=settings.SERVICE_CATEGORY_ICON,
-            upload_to=helper.service_area_image_path)
-    description = RichTextUploadingField(default=None, blank=True, null=True)
-
-    @property
-    def icon_absolute_path(self):
-        if self.icon:
-            path = self.icon.url
-        else:
-            path = settings.MEDIA_URL+settings.SERVICE_CATEGORY_ICON
-        return helper.current_site_baseurl()+'/'+path
-
-    def __unicode__(self):
-        return str(self.name)
-
-    def save(self, *args, **kwargs):
-        clean_html_fields(self)
-        super(ServiceCategory, self).save(*args, **kwargs)
-
-
-class ServiceTrl(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
-    value = models.CharField(max_length=255, default=None, blank=False)
-    order = models.IntegerField(default=None, blank=False)
-
-    def __unicode__(self):
-        return str(self.value)
-
-    def save(self, *args, **kwargs):
-        clean_html_fields(self)
-        super(ServiceTrl, self).save(*args, **kwargs)
-
-
-class AccessPolicy(models.Model):
-    """
-    Policies stating how the service can be accessed
-    """
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255,
-                            default=None,
-                            blank=True,
-                            unique=True)
-    access_mode = RichTextUploadingField(default=None, blank=True, null=True)
-    payment_model = RichTextUploadingField(default=None, blank=True, null=True)
-    pricing = RichTextUploadingField(default=None, blank=True, null=True)
-    conditions = RichTextUploadingField(default=None, blank=True, null=True)
-    geo_availability = models.TextField(default=None, blank=True)
-    access_policy_url = models.CharField(max_length=255,
-                                         default=None, blank=True, null=True)
-
-    def save(self, *args, **kwargs):
-        clean_html_fields(self)
-        super(AccessPolicy, self).save(*args, **kwargs)
-
-
 class PostCreateResourceadminship(ProcessorFactory):
     def process(self, data):
         user = data['auth/user']
@@ -90,16 +32,6 @@ class PostPartialUpdateResourceadminship(ProcessorFactory):
         http_host = data['request/meta/headers'].get('HTTP_HOST', 'Agora')
         send_email_application_evaluated(data['backend/raw_response'], http_host)
         return {}
-
-
-class FederationMember(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255, default=None, unique=True)
-    webpage = models.CharField(max_length=255, default=None, blank=True,
-                               null=True)
-    logo = models.ImageField(default=settings.FEDERATION_MEMBER_LOGO,
-                             upload_to=helper.federation_member_image_path)
-    country = models.CharField(max_length=2, default=None)
 
 
 class TargetUser(models.Model):
