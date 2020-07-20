@@ -169,22 +169,6 @@ class Service(models.Model):
         return helper.current_site_baseurl()+'/'+path
 
 
-class ServiceStatus(models.Model):
-    """
-    Phase of the ServiceDetails lifecycle
-    """
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
-    value = models.CharField(max_length=255, default=None, blank=False, unique=True)
-    description = models.TextField(default=None, blank=True, null=True)
-
-    def __unicode__(self):
-        return str(self.value)
-
-    def save(self, *args, **kwargs):
-        clean_html_fields(self)
-        super(ServiceStatus, self).save(*args, **kwargs)
-
-
 class PostCreateResourceadminship(ProcessorFactory):
     def process(self, data):
         user = data['auth/user']
