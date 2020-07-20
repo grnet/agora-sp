@@ -185,43 +185,6 @@ class ServiceStatus(models.Model):
         super(ServiceStatus, self).save(*args, **kwargs)
 
 
-class PostCreateMessage(ProcessorFactory):
-    def process(self, data):
-        content = data['response/content']
-        service = {
-            'data': content,
-            'id': content.get('id'),
-            'name': content.get('name'),
-        }
-
-        publish_message(service, 'create')
-        return {}
-
-class PostUpdateMessage(ProcessorFactory):
-    def process(self, data):
-        content = data['response/content']
-        service = {
-            'data': content,
-            'id': content.get('id'),
-            'name': content.get('name'),
-        }
-
-        publish_message(service, 'update')
-        return {}
-
-class PostDeleteMessage(ProcessorFactory):
-    def process(self, data):
-        content = data['backend/instance']
-        service = {
-            'data': '',
-            'id': content.id,
-            'name': content.name,
-        }
-
-        publish_message(service, 'delete')
-        return {}
-
-
 class PostCreateResourceadminship(ProcessorFactory):
     def process(self, data):
         user = data['auth/user']
