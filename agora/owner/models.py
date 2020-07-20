@@ -55,5 +55,4 @@ class AditionalUsernames(models.Model):
     Unused model
     """
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    id_service_owner = models.ForeignKey(ServiceOwner)
     username = models.CharField(max_length=255, default=None, blank=True)

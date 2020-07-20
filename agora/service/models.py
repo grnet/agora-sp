@@ -2,7 +2,7 @@ from __future__ import unicode_literals
 from agora import  settings
 from django.db import models
 import uuid
-from owner.models import ServiceOwner, ContactInformation
+from owner.models import ContactInformation
 from common import helper
 from accounts.models import User, Organisation, Domain, Subdomain
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -134,7 +134,6 @@ class Service(models.Model):
     id_contact_information_internal = models.ForeignKey(ContactInformation,
                                                         null=True,
                                                         related_name="internal_contact_info")
-    id_service_owner = models.ForeignKey(ServiceOwner, null=True)
 
     def __unicode__(self):
         return str(self.name)
