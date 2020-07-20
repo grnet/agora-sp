@@ -297,42 +297,6 @@ class ServiceDetails(models.Model):
         return self.id_service.service_admins_ids
 
 
-class ExternalService(models.Model):
-    """
-    Unused model
-    """
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.CharField(max_length=255, default=None, blank=True, unique=True)
-    description = RichTextUploadingField(default=None, blank=True, null=True)
-    service = models.CharField(max_length=255, default=None, blank=True, null=True)
-    details = models.CharField(max_length=255, default=None, blank=True, null=True)
-
-
-class Service_DependsOn_Service(models.Model):
-    """
-    Unused model
-    """
-    class Meta:
-        unique_together = (('id_service_one', 'id_service_two'),)
-
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    id_service_one = models.ForeignKey(Service, related_name='service_one')
-    id_service_two = models.ForeignKey(Service, related_name='service_two')
-
-
-class Service_ExternalService(models.Model):
-    """
-    Unused model
-    """
-    class Meta:
-        unique_together = (('id_service', 'id_external_service'),)
-        verbose_name_plural = "05. External Dependencies"
-
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    id_service = models.ForeignKey(Service)
-    id_external_service = models.ForeignKey(ExternalService)
-
-
 class UserRole(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, blank=True)
     name = models.CharField(max_length=255, default=None, unique=True)
@@ -343,33 +307,6 @@ class UserRole(models.Model):
     def save(self, *args, **kwargs):
         clean_html_fields(self)
         super(UserRole, self).save(*args, **kwargs)
-
-
-class UserCustomer(models.Model):
-    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    name = models.ForeignKey(UserRole)
-    role = RichTextUploadingField(default=None, blank=True, null=True)
-    service_id = models.ForeignKey(Service)
-
-    def __unicode__(self):
-        return str(self.name) + " as " + str(self.role) + " for " + str(self.service_id)
-
-    def save(self, *args, **kwargs):
-        clean_html_fields(self)
-        super(UserCustomer, self).save(*args, **kwargs)
-
-
-class Roles(models.Model):
-    """
-    Unused model
-    """
-    id_user = models.ForeignKey(User)
-    id_service = models.ForeignKey(Service)
-    role = models.CharField(('role'), max_length=90, unique=True, default="spectator")
-
-    def save(self, *args, **kwargs):
-        clean_html_fields(self)
-        super(Roles, self).save(*args, **kwargs)
 
 
 class ServiceAdminship(models.Model):
@@ -388,17 +325,6 @@ class ServiceAdminship(models.Model):
     def save(self, *args, **kwargs):
         clean_html_fields(self)
         super(ServiceAdminship, self).save(*args, **kwargs)
-
-
-class PostCreateService(ProcessorFactory):
-    def process(self, data):
-        user = data['auth/user']
-        service = data['backend/raw_response']
-        ServiceAdminship.objects.create(
-                service=service,
-                admin=user,
-                state='approved')
-        return {}
 
 
 class PostCreateMessage(ProcessorFactory):
