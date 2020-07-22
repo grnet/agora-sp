@@ -10,6 +10,9 @@ class Migration(migrations.Migration):
     dependencies = [
         ('service', '0089_merge_20200612_1315'),
     ]
+    run_before = [
+        ('owner', '0008_remove_serviceowner_id_service_owner'),
+    ]
 
     operations = [
         migrations.RemoveField(
