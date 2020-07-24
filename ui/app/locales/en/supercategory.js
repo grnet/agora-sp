@@ -2,7 +2,7 @@ const supercategory = {
     'cards': {
       'basic': 'Basic information',
       'basic_hint': '',
-  
+
     },
     'fields': {
       'name': 'Resource Supercategory Title',
@@ -16,11 +16,11 @@ const supercategory = {
     },
     'table': {
       'name': 'Resource Supercategory Title'
-    }, 
+    },
     'placeholder':{
-      'search': 'Search by Resource Supercategory Title'
+      'search': 'Search by resource supercategory title'
     },
     'menu': 'Resource Supercategories'
   };
-  
+
   export { supercategory };

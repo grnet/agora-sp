@@ -1,1 +1,42 @@
-[{"model": "accounts.structure", "pk": "0fdf95fb-f562-46dd-9ee9-f2e2169b6029", "fields": {"name": "Other", "description": " "}}, {"model": "accounts.structure", "pk": "323c40f3-350e-479e-92e6-450cd0afe626", "fields": {"name": "Distributed", "description": "The Provider has multiple physical locations but a unified management structure and a single coordination centre."}}, {"model": "accounts.structure", "pk": "32ad4e54-3c25-46aa-bed4-e1e1a637aedf", "fields": {"name": "Mobile", "description": "The Provider is changing its physical location on a regular basis (e.g., satellites, research vessels)."}}, {"model": "accounts.structure", "pk": "ae59b48c-4109-493f-a979-f7dc48afbd5c", "fields": {"name": "Virtual", "description": "The Provider is exclusively an electronic resource/service."}}, {"model": "accounts.structure", "pk": "ed8c6549-9015-49df-b4c0-f6a18a5b94d3", "fields": {"name": "Single-sited", "description": "The Provider has one main physical location for users."}}]
+[
+    {
+        "fields": {
+            "description": " ",
+            "name": "Other"
+        },
+        "model": "accounts.structure",
+        "pk": "0fdf95fb-f562-46dd-9ee9-f2e2169b6029"
+    },
+    {
+        "fields": {
+            "description": "The Provider has multiple physical locations but a unified management structure and a single coordination centre.",
+            "name": "Distributed"
+        },
+        "model": "accounts.structure",
+        "pk": "323c40f3-350e-479e-92e6-450cd0afe626"
+    },
+    {
+        "fields": {
+            "description": "The Provider is changing its physical location on a regular basis (e.g., satellites, research vessels).",
+            "name": "Mobile"
+        },
+        "model": "accounts.structure",
+        "pk": "32ad4e54-3c25-46aa-bed4-e1e1a637aedf"
+    },
+    {
+        "fields": {
+            "description": "The Provider is exclusively an electronic resource/service.",
+            "name": "Virtual"
+        },
+        "model": "accounts.structure",
+        "pk": "ae59b48c-4109-493f-a979-f7dc48afbd5c"
+    },
+    {
+        "fields": {
+            "description": "The Provider has one main physical location for users.",
+            "name": "Single-sited"
+        },
+        "model": "accounts.structure",
+        "pk": "ed8c6549-9015-49df-b4c0-f6a18a5b94d3"
+    }
+]

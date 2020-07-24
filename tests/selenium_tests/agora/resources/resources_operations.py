@@ -32,11 +32,11 @@ class ResourcesOperations(Resources):
         @param instance: The website instance of the Agora project to be used for the tests.
         """
         super().__init__(driver, headless, instance)
-        print("\n# Edit a resources record.")
+        print("\n# Edit a resource record.")
         super().edit_from_listView()
         # Go again to Resources list view page.
         self.resources_page()
-        print("\n# Details of a contact record.")
+        print("\n# Details of a resource record.")
         super().details_from_listView()
         self.close()
 

@@ -99,7 +99,6 @@ class ResourceFormValidations(ResourceCreate):
         # *.COI.14 - Security Contact Email
         email_input_validation(self.driver, self.fields_prefix + "coi_14_security_contact_email")
 
-    def delete(self):
-        self.driver.find_element_by_xpath('//button[text()="delete"]').click()
-        # sleep(self.sleep_time)
-        self.driver.find_element_by_xpath('//md-dialog-actions//button[text()="OK"]').click()
+    # def delete(self):
+    #     self.driver.find_element_by_xpath('//button[text()="delete"]').click()
+    #     self.driver.find_element_by_xpath('//md-dialog-actions//button[text()="OK"]').click()

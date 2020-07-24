@@ -8,9 +8,10 @@ __maintainer__ = 'Tas-sos'
 __author__ = 'Tas-sos'
 __email__ = 'tasos@admin.grnet.gr'
 
+
 from agora.Agora import Agora
-from time import sleep
-from abc import abstractmethod
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.by import By
 
 
 class Contacts(Agora):
@@ -46,12 +47,13 @@ class Contacts(Agora):
         @requires the successful execution of the following methods :
             1. basic_authentication
         """
-        sleep(self.sleep_time)
         # Owners
+        self.wait.until(EC.element_to_be_clickable((By.CSS_SELECTOR, "[class=' group-item menu-item ember-view md-clickable']")))
+        # self.wait.until(EC.element_to_be_clickable((By.TAG_NAME, "md-list-item")))
         self.driver.find_elements_by_tag_name("md-list-item")[3].click()
         # Contact Information
+        self.wait.until(EC.presence_of_element_located((By.XPATH, "//a[@href='/ui/contact-information']")))
         self.driver.find_element_by_xpath("//a[@href='/ui/contact-information']").click()
-        sleep(self.sleep_time)
 
     def contacts_create_new_page(self):
         """
@@ -64,6 +66,6 @@ class Contacts(Agora):
         Checks if the following exist:
             - Create (href)
         """
+        self.wait.until(EC.presence_of_element_located((By.XPATH, "//a[@href='/ui/contact-information/create']")))
         assert "create" in self.driver.find_element_by_xpath("//a[@href='/ui/contact-information/create']").text
         self.driver.find_element_by_xpath("//a[@href='/ui/contact-information/create']").click()
-        sleep(self.sleep_time)

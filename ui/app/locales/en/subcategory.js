@@ -2,7 +2,7 @@ const subcategory = {
     'cards': {
       'basic': 'Basic information',
       'basic_hint': '',
-  
+
     },
     'fields': {
       'category': 'Resource Category',
@@ -19,9 +19,9 @@ const subcategory = {
     'table': {
       'category': 'Category',
       'name': 'Subcategory Title',
-    }, 
+    },
     'placeholder':{
-      'search': 'Search by Resource Category/Subcategory Title',
+      'search': 'Search by subcategory title',
     },
     'menu': 'Resource Subcategories',
   };

@@ -43,7 +43,7 @@ export default AgoraGen.extend({
         fields: [
           field(
             'domain', {
-              modelName:'domain',
+              modelName:'merildomain',
               type: 'model',
               displayAttr: 'name',
             }

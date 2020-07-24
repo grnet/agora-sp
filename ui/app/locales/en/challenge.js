@@ -2,7 +2,7 @@ const challenge = {
     'cards': {
       'basic': 'Basic information',
       'basic_hint': '',
-  
+
     },
     'fields': {
       'name': 'Societal Grand Challenge',
@@ -16,11 +16,11 @@ const challenge = {
     },
     'table': {
       'name': 'Societal Grand Challenge',
-    }, 
+    },
     'placeholder':{
-      'search': 'Search by Societal Grand Challenge',
+      'search': 'Search by societal grand challenge',
     },
     'menu': 'Societal Grand Challenges'
   };
-  
+
   export { challenge };

@@ -2,7 +2,7 @@ const structure = {
     'cards': {
       'basic': 'Basic information',
       'basic_hint': '',
-  
+
     },
     'fields': {
       'name': 'Structure type name',
@@ -18,11 +18,11 @@ const structure = {
     },
     'table': {
       'name': 'Structure Type',
-    }, 
+    },
     'placeholder':{
-      'search': 'Search by Structure type',
+      'search': 'Search by structure type',
     },
     'menu': 'Structures'
   };
-  
+
   export { structure };

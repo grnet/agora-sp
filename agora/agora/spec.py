@@ -1837,26 +1837,33 @@ ORGANISATIONS = {
         'id': {
             '.field.uuid': {},
             '.flag.nowrite': {}},
+            '.flag.orderable': {},
         'epp_bai_0_id': {
-          '.field.string': {},
-          '.flag.nullable.default': {},
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {},
         },
         'epp_bai_1_name': {
-          '.field.string': {},
-          '.flag.filterable': {},
-          '.flag.searchable': {},
+            '.field.string': {},
+            '.flag.filterable': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {},
         },
         'epp_bai_2_abbreviation': {
-          '.field.string': {},
-          '.flag.nullable.default': {},
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {},
         },
         'epp_bai_3_website': {
-          '.field.string': {},
-          '.flag.nullable.default': {},
+            '.field.string': {},
+            '.flag.nullable.default': {},
         },
         'epp_bai_4_legal_entity': {
-          '.field.boolean': {},
-          'default': False},
+            '.field.boolean': {},
+            'default': False
+        },
         'epp_bai_5_legal_status': {
             '.field.ref': {},
             'source': 'epp_bai_5_legal_status_id',
@@ -2294,9 +2301,11 @@ TARGET_USERS = {
         'user': {
             '.field.string': {},
             '.flag.filterable': {},
+            '.flag.searchable': {},
             '.flag.orderable': {}},
         'description': {
             '.field.string': {},
+            '.flag.searchable': {},
             '.flag.nullable.default': {}},
     },
     'actions': {
@@ -2313,6 +2322,7 @@ TARGET_USERS = {
 CONTACT_INFORMATION = {
     '.collection.django': {},
     'model': 'owner.models.ContactInformation',
+    ':permissions_namespace': 'agora.checks.ContactInformation',
     'fields': {
         'id': {
             '.field.uuid': {},
@@ -2343,6 +2353,9 @@ CONTACT_INFORMATION = {
             'to': '/api/v2/providers',
             '.flag.filterable': {},
             '.flag.nullable.default': {}},
+        'organisation_id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
     },
     'actions': {
         '.action-template.django.list': {},

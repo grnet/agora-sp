@@ -1,1 +1,42 @@
-[{"model": "service.accesstype", "pk": "7eeb9387-c7f5-42cb-8354-fc4ee4e16bc1", "fields": {"name": "Remote", "description": "Resources are delivered remotely with the use of a physical infrastructure. The user is able to remotely work with the physical RI without the need of physical presence."}}, {"model": "service.accesstype", "pk": "a99e4c27-e504-496f-83d8-2283a0a3c367", "fields": {"name": "Virtual", "description": "The Resource is delivered through a virtual infrastructure that the use may access virtually through the web or an intranet."}}, {"model": "service.accesstype", "pk": "a9f66925-341d-4227-849d-5433ed039960", "fields": {"name": "Physical", "description": "Resources require a physical presence of the user. The user can only access the RI if he is physically present in the specific location that the RI is offered."}}, {"model": "service.accesstype", "pk": "bb9b297f-e58d-41ee-8077-d112d2787163", "fields": {"name": "Mail-in", "description": "Samples are sent in to for e.g. analysis and the results are returned to the user without the user actually accessing the RI"}}, {"model": "service.accesstype", "pk": "f23eb0db-586d-4b4a-aa97-f0cad12a6e78", "fields": {"name": "Other", "description": ""}}]
+[
+    {
+        "fields": {
+            "description": "Resources are delivered remotely with the use of a physical infrastructure. The user is able to remotely work with the physical RI without the need of physical presence.",
+            "name": "Remote"
+        },
+        "model": "service.accesstype",
+        "pk": "7eeb9387-c7f5-42cb-8354-fc4ee4e16bc1"
+    },
+    {
+        "fields": {
+            "description": "The Resource is delivered through a virtual infrastructure that the use may access virtually through the web or an intranet.",
+            "name": "Virtual"
+        },
+        "model": "service.accesstype",
+        "pk": "a99e4c27-e504-496f-83d8-2283a0a3c367"
+    },
+    {
+        "fields": {
+            "description": "Resources require a physical presence of the user. The user can only access the RI if he is physically present in the specific location that the RI is offered.",
+            "name": "Physical"
+        },
+        "model": "service.accesstype",
+        "pk": "a9f66925-341d-4227-849d-5433ed039960"
+    },
+    {
+        "fields": {
+            "description": "Samples are sent in to for e.g. analysis and the results are returned to the user without the user actually accessing the RI",
+            "name": "Mail-in"
+        },
+        "model": "service.accesstype",
+        "pk": "bb9b297f-e58d-41ee-8077-d112d2787163"
+    },
+    {
+        "fields": {
+            "description": "",
+            "name": "Other"
+        },
+        "model": "service.accesstype",
+        "pk": "f23eb0db-586d-4b4a-aa97-f0cad12a6e78"
+    }
+]

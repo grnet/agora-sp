@@ -22,6 +22,9 @@ const contact_information = {
     'organisation': '',
   },
   'menu': 'Contact Information',
+  placeholders: {
+    search: 'Search by name, email or position',
+  }
 };
 
 export { contact_information };

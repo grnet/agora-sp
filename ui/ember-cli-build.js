@@ -15,7 +15,7 @@ module.exports = function(defaults) {
       },
     },
     fingerprint: {
-      exclude: ['assets/logo*.png'],
+      exclude: ['assets/logo*.png', 'assets/privacy/*'],
     }
   });
 

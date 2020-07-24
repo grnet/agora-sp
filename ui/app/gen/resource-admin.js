@@ -45,12 +45,8 @@ export default AgoraGen.extend({
     },
     menu: {
       label: 'resource_admin.menu',
-      group: {
-        name: 'user-information',
-        label: 'group_menu.user_information',
-        order: 400,
-          icon: 'people',
-      },
+      order: 400,
+      icon: 'people',
     },
     row: {
       fields: [

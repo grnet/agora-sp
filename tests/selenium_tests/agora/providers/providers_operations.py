@@ -36,7 +36,7 @@ class ProvidersOperations(Providers):
         super().edit_from_listView()
         # Go again to Providers list view page.
         self.providers_page()
-        print("\n# Details of a contact record.")
+        print("\n# Details of a provider record.")
         super().details_from_listView()
         self.close()
 

@@ -36,7 +36,7 @@ export default AgoraGen.extend({
       active: false,
       serverSide: true,
       search: true,
-      searchPlaceholder: 'esfritype.placeholders.search',
+      searchPlaceholder: 'common.placeholders.search',
     },
     sort: {
       serverSide: true,

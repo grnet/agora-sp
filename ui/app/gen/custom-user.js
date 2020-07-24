@@ -1,10 +1,13 @@
 import { AgoraGen } from '../lib/common';
 import { field } from 'ember-gen';
+import ENV from '../config/environment';
 import validate from 'ember-gen/validate';
 import {
   CREATE_OR_EDIT_FIELDSETS,
   DETAILS_FIELDSETS
 } from '../utils/common/custom-user';
+
+const CHOICES = ENV.APP.resources;
 
 
 export default AgoraGen.extend({
@@ -47,10 +50,25 @@ export default AgoraGen.extend({
       order: '500',
     },
     filter: {
-      active: false,
+      active: true,
       serverSide: true,
       search: true,
       searchPlaceholder: 'custom_user.placeholders.search',
+      meta: {
+        fields: [
+          field('organisation', {
+            modelName:'provider',
+            label: 'custom_user.fields.organisation',
+            type: 'model',
+            displayAttr: 'epp_bai_1_name',
+          }),
+          field('role', {
+
+    type: 'select',
+    choices: CHOICES.USER_ROLES,
+          })
+        ],
+      },
     },
     sort: {
       serverSide: true,
