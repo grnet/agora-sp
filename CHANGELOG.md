@@ -8,6 +8,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Add Privacy Policy pdf.
+- Add filtering/searching/sorting options where they apply.
+
+### Changed
+- Users with role serviceadmin can edit/create Contacts belonging only to their organisation.
+- Resource contacts now belong to the Resource Organisation.
+- Better waits and improvements for selenium tests.
+
+### Removed
+- Delete unused organisations fixture.
 
 ### Fixed
 - Fix bug with observer profile
