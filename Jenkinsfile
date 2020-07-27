@@ -13,7 +13,7 @@ pipeline {
                 sh '''
                     cd $WORKSPACE/$PROJECT_DIR
                     docker-compose -f docker-compose-selenium-test.yml up -d --build
-                    rm requirements*.txt
+                    #rm requirements*.txt
                     cd tests/selenium_tests
                     pipenv install -r requirements.txt
                     echo "Wait for argo container to initialize"
