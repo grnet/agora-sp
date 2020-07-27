@@ -72,8 +72,6 @@ INSTALLED_APPS = [
     'djoser',
     'corsheaders',
     'reversion',
-    'component',
-    'options',
     'owner',
     'common',
     'service',

@@ -1,6 +1,5 @@
 import pytest
 from django.test import Client
-from component.models import ServiceComponent, ServiceComponentImplementation
 from accounts.models import User
 
 
