@@ -12,9 +12,14 @@ def get_login_url():
 
 
 def send_email_shib_user_created(user, http_host):
+    user_name = user.username
+    if user.first_name and user.last_name:
+      user_name = "{0} {1}".format(user.first_name, user.last_name)
+
     tpl_subject = 'emails/shib_user_created_subject.txt'
     tpl_body = 'emails/shib_user_created_body.txt'
     tpl_context = {
+        'user_name': user_name,
         'user': user,
         'http_host': http_host
     }
@@ -32,7 +37,12 @@ def send_email_shib_user_created(user, http_host):
 
 
 def send_user_email(user, tpl_subject, tpl_body, extra_context=()):
+    user_name = user.username
+    if user.first_name and user.last_name:
+      user_name = "{0} {1}".format(user.first_name, user.last_name)
+
     tpl_context = {
+        'user_name': user_name,
         'user': user,
         'login_url': get_login_url()
     }
@@ -56,7 +66,7 @@ def resourceadminship_context(sa):
     return {
         'applicant': sa.admin,
         'resource': sa.resource,
-        'resource_url': current_site_baseurl() + '/resources/'+str(sa.resource.pk),
+        'resource_url': current_site_baseurl() + '/' + settings.UI_PREFIX + 'resources/'+str(sa.resource.pk),
         'resource_admins_url': current_site_baseurl() + '/resource-admins/'
     }
 

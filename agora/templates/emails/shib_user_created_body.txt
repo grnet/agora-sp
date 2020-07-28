@@ -7,4 +7,3 @@ Email: {{ user.email }}
 Shibboleth ID: {{ user.shibboleth_id }}
 
 NOTICE: Please do NOT reply to this e-mail.
-
