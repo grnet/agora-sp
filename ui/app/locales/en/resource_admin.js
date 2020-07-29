@@ -67,6 +67,10 @@ const resource_admin = {
     'error': 'Error',
     'ok': 'reassess',
   },
+  'errors': {
+    'object_exists': 'The user already admins the Resource you chose',
+    'no_organisation': 'The user must be assigned to a Provider',
+  }
 };
 
 export { resource_admin };
