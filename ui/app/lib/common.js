@@ -34,13 +34,21 @@ const AgoraGen = CRUDGen.extend({
       this.transitionTo(index, model);
     },
   },
+  details:{
+    actions: [
+      'gen:edit',
+    ],
+},
   edit: {
+    actions: [
+      'gen:details',
+    ],
     onSubmit(model) {
       let modelName = get(this, 'modelName');
       let index = `${modelName}.record.index`;
       this.transitionTo(index, model);
     },
-  }
+  },
 
 
 });

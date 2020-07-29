@@ -121,9 +121,7 @@ export default AgoraGen.extend({
   details: {
     fieldsets: DETAILS_FIELDSETS,
     actions: [
-      'gen:details',
       'gen:edit',
-      'remove',
       'applyResourceAdminship',
       'revokeResourceAdminship',
       'informAdminshipRejected',
