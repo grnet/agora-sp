@@ -24,13 +24,16 @@ class ResourceAdminship(object):
             raise ValidationError(_('Wrong admin role'))
 
         resource = r_m.objects.get(pk=backend_input['resource_id'])
+
         resource_org_id = resource.erp_bai_2_organisation.pk
+        if not admin.organisation:
+            raise ValidationError(_('No organisation'))
         if resource_org_id != admin.organisation.id:
             raise ValidationError(_('Forbidden Resource Organisation'))
         try:
             sa_m.objects.get(admin=backend_input['admin_id'],
                              resource=backend_input['resource_id'])
-            raise ValidationError(_('Object exists'))
+            raise ValidationError(_('ResourceAdminship Object exists'))
         except sa_m.DoesNotExist:
             backend_input['state'] = 'approved'
             return
@@ -48,12 +51,14 @@ class ResourceAdminship(object):
         auth_user = context['auth/user']
         resource = r_m.objects.get(pk=backend_input['resource_id'])
         resource_org_id = resource.erp_bai_2_organisation.pk
+        if not auth_user.organisation:
+            raise ValidationError(_('No organisation'))
         if resource_org_id != auth_user.organisation.id:
             raise ValidationError(_('Forbidden Resource Organisation'))
         try:
             sa_m.objects.get(admin=auth_user.id,
                              resource=backend_input['resource_id'])
-            raise ValidationError(_('Object exists'))
+            raise ValidationError(_('ResourceAdminship Object exists'))
         except sa_m.DoesNotExist:
             backend_input['admin_id'] = auth_user.id
             backend_input['state'] = 'pending'
