@@ -52,11 +52,11 @@ def superadmin(django_user_model):
 
 
 @pytest.fixture('function')
-def admin(django_user_model):
+def provideradmin(django_user_model):
     return create_client(django_user_model,
-                         'admin',
-                         'admin@test.org',
-                         'admin')
+                         'provideradmin',
+                         'provideradmin@test.org',
+                         'provideradmin')
 
 
 @pytest.fixture('function')
