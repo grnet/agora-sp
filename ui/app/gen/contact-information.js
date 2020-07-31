@@ -39,7 +39,8 @@ export default AgoraGen.extend({
       text: 'contact_information.cards.basic_hint',
       label: 'contact_information.cards.basic_info',
       fields: computed('user.role', function() {
-        let disabled  = get(this, 'user.role') === 'serviceadmin';
+        let role = get(this, 'user.role');
+        let disabled  = role === 'serviceadmin' || role === 'provideradmin' ;
         return [
           'first_name',
           'last_name',
@@ -119,7 +120,7 @@ export default AgoraGen.extend({
       const store = get(this, 'store');
       const role = get(this, 'session.session.authenticated.role')
       const org_id = get(this, 'session.session.authenticated.organisation')
-      if (role === 'serviceadmin') {
+      if (role === 'serviceadmin' || role === 'provideradmin') {
 
         let org = store.findRecord('provider', org_id);
         return org.then(function(organisation) {
