@@ -88,7 +88,7 @@ const PROFILE_FIELDSETS = [{
       'role',
       'full_name',
     ];
-    if (model_role === 'serviceadmin') {
+    if (model_role === 'serviceadmin' || model_role === 'provideradmin') {
       fields.push('organisation');
     }
     return fields;
