@@ -37,6 +37,12 @@ def test_target_users(serviceadmin, superadmin):
 def test_providers(serviceadmin, superadmin):
     assertions_crud('providers', serviceadmin, superadmin)
 
+def test_access_modes(serviceadmin, superadmin):
+    assertions_crud('access_modes', serviceadmin, superadmin)
+
+def test_domains(serviceadmin, superadmin):
+    assertions_crud('domains', serviceadmin, superadmin)
+
 # def test_resources(serviceadmin, serviceadmin2, superadmin):
 
     # # Prepare tests: Create a Provider, a resource belonging to
