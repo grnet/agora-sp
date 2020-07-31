@@ -154,4 +154,24 @@ RESOURCES_CRUD = {
             'epp_mti_2_certifications': 'ISO-27001'
         },
     },
+    'access_modes': {
+        'url': '/api/v2/access-modes/',
+        'create_data': {
+          'name': 'Name',
+          'description': 'Description',
+        },
+        'edit_data': {
+          'name': 'Name2',
+          'description': 'Description2',
+        }
+    },
+    'domains': {
+        'url': '/api/v2/domains/',
+        'create_data': {
+          'name': 'Name',
+        },
+        'edit_data': {
+          'name': 'Name2',
+        }
+    },
 }

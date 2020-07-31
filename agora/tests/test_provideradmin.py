@@ -32,3 +32,9 @@ def assertions_crud(resource, user, superadmin):
 
 def test_target_users(provideradmin, superadmin):
     assertions_crud('target_users', provideradmin,  superadmin)
+
+def test_access_modes(provideradmin, superadmin):
+    assertions_crud('access_modes', provideradmin, superadmin)
+
+def test_domains(provideradmin, superadmin):
+    assertions_crud('domains', provideradmin, superadmin)
