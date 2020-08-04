@@ -49,6 +49,8 @@ def get_rules():
         ('api/v2/contact-information', 'partial_update', 'serviceadmin', '*', 'update_organisation_owned', '*', '*'),
         ('api/v2/contact-information', 'destroy', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/contact-information', 'delete', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/contact-information', 'destroy', 'provideradmin', '*', 'update_organisation_owned', '*', '*'),
+        ('api/v2/contact-information', 'delete', 'provideradmin', '*', 'update_organisation_owned', '*', '*'),
 
         ('api/v2/providers', 'list', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/providers', 'list', 'provideradmin', '*', '*', '*', '*'),
