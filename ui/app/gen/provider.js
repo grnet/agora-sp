@@ -8,11 +8,26 @@ import {
   PROVIDER_TABLE_FIELDS
 } from '../utils/common/provider';
 
+const {
+  computed,
+  get,
+}  = Ember;
+
 
 export default AgoraGen.extend({
   modelName: 'provider',
   path: 'providers',
   resourceName: 'api/v2/providers',
+  abilityStates: {
+    // a provideradmin can edit the provider he belongs to
+    update_organisation_owned: computed('role', 'user.organisation', 'model.id', function() {
+      let role = get(this, 'role');
+      if (role === 'provideradmin') {
+        return get(this, 'user.organisation') === get(this, 'model.id');
+      }
+      return false;
+    }),
+  },
   common: {
     validators: {
       epp_bai_0_id: [validate.presence(true)],
