@@ -728,6 +728,7 @@ CHALLENGES= {
 ORGANISATIONS = {
     '.collection.django': {},
     'model': 'accounts.models.Organisation',
+    ':permissions_namespace': 'agora.checks.Organisation',
     'fields': {
         'id': {
             '.field.uuid': {},

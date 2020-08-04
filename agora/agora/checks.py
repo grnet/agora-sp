@@ -68,10 +68,10 @@ class ResourceAdminship(object):
     def is_involved(instance, context):
         """Serviceadmins retrieve ResourceAdminships they are involved in.
 
-        Serviceadmins can retrieve ResourceAdminships of Resources they admin, so
-        that they can reject/approve these ResourceAdminships.
-        Serviceadmins can also retrieve the ResourceAdminship for which they are
-        admins regardlress of the state, so that they can view a
+        Serviceadmins can retrieve ResourceAdminships of Resources they admin,
+        so that they can reject/approve these ResourceAdminships.
+        Serviceadmins can also retrieve the ResourceAdminship for which they
+        are admins regardlress of the state, so that they can view a
         ResourceAdminship request or revoke one.
         """
         auth_user = context['auth/user']
@@ -159,6 +159,18 @@ class User(object):
 class Organisation(object):
 
     @staticmethod
+    def update_organisation_owned(backend_input, instance, context):
+        """
+        Serviceproviders can edit the Organisation they belong to.
+        """
+        auth_user = context['auth/user']
+        user_org_id = str(auth_user.organisation.id)
+        org_id = str(instance.pk)
+
+        if not org_id == user_org_id:
+            raise ValidationError(_('Unauthorized organisation(s)'))
+
+    @staticmethod
     def filter_belongs(context):
         """
         List only the Organisations a serviceadmins belongs to.
@@ -206,6 +218,7 @@ class Resource(object):
 
         if not user_org_id == resource_org_id:
             raise ValidationError(_('Unauthorized organisation(s)'))
+
 
 class ContactInformation(object):
 
