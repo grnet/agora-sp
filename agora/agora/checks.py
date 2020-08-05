@@ -155,6 +155,28 @@ class User(object):
         auth_user = context['auth/user']
         return Q(id=auth_user.id)
 
+    @staticmethod
+    def filter_my_provider(context):
+        """
+        A Provider Admin can only list observers and serviceadmins that
+        belong to his Organisation
+        """
+        auth_user = context['auth/user']
+        user_org_id = str(auth_user.organisation.id)
+        return (Q(role='serviceadmin') & Q(organisation_id=user_org_id)) | Q(role='observer')
+
+
+    @staticmethod
+    def filter_my_provider_me(context):
+        """
+        A Provider Admin can retrieve observers and serviceadmins that
+        belong to his Organisation and himself
+        """
+        auth_user = context['auth/user']
+        user_org_id = str(auth_user.organisation.id)
+        return (Q(role='serviceadmin') & Q(organisation_id=user_org_id)) | \
+               Q(role='observer') | \
+               Q(id=auth_user.id)
 
 class Organisation(object):
 
