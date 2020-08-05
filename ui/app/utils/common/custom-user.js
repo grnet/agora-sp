@@ -43,7 +43,8 @@ const DETAILS_FIELDSETS = [{
         label: 'custom_user.fields.role',
       })
     ];
-    if (role === 'superadmin' && model_role === 'serviceadmin') {
+    if ( (role === 'superadmin' || role === 'provideradmin') &&
+        (model_role==='serviceadmin' ||  model_role==='provideradmin')) {
       fields.push('organisation');
     }
     return fields;

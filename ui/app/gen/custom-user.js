@@ -9,6 +9,7 @@ import {
 
 const CHOICES = ENV.APP.resources;
 
+const { get, set, computed } = Ember;
 
 export default AgoraGen.extend({
   modelName: 'custom-user',
@@ -55,25 +56,43 @@ export default AgoraGen.extend({
       search: true,
       searchPlaceholder: 'custom_user.placeholders.search',
       meta: {
-        fields: [
-          field('organisation', {
-            modelName:'provider',
-            label: 'custom_user.fields.organisation',
-            type: 'model',
-            displayAttr: 'epp_bai_1_name',
-          }),
-          field('role', {
-
-    type: 'select',
-    choices: CHOICES.USER_ROLES,
-          })
-        ],
+          fields: computed('user.role', function() {
+          let role = get(this, 'user.role');
+          if (role === 'superadmin') {
+            return[
+              field('organisation', {
+                modelName:'provider',
+                label: 'custom_user.fields.organisation',
+                type: 'model',
+                displayAttr: 'epp_bai_1_name',
+              }),
+              field('role', {
+                type: 'select',
+                choices: CHOICES.USER_ROLES,
+              })
+            ]
+          } else if (role === 'provideradmin') {
+            return[
+              field('role', {
+                type: 'select',
+                choices: [["observer", "Observer"], ["serviceadmin", "Service Admin"]],
+              })
+            ]
+          } else {
+            return [
+              field('role', {
+                type: 'select',
+                choices: CHOICES.USER_ROLES,
+              })
+            ]
+          }
+        }),
       },
     },
     sort: {
       serverSide: true,
       active: true,
-      fields: ['username', 'email', 'is_active', 'role']
+      fields: ['username', 'email']
     },
   },
   details: {
