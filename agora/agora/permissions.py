@@ -68,9 +68,6 @@ def get_rules():
         ('api/v2/providers', 'destroy', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/providers', 'delete', 'superadmin', '*', '*', '*', '*'),
 
-        ('api/v2/my-providers', 'list', 'serviceadmin', 'filter_belongs', '*', '*', '*'),
-        ('api/v2/my-providers', 'retrieve', 'serviceadmin', '*', '*', '*', '*'),
-
         ('api/v2/resources', 'list', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/resources', 'list', 'provideradmin', '*', '*', '*', '*'),
         ('api/v2/resources', 'list', 'serviceadmin', '*', '*', '*', '*'),
