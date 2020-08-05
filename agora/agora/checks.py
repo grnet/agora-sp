@@ -170,15 +170,6 @@ class Organisation(object):
         if not org_id == user_org_id:
             raise ValidationError(_('Unauthorized organisation(s)'))
 
-    @staticmethod
-    def filter_belongs(context):
-        """
-        List only the Organisations a serviceadmins belongs to.
-        """
-        auth_user = context['auth/user']
-        organisations = [x.id for x in auth_user.organisations.all()]
-        return Q(id__in=organisations)
-
 
 class Resource(object):
 
