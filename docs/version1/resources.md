@@ -22,7 +22,7 @@ The user can view all the information from a selected resource by clicking on th
 | *The details from a resource* |
 
 
-## Create a new resource
+## Create a new Resource
 To create a new Resource, a `superadmin`, `admin` or `Service Admin` user must click to the **Resources** left sidebar menu option.
 When the user clicks to the Resource option, a new page with the list of existing Resources is presented.
 From this page a user may create a new resource just by clicking the **Create** option on the top right.
@@ -113,7 +113,7 @@ Below is the list of fields with small descriptions of the fields. The required 
 
 
 
-## Edit a resource
+## Edit a Resource
 
 The `superadmin`, `admin` and `Service Admin` have the permission to edit a Resource.
 
@@ -124,7 +124,7 @@ By clicking on the edit ![edit_icon](assets/icons/edit.png) icon near the select
 The fields that the user can change are the same as the ones described in the previous section "Create new resource" .
 
 
-## Delete a resource
+## Delete a Resource
 
 The `superadmin`, `admin` and `Service Admin` have the permission to delete a Resource.
 
