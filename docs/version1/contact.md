@@ -18,7 +18,7 @@ To view the list of all contacts, a `superadmin`, `admin` or `Service Admin` use
 |:--------------------:|
 | *The Contacts Information page* |
 
-## Details of a contact information
+## Contact Information details
 The user can view all the information from a selected contact by clicking on the details view ![view_icon](assets/icons/details.png) icon.
 
 | ![contacts_information_ViewDetails](assets/contact/details.png) |
@@ -27,7 +27,7 @@ The user can view all the information from a selected contact by clicking on the
 
 
 
-## Create a new contact 
+## Create a new Contact Information 
 To create a new Contact , the `superadmin`, `admin` or `service admin` must click to the **Contact Information** left sidebar menu option.
 
 When the user clicks to the Contact Information option, a new page with the list of existing Contact  is presented.
@@ -58,7 +58,7 @@ From this page a `superadmin`, `admin` or `service admin` user may create a new 
 | Provider (**required**)			|	The provider of the user  |
 
 
-## Edit a contact information
+## Edit a Contact Information
 The `superadmin`, `admin` and `Service Admin` have the permission to edit a contact.
 
 To edit an existing contact, the user should visit the list of contacts.
@@ -72,7 +72,7 @@ The fields that the user can change are the same as the ones described in the pr
 | *Edit a contact information page* |
 
 
-## Delete a contact information
+## Delete a Contact Information
 
 Only the `superadmin`, have the permission to delete a contact information.
 
