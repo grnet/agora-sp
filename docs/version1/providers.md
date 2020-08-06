@@ -4,7 +4,7 @@ title: Providers Information
 ---
 
 
-A Provider is  System User responsible for the provisioning of one or more Resources to users. Providers are organisations,
+**Provider**: A Provider is  System User responsible for the provisioning of one or more Resources to users. Providers are organisations,
 a part of an organisation or a federation that manages and delivers Resources to End-Users. Providers can be:
 
 1.  Resource Providers,
@@ -17,7 +17,7 @@ a part of an organisation or a federation that manages and delivers Resources to
 8.  Thematic Clouds,
 9.  Regional Clouds, etc.
 
-## Providers List.
+## List Providers 
 To view the list of all providers, the user must click to the **Providers** left sidebar menu option.
 
 | ![Providers_ListView](assets/providers/list.png) |
@@ -25,7 +25,7 @@ To view the list of all providers, the user must click to the **Providers** left
 | *The providers page* |
 
 
-## Details of a provider.
+## Provider Details
 The user can view all the information from a selected provider by clicking on the details view ![view_icon](assets/icons/details.png) icon.
 
 | ![Providers_ViewDetails](assets/providers/details.png) |
@@ -33,7 +33,7 @@ The user can view all the information from a selected provider by clicking on th
 | *The details from a provider* |
 
 
-## Create a new provider.
+## Create a new Provider
 To create a new Provider, a `superadmin`, `admin` or `Service Admin` user must click to the **Providers** left sidebar menu option.
 
 When the user clicks to the Providers option, a new page with the list of existing Providers is presented.
@@ -91,9 +91,7 @@ Below is the list of fields with small descriptions of the fields. The required 
 | EPP.OTH.12 - National Roadmaps			|	Provider being part of a national roadmap for research infrastructures						|
 
 
-
-
-## Edit a provider.
+## Edit a Provider
 
 The `superadmin`, `admin` and `Service Admin` have the permission to edit a Provider.
 
@@ -103,7 +101,7 @@ By clicking on the edit ![edit_icon](assets/icons/edit.png) icon near the select
 
 The fields that the user can change are the same as the ones described in the previous section "Create new provider" .
 
-## Delete a provider.
+## Delete a Provider
 
 The `superadmin`, `admin` and `Service Admin` have the permission to delete a Provider.
 
