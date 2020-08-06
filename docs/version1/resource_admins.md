@@ -3,7 +3,7 @@ id: resource_admins
 title: Resource Admins Information
 ---
 
-**Resource admins**:  The resource admins are users that own and manage one or more resources. A Resource Admin belongs to an Organization and can manage his own resources.  
+**Resource admins**:  Resource Admins are users that own and manage one or more resources. A Resource Admin belongs to an Organization and can manage his own resources.  
 
 ## The Process
 
