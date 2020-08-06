@@ -3,6 +3,14 @@ id: contact
 title: Contact Information
 ---
 
+A Contact information is actually a provider representative or an resource owner. The Contact information is actually used by the  "Provider" or/and "Resources" as an owner or a Point of Contact.
+
+:::tip
+
+Before adding a Provider, or a Resource dont forget to add all the necessary contact information.
+
+:::
+
 ## List Contact Information 
 To view the list of all contacts, a `superadmin`, `admin` or `Service Admin` user must click to the **Contacts Information** left sidebar menu option.
 
