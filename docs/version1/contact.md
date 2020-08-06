@@ -3,15 +3,15 @@ id: contact
 title: Contact Information
 ---
 
-## Contacts Information List
-To view the list of all contacts information, a `superadmin`, `admin` or `Service Admin` user must click to the **Contacts Information** left sidebar menu option.
+## List Contact Information 
+To view the list of all contacts, a `superadmin`, `admin` or `Service Admin` user must click to the **Contacts Information** left sidebar menu option.
 
 | ![contacts_information](assets/contact/list.png) |
 |:--------------------:|
 | *The Contacts Information page* |
 
 ## Details of a contact information
-The user can view all the information from a selected contact information by clicking on the details view ![view_icon](assets/icons/details.png) icon.
+The user can view all the information from a selected contact by clicking on the details view ![view_icon](assets/icons/details.png) icon.
 
 | ![contacts_information_ViewDetails](assets/contact/details.png) |
 |:--------------------:|
@@ -19,12 +19,12 @@ The user can view all the information from a selected contact information by cli
 
 
 
-## Create a new contact information
-To create a new Contact Information, the `superadmin`, `admin` or `service admin` must click to the **Contact Information** left sidebar menu option.
+## Create a new contact 
+To create a new Contact , the `superadmin`, `admin` or `service admin` must click to the **Contact Information** left sidebar menu option.
 
-When the user clicks to the Contact Information option, a new page with the list of existing Contact Information is presented.
+When the user clicks to the Contact Information option, a new page with the list of existing Contact  is presented.
 
-From this page a `superadmin`, `admin` or `service admin` user may create a new Contact Information just by clicking the **Create** option on the top right.
+From this page a `superadmin`, `admin` or `service admin` user may create a new Contact  just by clicking the **Create** option on the top right.
 
 | ![ContactInformation_create](assets/contact/create.png) |
 |:-------------------------------------:|
@@ -51,9 +51,9 @@ From this page a `superadmin`, `admin` or `service admin` user may create a new 
 
 
 ## Edit a contact information
-The `superadmin`, `admin` and `Service Admin` have the permission to edit a contact information.
+The `superadmin`, `admin` and `Service Admin` have the permission to edit a contact.
 
-To edit an existing contact information, the user should visit the list of contact information.
+To edit an existing contact, the user should visit the list of contacts.
 
 By clicking on the edit ![edit_icon](assets/icons/edit.png) icon near the selected contact information the user can edit the details of it.
 
