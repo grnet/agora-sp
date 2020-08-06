@@ -9,15 +9,15 @@ Resources include assets like services, datasets, software, support, training, a
 ## List Resources
 To view the list of all resources, the user must click to the **Resources** left sidebar menu option.
 
-| ![Resources_ListView](assets/resources/list.png) |
+| ![Resources_ListView](assets/resources_list.png) |
 |:--------------------:|
 | *The resources page* |
 
 
 ## Resource Details
-The user can view all the information from a selected resource by clicking on the details view ![view_icon](assets/icons/details.png) icon.
+The user can view all the information from a selected resource by clicking on the details view ![view_icon](assets/icons_details.png) icon.
 
-| ![Resources_ViewDetails](assets/resources/details.png) |
+| ![Resources_ViewDetails](assets/resources_details.png) |
 |:--------------------:|
 | *The details from a resource* |
 
@@ -27,7 +27,7 @@ To create a new Resource, a `superadmin`, `admin` or `Service Admin` user must c
 When the user clicks to the Resource option, a new page with the list of existing Resources is presented.
 From this page a user may create a new resource just by clicking the **Create** option on the top right.
 
-| ![Resources_create](assets/resources/create.png) |
+| ![Resources_create](assets/resources_create.png) |
 |:--------------------------:|
 | *Create new resource page* |
 
@@ -119,7 +119,7 @@ The `superadmin`, `admin` and `Service Admin` have the permission to edit a Reso
 
 To edit an existing Resource, the user should visit the list of Resources.
 
-By clicking on the edit ![edit_icon](assets/icons/edit.png) icon near the selected resource the user can edit the details of it.
+By clicking on the edit ![edit_icon](assets/icons_edit.png) icon near the selected resource the user can edit the details of it.
 
 The fields that the user can change are the same as the ones described in the previous section "Create new resource" .
 
@@ -128,9 +128,9 @@ The fields that the user can change are the same as the ones described in the pr
 
 The `superadmin`, `admin` and `Service Admin` have the permission to delete a Resource.
 
-To delete an existing Resource, the user should visit the list of Resources. By clicking on the delete ![delete_icon](assets/icons/delete.png) icon near the selected resource  
+To delete an existing Resource, the user should visit the list of Resources. By clicking on the delete ![delete_icon](assets/icons_delete.png) icon near the selected resource  
 the user can delete it.
 
-| ![delete_entry](assets/icons/confirm_delete.png) |
+| ![delete_entry](assets/icons_confirm_delete.png) |
 |:--------------------------:|
 | *The page will show you a confirmation message and if you agree, then this entry will be deleted.* |

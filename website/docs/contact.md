@@ -14,14 +14,14 @@ Before adding a Provider, or a Resource dont forget to add all the necessary con
 ## List Contact Information 
 To view the list of all contacts, a `superadmin`, `admin` or `Service Admin` user must click to the **Contacts Information** left sidebar menu option.
 
-| ![contacts_information](assets/contact/list.png) |
+| ![contacts_information](assets/contact_list.png) |
 |:--------------------:|
 | *The Contacts Information page* |
 
 ## Contact Information details
-The user can view all the information from a selected contact by clicking on the details view ![view_icon](assets/icons/details.png) icon.
+The user can view all the information from a selected contact by clicking on the details view ![view_icon](assets/icons_details.png) icon.
 
-| ![contacts_information_ViewDetails](assets/contact/details.png) |
+| ![contacts_information_ViewDetails](assets/contact_details.png) |
 |:--------------------:|
 | *The details from a contact information* |
 
@@ -34,7 +34,7 @@ When the user clicks to the Contact Information option, a new page with the list
 
 From this page a `superadmin`, `admin` or `service admin` user may create a new Contact  just by clicking the **Create** option on the top right.
 
-| ![ContactInformation_create](assets/contact/create.png) |
+| ![ContactInformation_create](assets/contact_create.png) |
 |:-------------------------------------:|
 | *Create new contact information page* |
 
@@ -43,7 +43,7 @@ From this page a `superadmin`, `admin` or `service admin` user may create a new 
 
 > See in the following example how the user with role `service admin` cannot choose the provider.
 >
-> | ![ContactInformation_create_service_admin](assets/contact/create_from_service_admin.png) |
+> | ![ContactInformation_create_service_admin](assets/contact_create_from_service_admin.png) |
 > |:----------------------------------:|
 > | *Create new contact information from a service admin user* |
 
@@ -63,11 +63,11 @@ The `superadmin`, `admin` and `Service Admin` have the permission to edit a cont
 
 To edit an existing contact, the user should visit the list of contacts.
 
-By clicking on the edit ![edit_icon](assets/icons/edit.png) icon near the selected contact information the user can edit the details of it.
+By clicking on the edit ![edit_icon](assets/icons_edit.png) icon near the selected contact information the user can edit the details of it.
 
 The fields that the user can change are the same as the ones described in the previous section "Create new contact information" .
 
-| ![ContactInformation_edit](assets/contact/edit.png) |
+| ![ContactInformation_edit](assets/contact_edit.png) |
 |:-------------------------------------:|
 | *Edit a contact information page* |
 
@@ -76,8 +76,8 @@ The fields that the user can change are the same as the ones described in the pr
 
 Only the `superadmin`, have the permission to delete a contact information.
 
-To delete an existing contact information, the `superadmin` user should visit the list of Contact Information. By clicking on the delete ![delete_icon](assets/icons/delete.png) icon near the selected contact information the user can delete it.
+To delete an existing contact information, the `superadmin` user should visit the list of Contact Information. By clicking on the delete ![delete_icon](assets/icons_delete.png) icon near the selected contact information the user can delete it.
 
-| ![delete_entry](assets/icons/confirm_delete.png) |
+| ![delete_entry](assets/icons_confirm_delete.png) |
 |:--------------------------:|
 | *The page will show you a confirmation message and if you agree, then this entry will be deleted.* |

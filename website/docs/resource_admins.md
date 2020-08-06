@@ -16,7 +16,7 @@ By the time the user belongs to an Organization then  via the "Resource Admins" 
 
 To view the list of all Resource Admins, a `superadmin`, `admin` or `Service Admin` user must click to the **Resource Admins** left sidebar menu option.
 
-| ![ResourceAdmins_ListView](assets/resource_admins/list.png) |
+| ![ResourceAdmins_ListView](assets/resource_admins_list.png) |
 |:--------------------:|
 | *The Resource Admins page* |
 
@@ -24,9 +24,9 @@ To view the list of all Resource Admins, a `superadmin`, `admin` or `Service Adm
 
 ## Resource Admins Details
 
-The user can view all the information from a selected Resource Admin by clicking on the details view ![view_icon](assets/icons/details.png) icon.
+The user can view all the information from a selected Resource Admin by clicking on the details view ![view_icon](assets/icons_details.png) icon.
 
-| ![Resources_ViewDetails](assets/resource_admins/details.png) |
+| ![Resources_ViewDetails](assets/resource_admins_details.png) |
 |:--------------------:|
 | *The details from a resource admin* |
 
@@ -39,7 +39,7 @@ When the user clicks to the Resource Admins option, a new page with the list of 
 
 From this page a user may create a new resource admin just by clicking the **Create** option on the top right.
 
-| ![Resources_create](assets/resource_admins/create.png) |
+| ![Resources_create](assets/resource_admins_create.png) |
 |:--------------------------:|
 | *Create new Resource Admin * |
 
@@ -52,7 +52,7 @@ From this page a user may create a new resource admin just by clicking the **Cre
 
 A `Resource Admin` can only see the Resource Admins of the provider to which he belongs. 
 
-| ![ResourceAdmins_resourceadmin_View](assets/resource_admins/resource_admin_view.png) |
+| ![ResourceAdmins_resourceadmin_View](assets/resource_admins_view.png) |
 |:---------------------------------------------------------------------------------------------------:|
 | *The resource admins page from a resource admin user where his organization has no resource admins* |
 
@@ -64,7 +64,7 @@ The new resource admin (and edit resource admin) page provides a way for the `su
 
 > **Important note** : The resource and admin must belong to the **same organization**.
 
-| ![ResourceAdmin_create](assets/resource_admins/create.png) |
+| ![ResourceAdmin_create](assets/resource_admins_create.png) |
 |:--------------------------------:|
 | *Create new Resource Admin page* |
 
@@ -77,8 +77,8 @@ By selecting an existing Resource Admin a user can edit his details.
 
 Only the `superadmin`, have the permission to delete a Resource Admin.
 
-To delete an existing Resource Admin, the `superadmin` user should visit the list of Resource Admins. By clicking on the delete ![delete_icon](assets/icons/delete.png) icon near the selected resource admin the user can delete it.
+To delete an existing Resource Admin, the `superadmin` user should visit the list of Resource Admins. By clicking on the delete ![delete_icon](assets/icons_delete.png) icon near the selected resource admin the user can delete it.
 
-| ![delete_entry](assets/icons/confirm_delete.png) |
+| ![delete_entry](assets/icons_confirm_delete.png) |
 |:--------------------------:|
 | *The page will show you a confirmation message and if you agree, then this entry will be deleted.* |

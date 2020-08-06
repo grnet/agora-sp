@@ -12,11 +12,11 @@ Agora there are two ways to login:
 **All users except the *superuser* will register and log in via the respective provider.**
 
 
-| ![The Login Page](assets/login/0.png) |
+| ![The Login Page](assets/login_0.png) |
 |:----------------------------------:|
 | *Login page* |
 
-| ![After successful login](assets/login/1.png) |
+| ![After successful login](assets/login_1.png) |
 |:----------------------------------:|
 | *First screen after a successful login* |
 

@@ -20,15 +20,15 @@ a part of an organisation or a federation that manages and delivers Resources to
 ## List Providers 
 To view the list of all providers, the user must click to the **Providers** left sidebar menu option.
 
-| ![Providers_ListView](assets/providers/list.png) |
+| ![Providers_ListView](assets/providers_list.png) |
 |:--------------------:|
 | *The providers page* |
 
 
 ## Provider Details
-The user can view all the information from a selected provider by clicking on the details view ![view_icon](assets/icons/details.png) icon.
+The user can view all the information from a selected provider by clicking on the details view ![view_icon](assets/icons_details.png) icon.
 
-| ![Providers_ViewDetails](assets/providers/details.png) |
+| ![Providers_ViewDetails](assets/providers_details.png) |
 |:--------------------:|
 | *The details from a provider* |
 
@@ -40,7 +40,7 @@ When the user clicks to the Providers option, a new page with the list of existi
 
 From this page a user may create a new provider just by clicking the **Create** option on the top right.
 
-| ![Providers_create](assets/providers/create.png) |
+| ![Providers_create](assets/providers_create.png) |
 |:--------------------------:|
 | *Create new provider page* |
 
@@ -97,7 +97,7 @@ The `superadmin`, `admin` and `Service Admin` have the permission to edit a Prov
 
 To edit an existing Provider, the user should visit the list of Providers.
 
-By clicking on the edit ![edit_icon](assets/icons/edit.png) icon near the selected provider the user can edit the details of it.
+By clicking on the edit ![edit_icon](assets/icons_edit.png) icon near the selected provider the user can edit the details of it.
 
 The fields that the user can change are the same as the ones described in the previous section "Create new provider" .
 
@@ -105,9 +105,9 @@ The fields that the user can change are the same as the ones described in the pr
 
 The `superadmin`, `admin` and `Service Admin` have the permission to delete a Provider.
 
-To delete an existing Provider, the user should visit the list of Providers. By clicking on the delete ![delete_icon](assets/icons/delete.png) icon near the selected provider  
+To delete an existing Provider, the user should visit the list of Providers. By clicking on the delete ![delete_icon](assets/icons_delete.png) icon near the selected provider  
 the user can delete it.
 
-| ![delete_entry](assets/icons/confirm_delete.png) |
+| ![delete_entry](assets/icons_confirm_delete.png) |
 |:--------------------------:|
 | *The page will show you a confirmation message and if you agree, then this entry will be deleted.* |
