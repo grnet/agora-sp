@@ -5,34 +5,61 @@ pipeline {
     }
     environment {
         PROJECT_DIR="agora-sp"
+        GH_USER="newgrnetci"
+        GH_EMAIL="<argo@grnet.gr>"
     }
     stages {
-        stage ('Run Tests') {
-            steps {
-                echo 'Create docker containers...'
-                sh '''
-                    cd $WORKSPACE/$PROJECT_DIR
-                    docker-compose -f docker-compose-selenium-test.yml up -d --build
-                    rm requirements*.txt
-                    cd tests/selenium_tests
-                    pipenv install -r requirements.txt
-                    echo "Wait for argo container to initialize"
-                    while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8000/ui/auth/login)" != "200" ]]; do if [[ "$(docker ps | grep agora | wc -l)" != "2" ]]; then exit 1; fi; sleep 5; done
-                    pipenv run python agora_ui_tests.py --url http://localhost:8000/
-                '''
-            }
-            post {
-                always {
-                    sh '''
-                      cd $WORKSPACE/$PROJECT_DIR
-                      docker-compose -f docker-compose-selenium-test.yml down
-                      cd tests/selenium_tests
-                      pipenv --rm
-                    '''
-                    cleanWs()
+        stage ('Deploy Docs') {
+            agent { 
+                docker { 
+                    image 'node:buster' 
                 }
             }
+            steps {
+                echo 'Publish agora docs...'
+                sh '''
+                    cd $WORKSPACE/$PROJECT_DIR
+                    cd website
+                    npm install
+                '''
+                sshagent (credentials: ['jenkins-master']) {
+                    sh '''
+                        cd $WORKSPACE/$PROJECT_DIR/website
+                        mkdir ~/.ssh && ssh-keyscan -H github.com > ~/.ssh/known_hosts
+                        git config --global user.email ${GH_EMAIL}
+                        git config --global user.name ${GH_USER}
+                        GIT_USER=${GH_USER} USE_SSH=true npm run deploy
+                    '''
+                }
+            }
+            
         }
+        // stage ('Run Tests') {
+        //     steps {
+        //         echo 'Create docker containers...'
+        //         sh '''
+        //             cd $WORKSPACE/$PROJECT_DIR
+        //             docker-compose -f docker-compose-selenium-test.yml up -d --build
+        //             rm requirements*.txt
+        //             cd tests/selenium_tests
+        //             pipenv install -r requirements.txt
+        //             echo "Wait for argo container to initialize"
+        //             while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8000/ui/auth/login)" != "200" ]]; do if [[ "$(docker ps | grep agora | wc -l)" != "2" ]]; then exit 1; fi; sleep 5; done
+        //             pipenv run python agora_ui_tests.py --url http://localhost:8000/
+        //         '''
+        //     }
+        //     post {
+        //         always {
+        //             sh '''
+        //               cd $WORKSPACE/$PROJECT_DIR
+        //               docker-compose -f docker-compose-selenium-test.yml down
+        //               cd tests/selenium_tests
+        //               pipenv --rm
+        //             '''
+        //             cleanWs()
+        //         }
+        //     }
+        // }
     }
     post {
         always {

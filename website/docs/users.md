@@ -3,7 +3,7 @@ id: users
 title: Users Information
 ---
 
-**Users**: Users are the users of the service. 
+**Users**: Users are the users of this service. 
 
 The service supports the following types of users 
 
