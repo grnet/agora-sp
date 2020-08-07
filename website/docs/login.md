@@ -51,7 +51,7 @@ Administers the whole system.
 * User Settings -> Target Users : It can create/edit/delete everywhere.
 
 
-### Admin.
+### Admin
 Allowed to do whatever a Resource Admin can do besides Delete.
 
 * Profile                       : Can only see their own personal information.
@@ -66,7 +66,7 @@ Allowed to do whatever a Resource Admin can do besides Delete.
 * User Settings -> Target Users : It can create/edit everywhere.
 
 
-### Resource Admin.
+### Resource Admin
 - Each Resource Admin belongs only to one provider
 - Each Resource Admin is allowed to edit delete update his own resources (i.e. Resources he/she created or given Rights too)
 - Each Resource Admin is allowed to apply to gain rights in other resources in his provider.
@@ -86,7 +86,7 @@ Allowed to do whatever a Resource Admin can do besides Delete.
 
 
 ### Observer
-> Has Only view rights.
+Has Only view rights.
 
 * Profile                       : Can only see their own personal information.
 * Resources                     : It can only view **all entries**.

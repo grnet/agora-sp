@@ -6,7 +6,9 @@ title: Resources Information
 **Resource**: Any asset made available (by means of the EOSC system and according to the EOSC Rules of Participation) to  System Users to perform a process useful to deliver value in the context of the EOSC.
 Resources include assets like services, datasets, software, support, training, and consultancy.
 
+
 ## List Resources
+
 To view the list of all resources, the user must click to the **Resources** left sidebar menu option.
 
 | ![Resources_ListView](assets/resources_list.png) |
@@ -15,6 +17,7 @@ To view the list of all resources, the user must click to the **Resources** left
 
 
 ## Resource Details
+
 The user can view all the information from a selected resource by clicking on the details view ![view_icon](assets/icons_details.png) icon.
 
 | ![Resources_ViewDetails](assets/resources_details.png) |
@@ -23,6 +26,7 @@ The user can view all the information from a selected resource by clicking on th
 
 
 ## Create a new Resource
+
 To create a new Resource, a `superadmin`, `admin` or `Service Admin` user must click to the **Resources** left sidebar menu option.
 When the user clicks to the Resource option, a new page with the list of existing Resources is presented.
 From this page a user may create a new resource just by clicking the **Create** option on the top right.
@@ -30,6 +34,12 @@ From this page a user may create a new resource just by clicking the **Create** 
 | ![Resources_create](assets/resources_create.png) |
 |:--------------------------:|
 | *Create new resource page* |
+
+:::tip
+
+A `Service Admin` user can create a new resource only for his/her organization.
+
+:::
 
 In this new page the `superadmin`, `admin` and `Service Admin` user have to fill a number of fields in order to provide the resource details.
 
@@ -112,7 +122,6 @@ Below is the list of fields with small descriptions of the fields. The required 
 | ERP.FNI.2 - Pricing						|	Webpage with the information on the price scheme for this service in case the customer is charged for.	|
 
 
-
 ## Edit a Resource
 
 The `superadmin`, `admin` and `Service Admin` have the permission to edit a Resource.
@@ -126,7 +135,7 @@ The fields that the user can change are the same as the ones described in the pr
 
 ## Delete a Resource
 
-The `superadmin`, `admin` and `Service Admin` have the permission to delete a Resource.
+Only the `superadmin`, have the permission to delete a Resource.
 
 To delete an existing Resource, the user should visit the list of Resources. By clicking on the delete ![delete_icon](assets/icons_delete.png) icon near the selected resource  
 the user can delete it.
