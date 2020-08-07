@@ -15,15 +15,15 @@ The service supports the following types of users
 ## List Users
 To view the list of all users, a `superadmin` or `admin` or user must click to the **Users** left sidebar menu option.
 
-| ![users_superadmin_View](assets/users/list_admin.png) |
+| ![users_superadmin_View](assets/users_list_admin.png) |
 |:--------------------------------------:|
 | *The user page from a admin user* |
 
 
 ## View User Details
-The user can view all the information from a selected user by clicking on the details view ![view_icon](assets/icons/details.png) icon.
+The user can view all the information from a selected user by clicking on the details view ![view_icon](assets/icons_details.png) icon.
 
-| ![User_ViewDetails](assets/users/details.png) |
+| ![User_ViewDetails](assets/users_details.png) |
 |:--------------------:|
 | *The details from a user* |
 
@@ -34,7 +34,7 @@ The `superadmin` or `admin` have the permission to edit a user.
 
 To edit an existing user, the user should visit the list of Users.
 
-By clicking on the edit ![edit_icon](assets/icons/edit.png) icon near the selected user the user can edit the details of it.
+By clicking on the edit ![edit_icon](assets/icons_edit.png) icon near the selected user the user can edit the details of it.
 
 The fields that the user can change :
 
@@ -53,7 +53,7 @@ The fields that the user can change :
 > * `admin` users can only view and edit the existing users.
 
 
-| ![users_edit_View](assets/users/edit_admin.png) |
+| ![users_edit_View](assets/users_edit_admin.png) |
 |:--------------------------------------:|
 | *The user page from a admin user* |
 
@@ -62,12 +62,12 @@ The fields that the user can change :
 
 Only the `superadmin`, have the permission to delete a user.
 
-| ![users_superadmin_View](assets/users/list_superadmin.png) |
+| ![users_superadmin_View](assets/users_list_superadmin.png) |
 |:--------------------------------------:|
 | *The user page from a superadmin user* |
 
-To delete an existing user, the `superadmin` user should visit the list of Users. By clicking on the delete ![delete_icon](assets/icons/delete.png) icon near the selected user the user can delete it.
+To delete an existing user, the `superadmin` user should visit the list of Users. By clicking on the delete ![delete_icon](assets/icons_delete.png) icon near the selected user the user can delete it.
 
-| ![delete_entry](assets/icons/confirm_delete.png) |
+| ![delete_entry](assets/icons_confirm_delete.png) |
 |:--------------------------:|
 | *The page will show you a confirmation message and if you agree, then this entry will be deleted.* |

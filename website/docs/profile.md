@@ -16,7 +16,7 @@ The information displayed is:
  - **Email**: the users email
  - **Full name**: the users full name
 
-| ![users_superadmin_View](assets/profile/profile.png) |
+| ![users_superadmin_View](assets/profile.png) |
 |:--------------------------------------:|
 | *The profile information page* |
 
