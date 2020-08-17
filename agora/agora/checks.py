@@ -5,6 +5,30 @@ from service.models import ResourceAdminship as sa_m
 from service.models import Resource as r_m
 from accounts.models import User as user_m
 
+def resource_organisation_owned(backend_input, instance, context):
+    """Servicadmins/ProviderAdmins must belong to Resource's organisation.
+
+    The resource's organisations must be the same as the one the
+    serviceadmin belongs to.
+    """
+    auth_user = context['auth/user']
+    resource_org_id = str(backend_input.get('erp_bai_2_organisation_id'))
+    user_org_id = str(auth_user.organisation.id)
+
+    if not user_org_id == resource_org_id:
+        raise ValidationError(_('Unauthorized organisation(s)'))
+
+def contact_information_organisation_owned(backend_input, instance, context):
+    """Servicadmins/ProviderAdmins must belong to the same Organisation as the
+    Contact Information they are about to create/update.
+    """
+    auth_user = context['auth/user']
+    user_org_id = str(auth_user.organisation.id)
+    contact_org_id = str(backend_input.get('organisation_id'))
+
+    if not contact_org_id == user_org_id:
+        raise ValidationError(_('Unauthorized organisation(s)'))
+
 
 class ResourceAdminship(object):
 
@@ -218,43 +242,22 @@ class Resource(object):
         else:
             raise ValidationError(_('Unauthorized action'))
 
+
     @staticmethod
-    def organisation_owned(backend_input, instance, context):
-        """Servicadmins must belong to Resource's organisation.
+    def create_organisation_owned(backend_input, instance, context):
+        return resource_organisation_owned(backend_input, instance, context)
 
-        The resource's organisations must be the same as the one the
-        serviceadmin belongs to.
-        """
-        auth_user = context['auth/user']
-        resource_org_id = str(backend_input.get('erp_bai_2_organisation_id'))
-        user_org_id = str(auth_user.organisation.id)
-
-        if not user_org_id == resource_org_id:
-            raise ValidationError(_('Unauthorized organisation(s)'))
+    @staticmethod
+    def update_organisation_owned(backend_input, instance, context):
+        return resource_organisation_owned(backend_input, instance, context)
 
 
 class ContactInformation(object):
 
     @staticmethod
     def create_organisation_owned(backend_input, instance, context):
-        """Servicadmins must belong to the same Organisation as the
-        Contact Information they are about to create.
-        """
-        auth_user = context['auth/user']
-        user_org_id = str(auth_user.organisation.id)
-        contact_org_id = str(backend_input.get('organisation_id'))
-
-        if not contact_org_id == user_org_id:
-            raise ValidationError(_('Unauthorized organisation(s)'))
+        return  contact_information_organisation_owned(backend_input, instance, context)
 
     @staticmethod
     def update_organisation_owned(backend_input, instance, context):
-        """Servicadmins must belong to the same Organisation as the
-        Contact Information they are about to edit.
-        """
-        auth_user = context['auth/user']
-        user_org_id = str(auth_user.organisation.id)
-        contact_org_id = str(backend_input.get('organisation_id'))
-
-        if not contact_org_id == user_org_id:
-            raise ValidationError(_('Unauthorized organisation(s)'))
+        return  contact_information_organisation_owned(backend_input, instance, context)
