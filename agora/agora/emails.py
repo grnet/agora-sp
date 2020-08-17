@@ -2,6 +2,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from common.helper import current_site_baseurl
+from accounts.models import User
 
 import logging
 logger = logging.getLogger('apimas')
@@ -74,13 +75,17 @@ def resourceadminship_context(sa):
 def send_email_application_created(sa, http_host):
     """
     Emails sent when a user requests a Resource Adminship.
-    Emails are sent to other Resource serviceadmins.
+    Emails are sent to other Resource serviceadmins and to
+    Provider Admins that belong to the same Organisation
+    with the Resource.
     """
-    recipients = sa.resource.resource_admins
+    resource_admins = sa.resource.resource_admins
+    resource_org = sa.resource.erp_bai_2_organisation
+    provider_admins =  User.objects.filter(organisation=resource_org)
     extra_context = resourceadminship_context(sa)
     extra_context['http_host'] = http_host
 
-    for recipient in recipients:
+    for recipient in resource_admins:
         send_user_email(
             recipient,
             'emails/application_created_subject.txt',
@@ -88,6 +93,14 @@ def send_email_application_created(sa, http_host):
             extra_context
         )
 
+
+    for recipient in provider_admins:
+        send_user_email(
+            recipient,
+            'emails/application_created_subject.txt',
+            'emails/application_created_body.txt',
+            extra_context
+        )
 
 def send_email_sa_admins_applicant(sa, http_host, tpl_subject, tpl_body_admins,
                                    tpl_body_applicant):
