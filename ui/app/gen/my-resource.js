@@ -13,10 +13,18 @@ export default ResourceGen.extend({
   list: {
     getModel: function(params) {
       let user_id = get(this, 'session.session.authenticated.id');
+      let user_org_id = get(this, 'session.session.authenticated.organisation');
+      let role = get(this, 'session.session.authenticated.role');
 
       params = params || {};
-      params.adminships__admin_id = user_id;
-      params.adminships__state = 'approved';
+      if (role === 'serviceadmin') {
+        params.adminships__admin_id = user_id;
+        params.adminships__state = 'approved';
+      }
+
+      if (role === 'provideradmin') {
+        params.erp_bai_2_service_organisation = user_org_id;
+      }
 
       return this.store.query('resource', params)
     },
@@ -26,8 +34,7 @@ export default ResourceGen.extend({
     menu: {
       display: computed('role', function(){
         let role = get(this, 'session.session.authenticated.role');
-
-        return role === 'serviceadmin';
+        return role === 'serviceadmin' || role === 'provideradmin';
       }),
       label: 'resource.my_menu',
       icon: 'book',
