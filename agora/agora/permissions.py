@@ -14,10 +14,10 @@ def get_rules():
         ('api/v2/custom-users', 'delete', 'superadmin', '*', '*', '*', '*'),
 
         ('api/v2/resource-admins', 'list', 'superadmin', '*', '*', '*', '*'),
-        ('api/v2/resource-admins', 'list', 'provideradmin', '*', '*', '*', '*'),
+        ('api/v2/resource-admins', 'list', 'provideradmin', 'filter_my_provider', '*', '*', '*'),
         ('api/v2/resource-admins', 'list', 'serviceadmin', 'manages_or_self_pending', '*', '*', '*'),
         ('api/v2/resource-admins', 'retrieve', 'superadmin', '*', '*', '*', '*'),
-        ('api/v2/resource-admins', 'retrieve', 'provideradmin', '*', '*', '*', '*'),
+        ('api/v2/resource-admins', 'retrieve', 'provideradmin', 'filter_my_provider', '*', '*', '*'),
         ('api/v2/resource-admins', 'retrieve', 'serviceadmin', '*', 'is_involved', '*', '*'),
         ('api/v2/resource-admins', 'create', 'superadmin', '*', 'check_create_other', 'resource,admin', '*'),
         ('api/v2/resource-admins', 'create', 'provideradmin', '*', 'check_create_other_own_organisation', 'resource,admin', '*'),
