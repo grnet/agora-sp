@@ -69,7 +69,7 @@ const CREATE_OR_EDIT_FIELDSETS = [{
       'email',
       'role',
     ];
-    if (role === 'superadmin' && model_role === 'serviceadmin') {
+    if (role === 'superadmin' && (model_role === 'serviceadmin' || model_role === 'provideradmin')) {
       fields.push('organisation');
     }
     return fields;
