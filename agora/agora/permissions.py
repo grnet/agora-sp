@@ -20,7 +20,7 @@ def get_rules():
         ('api/v2/resource-admins', 'retrieve', 'provideradmin', '*', '*', '*', '*'),
         ('api/v2/resource-admins', 'retrieve', 'serviceadmin', '*', 'is_involved', '*', '*'),
         ('api/v2/resource-admins', 'create', 'superadmin', '*', 'check_create_other', 'resource,admin', '*'),
-        ('api/v2/resource-admins', 'create', 'provideradmin', '*', 'check_create_other', 'resource,admin', '*'),
+        ('api/v2/resource-admins', 'create', 'provideradmin', '*', 'check_create_other_own_organisation', 'resource,admin', '*'),
         ('api/v2/resource-admins', 'create', 'serviceadmin', '*', 'check_create_self', 'resource', '*'),
         ('api/v2/resource-admins', 'partial_update', 'superadmin', '*', 'check_update', 'state', '*'),
         ('api/v2/resource-admins', 'partial_update', 'provideradmin', '*', 'check_update', 'state', '*'),

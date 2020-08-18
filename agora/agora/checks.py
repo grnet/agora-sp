@@ -34,13 +34,13 @@ class ResourceAdminship(object):
 
     @staticmethod
     def check_create_other(backend_input, instance, context):
-        """Admins/superadmins can create ResourceAdminships.
+        """Superadmins can create ResourceAdminships.
 
-        Admins/superadmins can create a new ResourceAdminship instance
+        Superadmins can create a new ResourceAdminship instance
         for a given resource and a given user, only if the user has role
         'serviceadmin', she/he does not already admin the resource and
         user's Organisation is the same as the Resource's Organisation.
-        The ResourceAdminship created by admins/superadmins has state
+        The ResourceAdminship created by Superadmins has state
         'approved'.
         """
         admin = user_m.objects.get(id=backend_input['admin_id'])
@@ -53,6 +53,42 @@ class ResourceAdminship(object):
         if not admin.organisation:
             raise ValidationError(_('No organisation'))
         if resource_org_id != admin.organisation.id:
+            raise ValidationError(_('Forbidden Resource Organisation'))
+        try:
+            sa_m.objects.get(admin=backend_input['admin_id'],
+                             resource=backend_input['resource_id'])
+            raise ValidationError(_('ResourceAdminship Object exists'))
+        except sa_m.DoesNotExist:
+            backend_input['state'] = 'approved'
+            return
+
+    @staticmethod
+    def check_create_other_own_organisation(backend_input, instance, context):
+        """Provider Admins can create ResourceAdminships.
+
+        Provider Admins can create a new ResourceAdminship instance
+        for a given resource and a given user, only if:
+        - the user has role 'serviceadmin'
+        - she/he does not already admin
+        - the resource user's Organisation is the same as the Resource's Organisation
+        - the Resource's Organsation is the same as the Provider Admins
+        The ResourceAdminship created by Provider Admins has state
+        'approved'.
+        """
+        auth_user = context['auth/user']
+        user_org_id = auth_user.organisation.id
+        admin = user_m.objects.get(id=backend_input['admin_id'])
+        if admin.role != 'serviceadmin':
+            raise ValidationError(_('Wrong admin role'))
+
+        resource = r_m.objects.get(pk=backend_input['resource_id'])
+
+        resource_org_id = resource.erp_bai_2_organisation.pk
+        if not admin.organisation:
+            raise ValidationError(_('No organisation'))
+        if resource_org_id != admin.organisation.id:
+            raise ValidationError(_('Forbidden Resource Organisation'))
+        if resource_org_id != user_org_id:
             raise ValidationError(_('Forbidden Resource Organisation'))
         try:
             sa_m.objects.get(admin=backend_input['admin_id'],
