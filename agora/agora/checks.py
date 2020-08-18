@@ -204,6 +204,17 @@ class ResourceAdminship(object):
 
         return Q(admin=auth_user, state='pending')
 
+    @staticmethod
+    def filter_my_provider(context):
+        """
+        A Provider Admin can only list Resource Adminships for his/her
+        Organisation.
+        """
+        auth_user = context['auth/user']
+        user_org_id = str(auth_user.organisation.id)
+
+        return Q(resource__erp_bai_2_organisation_id=user_org_id)
+
 
 class User(object):
 
