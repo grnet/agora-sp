@@ -5,6 +5,7 @@ from service.models import ResourceAdminship as sa_m
 from service.models import Resource as r_m
 from accounts.models import User as user_m
 
+
 def resource_organisation_owned(backend_input, instance, context):
     """Servicadmins/ProviderAdmins must belong to Resource's organisation.
 
@@ -17,6 +18,7 @@ def resource_organisation_owned(backend_input, instance, context):
 
     if not user_org_id == resource_org_id:
         raise ValidationError(_('Unauthorized organisation(s)'))
+
 
 def contact_information_organisation_owned(backend_input, instance, context):
     """Servicadmins/ProviderAdmins must belong to the same Organisation as the
@@ -236,7 +238,6 @@ class User(object):
         user_org_id = str(auth_user.organisation.id)
         return (Q(role='serviceadmin') & Q(organisation_id=user_org_id)) | Q(role='observer')
 
-
     @staticmethod
     def filter_my_provider_me(context):
         """
@@ -248,6 +249,7 @@ class User(object):
         return (Q(role='serviceadmin') & Q(organisation_id=user_org_id)) | \
                Q(role='observer') | \
                Q(id=auth_user.id)
+
 
 class Organisation(object):
 
@@ -289,7 +291,6 @@ class Resource(object):
         else:
             raise ValidationError(_('Unauthorized action'))
 
-
     @staticmethod
     def create_organisation_owned(backend_input, instance, context):
         return resource_organisation_owned(backend_input, instance, context)
@@ -303,8 +304,8 @@ class ContactInformation(object):
 
     @staticmethod
     def create_organisation_owned(backend_input, instance, context):
-        return  contact_information_organisation_owned(backend_input, instance, context)
+        return contact_information_organisation_owned(backend_input, instance, context)
 
     @staticmethod
     def update_organisation_owned(backend_input, instance, context):
-        return  contact_information_organisation_owned(backend_input, instance, context)
+        return contact_information_organisation_owned(backend_input, instance, context)
