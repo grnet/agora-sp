@@ -1544,11 +1544,14 @@ RESOURCES = {
             'fields': {
                 'id': {
                     '.field.serial': {}},
-                'user_id': {
+                'state': {
+                    '.field.string': {},
+                    '.flag.filterable': {},
+                    '.flag.nowrite': {}},
+                'admin_id': {
                     '.field.integer': {},
                     '.flag.nowrite': {},
-                    '.flag.filterable': {},
-                    'source': 'admin.pk'},
+                    '.flag.filterable': {}},
             }
         },
         'required_resources': {

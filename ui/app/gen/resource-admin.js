@@ -30,16 +30,6 @@ export default AgoraGen.extend({
     },
   },
   list: {
-    getModel(params) {
-      params = params || {};
-
-      return this.store.query('resource-admin', params).then((sa) => {
-        let user_id = get(this, 'session.session.authenticated.id');
-        let res = sa.filter(el => get(el, 'admin_id').toString() !== user_id.toString());
-
-        return res;
-      });
-    },
     page: {
       title: 'resource_admin.menu',
     },
