@@ -15,7 +15,8 @@ export default ResourceGen.extend({
       let user_id = get(this, 'session.session.authenticated.id');
 
       params = params || {};
-      params.adminships__user_id = user_id;
+      params.adminships__admin_id = user_id;
+      params.adminships__state = 'approved';
 
       return this.store.query('resource', params)
     },
