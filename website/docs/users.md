@@ -3,16 +3,18 @@ id: users
 title: Users Information
 ---
 
-**Users**: Users are the users of the service. 
+**Users**: Users are the users of the service.
 
-The service supports the following types of users 
+The service supports the following types of users
 
  - Super Admin: The one that administers the whole system
  - Admin: who can read/modify/delete everything
  - Resource admin: who can read everything; can modify/delete services that he is owner/manager of
  - Observer: who can read everything
 
+
 ## List Users
+
 To view the list of all users, a `superadmin` or `admin` or user must click to the **Users** left sidebar menu option.
 
 | ![users_superadmin_View](assets/users_list_admin.png) |
@@ -21,6 +23,7 @@ To view the list of all users, a `superadmin` or `admin` or user must click to t
 
 
 ## View User Details
+
 The user can view all the information from a selected user by clicking on the details view ![view_icon](assets/icons_details.png) icon.
 
 | ![User_ViewDetails](assets/users_details.png) |

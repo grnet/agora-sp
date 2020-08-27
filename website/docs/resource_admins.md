@@ -5,12 +5,14 @@ title: Resource Admins Information
 
 **Resource admins**:  Resource Admins are users that own and manage one or more resources. A Resource Admin belongs to an Organization and can manage his own resources.  
 
+
 ## The Process
 
 When a user is registered to the service, he is registered as an observer.
-In order to be a resource admin the `superadmin` or `admin` should change his role. 
+In order to be a resource admin the `superadmin` or `admin` should change his role.
 The `superadmin` or `admin` will  make him a `ResourceAdmin` and assign him to an organization .
 By the time the user belongs to an Organization then  via the "Resource Admins" a Resource  can be assigned to him.
+
 
 ## List Resource Admins
 
@@ -21,7 +23,6 @@ To view the list of all Resource Admins, a `superadmin`, `admin` or `Service Adm
 | *The Resource Admins page* |
 
 
-
 ## Resource Admins Details
 
 The user can view all the information from a selected Resource Admin by clicking on the details view ![view_icon](assets/icons_details.png) icon.
@@ -29,7 +30,6 @@ The user can view all the information from a selected Resource Admin by clicking
 | ![Resources_ViewDetails](assets/resource_admins_details.png) |
 |:--------------------:|
 | *The details from a resource admin* |
-
 
 
 ## Create a new Resource Admin
@@ -50,7 +50,7 @@ From this page a user may create a new resource admin just by clicking the **Cre
 | Resource (**required**)		|	The reesource	|
 
 
-A `Resource Admin` can only see the Resource Admins of the provider to which he belongs. 
+A `Resource Admin` can only see the Resource Admins of the provider to which he belongs.
 
 | ![ResourceAdmins_resourceadmin_View](assets/resource_admins_view.png) |
 |:---------------------------------------------------------------------------------------------------:|
@@ -68,9 +68,10 @@ The new resource admin (and edit resource admin) page provides a way for the `su
 |:--------------------------------:|
 | *Create new Resource Admin page* |
 
-## Edit Resource Admin
-By selecting an existing Resource Admin a user can edit his details.
 
+## Edit Resource Admin
+
+By selecting an existing Resource Admin a user can edit his details.
 
 
 ## Delete a Resource Admin.

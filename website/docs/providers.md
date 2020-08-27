@@ -3,7 +3,6 @@ id: providers
 title: Providers Information
 ---
 
-
 **Provider**: A Provider is  System User responsible for the provisioning of one or more Resources to users. Providers are organisations,
 a part of an organisation or a federation that manages and delivers Resources to End-Users. Providers can be:
 
@@ -17,7 +16,9 @@ a part of an organisation or a federation that manages and delivers Resources to
 8.  Thematic Clouds,
 9.  Regional Clouds, etc.
 
-## List Providers 
+
+## List Providers
+
 To view the list of all providers, the user must click to the **Providers** left sidebar menu option.
 
 | ![Providers_ListView](assets/providers_list.png) |
@@ -26,6 +27,7 @@ To view the list of all providers, the user must click to the **Providers** left
 
 
 ## Provider Details
+
 The user can view all the information from a selected provider by clicking on the details view ![view_icon](assets/icons_details.png) icon.
 
 | ![Providers_ViewDetails](assets/providers_details.png) |
@@ -34,7 +36,8 @@ The user can view all the information from a selected provider by clicking on th
 
 
 ## Create a new Provider
-To create a new Provider, a `superadmin`, `admin` or `Service Admin` user must click to the **Providers** left sidebar menu option.
+
+To create a new Provider, a `superadmin` or `admin` user must click to the **Providers** left sidebar menu option.
 
 When the user clicks to the Providers option, a new page with the list of existing Providers is presented.
 
@@ -44,7 +47,7 @@ From this page a user may create a new provider just by clicking the **Create** 
 |:--------------------------:|
 | *Create new provider page* |
 
-In this new page the `superadmin`, `admin` and `Service Admin` user have to fill a number of fields in order to provide the provider details.
+In this new page the `superadmin` or `admin` user have to fill a number of fields in order to provide the provider details.
 
 As you can see, each field has its own detailed description of what kind of data is expected to be filled in by the user.
 
@@ -93,7 +96,7 @@ Below is the list of fields with small descriptions of the fields. The required 
 
 ## Edit a Provider
 
-The `superadmin`, `admin` and `Service Admin` have the permission to edit a Provider.
+The `superadmin` or `admin` have the permission to edit a Provider.
 
 To edit an existing Provider, the user should visit the list of Providers.
 
@@ -101,9 +104,10 @@ By clicking on the edit ![edit_icon](assets/icons_edit.png) icon near the select
 
 The fields that the user can change are the same as the ones described in the previous section "Create new provider" .
 
+
 ## Delete a Provider
 
-The `superadmin`, `admin` and `Service Admin` have the permission to delete a Provider.
+Only the `superadmin`, have the permission to delete a Provider.
 
 To delete an existing Provider, the user should visit the list of Providers. By clicking on the delete ![delete_icon](assets/icons_delete.png) icon near the selected provider  
 the user can delete it.

@@ -5,20 +5,25 @@ title: Contact Information
 
 A Contact information is actually a provider representative or an resource owner. The Contact information is actually used by the  "Provider" or/and "Resources" as an owner or a Point of Contact.
 
+
 :::tip
 
 Before adding a Provider, or a Resource dont forget to add all the necessary contact information.
 
 :::
 
-## List Contact Information 
+
+## List Contact Information
+
 To view the list of all contacts, a `superadmin`, `admin` or `Service Admin` user must click to the **Contacts Information** left sidebar menu option.
 
 | ![contacts_information](assets/contact_list.png) |
 |:--------------------:|
 | *The Contacts Information page* |
 
+
 ## Contact Information details
+
 The user can view all the information from a selected contact by clicking on the details view ![view_icon](assets/icons_details.png) icon.
 
 | ![contacts_information_ViewDetails](assets/contact_details.png) |
@@ -26,8 +31,8 @@ The user can view all the information from a selected contact by clicking on the
 | *The details from a contact information* |
 
 
+## Create a new Contact Information
 
-## Create a new Contact Information 
 To create a new Contact , the `superadmin`, `admin` or `service admin` must click to the **Contact Information** left sidebar menu option.
 
 When the user clicks to the Contact Information option, a new page with the list of existing Contact  is presented.
@@ -59,6 +64,7 @@ From this page a `superadmin`, `admin` or `service admin` user may create a new 
 
 
 ## Edit a Contact Information
+
 The `superadmin`, `admin` and `Service Admin` have the permission to edit a contact.
 
 To edit an existing contact, the user should visit the list of contacts.
