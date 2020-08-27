@@ -154,7 +154,7 @@ class CreateProvider(Providers):
         @return: True if all goes well otherwise False.
         """
         # *.CLi.1 - Scientific Domain
-        table_select_field(self.driver, self.fields_prefix + "cli_1_scientific_domain", 3)
+        table_select_field(self.driver, self.fields_prefix + "cli_1_scientific_domain", 1)
         # *.CLI.2 - Scientific Subdomain
         table_select_field(self.driver, self.fields_prefix + "cli_2_scientific_subdomain", 5)
 
