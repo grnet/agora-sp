@@ -5,6 +5,8 @@ pipeline {
     }
     environment {
         PROJECT_DIR="agora-sp"
+        GH_USER="newgrnetci"
+        GH_EMAIL="<argo@grnet.gr>"
     }
     stages {
         stage ('Deploy Docs') {
