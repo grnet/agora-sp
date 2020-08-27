@@ -2,7 +2,7 @@ module.exports = {
   title: 'AGORA-SP Documentation',
   tagline: 'Learn how the service protofolio management tool works',
   url: 'https://grnet.github.io',
-  baseUrl: '/',
+  baseUrl: '/agora-sp',
   onBrokenLinks: 'throw',
   favicon: 'img/favicon.ico',
   organizationName: 'GRNET', // Usually your GitHub org/user name.
