@@ -53,16 +53,17 @@ class Agora(ABC, unittest.TestCase):
                 from selenium.webdriver.chrome.options import Options
                 options = Options()
                 options.headless = True
-                self.driver = webdriver.Firefox(options=options,
+                self.driver = webdriver.Chrome(options=options,
                                                 executable_path='./webDriver_binaries/linux64/chromedriver_73.0.3683.68')
             else:
                 self.driver = webdriver.Chrome(executable_path='./webDriver_binaries/linux64/chromedriver_73.0.3683.68')
         else:
             sys.exit("I don't know what driver you want!")
 
+        self.driver.set_window_size(1920, 1080)
         self.page = instance
-        # Wait at most 5 seconds.
-        self.wait = WebDriverWait(self.driver, 5)
+        # Wait at most 5 minutes ( 300 seconds ).
+        self.wait = WebDriverWait(self.driver, 300)
 
         self.basic_authentication()
 
@@ -81,12 +82,14 @@ class Agora(ABC, unittest.TestCase):
 
         self.driver.find_element_by_name("identification").send_keys("superadmin")
         self.driver.find_element_by_name("password").send_keys("12345")
+        # self.driver.find_element_by_name("identification").send_keys("sUp3rAdmIn")
+        # self.driver.find_element_by_name("password").send_keys("+mUh94_V,9r3")
 
         # Click to "LOGIN" button.
         self.driver.find_element_by_xpath('//md-content//button[text()="login"]').click()
 
         # Response check
-        self.wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'toast-level-success')))
+        self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'toast-level-success')))
         login_response_message = self.driver.find_element_by_class_name("toast-level-success").text.split("\n")[0]
         assert "Login Success" in login_response_message
         if self.driver.find_element_by_class_name("toast-level-success"):
@@ -103,8 +106,9 @@ class Agora(ABC, unittest.TestCase):
             1. basic_authentication
             2. contacts_page
         """
-        sleep(1)
+        # sleep(1)
         self.wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "[class='gen-action']")))
+        self.wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "[class='row-actions ember-view md-cell']")))
 
         # assert "create" in self.driver.find_element_by_xpath("//a[@href='/ui/contact-information/create']").text
         actions = self.driver.find_element_by_css_selector("[class='row-actions ember-view md-cell']")
@@ -120,33 +124,46 @@ class Agora(ABC, unittest.TestCase):
             1. basic_authentication
             2. contacts_page
         """
-        sleep(1)
+        # sleep(1)
         self.wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "[class='gen-action']")))
+        self.wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "[class='row-actions ember-view md-cell']")))
 
         # assert "create" in self.driver.find_element_by_xpath("//a[@href='/ui/contact-information/create']").text
         actions = self.driver.find_element_by_css_selector("[class='row-actions ember-view md-cell']")
         actions.find_elements_by_css_selector("[class='gen-action']")[0].click()  # Details from listView.
         print("{0:<40} Found and visited \t{1}".format('[Details page]', "Success"))
 
-    def search_field(self, search_text="Selenium"):
+    def search_field(self, search_text="Selenium", view=True):
         """
         Method which is responsible to search on some listView.
 
         Each page has a search button that must be pressed to display the input field for the search text.
+        @param view: If print standard output or not.
         @param search_text: The text with which it will search.
         """
+        self.driver.implicitly_wait(1)
         # Search button/icon.
-        self.wait.until(EC.presence_of_element_located((By.XPATH, '//button//md-icon[text()="search"]')))
-        self.driver.find_element_by_xpath('//button//md-icon[text()="search"]').click()
+        # self.wait.until(EC.visibility_of_element_located((By.XPATH, '//button//md-icon[text()="search"]')))
+        # self.wait.until(EC.element_to_be_clickable((By.XPATH, '//button//md-icon[text()="search"]'))).click()
+        self.wait.until(EC.element_to_be_clickable((By.XPATH, '//button//md-icon[text()="search"]')))
+        search = self.driver.find_element_by_xpath('//button//md-icon[text()="search"]')
+        self.driver.execute_script("arguments[0].click();", search)  # https://stackoverflow.com/a/37880313
+        # self.driver.find_element_by_xpath('//button//md-icon[text()="search"]').click()
+        # sleep(0.1)
 
         # Input search field.
         self.wait.until(EC.visibility_of_element_located((By.TAG_NAME, "input")))
         self.driver.find_element_by_tag_name("input").send_keys(search_text)
 
-        sleep(1)  # Results.
+        # sleep(1)  # Results.
+        self.driver.implicitly_wait(1)
         self.wait.until(EC.visibility_of_element_located((By.TAG_NAME, "tbody")))
         records = len(self.driver.find_element_by_tag_name("tbody").find_elements_by_tag_name("tr"))
-        print("{0:<40} Found {1} record \t{2}".format('[Search]', str(records), "Success"))
+
+        if view:
+            print("{0:<40} Found {1} record \t{2}".format('[Search]', str(records), "Success"))
+
+        return records
 
     def close(self):
         """
