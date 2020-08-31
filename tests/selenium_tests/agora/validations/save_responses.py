@@ -35,12 +35,12 @@ def save_success(save_button):
     # form_response_message = save_button.find_element_by_class_name("toast-level-success").text.split("\n")[0]
 
     # print(save_button.current_url)
-    wait.until(EC.element_to_be_clickable((By.XPATH, "//md-icon[@md-font-icon='edit']")))
-    form_response_message = save_button.find_element_by_xpath("//md-icon[@md-font-icon='edit']").text
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//a//md-icon[@md-font-icon='edit']")))
+    form_response_message = save_button.find_element_by_xpath("//a//md-icon[@md-font-icon='edit']").text
 
     assert "edit" in form_response_message
     if form_response_message == 'edit':
-        print("[Saving form status] {0:>30} \t\t{1}".format(form_response_message, "Success"))
+        print("[Saving form status] {0:>30} \t\t{1}".format("Form Saved", "Success"))
         return True
 
 
