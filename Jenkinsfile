@@ -11,7 +11,7 @@ pipeline {
     stages {
         stage ('Deploy Docs') {
             when {
-                anyof {
+                anyOf {
                     changeset 'docs/**'
                     changeset 'website/**'
                 }
