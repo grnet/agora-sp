@@ -4,15 +4,21 @@ pipeline {
         checkoutToSubdirectory('agora-sp')
     }
     environment {
-        PROJECT_DIR="agora-sp"
-        GH_USER="newgrnetci"
-        GH_EMAIL="<argo@grnet.gr>"
+        PROJECT_DIR = 'agora-sp'
+        GH_USER = 'newgrnetci'
+        GH_EMAIL = '<argo@grnet.gr>'
     }
     stages {
         stage ('Deploy Docs') {
-            agent { 
-                docker { 
-                    image 'node:buster' 
+            when {
+                anyof {
+                    changeset 'docs/**'
+                    changeset 'website/**'
+                }
+            }
+            agent {
+                docker {
+                    image 'node:buster'
                 }
             }
             steps {
@@ -32,7 +38,6 @@ pipeline {
                     '''
                 }
             }
-            
         }
         stage ('Run Tests') {
             steps {
@@ -66,18 +71,18 @@ pipeline {
             cleanWs()
         }
         success {
-            script{
+            script {
                 if ( env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'devel' ) {
                     slackSend( message: ":rocket: New version for <$BUILD_URL|$PROJECT_DIR>:$BRANCH_NAME Job: $JOB_NAME !")
                 }
             }
         }
         failure {
-            script{
+            script {
                 if ( env.BRANCH_NAME == 'master' || env.BRANCH_NAME == 'devel' ) {
                     slackSend( message: ":rain_cloud: Build Failed for <$BUILD_URL|$PROJECT_DIR>:$BRANCH_NAME Job: $JOB_NAME")
                 }
-            }   
+            }
         }
     }
 }
