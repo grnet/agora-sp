@@ -62,7 +62,7 @@ class Agora(ABC, unittest.TestCase):
 
         self.page = instance
         # Wait at most 5 seconds.
-        self.wait = WebDriverWait(self.driver, 300)
+        self.wait = WebDriverWait(self.driver, 50)
 
         self.basic_authentication()
 
@@ -103,11 +103,7 @@ class Agora(ABC, unittest.TestCase):
             1. basic_authentication
             2. contacts_page
         """
-<<<<<<< HEAD
         #sleep(1)
-=======
-        # sleep(1)
->>>>>>> fix_contacts_bug
         self.wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "[class='gen-action']")))
         self.wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "[class='row-actions ember-view md-cell']")))
 

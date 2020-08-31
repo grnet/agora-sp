@@ -39,13 +39,13 @@ if __name__ == '__main__':
  #   ResourcesOperations("Firefox", headless=True, instance=args.url)
 
     # Create new records.
-    contact = ContactCreate("Firefox", headless=True, instance=args.url)
+    contact = ContactCreate("Firefox", headless=False, instance=args.url)
     contact.create_new_contact()
 
-    provider = CreateProvider("Firefox", headless=True, instance=args.url)
+    provider = CreateProvider("Firefox", headless=False, instance=args.url)
     provider.create_new_provider(required_only=False)
 
-    resource = ResourceCreate("Firefox", headless=True, instance=args.url)
+    resource = ResourceCreate("Firefox", headless=False, instance=args.url)
     resource.create_new_resource(required_only=False)
 
     # end time

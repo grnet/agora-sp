@@ -23,7 +23,7 @@ def save_success(save_button):
     @return: True if the form returns an success message otherwise False.
     """
     # Wait at most 10 seconds.
-    wait = WebDriverWait(save_button, 300)
+    wait = WebDriverWait(save_button, 50)
     # wait.until(EC.element_to_be_clickable((By.XPATH, '//button[text()="save"]')))
     wait.until(EC.visibility_of_all_elements_located((By.XPATH, '//button[text()="save"]')))
     wait.until(EC.visibility_of_any_elements_located((By.XPATH, '//button[text()="save"]')))
@@ -55,7 +55,7 @@ def save_invalid(save_button):
     @return: True if the form returns an invalid message otherwise False.
     """
     # Wait at most 10 seconds.
-    wait = WebDriverWait(save_button, 300)
+    wait = WebDriverWait(save_button, 50)
     wait.until(EC.presence_of_element_located((By.XPATH, '//button[text()="save"]'))).click()
     # save_button.find_element_by_xpath('//button[text()="save"]').click()
 

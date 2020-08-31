@@ -90,7 +90,9 @@ def table_select_field(page, field_name, position):
     @return: True if it finds the field and is completed without any problems or False if it cannot be found or
     supplemented.
     """
-    wait = WebDriverWait(page, 300)
+    wait = WebDriverWait(page, 50)
+    wait.until(EC.visibility_of_element_located((By.XPATH,
+                                   "//md-content[@data-form-field-name='" + field_name + "']//button[text()='add']")))
     wait.until(EC.element_to_be_clickable((By.XPATH,
                                    "//md-content[@data-form-field-name='" + field_name + "']//button[text()='add']"))).click()
     # sleep(2)
