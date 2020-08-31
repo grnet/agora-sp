@@ -8,7 +8,7 @@ The first page a users visit when he/she logs in to the service is the Profile I
 
 ## Profile
 
-The Profile is the page that displays the basic information of the users profile.
+The Profile page displays the basic information of the user's profile.
 The information displayed is:
 
  - **Username**: The username the user selected on singing up
