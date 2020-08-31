@@ -11,6 +11,8 @@ __email__ = 'tasos@admin.grnet.gr'
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
+from time import sleep
+import re
 
 
 def save_success(save_button):
@@ -29,10 +31,15 @@ def save_success(save_button):
     wait.until(EC.element_to_be_clickable((By.XPATH, '//button[text()="save"]'))).click()
     # save_button.find_element_by_xpath('//button[text()="save"]').click()
 
-    wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'toast-level-success')))
-    form_response_message = save_button.find_element_by_class_name("toast-level-success").text.split("\n")[0]
-    assert "Form Saved" in form_response_message
-    if save_button.find_element_by_class_name("toast-level-success"):
+    # wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'toast-level-success')))
+    # form_response_message = save_button.find_element_by_class_name("toast-level-success").text.split("\n")[0]
+
+    # print(save_button.current_url)
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//md-icon[@md-font-icon='edit']")))
+    form_response_message = save_button.find_element_by_xpath("//md-icon[@md-font-icon='edit']").text
+
+    assert "edit" in form_response_message
+    if form_response_message == 'edit':
         print("[Saving form status] {0:>30} \t\t{1}".format(form_response_message, "Success"))
         return True
 
