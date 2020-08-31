@@ -43,7 +43,7 @@ def suggestion_input_field(page, field_name, text):
     @return: True if it finds the field and is completed without any problems or False if it cannot be found or
     supplemented.
     """
-    wait = WebDriverWait(page, 5)
+    wait = WebDriverWait(page, 50)
     wait.until(EC.presence_of_element_located((By.XPATH, "//md-content[@data-form-field-name='" + field_name + "']")))
 
     suggestion_input = page.find_element_by_xpath("//md-content[@data-form-field-name='" + field_name + "']")
@@ -52,7 +52,7 @@ def suggestion_input_field(page, field_name, text):
 
     # Fix - Release field.
     page.find_element_by_xpath("//body").click()
-    sleep(0.1)
+    #sleep(0.1)
 
     # assert field_name in page.find_element_by_name(field_name)
     print("{0:<40} Found and filled \t{1}".format('[' + field_name + ']', "Success"))
@@ -69,10 +69,15 @@ def textarea_field(page, field_name, text):
     supplemented.
     """
     wait = WebDriverWait(page, 50)
+
     wait.until(EC.presence_of_element_located((By.XPATH, "//md-content[@data-form-field-name='" + field_name + "']")))
+    wait.until(EC.visibility_of_any_elements_located((By.XPATH, "//md-content[@data-form-field-name='" + field_name + "']")))
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//md-content[@data-form-field-name='" + field_name + "']")))
     textarea = page.find_element_by_xpath("//md-content[@data-form-field-name='" + field_name + "']")
 
     wait.until(EC.presence_of_element_located((By.TAG_NAME, "iframe")))
+    wait.until(EC.visibility_of_any_elements_located((By.TAG_NAME, "iframe")))
+    wait.until(EC.element_to_be_clickable((By.TAG_NAME, "iframe")))
     textarea.find_element_by_tag_name("iframe").click()
     textarea.find_element_by_tag_name("iframe").send_keys(text)
 
@@ -90,7 +95,9 @@ def table_select_field(page, field_name, position):
     @return: True if it finds the field and is completed without any problems or False if it cannot be found or
     supplemented.
     """
-    wait = WebDriverWait(page, 300)
+    wait = WebDriverWait(page, 50)
+    wait.until(EC.visibility_of_element_located((By.XPATH,
+                                   "//md-content[@data-form-field-name='" + field_name + "']//button[text()='add']")))
     wait.until(EC.element_to_be_clickable((By.XPATH,
                                    "//md-content[@data-form-field-name='" + field_name + "']//button[text()='add']"))).click()
     # sleep(2)
@@ -101,7 +108,6 @@ def table_select_field(page, field_name, position):
     wait.until(EC.visibility_of_all_elements_located((By.XPATH, "//md-dialog-content//tr//md-checkbox")))
     wait.until(EC.element_to_be_clickable((By.XPATH, "//md-dialog//md-checkbox")))
     wait.until(EC.element_to_be_clickable((By.CLASS_NAME, "md-checkbox")))
-    sleep(15)
 
     want = page.find_elements_by_xpath("//md-dialog-content//tr")[position]
     print(want.text)
@@ -113,7 +119,7 @@ def table_select_field(page, field_name, position):
 
     # Fix - Release field.
     page.find_element_by_xpath("//body").click()
-    sleep(0.1)
+    #sleep(0.1)
 
     # assert field_name in page.find_element_by_name(field_name)
     print("{0:<40} Found and filled \t{1}".format('[' + field_name + ']', "Success"))
@@ -128,7 +134,7 @@ def date_field(page, field_name):
     @return: True if it finds the field and is completed without any problems or False if it cannot be found or
     supplemented.
     """
-    wait = WebDriverWait(page, 5)
+    wait = WebDriverWait(page, 50)
     wait.until(EC.presence_of_element_located((By.XPATH, "//md-content[@data-form-field-name='" + field_name + "']")))
     page.find_element_by_xpath("//md-content[@data-form-field-name='" + field_name + "']").click()
 
@@ -149,7 +155,7 @@ def checkbox_field(page, field_name):
     @return: True if it finds the field and is completed without any problems or False if it cannot be found or
     supplemented.
     """
-    wait = WebDriverWait(page, 5)
+    wait = WebDriverWait(page, 50)
     wait.until(EC.presence_of_element_located((By.XPATH, "//md-content[@data-form-field-name='" + field_name + "']")))
     checkbox = page.find_element_by_xpath("//md-content[@data-form-field-name='" + field_name + "']")
     checkbox.find_element_by_tag_name("md-checkbox").click()

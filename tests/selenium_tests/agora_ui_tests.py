@@ -29,14 +29,14 @@ if __name__ == '__main__':
     start = time.time()
 
     # Field Validations.
-#    ContactFormValidations("Firefox", headless=True, instance=args.url)
-#    ProviderFormValidations("Firefox", headless=True, instance=args.url)
-#    ResourceFormValidations("Firefox", headless=True, instance=args.url)
+    ContactFormValidations("Firefox", headless=True, instance=args.url)
+    ProviderFormValidations("Firefox", headless=True, instance=args.url)
+    ResourceFormValidations("Firefox", headless=True, instance=args.url)
 
     # ListView operations.
- #   ContactsOperations("Firefox", headless=True, instance=args.url)
- #   ProvidersOperations("Firefox", headless=True, instance=args.url)
- #   ResourcesOperations("Firefox", headless=True, instance=args.url)
+    ContactsOperations("Firefox", headless=True, instance=args.url)
+    ProvidersOperations("Firefox", headless=True, instance=args.url)
+    ResourcesOperations("Firefox", headless=True, instance=args.url)
 
     # Create new records.
     contact = ContactCreate("Firefox", headless=True, instance=args.url)
