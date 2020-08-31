@@ -103,7 +103,7 @@ class Agora(ABC, unittest.TestCase):
             1. basic_authentication
             2. contacts_page
         """
-        sleep(1)
+        #sleep(1)
         self.wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "[class='gen-action']")))
         self.wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "[class='row-actions ember-view md-cell']")))
 
@@ -121,7 +121,7 @@ class Agora(ABC, unittest.TestCase):
             1. basic_authentication
             2. contacts_page
         """
-        sleep(5)
+        #sleep(5)
         self.wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "[class='gen-action']")))
         self.wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "[class='row-actions ember-view md-cell']")))
 
@@ -140,13 +140,13 @@ class Agora(ABC, unittest.TestCase):
         # Search button/icon.
         self.wait.until(EC.visibility_of_element_located((By.XPATH, '//button//md-icon[text()="search"]')))
         self.driver.find_element_by_xpath('//button//md-icon[text()="search"]').click()
-        sleep(0.1)
+        #sleep(0.1)
 
         # Input search field.
         self.wait.until(EC.visibility_of_element_located((By.TAG_NAME, "input")))
         self.driver.find_element_by_tag_name("input").send_keys(search_text)
 
-        sleep(5)  # Results.
+        #sleep(5)  # Results.
         self.wait.until(EC.visibility_of_element_located((By.TAG_NAME, "tbody")))
         records = len(self.driver.find_element_by_tag_name("tbody").find_elements_by_tag_name("tr"))
         print("{0:<40} Found {1} record \t{2}".format('[Search]', str(records), "Success"))
