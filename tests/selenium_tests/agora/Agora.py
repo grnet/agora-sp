@@ -87,12 +87,12 @@ class Agora(ABC, unittest.TestCase):
 
         # Response check
         self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'toast-level-success')))
-        login_response_message = self.driver.find_element_by_class_name("toast-level-success").text.split("\n")[0]
-        assert "Login Success" in login_response_message
-        if self.driver.find_element_by_class_name("toast-level-success"):
-            self.driver.find_element_by_xpath('//md-toast//button[text()="close"]').click()
-            # print("[Login] {0:>47} \t\t{1}".format(login_response_message, "Success"))
-            return True
+        #login_response_message = self.driver.find_element_by_class_name("toast-level-success").text.split("\n")[0]
+        # assert "Login Success" in login_response_message
+        # if self.driver.find_element_by_class_name("toast-level-success"):
+        #     self.driver.find_element_by_xpath('//md-toast//button[text()="close"]').click()
+        #     # print("[Login] {0:>47} \t\t{1}".format(login_response_message, "Success"))
+        #     return True
 
     def edit_from_listView(self):
         """

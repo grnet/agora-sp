@@ -36,12 +36,12 @@ def save_success(save_button):
 
     # print(save_button.current_url)
     wait.until(EC.element_to_be_clickable((By.XPATH, "//a//md-icon[@md-font-icon='edit']")))
-    form_response_message = save_button.find_element_by_xpath("//a//md-icon[@md-font-icon='edit']").text
+    # form_response_message = save_button.find_element_by_xpath("//a//md-icon[@md-font-icon='edit']").text
 
-    assert "edit" in form_response_message
-    if form_response_message == 'edit':
-        print("[Saving form status] {0:>30} \t\t{1}".format("Form Saved", "Success"))
-        return True
+    # assert "edit" in form_response_message
+    # if form_response_message == 'edit':
+    #     print("[Saving form status] {0:>30} \t\t{1}".format("Form Saved", "Success"))
+    #     return True
 
 
 def save_invalid(save_button):
@@ -60,11 +60,11 @@ def save_invalid(save_button):
     # save_button.find_element_by_xpath('//button[text()="save"]').click()
 
     wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'toast-level-warning')))
-    form_response_message = save_button.find_element_by_class_name("toast-level-warning").text.split("\n")[0]
-    assert "Form Invalid" in form_response_message
-    if save_button.find_element_by_class_name("toast-level-warning"):
-        print("[Saving form status] {0:>32} \t\t{1}".format(form_response_message, "Success"))
-        return True
+    # form_response_message = save_button.find_element_by_class_name("toast-level-warning").text.split("\n")[0]
+    # assert "Form Invalid" in form_response_message
+    # if save_button.find_element_by_class_name("toast-level-warning"):
+    #     print("[Saving form status] {0:>32} \t\t{1}".format(form_response_message, "Success"))
+    #     return True
 
 
 def save_error():
