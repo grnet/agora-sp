@@ -28,7 +28,7 @@ def delete_success(delete_button):
     wait.until(EC.presence_of_element_located((By.XPATH, '//button[text()="OK"]'))).click()
     # delete_button.find_element_by_xpath('//button[text()="OK"]').click()
     try:
-        swait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'toast-level-success')))
+        wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'toast-level-success')))
         print("[Delete form status] {0:>30} \t\t{1}".format("Form deleted", "Success"))
     except TimeoutException :
         print("[Delete form status] {0:>38} \t{1}".format("Form was not deleted", "Failed"))
