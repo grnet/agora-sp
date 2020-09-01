@@ -21,19 +21,12 @@ def delete_success(delete_button):
     @return: True if the form returns an success message otherwise False.
     """
     # Wait at most 5 seconds.
-    wait = WebDriverWait(delete_button, 50)
+    wait = WebDriverWait(delete_button, 30)
     wait.until(EC.presence_of_element_located((By.XPATH, '//button[text()="delete"]'))).click()
-    # delete_button.find_element_by_xpath('//button[text()="delete"]').click()
 
     wait.until(EC.presence_of_element_located((By.XPATH, '//button[text()="OK"]'))).click()
-    # delete_button.find_element_by_xpath('//button[text()="OK"]').click()
 
     wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'toast-level-success')))
-    # form_response_message = delete_button.find_element_by_class_name("toast-level-success").text.split("\n")[0]
-    # assert "Form Saved" in form_response_message
-    # if form_response_message:
-    #     print("[Delete form status] {0:>30} \t\t{1}".format(form_response_message, "Success"))
-    #     return True
 
 
 def delete_from_listView(page):
@@ -46,17 +39,10 @@ def delete_from_listView(page):
     @param page: The object with which I can handle the page.
     @return: If the record is deleted or not.
     """
-    wait = WebDriverWait(page, 50)
+    wait = WebDriverWait(page, 30)
 
     wait.until(EC.presence_of_element_located((By.XPATH, '//md-icon[text()="delete_forever"]'))).click()
-    # page.find_element_by_xpath('//md-icon[text()="delete_forever"]').click()
 
     wait.until(EC.presence_of_element_located((By.XPATH, '//button[text()="OK"]'))).click()
-    # page.find_element_by_xpath('//button[text()="OK"]').click()
 
     wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'toast-level-success')))
-    # form_response_message = page.find_element_by_class_name("toast-level-success").text.split("\n")[0]
-    # assert "Form Saved" in form_response_message
-    # if form_response_message:
-    #     print("[Delete form status] {0:>30} \t\t{1}".format(form_response_message, "Success"))
-    #     return True

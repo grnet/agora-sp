@@ -11,7 +11,6 @@ __email__ = 'tasos@admin.grnet.gr'
 from abc import ABC
 import sys
 import unittest
-from time import sleep
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -62,7 +61,7 @@ class Agora(ABC, unittest.TestCase):
 
         self.page = instance
         # Wait at most 5 seconds.
-        self.wait = WebDriverWait(self.driver, 50)
+        self.wait = WebDriverWait(self.driver, 30)
 
         self.basic_authentication()
 
@@ -87,12 +86,6 @@ class Agora(ABC, unittest.TestCase):
 
         # Response check
         self.wait.until(EC.visibility_of_element_located((By.CLASS_NAME, 'toast-level-success')))
-        #login_response_message = self.driver.find_element_by_class_name("toast-level-success").text.split("\n")[0]
-        # assert "Login Success" in login_response_message
-        # if self.driver.find_element_by_class_name("toast-level-success"):
-        #     self.driver.find_element_by_xpath('//md-toast//button[text()="close"]').click()
-        #     # print("[Login] {0:>47} \t\t{1}".format(login_response_message, "Success"))
-        #     return True
 
     def edit_from_listView(self):
         """
@@ -139,7 +132,6 @@ class Agora(ABC, unittest.TestCase):
         # Search button/icon.
         self.wait.until(EC.visibility_of_element_located((By.XPATH, '//button//md-icon[text()="search"]')))
         self.driver.find_element_by_xpath('//button//md-icon[text()="search"]').click()
-        # sleep(0.1)
 
         # Input search field.
         self.wait.until(EC.visibility_of_element_located((By.TAG_NAME, "input")))
