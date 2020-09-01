@@ -8,7 +8,6 @@ __maintainer__ = 'Tas-sos'
 __author__ = 'Tas-sos'
 __email__ = 'tasos@admin.grnet.gr'
 
-from time import sleep
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
@@ -43,7 +42,7 @@ def suggestion_input_field(page, field_name, text):
     @return: True if it finds the field and is completed without any problems or False if it cannot be found or
     supplemented.
     """
-    wait = WebDriverWait(page, 5)
+    wait = WebDriverWait(page, 50)
     wait.until(EC.presence_of_element_located((By.XPATH, "//md-content[@data-form-field-name='" + field_name + "']")))
 
     suggestion_input = page.find_element_by_xpath("//md-content[@data-form-field-name='" + field_name + "']")
@@ -52,7 +51,6 @@ def suggestion_input_field(page, field_name, text):
 
     # Fix - Release field.
     page.find_element_by_xpath("//body").click()
-    sleep(0.1)
 
     # assert field_name in page.find_element_by_name(field_name)
     print("{0:<40} Found and filled \t{1}".format('[' + field_name + ']', "Success"))
@@ -68,11 +66,16 @@ def textarea_field(page, field_name, text):
     @return: True if it finds the field and is completed without any problems or False if it cannot be found or
     supplemented.
     """
-    wait = WebDriverWait(page, 5)
+    wait = WebDriverWait(page, 50)
+
     wait.until(EC.presence_of_element_located((By.XPATH, "//md-content[@data-form-field-name='" + field_name + "']")))
+    wait.until(EC.visibility_of_any_elements_located((By.XPATH, "//md-content[@data-form-field-name='" + field_name + "']")))
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//md-content[@data-form-field-name='" + field_name + "']")))
     textarea = page.find_element_by_xpath("//md-content[@data-form-field-name='" + field_name + "']")
 
     wait.until(EC.presence_of_element_located((By.TAG_NAME, "iframe")))
+    wait.until(EC.visibility_of_any_elements_located((By.TAG_NAME, "iframe")))
+    wait.until(EC.element_to_be_clickable((By.TAG_NAME, "iframe")))
     textarea.find_element_by_tag_name("iframe").click()
     textarea.find_element_by_tag_name("iframe").send_keys(text)
 
@@ -90,18 +93,29 @@ def table_select_field(page, field_name, position):
     @return: True if it finds the field and is completed without any problems or False if it cannot be found or
     supplemented.
     """
-    wait = WebDriverWait(page, 5)
-    wait.until(EC.presence_of_element_located((By.XPATH,
+    wait = WebDriverWait(page, 50)
+    wait.until(EC.visibility_of_element_located((By.XPATH,
                                    "//md-content[@data-form-field-name='" + field_name + "']//button[text()='add']")))
-    page.find_element_by_xpath("//md-content[@data-form-field-name='" + field_name + "']//button[text()='add']").click()
+    wait.until(EC.element_to_be_clickable((By.XPATH,
+                                   "//md-content[@data-form-field-name='" + field_name + "']//button[text()='add']"))).click()
+    # page.find_element_by_xpath("//md-content[@data-form-field-name='" + field_name + "']//button[text()='add']").click()
 
     wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "md-checkbox")))
-    page.find_elements_by_class_name("md-checkbox")[position].click()
+    # wait.until(EC.visibility_of_all_elements_located((By.TAG_NAME, "md-dialog")))
+    wait.until(EC.visibility_of_all_elements_located((By.XPATH, "//md-dialog-content//tr//md-checkbox")))
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//md-dialog//md-checkbox")))
+    wait.until(EC.element_to_be_clickable((By.CLASS_NAME, "md-checkbox")))
+
+    want = page.find_elements_by_xpath("//md-dialog-content//tr")[position]
+    print(want.text)
+
+    # page.find_elements_by_class_name("md-checkbox")[position].click()
+    # wait.until(EC.element_to_be_clickable((By.XPATH, "//md-dialog//md-checkbox")))[position].click()
+    wait.until(EC.visibility_of_all_elements_located((By.XPATH, "//md-dialog//md-checkbox")))[position].click()
     page.find_element_by_xpath('//md-dialog-actions//button[text()="Add"]').click()
 
     # Fix - Release field.
     page.find_element_by_xpath("//body").click()
-    sleep(0.1)
 
     # assert field_name in page.find_element_by_name(field_name)
     print("{0:<40} Found and filled \t{1}".format('[' + field_name + ']', "Success"))
@@ -116,7 +130,7 @@ def date_field(page, field_name):
     @return: True if it finds the field and is completed without any problems or False if it cannot be found or
     supplemented.
     """
-    wait = WebDriverWait(page, 5)
+    wait = WebDriverWait(page, 50)
     wait.until(EC.presence_of_element_located((By.XPATH, "//md-content[@data-form-field-name='" + field_name + "']")))
     page.find_element_by_xpath("//md-content[@data-form-field-name='" + field_name + "']").click()
 
@@ -137,7 +151,7 @@ def checkbox_field(page, field_name):
     @return: True if it finds the field and is completed without any problems or False if it cannot be found or
     supplemented.
     """
-    wait = WebDriverWait(page, 5)
+    wait = WebDriverWait(page, 50)
     wait.until(EC.presence_of_element_located((By.XPATH, "//md-content[@data-form-field-name='" + field_name + "']")))
     checkbox = page.find_element_by_xpath("//md-content[@data-form-field-name='" + field_name + "']")
     checkbox.find_element_by_tag_name("md-checkbox").click()

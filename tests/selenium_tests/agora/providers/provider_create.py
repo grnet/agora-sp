@@ -12,7 +12,7 @@ from agora.providers.providers import Providers
 from agora.utils.emberJS_fields import input_field, suggestion_input_field, table_select_field, textarea_field, \
     checkbox_field
 from agora.validations.delete_responses import delete_success, delete_from_listView
-from agora.validations.save_responses import save_success
+from agora.validations.save_responses import save_success_double
 
 
 class CreateProvider(Providers):
@@ -108,7 +108,7 @@ class CreateProvider(Providers):
             self.contact_information(required_only)
             self.other_information(required_only)
 
-        save_success(self.driver)
+        save_success_double(self.driver)
 
         # Search
         self.providers_page()
