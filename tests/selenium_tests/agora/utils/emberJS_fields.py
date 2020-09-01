@@ -69,10 +69,15 @@ def textarea_field(page, field_name, text):
     supplemented.
     """
     wait = WebDriverWait(page, 50)
+
     wait.until(EC.presence_of_element_located((By.XPATH, "//md-content[@data-form-field-name='" + field_name + "']")))
+    wait.until(EC.visibility_of_any_elements_located((By.XPATH, "//md-content[@data-form-field-name='" + field_name + "']")))
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//md-content[@data-form-field-name='" + field_name + "']")))
     textarea = page.find_element_by_xpath("//md-content[@data-form-field-name='" + field_name + "']")
 
     wait.until(EC.presence_of_element_located((By.TAG_NAME, "iframe")))
+    wait.until(EC.visibility_of_any_elements_located((By.TAG_NAME, "iframe")))
+    wait.until(EC.element_to_be_clickable((By.TAG_NAME, "iframe")))
     textarea.find_element_by_tag_name("iframe").click()
     textarea.find_element_by_tag_name("iframe").send_keys(text)
 
