@@ -30,8 +30,11 @@ def delete_success(delete_button):
 
     wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'toast-level-success')))
     form_response_message = delete_button.find_element_by_class_name("toast-level-success").text.split("\n")[0]
+
     assert "Form Saved" in form_response_message
     if delete_button.find_element_by_class_name("toast-level-success"):
+        # Close toast-level-*
+        delete_button.find_element_by_xpath('//md-toast//div//button[text()="close"]').click()
         print("[Delete form status] {0:>30} \t\t{1}".format(form_response_message, "Success"))
         return True
 
@@ -56,7 +59,10 @@ def delete_from_listView(page):
 
     wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'toast-level-success')))
     form_response_message = page.find_element_by_class_name("toast-level-success").text.split("\n")[0]
+
     assert "Form Saved" in form_response_message
     if page.find_element_by_class_name("toast-level-success"):
+        # Close toast-level-*
+        page.find_element_by_xpath('//md-toast//div//button[text()="close"]').click()
         print("[Delete form status] {0:>30} \t\t{1}".format(form_response_message, "Success"))
         return True

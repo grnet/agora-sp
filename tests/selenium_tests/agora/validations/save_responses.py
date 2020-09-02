@@ -21,14 +21,17 @@ def save_success(save_button):
     @return: True if the form returns an success message otherwise False.
     """
     # Wait at most 10 seconds.
-    wait = WebDriverWait(save_button, 10)
+    wait = WebDriverWait(save_button, 60)
     wait.until(EC.presence_of_element_located((By.XPATH, '//button[text()="save"]')))
     save_button.find_element_by_xpath('//button[text()="save"]').click()
 
     wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'toast-level-success')))
     form_response_message = save_button.find_element_by_class_name("toast-level-success").text.split("\n")[0]
+
     assert "Form Saved" in form_response_message
     if save_button.find_element_by_class_name("toast-level-success"):
+        # Close toast-level-*
+        save_button.find_element_by_xpath('//md-toast//div//button[text()="close"]').click()
         print("[Saving form status] {0:>30} \t\t{1}".format(form_response_message, "Success"))
         return True
 
@@ -44,14 +47,17 @@ def save_invalid(save_button):
     @return: True if the form returns an invalid message otherwise False.
     """
     # Wait at most 10 seconds.
-    wait = WebDriverWait(save_button, 10)
+    wait = WebDriverWait(save_button, 60)
     wait.until(EC.presence_of_element_located((By.XPATH, '//button[text()="save"]')))
     save_button.find_element_by_xpath('//button[text()="save"]').click()
 
     wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'toast-level-warning')))
     form_response_message = save_button.find_element_by_class_name("toast-level-warning").text.split("\n")[0]
+
     assert "Form Invalid" in form_response_message
     if save_button.find_element_by_class_name("toast-level-warning"):
+        # Close toast-level-*
+        save_button.find_element_by_xpath('//md-toast//div//button[text()="close"]').click()
         print("[Saving form status] {0:>32} \t\t{1}".format(form_response_message, "Success"))
         return True
 
