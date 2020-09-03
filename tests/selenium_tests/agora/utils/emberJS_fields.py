@@ -90,13 +90,17 @@ def table_select_field(page, field_name, position):
     @return: True if it finds the field and is completed without any problems or False if it cannot be found or
     supplemented.
     """
-    wait = WebDriverWait(page, 5)
-    wait.until(EC.presence_of_element_located((By.XPATH,
-                                   "//md-content[@data-form-field-name='" + field_name + "']//button[text()='add']")))
-    page.find_element_by_xpath("//md-content[@data-form-field-name='" + field_name + "']//button[text()='add']").click()
+    wait = WebDriverWait(page, 60)
+    wait.until(EC.presence_of_element_located((By.XPATH,"//md-content[@data-form-field-name='" + field_name + "']//button[text()='add']")))
+    wait.until(EC.element_to_be_clickable((By.XPATH,"//md-content[@data-form-field-name='" + field_name + "']//button[text()='add']"))).click()
 
-    wait.until(EC.visibility_of_element_located((By.CLASS_NAME, "md-checkbox")))
-    page.find_elements_by_class_name("md-checkbox")[position].click()
+    wait.until(EC.visibility_of_all_elements_located((By.XPATH, "//md-dialog-content//tr//md-checkbox")))
+    wait.until(EC.presence_of_element_located((By.XPATH, "//md-dialog-content//div//div//md-card//md-table-container//table//tbody//tr[" + str(position) + "]//md-checkbox")))
+    wait.until(EC.visibility_of_element_located((By.XPATH, "//md-dialog-content//div//div//md-card//md-table-container//table//tbody//tr[" + str(position) + "]//md-checkbox")))
+    # wait.until(EC.visibility_of_all_elements_located((By.XPATH, "//md-dialog//md-checkbox")))[position]
+    # wait.until(EC.element_to_be_clickable((By.XPATH, "//md-dialog//md-checkbox[" + str(position) + "]/"))).click()
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//md-dialog-content//div//div//md-card//md-table-container//table//tbody//tr[" + str(position) + "]//md-checkbox"))).click()
+
     page.find_element_by_xpath('//md-dialog-actions//button[text()="Add"]').click()
 
     # Fix - Release field.
