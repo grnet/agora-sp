@@ -260,8 +260,11 @@ To run the end-to-end selenium tests you just need a python environment with [`s
 
 Here’s how you can run the Selenium tests :
 ```
-python agora_ui_tests.py
+python agora_ui_tests.py --url https://agora.example.com/
 ```
+
+However, before using the Selenium tests, we would suggest you to read more about them [here](tests/selenium_tests/README.md). Their purpose, their prerequisites, how to execute them, etc..
+
 
 ### Pytest
 We also use [pytest](https://docs.pytest.org/en/latest/index.html) to run API testing and [cypress](https://www.cypress.io/) for some e2e testing.
