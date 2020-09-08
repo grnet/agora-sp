@@ -1,62 +1,117 @@
 [
-    {
-        "fields": {
-            "email": "superadmin@localhost",
-            "first_name": "Roger",
-            "last_name": "Federer",
-            "password": "pbkdf2_sha256$36000$6xWoG9SVxsj3$uGdliRysThKccTFdeOSP60vcySKcg3AeF/8w/tsa72M=",
-            "role": "superadmin",
-            "username": "superadmin"
-        },
-        "model": "accounts.user",
-        "pk": 1
-    },
-    {
-        "fields": {
-            "email": "provideradmin@localhost",
-            "first_name": "Novak",
-            "last_name": "Novak",
-            "password": "pbkdf2_sha256$36000$6xWoG9SVxsj3$uGdliRysThKccTFdeOSP60vcySKcg3AeF/8w/tsa72M=",
-            "role": "provideradmin",
-            "username": "provider_admin"
-        },
-        "model": "accounts.user",
-        "pk": 2
-    },
-    {
-        "fields": {
-            "email": "observer@localhost",
-            "first_name": "Rafael",
-            "last_name": "Nadal",
-            "password": "pbkdf2_sha256$36000$6xWoG9SVxsj3$uGdliRysThKccTFdeOSP60vcySKcg3AeF/8w/tsa72M=",
-            "role": "observer",
-            "username": "observer"
-        },
-        "model": "accounts.user",
-        "pk": 3
-    },
-    {
-        "fields": {
-            "email": "serviceadmin1@localhost",
-            "first_name": "Dominic",
-            "last_name": "Thiem",
-            "password": "pbkdf2_sha256$36000$6xWoG9SVxsj3$uGdliRysThKccTFdeOSP60vcySKcg3AeF/8w/tsa72M=",
-            "role": "serviceadmin",
-            "username": "service_admin_1"
-        },
-        "model": "accounts.user",
-        "pk": 4
-    },
-    {
-        "fields": {
-            "email": "serviceadmin2@localhost",
-            "first_name": "Alexander",
-            "last_name": "Zverev",
-            "password": "pbkdf2_sha256$36000$6xWoG9SVxsj3$uGdliRysThKccTFdeOSP60vcySKcg3AeF/8w/tsa72M=",
-            "role": "serviceadmin",
-            "username": "service_admin_2"
-        },
-        "model": "accounts.user",
-        "pk": 5
+  {
+    "model": "accounts.user",
+    "pk": 1,
+    "fields": {
+      "password": "pbkdf2_sha256$36000$6xWoG9SVxsj3$uGdliRysThKccTFdeOSP60vcySKcg3AeF/8w/tsa72M=",
+      "last_login": "2020-09-08T12:01:51.727Z",
+      "is_superuser": false,
+      "username": "superadmin",
+      "email": "superadmin@localhost",
+      "first_name": "Roger",
+      "last_name": "Federer",
+      "date_joined": "2020-09-08T12:01:01.962Z",
+      "shibboleth_id": null,
+      "role": "superadmin",
+      "organisation": null,
+      "is_staff": false,
+      "is_active": true,
+      "avatar": "",
+      "groups": [],
+      "user_permissions": [],
+      "organisations": []
     }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 2,
+    "fields": {
+      "password": "pbkdf2_sha256$36000$6xWoG9SVxsj3$uGdliRysThKccTFdeOSP60vcySKcg3AeF/8w/tsa72M=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "provider_admin",
+      "email": "provideradmin@localhost",
+      "first_name": "Novak",
+      "last_name": "Novak",
+      "date_joined": "2020-09-08T12:01:01.966Z",
+      "shibboleth_id": null,
+      "role": "provideradmin",
+      "organisation": "f95b8142-5b51-4044-9d9a-e94759c3554c",
+      "is_staff": false,
+      "is_active": true,
+      "avatar": "",
+      "groups": [],
+      "user_permissions": [],
+      "organisations": []
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 3,
+    "fields": {
+      "password": "pbkdf2_sha256$36000$6xWoG9SVxsj3$uGdliRysThKccTFdeOSP60vcySKcg3AeF/8w/tsa72M=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "observer",
+      "email": "observer@localhost",
+      "first_name": "Rafael",
+      "last_name": "Nadal",
+      "date_joined": "2020-09-08T12:01:01.967Z",
+      "shibboleth_id": null,
+      "role": "observer",
+      "organisation": null,
+      "is_staff": false,
+      "is_active": true,
+      "avatar": "",
+      "groups": [],
+      "user_permissions": [],
+      "organisations": []
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 4,
+    "fields": {
+      "password": "pbkdf2_sha256$36000$6xWoG9SVxsj3$uGdliRysThKccTFdeOSP60vcySKcg3AeF/8w/tsa72M=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "service_admin_1",
+      "email": "serviceadmin1@localhost",
+      "first_name": "Dominic",
+      "last_name": "Thiem",
+      "date_joined": "2020-09-08T12:01:01.969Z",
+      "shibboleth_id": null,
+      "role": "serviceadmin",
+      "organisation": null,
+      "is_staff": false,
+      "is_active": true,
+      "avatar": "",
+      "groups": [],
+      "user_permissions": [],
+      "organisations": []
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 5,
+    "fields": {
+      "password": "pbkdf2_sha256$36000$6xWoG9SVxsj3$uGdliRysThKccTFdeOSP60vcySKcg3AeF/8w/tsa72M=",
+      "last_login": null,
+      "is_superuser": false,
+      "username": "service_admin_2",
+      "email": "serviceadmin2@localhost",
+      "first_name": "Alexander",
+      "last_name": "Zverev",
+      "date_joined": "2020-09-08T12:01:01.970Z",
+      "shibboleth_id": null,
+      "role": "serviceadmin",
+      "organisation": null,
+      "is_staff": false,
+      "is_active": true,
+      "avatar": "",
+      "groups": [],
+      "user_permissions": [],
+      "organisations": []
+    }
+  }
 ]
