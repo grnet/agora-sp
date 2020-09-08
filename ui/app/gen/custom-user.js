@@ -23,6 +23,7 @@ export default AgoraGen.extend({
     fieldsets: CREATE_OR_EDIT_FIELDSETS,
     validators: {
       role: [validate.presence(true)],
+      organisation: [validate.presence(true)],
       username: [validate.presence(true)],
       email: [validate.format({type: 'email'})],
     },
