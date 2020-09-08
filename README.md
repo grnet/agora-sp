@@ -182,13 +182,14 @@ You can load some initial data by running:
 
 If you want to add duymmy users to agora, for developoment purposes, run:
 ```
+python manage.py loaddata fixtures/organisations.json
 python manage.py loaddata fixtures/users.json
 ```
 
 `users.json` will create users with usernames/passwords:
 
 * superadmin/12345
-* admin/12345
+* provideradmin/12345
 * service_admin_1/12345
 * service_admin_2/12345
 * observer/12345
