@@ -29,9 +29,9 @@ The authorization in SPMT/AGORA follows the role-based access control. Role-base
 It supports the following roles
 
  - **Super Admin**: The one that administers the whole system
- - **Admin**: who can read/modify/delete everything
- - **Resource admin**: who can read everything; can modify/delete services that he is owner/manager of
+ - **Provider Admin**: who administates the users and services belonging to his Provider
+ - **Resource Admin**: who can read everything; can modify/delete services that he is owner/manager of
  - **Observer**: who can read everything
 
-A new user who has just registered in SPMT/AGORA, acquires only the right of access to the service as an observer. That is why it automatically enters the category of observer users. To grant more permissions, these it must be assigned by an "admin" or "superadmin" user. See below the categories of users that exist as well as their respective rights.
+A new user who has just registered in SPMT/AGORA, acquires only the right of access to the service as an observer. That is why it automatically enters the category of observer users. To grant more permissions, these it must be assigned by a "superadmin" user. See below the categories of users that exist as well as their respective rights.
 

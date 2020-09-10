@@ -8,14 +8,15 @@ title: Users Information
 The service supports the following types of users
 
  - Super Admin: The one that administers the whole system
- - Admin: who can read/modify/delete everything
- - Resource admin: who can read everything; can modify/delete services that he is owner/manager of
+ - Provider Admin: who administates the users and services belonging to his Provider
+ - Resource Admin: who can read everything; can modify/delete services that he is owner/manager of
  - Observer: who can read everything
 
 
 ## List Users
 
-To view the list of all users, a `superadmin` or `admin` or user must click to the **Users** left sidebar menu option.
+To view the list of all users, a `Superadmin` or `Provider Admin` user must click to the **Users** left sidebar menu option.  
+A `Provider Admin` can list only users with role `Observer` or users with role `Resource Admin` who belong to his/her Provider.
 
 | ![users_superadmin_View](assets/users_list_admin.png) |
 |:--------------------------------------:|
@@ -33,7 +34,7 @@ The user can view all the information from a selected user by clicking on the de
 
 ## Edit User
 
-The `superadmin` or `admin` have the permission to edit a user.
+The `Superadmin` has the permission to edit a user.
 
 To edit an existing user, the user should visit the list of Users.
 
@@ -53,7 +54,6 @@ The fields that the user can change :
 
 > **Important note** :
 > * `superadmin` user, can view/edit and delete a user.
-> * `admin` users can only view and edit the existing users.
 
 
 | ![users_edit_View](assets/users_edit_admin.png) |

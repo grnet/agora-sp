@@ -728,6 +728,7 @@ CHALLENGES= {
 ORGANISATIONS = {
     '.collection.django': {},
     'model': 'accounts.models.Organisation',
+    ':permissions_namespace': 'agora.checks.Organisation',
     'fields': {
         'id': {
             '.field.uuid': {},
@@ -1086,26 +1087,6 @@ ORGANISATIONS = {
     },
 }
 
-
-MY_ORGANISATIONS = {
-    '.collection.django': {},
-    'model': 'service.models.Organisation',
-    'fields': {
-        'id': {
-            '.field.uuid': {},
-            '.flag.nowrite': {}},
-        'name': {
-            '.field.string': {},
-            '.flag.filterable': {},
-            '.flag.searchable': {},
-            '.flag.orderable': {}},
-    },
-    ':permissions_namespace': 'agora.checks.Organisation',
-    'actions': {
-        '.action-template.django.list': {},
-        '.action-template.django.retrieve': {},
-    },
-}
 
 TARGET_USERS = {
     '.collection.django': {},

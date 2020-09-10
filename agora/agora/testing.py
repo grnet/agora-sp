@@ -52,11 +52,11 @@ def superadmin(django_user_model):
 
 
 @pytest.fixture('function')
-def admin(django_user_model):
+def provideradmin(django_user_model):
     return create_client(django_user_model,
-                         'admin',
-                         'admin@test.org',
-                         'admin')
+                         'provideradmin',
+                         'provideradmin@test.org',
+                         'provideradmin')
 
 
 @pytest.fixture('function')
@@ -153,5 +153,25 @@ RESOURCES_CRUD = {
             'epp_mti_1_life_cycle_status': 'Operational',
             'epp_mti_2_certifications': 'ISO-27001'
         },
+    },
+    'access_modes': {
+        'url': '/api/v2/access-modes/',
+        'create_data': {
+          'name': 'Name',
+          'description': 'Description',
+        },
+        'edit_data': {
+          'name': 'Name2',
+          'description': 'Description2',
+        }
+    },
+    'domains': {
+        'url': '/api/v2/domains/',
+        'create_data': {
+          'name': 'Name',
+        },
+        'edit_data': {
+          'name': 'Name2',
+        }
     },
 }

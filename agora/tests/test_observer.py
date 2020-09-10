@@ -38,6 +38,12 @@ def test_providers(observer, superadmin):
 def test_resources(observer, superadmin):
     assertions_crud('resources', observer, superadmin)
 
+def test_access_modes(observer, superadmin):
+    assertions_crud('access_modes', observer, superadmin)
+
+def test_domains(observer, superadmin):
+    assertions_crud('domains', observer, superadmin)
+
 # Tests for ResourceAdminship
 
 def test_resourceadminship(observer, superadmin):

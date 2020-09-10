@@ -12,6 +12,7 @@ import {
 const CHOICES = ENV.APP.resources;
 
 const {
+  computed,
   get,
 } = Ember;
 
@@ -22,6 +23,7 @@ export default AgoraGen.extend({
   resourceName: 'api/v2/resource-admins',
   abilityStates: {
     check_create_other: true,
+    check_create_other_own_organisation: true,
  },
   common: {
     validators: {
@@ -86,14 +88,28 @@ export default AgoraGen.extend({
         state: 'approved',
       });
     },
-    fields : [
-      field('admin', {
-        query: (table, store, field, params) => {
-          return store.query('custom-user', { role: 'serviceadmin' });
-        },
-      }),
-      'resource',
-    ],
+    fields : computed('user.role', function() {
+      let user_org_id = get(this, 'session.session.authenticated.organisation');
+      let role = get(this, 'session.session.authenticated.role');
+      let resource = 'resource';
+
+      if (role === 'provideradmin') {
+        resource = field('resource', {
+          query: (table, store, field, params) => {
+            return store.query('resource', { erp_bai_2_service_organisation: user_org_id });
+          },
+       })
+      }
+
+      return [
+        field('admin', {
+          query: (table, store, field, params) => {
+            return store.query('custom-user', { role: 'serviceadmin' });
+          },
+        }),
+        resource,
+      ];
+    }),
   },
   details: {
     fieldsets: [{

@@ -6,8 +6,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- Introduce Provider Admin role.
+
 ### Changed
-- Improve error messages on ResourceAdminship creation
+- Improve error messages on ResourceAdminship creation.
+
+### Removed
+- Delete Admin role.
 
 ## [1.0.3](https://github.com/grnet/agora-sp/compare/v1.0.2...v1.0.3) - 2020-07-27
 

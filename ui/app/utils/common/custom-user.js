@@ -43,7 +43,8 @@ const DETAILS_FIELDSETS = [{
         label: 'custom_user.fields.role',
       })
     ];
-    if (role === 'superadmin' && model_role === 'serviceadmin') {
+    if ( (role === 'superadmin' || role === 'provideradmin') &&
+        (model_role==='serviceadmin' ||  model_role==='provideradmin')) {
       fields.push('organisation');
     }
     return fields;
@@ -68,7 +69,7 @@ const CREATE_OR_EDIT_FIELDSETS = [{
       'email',
       'role',
     ];
-    if (role === 'superadmin' && model_role === 'serviceadmin') {
+    if (role === 'superadmin' && (model_role === 'serviceadmin' || model_role === 'provideradmin')) {
       fields.push('organisation');
     }
     return fields;
@@ -88,7 +89,7 @@ const PROFILE_FIELDSETS = [{
       'role',
       'full_name',
     ];
-    if (model_role === 'serviceadmin') {
+    if (model_role === 'serviceadmin' || model_role === 'provideradmin') {
       fields.push('organisation');
     }
     return fields;
