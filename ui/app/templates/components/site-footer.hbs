@@ -10,7 +10,12 @@
     </p>
   </div>
   <div>
+    {{# if cookies_policy}}
+      <a href="#" onclick={{action 'openDialog' 'cookies'}}>{{ cookies_text}}</a>
+    {{/if}}
+
     {{#if policy_text}}
+    |
       {{#if policy_url}}
         <a href="{{ policy_url }}" title="{{ policy_text}}" target="_blank">{{ policy_text }}</a>
       {{else}}
@@ -19,4 +24,19 @@
     {{/if}}
   </div>
 </div>
+{{#if dialogVisible}}
+{{#paper-dialog autoFocus=true fullscreen=true}}
+  {{#paper-toolbar}}
+    {{#paper-toolbar-tools}}
+    <h2>{{t dialogTitle}}</h2>
+    {{/paper-toolbar-tools}}
+  {{/paper-toolbar}}
+  {{#paper-dialog-content classNames="md-padding"}}
+    {{component dialogContent}}
+  {{/paper-dialog-content}}
+  {{#paper-dialog-actions class="layout-row"}}
+    {{#paper-button onClick=(action "closeDialog")}} {{t 'close' }}{{/paper-button}}
+  {{/paper-dialog-actions}}
+{{/paper-dialog}}
+{{/if}}
 
