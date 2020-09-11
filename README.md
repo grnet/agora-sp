@@ -189,10 +189,10 @@ You can load some initial data by running:
 ./populate.db
 ```
 
-If you want to add duymmy users to agora, for developoment purposes, run:
+If you want to add dummy users to agora, for developoment purposes, run:
 ```
-python manage.py loaddata fixtures/organisations.json
-python manage.py loaddata fixtures/users.json
+python manage.py loaddata fixtures/sample-organisations.json
+python manage.py loaddata fixtures/sample-users.json
 ```
 
 `users.json` will create users with usernames/passwords:
