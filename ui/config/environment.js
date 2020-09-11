@@ -48,8 +48,7 @@ module.exports = function(environment) {
         cookies_service_name: 'Agora service',
         // ['Cookie Type', 'Cookie Provider', 'Cookie Name', 'Third party Cookies', 'Persistent or session Cookies', 'Purpose of Cookie']
         cookies: [
-          ['Session State', 'egi.agora.grnet.grnet', '_shibsession_xyz', 'No', 'Session', 'Preserve user session information'],
-          ['Session State', 'egi.agora.grnet.grnet', 'JSESSIONID', 'No', 'Session', 'Preserve user session information'],
+          ['Session State', 'agora.grnet.gr', '_shibsession_xyz', 'No', 'Session', 'Preserve user session information'],
         ],
         logos: [{
           url: 'https://grnet.github.io/grnet-media-pack/grnet/logos/grnet_logo_en.svg',
