@@ -163,7 +163,7 @@ class ResourceCreate(Resources):
         # *.BAI.1 - Name
         input_field(self.driver, self.fields_prefix + "bai_1_name", "SeleniumHQ Browser Automation - RESOURCE")
         # *.BAI.2 - Service Organisation
-        suggestion_input_field(self.driver, self.fields_prefix + "bai_2_service_organisation", "EGI Foundation")
+        suggestion_input_field(self.driver, self.fields_prefix + "bai_2_service_organisation", "National Infrastructures for Research and Technology")
 
         if not required_only:
             # *.BAI.3 - Service Providers
@@ -273,9 +273,9 @@ class ResourceCreate(Resources):
         @return: True if all goes well otherwise False.
         """
         # Main Contact/Service Owner.
-        suggestion_input_field(self.driver, "main_contact", "Owen Appleton")
+        suggestion_input_field(self.driver, "main_contact", "Django EmberJS")
         # Public Contact
-        suggestion_input_field(self.driver, "public_contact", "Public Contact (EGI Foundation)")
+        suggestion_input_field(self.driver, "public_contact", "Django EmberJS")
         # *.COI.13 - Helpdesk Email
         input_field(self.driver, self.fields_prefix + "coi_13_helpdesk_email", "helpdesk@selenium.dev")
         # *.COI.14 - Security Contact Email
