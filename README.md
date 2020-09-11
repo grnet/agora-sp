@@ -263,11 +263,11 @@ If you want to attach to the running process use:
 
 ### Selenium
 We use [**Selenium**](selenium.dev/) with **Python 3** to do UI testing.
-The code of the Selenium tests is in the path :
-`https://gitlab.grnet.gr/devs/agora/agora-sp/-/tree/devel/ui/selenium_tests`.
+The code of the Selenium tests is [here](tests/selenium_tests).
+
 To run the end-to-end selenium tests you just need a python environment with [`selenium` package installed](https://pypi.org/project/selenium/).
 
-Here’s how you can run the Selenium tests :
+You can run the Selenium tests with the following command :
 ```
 python agora_ui_tests.py --url https://agora.example.com/
 ```
