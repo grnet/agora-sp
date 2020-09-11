@@ -145,6 +145,14 @@ APP: {
     // If set, <policy_text> link will  redirect to <policy_url>. If not set,
     // <policy_text> link will point to policy.hbs template.
     policy_url: 'http://www.example.com',
+    // Cookies settings
+    cookies_policy: true,
+    cookies_title: 'Cookie Policy',
+    cookies_service_name: 'Agora service',
+    // ['Cookie Type', 'Cookie Provider', 'Cookie Name', 'Third party Cookies', 'Persistent or session Cookies', 'Purpose of Cookie']
+    cookies: [
+      ['Session State', 'agora.grnet.gr', '_shibsession_xyz', 'No', 'Session', 'Preserve user session information'],
+    ],
     // If  set, logos will be visible in footer.
     logos: [{
       url: 'http://grnet.github.io/grnet-media-pack/grnet/logos/grnet_logo_en.svg',
@@ -182,13 +190,14 @@ You can load some initial data by running:
 
 If you want to add duymmy users to agora, for developoment purposes, run:
 ```
+python manage.py loaddata fixtures/organisations.json
 python manage.py loaddata fixtures/users.json
 ```
 
 `users.json` will create users with usernames/passwords:
 
 * superadmin/12345
-* admin/12345
+* provideradmin/12345
 * service_admin_1/12345
 * service_admin_2/12345
 * observer/12345
@@ -254,14 +263,17 @@ If you want to attach to the running process use:
 
 ### Selenium
 We use [**Selenium**](selenium.dev/) with **Python 3** to do UI testing.
-The code of the Selenium tests is in the path :
-`https://gitlab.grnet.gr/devs/agora/agora-sp/-/tree/devel/ui/selenium_tests`.
+The code of the Selenium tests is [here](tests/selenium_tests).
+
 To run the end-to-end selenium tests you just need a python environment with [`selenium` package installed](https://pypi.org/project/selenium/).
 
-Here’s how you can run the Selenium tests :
+You can run the Selenium tests with the following command :
 ```
-python agora_ui_tests.py
+python agora_ui_tests.py --url https://agora.example.com/
 ```
+
+However, before using the Selenium tests, we would suggest you to read more about them [here](tests/selenium_tests/README.md). Their purpose, their prerequisites, how to execute them, etc..
+
 
 ### Pytest
 We also use [pytest](https://docs.pytest.org/en/latest/index.html) to run API testing and [cypress](https://www.cypress.io/) for some e2e testing.

@@ -10,7 +10,7 @@ __email__ = 'tasos@admin.grnet.gr'
 
 from agora.contacts.contacts import Contacts
 from agora.utils.emberJS_fields import input_field, suggestion_input_field
-from agora.validations.delete_responses import delete_success
+from agora.validations.delete_responses import delete_success, delete_from_listView
 from agora.validations.save_responses import save_success
 
 
@@ -19,7 +19,7 @@ class ContactCreate(Contacts):
     Create a new Contact Information.
 
     This class is responsible for checking the following:
-        * Go to the crete a resource page ( https://testvm.agora.grnet.gr/ui/resources/create ).
+        * Go to the create a resource page ( https://testvm.agora.grnet.gr/ui/resources/create ).
         * Checks if all the following input fields of the form exist :
             - First Name
             - Last Name
@@ -59,7 +59,11 @@ class ContactCreate(Contacts):
         print("\n# Create a new contact.")
         self.basic_information()
         save_success(self.driver)
-        delete_success(self.driver)
+        # Search
+        self.contacts_page()
+        self.search_field()
+        # Delete
+        delete_from_listView(self.driver)
         self.close()
 
     def basic_information(self):
@@ -70,9 +74,9 @@ class ContactCreate(Contacts):
         @return: True if all goes well otherwise False.
         """
         # First Name
-        input_field(self.driver, "first_name", "selenium - First Name")
+        input_field(self.driver, "first_name", "Selenium - First Name")
         # Last Name
-        input_field(self.driver, "last_name", "selenium - Last Name")
+        input_field(self.driver, "last_name", "Selenium - Last Name")
         # Email
         input_field(self.driver, "email", "selenium@email.com")
         # Phone

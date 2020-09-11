@@ -42,7 +42,14 @@ module.exports = function(environment) {
         // If set, <policy_text> link will  redirect to <policy_url>. If not set,
         // <policy_text> link will point to policy.hbs template.
         policy_url: 'https://www.example.com',
-        // If  set, logos will be visible in footer.
+        // Cookies settings
+        cookies_policy: true,
+        cookies_title: 'Cookie Policy',
+        cookies_service_name: 'Agora service',
+        // ['Cookie Type', 'Cookie Provider', 'Cookie Name', 'Third party Cookies', 'Persistent or session Cookies', 'Purpose of Cookie']
+        cookies: [
+          ['Session State', 'agora.grnet.gr', '_shibsession_xyz', 'No', 'Session', 'Preserve user session information'],
+        ],
         logos: [{
           url: 'https://grnet.github.io/grnet-media-pack/grnet/logos/grnet_logo_en.svg',
           alt: 'grnet',

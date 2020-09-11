@@ -50,3 +50,9 @@ def test_providers(superadmin):
 def test_resources(superadmin):
     assertions_crud('resources', client, superadmin)
 
+def test_access_modes(superadmin):
+    assertions_crud('access_modes', client, superadmin)
+
+def test_domains(superadmin):
+    assertions_crud('domains', client, superadmin)
+

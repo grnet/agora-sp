@@ -40,3 +40,6 @@ npm-debug.log*
 testem.log
 
 *.*~
+
+# Selenium
+geckodriver.log

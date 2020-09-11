@@ -1,0 +1,41 @@
+[
+  {
+    "model": "accounts.organisation",
+    "pk": "f95b8142-5b51-4044-9d9a-e94759c3554c",
+    "fields": {
+      "epp_bai_0_id": "grnet",
+      "epp_bai_1_name": "GRNET",
+      "epp_bai_2_abbreviation": "grnet",
+      "epp_bai_3_website": null,
+      "epp_bai_4_legal_entity": false,
+      "epp_bai_5_legal_status": null,
+      "epp_cli_3_tags": null,
+      "epp_loi_1_street_name_and_number": null,
+      "epp_loi_2_postal_code": null,
+      "epp_loi_3_city": null,
+      "epp_loi_4_region": null,
+      "epp_loi_5_country_or_territory": null,
+      "epp_mri_1_description": null,
+      "epp_mri_2_logo": null,
+      "epp_mri_3_multimedia": null,
+      "main_contact": null,
+      "public_contact": null,
+      "epp_mti_1_life_cycle_status": null,
+      "epp_mti_2_certifications": null,
+      "epp_oth_1_hosting_legal_entity": null,
+      "epp_oth_2_participating_countries": "Europe",
+      "epp_oth_7_esfri_type": null,
+      "epp_oth_12_national_roadmaps": null,
+      "epp_cli_1_scientific_domain": [],
+      "epp_cli_2_scientific_subdomain": [],
+      "epp_oth_3_affiliations": [],
+      "epp_oth_4_networks": [],
+      "epp_oth_5_structure_type": [],
+      "epp_oth_6_esfri_domain": [],
+      "epp_oth_8_meril_scientific_domain": [],
+      "epp_oth_9_meril_scientific_subdomain": [],
+      "epp_oth_10_areas_of_activity": [],
+      "epp_oth_11_societal_grand_challenges": []
+    }
+  }
+]

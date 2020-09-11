@@ -6,17 +6,43 @@ from service.models import Resource as r_m
 from accounts.models import User as user_m
 
 
+def resource_organisation_owned(backend_input, instance, context):
+    """Servicadmins/ProviderAdmins must belong to Resource's organisation.
+
+    The resource's organisations must be the same as the one the
+    serviceadmin belongs to.
+    """
+    auth_user = context['auth/user']
+    resource_org_id = str(backend_input.get('erp_bai_2_organisation_id'))
+    user_org_id = str(auth_user.organisation.id)
+
+    if not user_org_id == resource_org_id:
+        raise ValidationError(_('Unauthorized organisation(s)'))
+
+
+def contact_information_organisation_owned(backend_input, instance, context):
+    """Servicadmins/ProviderAdmins must belong to the same Organisation as the
+    Contact Information they are about to create/update.
+    """
+    auth_user = context['auth/user']
+    user_org_id = str(auth_user.organisation.id)
+    contact_org_id = str(backend_input.get('organisation_id'))
+
+    if not contact_org_id == user_org_id:
+        raise ValidationError(_('Unauthorized organisation(s)'))
+
+
 class ResourceAdminship(object):
 
     @staticmethod
     def check_create_other(backend_input, instance, context):
-        """Admins/superadmins can create ResourceAdminships.
+        """Superadmins can create ResourceAdminships.
 
-        Admins/superadmins can create a new ResourceAdminship instance
+        Superadmins can create a new ResourceAdminship instance
         for a given resource and a given user, only if the user has role
         'serviceadmin', she/he does not already admin the resource and
         user's Organisation is the same as the Resource's Organisation.
-        The ResourceAdminship created by admins/superadmins has state
+        The ResourceAdminship created by Superadmins has state
         'approved'.
         """
         admin = user_m.objects.get(id=backend_input['admin_id'])
@@ -24,13 +50,52 @@ class ResourceAdminship(object):
             raise ValidationError(_('Wrong admin role'))
 
         resource = r_m.objects.get(pk=backend_input['resource_id'])
+
         resource_org_id = resource.erp_bai_2_organisation.pk
+        if not admin.organisation:
+            raise ValidationError(_('No organisation'))
         if resource_org_id != admin.organisation.id:
             raise ValidationError(_('Forbidden Resource Organisation'))
         try:
             sa_m.objects.get(admin=backend_input['admin_id'],
                              resource=backend_input['resource_id'])
-            raise ValidationError(_('Object exists'))
+            raise ValidationError(_('ResourceAdminship Object exists'))
+        except sa_m.DoesNotExist:
+            backend_input['state'] = 'approved'
+            return
+
+    @staticmethod
+    def check_create_other_own_organisation(backend_input, instance, context):
+        """Provider Admins can create ResourceAdminships.
+
+        Provider Admins can create a new ResourceAdminship instance
+        for a given resource and a given user, only if:
+        - the user has role 'serviceadmin'
+        - she/he does not already admin
+        - the resource user's Organisation is the same as the Resource's Organisation
+        - the Resource's Organsation is the same as the Provider Admins
+        The ResourceAdminship created by Provider Admins has state
+        'approved'.
+        """
+        auth_user = context['auth/user']
+        user_org_id = auth_user.organisation.id
+        admin = user_m.objects.get(id=backend_input['admin_id'])
+        if admin.role != 'serviceadmin':
+            raise ValidationError(_('Wrong admin role'))
+
+        resource = r_m.objects.get(pk=backend_input['resource_id'])
+
+        resource_org_id = resource.erp_bai_2_organisation.pk
+        if not admin.organisation:
+            raise ValidationError(_('No organisation'))
+        if resource_org_id != admin.organisation.id:
+            raise ValidationError(_('Forbidden Resource Organisation'))
+        if resource_org_id != user_org_id:
+            raise ValidationError(_('Forbidden Resource Organisation'))
+        try:
+            sa_m.objects.get(admin=backend_input['admin_id'],
+                             resource=backend_input['resource_id'])
+            raise ValidationError(_('ResourceAdminship Object exists'))
         except sa_m.DoesNotExist:
             backend_input['state'] = 'approved'
             return
@@ -48,12 +113,14 @@ class ResourceAdminship(object):
         auth_user = context['auth/user']
         resource = r_m.objects.get(pk=backend_input['resource_id'])
         resource_org_id = resource.erp_bai_2_organisation.pk
+        if not auth_user.organisation:
+            raise ValidationError(_('No organisation'))
         if resource_org_id != auth_user.organisation.id:
             raise ValidationError(_('Forbidden Resource Organisation'))
         try:
             sa_m.objects.get(admin=auth_user.id,
                              resource=backend_input['resource_id'])
-            raise ValidationError(_('Object exists'))
+            raise ValidationError(_('ResourceAdminship Object exists'))
         except sa_m.DoesNotExist:
             backend_input['admin_id'] = auth_user.id
             backend_input['state'] = 'pending'
@@ -63,10 +130,10 @@ class ResourceAdminship(object):
     def is_involved(instance, context):
         """Serviceadmins retrieve ResourceAdminships they are involved in.
 
-        Serviceadmins can retrieve ResourceAdminships of Resources they admin, so
-        that they can reject/approve these ResourceAdminships.
-        Serviceadmins can also retrieve the ResourceAdminship for which they are
-        admins regardlress of the state, so that they can view a
+        Serviceadmins can retrieve ResourceAdminships of Resources they admin,
+        so that they can reject/approve these ResourceAdminships.
+        Serviceadmins can also retrieve the ResourceAdminship for which they
+        are admins regardlress of the state, so that they can view a
         ResourceAdminship request or revoke one.
         """
         auth_user = context['auth/user']
@@ -139,6 +206,17 @@ class ResourceAdminship(object):
 
         return Q(admin=auth_user, state='pending')
 
+    @staticmethod
+    def filter_my_provider(context):
+        """
+        A Provider Admin can only list Resource Adminships for his/her
+        Organisation.
+        """
+        auth_user = context['auth/user']
+        user_org_id = str(auth_user.organisation.id)
+
+        return Q(resource__erp_bai_2_organisation_id=user_org_id)
+
 
 class User(object):
 
@@ -150,17 +228,42 @@ class User(object):
         auth_user = context['auth/user']
         return Q(id=auth_user.id)
 
+    @staticmethod
+    def filter_my_provider(context):
+        """
+        A Provider Admin can only list observers and serviceadmins that
+        belong to his Organisation
+        """
+        auth_user = context['auth/user']
+        user_org_id = str(auth_user.organisation.id)
+        return (Q(role='serviceadmin') & Q(organisation_id=user_org_id)) | Q(role='observer')
+
+    @staticmethod
+    def filter_my_provider_me(context):
+        """
+        A Provider Admin can retrieve observers and serviceadmins that
+        belong to his Organisation and himself
+        """
+        auth_user = context['auth/user']
+        user_org_id = str(auth_user.organisation.id)
+        return (Q(role='serviceadmin') & Q(organisation_id=user_org_id)) | \
+               Q(role='observer') | \
+               Q(id=auth_user.id)
+
 
 class Organisation(object):
 
     @staticmethod
-    def filter_belongs(context):
+    def update_organisation_owned(backend_input, instance, context):
         """
-        List only the Organisations a serviceadmins belongs to.
+        Serviceproviders can edit the Organisation they belong to.
         """
         auth_user = context['auth/user']
-        organisations = [x.id for x in auth_user.organisations.all()]
-        return Q(id__in=organisations)
+        user_org_id = str(auth_user.organisation.id)
+        org_id = str(instance.pk)
+
+        if not org_id == user_org_id:
+            raise ValidationError(_('Unauthorized organisation(s)'))
 
 
 class Resource(object):
@@ -189,41 +292,20 @@ class Resource(object):
             raise ValidationError(_('Unauthorized action'))
 
     @staticmethod
-    def organisation_owned(backend_input, instance, context):
-        """Servicadmins must belong to Resource's organisation.
+    def create_organisation_owned(backend_input, instance, context):
+        return resource_organisation_owned(backend_input, instance, context)
 
-        The resource's organisations must be the same as the one the
-        serviceadmin belongs to.
-        """
-        auth_user = context['auth/user']
-        resource_org_id = str(backend_input.get('erp_bai_2_organisation_id'))
-        user_org_id = str(auth_user.organisation.id)
+    @staticmethod
+    def update_organisation_owned(backend_input, instance, context):
+        return resource_organisation_owned(backend_input, instance, context)
 
-        if not user_org_id == resource_org_id:
-            raise ValidationError(_('Unauthorized organisation(s)'))
 
 class ContactInformation(object):
 
     @staticmethod
     def create_organisation_owned(backend_input, instance, context):
-        """Servicadmins must belong to the same Organisation as the
-        Contact Information they are about to create.
-        """
-        auth_user = context['auth/user']
-        user_org_id = str(auth_user.organisation.id)
-        contact_org_id = str(backend_input.get('organisation_id'))
-
-        if not contact_org_id == user_org_id:
-            raise ValidationError(_('Unauthorized organisation(s)'))
+        return contact_information_organisation_owned(backend_input, instance, context)
 
     @staticmethod
     def update_organisation_owned(backend_input, instance, context):
-        """Servicadmins must belong to the same Organisation as the
-        Contact Information they are about to edit.
-        """
-        auth_user = context['auth/user']
-        user_org_id = str(auth_user.organisation.id)
-        contact_org_id = str(backend_input.get('organisation_id'))
-
-        if not contact_org_id == user_org_id:
-            raise ValidationError(_('Unauthorized organisation(s)'))
+        return contact_information_organisation_owned(backend_input, instance, context)

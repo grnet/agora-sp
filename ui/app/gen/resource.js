@@ -23,12 +23,22 @@ export default AgoraGen.extend({
   resourceName: 'api/v2/resources',
   abilityStates: {
     // a servicedmin can create a resource if he belongs to an organisation
-    organisation_owned: computed('role', 'user.organisation', function() {
+    create_organisation_owned: computed('role', 'user.organisation', function() {
       let role = get(this, 'role');
       if (role === 'serviceadmin') {
         return get(this, 'user.organisation');
       }
       return true;
+    }),
+
+    // a provideradmin can update a resource if he belongs to an organisation
+    update_organisation_owned: computed('role', 'user.organisation', 'model.erp_bai_2_service_organisation',  function() {
+      let role = get(this, 'role');
+      let resource_org = get(this, 'model.erp_bai_2_service_organisation.id');
+      let user_org = get(this, 'user.organisation');
+      if (role === 'provideradmin') {
+        return resource_org === user_org;
+      }
     }),
     owned: computed('model.resource_admins_ids', 'user.id', function() {
       let ids = get(this, 'model.resource_admins_ids');
@@ -121,9 +131,7 @@ export default AgoraGen.extend({
   details: {
     fieldsets: DETAILS_FIELDSETS,
     actions: [
-      'gen:details',
       'gen:edit',
-      'remove',
       'applyResourceAdminship',
       'revokeResourceAdminship',
       'informAdminshipRejected',

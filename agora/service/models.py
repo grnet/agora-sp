@@ -189,10 +189,12 @@ class Resource(models.Model):
     main_contact = models.ForeignKey(ContactInformation,
         blank=True,
         null=True,
+        on_delete=models.SET_NULL,
         related_name="main_contact_services")
     public_contact = models.ForeignKey(ContactInformation,
         blank=True,
         null=True,
+        on_delete=models.SET_NULL,
         related_name="public_contact_services")
     erp_coi_13_helpdesk_email = models.EmailField(default=None, blank=True, null=True)
     erp_coi_14_security_contact_email = models.EmailField(default=None, blank=True, null=True)

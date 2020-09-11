@@ -9,8 +9,8 @@
       "Service Admin"
     ],
     [
-      "admin",
-      "Admin"
+      "provideradmin",
+      "Provider Admin"
     ],
     [
       "superadmin",
@@ -34,7 +34,7 @@
       "Other",
       "Other"
     ]
-  ],
+   ],
   "SERVICE_ADMINSHIP_STATES": [
     [
       "pending",

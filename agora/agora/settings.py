@@ -44,9 +44,7 @@ DEFAULT_FROM_EMAIL = 'no-reply@agora.com'
 
 # Users that will be emailed when a new shibboleth user is created
 USER_CREATION_EMAIL_LIST = [
-    'iliaboti@grnet.gr',
-    'strezoski.g@gmail.com',
-    'stojanovski.dario@gmail.com',
+    'tasos@grnet.gr',
 ]
 
 CORS_ORIGIN_ALLOW_ALL = True

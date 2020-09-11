@@ -2,6 +2,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from common.helper import current_site_baseurl
+from accounts.models import User
 
 import logging
 logger = logging.getLogger('apimas')
@@ -12,9 +13,14 @@ def get_login_url():
 
 
 def send_email_shib_user_created(user, http_host):
+    user_name = user.username
+    if user.first_name and user.last_name:
+      user_name = "{0} {1}".format(user.first_name, user.last_name)
+
     tpl_subject = 'emails/shib_user_created_subject.txt'
     tpl_body = 'emails/shib_user_created_body.txt'
     tpl_context = {
+        'user_name': user_name,
         'user': user,
         'http_host': http_host
     }
@@ -32,7 +38,12 @@ def send_email_shib_user_created(user, http_host):
 
 
 def send_user_email(user, tpl_subject, tpl_body, extra_context=()):
+    user_name = user.username
+    if user.first_name and user.last_name:
+      user_name = "{0} {1}".format(user.first_name, user.last_name)
+
     tpl_context = {
+        'user_name': user_name,
         'user': user,
         'login_url': get_login_url()
     }
@@ -56,17 +67,25 @@ def resourceadminship_context(sa):
     return {
         'applicant': sa.admin,
         'resource': sa.resource,
-        'resource_url': current_site_baseurl() + '/resources/'+str(sa.resource.pk),
+        'resource_url': current_site_baseurl() + '/' + settings.UI_PREFIX + 'resources/'+str(sa.resource.pk),
         'resource_admins_url': current_site_baseurl() + '/resource-admins/'
     }
 
 
 def send_email_application_created(sa, http_host):
-    recipients = sa.resource.resource_admins
+    """
+    Emails sent when a user requests a Resource Adminship.
+    Emails are sent to other Resource serviceadmins and to
+    Provider Admins that belong to the same Organisation
+    with the Resource.
+    """
+    resource_admins = sa.resource.resource_admins
+    resource_org = sa.resource.erp_bai_2_organisation
+    provider_admins =  User.objects.filter(organisation=resource_org)
     extra_context = resourceadminship_context(sa)
     extra_context['http_host'] = http_host
 
-    for recipient in recipients:
+    for recipient in resource_admins:
         send_user_email(
             recipient,
             'emails/application_created_subject.txt',
@@ -74,6 +93,14 @@ def send_email_application_created(sa, http_host):
             extra_context
         )
 
+
+    for recipient in provider_admins:
+        send_user_email(
+            recipient,
+            'emails/application_created_subject.txt',
+            'emails/application_created_body.txt',
+            extra_context
+        )
 
 def send_email_sa_admins_applicant(sa, http_host, tpl_subject, tpl_body_admins,
                                    tpl_body_applicant):
@@ -102,6 +129,12 @@ def send_email_sa_admins_applicant(sa, http_host, tpl_subject, tpl_body_admins,
 
 
 def send_email_resource_admin_assigned(sa, http_host):
+    """
+    Emails sent when a Provider Admin or Superadmin creates a
+    ResourceAdminship.
+    Emails are sent to newly created serviceadmin and to
+    existing serviceadmins.
+    """
     tpl_subject = 'emails/resource_admin_assigned_subject.txt'
     tpl_body_admins = 'emails/resource_admin_assigned_to_admins_body.txt'
     tpl_body_applicant = 'emails/resource_admin_assigned_to_applicant_body.txt'
@@ -111,6 +144,12 @@ def send_email_resource_admin_assigned(sa, http_host):
 
 
 def send_email_application_evaluated(sa, http_host):
+    """
+    Emails sent when a Provider Admin or Superadmin approves or
+    rejects a ResourceAdminship.
+    Emails are sent to serviceadmin and to other serviceadmins
+    of the Resource.
+    """
     if sa.state == 'approved':
         tpl_subject = 'emails/application_approved_subject.txt'
         tpl_body_admins = 'emails/application_approved_to_admins_body.txt'

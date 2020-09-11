@@ -24,8 +24,12 @@ const rejectResourceAdminship = {
       return reason.errors;
     });
   },
-  hidden: computed('model.state', 'role', function(){
+  hidden: computed('model.state', 'model.admin_id', function(){
+    let user_id = get(this, 'session.session.authenticated.id').toString();
+    let admin_id = get(this, 'model.admin_id');
     let state = get(this, 'model.state');
+
+    if (admin_id === user_id) { return true; }
 
     return !(state === 'pending')
   }),
@@ -56,8 +60,12 @@ const approveResourceAdminship = {
       return reason.errors;
     });
   },
-  hidden: computed('model.state', function(){
+  hidden: computed('model.state', 'model.admin_id', function(){
+    let user_id = get(this, 'session.session.authenticated.id').toString();
+    let admin_id = get(this, 'model.admin_id');
     let state = get(this, 'model.state');
+
+    if (admin_id === user_id) { return true; }
 
     return !(state === 'pending')
   }),
@@ -88,13 +96,12 @@ const undoResourceAdminship = {
       return reason.errors;
     });
   },
-  hidden: computed('model.state', 'model.admin.id', function(){
-    let admin_id = get(this, 'model.admin.id');
-    let user_id = get(this, 'session.session.authenticated.id');
-
-    if (admin_id && admin_id === user_id) { return true; }
-
+  hidden: computed('model.state', 'model.admin_id', function(){
+    let user_id = get(this, 'session.session.authenticated.id').toString();
+    let admin_id = get(this, 'model.admin_id');
     let state = get(this, 'model.state');
+
+    if (admin_id === user_id) { return true; }
 
     return state === 'pending'
   }),

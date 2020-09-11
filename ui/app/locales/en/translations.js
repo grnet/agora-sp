@@ -81,5 +81,7 @@ export default {
   trl,
   user_customer,
   user_role,
+  'ResourceAdminship Object exists': resource_admin.errors.object_exists,
+  'No organisation': resource_admin.errors.no_organisation,
 };
 
