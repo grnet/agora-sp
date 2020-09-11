@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Introduce Provider Admin role.
+- Add Cookie Policy in dialog.
 
 ### Changed
 - Improve error messages on ResourceAdminship creation.
