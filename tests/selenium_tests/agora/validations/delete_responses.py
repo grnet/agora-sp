@@ -21,7 +21,7 @@ def delete_success(delete_button):
     @return: True if the form returns an success message otherwise False.
     """
     # Wait at most 5 seconds.
-    wait = WebDriverWait(delete_button, 5)
+    wait = WebDriverWait(delete_button, 30)
     wait.until(EC.presence_of_element_located((By.XPATH, '//button[text()="delete"]')))
     delete_button.find_element_by_xpath('//button[text()="delete"]').click()
 
@@ -49,7 +49,7 @@ def delete_from_listView(page):
     @param page: The object with which I can handle the page.
     @return: If the record is deleted or not.
     """
-    wait = WebDriverWait(page, 5)
+    wait = WebDriverWait(page, 30)
 
     wait.until(EC.presence_of_element_located((By.XPATH, '//md-icon[text()="delete_forever"]')))
     page.find_element_by_xpath('//md-icon[text()="delete_forever"]').click()
