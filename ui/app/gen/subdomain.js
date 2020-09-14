@@ -66,8 +66,5 @@ export default AgoraGen.extend({
   },
   create: {
     fieldsets: CREATE_FIELDSETS,
-    onSubmit(model) {
-      this.transitionTo('subdomain.record.edit', model);
-    },
   },
 });

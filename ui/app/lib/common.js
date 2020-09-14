@@ -38,7 +38,7 @@ const AgoraGen = CRUDGen.extend({
     actions: [
       'gen:edit',
     ],
-},
+  },
   edit: {
     actions: [
       'gen:details',
