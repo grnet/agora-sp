@@ -13,9 +13,8 @@
     {{# if cookies_policy}}
       <a href="#" onclick={{action 'openDialog' 'cookies'}}>{{ cookies_text}}</a>
     {{/if}}
-
+    {{# if (and cookies_policy  privacy_policy) }} | {{/if}}
     {{#if privacy_policy}}
-      |
       <a href="#" onclick={{action 'openDialog' 'privacy'}}>{{ privacy_text}}</a>
     {{/if}}
   </div>
