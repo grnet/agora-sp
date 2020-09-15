@@ -7,10 +7,10 @@ const { get, set, computed } = Ember;
 export default Ember.Component.extend({
   tagName: "footer",
   classNames: ["layout-align-end"],
-  policy_url: ENV.APP.footer["policy_url"],
-  policy_text: ENV.APP.footer["policy_text"],
   cookies_policy: ENV.APP.footer["cookies_policy"],
   cookies_text: ENV.APP.footer["cookies_title"],
+  privacy_policy: ENV.APP.footer["privacy_policy"],
+  privacy_text: ENV.APP.footer["privacy_title"],
 
   logos: computed("", function () {
     let logos = ENV.APP.footer.logos || [];
@@ -63,6 +63,10 @@ export default Ember.Component.extend({
       if (type === 'cookies') {
         title = get(this, 'cookies_text');
         content = 'cookies-content';
+      }
+      if (type === 'privacy') {
+        title = get(this, 'privacy_text');
+        content = 'privacy-content';
       }
       set(this, "dialogTitle", title);
       set(this, "dialogContent", content);
