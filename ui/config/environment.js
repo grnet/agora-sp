@@ -37,11 +37,12 @@ module.exports = function(environment) {
         contact: 'agora@grnet.gr',
         // If set, <info> will be visible in footer.
         info: 'Agora is a service developed and maintained by <a href="https://grnet.gr/en/" alt="grnet">GRNET</a> co-funded by <a href="" alt="https://www.eosc-hub.eu/">EOSC-Hub</a> and <a href="https://www.eudat.eu/eudat-collaborative-data-infrastructure-cdi">EUDAT CDI</a>',
-        // If set, a link will <policy_text> text will be visible in footer.
-        policy_text: 'Privacy Policy',
-        // If set, <policy_text> link will  redirect to <policy_url>. If not set,
-        // <policy_text> link will point to policy.hbs template.
-        policy_url: 'https://www.example.com',
+        // Privacy Policy settings
+        privacy_policy: true,
+        privacy_title: 'Privacy Policy',
+        privacy_login_service: 'AGORA AAI',
+        privacy_login_url: 'aai.agora.grnet.gr',
+        privacy_service_url: 'agora.grnet.gr',
         // Cookies settings
         cookies_policy: true,
         cookies_title: 'Cookie Policy',

@@ -109,3 +109,10 @@ md-input-container.md-input-has-value md-chips+  label:not(.md-no-float) {
 .page-content div.layout-column:first-child {
   display: block;
 }
+
+.table-popup {
+  td, th {
+    padding: 5px;
+    border: 1px solid #ccc;
+  }
+}
