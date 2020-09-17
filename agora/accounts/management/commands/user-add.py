@@ -53,7 +53,17 @@ class Command(BaseCommand):
                     role=role,
                     email=email)
         except IntegrityError as e:
-            raise CommandError(e.message)
+	    issue = str(e)
+            # catch mysql and sqlite duplicate integrity errors 
+            if (
+		issue.startswith("(1062") or 
+		issue.endswith("is not unique") or
+                issue.startswith("UNIQUE constraint failed")
+	    ):
+		self.stdout.write("Duplicate Warning: {}".format(issue))
+		return
+	    else:
+            	raise CommandError(issue)
 
         token = Token.objects.create(user=a)
 
