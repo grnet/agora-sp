@@ -45,6 +45,7 @@ export default DS.Model.extend({
     label: 'custom_user.fields.shibboleth_id',
     hint: 'custom_user.hint.shibboleth_id',
   }),
+  organisation_id: DS.attr(),
   date_joined_format: computed('date_joined', function(){
     const date = this.get('date_joined');
 
@@ -75,6 +76,7 @@ export default DS.Model.extend({
       // do not send readonly keys to backend
       delete hash['shibboleth_id'];
       delete hash['date_joined'];
+      delete hash['organisation_id'];
 
       return hash;
     },
