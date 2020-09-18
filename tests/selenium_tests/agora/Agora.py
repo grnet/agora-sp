@@ -107,8 +107,7 @@ class Agora(ABC, unittest.TestCase):
         self.wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "[class='gen-action']")))
 
         # assert "create" in self.driver.find_element_by_xpath("//a[@href='/ui/contact-information/create']").text
-        self.wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "[class='row-actions ember-view md-cell']")))
-        actions.find_elements_by_css_selector("[class='gen-action']")[1].click()  # Edit from listView.
+        self.wait.until(EC.element_to_be_clickable((By.XPATH, '//div[@data-action="gen:edit"]//a'))).click()
         print("{0:<40} Found and visited \t{1}".format('[Edit page]', "Success"))
 
     def details_from_listView(self):
@@ -124,8 +123,7 @@ class Agora(ABC, unittest.TestCase):
         self.wait.until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "[class='gen-action']")))
 
         # assert "create" in self.driver.find_element_by_xpath("//a[@href='/ui/contact-information/create']").text
-        actions = self.driver.find_element_by_css_selector("[class='row-actions ember-view md-cell']")
-        actions.find_elements_by_css_selector("[class='gen-action']")[0].click()  # Details from listView.
+        self.wait.until(EC.element_to_be_clickable((By.XPATH, '//div[@data-action="gen:details"]//a'))).click()
         print("{0:<40} Found and visited \t{1}".format('[Details page]', "Success"))
 
     def search_field(self, search_text="Selenium"):

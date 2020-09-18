@@ -191,7 +191,7 @@ You can load some initial data by running:
 
 If you want to add dummy users to agora, for developoment purposes, run:
 ```
-python manage.py loaddata fixtures/sample-organisations.json
+python manage.py loaddata fixtures/sample-providers.json
 python manage.py loaddata fixtures/sample-users.json
 ```
 
