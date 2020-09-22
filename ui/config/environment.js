@@ -2,7 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
-    theme: 'theme-eosc',
+    theme: 'theme',
     logo: 'logo.png',
     modulePrefix: 'agora-admin',
     environment: environment,
