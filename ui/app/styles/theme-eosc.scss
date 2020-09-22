@@ -1,27 +1,16 @@
-$eosc-light-blue: #4596E5;
-$eosc-dark-gray: #29333F;
-$eosc-washed-light-blue: #75a4d8;
-
-
-md-sidenav md-toolbar.md-tall {
-  background-image: linear-gradient(to bottom, #fafafa, #dedede 160px);
-}
+$theme-main: #4596E5;
+$theme-main-light: #75a4d8;
 
 md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
-  background-color: $eosc-light-blue;
-}
-
-md-content.login-info .user-label,
-.login-info button {
-  color: $eosc-dark-gray !important;
+  background-color: $theme-main;
 }
 
 a.md-button.md-default-theme.md-primary.md-raised, a.md-button.md-default-theme.md-primary.md-fab, a.md-button.md-primary.md-raised, a.md-button.md-primary.md-fab, .md-button.md-default-theme.md-primary.md-raised, .md-button.md-default-theme.md-primary.md-fab, .md-button.md-primary.md-raised, .md-button.md-primary.md-fab {
-    background-color: $eosc-light-blue;
+    background-color: $theme-main;
 }
 
 a.md-button.md-default-theme.md-primary.md-raised:not([disabled]):hover, a.md-button.md-default-theme.md-primary.md-fab:not([disabled]):hover, a.md-button.md-primary.md-raised:not([disabled]):hover, a.md-button.md-primary.md-fab:not([disabled]):hover, .md-button.md-default-theme.md-primary.md-raised:not([disabled]):hover, .md-button.md-default-theme.md-primary.md-fab:not([disabled]):hover, .md-button.md-primary.md-raised:not([disabled]):hover, .md-button.md-primary.md-fab:not([disabled]):hover {
-    background-color: $eosc-washed-light-blue;
+    background-color: $theme-main-light;
 }
 
 md-content.login-info {

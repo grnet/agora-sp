@@ -1,27 +1,16 @@
-$blue: #283583;
-$dark-gray: #29333F;
-$light-blue: #4f8bd6;
-
-
-md-sidenav md-toolbar.md-tall {
-  background-image: linear-gradient(to bottom, #fafafa, #dedede 160px);
-}
+$theme-main: #283583;
+$theme-main-light: #4f8bd6;
 
 md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
-  background-color: $blue;
-}
-
-md-content.login-info .user-label,
-.login-info button {
-  color: $dark-gray !important;
+  background-color: $theme-main;
 }
 
 a.md-button.md-default-theme.md-primary.md-raised, a.md-button.md-default-theme.md-primary.md-fab, a.md-button.md-primary.md-raised, a.md-button.md-primary.md-fab, .md-button.md-default-theme.md-primary.md-raised, .md-button.md-default-theme.md-primary.md-fab, .md-button.md-primary.md-raised, .md-button.md-primary.md-fab {
-    background-color: $blue;
+    background-color: $theme-main;
 }
 
 a.md-button.md-default-theme.md-primary.md-raised:not([disabled]):hover, a.md-button.md-default-theme.md-primary.md-fab:not([disabled]):hover, a.md-button.md-primary.md-raised:not([disabled]):hover, a.md-button.md-primary.md-fab:not([disabled]):hover, .md-button.md-default-theme.md-primary.md-raised:not([disabled]):hover, .md-button.md-default-theme.md-primary.md-fab:not([disabled]):hover, .md-button.md-primary.md-raised:not([disabled]):hover, .md-button.md-primary.md-fab:not([disabled]):hover {
-    background-color: $light-blue;
+    background-color: $theme-main-light;
 }
 
 .model-form-field .md-label, .details-field .md-label,
@@ -30,13 +19,13 @@ md-input-container label:not(.md-no-float):not(.md-container-ignore), md-input-c
 md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused label, md-input-container:not(.md-input-invalid).md-input-focused label,
 md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused .md-input, md-input-container:not(.md-input-invalid).md-input-focused .md-input
 {
-  color: $blue;
+  color: $theme-main;
 }
 
 md-input-container.md-default-theme:not(.md-input-invalid).md-input-focused .md-input, md-input-container:not(.md-input-invalid).md-input-focused .md-input {
-  border-color: $blue;
+  border-color: $theme-main;
 }
 
 md-checkbox.md-default-theme:not([disabled]).md-primary.md-checked .md-icon, md-checkbox:not([disabled]).md-primary.md-checked .md-icon {
-  background-color: $blue;
+  background-color: $theme-main;
 }
