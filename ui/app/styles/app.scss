@@ -3,6 +3,9 @@ $primary: "blue" !default;
 //$warn: "red" !default;
 //$background: "grey" !default;
 //$link: "light-blue" !default;
+$blue: #65799b;
+$light-blue: #4f8bd6;
+$dark-gray: #29333F;
 
 @import "ember-gen";
 @import "_buttons";
@@ -116,3 +119,52 @@ md-input-container.md-input-has-value md-chips+  label:not(.md-no-float) {
     border: 1px solid #ccc;
   }
 }
+
+md-sidenav md-toolbar.md-tall {
+  background-image: linear-gradient(to bottom, #fafafa, #dedede 160px);
+}
+
+md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
+  background-color: $blue;
+}
+
+md-content.login-info .user-label,
+.login-info button {
+  color: $dark-gray !important;
+}
+
+md-content.login-info .user-label, md-toolbar.md-default-theme:not(.md-menu-toolbar) .md-button:not(.md-raised), md-toolbar:not(.md-menu-toolbar) .md-button:not(.md-raised) {
+  color: white;
+}
+
+a.md-button.md-default-theme.md-primary.md-raised, a.md-button.md-default-theme.md-primary.md-fab, a.md-button.md-primary.md-raised, a.md-button.md-primary.md-fab, .md-button.md-default-theme.md-primary.md-raised, .md-button.md-default-theme.md-primary.md-fab, .md-button.md-primary.md-raised, .md-button.md-primary.md-fab {
+    background-color: $blue;
+}
+
+a.md-button.md-default-theme.md-primary.md-raised:not([disabled]):hover, a.md-button.md-default-theme.md-primary.md-fab:not([disabled]):hover, a.md-button.md-primary.md-raised:not([disabled]):hover, a.md-button.md-primary.md-fab:not([disabled]):hover, .md-button.md-default-theme.md-primary.md-raised:not([disabled]):hover, .md-button.md-default-theme.md-primary.md-fab:not([disabled]):hover, .md-button.md-primary.md-raised:not([disabled]):hover, .md-button.md-primary.md-fab:not([disabled]):hover {
+    background-color: $light-blue;
+}
+
+a.md-button.md-default-theme:not([disabled]):hover, a.md-button:not([disabled]):hover, .md-button.md-default-theme:not([disabled]):hover, .md-button:not([disabled]):hover {
+  background-color: rgba(158, 158, 158, 0.1);
+}
+
+.page-content .actions {
+  a.md-button.md-default-theme:not([disabled]):hover, a.md-button:not([disabled]):hover, .md-button.md-default-theme:not([disabled]):hover, .md-button:not([disabled]):hover {
+    background-color: rgba(30, 48, 70, 0.1);
+  }
+}
+
+.model-form .md-input-hint  {
+  color: gray;
+}
+
+md-content.login-info {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+img.logo {
+  max-height: 100px;
+}
+
