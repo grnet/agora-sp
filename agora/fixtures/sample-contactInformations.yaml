@@ -1,0 +1,9 @@
+-   model: owner.contactinformation
+    pk: b74760b3-37ea-499b-a88f-35cc98ee5b17
+    fields:
+        first_name: Django
+        last_name: EmberJS
+        email: agora@grnet.gr
+        phone: '+302101234'
+        position: Development
+        organisation: f95b8142-5b51-4044-9d9a-e94759c3554c

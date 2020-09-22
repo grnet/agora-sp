@@ -84,4 +84,4 @@ class ContactCreate(Contacts):
         # Position
         input_field(self.driver, "position", "Automatic UI tests")
         # Provider
-        suggestion_input_field(self.driver, "organisation", "EGI Foundation")
+        suggestion_input_field(self.driver, "organisation", "National Infrastructures for Research and Technology")
