@@ -54,8 +54,5 @@ export default AgoraGen.extend({
   },
   create: {
     fieldsets: CREATE_FIELDSETS,
-    onSubmit(model) {
-      this.transitionTo('network.record.edit', model);
-    },
   },
 });

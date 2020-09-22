@@ -132,8 +132,5 @@ export default AgoraGen.extend({
       }
       return store.createRecord('contact-information');
     },
-    onSubmit(model) {
-      this.transitionTo('contact-information.record.index', model);
-    }
   },
 });

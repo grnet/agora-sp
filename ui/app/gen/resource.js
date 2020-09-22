@@ -167,8 +167,5 @@ export default AgoraGen.extend({
       }
       return store.createRecord('resource');
     },
-    onSubmit(model) {
-      this.transitionTo('resource.record.edit', model);
-    },
   },
 });

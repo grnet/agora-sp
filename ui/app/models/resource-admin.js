@@ -3,6 +3,11 @@ import ENV from '../config/environment';
 
 const CHOICES = ENV.APP.resources;
 
+const {
+  get,
+  computed
+}  = Ember;
+
 let model = DS.Model.extend({
   admin: DS.belongsTo('custom-user', {
     formAttrs: {
@@ -10,8 +15,22 @@ let model = DS.Model.extend({
     },
   }),
   resource: DS.belongsTo('resource', {
+    formComponent: 'select-onchange',
     formAttrs: {
       optionLabelAttr: 'erp_bai_1_name',
+
+      lookupField: 'admin',
+      changedChoices: function(store, model) {
+        let organisation_id = model.get('organisation_id')
+        if (!organisation_id) {
+          return [];
+        }
+        const params = {
+          erp_bai_2_service_organisation: organisation_id
+        };
+
+        return store.query('resource', params);
+      },
     },
   }),
   resource_name: DS.attr({
