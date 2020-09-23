@@ -12,7 +12,7 @@ services:
        - dist:/srv/agora/ui/dist
     stdin_open: true
     tty: true
-    command: bash -c "python manage.py migrate && python manage.py loaddata fixtures/all_testvm_data.json && python manage.py runserver 0.0.0.0:80"
+    command: bash -c "python manage.py migrate && ./populate_db.sh && python manage.py loaddata fixtures/sample-providers.json && python manage.py loaddata fixtures/sample-users.json && python manage.py loaddata fixtures/sample-contactInformations.yaml && python manage.py loaddata fixtures/sample-resources.yaml && python manage.py runserver 0.0.0.0:80"
   frontend:
     container_name: agora-frontend
     build:

@@ -231,9 +231,9 @@ class CreateProvider(Providers):
         @return: True if all goes well otherwise False.
         """
         # Main Contact/Resource Owner
-        suggestion_input_field(self.driver, "main_contact", "Owen Appleton")
+        suggestion_input_field(self.driver, "main_contact", "Django EmberJS")
         # Public Contact
-        suggestion_input_field(self.driver, "public_contact", "Public Contact (EGI Foundation)")
+        suggestion_input_field(self.driver, "public_contact", "Django EmberJS")
 
     def other_information(self, required_only=False):
         """

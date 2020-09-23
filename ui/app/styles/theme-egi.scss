@@ -1,55 +1,17 @@
-$blue: #0067b1;
-$dark-gray: #29333F;
-$light-blue: #4f8bd6;
+$theme-main: #0067b1;
+$theme-main-light: #4f8bd6;
 $orange: #ef8200;
 
-
-md-sidenav md-toolbar.md-tall {
-  background-image: linear-gradient(to bottom, #fafafa, #dedede 160px);
-}
-
 md-toolbar.md-default-theme:not(.md-menu-toolbar), md-toolbar:not(.md-menu-toolbar) {
-  background-color: $blue;
-}
-
-md-content.login-info .user-label,
-.login-info button {
-  color: $dark-gray !important;
-}
-
-md-content.login-info .user-label, md-toolbar.md-default-theme:not(.md-menu-toolbar) .md-button:not(.md-raised), md-toolbar:not(.md-menu-toolbar) .md-button:not(.md-raised) {
-  color: white;
+  background-color: $theme-main;
 }
 
 a.md-button.md-default-theme.md-primary.md-raised, a.md-button.md-default-theme.md-primary.md-fab, a.md-button.md-primary.md-raised, a.md-button.md-primary.md-fab, .md-button.md-default-theme.md-primary.md-raised, .md-button.md-default-theme.md-primary.md-fab, .md-button.md-primary.md-raised, .md-button.md-primary.md-fab {
-    background-color: $blue;
+    background-color: $theme-main;
 }
 
 a.md-button.md-default-theme.md-primary.md-raised:not([disabled]):hover, a.md-button.md-default-theme.md-primary.md-fab:not([disabled]):hover, a.md-button.md-primary.md-raised:not([disabled]):hover, a.md-button.md-primary.md-fab:not([disabled]):hover, .md-button.md-default-theme.md-primary.md-raised:not([disabled]):hover, .md-button.md-default-theme.md-primary.md-fab:not([disabled]):hover, .md-button.md-primary.md-raised:not([disabled]):hover, .md-button.md-primary.md-fab:not([disabled]):hover {
-    background-color: $light-blue;
-}
-
-a.md-button.md-default-theme:not([disabled]):hover, a.md-button:not([disabled]):hover, .md-button.md-default-theme:not([disabled]):hover, .md-button:not([disabled]):hover {
-  background-color: rgba(158, 158, 158, 0.1);
-}
-
-.page-content .actions {
-  a.md-button.md-default-theme:not([disabled]):hover, a.md-button:not([disabled]):hover, .md-button.md-default-theme:not([disabled]):hover, .md-button:not([disabled]):hover {
-    background-color: rgba(30, 48, 70, 0.1);
-  }
-}
-
-.model-form .md-input-hint  {
-  color: gray;
-}
-
-md-content.login-info {
-  padding-top: 0;
-  margin-top: 0;
-}
-
-img.logo {
-  max-height: 100px;
+    background-color: $theme-main-light;
 }
 
 a.md-button.md-default-theme.md-warn:not([disabled]) md-icon, a.md-button.md-warn:not([disabled]) md-icon, .md-button.md-default-theme.md-warn:not([disabled]) md-icon, .md-button.md-warn:not([disabled]) md-icon {

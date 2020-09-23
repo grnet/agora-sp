@@ -7,7 +7,6 @@ CUSTOM_USERS = {
     ':permissions_namespace': 'agora.checks.User',
     'fields': {
         'id': {
-
             '.field.uuid': {},
             '.flag.nowrite': {}},
         'username': {
@@ -52,6 +51,10 @@ CUSTOM_USERS = {
             'to': '/api/v2/providers',
             '.flag.filterable': {},
             '.flag.nullable.default': {}},
+        'organisation_id': {
+            '.field.uuid': {},
+            'source': 'organisation.id',
+            '.flag.nowrite': {}},
         'providers': {
             '.field.collection.django': {},
             ':filter_compat': True,

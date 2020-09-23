@@ -35,10 +35,4 @@ export default AgoraGen.extend({
       fields: ['user'],
     },
   },
-
-  create: {
-    onSubmit(model) {
-      this.transitionTo('target-user.create');
-    },
-  },
 });
