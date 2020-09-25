@@ -31,6 +31,10 @@ const custom_user = {
   'placeholders': {
     'search': 'Search by username, full name or email',
   },
+  errors:  {
+    unique_email: 'A user with the same email already exists',
+    unique_username: 'A user with the same username already exists'
+  }
 
 };
 

@@ -17,6 +17,7 @@ export default AgoraGen.extend({
   path: 'custom-users',
   resourceName: 'api/v2/custom-users',
   abilityStates: {
+    check_unique: true,
     'me': true,
   },
   common: {
