@@ -85,5 +85,6 @@ export default {
   'No organisation': resource_admin.errors.no_organisation,
   'Email unique constraint failed': custom_user.errors.unique_email,
   'Username unique constraint failed': custom_user.errors.unique_username,
+  'shibboleth_duplicate_email': custom_user.errors.unique_email,
 };
 
