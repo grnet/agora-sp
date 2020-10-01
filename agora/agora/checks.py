@@ -250,6 +250,32 @@ class User(object):
                Q(role='observer') | \
                Q(id=auth_user.id)
 
+    @staticmethod
+    def check_unique(backend_input, instance, context):
+        backend_email = backend_input['email']
+        instance_email = instance.email
+
+        if backend_email != instance_email:
+            try:
+                user_m.objects.get(email=backend_email)
+                raise ValidationError(details={'email': 'Email unique contstraint failed'})
+            except user_m.DoesNotExist:
+                pass
+
+        backend_username = backend_input['username']
+        instance_username = instance.username
+
+        if backend_username != instance_username:
+            try:
+                user_m.objects.get(username=backend_username)
+                raise ValidationError(details={'username': 'Username unique constraint failed'})
+            except user_m.DoesNotExist:
+                pass
+
+        return
+
+
+
 
 class Organisation(object):
 

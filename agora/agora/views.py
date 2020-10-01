@@ -163,6 +163,13 @@ def shibboleth_login(request):
         return HttpResponseRedirect(TOKEN_LOGIN_URL + "#error=%s" % e)
 
     try:
+        user = User.objects.get(email=user_data.get('email'))
+        e = 'shibboleth_duplicate_email'
+        return HttpResponseRedirect(TOKEN_LOGIN_URL + "#error=%s" % e)
+    except  User.DoesNotExist:
+        pass
+
+    try:
         user = User.objects.get(shibboleth_id=shibboleth_id)
 
     except User.DoesNotExist:

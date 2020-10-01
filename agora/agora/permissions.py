@@ -8,8 +8,8 @@ def get_rules():
         ('api/v2/custom-users', 'retrieve', 'provideradmin', 'filter_my_provider_me', '*', '*', '*'),
         ('api/v2/custom-users', 'retrieve', 'serviceadmin', 'me', '*', '*', '*'),
         ('api/v2/custom-users', 'retrieve', 'observer', 'me', '*', '*', '*'),
-        ('api/v2/custom-users', 'update', 'superadmin', '*', '*', '*', '*'),
-        ('api/v2/custom-users', 'partial_update', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/custom-users', 'update', 'superadmin', '*', 'check_unique', '*', '*'),
+        ('api/v2/custom-users', 'partial_update', 'superadmin', '*', 'check_unique', '*', '*'),
         ('api/v2/custom-users', 'destroy', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/custom-users', 'delete', 'superadmin', '*', '*', '*', '*'),
 
