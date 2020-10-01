@@ -258,7 +258,7 @@ class User(object):
         if backend_email != instance_email:
             try:
                 user_m.objects.get(email=backend_email)
-                raise ValidationError(_('Email unique constraint failed'))
+                raise ValidationError(details={'email': 'Email unique contstraint failed'})
             except user_m.DoesNotExist:
                 pass
 
@@ -268,7 +268,7 @@ class User(object):
         if backend_username != instance_username:
             try:
                 user_m.objects.get(username=backend_username)
-                raise ValidationError(_('Username unique constraint failed'))
+                raise ValidationError(details={'username': 'Username unique constraint failed'})
             except user_m.DoesNotExist:
                 pass
 
