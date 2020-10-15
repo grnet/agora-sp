@@ -2,6 +2,7 @@
 
 module.exports = function(environment) {
   var ENV = {
+    title: 'Agora Admin - Ni4os',
     theme: 'theme',
     logo: 'logo.png',
     modulePrefix: 'agora-admin',
