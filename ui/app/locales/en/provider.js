@@ -69,8 +69,7 @@ const provider = {
     'merilsubdomain_names': 'EPP.OTH.9 - MERIL Scientific Subdomain',
     'challenge_names': 'EPP.OTH.11 - Societal Grand challenges',
     'epp_oth_12_national_roadmaps': 'EPP.OTH.12 - National Roadmaps',
-
-
+    'state': 'State',
   },
   'hints': {
     'epp_bai_0_id': '<strong>Unique</strong> identifier of the provider',

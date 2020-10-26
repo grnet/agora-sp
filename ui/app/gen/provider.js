@@ -1,6 +1,7 @@
 import validate from 'ember-gen/validate';
 import { field } from 'ember-gen';
 import { AgoraGen } from '../lib/common';
+import ENV from '../config/environment';
 import {
   CREATE_FIELDSETS,
   EDIT_FIELDSETS,
@@ -12,6 +13,8 @@ const {
   computed,
   get,
 }  = Ember;
+
+const CHOICES = ENV.APP.resources;
 
 
 export default AgoraGen.extend({
@@ -70,7 +73,15 @@ export default AgoraGen.extend({
 
     },
     filter: {
-      active: false,
+      active: true,
+      meta: {
+        fields: [
+          field('state', {
+            type: 'select',
+            choices: CHOICES.PROVIDER_STATES,
+          })
+        ],
+      },
       serverSide: true,
       search: true,
       searchPlaceholder: 'provider.placeholders.search',

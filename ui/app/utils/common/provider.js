@@ -251,10 +251,11 @@ const DETAILS_FIELDSETS = [{
   label: 'provider.cards.basic_information',
   text: 'provider.cards.basic_hint',
   layout: {
-    flex: [100, 100, 100, 100, 50, 50]
+    flex: [50, 50, 100, 100, 100, 50, 50]
   },
   fields: [
     'epp_bai_0_id',
+    'state',
     'epp_bai_1_name',
     'epp_bai_2_abbreviation',
     'epp_bai_3_website',
@@ -293,10 +294,11 @@ const EDIT_FIELDSETS = [{
   label: 'provider.cards.basic_information',
   text: 'provider.cards.basic_hint',
   layout: {
-    flex: [100, 100, 100, 100, 50, 50]
+    flex: [50, 50, 100, 100, 100, 50, 50]
   },
   fields: [
     'epp_bai_0_id',
+    field('state', {disabled: true}),
     'epp_bai_1_name',
     'epp_bai_2_abbreviation',
     'epp_bai_3_website',
@@ -372,6 +374,7 @@ const PROVIDER_TABLE_FIELDS = [
   field('epp_bai_0_id', {label: 'provider.table.epp_bai_0_id'}),
   field('epp_bai_1_name', {label: 'provider.table.epp_bai_1_name'}),
   field('epp_bai_2_abbreviation', {label: 'provider.table.epp_bai_2_abbreviation'}),
+  'state',
 ];
 
 export {

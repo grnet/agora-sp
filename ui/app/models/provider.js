@@ -6,7 +6,8 @@ import ENV from '../config/environment';
 const {
   get,
   computed,
-} = Ember;
+} = Ember,
+  CHOICES = ENV.APP.resources;
 
 
 export default DS.Model.extend({
@@ -241,6 +242,12 @@ export default DS.Model.extend({
   epp_oth_12_national_roadmaps: DS.attr({
     label: 'provider.fields.epp_oth_12_national_roadmaps',
     hint: 'provider.hints.epp_oth_12_national_roadmaps',
+  }),
+  state: DS.attr({
+    type: 'select',
+    choices: CHOICES.PROVIDER_STATES,
+    defaultValue: 'draft',
+    label: 'provider.fields.state',
   }),
 
   __api__: {
