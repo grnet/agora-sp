@@ -117,7 +117,24 @@ const provider = {
   'menu': 'Providers',
   placeholders: {
     search: 'Search by ID, name or abbreviation',
+  },
+  publish: {
+    label: 'Publish',
+    title: 'Publish Provider',
+    ok: 'Publish',
+    message: 'When you publish a Provider, its non sensitive data are displayed in providers public api.',
+    success: 'Success',
+    error: 'Error in publishing provider details'
+  },
+  unpublish: {
+    label: 'Unpublish',
+    title: 'Undo Publish Provider',
+    ok: 'Undo Publish',
+    message: 'When you undo publish a Provider, its non sensitive data are no longer displayed in providers public api.',
+    success: 'Success',
+    error: 'Error in publishing provider details'
   }
+
 };
 
 export { provider };

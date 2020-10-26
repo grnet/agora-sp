@@ -200,6 +200,70 @@ const informAdminshipRejected = {
   },
 };
 
+const publishProvider = {
+  label: 'provider.publish.label',
+  icon: 'public',
+  action: function(route, model) {
+    let m = route.get('messageService');
+
+    model.set('state', 'published');
+    model.save().then((value) => {
+      m.setSuccess('provider.publish.success');
+      return value;
+    }, (reason) => {
+      model.rollbackAttributes();
+      m.setError('provider.publish.error');
+      return reason.errors;
+    });
+  },
+  hidden: computed('role', 'model.state', function(){
+    let role = get(this, 'role');
+    let state =  get(this, 'model.state');
+    if (role !== 'superadmin') { return true; }
+    if (state === 'published') { return true;}
+    return false;
+  }),
+  confirm: true,
+  prompt: {
+    ok: 'provider.publish.ok',
+    cancel: 'cancel',
+    message: 'provider.publish.message',
+    title: 'provider.publish.title',
+  },
+};
+
+const unpublishProvider = {
+  label: 'provider.unpublish.label',
+  icon: 'block',
+  action: function(route, model) {
+    let m = route.get('messageService');
+
+    model.set('state', 'draft');
+    model.save().then((value) => {
+      m.setSuccess('provider.unpublish.success');
+      return value;
+    }, (reason) => {
+      model.rollbackAttributes();
+      m.setError('provider.unpublish.error');
+      return reason.errors;
+    });
+  },
+  hidden: computed('role', 'model.state', function(){
+    let role = get(this, 'role');
+    let state =  get(this, 'model.state');
+    if (role !== 'superadmin') { return true; }
+    if (state === 'published') { return false;}
+    return true;
+  }),
+  confirm: true,
+  prompt: {
+    ok: 'provider.unpublish.ok',
+    cancel: 'cancel',
+    message: 'provider.unpublish.message',
+    title: 'provider.unpublish.title',
+  },
+};
+
 export {
   rejectResourceAdminship,
   approveResourceAdminship,
@@ -207,4 +271,6 @@ export {
   applyResourceAdminship,
   revokeResourceAdminship,
   informAdminshipRejected,
+  publishProvider,
+  unpublishProvider,
 }

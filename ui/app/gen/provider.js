@@ -8,6 +8,7 @@ import {
   DETAILS_FIELDSETS,
   PROVIDER_TABLE_FIELDS
 } from '../utils/common/provider';
+import { publishProvider, unpublishProvider } from '../utils/common/actions';
 
 const {
   computed,
@@ -93,6 +94,11 @@ export default AgoraGen.extend({
     },
   },
   details: {
+    actions: ['publishProvider', 'unpublishProvider'],
+    actionsMap: {
+      publishProvider,
+      unpublishProvider,
+    },
     fieldsets: DETAILS_FIELDSETS,
   },
   edit: {
