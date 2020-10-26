@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.utils import timezone
 from ckeditor_uploader.fields import RichTextUploadingField
-from agora.utils import USER_ROLES, LIFECYCLE_STATUSES ,clean_html_fields
+from agora.utils import USER_ROLES, LIFECYCLE_STATUSES ,clean_html_fields, PROVIDER_STATES
 from common import helper
 
 class UserManager(BaseUserManager):
@@ -248,6 +248,11 @@ class Organisation(models.Model):
         related_name='challenge_providers')
 
     epp_oth_12_national_roadmaps = models.CharField(max_length=80, default=None, blank=True, null=True)
+
+    state = models.CharField(
+            choices=PROVIDER_STATES,
+            max_length=30,
+            default='draft')
 
     @property
     def affiliation_names(self):

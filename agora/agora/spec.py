@@ -1076,9 +1076,11 @@ ORGANISATIONS = {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-
-
-
+        'state': {
+            '.field.string': {},
+            'default': 'draft',
+            '.flag.filterable': {},
+        },
     },
     'actions': {
         '.action-template.django.list': {},
