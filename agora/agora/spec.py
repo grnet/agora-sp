@@ -1659,6 +1659,12 @@ APP_CONFIG = {
     ':ordering_compat': True,
 
     'endpoints': {
+        'public_api': {
+          'prefix': 'api/v2/public',
+          'collections': {
+            'providers': ORGANISATIONS,
+          }
+        },
         'api': {
             'prefix': 'api/v2',
             'collections': {
