@@ -64,7 +64,7 @@ export default AgoraGen.extend({
       title: 'provider.menu'
     },
     row: {
-      actions: ['gen:details', 'gen:edit', 'remove', 'publishProvider', 'unpublishProvider'],
+      actions: ['gen:details', 'gen:edit', 'publishProvider', 'unpublishProvider', 'remove'],
       actionsMap: {
         publishProvider,
         unpublishProvider,
