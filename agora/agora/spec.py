@@ -1696,8 +1696,9 @@ PUBLIC_ORGANISATIONS = {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
-            'flat': True,
+            '.flag.filterable': {},
             'id_field': 'domain',
+
             'model': 'accounts.models.Organisation.epp_cli_1_scientific_domain.through',
             'source': 'epp_cli_1_scientific_domain',
             'bound': 'organisation',
@@ -1705,6 +1706,12 @@ PUBLIC_ORGANISATIONS = {
                 'domain': {'.field.ref': {},
                                 'source': 'domain_id',
                                 'to': 'api/v2/domains'},
+
+              'name': {
+                '.field.string':{},
+                '.flag.filterable': {},
+                'source': 'domain.name',
+                },
             }},
         'domain_names': {
             '.field.string': {},
