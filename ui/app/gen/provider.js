@@ -64,7 +64,11 @@ export default AgoraGen.extend({
       title: 'provider.menu'
     },
     row: {
-      actions: ['gen:details', 'gen:edit', 'remove'],
+      actions: ['gen:details', 'gen:edit', 'remove', 'publishProvider', 'unpublishProvider'],
+      actionsMap: {
+        publishProvider,
+        unpublishProvider,
+      },
       fields: PROVIDER_TABLE_FIELDS,
     },
     menu: {
@@ -94,11 +98,6 @@ export default AgoraGen.extend({
     },
   },
   details: {
-    actions: ['publishProvider', 'unpublishProvider'],
-    actionsMap: {
-      publishProvider,
-      unpublishProvider,
-    },
     fieldsets: DETAILS_FIELDSETS,
   },
   edit: {

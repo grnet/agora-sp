@@ -203,6 +203,7 @@ const informAdminshipRejected = {
 const publishProvider = {
   label: 'provider.publish.label',
   icon: 'public',
+  classNames: 'md-icon-success',
   action: function(route, model) {
     let m = route.get('messageService');
 
@@ -235,6 +236,7 @@ const publishProvider = {
 const unpublishProvider = {
   label: 'provider.unpublish.label',
   icon: 'block',
+  accent: true,
   action: function(route, model) {
     let m = route.get('messageService');
 
