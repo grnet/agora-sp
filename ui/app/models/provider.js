@@ -1,5 +1,6 @@
 import DS from 'ember-data';
 import { shorten } from '../utils/common/common';
+import { capitalize } from '../lib/common';
 import { countries } from '../resources';
 import ENV from '../config/environment';
 
@@ -252,8 +253,7 @@ export default DS.Model.extend({
 
   state_verbose: computed('state', function() {
     let state = get(this, 'state');
-    let prefix = state === 'published'? `✓ `: '   ';
-    return `${prefix}${state}`;
+    return capitalize(state);
   }),
 
   __api__: {
