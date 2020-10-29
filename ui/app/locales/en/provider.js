@@ -128,9 +128,9 @@ const provider = {
   },
   unpublish: {
     label: 'Unpublish',
-    title: 'Undo Publish Provider',
-    ok: 'Undo Publish',
-    message: 'When you undo publish a Provider, its non sensitive data are no longer displayed in providers public api.',
+    title: 'Unpublish Provider',
+    ok: 'Unpublish',
+    message: 'When you unpublish a Provider, its non sensitive data are no longer displayed in providers public api.',
     success: 'Success',
     error: 'Error in publishing provider details'
   }
