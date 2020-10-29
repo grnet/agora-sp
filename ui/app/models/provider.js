@@ -250,6 +250,12 @@ export default DS.Model.extend({
     label: 'provider.fields.state',
   }),
 
+  state_verbose: computed('state', function() {
+    let state = get(this, 'state');
+    let prefix = state === 'published'? `✓ `: '   ';
+    return `${prefix}${state}`;
+  }),
+
   __api__: {
     serialize: function(hash, _) {
       // do not send readonly keys to backend

@@ -374,7 +374,7 @@ const PROVIDER_TABLE_FIELDS = [
   field('epp_bai_0_id', {label: 'provider.table.epp_bai_0_id'}),
   field('epp_bai_1_name', {label: 'provider.table.epp_bai_1_name'}),
   field('epp_bai_2_abbreviation', {label: 'provider.table.epp_bai_2_abbreviation'}),
-  'state',
+  field('state_verbose', {label: 'provider.fields.state'}),
 ];
 
 export {
