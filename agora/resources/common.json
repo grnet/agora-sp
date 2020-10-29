@@ -48,5 +48,19 @@
       "rejected",
       "Rejected"
     ]
+  ],
+  "PROVIDER_STATES": [
+    [
+      "draft",
+      "Draft"
+    ],
+    [
+      "pending",
+      "Pending"
+    ],
+    [
+      "published",
+      "Published"
+    ]
   ]
 }

@@ -69,8 +69,7 @@ const provider = {
     'merilsubdomain_names': 'EPP.OTH.9 - MERIL Scientific Subdomain',
     'challenge_names': 'EPP.OTH.11 - Societal Grand challenges',
     'epp_oth_12_national_roadmaps': 'EPP.OTH.12 - National Roadmaps',
-
-
+    'state': 'State',
   },
   'hints': {
     'epp_bai_0_id': '<strong>Unique</strong> identifier of the provider',
@@ -118,7 +117,24 @@ const provider = {
   'menu': 'Providers',
   placeholders: {
     search: 'Search by ID, name or abbreviation',
+  },
+  publish: {
+    label: 'Publish',
+    title: 'Publish Provider',
+    ok: 'Publish',
+    message: 'When you publish a Provider, its non sensitive data are displayed in providers public api.',
+    success: 'Success',
+    error: 'Error in publishing provider details'
+  },
+  unpublish: {
+    label: 'Unpublish',
+    title: 'Unpublish Provider',
+    ok: 'Unpublish',
+    message: 'When you unpublish a Provider, its non sensitive data are no longer displayed in providers public api.',
+    success: 'Success',
+    error: 'Error in publishing provider details'
   }
+
 };
 
 export { provider };

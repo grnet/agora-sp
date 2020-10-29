@@ -1,17 +1,21 @@
 import validate from 'ember-gen/validate';
 import { field } from 'ember-gen';
 import { AgoraGen } from '../lib/common';
+import ENV from '../config/environment';
 import {
   CREATE_FIELDSETS,
   EDIT_FIELDSETS,
   DETAILS_FIELDSETS,
   PROVIDER_TABLE_FIELDS
 } from '../utils/common/provider';
+import { publishProvider, unpublishProvider } from '../utils/common/actions';
 
 const {
   computed,
   get,
 }  = Ember;
+
+const CHOICES = ENV.APP.resources;
 
 
 export default AgoraGen.extend({
@@ -60,7 +64,11 @@ export default AgoraGen.extend({
       title: 'provider.menu'
     },
     row: {
-      actions: ['gen:details', 'gen:edit', 'remove'],
+      actions: ['gen:details', 'gen:edit', 'publishProvider', 'unpublishProvider', 'remove'],
+      actionsMap: {
+        publishProvider,
+        unpublishProvider,
+      },
       fields: PROVIDER_TABLE_FIELDS,
     },
     menu: {
@@ -70,7 +78,15 @@ export default AgoraGen.extend({
 
     },
     filter: {
-      active: false,
+      active: true,
+      meta: {
+        fields: [
+          field('state', {
+            type: 'select',
+            choices: CHOICES.PROVIDER_STATES,
+          })
+        ],
+      },
       serverSide: true,
       search: true,
       searchPlaceholder: 'provider.placeholders.search',
