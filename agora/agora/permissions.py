@@ -411,8 +411,8 @@ def get_rules():
         ('api/v2/merilsubdomains', 'delete', 'superadmin', '*', '*', '*', '*'),
 
         # PUBLIC API
-        ('api/v2/public/providers', 'list', 'anonymous', '*', '*', '*', '*'),
-        ('api/v2/public/providers', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/public/providers', 'list', 'anonymous', 'filter_public', '*', '*', '*'),
+        ('api/v2/public/providers', 'retrieve', 'anonymous', 'filter_public', '*', '*', '*'),
 
     ]
     return rules

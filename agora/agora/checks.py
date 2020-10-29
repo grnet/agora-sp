@@ -291,6 +291,13 @@ class Organisation(object):
         if not org_id == user_org_id:
             raise ValidationError(_('Unauthorized organisation(s)'))
 
+    @staticmethod
+    def filter_public(context):
+        """
+        Public api for Providers lists only Providers with state=published.
+        """
+        return Q(state='published')
+
 
 class Resource(object):
 
