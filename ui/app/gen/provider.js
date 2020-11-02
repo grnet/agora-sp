@@ -39,6 +39,9 @@ export default AgoraGen.extend({
         return {
           epp_bai_0_id: [validate.presence(true)],
           epp_bai_1_name: [validate.presence(true)],
+          epp_bai_3_website: [validate.format({ type: 'url', allowBlank: true })],
+          epp_mri_2_logo : [validate.format({ type: 'url', allowBlank: true })],
+          epp_mri_3_multimedia: [validate.format({ type: 'url', allowBlank: true })],
         }
       } else {
         return {
