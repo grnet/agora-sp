@@ -7,7 +7,7 @@ from common import helper
 from accounts.models import User, Organisation, Domain, Subdomain
 from ckeditor_uploader.fields import RichTextUploadingField
 from agora.utils import SERVICE_ADMINSHIP_STATES, clean_html_fields, \
-    publish_message
+    publish_message, RESOURCE_STATES
 from agora.emails import send_email_application_created, \
     send_email_resource_admin_assigned, send_email_application_evaluated
 from apimas.base import ProcessorFactory
@@ -244,6 +244,10 @@ class Resource(models.Model):
     erp_fni_1_payment_model = models.URLField(default=None, blank=True, null=True)
     erp_fni_2_pricing = models.URLField(default=None, blank=True, null=True)
 
+    state = models.CharField(
+            choices=RESOURCE_STATES,
+            max_length=30,
+            default='draft')
 
     def __unicode__(self):
         return str(self.erp_bai_0_id)

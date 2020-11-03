@@ -1617,6 +1617,11 @@ RESOURCES = {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
+        'state': {
+            '.field.string': {},
+            'default': 'draft',
+            '.flag.filterable': {},
+        },
     },
     'actions': {
         '.action-template.django.list': {},
