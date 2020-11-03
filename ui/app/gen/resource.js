@@ -15,7 +15,11 @@ import {
   informAdminshipRejected,
 } from '../utils/common/actions';
 
+import ENV from '../config/environment';
+
 const { get, set, computed } = Ember;
+
+const CHOICES = ENV.APP.resources;
 
 export default AgoraGen.extend({
   modelName: 'resource',
@@ -96,10 +100,6 @@ export default AgoraGen.extend({
       actions: ['gen:details', 'gen:edit', 'remove'],
       fields: TABLE_FIELDS,
     },
-    filter: {
-      active: false,
-      serverSide: true,
-    },
     sort: {
       serverSide: true,
       active: true,
@@ -124,6 +124,10 @@ export default AgoraGen.extend({
             type: 'model',
             displayAttr: 'name',
           }),
+          field('state', {
+            type: 'select',
+            choices: CHOICES.RESOURCE_STATES,
+          })
         ],
       },
     },
