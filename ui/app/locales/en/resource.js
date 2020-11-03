@@ -153,6 +153,22 @@ const resource = {
   },
   menu: 'Resources',
   my_menu: 'My Resources',
+  publish: {
+    label: 'Publish',
+    title: 'Publish Resource',
+    ok: 'Publish',
+    message: 'When you publish a Resource, its non sensitive data are displayed in resources public api.',
+    success: 'Success',
+    error: 'Error in publishing resource details'
+  },
+  unpublish: {
+    label: 'Unpublish',
+    title: 'Unpublish Resource',
+    ok: 'Unpublish',
+    message: 'When you unpublish a Resource, its non sensitive data are no longer displayed in resources public api.',
+    success: 'Success',
+    error: 'Error in publishing resource details'
+  }
 };
 
 export { resource }

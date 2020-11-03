@@ -157,14 +157,14 @@ export default AgoraGen.extend({
   create: {
     fieldsets: CREATE_FIELDSETS,
 
-    // If the user creating the Resource is a serviceadmin, the
-    // erp_bai_2_service_organisation should be prefilled with
-    // user's organisation
+    // If the user creating the Resource is a serviceadmin or
+    // a provideradmin, erp_bai_2_service_organisation should
+    // be prefilled with user's organisation
     getModel(params) {
       const store = get(this, 'store');
       const role = get(this, 'session.session.authenticated.role')
       const org_id = get(this, 'session.session.authenticated.organisation')
-      if (role === 'serviceadmin') {
+      if (role === 'serviceadmin' || role === 'provideradmin') {
 
         let org = store.findRecord('provider', org_id);
         return org.then(function(organisation) {

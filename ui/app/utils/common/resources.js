@@ -249,8 +249,8 @@ const CREATE_BASIC_INFO_FIELDSET = {
   label: 'resource.cards.basic',
   fields: computed('role', function() {
     const role = get(this, 'role');
-    // serviceadmins cannot change resource organsation
-    const disabled = role === 'serviceadmin';
+    // serviceadmins/provideradmins cannot change resource organsation
+    const disabled = role === 'serviceadmin' || role === 'provideradmin';
 
     return [
       field('erp_bai_0_id'),
