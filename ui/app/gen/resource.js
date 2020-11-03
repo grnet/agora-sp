@@ -13,8 +13,9 @@ import {
   applyResourceAdminship,
   revokeResourceAdminship,
   informAdminshipRejected,
+  publishResource,
+  unpublishResource,
 } from '../utils/common/actions';
-
 import ENV from '../config/environment';
 
 const { get, set, computed } = Ember;
@@ -97,7 +98,11 @@ export default AgoraGen.extend({
       order: 1,
     },
     row: {
-      actions: ['gen:details', 'gen:edit', 'remove'],
+      actions: ['gen:details', 'gen:edit', 'publishResource', 'unpublishResource', 'remove'],
+      actionsMap: {
+        unpublishResource,
+        publishResource,
+      },
       fields: TABLE_FIELDS,
     },
     sort: {
