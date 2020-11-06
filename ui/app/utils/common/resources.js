@@ -119,6 +119,7 @@ const TABLE_FIELDS = [
   field('erp_bai_1_name', {label: 'resource.table.erp_bai_1_name'}),
   field('erp_bai_2_service_organisation.epp_bai_1_name', {label: 'resource.table.erp_bai_2_service_organisation'}),
   field('erp_mti_1_technology_readiness_level.name', {label: 'resource.table.erp_mti_1_technology_readiness_level'}),
+  field('state_verbose', { label: 'resource.table.state_verbose'}),
 ];
 
 
@@ -126,13 +127,14 @@ const DETAILS_BASIC_INFO_FIELDSET = {
   label: 'resource.cards.basic',
   fields: [
     'erp_bai_0_id',
+    'state',
     'erp_bai_1_name',
     field('erp_bai_2_service_organisation.epp_bai_1_name', {label: 'resource.fields.erp_bai_2_service_organisation'}),
     'providers_names',
     'erp_bai_4_webpage',
   ],
   layout: {
-    flex: [50, 50, 100, 100, 100],
+    flex: [50, 50, 50, 50, 100, 100],
   },
 };
 
@@ -216,12 +218,39 @@ const EDIT_OR_CREATE_MARKETING_FIELDSET = {
   },
 };
 
-const EDIT_OR_CREATE_BASIC_INFO_FIELDSET = {
+const EDIT_BASIC_INFO_FIELDSET = {
   label: 'resource.cards.basic',
   fields: computed('role', function() {
     const role = get(this, 'role');
     // serviceadmins cannot change resource organsation
     const disabled = role === 'serviceadmin';
+
+    return [
+      field('erp_bai_0_id'),
+      field('state', {
+        disabled: true,
+      }),
+      'erp_bai_1_name',
+      field('erp_bai_2_service_organisation', {
+        disabled
+      }),
+      providers,
+      'erp_bai_4_webpage',
+    ]
+
+  }),
+  layout: {
+    flex: [50, 50, 50, 50, 100, 100],
+  },
+};
+
+
+const CREATE_BASIC_INFO_FIELDSET = {
+  label: 'resource.cards.basic',
+  fields: computed('role', function() {
+    const role = get(this, 'role');
+    // serviceadmins/provideradmins cannot change resource organsation
+    const disabled = role === 'serviceadmin' || role === 'provideradmin';
 
     return [
       field('erp_bai_0_id'),
@@ -238,8 +267,6 @@ const EDIT_OR_CREATE_BASIC_INFO_FIELDSET = {
     flex: [100, 50, 50, 100, 100],
   },
 };
-
-
 const GEO_FIELDSET = {
   label: 'resource.cards.geo',
   fields: [
@@ -393,7 +420,7 @@ const DETAILS_FIELDSETS = [
 ];
 
 const CREATE_FIELDSETS = [
-  EDIT_OR_CREATE_BASIC_INFO_FIELDSET,
+  CREATE_BASIC_INFO_FIELDSET,
   EDIT_OR_CREATE_MARKETING_FIELDSET,
   CLASSIFICATION_FIELDSET,
   MANAGEMENT_INFORMATION_FIELDSET,
@@ -408,7 +435,7 @@ const CREATE_FIELDSETS = [
 ];
 
 const EDIT_FIELDSETS = [
-  EDIT_OR_CREATE_BASIC_INFO_FIELDSET,
+  EDIT_BASIC_INFO_FIELDSET,
   EDIT_OR_CREATE_MARKETING_FIELDSET,
   CLASSIFICATION_FIELDSET,
   MANAGEMENT_INFORMATION_FIELDSET,

@@ -1,9 +1,14 @@
 import DS from 'ember-data';
 import { countries, language_codes, locations } from '../resources';
+import ENV from '../config/environment';
+import { capitalize } from '../lib/common';
 
 const {
   get,
+  computed,
 } = Ember;
+
+const CHOICES = ENV.APP.resources;
 
 let model = DS.Model.extend({
   session: Ember.inject.service(),
@@ -312,6 +317,17 @@ let model = DS.Model.extend({
   erp_fni_2_pricing: DS.attr({
     label: 'resource.fields.erp_fni_2_pricing',
     hint: 'resource.hints.erp_fni_2_pricing',
+  }),
+
+  state: DS.attr({
+    type: 'select',
+    choices: CHOICES.RESOURCE_STATES,
+    defaultValue: 'draft',
+    label: 'resource.fields.state',
+  }),
+
+  state_verbose: computed('state', function(){
+    return capitalize(get(this, 'state'));
   }),
 
   resource_admins_ids: DS.attr(),

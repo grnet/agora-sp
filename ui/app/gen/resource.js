@@ -13,9 +13,14 @@ import {
   applyResourceAdminship,
   revokeResourceAdminship,
   informAdminshipRejected,
+  publishResource,
+  unpublishResource,
 } from '../utils/common/actions';
+import ENV from '../config/environment';
 
 const { get, set, computed } = Ember;
+
+const CHOICES = ENV.APP.resources;
 
 export default AgoraGen.extend({
   modelName: 'resource',
@@ -93,12 +98,12 @@ export default AgoraGen.extend({
       order: 1,
     },
     row: {
-      actions: ['gen:details', 'gen:edit', 'remove'],
+      actions: ['gen:details', 'gen:edit', 'publishResource', 'unpublishResource', 'remove'],
+      actionsMap: {
+        unpublishResource,
+        publishResource,
+      },
       fields: TABLE_FIELDS,
-    },
-    filter: {
-      active: false,
-      serverSide: true,
     },
     sort: {
       serverSide: true,
@@ -124,6 +129,10 @@ export default AgoraGen.extend({
             type: 'model',
             displayAttr: 'name',
           }),
+          field('state', {
+            type: 'select',
+            choices: CHOICES.RESOURCE_STATES,
+          })
         ],
       },
     },
@@ -148,14 +157,14 @@ export default AgoraGen.extend({
   create: {
     fieldsets: CREATE_FIELDSETS,
 
-    // If the user creating the Resource is a serviceadmin, the
-    // erp_bai_2_service_organisation should be prefilled with
-    // user's organisation
+    // If the user creating the Resource is a serviceadmin or
+    // a provideradmin, erp_bai_2_service_organisation should
+    // be prefilled with user's organisation
     getModel(params) {
       const store = get(this, 'store');
       const role = get(this, 'session.session.authenticated.role')
       const org_id = get(this, 'session.session.authenticated.organisation')
-      if (role === 'serviceadmin') {
+      if (role === 'serviceadmin' || role === 'provideradmin') {
 
         let org = store.findRecord('provider', org_id);
         return org.then(function(organisation) {

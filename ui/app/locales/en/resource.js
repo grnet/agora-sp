@@ -85,7 +85,7 @@ const resource = {
     pc_phone: 'ERP.COI.10 - Phone',
     pc_position: 'ERP.COI.11 - Position',
     pc_organisation: 'ERP.COI.12 - Organisation',
-
+    state: 'State',
   },
   hints: {
     erp_bai_0_id: 'Global <strong>unique and persistent</strong> reference to the Resource . The first part denotes the Resource Provider and the second part the unique identifier of the resource.<br />Example: openaire.foo',
@@ -146,12 +146,29 @@ const resource = {
     erp_bai_1_name: 'Name',
     erp_bai_2_service_organisation: 'Organisation',
     erp_mti_1_technology_readiness_level: 'TRL',
+    state_verbose: 'State',
   },
   placeholders: {
     search: 'Search by ID or name',
   },
   menu: 'Resources',
   my_menu: 'My Resources',
+  publish: {
+    label: 'Publish',
+    title: 'Publish Resource',
+    ok: 'Publish',
+    message: 'When you publish a Resource, its non sensitive data are displayed in resources public api.',
+    success: 'Success',
+    error: 'Error in publishing resource details'
+  },
+  unpublish: {
+    label: 'Unpublish',
+    title: 'Unpublish Resource',
+    ok: 'Unpublish',
+    message: 'When you unpublish a Resource, its non sensitive data are no longer displayed in resources public api.',
+    success: 'Success',
+    error: 'Error in publishing resource details'
+  }
 };
 
 export { resource }
