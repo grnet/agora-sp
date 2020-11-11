@@ -1696,44 +1696,9 @@ PUBLIC_ORGANISATIONS = {
             '.flag.filterable': {},
             '.flag.nullable.default': {}},
 
-        'epp_cli_1_scientific_domain': {
-            '.field.collection.django': {},
-            '.flag.nullable.default': {},
-            ':filter_compat': True,
-            '.flag.filterable': {},
-            'id_field': 'domain',
-
-            'model': 'accounts.models.Organisation.epp_cli_1_scientific_domain.through',
-            'source': 'epp_cli_1_scientific_domain',
-            'bound': 'organisation',
-            'fields': {
-                'domain': {'.field.ref': {},
-                                'source': 'domain_id',
-                                'to': 'api/v2/domains'},
-
-              'name': {
-                '.field.string':{},
-                '.flag.filterable': {},
-                'source': 'domain.name',
-                },
-            }},
         'epp_cli_1_scientific_domain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
-        'epp_cli_2_scientific_subdomain': {
-            '.field.collection.django': {},
-            '.flag.nullable.default': {},
-            ':filter_compat': True,
-            'flat': True,
-            'id_field': 'subdomain',
-            'model': 'accounts.models.Organisation.epp_cli_2_scientific_subdomain.through',
-            'source': 'epp_cli_2_scientific_subdomain',
-            'bound': 'organisation',
-            'fields': {
-                'subdomain': {'.field.ref': {},
-                                'source': 'subdomain_id',
-                                'to': 'api/v2/subdomains'},
-            }},
         'epp_cli_2_scientific_subdomain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
@@ -1794,161 +1759,34 @@ PUBLIC_ORGANISATIONS = {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-
-        'epp_oth_3_affiliations': {
-            '.field.collection.django': {},
-            '.flag.nullable.default': {},
-            ':filter_compat': True,
-            'flat': True,
-            'id_field': 'affiliation',
-            'model': 'accounts.models.Organisation.epp_oth_3_affiliations.through',
-            'source': 'epp_oth_3_affiliations',
-            'bound': 'organisation',
-            'fields': {
-                'affiliation': {'.field.ref': {},
-                                'source': 'affiliation_id',
-                                'to': 'api/v2/affiliations'},
-            }},
         'epp_oth_3_affiliations_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
-
-        'epp_oth_4_networks': {
-            '.field.collection.django': {},
-            '.flag.nullable.default': {},
-            ':filter_compat': True,
-            'flat': True,
-            'id_field': 'network',
-            'model': 'accounts.models.Organisation.epp_oth_4_networks.through',
-            'source': 'epp_oth_4_networks',
-            'bound': 'organisation',
-            'fields': {
-                'network': {'.field.ref': {},
-                                'source': 'network_id',
-                                'to': 'api/v2/networks'},
-            }},
         'epp_oth_4_networks_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
-
-        'epp_oth_5_structure_type': {
-            '.field.collection.django': {},
-            '.flag.nullable.default': {},
-            ':filter_compat': True,
-            'flat': True,
-            'id_field': 'structure',
-            'model': 'accounts.models.Organisation.epp_oth_5_structure_type.through',
-            'source': 'epp_oth_5_structure_type',
-            'bound': 'organisation',
-            'fields': {
-                'structure': {'.field.ref': {},
-                                'source': 'structure_id',
-                                'to': 'api/v2/structures'},
-            }},
         'epp_oth_5_structure_type_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
-
-        'epp_oth_6_esfri_domain': {
-            '.field.collection.django': {},
-            '.flag.nullable.default': {},
-            ':filter_compat': True,
-            'flat': True,
-            'id_field': 'esfridomain',
-            'model': 'accounts.models.Organisation.epp_oth_6_esfri_domain.through',
-            'source': 'epp_oth_6_esfri_domain',
-            'bound': 'organisation',
-            'fields': {
-                'esfridomain': {'.field.ref': {},
-                                'source': 'esfridomain_id',
-                                'to': 'api/v2/esfridomains'},
-            }},
         'epp_oth_6_esfri_domain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
-
-        'epp_oth_7_esfri_type': {
-            '.field.ref': {},
-            'source': 'epp_oth_7_esfri_type_id',
-            'to': '/api/v2/esfritypes',
-            '.flag.filterable': {},
-            '.flag.nullable.default': {}},
-
         'epp_oth_7_esfri_type_verbose': {
             '.field.string': {},
             'source': 'epp_oth_7_esfri_type.name',
             '.flag.nowrite': {}},
-        'epp_oth_8_meril_scientific_domain': {
-            '.field.collection.django': {},
-            '.flag.nullable.default': {},
-            ':filter_compat': True,
-            'flat': True,
-            'id_field': 'merildomain',
-            'model': 'accounts.models.Organisation.epp_oth_8_meril_scientific_domain.through',
-            'source': 'epp_oth_8_meril_scientific_domain',
-            'bound': 'organisation',
-            'fields': {
-                'merildomain': {'.field.ref': {},
-                                'source': 'merildomain_id',
-                                'to': 'api/v2/merildomains'},
-            }},
         'epp_oth_8_meril_scientific_domain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
-        'epp_oth_9_meril_scientific_subdomain': {
-            '.field.collection.django': {},
-            '.flag.nullable.default': {},
-            ':filter_compat': True,
-            'flat': True,
-            'id_field': 'merilsubdomain',
-            'model': 'accounts.models.Organisation.epp_oth_9_meril_scientific_subdomain.through',
-            'source': 'epp_oth_9_meril_scientific_subdomain',
-            'bound': 'organisation',
-            'fields': {
-                'merilsubdomain': {'.field.ref': {},
-                                'source': 'merilsubdomain_id',
-                                'to': 'api/v2/merilsubdomains'},
-            }},
         'epp_oth_9_meril_scientific_subdomain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
-
-        'epp_oth_10_areas_of_activity': {
-            '.field.collection.django': {},
-            '.flag.nullable.default': {},
-            ':filter_compat': True,
-            'flat': True,
-            'id_field': 'activity',
-            'model': 'accounts.models.Organisation.epp_oth_10_areas_of_activity.through',
-            'source': 'epp_oth_10_areas_of_activity',
-            'bound': 'organisation',
-            'fields': {
-                'activity': {'.field.ref': {},
-                                'source': 'activity_id',
-                                'to': 'api/v2/activities'},
-            }},
         'epp_oth_10_areas_of_activity_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
-
-        'epp_oth_11_societal_grand_challenges': {
-            '.field.collection.django': {},
-            '.flag.nullable.default': {},
-            ':filter_compat': True,
-            'flat': True,
-            'id_field': 'challenge',
-            'model': 'accounts.models.Organisation.epp_oth_11_societal_grand_challenges.through',
-            'source': 'epp_oth_11_societal_grand_challenges',
-            'bound': 'organisation',
-            'fields': {
-                'challenge': {'.field.ref': {},
-                                'source': 'challenge_id',
-                                'to': 'api/v2/challenges'},
-            }},
         'epp_oth_11_societal_grand_challenges_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
-
         'epp_oth_12_national_roadmaps': {
           '.field.string': {},
           '.flag.nullable.default': {},
