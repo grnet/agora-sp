@@ -784,7 +784,7 @@ ORGANISATIONS = {
                                 'source': 'domain_id',
                                 'to': 'api/v2/domains'},
             }},
-        'domain_names': {
+        'epp_cli_1_scientific_domain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
         'epp_cli_2_scientific_subdomain': {
@@ -801,14 +801,14 @@ ORGANISATIONS = {
                                 'source': 'subdomain_id',
                                 'to': 'api/v2/subdomains'},
             }},
-        'subdomain_names': {
+        'epp_cli_2_scientific_subdomain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
         'epp_cli_3_tags': {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
-        'affiliation_names': {
+        'epp_oth_3_affiliations_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
         'epp_loi_1_street_name_and_number': {
@@ -936,7 +936,7 @@ ORGANISATIONS = {
                                 'source': 'affiliation_id',
                                 'to': 'api/v2/affiliations'},
             }},
-        'affiliation_names': {
+        'epp_oth_3_affiliations_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
@@ -954,7 +954,7 @@ ORGANISATIONS = {
                                 'source': 'network_id',
                                 'to': 'api/v2/networks'},
             }},
-        'network_names': {
+        'epp_oth_4_networks_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
@@ -972,7 +972,7 @@ ORGANISATIONS = {
                                 'source': 'structure_id',
                                 'to': 'api/v2/structures'},
             }},
-        'structure_names': {
+        'epp_oth_5_structure_type_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
@@ -990,7 +990,7 @@ ORGANISATIONS = {
                                 'source': 'esfridomain_id',
                                 'to': 'api/v2/esfridomains'},
             }},
-        'esfridomain_names': {
+        'epp_oth_6_esfri_domain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
@@ -1000,6 +1000,10 @@ ORGANISATIONS = {
             'to': '/api/v2/esfritypes',
             '.flag.filterable': {},
             '.flag.nullable.default': {}},
+        'epp_oth_7_esfri_type_verbose': {
+            '.field.string': {},
+            'source': 'epp_oth_7_esfri_type.name',
+            '.flag.nowrite': {}},
 
         'epp_oth_8_meril_scientific_domain': {
             '.field.collection.django': {},
@@ -1015,7 +1019,7 @@ ORGANISATIONS = {
                                 'source': 'merildomain_id',
                                 'to': 'api/v2/merildomains'},
             }},
-        'merildomain_names': {
+        'epp_oth_8_meril_scientific_domain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
         'epp_oth_9_meril_scientific_subdomain': {
@@ -1032,7 +1036,7 @@ ORGANISATIONS = {
                                 'source': 'merilsubdomain_id',
                                 'to': 'api/v2/merilsubdomains'},
             }},
-        'merilsubdomain_names': {
+        'epp_oth_9_meril_scientific_subdomain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
@@ -1050,7 +1054,7 @@ ORGANISATIONS = {
                                 'source': 'activity_id',
                                 'to': 'api/v2/activities'},
             }},
-        'activity_names': {
+        'epp_oth_10_areas_of_activity_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
@@ -1068,7 +1072,7 @@ ORGANISATIONS = {
                                 'source': 'challenge_id',
                                 'to': 'api/v2/challenges'},
             }},
-        'challenge_names': {
+        'epp_oth_11_societal_grand_challenges_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
@@ -1713,7 +1717,7 @@ PUBLIC_ORGANISATIONS = {
                 'source': 'domain.name',
                 },
             }},
-        'domain_names': {
+        'epp_cli_1_scientific_domain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
         'epp_cli_2_scientific_subdomain': {
@@ -1730,14 +1734,14 @@ PUBLIC_ORGANISATIONS = {
                                 'source': 'subdomain_id',
                                 'to': 'api/v2/subdomains'},
             }},
-        'subdomain_names': {
+        'epp_cli_2_scientific_subdomain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
         'epp_cli_3_tags': {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
-        'affiliation_names': {
+        'epp_oth_3_affiliations_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
         'epp_loi_1_street_name_and_number': {
@@ -1805,7 +1809,7 @@ PUBLIC_ORGANISATIONS = {
                                 'source': 'affiliation_id',
                                 'to': 'api/v2/affiliations'},
             }},
-        'affiliation_names': {
+        'epp_oth_3_affiliations_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
@@ -1823,7 +1827,7 @@ PUBLIC_ORGANISATIONS = {
                                 'source': 'network_id',
                                 'to': 'api/v2/networks'},
             }},
-        'network_names': {
+        'epp_oth_4_networks_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
@@ -1841,7 +1845,7 @@ PUBLIC_ORGANISATIONS = {
                                 'source': 'structure_id',
                                 'to': 'api/v2/structures'},
             }},
-        'structure_names': {
+        'epp_oth_5_structure_type_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
@@ -1859,7 +1863,7 @@ PUBLIC_ORGANISATIONS = {
                                 'source': 'esfridomain_id',
                                 'to': 'api/v2/esfridomains'},
             }},
-        'esfridomain_names': {
+        'epp_oth_6_esfri_domain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
@@ -1870,6 +1874,10 @@ PUBLIC_ORGANISATIONS = {
             '.flag.filterable': {},
             '.flag.nullable.default': {}},
 
+        'epp_oth_7_esfri_type_verbose': {
+            '.field.string': {},
+            'source': 'epp_oth_7_esfri_type.name',
+            '.flag.nowrite': {}},
         'epp_oth_8_meril_scientific_domain': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
@@ -1884,7 +1892,7 @@ PUBLIC_ORGANISATIONS = {
                                 'source': 'merildomain_id',
                                 'to': 'api/v2/merildomains'},
             }},
-        'merildomain_names': {
+        'epp_oth_8_meril_scientific_domain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
         'epp_oth_9_meril_scientific_subdomain': {
@@ -1901,7 +1909,7 @@ PUBLIC_ORGANISATIONS = {
                                 'source': 'merilsubdomain_id',
                                 'to': 'api/v2/merilsubdomains'},
             }},
-        'merilsubdomain_names': {
+        'epp_oth_9_meril_scientific_subdomain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
@@ -1919,7 +1927,7 @@ PUBLIC_ORGANISATIONS = {
                                 'source': 'activity_id',
                                 'to': 'api/v2/activities'},
             }},
-        'activity_names': {
+        'epp_oth_10_areas_of_activity_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
@@ -1937,7 +1945,7 @@ PUBLIC_ORGANISATIONS = {
                                 'source': 'challenge_id',
                                 'to': 'api/v2/challenges'},
             }},
-        'challenge_names': {
+        'epp_oth_11_societal_grand_challenges_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
