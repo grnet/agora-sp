@@ -38,6 +38,38 @@ def assertions_crud(resource, user, superadmin):
     resp = superadmin.delete(url + id + '/')
     assert resp.status_code == 204
 
+def assertions_crud_public(resource, user, superadmin):
+    """
+    Flow:
+    Superadmin creates a public resource
+    Anonymous user can list public resources
+    Anonymous user cannot create public resource
+    Anonymous user can retrieve public resource
+    Anonymous user cannot update public resource
+    Anonymous user cannot delete public resource
+    Superadmin deletes resource
+    """
+    url = RESOURCES_CRUD[resource]['url']
+    data = RESOURCES_CRUD[resource]['create_data']
+    edit_data = RESOURCES_CRUD[resource]['edit_data']
+    resp = user.get(url)
+    assert resp.status_code == 200
+    resp = user.post(url, data)
+    assert resp.status_code == 403
+    superadmin.post(url, data)
+    id = superadmin.get(url).json()[0]['id']
+    resp = user.get(url + id + '/')
+    assert resp.status_code == 200
+    if edit_data:
+        resp = user.patch(
+            url + id + '/',
+            json.dumps(edit_data),
+            content_type='application/json')
+        assert resp.status_code == 403
+    resp = user.delete(url + id + '/')
+    assert resp.status_code == 403
+    resp = superadmin.delete(url + id + '/')
+    assert resp.status_code == 204
 
 # Tests for resources with no foreign keys or special handling
 
@@ -54,5 +86,5 @@ def test_access_modes(superadmin):
     assertions_crud('access_modes', client, superadmin)
 
 def test_domains(superadmin):
-    assertions_crud('domains', client, superadmin)
+    assertions_crud_public('domains', client, superadmin)
 
