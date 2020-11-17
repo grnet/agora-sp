@@ -1960,6 +1960,9 @@ PUBLIC_ORGANISATIONS = {
                 'href': {'.field.ref': {},
                                 'source': 'merilsubdomain_id',
                                 'to': 'api/v2/merilsubdomains'},
+                'domain': {'.field.ref': {},
+                                'source': 'merilsubdomain.domain_id',
+                                'to': 'api/v2/merildomains'},
                 'id': {
                   '.field.uuid': {},
                   'source': 'merilsubdomain_id'},
