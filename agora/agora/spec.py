@@ -1730,6 +1730,9 @@ PUBLIC_ORGANISATIONS = {
                 'href': {'.field.ref': {},
                                 'source': 'subdomain_id',
                                 'to': 'api/v2/subdomains'},
+                'domain': {'.field.ref': {},
+                                'source': 'subdomain.domain_id',
+                                'to': 'api/v2/domains'},
                 'id': {
                   '.field.uuid': {},
                   'source': 'subdomain_id'},
