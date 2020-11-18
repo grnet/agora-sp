@@ -68,7 +68,7 @@ export default DS.Model.extend({
     label: 'provider.fields.epp_cli_1_scientific_domain',
     hint: 'provider.hints.epp_cli_1_scientific_domain',
   }),
-  domain_names: DS.attr({
+  epp_cli_1_scientific_domain_verbose: DS.attr({
     label: 'provider.fields.domain_names',
   }),
   // TODO: Filter subdomain's ManyArray results according to domain selections
@@ -76,7 +76,7 @@ export default DS.Model.extend({
     label: 'provider.fields.epp_cli_2_scientific_subdomain',
     hint: 'provider.hints.epp_cli_2_scientific_subdomain',
   }),
-  subdomain_names: DS.attr({
+  epp_cli_2_scientific_subdomain_verbose: DS.attr({
     label: 'provider.fields.subdomain_names',
   }),
   epp_cli_3_tags: DS.attr({
@@ -177,28 +177,28 @@ export default DS.Model.extend({
     label: 'provider.fields.epp_oth_3_affiliations',
     hint: 'provider.hints.epp_oth_3_affiliations',
   }),
-  affiliation_names: DS.attr({
+  epp_oth_3_affiliations_verbose: DS.attr({
     label: 'provider.fields.affiliation_names',
   }),
   epp_oth_4_networks: DS.hasMany('network', {
     label: 'provider.fields.epp_oth_4_networks',
     hint: 'provider.hints.epp_oth_4_networks',
   }),
-  network_names: DS.attr({
+  epp_oth_4_networks_verbose: DS.attr({
     label: 'provider.fields.network_names',
   }),
   epp_oth_5_structure_type: DS.hasMany('structure', {
     label: 'provider.fields.epp_oth_5_structure_type',
     hint: 'provider.hints.epp_oth_5_structure_type',
   }),
-  structure_names: DS.attr({
+  epp_oth_5_structure_type_verbose: DS.attr({
     label: 'provider.fields.structure_names',
   }),
   epp_oth_6_esfri_domain: DS.hasMany('esfridomain', {
     label: 'provider.fields.epp_oth_6_esfri_domain',
     hint: 'provider.hints.epp_oth_6_esfri_domain',
   }),
-  esfridomain_names: DS.attr({
+  epp_oth_6_esfri_domain_verbose: DS.attr({
     label: 'provider.fields.esfridomain_names',
   }),
   epp_oth_7_esfri_type: DS.belongsTo('esfritype', {
@@ -215,7 +215,7 @@ export default DS.Model.extend({
     label: 'provider.fields.epp_oth_8_meril_scientific_domain',
     hint: 'provider.hints.epp_oth_8_meril_scientific_domain',
   }),
-  merildomain_names: DS.attr({
+  epp_oth_8_meril_scientific_domain_verbose: DS.attr({
     label: 'provider.fields.merildomain_names',
   }),
   // TODO: Filter meril subdomain's ManyArray results according to domain selections
@@ -223,21 +223,21 @@ export default DS.Model.extend({
     label: 'provider.fields.epp_oth_9_meril_scientific_subdomain',
     hint: 'provider.hints.epp_oth_9_meril_scientific_subdomain',
   }),
-  merilsubdomain_names: DS.attr({
+  epp_oth_9_meril_scientific_subdomain_verbose: DS.attr({
     label: 'provider.fields.merilsubdomain_names',
   }),
   epp_oth_10_areas_of_activity: DS.hasMany('activity', {
     label: 'provider.fields.epp_oth_10_areas_of_activity',
     hint: 'provider.hints.epp_oth_10_areas_of_activity',
   }),
-  activity_names: DS.attr({
+  epp_oth_10_areas_of_activity_verbose: DS.attr({
     label: 'provider.fields.activity_names',
   }),
   epp_oth_11_societal_grand_challenges: DS.hasMany('challenge', {
     label: 'provider.fields.epp_oth_11_societal_grand_challenges',
     hint: 'provider.hints.epp_oth_11_societal_grand_challenges',
   }),
-  challenge_names: DS.attr({
+  epp_oth_11_societal_grand_challenges_verbose: DS.attr({
     label: 'provider.fields.challenge_names',
   }),
   epp_oth_12_national_roadmaps: DS.attr({
@@ -259,16 +259,16 @@ export default DS.Model.extend({
   __api__: {
     serialize: function(hash, _) {
       // do not send readonly keys to backend
-      delete hash['affiliation_names'];
-      delete hash['network_names'];
-      delete hash['structure_names'];
-      delete hash['esfridomain_names'];
-      delete hash['activity_names'];
-      delete hash['challenge_names'];
-      delete hash['domain_names'];
-      delete hash['subdomain_names'];
-      delete hash['merildomain_names'];
-      delete hash['merilsubdomain_names'];
+      delete hash['epp_oth_3_affiliations_verbose'];
+      delete hash['epp_oth_4_networks_verbose'];
+      delete hash['epp_oth_5_structure_type_verbose'];
+      delete hash['epp_oth_6_esfri_domain_verbose'];
+      delete hash['epp_oth_10_areas_of_activity_verbose'];
+      delete hash['epp_oth_11_societal_grand_challenges_verbose'];
+      delete hash['epp_cli_1_scientific_domain_verbose'];
+      delete hash['epp_cli_2_scientific_subdomain_verbose'];
+      delete hash['epp_oth_8_meril_scientific_domain_verbose'];
+      delete hash['epp_oth_9_meril_scientific_subdomain_verbose'];
       return hash;
     },
   },

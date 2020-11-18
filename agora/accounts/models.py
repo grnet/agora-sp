@@ -255,46 +255,44 @@ class Organisation(models.Model):
             default='draft')
 
     @property
-    def affiliation_names(self):
+    def epp_oth_3_affiliations_verbose(self):
         return ", ".join(o.name for o in self.epp_oth_3_affiliations.all())
 
     @property
-    def network_names(self):
+    def epp_oth_4_networks_verbose(self):
         return ", ".join(o.name + " (" + o.abbreviation + ")" for o in self.epp_oth_4_networks.all())
 
     @property
-    def structure_names(self):
+    def epp_oth_5_structure_type_verbose(self):
         return ", ".join(o.name for o in self.epp_oth_5_structure_type.all())
 
     @property
-    def esfridomain_names(self):
+    def epp_oth_6_esfri_domain_verbose(self):
         return ", ".join(o.name for o in self.epp_oth_6_esfri_domain.all())
 
     @property
-    def activity_names(self):
+    def epp_oth_10_areas_of_activity_verbose(self):
         return ", ".join(o.name for o in self.epp_oth_10_areas_of_activity.all())
 
     @property
-    def challenge_names(self):
+    def epp_oth_11_societal_grand_challenges_verbose(self):
         return ", ".join(o.name for o in self.epp_oth_11_societal_grand_challenges.all())
 
     @property
-    def domain_names(self):
+    def epp_cli_1_scientific_domain_verbose(self):
         return ", ".join(o.name for o in self.epp_cli_1_scientific_domain.all())
 
     @property
-    def subdomain_names(self):
+    def epp_cli_2_scientific_subdomain_verbose(self):
         return ", ".join(o.name for o in self.epp_cli_2_scientific_subdomain.all())
 
     @property
-    def merildomain_names(self):
+    def epp_oth_8_meril_scientific_domain_verbose(self):
         return ", ".join(o.name for o in self.epp_oth_8_meril_scientific_domain.all())
 
     @property
-    def merilsubdomain_names(self):
+    def epp_oth_9_meril_scientific_subdomain_verbose(self):
         return ", ".join(o.name for o in self.epp_oth_9_meril_scientific_subdomain.all())
-
-
 
 
     def save(self, *args, **kwargs):
