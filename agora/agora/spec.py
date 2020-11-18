@@ -1694,7 +1694,7 @@ PUBLIC_ORGANISATIONS = {
             'fields': {
                 'href': {'.field.ref': {},
                                 'source': 'id',
-                                'to': 'api/v2/legalstatuses'},
+                                'to': 'api/v2/public/legalstatuses'},
                 'id': { '.field.uuid': {}},
                 'name': { '.field.string': {}},
             }},
@@ -1709,7 +1709,7 @@ PUBLIC_ORGANISATIONS = {
             'fields': {
                 'href': {'.field.ref': {},
                                 'source': 'domain_id',
-                                'to': 'api/v2/domains'},
+                                'to': 'api/v2/public/domains'},
                 'id': {
                   '.field.uuid': {},
                   'source': 'domain_id'},
@@ -1729,10 +1729,10 @@ PUBLIC_ORGANISATIONS = {
             'fields': {
                 'href': {'.field.ref': {},
                                 'source': 'subdomain_id',
-                                'to': 'api/v2/subdomains'},
+                                'to': 'api/v2/public/subdomains'},
                 'domain': {'.field.ref': {},
                                 'source': 'subdomain.domain_id',
-                                'to': 'api/v2/domains'},
+                                'to': 'api/v2/public/domains'},
                 'id': {
                   '.field.uuid': {},
                   'source': 'subdomain_id'},
@@ -1832,7 +1832,7 @@ PUBLIC_ORGANISATIONS = {
             'fields': {
                 'href': {'.field.ref': {},
                                 'source': 'affiliation_id',
-                                'to': 'api/v2/affiliations'},
+                                'to': 'api/v2/public/affiliations'},
                 'id': {
                   '.field.uuid': {},
                   'source': 'affiliation_id'},
@@ -1852,7 +1852,7 @@ PUBLIC_ORGANISATIONS = {
             'fields': {
                 'href': {'.field.ref': {},
                                 'source': 'network_id',
-                                'to': 'api/v2/networks'},
+                                'to': 'api/v2/public/networks'},
                 'id': {
                   '.field.uuid': {},
                   'source': 'network_id'},
@@ -1876,7 +1876,7 @@ PUBLIC_ORGANISATIONS = {
             'fields': {
                 'href': {'.field.ref': {},
                                 'source': 'structure_id',
-                                'to': 'api/v2/structures'},
+                                'to': 'api/v2/public/structures'},
                 'id': {
                   '.field.uuid': {},
                   'source': 'structure_id'},
@@ -1900,7 +1900,7 @@ PUBLIC_ORGANISATIONS = {
             'fields': {
                 'href': {'.field.ref': {},
                                 'source': 'esfridomain_id',
-                                'to': 'api/v2/esfridomains'},
+                                'to': 'api/v2/public/esfridomains'},
                 'id': {
                   '.field.uuid': {},
                   'source': 'esfridomain_id'},
@@ -1914,17 +1914,11 @@ PUBLIC_ORGANISATIONS = {
                   'source': 'esfridomain.name'},
             }},
         'epp_oth_7_esfri_type': {
-            '.field.ref': {},
-            'source': 'epp_oth_7_esfri_type_id',
-            'to': '/api/v2/esfritypes',
-            '.flag.filterable': {},
-            '.flag.nullable.default': {}},
-        'epp_oth_7_esfri_type': {
             '.field.struct': {},
             'fields': {
                 'href': {'.field.ref': {},
                                 'source': 'id',
-                                'to': 'api/v2/esfritypes'},
+                                'to': 'api/v2/public/esfritypes'},
                 'id': { '.field.uuid': {}},
                 'name': { '.field.string': {}},
             }},
@@ -1939,7 +1933,7 @@ PUBLIC_ORGANISATIONS = {
             'fields': {
                 'href': {'.field.ref': {},
                                 'source': 'merildomain_id',
-                                'to': 'api/v2/merildomains'},
+                                'to': 'api/v2/public/merildomains'},
                 'id': {
                   '.field.uuid': {},
                   'source': 'merildomain_id'},
@@ -1959,10 +1953,10 @@ PUBLIC_ORGANISATIONS = {
             'fields': {
                 'href': {'.field.ref': {},
                                 'source': 'merilsubdomain_id',
-                                'to': 'api/v2/merilsubdomains'},
+                                'to': 'api/v2/public/merilsubdomains'},
                 'domain': {'.field.ref': {},
                                 'source': 'merilsubdomain.domain_id',
-                                'to': 'api/v2/merildomains'},
+                                'to': 'api/v2/public/merildomains'},
                 'id': {
                   '.field.uuid': {},
                   'source': 'merilsubdomain_id'},
@@ -1986,7 +1980,7 @@ PUBLIC_ORGANISATIONS = {
             'fields': {
                 'href': {'.field.ref': {},
                                 'source': 'activity_id',
-                                'to': 'api/v2/activities'},
+                                'to': 'api/v2/public/activities'},
                 'id': {
                   '.field.uuid': {},
                   'source': 'activity_id'},
@@ -2006,7 +2000,7 @@ PUBLIC_ORGANISATIONS = {
             'fields': {
                 'href': {'.field.ref': {},
                                 'source': 'challenge_id',
-                                'to': 'api/v2/challenges'},
+                                'to': 'api/v2/public/challenges'},
                 'id': {
                   '.field.uuid': {},
                   'source': 'challenge_id'},
@@ -2042,6 +2036,28 @@ APP_CONFIG = {
           'prefix': 'api/v2/public',
           'collections': {
             'providers': PUBLIC_ORGANISATIONS,
+            'legalstatuses': LEGAL_STATUSES,
+            'affiliations': AFFILIATIONS,
+            'networks': NETWORKS,
+            'structures': STRUCTURES,
+            'esfridomains': ESFRI_DOMAINS,
+            'esfritypes': ESFRI_TYPES,
+            'activities': ACTIVITIES,
+            'order-types': ORDER_TYPES,
+            'challenges': CHALLENGES,
+            'domains': DOMAINS,
+            'subdomains': SUBDOMAINS,
+            'supercategories': SUPERCATEGORIES,
+            'categories': CATEGORIES,
+            'subcategories': SUBCATEGORIES,
+            'funding-programs': FUNDING_PROGRAMS,
+            'funding-bodies': FUNDING_BODIES,
+            'access-types': ACCESS_TYPES,
+            'access-modes': ACCESS_MODES,
+            'trls': TRLS,
+            'resource-lifecycle-statuses': RESOURCE_LIFECYCLE_STATUSES,
+            'merildomains': MERIL_DOMAINS,
+            'merilsubdomains': MERIL_SUBDOMAINS,
           }
         },
         'api': {
