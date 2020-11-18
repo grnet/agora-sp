@@ -413,6 +413,8 @@ def get_rules():
         # PUBLIC API
         ('api/v2/public/providers', 'list', 'anonymous', 'filter_public', '*', '*', '*'),
         ('api/v2/public/providers', 'retrieve', 'anonymous', 'filter_public', '*', '*', '*'),
+        ('api/v2/public/resources', 'list', 'anonymous', 'filter_public', '*', '*', '*'),
+        ('api/v2/public/resources', 'retrieve', 'anonymous', 'filter_public', '*', '*', '*'),
         ('api/v2/public/affiliations', 'list', 'anonymous', '*', '*', '*', '*'),
         ('api/v2/public/affiliations', 'retrieve', 'anonymous', '*', '*', '*', '*'),
         ('api/v2/public/networks', 'list', 'anonymous', '*', '*', '*', '*'),

@@ -332,6 +332,13 @@ class Resource(object):
     def update_organisation_owned(backend_input, instance, context):
         return resource_organisation_owned(backend_input, instance, context)
 
+    @staticmethod
+    def filter_public(context):
+        """
+        Public api for Resources lists only Resources with state=published.
+        """
+        return Q(state='published')
+
 
 class ContactInformation(object):
 
