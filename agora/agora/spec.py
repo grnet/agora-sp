@@ -2060,9 +2060,6 @@ PUBLIC_RESOURCES = {
                                 'source': 'organisation_id',
                                 'to': 'api/v2/providers'},
             }},
-        'providers_names': {
-            '.field.string': {},
-            '.flag.nowrite': {}},
         'erp_mri_1_description': {
             '.field.string': {},
             '.flag.searchable': {},
@@ -2091,9 +2088,6 @@ PUBLIC_RESOURCES = {
                                 'source': 'targetuser_id',
                                 'to': 'api/v2/target-users'},
             }},
-        'erp_cli_5_target_users_verbose': {
-            '.field.string': {},
-            '.flag.nowrite': {}},
         'erp_mri_5_use_cases': {
             '.field.string': {},
             '.flag.searchable': {},
@@ -2112,9 +2106,6 @@ PUBLIC_RESOURCES = {
                                 'source': 'domain_id',
                                 'to': 'api/v2/domains'},
             }},
-        'domain_names': {
-            '.field.string': {},
-            '.flag.nowrite': {}},
         'erp_cli_2_scientific_subdomain': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
@@ -2129,9 +2120,6 @@ PUBLIC_RESOURCES = {
                                 'source': 'subdomain_id',
                                 'to': 'api/v2/subdomains'},
             }},
-        'subdomain_names': {
-            '.field.string': {},
-            '.flag.nowrite': {}},
         'erp_cli_3_category': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
@@ -2146,9 +2134,6 @@ PUBLIC_RESOURCES = {
                                 'source': 'category_id',
                                 'to': 'api/v2/categories'},
             }},
-        'category_names': {
-            '.field.string': {},
-            '.flag.nowrite': {}},
         'erp_cli_4_subcategory': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
@@ -2163,10 +2148,6 @@ PUBLIC_RESOURCES = {
                                 'source': 'subcategory_id',
                                 'to': 'api/v2/subcategories'},
             }},
-        'subcategory_names': {
-            '.field.string': {},
-            '.flag.nowrite': {}},
-
         'erp_cli_6_access_type': {
             '.field.collection.django': {},
             ':filter_compat': True,
@@ -2239,47 +2220,6 @@ PUBLIC_RESOURCES = {
         'erp_rli_1_geographic_location': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'main_contact': {
-            '.field.ref': {},
-            'source': 'main_contact_id',
-            'to': '/api/v2/contact-information',
-            '.flag.nullable.default': {}},
-        'public_contact': {
-            '.field.ref': {},
-            'source': 'public_contact_id',
-            'to': '/api/v2/contact-information',
-            '.flag.nullable.default': {}},
-        'erp_coi_1_first_name': {
-            '.field.string': {},
-            '.flag.nowrite': {},
-            'source': 'main_contact.first_name',
-            '.flag.nullable.default': {}},
-        'erp_coi_2_last_name': {
-            '.field.string': {},
-            'source': 'main_contact.last_name',
-            '.flag.nowrite': {},
-            '.flag.nullable.default': {}},
-        'erp_coi_3_email': {
-            '.field.string': {},
-            'source': 'main_contact.email',
-            '.flag.nowrite': {},
-            '.flag.nullable.default': {}},
-        'erp_coi_4_phone': {
-            '.field.string': {},
-            '.flag.nowrite': {},
-            'source': 'main_contact.phone',
-            '.flag.nullable.default': {}},
-        'erp_coi_5_position': {
-            '.field.string': {},
-            '.flag.nowrite': {},
-            'source': 'main_contact.position',
-            '.flag.nullable.default': {}},
-        'erp_coi_6_organisation': {
-            '.field.string': {},
-            '.flag.nowrite': {},
-            'source': 'main_contact.organisation.epp_bai_1_name',
-            '.flag.nullable.default': {}},
-
         'erp_coi_7_first_name': {
             '.field.string': {},
             '.flag.nowrite': {},
@@ -2311,9 +2251,6 @@ PUBLIC_RESOURCES = {
             'source': 'public_contact.organisation.epp_bai_1_name',
             '.flag.nullable.default': {}},
         'erp_coi_13_helpdesk_email': {
-          '.field.string': {},
-          '.flag.nullable.default': {}},
-        'erp_coi_14_security_contact_email': {
           '.field.string': {},
           '.flag.nullable.default': {}},
         'erp_mti_1_technology_readiness_level': {
@@ -2361,38 +2298,6 @@ PUBLIC_RESOURCES = {
         'erp_fni_2_pricing': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'resource_admins_ids': {
-            '.field.string': {},
-            '.flag.nowrite': {}},
-        'pending_resource_admins_ids': {
-            '.field.string': {},
-            '.flag.nowrite': {}},
-        'rejected_resource_admins_ids': {
-            '.field.string': {},
-            '.flag.nowrite': {}},
-
-
-        'adminships': {
-            '.field.collection.django': {},
-            ':filter_compat': True,
-            '.flag.nullable.default': {},
-            '.flag.filterable': {},
-            'model': 'service.models.ResourceAdminship',
-            'source': 'resourceadminships',
-            'bound': 'resource',
-            'fields': {
-                'id': {
-                    '.field.serial': {}},
-                'state': {
-                    '.field.string': {},
-                    '.flag.filterable': {},
-                    '.flag.nowrite': {}},
-                'admin_id': {
-                    '.field.integer': {},
-                    '.flag.nowrite': {},
-                    '.flag.filterable': {}},
-            }
-        },
         'required_resources': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
@@ -2470,11 +2375,6 @@ PUBLIC_RESOURCES = {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
-        'state': {
-            '.field.string': {},
-            'default': 'draft',
-            '.flag.filterable': {},
-        },
     },
     'actions': {
         '.action-template.django.list': {},
