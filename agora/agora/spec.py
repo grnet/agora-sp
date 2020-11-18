@@ -2379,25 +2379,6 @@ PUBLIC_RESOURCES = {
     'actions': {
         '.action-template.django.list': {},
         '.action-template.django.retrieve': {},
-        '.action-template.django.create': {},
-        '.action-template.django.delete': {},
-        '.action-template.django.update': {},
-        '.action-template.django.partial_update': {},
-        'create': {
-            'processors': {
-                'custom_post_create': {
-                    '.processor': {},
-                    'module_path': 'service.models.PostCreateResource',
-                    'read_keys': {'=': (
-                        'backend/raw_response',
-                        'auth/user',
-                    )},
-                    'write_keys': {'=': (
-                        'backend/raw_response',
-                    )},
-                },
-            },
-        },
     },
 }
 
