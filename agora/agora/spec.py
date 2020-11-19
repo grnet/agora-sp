@@ -2040,7 +2040,7 @@ PUBLIC_RESOURCES = {
         'erp_bai_2_service_organisation': {
             '.field.ref': {},
             'source': 'erp_bai_2_organisation_id',
-            'to': '/api/v2/providers',
+            'to': '/api/v2/public/providers',
             '.flag.filterable': {},
             '.flag.nullable.default': {}},
         'erp_bai_4_webpage': {
@@ -2058,7 +2058,7 @@ PUBLIC_RESOURCES = {
             'fields': {
                 'organisation': {'.field.ref': {},
                                 'source': 'organisation_id',
-                                'to': 'api/v2/providers'},
+                                'to': 'api/v2/public/providers'},
             }},
         'erp_mri_1_description': {
             '.field.string': {},
@@ -2078,15 +2078,23 @@ PUBLIC_RESOURCES = {
             '.field.collection.django': {},
             ':filter_compat': True,
             '.flag.nullable.default': {},
-            'flat': True,
-            'id_field': 'target_user',
+            'id_field': 'id',
             'model': 'service.models.Resource.erp_cli_5_target_users.through',
             'source': 'erp_cli_5_target_users',
             'bound': 'resource',
             'fields': {
-                'target_user': {'.field.ref': {},
+                'href': {'.field.ref': {},
                                 'source': 'targetuser_id',
-                                'to': 'api/v2/target-users'},
+                                'to': 'api/v2/public/target-users'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'targetuser_id'},
+                'user': {
+                  '.field.string': {},
+                  'source': 'targetuser.user'},
+                'description': {
+                  '.field.string': {},
+                  'source': 'targetuser.description'},
             }},
         'erp_mri_5_use_cases': {
             '.field.string': {},
@@ -2096,86 +2104,134 @@ PUBLIC_RESOURCES = {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
-            'flat': True,
-            'id_field': 'domain',
+            'id_field': 'id',
             'model': 'service.models.Resource.erp_cli_1_scientific_domain.through',
             'source': 'erp_cli_1_scientific_domain',
             'bound': 'resource',
             'fields': {
-                'domain': {'.field.ref': {},
+                'href': {'.field.ref': {},
                                 'source': 'domain_id',
-                                'to': 'api/v2/domains'},
+                                'to': 'api/v2/public/domains'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'domain_id'},
+                'name': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'domain.name'},
             }},
         'erp_cli_2_scientific_subdomain': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
-            'flat': True,
-            'id_field': 'subdomain',
+            'id_field': 'id',
             'model': 'service.models.Resource.erp_cli_2_scientific_subdomain.through',
             'source': 'erp_cli_2_scientific_subdomain',
             'bound': 'resource',
             'fields': {
-                'subdomain': {'.field.ref': {},
+                'href': {'.field.ref': {},
                                 'source': 'subdomain_id',
-                                'to': 'api/v2/subdomains'},
+                                'to': 'api/v2/public/subdomains'},
+                'domain': {'.field.ref': {},
+                                'source': 'subdomain.domain_id',
+                                'to': 'api/v2/public/domains'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'subdomain_id'},
+                'name': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'subdomain.name'},
             }},
         'erp_cli_3_category': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
-            'flat': True,
-            'id_field': 'category',
+            'id_field': 'id',
             'model': 'service.models.Resource.erp_cli_3_category.through',
             'source': 'erp_cli_3_category',
             'bound': 'resource',
             'fields': {
-                'category': {'.field.ref': {},
+                'href': {'.field.ref': {},
                                 'source': 'category_id',
-                                'to': 'api/v2/categories'},
+                                'to': 'api/v2/public/categories'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'category_id'},
+                'name': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'category.name'},
+                'supercategory': {'.field.ref': {},
+                                'source': 'category.supercategory_id',
+                                'to': 'api/v2/public/supercategories'},
             }},
         'erp_cli_4_subcategory': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
-            'flat': True,
-            'id_field': 'subcategory',
+            'id_field': 'id',
             'model': 'service.models.Resource.erp_cli_4_subcategory.through',
             'source': 'erp_cli_4_subcategory',
             'bound': 'resource',
             'fields': {
-                'subcategory': {'.field.ref': {},
-                                'source': 'subcategory_id',
-                                'to': 'api/v2/subcategories'},
+                # 'href': {'.field.ref': {},
+                                # 'source': 'subcategory_id',
+                                # 'to': 'api/v2/public/subcategories'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'subcategory_id'},
+                'name': {
+                  '.field.string': {},
+                  'source': 'subcategory.name'},
+                'category': {'.field.ref': {},
+                                'source': 'subcategory.category_id',
+                                'to': 'api/v2/public/categories'},
             }},
         'erp_cli_6_access_type': {
             '.field.collection.django': {},
             ':filter_compat': True,
             '.flag.nullable.default': {},
-            'flat': True,
-            'id_field': 'access_type',
+            'id_field': 'id',
             'model': 'service.models.Resource.erp_cli_6_access_type.through',
             'source': 'erp_cli_6_access_type',
             'bound': 'resource',
             'fields': {
                 'access_type': {'.field.ref': {},
                                 'source': 'accesstype_id',
-                                'to': 'api/v2/access-types'},
+                                'to': 'api/v2/public/access-types'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'accesstype_id'},
+                'name': {
+                  '.field.string': {},
+                  'source': 'accesstype.name'},
+                'description': {
+                  '.field.string': {},
+                  'source': 'accesstype.description'},
             }
         },
         'erp_cli_7_access_mode': {
             '.field.collection.django': {},
             ':filter_compat': True,
             '.flag.nullable.default': {},
-            'flat': True,
-            'id_field': 'access_mode',
+            'id_field': 'id',
             'model': 'service.models.Resource.erp_cli_7_access_mode.through',
             'source': 'erp_cli_7_access_mode',
             'bound': 'resource',
             'fields': {
                 'access_mode': {'.field.ref': {},
                                 'source': 'accessmode_id',
-                                'to': 'api/v2/access-modes'},
+                                'to': 'api/v2/public/access-modes'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'accessmode_id'},
+                'name': {
+                  '.field.string': {},
+                  'source': 'accessmode.name'},
+                'description': {
+                  '.field.string': {},
+                  'source': 'accessmode.description'},
             }
         },
         'erp_cli_8_tags': {
@@ -2254,11 +2310,15 @@ PUBLIC_RESOURCES = {
           '.field.string': {},
           '.flag.nullable.default': {}},
         'erp_mti_1_technology_readiness_level': {
-            '.field.ref': {},
-            'source': 'erp_mti_1_technology_readiness_level_id',
-            'to': '/api/v2/trls',
-            '.flag.filterable': {},
-            '.flag.nullable.default': {}},
+            '.field.struct': {},
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'id',
+                                'to': 'api/v2/public/trls'},
+                'id': { '.field.uuid': {}},
+                'name': { '.field.string': {}},
+                'description': { '.field.string': {}},
+            }},
         'erp_mti_2_life_cycle_status': {
             '.field.ref': {},
             'source': 'erp_mti_2_life_cycle_status_id',
@@ -2284,11 +2344,15 @@ PUBLIC_RESOURCES = {
             '.field.string': {},
             '.flag.nullable.default': {}},
         'erp_aoi_1_order_type': {
-            '.field.ref': {},
-            'source': 'erp_aoi_1_order_type_id',
-            'to': '/api/v2/order-types',
-            '.flag.filterable': {},
-            '.flag.nullable.default': {}},
+            '.field.struct': {},
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'id',
+                                'to': 'api/v2/public/order-types'},
+                'id': { '.field.uuid': {}},
+                'name': { '.field.string': {}},
+                'description': { '.field.string': {}},
+            }},
         'erp_aoi_2_order': {
           '.field.string': {},
           '.flag.nullable.default': {}},
@@ -2310,7 +2374,7 @@ PUBLIC_RESOURCES = {
             'fields': {
                 'resource': {'.field.ref': {},
                             'source': 'to_resource_id',
-                            'to': 'api/v2/resources'},
+                            'to': 'api/v2/public/resources'},
             },
         },
         'related_resources': {
@@ -2325,7 +2389,7 @@ PUBLIC_RESOURCES = {
             'fields': {
                 'resource': {'.field.ref': {},
                             'source': 'to_resource_id',
-                            'to': 'api/v2/resources'},
+                            'to': 'api/v2/public/resources'},
             },
         },
         'erp_dei_1_required_resources': {
@@ -2345,30 +2409,42 @@ PUBLIC_RESOURCES = {
             '.field.collection.django': {},
             ':filter_compat': True,
             '.flag.nullable.default': {},
-            'flat': True,
-            'id_field': 'funding_body',
+            'id_field': 'id',
             'model': 'service.models.Resource.erp_ati_1_funding_body.through',
             'source': 'erp_ati_1_funding_body',
             'bound': 'resource',
             'fields': {
-                'funding_body': {'.field.ref': {},
+                'href': {'.field.ref': {},
                                 'source': 'fundingbody_id',
-                                'to': 'api/v2/funding-bodies'},
+                                'to': 'api/v2/public/funding-bodies'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'fundingbody_id'},
+                'name': {
+                  '.field.string': {},
+                  'source': 'fundingbody.name'},
+
             }
         },
         'erp_ati_2_funding_program': {
             '.field.collection.django': {},
             ':filter_compat': True,
             '.flag.nullable.default': {},
-            'flat': True,
-            'id_field': 'funding_program',
+            'id_field': 'id',
             'model': 'service.models.Resource.erp_ati_2_funding_program.through',
             'source': 'erp_ati_2_funding_program',
             'bound': 'resource',
             'fields': {
                 'funding_program': {'.field.ref': {},
                                 'source': 'fundingprogram_id',
-                                'to': 'api/v2/funding-programs'},
+                                'to': 'api/v2/public/funding-programs'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'fundingprogram_id'},
+                'name': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'fundingprogram.name'},
             }
         },
         'erp_ati_3_grant_project_name': {
@@ -2420,6 +2496,7 @@ APP_CONFIG = {
             'resource-lifecycle-statuses': RESOURCE_LIFECYCLE_STATUSES,
             'merildomains': MERIL_DOMAINS,
             'merilsubdomains': MERIL_SUBDOMAINS,
+            'target-users': TARGET_USERS,
           }
         },
         'api': {
