@@ -260,6 +260,10 @@ class Resource(models.Model):
             return None
 
     @property
+    def erp_bai_3_providers_public(self):
+        return self.erp_bai_3_providers.filter(state='published')
+
+    @property
     def erp_cli_3_category_verbose(self):
         return ", ".join(o.name for o in self.erp_cli_3_category.all())
 

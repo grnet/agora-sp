@@ -2037,29 +2037,27 @@ PUBLIC_RESOURCES = {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
-        'erp_bai_2_organisation': {
+        'erp_bai_2_organisation_public': {
             '.field.ref': {},
             'to': '/api/v2/public/providers',
-            'source': 'erp_bai_2_organisation_public',
             '.flag.filterable': {},
             '.flag.nullable.default': {}},
+        'erp_bai_3_providers_public': {
+            '.field.collection.django': {},
+            '.flag.nowrite': {},
+             'flat': True,
+             'id_field': 'href',
+            'model': 'service.models.Organisation',
+            'bound': 'resource',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'id',
+                                'to': 'api/v2/public/providers'},
+            },
+        },
         'erp_bai_4_webpage': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_bai_3_service_providers': {
-            '.field.collection.django': {},
-            '.flag.nullable.default': {},
-            ':filter_compat': True,
-            'flat': True,
-            'id_field': 'organisation',
-            'model': 'service.models.Resource.erp_bai_3_providers.through',
-            'source': 'erp_bai_3_providers',
-            'bound': 'resource',
-            'fields': {
-                'organisation': {'.field.ref': {},
-                                'source': 'organisation_id',
-                                'to': 'api/v2/public/providers'},
-            }},
         'erp_mri_1_description': {
             '.field.string': {},
             '.flag.searchable': {},
