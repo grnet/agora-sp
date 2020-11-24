@@ -1211,7 +1211,7 @@ RESOURCES = {
                                 'source': 'organisation_id',
                                 'to': 'api/v2/providers'},
             }},
-        'providers_names': {
+        'erp_bai_3_providers_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
         'erp_mri_1_description': {
@@ -1263,7 +1263,7 @@ RESOURCES = {
                                 'source': 'domain_id',
                                 'to': 'api/v2/domains'},
             }},
-        'domain_names': {
+        'erp_cli_1_scientific_domain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
         'erp_cli_2_scientific_subdomain': {
@@ -1280,7 +1280,7 @@ RESOURCES = {
                                 'source': 'subdomain_id',
                                 'to': 'api/v2/subdomains'},
             }},
-        'subdomain_names': {
+        'erp_cli_2_scientific_subdomain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
         'erp_cli_3_category': {
@@ -1297,7 +1297,7 @@ RESOURCES = {
                                 'source': 'category_id',
                                 'to': 'api/v2/categories'},
             }},
-        'category_names': {
+        'erp_cli_3_category_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
         'erp_cli_4_subcategory': {
@@ -1314,7 +1314,7 @@ RESOURCES = {
                                 'source': 'subcategory_id',
                                 'to': 'api/v2/subcategories'},
             }},
-        'subcategory_names': {
+        'erp_cli_4_subcategory_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 

@@ -130,7 +130,7 @@ const DETAILS_BASIC_INFO_FIELDSET = {
     'state',
     'erp_bai_1_name',
     field('erp_bai_2_service_organisation.epp_bai_1_name', {label: 'resource.fields.erp_bai_2_service_organisation'}),
-    'providers_names',
+    'erp_bai_3_providers_verbose',
     'erp_bai_4_webpage',
   ],
   layout: {
@@ -141,10 +141,10 @@ const DETAILS_BASIC_INFO_FIELDSET = {
 const DETAILS_CLASSIFICATION_FIELDSET = {
   label: 'provider.cards.classification',
   fields: [
-    'domain_names',
-    'subdomain_names',
-    'category_names',
-    'subcategory_names',
+    'erp_cli_1_scientific_domain_verbose',
+    'erp_cli_2_scientific_subdomain_verbose',
+    'erp_cli_3_category_verbose',
+    'erp_cli_4_subcategory_verbose',
     'erp_cli_5_target_users',
     'erp_cli_6_access_type',
     'erp_cli_7_access_mode',
