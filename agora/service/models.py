@@ -253,6 +253,13 @@ class Resource(models.Model):
         return str(self.erp_bai_0_id)
 
     @property
+    def erp_bai_2_organisation_public(self):
+        if self.erp_bai_2_organisation.state == 'published':
+            return self.erp_bai_2_organisation_id
+        else:
+            return None
+
+    @property
     def erp_cli_3_category_verbose(self):
         return ", ".join(o.name for o in self.erp_cli_3_category.all())
 

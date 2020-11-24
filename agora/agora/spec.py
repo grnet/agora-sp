@@ -2037,10 +2037,10 @@ PUBLIC_RESOURCES = {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
-        'erp_bai_2_service_organisation': {
+        'erp_bai_2_organisation': {
             '.field.ref': {},
-            'source': 'erp_bai_2_organisation_id',
             'to': '/api/v2/public/providers',
+            'source': 'erp_bai_2_organisation_public',
             '.flag.filterable': {},
             '.flag.nullable.default': {}},
         'erp_bai_4_webpage': {
