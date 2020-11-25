@@ -1,9 +1,14 @@
 import DS from 'ember-data';
 import { countries, language_codes, locations } from '../resources';
+import ENV from '../config/environment';
+import { capitalize } from '../lib/common';
 
 const {
   get,
+  computed,
 } = Ember;
+
+const CHOICES = ENV.APP.resources;
 
 let model = DS.Model.extend({
   session: Ember.inject.service(),
@@ -30,12 +35,12 @@ let model = DS.Model.extend({
     label: 'resource.fields.erp_bai_3_service_providers',
     hint: 'resource.hints.erp_bai_3_service_providers',
   }),
+  erp_bai_3_providers_verbose: DS.attr({
+    label: 'resource.fields.providers_names',
+  }),
   erp_bai_4_webpage: DS.attr({
     label: 'resource.fields.erp_bai_4_webpage',
     hint: 'resource.hints.erp_bai_4_webpage',
-  }),
-  providers_names: DS.attr({
-    label: 'resource.fields.providers_names',
   }),
 
   // Marketing fields
@@ -67,7 +72,7 @@ let model = DS.Model.extend({
     label: 'resource.fields.erp_cli_1_scientific_domain',
     hint: 'resource.hints.erp_cli_1_scientific_domain',
   }),
-  domain_names: DS.attr({
+  erp_cli_1_scientific_domain_verbose: DS.attr({
     label: 'resource.fields.erp_cli_1_scientific_domain',
   }),
   // TODO: Filter subdomain's ManyArray results according to domain selections
@@ -75,14 +80,14 @@ let model = DS.Model.extend({
     label: 'resource.fields.erp_cli_2_scientific_subdomain',
     hint: 'resource.hints.erp_cli_2_scientific_subdomain',
   }),
-  subdomain_names: DS.attr({
+  erp_cli_2_scientific_subdomain_verbose: DS.attr({
     label: 'resource.fields.erp_cli_2_scientific_subdomain',
   }),
   erp_cli_3_category: DS.hasMany('category', {
     label: 'resource.fields.erp_cli_3_category',
     hint: 'resource.hints.erp_cli_3_category',
   }),
-  category_names: DS.attr({
+  erp_cli_3_category_verbose: DS.attr({
     label: 'resource.fields.erp_cli_3_category',
   }),
   // TODO: Filter subcategory's ManyArray results according to category selections
@@ -90,7 +95,7 @@ let model = DS.Model.extend({
       label: 'resource.fields.erp_cli_4_subcategory',
       hint: 'resource.hints.erp_cli_4_subcategory',
     }),
-  subcategory_names: DS.attr({
+  erp_cli_4_subcategory_verbose: DS.attr({
       label: 'resource.fields.erp_cli_4_subcategory',
     }),
   erp_cli_5_target_users: DS.hasMany('target-user', {
@@ -314,6 +319,17 @@ let model = DS.Model.extend({
     hint: 'resource.hints.erp_fni_2_pricing',
   }),
 
+  state: DS.attr({
+    type: 'select',
+    choices: CHOICES.RESOURCE_STATES,
+    defaultValue: 'draft',
+    label: 'resource.fields.state',
+  }),
+
+  state_verbose: computed('state', function(){
+    return capitalize(get(this, 'state'));
+  }),
+
   resource_admins_ids: DS.attr(),
   pending_resource_admins_ids: DS.attr(),
   rejected_resource_admins_ids: DS.attr(),
@@ -359,15 +375,15 @@ let model = DS.Model.extend({
   __api__: {
     serialize: function(hash) {
       // do not send readonly keys to backend
-      delete hash['providers_names'];
+      delete hash['erp_bai_3_providers_verbose'];
       delete hash['resource_admins_ids'];
       delete hash['pending_resource_admins_ids'];
       delete hash['rejected_resource_admins_ids'];
       delete hash['erp_cli_5_target_users_verbose'];
-      delete hash['domain_names'];
-      delete hash['subdomain_names'];
-      delete hash['category_names'];
-      delete hash['subcategory_names'];
+      delete hash['erp_cli_1_scientific_domain_verbose'];
+      delete hash['erp_cli_2_scientific_subdomain_verbose'];
+      delete hash['erp_cli_3_category_verbose'];
+      delete hash['erp_cli_4_subcategory_verbose'];
       return hash;
     },
   },

@@ -100,10 +100,10 @@ class CreateProvider(Providers):
         """
         print("\n# Create a new provider.")
         self.basic_information(required_only)
-        self.classification_information(required_only)
-        self.location_information(required_only)
-        self.marketing_information(required_only)
         if not required_only:
+            self.classification_information(required_only)
+            self.location_information(required_only)
+            self.marketing_information(required_only)
             self.maturity_information(required_only)
             self.contact_information(required_only)
             self.other_information(required_only)
@@ -131,10 +131,10 @@ class CreateProvider(Providers):
         input_field(self.driver, self.fields_prefix + "bai_0_id", "selenium-PROVIDER")
         # *.BAI.1 - Name
         input_field(self.driver, self.fields_prefix + "bai_1_name", "SeleniumHQ Browser Automation - PROVIDER")
-        # *.BAI.2 - Abbreviation
-        input_field(self.driver, self.fields_prefix + "bai_2_abbreviation", "SeleniumHQ-PROVIDER")
 
         if not required_only:
+            # *.BAI.2 - Abbreviation
+            input_field(self.driver, self.fields_prefix + "bai_2_abbreviation", "SeleniumHQ-PROVIDER")
             # *.BAI.3 - Website
             input_field(self.driver, self.fields_prefix + "bai_3_website", "https://www.selenium.dev")
             # *.BAI.4 - Legal Entity

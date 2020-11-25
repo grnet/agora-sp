@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseUserManager
 from django.utils import timezone
 from ckeditor_uploader.fields import RichTextUploadingField
-from agora.utils import USER_ROLES, LIFECYCLE_STATUSES ,clean_html_fields
+from agora.utils import USER_ROLES, LIFECYCLE_STATUSES ,clean_html_fields, PROVIDER_STATES
 from common import helper
 
 class UserManager(BaseUserManager):
@@ -249,47 +249,50 @@ class Organisation(models.Model):
 
     epp_oth_12_national_roadmaps = models.CharField(max_length=80, default=None, blank=True, null=True)
 
+    state = models.CharField(
+            choices=PROVIDER_STATES,
+            max_length=30,
+            default='draft')
+
     @property
-    def affiliation_names(self):
+    def epp_oth_3_affiliations_verbose(self):
         return ", ".join(o.name for o in self.epp_oth_3_affiliations.all())
 
     @property
-    def network_names(self):
+    def epp_oth_4_networks_verbose(self):
         return ", ".join(o.name + " (" + o.abbreviation + ")" for o in self.epp_oth_4_networks.all())
 
     @property
-    def structure_names(self):
+    def epp_oth_5_structure_type_verbose(self):
         return ", ".join(o.name for o in self.epp_oth_5_structure_type.all())
 
     @property
-    def esfridomain_names(self):
+    def epp_oth_6_esfri_domain_verbose(self):
         return ", ".join(o.name for o in self.epp_oth_6_esfri_domain.all())
 
     @property
-    def activity_names(self):
+    def epp_oth_10_areas_of_activity_verbose(self):
         return ", ".join(o.name for o in self.epp_oth_10_areas_of_activity.all())
 
     @property
-    def challenge_names(self):
+    def epp_oth_11_societal_grand_challenges_verbose(self):
         return ", ".join(o.name for o in self.epp_oth_11_societal_grand_challenges.all())
 
     @property
-    def domain_names(self):
+    def epp_cli_1_scientific_domain_verbose(self):
         return ", ".join(o.name for o in self.epp_cli_1_scientific_domain.all())
 
     @property
-    def subdomain_names(self):
+    def epp_cli_2_scientific_subdomain_verbose(self):
         return ", ".join(o.name for o in self.epp_cli_2_scientific_subdomain.all())
 
     @property
-    def merildomain_names(self):
+    def epp_oth_8_meril_scientific_domain_verbose(self):
         return ", ".join(o.name for o in self.epp_oth_8_meril_scientific_domain.all())
 
     @property
-    def merilsubdomain_names(self):
+    def epp_oth_9_meril_scientific_subdomain_verbose(self):
         return ", ".join(o.name for o in self.epp_oth_9_meril_scientific_subdomain.all())
-
-
 
 
     def save(self, *args, **kwargs):

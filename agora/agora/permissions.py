@@ -8,8 +8,8 @@ def get_rules():
         ('api/v2/custom-users', 'retrieve', 'provideradmin', 'filter_my_provider_me', '*', '*', '*'),
         ('api/v2/custom-users', 'retrieve', 'serviceadmin', 'me', '*', '*', '*'),
         ('api/v2/custom-users', 'retrieve', 'observer', 'me', '*', '*', '*'),
-        ('api/v2/custom-users', 'update', 'superadmin', '*', '*', '*', '*'),
-        ('api/v2/custom-users', 'partial_update', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/custom-users', 'update', 'superadmin', '*', 'check_unique', '*', '*'),
+        ('api/v2/custom-users', 'partial_update', 'superadmin', '*', 'check_unique', '*', '*'),
         ('api/v2/custom-users', 'destroy', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/custom-users', 'delete', 'superadmin', '*', '*', '*', '*'),
 
@@ -410,6 +410,77 @@ def get_rules():
         ('api/v2/merilsubdomains', 'destroy', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/merilsubdomains', 'delete', 'superadmin', '*', '*', '*', '*'),
 
+        # PUBLIC API
+        ('api/v2/public/providers', 'list', 'anonymous', 'filter_public', '*', '*', '*'),
+        ('api/v2/public/providers', 'retrieve', 'anonymous', 'filter_public', '*', '*', '*'),
 
+        ('api/v2/public/resources', 'list', 'anonymous', 'filter_public', '*', '*', '*'),
+        ('api/v2/public/resources', 'retrieve', 'anonymous', 'filter_public', '*', '*', '*'),
+
+        ('api/v2/public/affiliations', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/public/affiliations', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+
+        ('api/v2/public/networks', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/public/networks', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+
+        ('api/v2/public/legalstatuses', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/public/legalstatuses', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+
+        ('api/v2/public/structures', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/public/structures', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+
+        ('api/v2/public/esfridomains', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/public/esfridomains', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+
+        ('api/v2/public/esfritypes', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/public/esfritypes', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+
+        ('api/v2/public/activities', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/public/activities', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+
+        ('api/v2/public/challenges', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/public/challenges', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+
+        ('api/v2/public/domains', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/public/domains', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+
+        ('api/v2/public/subdomains', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/public/subdomains', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+
+        ('api/v2/public/merildomains', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/public/merildomains', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+
+        ('api/v2/public/merilsubdomains', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/public/merilsubdomains', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+
+        ('api/v2/public/categories', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/public/categories', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+
+        ('api/v2/public/subcategories', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/public/subcategories', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+
+        ('api/v2/public/supercategories', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/public/supercategories', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+
+        ('api/v2/public/funding-bodies', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/public/funding-bodies', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+
+        ('api/v2/public/target-users', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/public/target-users', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+
+        ('api/v2/public/access-types', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/public/access-types', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+
+        ('api/v2/public/access-modes', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/public/access-modes', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+
+        ('api/v2/public/funding-programs', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/public/funding-programs', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+
+        ('api/v2/public/trls', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/public/trls', 'retrieve', 'anonymous', '*', '*', '*', '*'),
+
+        ('api/v2/public/order-types', 'list', 'anonymous', '*', '*', '*', '*'),
+        ('api/v2/public/order-types', 'retrieve', 'anonymous', '*', '*', '*', '*'),
     ]
     return rules

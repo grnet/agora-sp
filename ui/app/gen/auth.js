@@ -20,6 +20,12 @@ function extractToken(loc) {
   return token;
 };
 
+function extractError(loc) {
+  let  err = loc.hash && loc.hash.split("error=")[1];
+  if (err) { resetHash(window) };
+  return err;
+};
+
 
 function resetHash(win, replace='') {
   if (win.history.replaceState) {
@@ -75,6 +81,10 @@ export default AuthGen.extend({
         let token = extractToken(window.location);
         if (token) {
           return this.handleTokenLogin(decodeURI(token));
+        }
+        let error = extractError(window.location);
+        if (error) {
+          this.get('messageService').setError(error);
         }
         return this._super(transition);
       },

@@ -200,6 +200,161 @@ const informAdminshipRejected = {
   },
 };
 
+const publishProvider = {
+  label: 'provider.publish.label',
+  icon: 'public',
+  classNames: 'md-icon-success',
+  action: function(route, model) {
+    let m = route.get('messageService');
+
+    model.set('state', 'published');
+    model.save().then((value) => {
+      m.setSuccess('provider.publish.success');
+      return value;
+    }, (reason) => {
+      model.rollbackAttributes();
+      m.setError('provider.publish.error');
+      return reason.errors;
+    });
+  },
+  hidden: computed('role', 'model.state', function(){
+    let role = get(this, 'role');
+    let state =  get(this, 'model.state');
+    if (role !== 'superadmin') { return true; }
+    if (state === 'published') { return true;}
+    return false;
+  }),
+  confirm: true,
+  prompt: {
+    ok: 'provider.publish.ok',
+    cancel: 'cancel',
+    message: 'provider.publish.message',
+    title: 'provider.publish.title',
+  },
+};
+
+const unpublishProvider = {
+  label: 'provider.unpublish.label',
+  icon: 'block',
+  accent: true,
+  action: function(route, model) {
+    let m = route.get('messageService');
+
+    model.set('state', 'draft');
+    model.save().then((value) => {
+      m.setSuccess('provider.unpublish.success');
+      return value;
+    }, (reason) => {
+      model.rollbackAttributes();
+      m.setError('provider.unpublish.error');
+      return reason.errors;
+    });
+  },
+  hidden: computed('role', 'model.state', function(){
+    let role = get(this, 'role');
+    let state =  get(this, 'model.state');
+    if (role !== 'superadmin') { return true; }
+    if (state === 'published') { return false;}
+    return true;
+  }),
+  confirm: true,
+  prompt: {
+    ok: 'provider.unpublish.ok',
+    cancel: 'cancel',
+    message: 'provider.unpublish.message',
+    title: 'provider.unpublish.title',
+  },
+};
+
+const publishResource = {
+  label: 'resource.publish.label',
+  icon: 'public',
+  classNames: 'md-icon-success',
+  action: function(route, model) {
+    let m = route.get('messageService');
+
+    model.set('state', 'published');
+    model.save().then((value) => {
+      m.setSuccess('resource.publish.success');
+      return value;
+    }, (reason) => {
+      model.rollbackAttributes();
+      m.setError('resource.publish.error');
+      return reason.errors;
+    });
+  },
+  hidden: computed('role', 'model.state', 'user.organisation', 'model.erp_bai_2_service_organisation', function(){
+    let role = get(this, 'role');
+    let state =  get(this, 'model.state');
+    let resource_org = get(this, 'model.erp_bai_2_service_organisation.id');
+    let user_org = get(this, 'session.session.authenticated.organisation');
+    if (role === 'observer') {
+      return true;
+    }
+    if (role === 'serviceadmin') {
+      return true;
+    }
+
+    if (role === 'provideradmin' && user_org !== resource_org) {
+      return true;
+    }
+    if (state === 'published') { return true;}
+    return false;
+  }),
+  confirm: true,
+  prompt: {
+    ok: 'resource.publish.ok',
+    cancel: 'cancel',
+    message: 'resource.publish.message',
+    title: 'resource.publish.title',
+  },
+};
+
+const unpublishResource = {
+  label: 'resource.unpublish.label',
+  icon: 'block',
+  accent: true,
+  action: function(route, model) {
+    let m = route.get('messageService');
+
+    model.set('state', 'draft');
+    model.save().then((value) => {
+      m.setSuccess('resource.unpublish.success');
+      return value;
+    }, (reason) => {
+      model.rollbackAttributes();
+      m.setError('resource.unpublish.error');
+      return reason.errors;
+    });
+  },
+  hidden: computed('role', 'model.state', 'model.erp_bai_2_service_organisation', function(){
+    let role = get(this, 'role');
+    let state =  get(this, 'model.state');
+    let resource_org = get(this, 'model.erp_bai_2_service_organisation.id');
+    let user_org = get(this, 'session.session.authenticated.organisation');
+    if (role === 'observer') {
+      return true;
+    }
+    if (role === 'serviceadmin') {
+      return true;
+    }
+
+    debugger
+    if (role === 'provideradmin' && user_org !== resource_org) {
+      return true;
+    }
+    if (state === 'published') { return false;}
+    return true;
+  }),
+  confirm: true,
+  prompt: {
+    ok: 'resource.unpublish.ok',
+    cancel: 'cancel',
+    message: 'resource.unpublish.message',
+    title: 'resource.unpublish.title',
+  },
+};
+
 export {
   rejectResourceAdminship,
   approveResourceAdminship,
@@ -207,4 +362,8 @@ export {
   applyResourceAdminship,
   revokeResourceAdminship,
   informAdminshipRejected,
+  publishProvider,
+  unpublishProvider,
+  publishResource,
+  unpublishResource,
 }

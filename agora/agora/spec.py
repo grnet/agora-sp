@@ -784,7 +784,7 @@ ORGANISATIONS = {
                                 'source': 'domain_id',
                                 'to': 'api/v2/domains'},
             }},
-        'domain_names': {
+        'epp_cli_1_scientific_domain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
         'epp_cli_2_scientific_subdomain': {
@@ -801,14 +801,14 @@ ORGANISATIONS = {
                                 'source': 'subdomain_id',
                                 'to': 'api/v2/subdomains'},
             }},
-        'subdomain_names': {
+        'epp_cli_2_scientific_subdomain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
         'epp_cli_3_tags': {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
-        'affiliation_names': {
+        'epp_oth_3_affiliations_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
         'epp_loi_1_street_name_and_number': {
@@ -936,7 +936,7 @@ ORGANISATIONS = {
                                 'source': 'affiliation_id',
                                 'to': 'api/v2/affiliations'},
             }},
-        'affiliation_names': {
+        'epp_oth_3_affiliations_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
@@ -954,7 +954,7 @@ ORGANISATIONS = {
                                 'source': 'network_id',
                                 'to': 'api/v2/networks'},
             }},
-        'network_names': {
+        'epp_oth_4_networks_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
@@ -972,7 +972,7 @@ ORGANISATIONS = {
                                 'source': 'structure_id',
                                 'to': 'api/v2/structures'},
             }},
-        'structure_names': {
+        'epp_oth_5_structure_type_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
@@ -990,7 +990,7 @@ ORGANISATIONS = {
                                 'source': 'esfridomain_id',
                                 'to': 'api/v2/esfridomains'},
             }},
-        'esfridomain_names': {
+        'epp_oth_6_esfri_domain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
@@ -1000,6 +1000,10 @@ ORGANISATIONS = {
             'to': '/api/v2/esfritypes',
             '.flag.filterable': {},
             '.flag.nullable.default': {}},
+        'epp_oth_7_esfri_type_verbose': {
+            '.field.string': {},
+            'source': 'epp_oth_7_esfri_type.name',
+            '.flag.nowrite': {}},
 
         'epp_oth_8_meril_scientific_domain': {
             '.field.collection.django': {},
@@ -1015,7 +1019,7 @@ ORGANISATIONS = {
                                 'source': 'merildomain_id',
                                 'to': 'api/v2/merildomains'},
             }},
-        'merildomain_names': {
+        'epp_oth_8_meril_scientific_domain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
         'epp_oth_9_meril_scientific_subdomain': {
@@ -1032,7 +1036,7 @@ ORGANISATIONS = {
                                 'source': 'merilsubdomain_id',
                                 'to': 'api/v2/merilsubdomains'},
             }},
-        'merilsubdomain_names': {
+        'epp_oth_9_meril_scientific_subdomain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
@@ -1050,7 +1054,7 @@ ORGANISATIONS = {
                                 'source': 'activity_id',
                                 'to': 'api/v2/activities'},
             }},
-        'activity_names': {
+        'epp_oth_10_areas_of_activity_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
@@ -1068,7 +1072,7 @@ ORGANISATIONS = {
                                 'source': 'challenge_id',
                                 'to': 'api/v2/challenges'},
             }},
-        'challenge_names': {
+        'epp_oth_11_societal_grand_challenges_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
@@ -1076,9 +1080,11 @@ ORGANISATIONS = {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-
-
-
+        'state': {
+            '.field.string': {},
+            'default': 'draft',
+            '.flag.filterable': {},
+        },
     },
     'actions': {
         '.action-template.django.list': {},
@@ -1205,7 +1211,7 @@ RESOURCES = {
                                 'source': 'organisation_id',
                                 'to': 'api/v2/providers'},
             }},
-        'providers_names': {
+        'erp_bai_3_providers_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
         'erp_mri_1_description': {
@@ -1257,7 +1263,7 @@ RESOURCES = {
                                 'source': 'domain_id',
                                 'to': 'api/v2/domains'},
             }},
-        'domain_names': {
+        'erp_cli_1_scientific_domain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
         'erp_cli_2_scientific_subdomain': {
@@ -1274,7 +1280,7 @@ RESOURCES = {
                                 'source': 'subdomain_id',
                                 'to': 'api/v2/subdomains'},
             }},
-        'subdomain_names': {
+        'erp_cli_2_scientific_subdomain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
         'erp_cli_3_category': {
@@ -1291,7 +1297,7 @@ RESOURCES = {
                                 'source': 'category_id',
                                 'to': 'api/v2/categories'},
             }},
-        'category_names': {
+        'erp_cli_3_category_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
         'erp_cli_4_subcategory': {
@@ -1308,7 +1314,7 @@ RESOURCES = {
                                 'source': 'subcategory_id',
                                 'to': 'api/v2/subcategories'},
             }},
-        'subcategory_names': {
+        'erp_cli_4_subcategory_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
@@ -1615,6 +1621,11 @@ RESOURCES = {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
+        'state': {
+            '.field.string': {},
+            'default': 'draft',
+            '.flag.filterable': {},
+        },
     },
     'actions': {
         '.action-template.django.list': {},
@@ -1641,6 +1652,825 @@ RESOURCES = {
     },
 }
 
+# PUBLIC ENTITIES
+
+PUBLIC_ORGANISATIONS = {
+    '.collection.django': {},
+    'model': 'accounts.models.Organisation',
+    ':permissions_namespace': 'agora.checks.Organisation',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+            '.flag.orderable': {},
+        'epp_bai_0_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {},
+        },
+        'epp_bai_1_name': {
+            '.field.string': {},
+            '.flag.filterable': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {},
+        },
+        'epp_bai_2_abbreviation': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {},
+        },
+        'epp_bai_3_website': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+        },
+        'epp_bai_4_legal_entity': {
+            '.field.boolean': {},
+            'default': False
+        },
+        'epp_bai_5_legal_status': {
+            '.field.struct': {},
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'id',
+                                'to': 'api/v2/public/legalstatuses'},
+                'id': { '.field.uuid': {}},
+                'name': { '.field.string': {}},
+            }},
+        'epp_cli_1_scientific_domain': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'id_field': 'id',
+            'model': 'accounts.models.Organisation.epp_cli_1_scientific_domain.through',
+            'source': 'epp_cli_1_scientific_domain',
+            'bound': 'organisation',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'domain_id',
+                                'to': 'api/v2/public/domains'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'domain_id'},
+                'name': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'domain.name'},
+            }},
+        'epp_cli_2_scientific_subdomain': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'id_field': 'id',
+            'model': 'accounts.models.Organisation.epp_cli_2_scientific_subdomain.through',
+            'source': 'epp_cli_2_scientific_subdomain',
+            'bound': 'organisation',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'subdomain_id',
+                                'to': 'api/v2/public/subdomains'},
+                'domain': {'.field.ref': {},
+                                'source': 'subdomain.domain_id',
+                                'to': 'api/v2/public/domains'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'subdomain_id'},
+                'name': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'subdomain.name'},
+            }},
+        'epp_cli_3_tags': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
+        'epp_loi_1_street_name_and_number': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+        'epp_loi_2_postal_code': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+        'epp_loi_3_city': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+        'epp_loi_4_region': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+        'epp_loi_5_country_or_territory': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+        'epp_mri_1_description': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+        'epp_mri_2_logo': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+        'epp_mri_3_multimedia': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+        'epp_coi_6_first_name': {
+          '.field.string': {},
+          '.flag.nowrite': {},
+          'source': 'public_contact.first_name',
+          '.flag.nullable.default': {}},
+        'epp_coi_7_last_name': {
+          '.field.string': {},
+          'source': 'public_contact.last_name',
+          '.flag.nowrite': {},
+          '.flag.nullable.default': {}},
+        'epp_coi_8_email': {
+          '.field.string': {},
+          'source': 'public_contact.email',
+          '.flag.nowrite': {},
+          '.flag.nullable.default': {}},
+        'epp_coi_9_phone': {
+          '.field.string': {},
+          '.flag.nowrite': {},
+          'source': 'public_contact.phone',
+          '.flag.nullable.default': {}},
+        'epp_coi_10_position': {
+          '.field.string': {},
+          '.flag.nowrite': {},
+          'source': 'public_contact.position',
+          '.flag.nullable.default': {}},
+        'epp_mti_1_life_cycle_status': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+        'epp_mti_2_certifications': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+
+        'epp_oth_1_hosting_legal_entity': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+
+        'epp_oth_2_participating_countries': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+
+        'epp_oth_3_affiliations': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'id_field': 'id',
+            'model': 'accounts.models.Organisation.epp_oth_3_affiliations.through',
+            'source': 'epp_oth_3_affiliations',
+            'bound': 'organisation',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'affiliation_id',
+                                'to': 'api/v2/public/affiliations'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'affiliation_id'},
+                'name': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'affiliation.name'},
+            }},
+        'epp_oth_4_networks': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'id_field': 'id',
+            'model': 'accounts.models.Organisation.epp_oth_4_networks.through',
+            'source': 'epp_oth_4_networks',
+            'bound': 'organisation',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'network_id',
+                                'to': 'api/v2/public/networks'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'network_id'},
+                'name': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'network.name'},
+                'abbreviation': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'network.abbreviation'},
+            }},
+        'epp_oth_5_structure_type': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'id_field': 'id',
+            'model': 'accounts.models.Organisation.epp_oth_5_structure_type.through',
+            'source': 'epp_oth_5_structure_type',
+            'bound': 'organisation',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'structure_id',
+                                'to': 'api/v2/public/structures'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'structure_id'},
+                'description': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'structure.description'},
+                'name': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'structure.name'},
+            }},
+        'epp_oth_6_esfri_domain': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'id_field': 'id',
+            'model': 'accounts.models.Organisation.epp_oth_6_esfri_domain.through',
+            'source': 'epp_oth_6_esfri_domain',
+            'bound': 'organisation',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'esfridomain_id',
+                                'to': 'api/v2/public/esfridomains'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'esfridomain_id'},
+                'description': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'esfridomain.description'},
+                'name': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'esfridomain.name'},
+            }},
+        'epp_oth_7_esfri_type': {
+            '.field.struct': {},
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'id',
+                                'to': 'api/v2/public/esfritypes'},
+                'id': { '.field.uuid': {}},
+                'name': { '.field.string': {}},
+            }},
+        'epp_oth_8_meril_scientific_domain': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'id_field': 'id',
+            'model': 'accounts.models.Organisation.epp_oth_8_meril_scientific_domain.through',
+            'source': 'epp_oth_8_meril_scientific_domain',
+            'bound': 'organisation',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'merildomain_id',
+                                'to': 'api/v2/public/merildomains'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'merildomain_id'},
+                'name': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'merildomain.name'},
+            }},
+        'epp_oth_9_meril_scientific_subdomain': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'id_field': 'id',
+            'model': 'accounts.models.Organisation.epp_oth_9_meril_scientific_subdomain.through',
+            'source': 'epp_oth_9_meril_scientific_subdomain',
+            'bound': 'organisation',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'merilsubdomain_id',
+                                'to': 'api/v2/public/merilsubdomains'},
+                'domain': {'.field.ref': {},
+                                'source': 'merilsubdomain.domain_id',
+                                'to': 'api/v2/public/merildomains'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'merilsubdomain_id'},
+                'description': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'merilsubdomain.description'},
+                'name': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'merilsubdomain.name'},
+            }},
+        'epp_oth_10_areas_of_activity': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'id_field': 'id',
+            'model': 'accounts.models.Organisation.epp_oth_10_areas_of_activity.through',
+            'source': 'epp_oth_10_areas_of_activity',
+            'bound': 'organisation',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'activity_id',
+                                'to': 'api/v2/public/activities'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'activity_id'},
+                'name': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'activity.name'},
+            }},
+        'epp_oth_11_societal_grand_challenges': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'id_field': 'id',
+            'model': 'accounts.models.Organisation.epp_oth_11_societal_grand_challenges.through',
+            'source': 'epp_oth_11_societal_grand_challenges',
+            'bound': 'organisation',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'challenge_id',
+                                'to': 'api/v2/public/challenges'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'challenge_id'},
+                'name': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'challenge.name'},
+            }},
+        'epp_oth_12_national_roadmaps': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+    },
+}
+
+
+PUBLIC_RESOURCES = {
+    '.collection.django': {},
+    'model': 'service.models.Resource',
+    ':permissions_namespace': 'agora.checks.Resource',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'erp_bai_0_id': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'erp_bai_1_name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'erp_bai_2_organisation_public': {
+            '.field.ref': {},
+            'to': '/api/v2/public/providers',
+            '.flag.filterable': {},
+            '.flag.nullable.default': {}},
+        'erp_bai_3_providers_public': {
+            '.field.collection.django': {},
+            ':filter_compat': True,
+            '.flag.nullable.default': {},
+             'id_field': 'href',
+            'model': 'service.models.Organisation',
+            'bound': 'resource',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'id',
+                                'to': 'api/v2/public/providers'},
+                'id': {
+                  '.field.uuid': {}},
+                'epp_bai_0_id': {
+                  '.field.string': {}},
+                'epp_bai_1_name': {
+                  '.field.string': {}},
+            },
+        },
+        'erp_bai_4_webpage': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'erp_mri_1_description': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
+        'erp_mri_2_tagline': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
+        'erp_mri_3_logo': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'erp_mri_4_mulitimedia': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'erp_cli_5_target_users': {
+            '.field.collection.django': {},
+            ':filter_compat': True,
+            '.flag.nullable.default': {},
+            'id_field': 'id',
+            'model': 'service.models.Resource.erp_cli_5_target_users.through',
+            'source': 'erp_cli_5_target_users',
+            'bound': 'resource',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'targetuser_id',
+                                'to': 'api/v2/public/target-users'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'targetuser_id'},
+                'user': {
+                  '.field.string': {},
+                  'source': 'targetuser.user'},
+                'description': {
+                  '.field.string': {},
+                  'source': 'targetuser.description'},
+            }},
+        'erp_mri_5_use_cases': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
+        'erp_cli_1_scientific_domain': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'id_field': 'id',
+            'model': 'service.models.Resource.erp_cli_1_scientific_domain.through',
+            'source': 'erp_cli_1_scientific_domain',
+            'bound': 'resource',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'domain_id',
+                                'to': 'api/v2/public/domains'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'domain_id'},
+                'name': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'domain.name'},
+            }},
+        'erp_cli_2_scientific_subdomain': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'id_field': 'id',
+            'model': 'service.models.Resource.erp_cli_2_scientific_subdomain.through',
+            'source': 'erp_cli_2_scientific_subdomain',
+            'bound': 'resource',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'subdomain_id',
+                                'to': 'api/v2/public/subdomains'},
+                'domain': {'.field.ref': {},
+                                'source': 'subdomain.domain_id',
+                                'to': 'api/v2/public/domains'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'subdomain_id'},
+                'name': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'subdomain.name'},
+            }},
+        'erp_cli_3_category': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'id_field': 'id',
+            'model': 'service.models.Resource.erp_cli_3_category.through',
+            'source': 'erp_cli_3_category',
+            'bound': 'resource',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'category_id',
+                                'to': 'api/v2/public/categories'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'category_id'},
+                'name': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'category.name'},
+                'supercategory': {'.field.ref': {},
+                                'source': 'category.supercategory_id',
+                                'to': 'api/v2/public/supercategories'},
+            }},
+        'erp_cli_4_subcategory': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'id_field': 'id',
+            'model': 'service.models.Resource.erp_cli_4_subcategory.through',
+            'source': 'erp_cli_4_subcategory',
+            'bound': 'resource',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'subcategory_id',
+                                'to': 'api/v2/public/subcategories'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'subcategory_id'},
+                'name': {
+                  '.field.string': {},
+                  'source': 'subcategory.name'},
+                'category': {'.field.ref': {},
+                                'source': 'subcategory.category_id',
+                                'to': 'api/v2/public/categories'},
+            }},
+        'erp_cli_6_access_type': {
+            '.field.collection.django': {},
+            ':filter_compat': True,
+            '.flag.nullable.default': {},
+            'id_field': 'id',
+            'model': 'service.models.Resource.erp_cli_6_access_type.through',
+            'source': 'erp_cli_6_access_type',
+            'bound': 'resource',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'accesstype_id',
+                                'to': 'api/v2/public/access-types'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'accesstype_id'},
+                'name': {
+                  '.field.string': {},
+                  'source': 'accesstype.name'},
+                'description': {
+                  '.field.string': {},
+                  'source': 'accesstype.description'},
+            }
+        },
+        'erp_cli_7_access_mode': {
+            '.field.collection.django': {},
+            ':filter_compat': True,
+            '.flag.nullable.default': {},
+            'id_field': 'id',
+            'model': 'service.models.Resource.erp_cli_7_access_mode.through',
+            'source': 'erp_cli_7_access_mode',
+            'bound': 'resource',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'accessmode_id',
+                                'to': 'api/v2/public/access-modes'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'accessmode_id'},
+                'name': {
+                  '.field.string': {},
+                  'source': 'accessmode.name'},
+                'description': {
+                  '.field.string': {},
+                  'source': 'accessmode.description'},
+            }
+        },
+        'erp_cli_8_tags': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
+
+        'erp_mgi_1_helpdesk_webpage': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+        'erp_mgi_2_user_manual': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+        'erp_mgi_3_terms_of_use': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+        'erp_mgi_4_privacy_policy': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+        'erp_mgi_5_access_policy': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+        'erp_mgi_6_sla_specification': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+        'erp_mgi_7_training_information': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+        'erp_mgi_8_status_monitoring': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+        'erp_mgi_9_maintenance': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+
+        'erp_gla_1_geographical_availability': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'erp_gla_2_language': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'erp_rli_1_geographic_location': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'erp_coi_7_first_name': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            'source': 'public_contact.first_name',
+            '.flag.nullable.default': {}},
+        'erp_coi_8_last_name': {
+            '.field.string': {},
+            'source': 'public_contact.last_name',
+            '.flag.nowrite': {},
+            '.flag.nullable.default': {}},
+        'erp_coi_9_email': {
+            '.field.string': {},
+            'source': 'public_contact.email',
+            '.flag.nowrite': {},
+            '.flag.nullable.default': {}},
+        'erp_coi_10_phone': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            'source': 'public_contact.phone',
+            '.flag.nullable.default': {}},
+        'erp_coi_11_position': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            'source': 'public_contact.position',
+            '.flag.nullable.default': {}},
+        'erp_coi_12_organisation': {
+            '.field.string': {},
+            '.flag.nowrite': {},
+            'source': 'public_contact.organisation.epp_bai_1_name',
+            '.flag.nullable.default': {}},
+        'erp_coi_13_helpdesk_email': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+        'erp_mti_1_technology_readiness_level': {
+            '.field.struct': {},
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'id',
+                                'to': 'api/v2/public/trls'},
+                'id': { '.field.uuid': {}},
+                'name': { '.field.string': {}},
+                'description': { '.field.string': {}},
+            }},
+        'erp_mti_2_life_cycle_status': {
+            '.field.ref': {},
+            'source': 'erp_mti_2_life_cycle_status_id',
+            'to': '/api/v2/resource-lifecycle-statuses',
+            '.flag.filterable': {},
+            '.flag.nullable.default': {}},
+        'erp_mti_3_certifications': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'erp_mti_4_standards': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'erp_mti_5_open_source_technologies': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'erp_mti_6_version': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'erp_mti_7_last_update': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'erp_mti_8_changelog': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'erp_aoi_1_order_type': {
+            '.field.struct': {},
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'id',
+                                'to': 'api/v2/public/order-types'},
+                'id': { '.field.uuid': {}},
+                'name': { '.field.string': {}},
+                'description': { '.field.string': {}},
+            }},
+        'erp_aoi_2_order': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+        'erp_fni_1_payment_model': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+        'erp_fni_2_pricing': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
+        #yes
+        'erp_dei_1_required_resources': {
+            '.field.collection.django': {},
+            ':filter_compat': True,
+            '.flag.nullable.default': {},
+            'id_field': 'id',
+            'model': 'service.models.Resource.required_resources.through',
+            'source': 'required_resources',
+            'bound': 'from_resource',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'to_resource_id',
+                                'to': 'api/v2/public/resources'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'to_resource_id'},
+                'erp_bai_0_id': {
+                  '.field.string': {},
+                  'source': 'to_resource.erp_bai_0_id'},
+                'erp_bai_1_name': {
+                  '.field.string': {},
+                  'source': 'to_resource.erp_bai_1_name'},
+            }
+        },
+        #yes
+        'erp_dei_2_related_resources': {
+            '.field.collection.django': {},
+            ':filter_compat': True,
+            '.flag.nullable.default': {},
+            'id_field': 'id',
+            'model': 'service.models.Resource.related_resources.through',
+            'source': 'related_resources',
+            'bound': 'from_resource',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'to_resource_id',
+                                'to': 'api/v2/public/resources'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'to_resource_id'},
+                'erp_bai_0_id': {
+                  '.field.string': {},
+                  'source': 'to_resource.erp_bai_0_id'},
+                'erp_bai_1_name': {
+                  '.field.string': {},
+                  'source': 'to_resource.erp_bai_1_name'},
+            }
+        },
+        #yes
+        'erp_dei_3_related_platforms': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'erp_ati_1_funding_body': {
+            '.field.collection.django': {},
+            ':filter_compat': True,
+            '.flag.nullable.default': {},
+            'id_field': 'id',
+            'model': 'service.models.Resource.erp_ati_1_funding_body.through',
+            'source': 'erp_ati_1_funding_body',
+            'bound': 'resource',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'fundingbody_id',
+                                'to': 'api/v2/public/funding-bodies'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'fundingbody_id'},
+                'name': {
+                  '.field.string': {},
+                  'source': 'fundingbody.name'},
+
+            }
+        },
+        'erp_ati_2_funding_program': {
+            '.field.collection.django': {},
+            ':filter_compat': True,
+            '.flag.nullable.default': {},
+            'id_field': 'id',
+            'model': 'service.models.Resource.erp_ati_2_funding_program.through',
+            'source': 'erp_ati_2_funding_program',
+            'bound': 'resource',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'fundingprogram_id',
+                                'to': 'api/v2/public/funding-programs'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'fundingprogram_id'},
+                'name': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'fundingprogram.name'},
+            }
+        },
+        'erp_ati_3_grant_project_name': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+    },
+}
+
 APP_CONFIG = {
     '.apimas_app': {},
     ':permission_rules': 'agora.permissions.get_rules',
@@ -1652,6 +2482,36 @@ APP_CONFIG = {
     ':ordering_compat': True,
 
     'endpoints': {
+        'public_api': {
+          'prefix': 'api/v2/public',
+          'collections': {
+            'resources': PUBLIC_RESOURCES,
+            'providers': PUBLIC_ORGANISATIONS,
+            'legalstatuses': LEGAL_STATUSES,
+            'affiliations': AFFILIATIONS,
+            'networks': NETWORKS,
+            'structures': STRUCTURES,
+            'esfridomains': ESFRI_DOMAINS,
+            'esfritypes': ESFRI_TYPES,
+            'activities': ACTIVITIES,
+            'order-types': ORDER_TYPES,
+            'challenges': CHALLENGES,
+            'domains': DOMAINS,
+            'subdomains': SUBDOMAINS,
+            'supercategories': SUPERCATEGORIES,
+            'categories': CATEGORIES,
+            'subcategories': SUBCATEGORIES,
+            'funding-programs': FUNDING_PROGRAMS,
+            'funding-bodies': FUNDING_BODIES,
+            'access-types': ACCESS_TYPES,
+            'access-modes': ACCESS_MODES,
+            'trls': TRLS,
+            'resource-lifecycle-statuses': RESOURCE_LIFECYCLE_STATUSES,
+            'merildomains': MERIL_DOMAINS,
+            'merilsubdomains': MERIL_SUBDOMAINS,
+            'target-users': TARGET_USERS,
+          }
+        },
         'api': {
             'prefix': 'api/v2',
             'collections': {

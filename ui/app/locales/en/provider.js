@@ -9,7 +9,7 @@ const provider = {
     'maturity': 'Maturity Information',
     'maturity_hint': 'Maturity Information for the Provider',
     'contact': 'Contact Information',
-    'main_contact': 'Main Contact/Resource Owner',
+    'main_contact': 'Main Contact/Provider Manager',
     'public_contact': 'Public Contact',
     'other': 'Other Information',
     'other_hint': '',
@@ -37,7 +37,7 @@ const provider = {
     'epp_mri_3_multimedia': 'EPP.MRI.3 - Multimedia',
     'epp_mti_1_life_cycle_status': 'EPP.MTI.1 - Life Cycle Status',
     'epp_mti_2_certifications': 'EPP.MTI.2 - Certifications',
-    'main_contact': 'Main Contact/Resource Owner',
+    'main_contact': 'Main Contact/Provider Manager',
     'public_contact': 'Public Contact',
     'mc_first_name': 'EPP.COI.1 - First Name',
     'mc_last_name': 'EPP.COI.2 - Last Name',
@@ -69,8 +69,7 @@ const provider = {
     'merilsubdomain_names': 'EPP.OTH.9 - MERIL Scientific Subdomain',
     'challenge_names': 'EPP.OTH.11 - Societal Grand challenges',
     'epp_oth_12_national_roadmaps': 'EPP.OTH.12 - National Roadmaps',
-
-
+    'state': 'State',
   },
   'hints': {
     'epp_bai_0_id': '<strong>Unique</strong> identifier of the provider',
@@ -118,7 +117,24 @@ const provider = {
   'menu': 'Providers',
   placeholders: {
     search: 'Search by ID, name or abbreviation',
+  },
+  publish: {
+    label: 'Publish',
+    title: 'Publish Provider',
+    ok: 'Publish',
+    message: 'When you publish a Provider, its non sensitive data are displayed in providers public api.',
+    success: 'Success',
+    error: 'Error in publishing provider details'
+  },
+  unpublish: {
+    label: 'Unpublish',
+    title: 'Unpublish Provider',
+    ok: 'Unpublish',
+    message: 'When you unpublish a Provider, its non sensitive data are no longer displayed in providers public api.',
+    success: 'Success',
+    error: 'Error in publishing provider details'
   }
+
 };
 
 export { provider };

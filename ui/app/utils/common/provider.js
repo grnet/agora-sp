@@ -175,8 +175,8 @@ const DETAILS_CONTACT_PUBLIC_FIELDSET = {
 const DETAILS_CLASSIFICATION_FIELDSET = {
   label: 'provider.cards.classification',
   fields: [
-    'domain_names',
-    'subdomain_names',
+    'epp_cli_1_scientific_domain_verbose',
+    'epp_cli_2_scientific_subdomain_verbose',
     'epp_cli_3_tags',
   ],
   layout: {
@@ -202,15 +202,15 @@ const DETAILS_OTHER_FIELDSET = {
   fields: [
     'epp_oth_1_hosting_legal_entity',
     'epp_oth_2_participating_countries',
-    'affiliation_names',
-    'network_names',
-    'structure_names',
-    'esfridomain_names',
+    'epp_oth_3_affiliations_verbose',
+    'epp_oth_4_networks_verbose',
+    'epp_oth_5_structure_type_verbose',
+    'epp_oth_6_esfri_domain_verbose',
     field('epp_oth_7_esfri_type.name',{label:'provider.fields.epp_oth_7_esfri_type'}),
-    'merildomain_names',
-    'merilsubdomain_names',
-    'activity_names',
-    'challenge_names',
+    'epp_oth_8_meril_scientific_domain_verbose',
+    'epp_oth_9_meril_scientific_subdomain_verbose',
+    'epp_oth_10_areas_of_activity_verbose',
+    'epp_oth_11_societal_grand_challenges_verbose',
     'epp_oth_12_national_roadmaps',
 
   ],
@@ -251,10 +251,11 @@ const DETAILS_FIELDSETS = [{
   label: 'provider.cards.basic_information',
   text: 'provider.cards.basic_hint',
   layout: {
-    flex: [100, 100, 100, 100, 50, 50]
+    flex: [50, 50, 100, 100, 100, 50, 50]
   },
   fields: [
     'epp_bai_0_id',
+    'state',
     'epp_bai_1_name',
     'epp_bai_2_abbreviation',
     'epp_bai_3_website',
@@ -293,10 +294,11 @@ const EDIT_FIELDSETS = [{
   label: 'provider.cards.basic_information',
   text: 'provider.cards.basic_hint',
   layout: {
-    flex: [100, 100, 100, 100, 50, 50]
+    flex: [50, 50, 100, 100, 100, 50, 50]
   },
   fields: [
     'epp_bai_0_id',
+    field('state', {disabled: true}),
     'epp_bai_1_name',
     'epp_bai_2_abbreviation',
     'epp_bai_3_website',
@@ -372,6 +374,7 @@ const PROVIDER_TABLE_FIELDS = [
   field('epp_bai_0_id', {label: 'provider.table.epp_bai_0_id'}),
   field('epp_bai_1_name', {label: 'provider.table.epp_bai_1_name'}),
   field('epp_bai_2_abbreviation', {label: 'provider.table.epp_bai_2_abbreviation'}),
+  field('state_verbose', {label: 'provider.fields.state'}),
 ];
 
 export {
