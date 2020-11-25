@@ -2201,7 +2201,7 @@ PUBLIC_RESOURCES = {
             'source': 'erp_cli_6_access_type',
             'bound': 'resource',
             'fields': {
-                'access_type': {'.field.ref': {},
+                'href': {'.field.ref': {},
                                 'source': 'accesstype_id',
                                 'to': 'api/v2/public/access-types'},
                 'id': {
@@ -2224,7 +2224,7 @@ PUBLIC_RESOURCES = {
             'source': 'erp_cli_7_access_mode',
             'bound': 'resource',
             'fields': {
-                'access_mode': {'.field.ref': {},
+                'href': {'.field.ref': {},
                                 'source': 'accessmode_id',
                                 'to': 'api/v2/public/access-modes'},
                 'id': {
@@ -2448,7 +2448,7 @@ PUBLIC_RESOURCES = {
             'source': 'erp_ati_2_funding_program',
             'bound': 'resource',
             'fields': {
-                'funding_program': {'.field.ref': {},
+                'href': {'.field.ref': {},
                                 'source': 'fundingprogram_id',
                                 'to': 'api/v2/public/funding-programs'},
                 'id': {
