@@ -2360,46 +2360,55 @@ PUBLIC_RESOURCES = {
         'erp_fni_2_pricing': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'required_resources': {
+        #yes
+        'erp_dei_1_required_resources': {
             '.field.collection.django': {},
-            '.flag.nullable.default': {},
             ':filter_compat': True,
-            'flat': True,
-            'id_field': 'resource',
+            '.flag.nullable.default': {},
+            'id_field': 'id',
             'model': 'service.models.Resource.required_resources.through',
             'source': 'required_resources',
             'bound': 'from_resource',
             'fields': {
-                'resource': {'.field.ref': {},
-                            'source': 'to_resource_id',
-                            'to': 'api/v2/public/resources'},
-            },
+                'href': {'.field.ref': {},
+                                'source': 'to_resource_id',
+                                'to': 'api/v2/public/resources'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'to_resource_id'},
+                'erp_bai_0_id': {
+                  '.field.string': {},
+                  'source': 'to_resource.erp_bai_0_id'},
+                'erp_bai_1_name': {
+                  '.field.string': {},
+                  'source': 'to_resource.erp_bai_1_name'},
+            }
         },
-        'related_resources': {
+        #yes
+        'erp_dei_2_related_resources': {
             '.field.collection.django': {},
-            '.flag.nullable.default': {},
             ':filter_compat': True,
-            'flat': True,
-            'id_field': 'resource',
+            '.flag.nullable.default': {},
+            'id_field': 'id',
             'model': 'service.models.Resource.related_resources.through',
             'source': 'related_resources',
             'bound': 'from_resource',
             'fields': {
-                'resource': {'.field.ref': {},
-                            'source': 'to_resource_id',
-                            'to': 'api/v2/public/resources'},
-            },
+                'href': {'.field.ref': {},
+                                'source': 'to_resource_id',
+                                'to': 'api/v2/public/resources'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'to_resource_id'},
+                'erp_bai_0_id': {
+                  '.field.string': {},
+                  'source': 'to_resource.erp_bai_0_id'},
+                'erp_bai_1_name': {
+                  '.field.string': {},
+                  'source': 'to_resource.erp_bai_1_name'},
+            }
         },
-        'erp_dei_1_required_resources': {
-            '.field.string': {},
-            'source': 'required_resources_ids',
-            '.flag.nowrite': {},
-            '.flag.nullable.default': {}},
-        'erp_dei_2_related_resources': {
-            '.field.string': {},
-            'source': 'related_resources_ids',
-            '.flag.nowrite': {},
-            '.flag.nullable.default': {}},
+        #yes
         'erp_dei_3_related_platforms': {
             '.field.string': {},
             '.flag.nullable.default': {}},
