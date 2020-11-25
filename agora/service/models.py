@@ -253,23 +253,34 @@ class Resource(models.Model):
         return str(self.erp_bai_0_id)
 
     @property
-    def category_names(self):
+    def erp_bai_2_organisation_public(self):
+        if self.erp_bai_2_organisation.state == 'published':
+            return self.erp_bai_2_organisation_id
+        else:
+            return None
+
+    @property
+    def erp_bai_3_providers_public(self):
+        return self.erp_bai_3_providers.filter(state='published')
+
+    @property
+    def erp_cli_3_category_verbose(self):
         return ", ".join(o.name for o in self.erp_cli_3_category.all())
 
     @property
-    def subcategory_names(self):
+    def erp_cli_4_subcategory_verbose(self):
         return ", ".join(o.name for o in self.erp_cli_4_subcategory.all())
 
     @property
-    def domain_names(self):
+    def erp_cli_1_scientific_domain_verbose(self):
         return ", ".join(o.name for o in self.erp_cli_1_scientific_domain.all())
 
     @property
-    def subdomain_names(self):
+    def erp_cli_2_scientific_subdomain_verbose(self):
         return ", ".join(o.name for o in self.erp_cli_2_scientific_subdomain.all())
 
     @property
-    def providers_names(self):
+    def erp_bai_3_providers_verbose(self):
         return ", ".join(o.epp_bai_1_name for o in self.erp_bai_3_providers.all())
 
     @property

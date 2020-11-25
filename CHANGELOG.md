@@ -4,6 +4,15 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] 
+
+
+###  Added
+- Add public api for providers under /api/v2/public/providers endpoint.
+- Add public api for resources under /api/v2/public/resources endpoint.
+- Add publish/unpublish functionality for providers and resources.
+
+
 ## [1.0.6](https://github.com/grnet/agora-sp/compare/v1.0.5...v1.0.6) - 2020-09-23
 
 ### Changed
