@@ -2179,9 +2179,9 @@ PUBLIC_RESOURCES = {
             'source': 'erp_cli_4_subcategory',
             'bound': 'resource',
             'fields': {
-                # 'href': {'.field.ref': {},
-                                # 'source': 'subcategory_id',
-                                # 'to': 'api/v2/public/subcategories'},
+                'href': {'.field.ref': {},
+                                'source': 'subcategory_id',
+                                'to': 'api/v2/public/subcategories'},
                 'id': {
                   '.field.uuid': {},
                   'source': 'subcategory_id'},
