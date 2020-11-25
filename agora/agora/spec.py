@@ -2044,8 +2044,8 @@ PUBLIC_RESOURCES = {
             '.flag.nullable.default': {}},
         'erp_bai_3_providers_public': {
             '.field.collection.django': {},
-            '.flag.nowrite': {},
-             'flat': True,
+            ':filter_compat': True,
+            '.flag.nullable.default': {},
              'id_field': 'href',
             'model': 'service.models.Organisation',
             'bound': 'resource',
@@ -2053,6 +2053,12 @@ PUBLIC_RESOURCES = {
                 'href': {'.field.ref': {},
                                 'source': 'id',
                                 'to': 'api/v2/public/providers'},
+                'id': {
+                  '.field.uuid': {}},
+                'epp_bai_0_id': {
+                  '.field.string': {}},
+                'epp_bai_1_name': {
+                  '.field.string': {}},
             },
         },
         'erp_bai_4_webpage': {
