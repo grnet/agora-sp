@@ -39,7 +39,7 @@ const resource = {
     erp_cli_6_access_type: 'ERP.CLI.6 - Access Type',
     erp_cli_7_access_mode: 'ERP.CLI.7 - Access Mode',
     erp_cli_8_tags: 'ERP.CLI.8 - Tags',
-    erp_mgi_1_helpdesk_webpage: 'ERP.MGI.1 - Heldesk Page',
+    erp_mgi_1_helpdesk_webpage: 'ERP.MGI.1 - Helpdesk Page',
     erp_mgi_2_user_manual: 'ERP.MGI.2 - User Manual',
     erp_mgi_3_terms_of_use: 'ERP.MGI.3 - Terms of Use',
     erp_mgi_4_privacy_policy: 'ERP.MGI.4 - Privacy Policy',
