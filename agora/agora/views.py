@@ -162,19 +162,18 @@ def shibboleth_login(request):
         e = 'No shibboleth id'
         return HttpResponseRedirect(TOKEN_LOGIN_URL + "#error=%s" % e)
 
-    try:
-        user = User.objects.get(email=user_data.get('email'))
-        e = 'shibboleth_duplicate_email'
-        return HttpResponseRedirect(TOKEN_LOGIN_URL + "#error=%s" % e)
-    except  User.DoesNotExist:
-        pass
 
     try:
         user = User.objects.get(shibboleth_id=shibboleth_id)
 
     except User.DoesNotExist:
-        user = User.objects.create(**user_data)
-        send_email_shib_user_created(user, headers['HTTP_HOST'])
+        try:
+            user = User.objects.get(email=user_data.get('email'))
+            e = 'shibboleth_duplicate_email'
+            return HttpResponseRedirect(TOKEN_LOGIN_URL + "#error=%s" % e)
+        except  User.DoesNotExist:
+            user = User.objects.create(**user_data)
+            send_email_shib_user_created(user, headers['HTTP_HOST'])
 
     token, _ = Token.objects.get_or_create(user=user)
     user_logged_in.send(sender=user.__class__, request=request, user=user)
