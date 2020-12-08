@@ -2313,6 +2313,9 @@ PUBLIC_RESOURCES = {
         'erp_coi_13_helpdesk_email': {
           '.field.string': {},
           '.flag.nullable.default': {}},
+        'erp_coi_14_security_contact_email': {
+          '.field.string': {},
+          '.flag.nullable.default': {}},
         'erp_mti_1_technology_readiness_level': {
             '.field.struct': {},
             'fields': {
