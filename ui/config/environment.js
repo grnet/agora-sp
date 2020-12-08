@@ -23,7 +23,8 @@ module.exports = function(environment) {
       }
     },
     tinyMCE:{
-      version: 4
+      apiKey: 'my-api-key',
+      version: 5.5
     },
     APP: {
       date_format: 'DD/MM/YYYY',
