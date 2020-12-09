@@ -170,6 +170,18 @@ They are all optional.
 
 If you wish to use `policy.hbs` template for you policy page, you can alter the title and the content by editing `ui/app/locales/en/policy.js` file.
 
+#### Text editor configuration
+
+We use [TinyMCE](https://www.tiny.cloud/docs/) editor for rich html  textarea fields.  
+In order to use it you have to register in https://www.tiny.cloud/, get an API key and register your Domain name.  
+Then, you have to include your API key in UI  configuration in `ui/config/environment.js` file:
+
+```
+  tinyMCE:{
+    apiKey: 'my-api-key',
+  },
+```
+
 
 
 

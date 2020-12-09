@@ -148,9 +148,13 @@ def safe_html(html):
         "b", "em", "i", "strong", "u", "font",
         "h1", "h2", "h3", "h4", "h5", "h6",
         "dl", "dt", "dd",
-        "footer", "header", "nav"
-        "br", "caption", "img",
+        "br", "img",
         ]
+
+    whitelist_attrs = [
+        "src", "width", "height", "alt",
+        "href", "target", "rel",
+    ]
 
     try:
         # BeautifulSoup is catching out-of-order and unclosed tags, so markup
@@ -166,8 +170,9 @@ def safe_html(html):
             tag.extract()
         elif tag.name.lower() in whitelist:
             # tag is allowed
-            tag.attrs = dict((attr, safe_css(attr, css))
-                             for (attr, css) in tag.attrs.items())
+            # blacklisted attrs are removed in their entirety
+            for attr in [attr for attr in tag.attrs if attr not in whitelist_attrs]:
+                del tag[attr]
         else:
             # not a whitelisted tag. I'd like to remove it from the tree
             # and replace it with its children. But that's hard. It's much
@@ -181,12 +186,6 @@ def safe_html(html):
         comment.extract()
 
     return unicode(soup)
-
-
-def safe_css(attr, css):
-    if attr == "style":
-        return re.sub("(width|height):[^;]+;", "", css)
-    return css
 
 
 RESOURCES = load_resources()

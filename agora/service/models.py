@@ -121,6 +121,7 @@ class Resource(models.Model):
     erp_bai_0_id = models.CharField(max_length=100, unique=True)
     erp_bai_1_name = models.CharField(max_length=100, unique=True)
     erp_bai_2_organisation = models.ForeignKey(Organisation,
+            on_delete=models.PROTECT,
             blank=False,
             null=True,
             related_name="organisation_services")
