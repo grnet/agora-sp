@@ -127,6 +127,7 @@ def date_field(page, field_name):
     wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "[class='picker__footer']")))
     page.find_element_by_css_selector("[class='picker__footer']") \
         .find_element_by_xpath('//button[text()="Today"]').click()
+    sleep(0.3)
 
     # assert field_name in page.find_element_by_name(field_name)
     print("{0:<40} Found and filled \t{1}".format('[' + field_name + ']', "Success"))
