@@ -3007,9 +3007,10 @@ ember-cli-test-loader@^1.1.0, ember-cli-test-loader@^1.1.1:
   dependencies:
     ember-cli-babel "^5.2.1"
 
-ember-cli-tinymce@0.3.2:
-  version "0.3.2"
-  resolved "https://registry.yarnpkg.com/ember-cli-tinymce/-/ember-cli-tinymce-0.3.2.tgz#4432e1e8be593145f40e520064abe98bee1ffd98"
+ember-cli-tinymce@0.4.0:
+  version "0.4.0"
+  resolved "https://registry.yarnpkg.com/ember-cli-tinymce/-/ember-cli-tinymce-0.4.0.tgz#b4dfe3f6eae77f849a0ae6d491567de2bde7d70e"
+  integrity sha512-XqH4uia4ZASItqtkZM8F4DuSyxdP06ZDr6q+odJ+0BCK6fLP6d/Wd1AancGUH9M5rZ0x0XeQxq/HmOMsd4vEQg==
   dependencies:
     ember-cli-babel "^6.6.0"
 

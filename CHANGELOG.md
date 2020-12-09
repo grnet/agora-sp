@@ -7,8 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ##  [Unreleased] 
 
 ### Changed
+- Strip rich html textfields from non essential attributes.
 
-- Strip rich html textfields from non essential attributes
+### Fixed
+- Upgrade tinyMCE to version 5 to fix version 4 EOL alerts.
 
 
 ## [1.0.8](https://github.com/grnet/agora-sp/compare/v1.0.7...v1.0.8) - 2020-12-01
