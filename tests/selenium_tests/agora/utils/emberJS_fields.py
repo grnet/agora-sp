@@ -68,11 +68,12 @@ def textarea_field(page, field_name, text):
     @return: True if it finds the field and is completed without any problems or False if it cannot be found or
     supplemented.
     """
-    wait = WebDriverWait(page, 5)
+    wait = WebDriverWait(page, 10)
     wait.until(EC.presence_of_element_located((By.XPATH, "//md-content[@data-form-field-name='" + field_name + "']")))
     textarea = page.find_element_by_xpath("//md-content[@data-form-field-name='" + field_name + "']")
 
     wait.until(EC.presence_of_element_located((By.TAG_NAME, "iframe")))
+    wait.until(EC.element_to_be_clickable((By.XPATH, "//md-content[@data-form-field-name='" + field_name + "']")))
     textarea.find_element_by_tag_name("iframe").click()
     textarea.find_element_by_tag_name("iframe").send_keys(text)
 
@@ -127,7 +128,7 @@ def date_field(page, field_name):
     wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, "[class='picker__footer']")))
     page.find_element_by_css_selector("[class='picker__footer']") \
         .find_element_by_xpath('//button[text()="Today"]').click()
-    sleep(0.3)
+    wait.until(EC.invisibility_of_element((By.CSS_SELECTOR, "[class='picker__footer']")))
 
     # assert field_name in page.find_element_by_name(field_name)
     print("{0:<40} Found and filled \t{1}".format('[' + field_name + ']', "Success"))
