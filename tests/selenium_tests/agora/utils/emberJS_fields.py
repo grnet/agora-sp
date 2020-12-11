@@ -13,6 +13,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.wait import WebDriverWait
 
+global_wait_until = 90
 
 def input_field(page, field_name, text, clear=False):
     """
@@ -43,7 +44,7 @@ def suggestion_input_field(page, field_name, text):
     @return: True if it finds the field and is completed without any problems or False if it cannot be found or
     supplemented.
     """
-    wait = WebDriverWait(page, 5)
+    wait = WebDriverWait(page, global_wait_until)
     wait.until(EC.presence_of_element_located((By.XPATH, "//md-content[@data-form-field-name='" + field_name + "']")))
 
     suggestion_input = page.find_element_by_xpath("//md-content[@data-form-field-name='" + field_name + "']")
@@ -68,7 +69,7 @@ def textarea_field(page, field_name, text):
     @return: True if it finds the field and is completed without any problems or False if it cannot be found or
     supplemented.
     """
-    wait = WebDriverWait(page, 10)
+    wait = WebDriverWait(page, global_wait_until)
     wait.until(EC.presence_of_element_located((By.XPATH, "//md-content[@data-form-field-name='" + field_name + "']")))
     textarea = page.find_element_by_xpath("//md-content[@data-form-field-name='" + field_name + "']")
 
@@ -91,7 +92,7 @@ def table_select_field(page, field_name, position):
     @return: True if it finds the field and is completed without any problems or False if it cannot be found or
     supplemented.
     """
-    wait = WebDriverWait(page, 90)
+    wait = WebDriverWait(page, global_wait_until)
     wait.until(EC.presence_of_element_located((By.XPATH,"//md-content[@data-form-field-name='" + field_name + "']//button[text()='add']")))
     wait.until(EC.element_to_be_clickable((By.XPATH,"//md-content[@data-form-field-name='" + field_name + "']//button[text()='add']"))).click()
 
@@ -121,7 +122,7 @@ def date_field(page, field_name):
     @return: True if it finds the field and is completed without any problems or False if it cannot be found or
     supplemented.
     """
-    wait = WebDriverWait(page, 30)
+    wait = WebDriverWait(page, global_wait_until)
     wait.until(EC.presence_of_element_located((By.XPATH, "//md-content[@data-form-field-name='" + field_name + "']")))
     page.find_element_by_xpath("//md-content[@data-form-field-name='" + field_name + "']").click()
 
@@ -143,7 +144,7 @@ def checkbox_field(page, field_name):
     @return: True if it finds the field and is completed without any problems or False if it cannot be found or
     supplemented.
     """
-    wait = WebDriverWait(page, 5)
+    wait = WebDriverWait(page, global_wait_until)
     wait.until(EC.presence_of_element_located((By.XPATH, "//md-content[@data-form-field-name='" + field_name + "']")))
     checkbox = page.find_element_by_xpath("//md-content[@data-form-field-name='" + field_name + "']")
     checkbox.find_element_by_tag_name("md-checkbox").click()
