@@ -121,7 +121,7 @@ def date_field(page, field_name):
     @return: True if it finds the field and is completed without any problems or False if it cannot be found or
     supplemented.
     """
-    wait = WebDriverWait(page, 5)
+    wait = WebDriverWait(page, 30)
     wait.until(EC.presence_of_element_located((By.XPATH, "//md-content[@data-form-field-name='" + field_name + "']")))
     page.find_element_by_xpath("//md-content[@data-form-field-name='" + field_name + "']").click()
 
