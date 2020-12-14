@@ -2,6 +2,7 @@ import { field } from 'ember-gen';
 import Ember from 'ember';
 
 const {
+  set,
   get,
   computed
 } = Ember;
@@ -59,21 +60,31 @@ const DETAILS_FIELDSETS = [{
 const CREATE_OR_EDIT_FIELDSETS = [{
   label: 'custom_user.cards.basic_information',
   text: 'custom_user.cards.basic_hint',
-  fields: computed('role', 'model.role', function() {
-    let role = get(this, 'role');
-    let model_role = get(this, 'model.role');
-    let fields = [
-      'username',
-      'first_name',
-      'last_name',
-      'email',
-      'role',
-    ];
-    if (role === 'superadmin' && (model_role === 'serviceadmin' || model_role === 'provideradmin')) {
-      fields.push('organisation');
-    }
-    return fields;
-  }),
+  fields: [
+    'username',
+    'first_name',
+    'last_name',
+    'email',
+    'role',
+    field('organisation', {
+      disabled: computed('mode.role', 'model.changeset.role', function(){
+        let role = get(this, 'model.role');
+        let changed_role = get(this, 'model.changeset.role');
+        if (changed_role === 'superadmin' || changed_role === 'observer') {
+          Ember.run.once(this, () => {
+            get(this, 'model').set('organisation', null);
+            get(this, 'model.changeset').set('organisation', null);
+          });
+          return true;
+        } else {
+          return false;
+        }
+
+
+      })
+
+    }),
+  ]
 }]
 
 
