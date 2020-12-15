@@ -64,6 +64,9 @@ module.exports = function(environment) {
           alt: 'europe',
         }],
       },
+      eosc_portal: {
+        api: 'https://beta.providers.eosc-portal.eu/openapi'
+      }
     }
   };
 
