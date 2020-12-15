@@ -10,6 +10,11 @@ import {
 } from '../utils/common/resources';
 
 import {
+  postResourceEOSC,
+  putResourceEOSC,
+} from '../utils/common/eosc-portal';
+
+import {
   applyResourceAdminship,
   revokeResourceAdminship,
   informAdminshipRejected,
@@ -98,10 +103,12 @@ export default AgoraGen.extend({
       order: 1,
     },
     row: {
-      actions: ['gen:details', 'gen:edit', 'publishResource', 'unpublishResource', 'remove'],
+      actions: ['gen:details', 'gen:edit', 'publishResource', 'unpublishResource', 'postResourceEOSC', 'putResourceEOSC', 'remove'],
       actionsMap: {
         unpublishResource,
         publishResource,
+        postResourceEOSC,
+        putResourceEOSC,
       },
       fields: TABLE_FIELDS,
     },

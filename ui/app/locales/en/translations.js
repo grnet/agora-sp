@@ -32,6 +32,7 @@ import { target_user } from './target_user';
 import { trl } from './trl';
 import { user_customer } from './user_customer';
 import { user_role } from './user_role';
+import { eosc } from './eosc';
 
 
 export default {
@@ -86,5 +87,6 @@ export default {
   'Email unique constraint failed': custom_user.errors.unique_email,
   'Username unique constraint failed': custom_user.errors.unique_username,
   'shibboleth_duplicate_email': custom_user.errors.unique_email,
+  eosc,
 };
 
