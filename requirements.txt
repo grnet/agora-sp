@@ -13,3 +13,4 @@ djoser==0.5.2
 future==0.15.2
 Pillow==6.2.0
 beautifulsoup4==4.6.3
+requests==2.23.0
