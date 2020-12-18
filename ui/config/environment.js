@@ -65,7 +65,7 @@ module.exports = function(environment) {
         }],
       },
       eosc_portal: {
-        api: 'https://beta.providers.eosc-portal.eu/openapi'
+        api_docs_url: 'https://beta.providers.eosc-portal.eu/openapi',
       }
     }
   };
