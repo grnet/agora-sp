@@ -1,17 +1,41 @@
 import Ember from 'ember';
+import fetch from 'ember-network/fetch';
+import ENV from 'agora-admin/config/environment';
 
 const {
   computed,
   get,
 } = Ember;
 
+
 const postResourceEOSC = {
   label: 'eosc.resource.post.label',
   icon: 'backup',
   accent: true,
-  action: function(route, model) {
-    let m = route.get('messageService');
-    alert('WIP');
+	action: function(route, model) {
+		let messages = get(route, 'messageService');
+		let adapter = get(route, 'store').adapterFor('resource');
+		let token = get(route, 'user.auth_token');
+		let url = adapter.buildURL('resource', get(model, 'id'), 'findRecord');
+		return fetch(url + 'post-eosc/', {
+			method: 'POST',
+			headers: {
+				Accept: 'application/json',
+				Authorization: `Token ${token}`,
+			},
+		})
+		.then(resp => {
+			if (resp.status === 200) {
+				model.reload().then(() => {
+					messages.setSuccess('eosc.resource.post.success');
+				});
+			} else {
+				messages.setSuccess('eosc.resource.post.error');
+			}
+		})
+		.catch(err => {
+			messages.setError('eosc.resource.post.error');
+		});
   },
   hidden: computed(
     'role',
@@ -54,9 +78,30 @@ const postResourceEOSC = {
 const putResourceEOSC = {
   label: 'eosc.resource.put.label',
   icon: 'backup',
-  action: function(route, model) {
-    let m = route.get('messageService');
-    alert('WIP');
+	action: function(route, model) {
+		let messages = get(route, 'messageService');
+		let adapter = get(route, 'store').adapterFor('resource');
+		let token = get(route, 'user.auth_token');
+		let url = adapter.buildURL('resource', get(model, 'id'), 'findRecord');
+		return fetch(url + 'put-eosc/', {
+			method: 'POST',
+			headers: {
+				Accept: 'application/json',
+				Authorization: `Token ${token}`,
+			},
+		})
+		.then(resp => {
+			if (resp.status === 200) {
+				model.reload().then(() => {
+					messages.setSuccess('eosc.resource.put.success');
+				});
+			} else {
+				messages.setSuccess('eosc.resource.put.error');
+			}
+		})
+		.catch(err => {
+			messages.setError('eosc.resource.put.error');
+		});
   },
   hidden: computed(
     'role',

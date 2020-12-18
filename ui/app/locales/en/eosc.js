@@ -1,6 +1,6 @@
 import ENV from 'agora-admin/config/environment';
 
-const EOSC_PORTAL_API = ENV.APP.eosc_portal.api;
+const EOSC_PORTAL_API = ENV.APP.eosc_portal.api_docs_url;
 
 export const eosc = {
   resource: {
