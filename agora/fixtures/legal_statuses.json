@@ -8,7 +8,7 @@
     },
     {
         "fields": {
-            "name": "Public Legal Entiry under Private Law"
+            "name": "Public Legal Entity under Private Law"
         },
         "model": "accounts.legalstatus",
         "pk": "27cebd5b-0087-43d9-899b-1a6a5b0a341a"
@@ -134,7 +134,7 @@
     },
     {
         "fields": {
-            "name": "Public Legal Entiry"
+            "name": "Public Legal Entity"
         },
         "model": "accounts.legalstatus",
         "pk": "ecee1088-bda1-4d46-a708-1caf231599ee"
