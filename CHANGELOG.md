@@ -9,10 +9,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add Terms of Use page (disabled by default)
 - Add Access Policy page (disabled by default)
+- Publish resource action to EOSC portal 
 
 ### Changed
 - Move Privacy Policy to dedicated url
-
 
 ## [1.1.3](https://github.com/grnet/agora-sp/compare/v1.1.2...v1.1.3) - 2021-02-03
 
@@ -29,6 +29,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Expose epp_loi_5_country_or_territory field as capitalized instead of lowercase.
+
 
 ## [1.1.1](https://github.com/grnet/agora-sp/compare/v1.1.0...v1.1.1) - 2020-12-11
 
