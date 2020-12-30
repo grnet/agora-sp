@@ -174,6 +174,21 @@ They are all optional.
 
 If you wish to use `policy.hbs` template for you policy page, you can alter the title and the content by editing `ui/app/locales/en/policy.js` file.
 
+
+#### API calls to EOSC PORTAL
+
+Users with role `provideradmin` can publish and unpublish resources to  EOSC Portal via agora. 
+This feature is disabled by default.  
+In order to enable it, you must alter `ui/config/environment.js` as follows:
+
+```javascript
+APP: {
+  eosc_portal: {
+    disabled: true 
+  }
+}
+```
+
 #### Text editor configuration
 
 We use [TinyMCE](https://www.tiny.cloud/docs/) editor for rich html  textarea fields.  
@@ -185,10 +200,6 @@ Then, you have to include your API key in UI  configuration in `ui/config/enviro
     apiKey: 'my-api-key',
   },
 ```
-
-
-
-
 
 ### Migrations
 

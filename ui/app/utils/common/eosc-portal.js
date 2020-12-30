@@ -7,6 +7,8 @@ const {
   get,
 } = Ember;
 
+const DISABLED = ENV.APP.eosc_portal.disabled;
+
 
 const postResourceEOSC = {
   label: 'eosc.resource.post.label',
@@ -43,6 +45,7 @@ const postResourceEOSC = {
     'model.eosc-portal-id',
     'model.erp_bai_2_service_organisation',
     function(){
+      if ( DISABLED ) { return true }
       let role = get(this, 'role');
       let user_org = get(this, 'session.session.authenticated.organisation');
       let state = get(this, 'model.state');
@@ -109,6 +112,7 @@ const putResourceEOSC = {
     'model.eosc-portal-id',
     'model.erp_bai_2_service_organisation',
     function(){
+      if ( DISABLED ) { return true }
       let resource_org = get(this, 'model.erp_bai_2_service_organisation.id');
       let user_org = get(this, 'session.session.authenticated.organisation');
       let role = get(this, 'role');
