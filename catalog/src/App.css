@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@700&display=swap');
+
+.App {
+  text-align: left;
+}
+
+.opus {
+  min-width: 0.3em;
+}
+
+.light-grey{
+  color: rgb(78, 78, 78);
+}
+
+.xlight-grey{
+  color: rgb(189, 189, 189);
+}
+
+.grey{
+  color: rgb(59, 59, 59)
+}
+
+.content {
+  margin: 20px;
+}
+
+.text-grey {
+  color: rgb(29, 29, 29);
+}
+
+.title {
+  font-family: 'Nunito', sans-serif;
+ 
+}
+
+.bcard{
+  transition: transform 0.3s;
+  transform: rotate(-2deg);
+}
+
+.bcard:hover{
+
+  transform: rotate(0deg);
+  
+}
+
+.placeholder {
+  margin-top:20px;
+  display: block;
+}
+
+.navbar-brand {
+  display: flex;
+  align-items: center;
+}
+.navbar-brand>img {
+  padding: 7px 14px;
+  height:42px;
+}
+
+h5.outline {
+  border-bottom: 1px lightgrey solid;
+}
+
+.square.outline {
+  
+  border: 1px rgb(29, 29, 29) solid;
+  padding: 5px 10px;
+  margin-right:5px;
+  border: 1px solid grey; 
+ 
+}
+
+.quote-border {
+  border-left: 3px lightgrey solid;
+}
+
+.logo {
+  max-width:150px;
+  max-height:65px;
+}
+
+.biglogo {
+  max-width:250px;
+  max-height:125px;
+}
+
+.plick {
+  box-shadow: 0 0 5px rgba(33,33,33,.2);
+  transition: box-shadow .3s;
+  
+}
+
+.plick:hover {
+  box-shadow: 0 0 25px rgba(33,33,33,.2);
+ 
+}
+
+
+.quote {
+  padding:10px;
+  font-family: 'Nunito', sans-serif;
+}
+
+li div{
+  margin-bottom: 20px;
+}
+
+button.down {
+  border: none;
+  background-color: transparent;
+  font-size: 12px;
+}
+
+span.text-strong {
+  font-weight: bold;
+}
+
+span.text-emphasis {
+  font-style: italic;
+}
