@@ -103,7 +103,7 @@ def table_select_field(page, field_name, position):
     # wait.until(EC.element_to_be_clickable((By.XPATH, "//md-dialog//md-checkbox[" + str(position) + "]/"))).click()
     wait.until(EC.element_to_be_clickable((By.XPATH, "//md-dialog-content//div//div//md-card//md-table-container//table//tbody//tr[" + str(position) + "]//md-checkbox"))).click()
 
-    page.find_element_by_xpath('//md-dialog-actions//button[text()="Add"]').click()
+    wait.until(EC.element_to_be_clickable((By.XPATH, '//md-dialog-actions//button[text()="Add"]'))).click()
 
     # Fix - Release field.
     page.find_element_by_xpath("//body").click()
