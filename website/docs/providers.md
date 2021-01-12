@@ -37,7 +37,7 @@ The user can view all the information from a selected provider by clicking on th
 
 ## Create a new Provider
 
-To create a new Provider, a `superadmin` or `admin` user must click to the **Providers** left sidebar menu option.
+To create a new Provider, a `Superadmin` user must click to the **Providers** left sidebar menu option.
 
 When the user clicks to the Providers option, a new page with the list of existing Providers is presented.
 
@@ -47,7 +47,7 @@ From this page a user may create a new provider just by clicking the **Create** 
 |:--------------------------:|
 | *Create new provider page* |
 
-In this new page the `superadmin` or `admin` user have to fill a number of fields in order to provide the provider details.
+In this new page the `Superadmin` user have to fill a number of fields in order to provide the provider details.
 
 As you can see, each field has its own detailed description of what kind of data is expected to be filled in by the user.
 
@@ -96,7 +96,7 @@ Below is the list of fields with small descriptions of the fields. The required 
 
 ## Edit a Provider
 
-The `superadmin` or `admin` have the permission to edit a Provider.
+The `Superadmin` or `Provider Admin` have the permission to edit a Provider.
 
 To edit an existing Provider, the user should visit the list of Providers.
 
@@ -107,7 +107,7 @@ The fields that the user can change are the same as the ones described in the pr
 
 ## Delete a Provider
 
-Only the `superadmin`, have the permission to delete a Provider.
+Only the `Superadmin`, have the permission to delete a Provider.
 
 To delete an existing Provider, the user should visit the list of Providers. By clicking on the delete ![delete_icon](assets/icons_delete.png) icon near the selected provider  
 the user can delete it.

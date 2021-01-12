@@ -28,8 +28,8 @@ Authentication and Authorization
 =================================
 
 A new user who has just registered on Agora, acquires only the right of access to the service as an observer.
-That is why it automatically enters the category of `observer` users.
-To grant more permissions, these it must be assigned by an "admin" or "superadmin" user.
+That is why it automatically enters the category of `Observer` users.
+To grant more permissions, these it must be assigned by a `Superadmin` user.
 See below the categories of users that exist as well as their respective rights.
 
 
