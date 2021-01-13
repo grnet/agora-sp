@@ -54,7 +54,7 @@ const countries = [
 'Cook Islands (CK)',
 'Costa Rica (CR)',
 'Côte d’Ivoire (CI)',
-'Croatia (CR)',
+'Croatia (HR)',
 'Cuba (CU)',
 'Curaçao (CW)',
 'Cyprus (CY)',

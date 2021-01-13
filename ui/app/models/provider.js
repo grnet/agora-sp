@@ -107,7 +107,7 @@ export default DS.Model.extend({
     choices: function () {
       let countrySel = []
       for (let country of countries) {
-        countrySel.push([country, country]);
+        countrySel.push([country.toLowerCase(), country]);
       }
       return countrySel;
     }(),
