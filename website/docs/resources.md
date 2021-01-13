@@ -27,7 +27,7 @@ The user can view all the information from a selected resource by clicking on th
 
 ## Create a new Resource
 
-To create a new Resource, a `Superadmin`, `Provider Admin` or `Service Admin` user must click to the **Resources** left sidebar menu option.
+To create a new Resource, a `Superadmin`, `Provider Admin` or `Resource Admin` user must click to the **Resources** left sidebar menu option.
 When the user clicks to the Resource option, a new page with the list of existing Resources is presented.
 From this page a user may create a new resource just by clicking the **Create** option on the top right.
 
@@ -37,11 +37,11 @@ From this page a user may create a new resource just by clicking the **Create** 
 
 :::tip
 
-A `Service Admin` user can create a new resource only for his/her organization.
+A `Resource Admin` user can create a new resource only for his/her organization.
 
 :::
 
-In this new page the `Superadmin`, `Provider Admin` or`Service Admin` user have to fill a number of fields in order to provide the resource details.
+In this new page the `Superadmin`, `Provider Admin` or `Resource Admin` user have to fill a number of fields in order to provide the resource details.
 
 As you can see, each field has its own detailed description of what kind of data is expected to be filled in by the user.
 For this reason, here we will only mention what are the required fields to be filled in a resource.
@@ -124,7 +124,7 @@ Below is the list of fields with small descriptions of the fields. The required 
 
 ## Edit a Resource
 
-The `superadmin`, `admin` and `Service Admin` have the permission to edit a Resource.
+The `Superadmin`, `Provider Admin` and `Resource Admin` have the permission to edit a Resource.
 
 To edit an existing Resource, the user should visit the list of Resources.
 

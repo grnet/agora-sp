@@ -294,6 +294,28 @@ class Organisation(models.Model):
     def epp_oth_9_meril_scientific_subdomain_verbose(self):
         return ", ".join(o.name for o in self.epp_oth_9_meril_scientific_subdomain.all())
 
+    @property
+    def epp_loi_5_country_or_territory_capitalize(self):
+        """
+        This will transform 'bulgaria (bg)' to 'Bulgaria (BG)'
+        """
+        if self.epp_loi_5_country_or_territory:
+            el = self.epp_loi_5_country_or_territory.replace(')', '')
+            country_lower, code  = el.split('(')
+            country_lower = country_lower.split(' ')
+            country = [];
+            for word in country_lower:
+                if word not in ['and', 'of', 'da', 'the']:
+                    word = word.capitalize()
+                country.append(word)
+            country = ' '.join(country)
+            code = code.upper()
+            return '%s (%s)' % (country, code)
+        else:
+            return ''
+
+
+
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)

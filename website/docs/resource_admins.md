@@ -9,14 +9,14 @@ title: Resource Admins Information
 ## The Process
 
 When a user is registered to the service, he is registered as an observer.
-In order to be a resource admin the `superadmin` or `admin` should change his role.
-The `superadmin` or `admin` will  make him a `ResourceAdmin` and assign him to an organization .
+In order to be a `Resource Admin` the `Superadmin` or `Provider Admin` should change his role.
+The `Superadmin` or `Provider Admin` will make him a `Resource Admin` and assign him to an organization .
 By the time the user belongs to an Organization then  via the "Resource Admins" a Resource  can be assigned to him.
 
 
 ## List Resource Admins
 
-To view the list of all Resource Admins, a `superadmin`, `admin` or `Service Admin` user must click to the **Resource Admins** left sidebar menu option.
+To view the list of all Resource Admins, a `Superadmin`, `Provider Admin` or `Resource Admin` user must click to the **Resource Admins** left sidebar menu option.
 
 | ![ResourceAdmins_ListView](assets/resource_admins_list.png) |
 |:--------------------:|
@@ -34,7 +34,7 @@ The user can view all the information from a selected Resource Admin by clicking
 
 ## Create a new Resource Admin
 
-To create a new Resource Admin, a `superadmin` or `admin` user must click to the **Resource Admins** left sidebar menu option.
+To create a new Resource Admin, a `Superadmin` or `Provider Admin` user must click to the **Resource Admins** left sidebar menu option.
 When the user clicks to the Resource Admins option, a new page with the list of existing Resource Admins is presented.
 
 From this page a user may create a new resource admin just by clicking the **Create** option on the top right.
@@ -56,8 +56,8 @@ A `Resource Admin` can only see the Resource Admins of the provider to which he 
 |:---------------------------------------------------------------------------------------------------:|
 | *The resource admins page from a resource admin user where his organization has no resource admins* |
 
-To create a new resource the `superadmin` or `admin` click on "Create" top right.
-The new resource admin (and edit resource admin) page provides a way for the `superadmin` or `admin` to enter the resource admin details.
+To create a new resource the `Superadmin` or `admin` click on "Create" top right.
+The new resource admin (and edit resource admin) page provides a way for the `Superadmin` or `Provider Admin` to enter the resource admin details.
 
 * **Admin :** The list of user options that are `Resource Admin` is displayed.
 * **Resource :** The list of available resources is displayed.
@@ -76,9 +76,9 @@ By selecting an existing Resource Admin a user can edit his details.
 
 ## Delete a Resource Admin.
 
-Only the `superadmin`, have the permission to delete a Resource Admin.
+Only the `Superadmin`, have the permission to delete a Resource Admin.
 
-To delete an existing Resource Admin, the `superadmin` user should visit the list of Resource Admins. By clicking on the delete ![delete_icon](assets/icons_delete.png) icon near the selected resource admin the user can delete it.
+To delete an existing Resource Admin, the `Superadmin` user should visit the list of Resource Admins. By clicking on the delete ![delete_icon](assets/icons_delete.png) icon near the selected resource admin the user can delete it.
 
 | ![delete_entry](assets/icons_confirm_delete.png) |
 |:--------------------------:|

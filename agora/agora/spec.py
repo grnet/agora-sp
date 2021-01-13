@@ -1762,6 +1762,7 @@ PUBLIC_ORGANISATIONS = {
           '.flag.nullable.default': {},
         },
         'epp_loi_5_country_or_territory': {
+          'source': 'epp_loi_5_country_or_territory_capitalize',
           '.field.string': {},
           '.flag.nullable.default': {},
         },
