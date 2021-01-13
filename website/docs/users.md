@@ -7,7 +7,7 @@ title: Users Information
 
 The service supports the following types of users:
 
- - Super Admin: The one that administers the whole system.
+ - Superadmin: The one that administers the whole system.
  - Provider Admin: Who administrates the services and views the users  belonging to his Provider.
  - Resource Admin: Who can read everything apart from the users; can modify/delete services that he is owner/manager of.
  - Observer: Who can read everything apart from the users
