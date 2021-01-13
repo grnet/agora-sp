@@ -5,12 +5,12 @@ title: Users Information
 
 **Users**: Users are the users of the service.
 
-The service supports the following types of users
+The service supports the following types of users:
 
- - Super Admin: The one that administers the whole system
- - Provider Admin: who administates the users and services belonging to his Provider
- - Resource Admin: who can read everything; can modify/delete services that he is owner/manager of
- - Observer: who can read everything
+ - Super Admin: The one that administers the whole system.
+ - Provider Admin: Who administrates the services and views the users  belonging to his Provider.
+ - Resource Admin: Who can read everything apart from the users; can modify/delete services that he is owner/manager of.
+ - Observer: Who can read everything apart from the users
 
 
 ## List Users
@@ -20,7 +20,7 @@ A `Provider Admin` can list only users with role `Observer` or users with role `
 
 | ![users_superadmin_View](assets/users_list_admin.png) |
 |:--------------------------------------:|
-| *The user page from a admin user* |
+| *The user page from a Superadmin user* |
 
 
 ## View User Details
@@ -53,23 +53,23 @@ The fields that the user can change :
 
 
 > **Important note** :
-> * `superadmin` user, can view/edit and delete a user.
+> * `Superadmin` user, can view/edit and delete a user.
 
 
 | ![users_edit_View](assets/users_edit_admin.png) |
 |:--------------------------------------:|
-| *The user page from a admin user* |
+| *The user page from a Superadmin user* |
 
 
 ## Delete User
 
-Only the `superadmin`, have the permission to delete a user.
+Only the `Superadmin`, have the permission to delete a user.
 
 | ![users_superadmin_View](assets/users_list_superadmin.png) |
 |:--------------------------------------:|
-| *The user page from a superadmin user* |
+| *The user page from a Superadmin user* |
 
-To delete an existing user, the `superadmin` user should visit the list of Users. By clicking on the delete ![delete_icon](assets/icons_delete.png) icon near the selected user the user can delete it.
+To delete an existing user, the `Superadmin` user should visit the list of Users. By clicking on the delete ![delete_icon](assets/icons_delete.png) icon near the selected user the user can delete it.
 
 | ![delete_entry](assets/icons_confirm_delete.png) |
 |:--------------------------:|

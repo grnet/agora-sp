@@ -32,34 +32,34 @@ module.exports = {
       style: 'dark',
       links: [
         {
-          title: 'Docs',
+          title: ' ',
           items: [
             {
-              label: 'Explore Documentation',
+              label: ' ',
               to: 'docs/',
             },
           ],
         },
         {
-          title: 'Community',
+          title: ' ',
           items: [
             {
-              label: 'Github',
+              label: ' ',
               href: 'https://github.com/GRNET/agora-sp',
             }
           ],
         },
         {
-          title: 'More',
+          title: ' ',
           items: [
             {
-              label: 'GitHub',
+              label: ' ',
               href: 'https://github.com/GRNET/agora-sp',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} GRNET`,
+      copyright: `<img alt="grnet" src="/img/grnet-logo.png" height="50px"> </a> <br /> Copyright © ${new Date().getFullYear()} <a href="http://www.grnet.gr/"> GRNET </a>`,
     },
   },
   presets: [

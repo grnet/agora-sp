@@ -12,9 +12,9 @@ The Profile page displays the basic information of the user's profile.
 The information displayed is:
 
  - **Username**: The username the user selected on singing up
- - **Role**: the role the user was assigned by the superadmin
- - **Email**: the users email
- - **Full name**: the users full name
+ - **Role**: The role the user was assigned by the `Superadmin`
+ - **Email**: The user's email
+ - **Full name**: The user's full name
 
 | ![users_superadmin_View](assets/profile.png) |
 |:--------------------------------------:|
@@ -22,7 +22,7 @@ The information displayed is:
 
 :::tip
 
-To alter your profile data, please contact your service administrator
+To alter your profile data, please contact your service administrator.
 
 :::
 
