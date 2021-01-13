@@ -59,7 +59,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `<img alt="grnet" src="agora-sp/img/grnet-logo.png" height="50px"> </a> <br /> Copyright © ${new Date().getFullYear()} <a href="http://www.grnet.gr/"> GRNET </a>`,
+      copyright: `<img alt="grnet" src="/agora-sp/img/grnet-logo.png" height="50px"> </a> <br /> Copyright © ${new Date().getFullYear()} <a href="http://www.grnet.gr/"> GRNET </a>`,
     },
   },
   presets: [
