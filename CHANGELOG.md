@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+- Correct Croatia 2 letter country code.
+
 ### Changed
 - Expose epp_loi_5_country_or_territory field as capitalized instead of lowercase.
 
