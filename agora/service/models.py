@@ -293,6 +293,14 @@ class Resource(models.Model):
         return ", ".join(o.erp_bai_0_id for o in self.related_resources.all())
 
     @property
+    def erp_dei_1_required_resources_public(self):
+        return self.required_resources.filter(state='published')
+
+    @property
+    def erp_dei_2_related_resources_public(self):
+        return self.related_resources.filter(state='published')
+
+    @property
     def erp_cli_5_target_users_verbose(self):
         return ", ".join(o.user for o in self.erp_cli_5_target_users.all())
 
