@@ -41,11 +41,8 @@ pipeline {
         }
         stage ('Run Tests') {
             steps {
-                withCredentials(bindings: [string(credentialsId: 'tinyMCE_key', variable: '$TINYMCEKEY')]) {
-                     sh '''
-                        cd $WORKSPACE/$PROJECT_DIR/ui/config
-                        sed -i "s/my-api-key/${TINYMCEKEY}/g" environment.js
-                    '''
+                withCredentials(bindings: [string(credentialsId: 'tinyMCE_key', variable: 'TINYMCEKEY')]) {
+                    sh 'sed -i "s/my-api-key/${TINYMCEKEY}/g" $WORKSPACE/$PROJECT_DIR/ui/config/environment.js'
                 }
                 echo 'Create docker containers...'
                 sh '''
