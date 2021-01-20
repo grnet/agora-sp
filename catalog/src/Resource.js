@@ -151,8 +151,8 @@ function Resource(props) {
             />
 
             <DependenciesInfo
-              required={data.erp_dei_1_required_resources}
-              related={data.erp_dei_2_related_resources}
+              required={data.erp_dei_1_required_resources_public}
+              related={data.erp_dei_2_related_resources_public}
               platforms={data.erp_dei_3_related_platforms}
             />
 
