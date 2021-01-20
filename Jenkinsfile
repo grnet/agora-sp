@@ -60,7 +60,7 @@ pipeline {
                 always {
                     sh '''
                       cd $WORKSPACE/$PROJECT_DIR
-                      docker-compose -f docker-compose-selenium-test.yml down
+                      docker-compose down
                       cd tests/selenium_tests
                       pipenv --rm
                     '''
