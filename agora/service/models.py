@@ -250,6 +250,10 @@ class Resource(models.Model):
             max_length=30,
             default='draft')
 
+    # Datetime fields
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
     def __unicode__(self):
         return str(self.erp_bai_0_id)
 

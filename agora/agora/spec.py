@@ -2030,6 +2030,12 @@ PUBLIC_RESOURCES = {
         'id': {
             '.field.uuid': {},
             '.flag.nowrite': {}},
+        'created_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
+        'updated_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
         'erp_bai_0_id': {
             '.field.string': {},
             '.flag.orderable': {},
