@@ -1132,6 +1132,12 @@ CONTACT_INFORMATION = {
         'id': {
             '.field.uuid': {},
             '.flag.nowrite': {}},
+        'created_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
+        'updated_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
         'first_name': {
             '.field.string': {},
             '.flag.orderable': {},
