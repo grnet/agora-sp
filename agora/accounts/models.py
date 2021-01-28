@@ -254,6 +254,10 @@ class Organisation(models.Model):
             max_length=30,
             default='draft')
 
+    # Datetime fields
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
     @property
     def epp_oth_3_affiliations_verbose(self):
         return ", ".join(o.name for o in self.epp_oth_3_affiliations.all())

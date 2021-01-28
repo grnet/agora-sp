@@ -1663,6 +1663,12 @@ PUBLIC_ORGANISATIONS = {
             '.field.uuid': {},
             '.flag.nowrite': {}},
             '.flag.orderable': {},
+        'created_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
+        'updated_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
         'epp_bai_0_id': {
             '.field.string': {},
             '.flag.nullable.default': {},
