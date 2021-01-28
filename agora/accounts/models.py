@@ -319,11 +319,10 @@ class Organisation(models.Model):
         else:
             return ''
 
-
-
-
     def save(self, *args, **kwargs):
         clean_html_fields(self)
+        if self.state == 'published' and not self.published_at:
+            self.published_at = timezone.now()
         super(Organisation, self).save(*args, **kwargs)
 
 
