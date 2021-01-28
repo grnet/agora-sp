@@ -743,6 +743,9 @@ ORGANISATIONS = {
         'updated_at': {
             '.flag.nowrite': {},
             '.field.datetime': {}},
+        'published_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
         'epp_bai_0_id': {
             '.field.string': {},
             '.flag.nullable.default': {},
@@ -1196,6 +1199,9 @@ RESOURCES = {
             '.flag.nowrite': {},
             '.field.datetime': {}},
         'updated_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
+        'published_at': {
             '.flag.nowrite': {},
             '.field.datetime': {}},
         'erp_bai_0_id': {
@@ -1687,6 +1693,9 @@ PUBLIC_ORGANISATIONS = {
         'updated_at': {
             '.flag.nowrite': {},
             '.field.datetime': {}},
+        'published_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
         'epp_bai_0_id': {
             '.field.string': {},
             '.flag.nullable.default': {},
@@ -2058,6 +2067,9 @@ PUBLIC_RESOURCES = {
             '.flag.nowrite': {},
             '.field.datetime': {}},
         'updated_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
+        'published_at': {
             '.flag.nowrite': {},
             '.field.datetime': {}},
         'erp_bai_0_id': {
