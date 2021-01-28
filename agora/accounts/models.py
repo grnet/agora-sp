@@ -337,6 +337,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(('first name'), max_length=30, blank=True)
     last_name = models.CharField(('last name'), max_length=30, blank=True)
     date_joined = models.DateTimeField(('date joined'), default=timezone.now)
+    updated_at = models.DateTimeField(auto_now=True)
     shibboleth_id = models.CharField(max_length=255,
                                      unique=True, null=True, default=None)
     role = models.CharField(choices=USER_ROLES, max_length=20, default='observer')
