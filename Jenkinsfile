@@ -53,11 +53,12 @@ pipeline {
                     pipenv install -r requirements.txt
                     echo "Wait for argo container to initialize"
                     while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8000/ui/auth/login)" != "200" ]]; do if [[ "$(docker ps | grep agora | wc -l)" != "2" ]]; then exit 1; fi; sleep 5; done
-                    pipenv run python agora_ui_tests.py --url http://localhost:8000/
+                    pipenv run pytest agora_unit_tests.py -o junit_family=xunit2 --junitxml=reports/junit.xml
                 '''
             }
             post {
                 always {
+                    junit '**/junit.xml'
                     sh '''
                       cd $WORKSPACE/$PROJECT_DIR
                       docker-compose down
