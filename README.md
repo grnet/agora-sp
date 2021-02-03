@@ -80,7 +80,9 @@ Example:
 
 #### UI configuration
 
-You can edit the `ui/config/environment.js` file to set the default configuration options. You can alter the value of `rootURL` and `appURL` that define where the ui is served and what is the main endpoint  where the backend is located.
+You can edit the `ui/config/environment.js` file to set the default configuration options.  
+You can alter the value of `rootURL` and `appURL` that define where the ui is served and what is the main endpoint  where the backend is located.   
+The page's title can be changed by setting the `title` option to your desired value. 
 
 Example options:
 
@@ -88,14 +90,16 @@ Example options:
 var ENV = {
   rootURL: '/ui/'
   appURL: '/api/v2/',
+  title: 'Agora Admin',
 }
 ```
 
 #### UI Customization
 
-You can customize the appearance of your installation by adding your own logo, style and domestic login method text.
+You can customize the appearance of your installation by adding your own logo, favicon, style and domestic login method text.
 
 You can place your own logo inside `public/assets` directory, whose name you must set in `ui/config/environment.js`.
+You can place your favicon inside `public/assets` directory, using the name `favicon.ico`.  
 You can also use a custom preprocessed stylesheet, which you should place inside `styles` folder.
 In order to process and and import the theme, you have to edit `ui/config/environment.js` file and set the `theme` option to match the name of the stylesheet `my-themes.scss`:
 
@@ -205,6 +209,8 @@ If you want to add dummy users to agora, for developoment purposes, run:
 ```
 python manage.py loaddata fixtures/sample-providers.json
 python manage.py loaddata fixtures/sample-users.json
+python manage.py loaddata fixtures/sample-contactInformations.yaml
+python manage.py loaddata fixtures/sample-resources.yaml
 ```
 
 `users.json` will create users with usernames/passwords:

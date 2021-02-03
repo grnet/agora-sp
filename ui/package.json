@@ -69,6 +69,7 @@
   },
   "ember-addon": {
     "paths": [
+      "lib/inject-into-head",
       "lib/theme-scripts"
     ]
   }

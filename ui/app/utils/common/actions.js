@@ -339,7 +339,6 @@ const unpublishResource = {
       return true;
     }
 
-    debugger
     if (role === 'provideradmin' && user_org !== resource_org) {
       return true;
     }

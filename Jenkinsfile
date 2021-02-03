@@ -41,23 +41,27 @@ pipeline {
         }
         stage ('Run Tests') {
             steps {
+                withCredentials(bindings: [string(credentialsId: 'tinyMCE_key', variable: 'TINYMCEKEY')]) {
+                    sh 'sed -i "s/my-api-key/${TINYMCEKEY}/g" $WORKSPACE/$PROJECT_DIR/ui/config/environment.js'
+                }
                 echo 'Create docker containers...'
                 sh '''
                     cd $WORKSPACE/$PROJECT_DIR
-                    docker-compose -f docker-compose-selenium-test.yml up -d --build
+                    docker-compose up -d --build
                     rm requirements*.txt
                     cd tests/selenium_tests
                     pipenv install -r requirements.txt
                     echo "Wait for argo container to initialize"
                     while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8000/ui/auth/login)" != "200" ]]; do if [[ "$(docker ps | grep agora | wc -l)" != "2" ]]; then exit 1; fi; sleep 5; done
-                    pipenv run python agora_ui_tests.py --url http://localhost:8000/
+                    pipenv run pytest agora_unit_tests.py -o junit_family=xunit2 --junitxml=reports/junit.xml
                 '''
             }
             post {
                 always {
+                    junit '**/junit.xml'
                     sh '''
                       cd $WORKSPACE/$PROJECT_DIR
-                      docker-compose -f docker-compose-selenium-test.yml down
+                      docker-compose down
                       cd tests/selenium_tests
                       pipenv --rm
                     '''

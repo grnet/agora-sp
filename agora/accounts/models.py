@@ -254,6 +254,11 @@ class Organisation(models.Model):
             max_length=30,
             default='draft')
 
+    # Datetime fields
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    published_at = models.DateTimeField(blank=True, null=True)
+
     @property
     def epp_oth_3_affiliations_verbose(self):
         return ", ".join(o.name for o in self.epp_oth_3_affiliations.all())
@@ -314,11 +319,10 @@ class Organisation(models.Model):
         else:
             return ''
 
-
-
-
     def save(self, *args, **kwargs):
         clean_html_fields(self)
+        if self.state == 'published' and not self.published_at:
+            self.published_at = timezone.now()
         super(Organisation, self).save(*args, **kwargs)
 
 
@@ -333,6 +337,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     first_name = models.CharField(('first name'), max_length=30, blank=True)
     last_name = models.CharField(('last name'), max_length=30, blank=True)
     date_joined = models.DateTimeField(('date joined'), default=timezone.now)
+    updated_at = models.DateTimeField(auto_now=True)
     shibboleth_id = models.CharField(max_length=255,
                                      unique=True, null=True, default=None)
     role = models.CharField(choices=USER_ROLES, max_length=20, default='observer')

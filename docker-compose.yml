@@ -1,4 +1,4 @@
-version: '3'
+version: '3.7'
 services:
   backend:
     container_name: agora-backend
@@ -12,11 +12,20 @@ services:
        - dist:/srv/agora/ui/dist
     stdin_open: true
     tty: true
+    command: bash -c "python manage.py migrate && ./populate_db.sh && python manage.py loaddata fixtures/sample-providers.json && python manage.py loaddata fixtures/sample-users.json && python manage.py loaddata fixtures/sample-contactInformations.yaml && python manage.py loaddata fixtures/sample-resources.yaml && python manage.py runserver 0.0.0.0:80"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/ui/auth/login"]
+      interval: 1m30s
+      timeout: 20s
+      retries: 20
+      start_period: 5m
   frontend:
     container_name: agora-frontend
     build:
       context: ./ui
       dockerfile: ./Dockerfile
+    depends_on:
+      - "backend"
     volumes:
       - ./ui:/srv/agora/ui
       - dist:/srv/agora/ui/dist

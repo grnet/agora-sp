@@ -5,6 +5,7 @@ module.exports = function(environment) {
     theme: 'theme',
     logo: 'logo.png',
     modulePrefix: 'agora-admin',
+    title: 'Agora Admin',
     environment: environment,
     i18n: {
       defaultLocale: 'en'
