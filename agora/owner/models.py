@@ -23,3 +23,7 @@ class ContactInformation(models.Model):
     phone = models.CharField(max_length=20, default=None, blank=True, null=True)
     position = models.CharField(max_length=50, default=None, blank=True, null=True)
     organisation = models.ForeignKey(Organisation,   related_name="contacts")
+
+    # Datetime fields
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True)

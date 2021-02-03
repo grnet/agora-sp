@@ -737,6 +737,15 @@ ORGANISATIONS = {
             '.field.uuid': {},
             '.flag.nowrite': {}},
             '.flag.orderable': {},
+        'created_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
+        'updated_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
+        'published_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
         'epp_bai_0_id': {
             '.field.string': {},
             '.flag.nullable.default': {},
@@ -1132,6 +1141,12 @@ CONTACT_INFORMATION = {
         'id': {
             '.field.uuid': {},
             '.flag.nowrite': {}},
+        'created_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
+        'updated_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
         'first_name': {
             '.field.string': {},
             '.flag.orderable': {},
@@ -1180,6 +1195,15 @@ RESOURCES = {
         'id': {
             '.field.uuid': {},
             '.flag.nowrite': {}},
+        'created_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
+        'updated_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
+        'published_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
         'erp_bai_0_id': {
             '.field.string': {},
             '.flag.orderable': {},
@@ -1663,6 +1687,15 @@ PUBLIC_ORGANISATIONS = {
             '.field.uuid': {},
             '.flag.nowrite': {}},
             '.flag.orderable': {},
+        'created_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
+        'updated_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
+        'published_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
         'epp_bai_0_id': {
             '.field.string': {},
             '.flag.nullable.default': {},
@@ -2030,6 +2063,15 @@ PUBLIC_RESOURCES = {
         'id': {
             '.field.uuid': {},
             '.flag.nowrite': {}},
+        'created_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
+        'updated_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
+        'published_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
         'erp_bai_0_id': {
             '.field.string': {},
             '.flag.orderable': {},

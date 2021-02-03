@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from agora import  settings
 from django.db import models
+from django.utils import timezone
 import uuid
 from owner.models import ContactInformation
 from common import helper
@@ -250,6 +251,11 @@ class Resource(models.Model):
             max_length=30,
             default='draft')
 
+    # Datetime fields
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    published_at = models.DateTimeField(blank=True, null=True)
+
     def __unicode__(self):
         return str(self.erp_bai_0_id)
 
@@ -307,6 +313,8 @@ class Resource(models.Model):
     def save(self, *args, **kwargs):
         self.erp_bai_0_id = self.erp_bai_0_id.strip()
         self.erp_bai_1_name = self.erp_bai_1_name.strip()
+        if self.state == 'published' and not self.published_at:
+            self.published_at = timezone.now()
         clean_html_fields(self)
         super(Resource, self).save(*args, **kwargs)
 
