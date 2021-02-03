@@ -209,6 +209,8 @@ If you want to add dummy users to agora, for developoment purposes, run:
 ```
 python manage.py loaddata fixtures/sample-providers.json
 python manage.py loaddata fixtures/sample-users.json
+python manage.py loaddata fixtures/sample-contactInformations.yaml
+python manage.py loaddata fixtures/sample-resources.yaml
 ```
 
 `users.json` will create users with usernames/passwords:

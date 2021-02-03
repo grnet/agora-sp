@@ -6,4 +6,6 @@
         email: agora@grnet.gr
         phone: '+302101234'
         position: Development
+        updated_at: '2020-12-31T00:00:00Z'
+        created_at: '2020-12-31T00:00:00Z'
         organisation: f95b8142-5b51-4044-9d9a-e94759c3554c
