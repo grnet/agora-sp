@@ -58,10 +58,15 @@ pipeline {
             }
             post {
                 always {
-                    junit '**/junit.xml'
                     sh '''
                       cd $WORKSPACE/$PROJECT_DIR
                       docker-compose down
+                    '''
+
+                    junit '**/junit.xml'
+
+                    sh '''
+                      cd $WORKSPACE/$PROJECT_DIR
                       cd tests/selenium_tests
                       pipenv --rm
                     '''
