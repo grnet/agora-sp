@@ -5,7 +5,8 @@
             "name": "TRL8"
         },
         "model": "service.trl",
-        "pk": "2cb99d96-6404-425f-a1c8-2d7a7e87ea4e"
+        "pk": "2cb99d96-6404-425f-a1c8-2d7a7e87ea4e",
+        "eosc_id": "trl-8"
     },
     {
         "fields": {
@@ -13,7 +14,8 @@
             "name": "TRL5"
         },
         "model": "service.trl",
-        "pk": "50726038-a9b1-4be2-bfb0-c5302ea6230d"
+        "pk": "50726038-a9b1-4be2-bfb0-c5302ea6230d",
+        "eosc_id": "trl-5"
     },
     {
         "fields": {
@@ -21,7 +23,8 @@
             "name": "TRL1"
         },
         "model": "service.trl",
-        "pk": "556c1481-9dc6-4d67-ab78-cf1a0140bb36"
+        "pk": "556c1481-9dc6-4d67-ab78-cf1a0140bb36",
+        "eosc_id": "trl-1"
     },
     {
         "fields": {
@@ -29,7 +32,8 @@
             "name": "TRL9"
         },
         "model": "service.trl",
-        "pk": "5af323ad-f244-415e-9cd0-9367e7948300"
+        "pk": "5af323ad-f244-415e-9cd0-9367e7948300",
+        "eosc_id": "trl-9"
     },
     {
         "fields": {
@@ -37,7 +41,8 @@
             "name": "TRL7"
         },
         "model": "service.trl",
-        "pk": "8050357e-2d36-40e3-9e77-d7813919659b"
+        "pk": "8050357e-2d36-40e3-9e77-d7813919659b",
+        "eosc_id": "trl-7"
     },
     {
         "fields": {
@@ -45,7 +50,8 @@
             "name": "TRL6"
         },
         "model": "service.trl",
-        "pk": "99830473-2e10-4563-bad7-9f2b017105e7"
+        "pk": "99830473-2e10-4563-bad7-9f2b017105e7",
+        "eosc_id": "trl-6"
     },
     {
         "fields": {
@@ -53,7 +59,8 @@
             "name": "TRL2"
         },
         "model": "service.trl",
-        "pk": "b0eb02a5-dcf6-417b-ad22-456e9ee5b4cd"
+        "pk": "b0eb02a5-dcf6-417b-ad22-456e9ee5b4cd",
+        "eosc_id": "trl-2"
     },
     {
         "fields": {
@@ -61,7 +68,8 @@
             "name": "TRL3"
         },
         "model": "service.trl",
-        "pk": "bd26118c-2e7e-45ff-9113-33820a4af938"
+        "pk": "bd26118c-2e7e-45ff-9113-33820a4af938",
+        "eosc_id": "trl-3"
     },
     {
         "fields": {
@@ -69,6 +77,7 @@
             "name": "TRL4"
         },
         "model": "service.trl",
-        "pk": "faeaadde-926f-4fbf-ac15-3760175e261f"
+        "pk": "faeaadde-926f-4fbf-ac15-3760175e261f",
+        "eosc_id": "trl-4"
     }
 ]

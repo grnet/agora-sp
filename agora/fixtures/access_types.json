@@ -5,7 +5,8 @@
             "name": "Remote"
         },
         "model": "service.accesstype",
-        "pk": "7eeb9387-c7f5-42cb-8354-fc4ee4e16bc1"
+        "pk": "7eeb9387-c7f5-42cb-8354-fc4ee4e16bc1",
+        "eosc_id": "access_type-remote"
     },
     {
         "fields": {
@@ -13,7 +14,8 @@
             "name": "Virtual"
         },
         "model": "service.accesstype",
-        "pk": "a99e4c27-e504-496f-83d8-2283a0a3c367"
+        "pk": "a99e4c27-e504-496f-83d8-2283a0a3c367",
+        "eosc_id": "access_type-virtual"
     },
     {
         "fields": {
@@ -21,15 +23,17 @@
             "name": "Physical"
         },
         "model": "service.accesstype",
-        "pk": "a9f66925-341d-4227-849d-5433ed039960"
+        "pk": "a9f66925-341d-4227-849d-5433ed039960",
+        "eosc_id": "access_type-physical"
     },
     {
         "fields": {
             "description": "Samples are sent in to for e.g. analysis and the results are returned to the user without the user actually accessing the RI",
-            "name": "Mail-in"
+            "name": "Mail-In"
         },
         "model": "service.accesstype",
-        "pk": "bb9b297f-e58d-41ee-8077-d112d2787163"
+        "pk": "bb9b297f-e58d-41ee-8077-d112d2787163",
+        "eosc_id": "access_type-mail_in"
     },
     {
         "fields": {
@@ -37,6 +41,7 @@
             "name": "Other"
         },
         "model": "service.accesstype",
-        "pk": "f23eb0db-586d-4b4a-aa97-f0cad12a6e78"
+        "pk": "f23eb0db-586d-4b4a-aa97-f0cad12a6e78",
+        "eosc_id": "access_type-other"
     }
 ]
