@@ -5,7 +5,8 @@
             "name": "Other"
         },
         "model": "accounts.structure",
-        "pk": "0fdf95fb-f562-46dd-9ee9-f2e2169b6029"
+        "pk": "0fdf95fb-f562-46dd-9ee9-f2e2169b6029",
+        "eosc_id": "provider_structure_type-other"
     },
     {
         "fields": {
@@ -13,7 +14,8 @@
             "name": "Distributed"
         },
         "model": "accounts.structure",
-        "pk": "323c40f3-350e-479e-92e6-450cd0afe626"
+        "pk": "323c40f3-350e-479e-92e6-450cd0afe626",
+        "eosc_id": "provider_structure_type-distributed"
     },
     {
         "fields": {
@@ -21,7 +23,8 @@
             "name": "Mobile"
         },
         "model": "accounts.structure",
-        "pk": "32ad4e54-3c25-46aa-bed4-e1e1a637aedf"
+        "pk": "32ad4e54-3c25-46aa-bed4-e1e1a637aedf",
+        "eosc_id": "provider_structure_type-mobile"
     },
     {
         "fields": {
@@ -29,7 +32,8 @@
             "name": "Virtual"
         },
         "model": "accounts.structure",
-        "pk": "ae59b48c-4109-493f-a979-f7dc48afbd5c"
+        "pk": "ae59b48c-4109-493f-a979-f7dc48afbd5c",
+        "eosc_id": "provider_structure_type-virtual"
     },
     {
         "fields": {
@@ -37,6 +41,7 @@
             "name": "Single-sited"
         },
         "model": "accounts.structure",
-        "pk": "ed8c6549-9015-49df-b4c0-f6a18a5b94d3"
+        "pk": "ed8c6549-9015-49df-b4c0-f6a18a5b94d3",
+        "eosc_id": "provider_structure_type-single_sited"
     }
 ]

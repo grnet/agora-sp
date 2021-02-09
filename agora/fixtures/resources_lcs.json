@@ -5,7 +5,8 @@
             "name": "Other"
         },
         "model": "service.lifecyclestatus",
-        "pk": "0525009f-a9e2-4f63-bb9a-922736cb7b67"
+        "pk": "0525009f-a9e2-4f63-bb9a-922736cb7b67",
+        "eosc_id": "life_cycle_status-other"
     },
     {
         "fields": {
@@ -13,7 +14,8 @@
             "name": "Operation"
         },
         "model": "service.lifecyclestatus",
-        "pk": "2bf6908f-f438-4a44-b06f-3c8efc2c5c74"
+        "pk": "2bf6908f-f438-4a44-b06f-3c8efc2c5c74",
+        "eosc_id": "life_cycle_status-operation"
     },
     {
         "fields": {
@@ -21,7 +23,8 @@
             "name": "Concept"
         },
         "model": "service.lifecyclestatus",
-        "pk": "3746bb1d-6b19-4238-b529-23359979cab2"
+        "pk": "3746bb1d-6b19-4238-b529-23359979cab2",
+        "eosc_id": "life_cycle_status-concept"
     },
     {
         "fields": {
@@ -29,7 +32,8 @@
             "name": "Production"
         },
         "model": "service.lifecyclestatus",
-        "pk": "431f335f-7416-4be2-9c79-5908fdc09cc0"
+        "pk": "431f335f-7416-4be2-9c79-5908fdc09cc0",
+        "eosc_id": "life_cycle_status-production"
     },
     {
         "fields": {
@@ -37,7 +41,8 @@
             "name": "Termination"
         },
         "model": "service.lifecyclestatus",
-        "pk": "53c119d1-d2b3-429d-bdb0-6a332b28a160"
+        "pk": "53c119d1-d2b3-429d-bdb0-6a332b28a160",
+        "eosc_id": "life_cycle_status-termination"
     },
     {
         "fields": {
@@ -45,7 +50,8 @@
             "name": "Discovery"
         },
         "model": "service.lifecyclestatus",
-        "pk": "73d76a0e-1e21-46e5-b5c9-51536f74992b"
+        "pk": "73d76a0e-1e21-46e5-b5c9-51536f74992b",
+        "eosc_id": "life_cycle_status-discovery"
     },
     {
         "fields": {
@@ -53,7 +59,8 @@
             "name": "Implementation"
         },
         "model": "service.lifecyclestatus",
-        "pk": "83675dd8-41d3-4ec7-9fd0-ecbaef6106e5"
+        "pk": "83675dd8-41d3-4ec7-9fd0-ecbaef6106e5",
+        "eosc_id": "life_cycle_status-implementation"
     },
     {
         "fields": {
@@ -61,7 +68,8 @@
             "name": "Planned"
         },
         "model": "service.lifecyclestatus",
-        "pk": "a001d7fc-4671-4a26-8b14-705d6c252979"
+        "pk": "a001d7fc-4671-4a26-8b14-705d6c252979",
+        "eosc_id": "life_cycle_status-planned"
     },
     {
         "fields": {
@@ -69,7 +77,8 @@
             "name": "Retirement"
         },
         "model": "service.lifecyclestatus",
-        "pk": "a871b7b1-0637-45a2-886e-60f447a3c20c"
+        "pk": "a871b7b1-0637-45a2-886e-60f447a3c20c",
+        "eosc_id": "life_cycle_status-retirement"
     },
     {
         "fields": {
@@ -77,7 +86,8 @@
             "name": "Beta"
         },
         "model": "service.lifecyclestatus",
-        "pk": "a89291ef-04ae-40f2-a7ec-e221707651c6"
+        "pk": "a89291ef-04ae-40f2-a7ec-e221707651c6",
+        "eosc_id": "life_cycle_status-beta"
     },
     {
         "fields": {
@@ -85,7 +95,8 @@
             "name": "Alpha"
         },
         "model": "service.lifecyclestatus",
-        "pk": "b4cdca46-ca9a-4e8c-a60f-eb53f9a86910"
+        "pk": "b4cdca46-ca9a-4e8c-a60f-eb53f9a86910",
+        "eosc_id": "life_cycle_status-alpha"
     },
     {
         "fields": {
@@ -93,7 +104,8 @@
             "name": "Design"
         },
         "model": "service.lifecyclestatus",
-        "pk": "c490fbb9-1362-4158-858d-3b6fb3e2b0fb"
+        "pk": "c490fbb9-1362-4158-858d-3b6fb3e2b0fb",
+        "eosc_id": "life_cycle_status-design"
     },
     {
         "fields": {
@@ -101,7 +113,8 @@
             "name": "Preparation"
         },
         "model": "service.lifecyclestatus",
-        "pk": "ca92649a-87bb-4a9d-89a7-52950dd3a90a"
+        "pk": "ca92649a-87bb-4a9d-89a7-52950dd3a90a",
+        "eosc_id": "life_cycle_status-preparation"
     },
     {
         "fields": {
@@ -109,6 +122,7 @@
             "name": "In containment"
         },
         "model": "service.lifecyclestatus",
-        "pk": "d05b108f-e8ef-40f1-9af7-3947326b3566"
+        "pk": "d05b108f-e8ef-40f1-9af7-3947326b3566",
+        "eosc_id": "life_cycle_status-in_containment"
     }
 ]
