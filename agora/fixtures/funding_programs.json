@@ -4,902 +4,1031 @@
             "name": "Emergency Aid Reserve (EAR2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "0461c08c-5982-406c-b1cb-988ac4d3570d"
+        "pk": "0461c08c-5982-406c-b1cb-988ac4d3570d",
+        "eosc_id": "funding_program-ear2020"
     },
     {
         "fields": {
             "name": "Cohesion Fund (CF)"
         },
         "model": "service.fundingprogram",
-        "pk": "0e6d7bac-0670-401e-9423-b63cdf50c3f9"
+        "pk": "0e6d7bac-0670-401e-9423-b63cdf50c3f9",
+        "eosc_id": "funding_program-cf"
     },
     {
         "fields": {
             "name": "EU Aid Volunteers initiative (EUAV)"
         },
         "model": "service.fundingprogram",
-        "pk": "101818d7-e735-4530-9144-3b1bb78d7cbd"
+        "pk": "101818d7-e735-4530-9144-3b1bb78d7cbd",
+        "eosc_id": "funding_program-euav"
     },
     {
         "fields": {
-            "name": "Swedish Research Council (VR) - Sweden"
+            "name": "Swedish Research Council (VR)"
         },
         "model": "service.fundingprogram",
-        "pk": "1297484a-a841-41bc-87e7-78ddd384856b"
+        "pk": "1297484a-a841-41bc-87e7-78ddd384856b",
+        "eosc_id": "funding_body-vr"
     },
     {
         "fields": {
             "name": "Outermost and sparsely populated regions (OUTREG)"
         },
         "model": "service.fundingprogram",
-        "pk": "17094716-54f2-48e7-9d0d-086574584c34"
+        "pk": "17094716-54f2-48e7-9d0d-086574584c34",
+        "eosc_id": "funding_program-outreg"
     },
     {
         "fields": {
             "name": "Euratom research and training programme (EURATOM)"
         },
         "model": "service.fundingprogram",
-        "pk": "170b8533-480e-4659-9a43-25fdc46e9d50"
+        "pk": "170b8533-480e-4659-9a43-25fdc46e9d50",
+        "eosc_id": "funding_program-euratom"
     },
     {
         "fields": {
             "name": "Contribution from the Cohesion Fund to the CEF programme (CF_DET)"
         },
         "model": "service.fundingprogram",
-        "pk": "1a49b128-c8e6-488e-b7c6-2874dda663c3"
+        "pk": "1a49b128-c8e6-488e-b7c6-2874dda663c3",
+        "eosc_id": "funding_program-cf_det"
     },
     {
         "fields": {
-            "name": "Research Council UK (RCUK) - United Kingdom"
+            "name": "Research Council UK (RCUK)"
         },
         "model": "service.fundingprogram",
-        "pk": "1c64bd1e-2e60-4dd5-a8dd-30264b10f3cd"
+        "pk": "1c64bd1e-2e60-4dd5-a8dd-30264b10f3cd",
+        "eosc_id": "funding_body-rcuk"
     },
     {
         "fields": {
             "name": "Other"
         },
         "model": "service.fundingprogram",
-        "pk": "1dbc7595-ca6a-48c9-8b14-e80cff64e1ab"
+        "pk": "1dbc7595-ca6a-48c9-8b14-e80cff64e1ab",
+        "eosc_id": "funding_body-other"
     },
     {
         "fields": {
             "name": "European Maritime and Fisheries Fund (EMFF2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "1e5d52a2-bf79-4cf8-aecc-4f5bdec266b6"
+        "pk": "1e5d52a2-bf79-4cf8-aecc-4f5bdec266b6",
+        "eosc_id": "funding_program-emff2020"
     },
     {
         "fields": {
             "name": "Instrument contributing to Stability and Peace (IFS2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "1e619e11-8f65-4758-ad26-d743cb430e64"
+        "pk": "1e619e11-8f65-4758-ad26-d743cb430e64",
+        "eosc_id": "funding_program-ifs2020"
     },
     {
         "fields": {
             "name": "International thermonuclear experimental reactor (ITER)"
         },
         "model": "service.fundingprogram",
-        "pk": "1f523483-e624-476e-9714-8b86492cea04"
+        "pk": "1f523483-e624-476e-9714-8b86492cea04",
+        "eosc_id": "funding_program-iter"
     },
     {
         "fields": {
-            "name": "Scientific Grant Agency (VEGA) - Slovakia"
+            "name": "Scientific Grant Agency (VEGA)"
         },
         "model": "service.fundingprogram",
-        "pk": "23953745-620f-4b35-82dd-5d90944754d9"
+        "pk": "23953745-620f-4b35-82dd-5d90944754d9",
+        "eosc_id": "funding_body-vega"
     },
     {
         "fields": {
             "name": "Connecting Europe Facility (CEF)"
         },
         "model": "service.fundingprogram",
-        "pk": "25849999-609d-42fb-ac2c-88d8c280e431"
+        "pk": "25849999-609d-42fb-ac2c-88d8c280e431",
+        "eosc_id": "funding_program-cef"
     },
     {
         "fields": {
             "name": "Partnership instrument for cooperation with third countries (PI)"
         },
         "model": "service.fundingprogram",
-        "pk": "2708d29f-2ca8-4dbb-880a-e6f266e68eaa"
+        "pk": "2708d29f-2ca8-4dbb-880a-e6f266e68eaa",
+        "eosc_id": "funding_program-pi"
     },
     {
         "fields": {
             "name": "Instrument for emergency support within the Union (IES)"
         },
         "model": "service.fundingprogram",
-        "pk": "280f22d2-7907-49a1-abfe-08f27bab8136"
+        "pk": "280f22d2-7907-49a1-abfe-08f27bab8136",
+        "eosc_id": "funding_program-ies"
     },
     {
         "fields": {
-            "name": "Netherlands Organisation for Scientific Research (NWO) - Netherlands"
+            "name": "Netherlands Organisation for Scientific Research (NWO)"
         },
         "model": "service.fundingprogram",
-        "pk": "2919270f-185c-4d7e-86d2-4199367e7fb6"
+        "pk": "2919270f-185c-4d7e-86d2-4199367e7fb6",
+        "eosc_id": "funding_body-nwo"
     },
     {
         "fields": {
             "name": "Common foreign and security policy (CFSP2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "2da77f44-4e09-4893-b8fc-a6e2830ff1cb"
+        "pk": "2da77f44-4e09-4893-b8fc-a6e2830ff1cb",
+        "eosc_id": "funding_program-cfsp"
     },
     {
         "fields": {
-            "name": "Action programme for customs in the European Union (CUST2020)"
+            "name": "Action programme for customs in the European Union (CUST 2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "323323c7-8cd2-4b29-9662-e8e346dfeb1c"
+        "pk": "323323c7-8cd2-4b29-9662-e8e346dfeb1c",
+        "eosc_id": "funding_program-cust2020"
     },
     {
         "fields": {
             "name": "European Agricultural Fund for Rural Development (EAFRD2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "327cc66e-6521-4756-a4f7-6488b09ba6b5"
+        "pk": "327cc66e-6521-4756-a4f7-6488b09ba6b5",
+        "eosc_id": "funding_program-eafrd2020"
     },
     {
         "fields": {
             "name": "Enhancing consumers involvement in EU policy making in the field of financial services (ICFS)"
         },
         "model": "service.fundingprogram",
-        "pk": "3302e65c-5e8b-49fe-b1ae-9d5d2d26e2b2"
+        "pk": "3302e65c-5e8b-49fe-b1ae-9d5d2d26e2b2",
+        "eosc_id": "funding_program-icfs"
     },
     {
         "fields": {
             "name": "Visa Information System (VIS2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "3858b339-c54f-4550-9883-67388da6f391"
+        "pk": "3858b339-c54f-4550-9883-67388da6f391",
+        "eosc_id": "funding_program-vis2020"
     },
     {
         "fields": {
             "name": "European Union Solidarity Fund (EUSF) \u2014 Member States (EUSF_H3)"
         },
         "model": "service.fundingprogram",
-        "pk": "38ffc1c4-e57a-4cc6-9983-82527413b327"
+        "pk": "38ffc1c4-e57a-4cc6-9983-82527413b327",
+        "eosc_id": "funding_program-eusf_h3"
     },
     {
         "fields": {
-            "name": "Research Council of Lithuania (LMT) - Lithuania"
+            "name": "Research Council of Lithuania (LMT)"
         },
         "model": "service.fundingprogram",
-        "pk": "3e5b5ab8-9b7b-4ea0-9b8d-caf6db91068c"
+        "pk": "3e5b5ab8-9b7b-4ea0-9b8d-caf6db91068c",
+        "eosc_id": "funding_body-lmt"
     },
     {
         "fields": {
             "name": "Technical assistance and innovative actions (TA_IA)"
         },
         "model": "service.fundingprogram",
-        "pk": "3f69ef61-deae-4067-9ce3-db6a1220b081"
+        "pk": "3f69ef61-deae-4067-9ce3-db6a1220b081",
+        "eosc_id": "funding_program-ta_ia"
     },
     {
         "fields": {
             "name": "European Solidarity Corps (ESC)"
         },
         "model": "service.fundingprogram",
-        "pk": "4003d493-1411-433f-8164-62e570e3c6dd"
+        "pk": "4003d493-1411-433f-8164-62e570e3c6dd",
+        "eosc_id": "funding_program-esc"
     },
     {
         "fields": {
             "name": "Development Cooperation Instrument (DCI2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "436f18a7-b1f9-43f5-8a3e-8d43cf658216"
+        "pk": "436f18a7-b1f9-43f5-8a3e-8d43cf658216",
+        "eosc_id": "funding_program-dci2020"
     },
     {
         "fields": {
-            "name": "Swedish Foundation for Strategic Environmental Research (MISTRA) - Sweden"
+            "name": "Swedish Foundation for Strategic Environmental Research (MISTRA)"
         },
         "model": "service.fundingprogram",
-        "pk": "4505a2ab-b35e-4290-b48b-96e43ea9c2f5"
+        "pk": "4505a2ab-b35e-4290-b48b-96e43ea9c2f5",
+        "eosc_id": "funding_body-mistra"
     },
     {
         "fields": {
-            "name": "Volkswagen Foundation (VS) - Germany"
+            "name": "Volkswagen Foundation (VS)"
         },
         "model": "service.fundingprogram",
-        "pk": "4597ff67-f96b-4dbe-bfd8-e22c4e8e04f8"
+        "pk": "4597ff67-f96b-4dbe-bfd8-e22c4e8e04f8",
+        "eosc_id": "funding_body-vs"
     },
     {
         "fields": {
-            "name": "Social Sciences and Humanities Research Council (SSHRC) - Canada"
+            "name": "Social Sciences and Humanities Research Council (SSHRC)"
         },
         "model": "service.fundingprogram",
-        "pk": "45e9d649-47c6-49b7-b7ee-47d9436cc1fa"
+        "pk": "45e9d649-47c6-49b7-b7ee-47d9436cc1fa",
+        "eosc_id": "funding_body-sshrc"
     },
     {
         "fields": {
             "name": "Specific activities in the field of financial reporting and auditing (FINSER2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "489418a3-1e4d-49b2-8727-535c88a0a071"
+        "pk": "489418a3-1e4d-49b2-8727-535c88a0a071",
+        "eosc_id": "funding_program-finser2020"
     },
     {
         "fields": {
-            "name": "Swedish Research Council for Health, Working Life and Welfare (FORTE) - Sweden"
+            "name": "Swedish Research Council for Health, Working Life and Welfare (FORTE)"
         },
         "model": "service.fundingprogram",
-        "pk": "4a8633d8-8449-46f4-b32f-cae52c938655"
+        "pk": "4a8633d8-8449-46f4-b32f-cae52c938655",
+        "eosc_id": "funding_body-forte"
     },
     {
         "fields": {
-            "name": "National Science Foundation (NSF) - United States"
+            "name": "National Science Foundation (NSF)"
         },
         "model": "service.fundingprogram",
-        "pk": "4d0f46bf-b530-499d-aea7-a09f09f00ad4"
+        "pk": "4d0f46bf-b530-499d-aea7-a09f09f00ad4",
+        "eosc_id": "funding_body-nsf"
     },
     {
         "fields": {
             "name": "Internal Security Fund (ISF)"
         },
         "model": "service.fundingprogram",
-        "pk": "4db88de3-ce9b-4ab0-bcd7-27c02baa9f7c"
+        "pk": "4db88de3-ce9b-4ab0-bcd7-27c02baa9f7c",
+        "eosc_id": "funding_program-isf"
     },
     {
         "fields": {
             "name": "Guarantee Fund for external actions (LOAN2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "50ca4d33-8dda-408d-81d7-aa25671db580"
+        "pk": "50ca4d33-8dda-408d-81d7-aa25671db580",
+        "eosc_id": "funding_program-loan2020"
     },
     {
         "fields": {
             "name": "Exchange, assistance and training programme for the protection of the euro against counterfeiting (PERI2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "52c4ee57-3cd1-4393-bcc1-7366e0f0f519"
+        "pk": "52c4ee57-3cd1-4393-bcc1-7366e0f0f519",
+        "eosc_id": "funding_program-peri2020"
     },
     {
         "fields": {
             "name": "European Globalisation Adjustment Fund (EGF2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "5434b5d1-697b-410a-a3a1-b9034cc95e06"
+        "pk": "5434b5d1-697b-410a-a3a1-b9034cc95e06",
+        "eosc_id": "funding_program-egf2020"
     },
     {
         "fields": {
-            "name": "Science Foundation Ireland (SFI) - Ireland"
+            "name": "Ireland"
         },
         "model": "service.fundingprogram",
-        "pk": "554864cb-8a60-4f55-b004-a3c262703e60"
+        "pk": "554864cb-8a60-4f55-b004-a3c262703e60",
+        "eosc_id": "IE"
     },
     {
         "fields": {
-            "name": "Natural Environment Research Council (NERC) - United Kingdom"
+            "name": "Natural Environment Research Council (NERC)"
         },
         "model": "service.fundingprogram",
-        "pk": "5794ac21-855b-4ac7-bd68-59d02887d43e"
+        "pk": "5794ac21-855b-4ac7-bd68-59d02887d43e",
+        "eosc_id": "funding_body-nerc"
     },
     {
         "fields": {
-            "name": "Spanish National Research Council (CSIC) - Spain"
+            "name": "Spanish National Research Council (CSIC)"
         },
         "model": "service.fundingprogram",
-        "pk": "5b134ef7-703d-49d1-b7ef-ebaed5a6c17f"
+        "pk": "5b134ef7-703d-49d1-b7ef-ebaed5a6c17f",
+        "eosc_id": "funding_body-csic"
     },
     {
         "fields": {
             "name": "European statistical programme (ESP2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "5c08db5a-fb3e-4105-986a-d63ecb966ac1"
+        "pk": "5c08db5a-fb3e-4105-986a-d63ecb966ac1",
+        "eosc_id": "funding_program-esp2020"
     },
     {
         "fields": {
-            "name": "National Research, Development and Innovation Fund (NKFIA) - Hungary"
+            "name": "National Research, Development and Innovation Fund (NKFIA)"
         },
         "model": "service.fundingprogram",
-        "pk": "5d0bda02-6802-41ad-b7b6-49f86d451d58"
+        "pk": "5d0bda02-6802-41ad-b7b6-49f86d451d58",
+        "eosc_id": "funding_body-nkfia"
     },
     {
         "fields": {
             "name": "Transition regions (TRANSREG)"
         },
         "model": "service.fundingprogram",
-        "pk": "5e5600b4-62e3-4ce8-b3cf-02c291364d2c"
+        "pk": "5e5600b4-62e3-4ce8-b3cf-02c291364d2c",
+        "eosc_id": "funding_program-transreg"
     },
     {
         "fields": {
             "name": "European Earth Observation Programme (COPERNICUS)"
         },
         "model": "service.fundingprogram",
-        "pk": "5fca24fa-a87e-49e5-a3db-8585b43548f4"
+        "pk": "5fca24fa-a87e-49e5-a3db-8585b43548f4",
+        "eosc_id": "funding_program-copernicus"
     },
     {
         "fields": {
             "name": "European Agricultural Fund for Rural Development (after transfers between EAGF and EAFRD) (EAFRD)"
         },
         "model": "service.fundingprogram",
-        "pk": "60270f6e-f7f1-437b-a4c0-0410037961d9"
+        "pk": "60270f6e-f7f1-437b-a4c0-0410037961d9",
+        "eosc_id": "funding_program-eafrd"
     },
     {
         "fields": {
-            "name": "Research Promotion Foundation (RPF) - Cyprus"
+            "name": "Research Promotion Foundation (RPF)"
         },
         "model": "service.fundingprogram",
-        "pk": "61b6e3fb-74e6-4aca-9d74-ebeb931424d6"
+        "pk": "61b6e3fb-74e6-4aca-9d74-ebeb931424d6",
+        "eosc_id": "funding_body-rpf"
     },
     {
         "fields": {
-            "name": "Youth employment initiative (specific top-up allocation) (YEI)"
+            "name": "Youth employment initiative (specific top-up allocation) (YEI))"
         },
         "model": "service.fundingprogram",
-        "pk": "64e95638-4301-496a-99b2-76124a95ce72"
+        "pk": "64e95638-4301-496a-99b2-76124a95ce72",
+        "eosc_id": "funding_program-yei"
     },
     {
         "fields": {
             "name": "European Union Solidarity Fund (EUSF2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "667ee9ed-9e99-4976-9ac5-7e52411d7d07"
+        "pk": "667ee9ed-9e99-4976-9ac5-7e52411d7d07",
+        "eosc_id": "funding_program-eusf2020"
     },
     {
         "fields": {
-            "name": "Natural Sciences and Engineering Research Council of Canada (NSERC) - Canada"
+            "name": "Natural Sciences and Engineering Research Council of Canada (NSERC)"
         },
         "model": "service.fundingprogram",
-        "pk": "668c7679-5a14-40c8-af7e-e7d916c59836"
+        "pk": "668c7679-5a14-40c8-af7e-e7d916c59836",
+        "eosc_id": "funding_body-nserc"
     },
     {
         "fields": {
             "name": "Union Civil Protection Mechanism \u2014 Outside EU (CPM_H4)"
         },
         "model": "service.fundingprogram",
-        "pk": "6696c8f7-7625-473d-8318-9ed90c887a86"
+        "pk": "6696c8f7-7625-473d-8318-9ed90c887a86",
+        "eosc_id": "funding_program-cpm_h4"
     },
     {
         "fields": {
             "name": "Asylum, Migration and Integration Fund (AMF)"
         },
         "model": "service.fundingprogram",
-        "pk": "6a874fa0-9c5d-480f-887e-23dc0fa2a935"
+        "pk": "6a874fa0-9c5d-480f-887e-23dc0fa2a935",
+        "eosc_id": "funding_program-amf"
     },
     {
         "fields": {
             "name": "Programme for the Environment and Climate Action (LIFE2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "6b1355a3-838f-4a1c-97c6-3e53db88eb69"
+        "pk": "6b1355a3-838f-4a1c-97c6-3e53db88eb69",
+        "eosc_id": "funding_program-life2020"
     },
     {
         "fields": {
             "name": "Rights, equality and citizenship programme (CDF2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "6c7f5391-6214-4f2f-b308-9c1288f7fde4"
+        "pk": "6c7f5391-6214-4f2f-b308-9c1288f7fde4",
+        "eosc_id": "funding_program-cdf2020"
     },
     {
         "fields": {
-            "name": "Regional convergence (less developed regions) (REGCONV)"
+            "name": "Regional convergence (REGCONV)"
         },
         "model": "service.fundingprogram",
-        "pk": "6ceccbf1-928e-4b36-bd69-c3b5f4f92381"
+        "pk": "6ceccbf1-928e-4b36-bd69-c3b5f4f92381",
+        "eosc_id": "funding_program-regconv"
     },
     {
         "fields": {
             "name": "Humanitarian aid (HUMA2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "6f58056f-7a5d-41e9-b66e-41b1bd9f1c61"
+        "pk": "6f58056f-7a5d-41e9-b66e-41b1bd9f1c61",
+        "eosc_id": "funding_program-huma2020"
     },
     {
         "fields": {
             "name": "Interoperability Solutions for European public administrations, businesses and citizens (ISA2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "6fe09992-df8b-45a1-b094-0ca49e7698f8"
+        "pk": "6fe09992-df8b-45a1-b094-0ca49e7698f8",
+        "eosc_id": "funding_program-isa2020"
     },
     {
         "fields": {
             "name": "The framework programme for research and innovation (H2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "71013420-d5be-4fbc-b863-8af35c548c29"
+        "pk": "71013420-d5be-4fbc-b863-8af35c548c29",
+        "eosc_id": "funding_program-h2020"
     },
     {
         "fields": {
             "name": "EU cooperation with Greenland (GRLD2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "7252f05c-ba3d-4a74-98f9-118a94d2bad6"
+        "pk": "7252f05c-ba3d-4a74-98f9-118a94d2bad6",
+        "eosc_id": "funding_program-grld2020"
     },
     {
         "fields": {
             "name": "European statistical programme (ESP2017)"
         },
         "model": "service.fundingprogram",
-        "pk": "731698b4-4f59-48d5-856e-a463627cfd51"
+        "pk": "731698b4-4f59-48d5-856e-a463627cfd51",
+        "eosc_id": "funding_program-esp2017"
     },
     {
         "fields": {
             "name": "Programme for the competitiveness of enterprises and small and medium-sized enterprises (COSME)"
         },
         "model": "service.fundingprogram",
-        "pk": "73ea4e5e-5a04-4579-9329-d3d29104967e"
+        "pk": "73ea4e5e-5a04-4579-9329-d3d29104967e",
+        "eosc_id": "funding_program-cosme"
     },
     {
         "fields": {
             "name": "Schengen Information System (SIS2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "78fc9b89-c9a4-48aa-8407-e1ca8ac7b7b2"
+        "pk": "78fc9b89-c9a4-48aa-8407-e1ca8ac7b7b2",
+        "eosc_id": "funding_program-sis2020"
     },
     {
         "fields": {
             "name": "European Agricultural Guarantee Fund (EAGF2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "7b3d7c89-c508-44ac-8a29-338703c815de"
+        "pk": "7b3d7c89-c508-44ac-8a29-338703c815de",
+        "eosc_id": "funding_program-eagf2020"
     },
     {
         "fields": {
             "name": "National University Research Council (CNCSIS) - Romania"
         },
         "model": "service.fundingprogram",
-        "pk": "7cce63d0-8af8-48a0-82ad-3e6f5acf7980"
+        "pk": "7cce63d0-8af8-48a0-82ad-3e6f5acf7980",
+        "eosc_id": "funding_body-cncsis"
     },
     {
         "fields": {
-            "name": "Vienna Science and Technology Fund (WWTF) - Austria"
+            "name": "Vienna Science and Technology Fund (WWTF)"
         },
         "model": "service.fundingprogram",
-        "pk": "7e813d69-2382-4a47-bf7f-a0324d72bc8d"
+        "pk": "7e813d69-2382-4a47-bf7f-a0324d72bc8d",
+        "eosc_id": "funding_body-wwtf"
     },
     {
         "fields": {
-            "name": "Wellcome trust (WT) - United Kingdom"
+            "name": "Wellcome trust (WT)"
         },
         "model": "service.fundingprogram",
-        "pk": "7e888045-1fb8-43b0-9012-1317cb1a47ac"
+        "pk": "7e888045-1fb8-43b0-9012-1317cb1a47ac",
+        "eosc_id": "funding_body-wt"
     },
     {
         "fields": {
             "name": "European Fund for Sustainable Development (EFSD)"
         },
         "model": "service.fundingprogram",
-        "pk": "7e9d20fb-6b61-4731-a359-9e13b98a7948"
+        "pk": "7e9d20fb-6b61-4731-a359-9e13b98a7948",
+        "eosc_id": "funding_program-efsd"
     },
     {
         "fields": {
             "name": "European Instrument for Democracy and Human Rights (EIDHR2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "7f926d25-254f-401d-ab87-e72e7a58e05d"
+        "pk": "7f926d25-254f-401d-ab87-e72e7a58e05d",
+        "eosc_id": "funding_program-eidhr2020"
     },
     {
         "fields": {
             "name": "Justice programme (JUST)"
         },
         "model": "service.fundingprogram",
-        "pk": "81c770c5-176a-49bd-b3cb-82bc57592edc"
+        "pk": "81c770c5-176a-49bd-b3cb-82bc57592edc",
+        "eosc_id": "funding_program-just"
     },
     {
         "fields": {
-            "name": "Technology Foundation (STW) - Netherlands"
+            "name": "Technology Foundation (STW)"
         },
         "model": "service.fundingprogram",
-        "pk": "855037f8-9fd2-41f4-99d3-b36063575816"
+        "pk": "855037f8-9fd2-41f4-99d3-b36063575816",
+        "eosc_id": "funding_body-stw"
     },
     {
         "fields": {
             "name": "Implementation and exploitation of European satellite navigation systems (EGNOS and Galileo) (GAL2014)"
         },
         "model": "service.fundingprogram",
-        "pk": "87efd223-0b6c-4c9a-a336-2c4b06edad92"
+        "pk": "87efd223-0b6c-4c9a-a336-2c4b06edad92",
+        "eosc_id": "funding_program-gal2014"
     },
     {
         "fields": {
-            "name": "Swedish Energy Agency - Sweden"
+            "name": "Swedish Energy Agency (SEA)"
         },
         "model": "service.fundingprogram",
-        "pk": "880120bd-1c21-44f2-bfd9-ee2f66985f2a"
+        "pk": "880120bd-1c21-44f2-bfd9-ee2f66985f2a",
+        "eosc_id": "funding_body-sea"
     },
     {
         "fields": {
-            "name": "The Icelandic Centre for Research (RANNIS) - Iceland"
+            "name": "Icelandic Centre for Research (RANNIS)"
         },
         "model": "service.fundingprogram",
-        "pk": "897f257a-886e-4020-8d38-21523fb87c3d"
+        "pk": "897f257a-886e-4020-8d38-21523fb87c3d",
+        "eosc_id": "funding_body-rannis"
     },
     {
         "fields": {
-            "name": "The Ministry of Education, Science, Research and Sports of the Slovak Republic (MSVVaS SR) - Slovakia"
+            "name": "The Ministry of Education, Science, Research and Sports of the Slovak Republic (MSVVaS SR)"
         },
         "model": "service.fundingprogram",
-        "pk": "8d28cbbd-7a60-433a-9e1f-aa214c5331a5"
+        "pk": "8d28cbbd-7a60-433a-9e1f-aa214c5331a5",
+        "eosc_id": "funding_body-msvvas_sr"
     },
     {
         "fields": {
             "name": "Programme to promote activities in the field of the protection of the European Union's financial interests (HERC3)"
         },
         "model": "service.fundingprogram",
-        "pk": "8f646e84-abc9-4e7b-894d-e0a377aabb73"
+        "pk": "8f646e84-abc9-4e7b-894d-e0a377aabb73",
+        "eosc_id": "funding_program-herc3"
     },
     {
         "fields": {
             "name": "Compulsory contributions to regional fisheries management organisations (RFMOs) and to other international organisations"
         },
         "model": "service.fundingprogram",
-        "pk": "907cba92-d2eb-4cb0-ad51-7f8a669c9cd6"
+        "pk": "907cba92-d2eb-4cb0-ad51-7f8a669c9cd6",
+        "eosc_id": "funding_program-rfmos"
     },
     {
         "fields": {
             "name": "Instrument of financial support for encouraging the economic development of the Turkish Cypriot community (TCC)"
         },
         "model": "service.fundingprogram",
-        "pk": "96652c85-a652-4664-8b77-99633b2f1ea3"
+        "pk": "96652c85-a652-4664-8b77-99633b2f1ea3",
+        "eosc_id": "funding_program-tcc"
     },
     {
         "fields": {
-            "name": "Swedish Governmental Agency for Innovation Systems (VINNOVA) - Sweden"
+            "name": "Swedish Governmental Agency for Innovation Systems (VINNOVA)"
         },
         "model": "service.fundingprogram",
-        "pk": "96b57a58-9315-4c9c-8cbe-355abb71a5da"
+        "pk": "96b57a58-9315-4c9c-8cbe-355abb71a5da",
+        "eosc_id": "funding_body-vinnova"
     },
     {
         "fields": {
             "name": "Instrument for Nuclear Safety Cooperation (INSC2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "9b0d3ece-24c0-4630-ac75-85048c0af6f4"
+        "pk": "9b0d3ece-24c0-4630-ac75-85048c0af6f4",
+        "eosc_id": "funding_program-insc2020"
     },
     {
         "fields": {
             "name": "Sustainable Fisheries Partnership Agreements (SFPAs)"
         },
         "model": "service.fundingprogram",
-        "pk": "9bccd06b-ca7c-4915-8b76-dbb0b6ea1887"
+        "pk": "9bccd06b-ca7c-4915-8b76-dbb0b6ea1887",
+        "eosc_id": "funding_program-sfpas"
     },
     {
         "fields": {
-            "name": "UK Research and Innovation (UKRI) - United Kingdom"
+            "name": "UK Research and Innovation (UKRI)"
         },
         "model": "service.fundingprogram",
-        "pk": "9c2e13e4-f301-42c1-b195-95ca4206ff6e"
+        "pk": "9c2e13e4-f301-42c1-b195-95ca4206ff6e",
+        "eosc_id": "funding_body-ukri"
     },
     {
         "fields": {
             "name": "European Union programme for employment and social innovation (PSCI)"
         },
         "model": "service.fundingprogram",
-        "pk": "a0adc7d8-0386-41fe-b02e-cb20e6b3c178"
+        "pk": "a0adc7d8-0386-41fe-b02e-cb20e6b3c178",
+        "eosc_id": "funding_program-psci"
     },
     {
         "fields": {
-            "name": "Slovenian Research Agency (ARRS) - Slovenia"
+            "name": "Slovenian Research Agency (ARRS)"
         },
         "model": "service.fundingprogram",
-        "pk": "a1b4ae31-3ec4-403d-ba6c-1eb322a504cd"
+        "pk": "a1b4ae31-3ec4-403d-ba6c-1eb322a504cd",
+        "eosc_id": "funding_body-arrs"
     },
     {
         "fields": {
             "name": "Food and feed (FF2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "a42e8c1b-788c-439b-b6f5-c8feac899555"
+        "pk": "a42e8c1b-788c-439b-b6f5-c8feac899555",
+        "eosc_id": "funding_program-ff2020"
     },
     {
         "fields": {
-            "name": "Swiss National Science Foundation (SNF) - Switzerland"
+            "name": "Swiss National Science Foundation (SNF)"
         },
         "model": "service.fundingprogram",
-        "pk": "aa3c2b08-26c8-49bb-9583-8ec48104150d"
+        "pk": "aa3c2b08-26c8-49bb-9583-8ec48104150d",
+        "eosc_id": "funding_body-snf"
     },
     {
         "fields": {
             "name": "Interoperability Solutions for European Public Administrations (ISA2015)"
         },
         "model": "service.fundingprogram",
-        "pk": "aba502b6-5a3e-4252-95c1-0b34474da877"
+        "pk": "aba502b6-5a3e-4252-95c1-0b34474da877",
+        "eosc_id": "funding_program-isa2015"
     },
     {
         "fields": {
             "name": "European Neighbourhood Instrument (ENI)"
         },
         "model": "service.fundingprogram",
-        "pk": "ac6f554d-0e74-43b8-9f18-a68af68138dc"
+        "pk": "ac6f554d-0e74-43b8-9f18-a68af68138dc",
+        "eosc_id": "funding_program-eni"
     },
     {
         "fields": {
             "name": "Energy projects to aid economic recovery (EERP)"
         },
         "model": "service.fundingprogram",
-        "pk": "ad61f48a-0a53-4b56-a80f-96bd7390c736"
+        "pk": "ad61f48a-0a53-4b56-a80f-96bd7390c736",
+        "eosc_id": "funding_program-eerp"
     },
     {
         "fields": {
-            "name": "Science and Technology Facilities Council (STFC) - United Kingdom"
+            "name": "Science and Technology Facilities Council (STFC)"
         },
         "model": "service.fundingprogram",
-        "pk": "b0d1ccb9-2079-4e4f-9ca3-d456ee2e721b"
+        "pk": "b0d1ccb9-2079-4e4f-9ca3-d456ee2e721b",
+        "eosc_id": "funding_body-stfc"
     },
     {
         "fields": {
-            "name": "Swedish Radiation Safety Authority - Sweden"
+            "name": "Swedish Radiation Safety Authority (SRSA)"
         },
         "model": "service.fundingprogram",
-        "pk": "b149d3cc-b654-44a9-afb7-d95d9cdd21a7"
+        "pk": "b149d3cc-b654-44a9-afb7-d95d9cdd21a7",
+        "eosc_id": "funding_body-srsa"
     },
     {
         "fields": {
-            "name": "Research and Development Agency (APVV) - Slovakia"
+            "name": "Research and Development Agency (APVV)"
         },
         "model": "service.fundingprogram",
-        "pk": "b3ab7889-d749-4fa7-9d65-3ee4ef3d0137"
+        "pk": "b3ab7889-d749-4fa7-9d65-3ee4ef3d0137",
+        "eosc_id": "funding_body-apvv"
     },
     {
         "fields": {
             "name": "Europe for Citizens (CIT2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "b53c1897-b8b7-45e0-b409-eba815abca41"
+        "pk": "b53c1897-b8b7-45e0-b409-eba815abca41",
+        "eosc_id": "funding_program-cit2020"
     },
     {
         "fields": {
-            "name": "Tara Expeditions Foundation (TARA) - France"
+            "name": "Tara Expeditions Foundation (TARA)"
         },
         "model": "service.fundingprogram",
-        "pk": "b55d218f-e604-4b42-b9c6-b1b6d3476b89"
+        "pk": "b55d218f-e604-4b42-b9c6-b1b6d3476b89",
+        "eosc_id": "funding_body-tara"
     },
     {
         "fields": {
             "name": "European territorial cooperation (TERRCOOP)"
         },
         "model": "service.fundingprogram",
-        "pk": "b58ee05a-f7c3-4091-9425-1f2e623fdd0d"
+        "pk": "b58ee05a-f7c3-4091-9425-1f2e623fdd0d",
+        "eosc_id": "funding_program-terrcoop"
     },
     {
         "fields": {
-            "name": "Scientific and Technological Research Council of Turkey (TUBITAK) - Turkey"
+            "name": "Scientific and Technological Research Council of Turkey (TUBITAK)"
         },
         "model": "service.fundingprogram",
-        "pk": "b5ffbc88-e80d-434d-bf32-4091f4d1eb38"
+        "pk": "b5ffbc88-e80d-434d-bf32-4091f4d1eb38",
+        "eosc_id": "funding_body-tubitak"
     },
     {
         "fields": {
-            "name": "Swedish National Space Board (SNSB) - Sweden"
+            "name": "Swedish National Space Board (SNSB)"
         },
         "model": "service.fundingprogram",
-        "pk": "bbf5f329-17cb-49c5-a45b-1f3e1684cdce"
+        "pk": "bbf5f329-17cb-49c5-a45b-1f3e1684cdce",
+        "eosc_id": "funding_body-snsb"
     },
     {
         "fields": {
             "name": "Anti Fraud Information System (AFIS2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "bcc85f8b-1dff-422b-981d-0ca147a3c985"
+        "pk": "bcc85f8b-1dff-422b-981d-0ca147a3c985",
+        "eosc_id": "funding_program-afis2020"
     },
     {
         "fields": {
-            "name": "S\u00e3o Paulo Research Foundation (FAPESP) - Brazil"
+            "name": "S\u00e3o Paulo Research Foundation (FAPESP)"
         },
         "model": "service.fundingprogram",
-        "pk": "bdd3dfd4-5963-4e7c-8a41-8376505e5c49"
+        "pk": "bdd3dfd4-5963-4e7c-8a41-8376505e5c49",
+        "eosc_id": "funding_body-fapesp"
     },
     {
         "fields": {
             "name": "Fund for European Aid to the Most Deprived (FEAD)"
         },
         "model": "service.fundingprogram",
-        "pk": "bdff5da1-9147-4f08-af3c-fab0d7d256ea"
+        "pk": "bdff5da1-9147-4f08-af3c-fab0d7d256ea",
+        "eosc_id": "funding_program-fead"
     },
     {
         "fields": {
             "name": "Net transfer between EAGF and EAFRD (AGRNET)"
         },
         "model": "service.fundingprogram",
-        "pk": "bf52eb9f-a5bd-4a2d-9416-232f953ccb65"
+        "pk": "bf52eb9f-a5bd-4a2d-9416-232f953ccb65",
+        "eosc_id": "funding_program-agrnet"
     },
     {
         "fields": {
-            "name": "Research Council of Norway (RCN) - Norway"
+            "name": "Norway"
         },
         "model": "service.fundingprogram",
-        "pk": "c3569640-737c-4a80-8888-17a79fc5d89c"
+        "pk": "c3569640-737c-4a80-8888-17a79fc5d89c",
+        "eosc_id": "NO"
     },
     {
         "fields": {
-            "name": "State Education Development Agency (VIAA) - Latvia"
+            "name": "State Education Development Agency (VIAA)"
         },
         "model": "service.fundingprogram",
-        "pk": "c40b3ff7-1e4b-4141-8658-4ccd2c560f8e"
+        "pk": "c40b3ff7-1e4b-4141-8658-4ccd2c560f8e",
+        "eosc_id": "funding_body-viaa"
     },
     {
         "fields": {
-            "name": "National Science Center (NCN) - Poland"
+            "name": "National Science Center (NCN)"
         },
         "model": "service.fundingprogram",
-        "pk": "c4aab9d1-c583-4f4d-bba2-2fa15d203ebc"
+        "pk": "c4aab9d1-c583-4f4d-bba2-2fa15d203ebc",
+        "eosc_id": "funding_body-ncn"
     },
     {
         "fields": {
             "name": "Macro financial assistance (MFA)"
         },
         "model": "service.fundingprogram",
-        "pk": "c74192b2-e0e7-483b-8d0d-de12a25327ef"
+        "pk": "c74192b2-e0e7-483b-8d0d-de12a25327ef",
+        "eosc_id": "funding_program-mfa"
     },
     {
         "fields": {
-            "name": "Swedish Reseach Council Formas - Sweden"
+            "name": "Swedish Reseach Council Formas (SRCF)"
         },
         "model": "service.fundingprogram",
-        "pk": "cc23c63f-d65c-4c0b-a236-1079bc4343e4"
+        "pk": "cc23c63f-d65c-4c0b-a236-1079bc4343e4",
+        "eosc_id": "funding_body-srcf"
     },
     {
         "fields": {
-            "name": "The Swedish Foundation for Humanities and Social Sciences (RJ) - Sweden"
+            "name": "The Swedish Foundation for Humanities and Social Sciences (RJ)"
         },
         "model": "service.fundingprogram",
-        "pk": "cd8f760a-e2ae-4deb-91d4-09907e17c0e1"
+        "pk": "cd8f760a-e2ae-4deb-91d4-09907e17c0e1",
+        "eosc_id": "funding_body-rj"
     },
     {
         "fields": {
             "name": "Supplementary high flux reactor (HFR) programmes (HFR2015)"
         },
         "model": "service.fundingprogram",
-        "pk": "ce371ab7-c07b-4eb0-963d-12a190ad643c"
+        "pk": "ce371ab7-c07b-4eb0-963d-12a190ad643c",
+        "eosc_id": "funding_program-hfr2015"
     },
     {
         "fields": {
-            "name": "The Danish Council for Independent Research (DDF) - Denmark"
+            "name": "The Danish Council for Independent Research (DDF)"
         },
         "model": "service.fundingprogram",
-        "pk": "cf8c4203-73fe-408c-91cd-a4f174ca1a9c"
+        "pk": "cf8c4203-73fe-408c-91cd-a4f174ca1a9c",
+        "eosc_id": "funding_body-ddf"
     },
     {
         "fields": {
             "name": "European Agricultural Guarantee Fund (after transfers between EAGF and EAFRD) (AGR)"
         },
         "model": "service.fundingprogram",
-        "pk": "cfc9320d-c384-446e-be0a-fd0a4b514880"
+        "pk": "cfc9320d-c384-446e-be0a-fd0a4b514880",
+        "eosc_id": "funding_program-agr"
     },
     {
         "fields": {
             "name": "Union Civil Protection Mechanism \u2014 Member States (CPM_H3)"
         },
         "model": "service.fundingprogram",
-        "pk": "d1dd684d-dc9b-4343-a289-95e00f460e9b"
+        "pk": "d1dd684d-dc9b-4343-a289-95e00f460e9b",
+        "eosc_id": "funding_program-cpm_h3"
     },
     {
         "fields": {
-            "name": "Research Foundation Flanders (FWO) - Belgium"
+            "name": "Research Foundation Flanders (FWO)"
         },
         "model": "service.fundingprogram",
-        "pk": "d30a7349-088a-40bc-985e-189ad9bbe062"
+        "pk": "d30a7349-088a-40bc-985e-189ad9bbe062",
+        "eosc_id": "funding_body-fwo"
     },
     {
         "fields": {
             "name": "European Social Fund (ESF)"
         },
         "model": "service.fundingprogram",
-        "pk": "d3aebba4-618b-4101-ac14-87eca3a13fff"
+        "pk": "d3aebba4-618b-4101-ac14-87eca3a13fff",
+        "eosc_id": "funding_program-esf"
     },
     {
         "fields": {
             "name": "Competitiveness (more developed regions) (COMPREG)"
         },
         "model": "service.fundingprogram",
-        "pk": "d554497c-2243-4687-b71e-548ff1d2748e"
+        "pk": "d554497c-2243-4687-b71e-548ff1d2748e",
+        "eosc_id": "funding_program-compreg"
     },
     {
         "fields": {
             "name": "European Union Solidarity Fund (EUSF) \u2014 Countries negotiating for accession (EUSF_H4)"
         },
         "model": "service.fundingprogram",
-        "pk": "da1dfb94-cb48-4fb3-abd9-bfbfe3428b40"
+        "pk": "da1dfb94-cb48-4fb3-abd9-bfbfe3428b40",
+        "eosc_id": "funding_program-eusf_h4"
     },
     {
         "fields": {
             "name": "European Fund for Strategic Investments (EFSI)"
         },
         "model": "service.fundingprogram",
-        "pk": "db7ce635-2cc4-4fd6-b7f7-21fc645337ff"
+        "pk": "db7ce635-2cc4-4fd6-b7f7-21fc645337ff",
+        "eosc_id": "funding_program-efsi"
     },
     {
         "fields": {
-            "name": "The Research Council of Norway - Norway"
+            "name": "Research Council of Norway (RCN)"
         },
         "model": "service.fundingprogram",
-        "pk": "dccc373a-8a0e-48f0-8bc9-4c6565044b1d"
+        "pk": "dccc373a-8a0e-48f0-8bc9-4c6565044b1d",
+        "eosc_id": "funding_body-rcn"
     },
     {
         "fields": {
             "name": "European Regional Development Fund (ERDF)"
         },
         "model": "service.fundingprogram",
-        "pk": "e3520b5f-83d1-402a-8820-15eb17e5751e"
+        "pk": "e3520b5f-83d1-402a-8820-15eb17e5751e",
+        "eosc_id": "funding_program-erdf"
     },
     {
         "fields": {
-            "name": "Finnish Funding Agency for Technology and Innovation (TEKES) - Finland"
+            "name": "Finnish Funding Agency for Technology and Innovation (TEKES)"
         },
         "model": "service.fundingprogram",
-        "pk": "e3806dcb-5a6a-486e-9042-20b9a09591c9"
+        "pk": "e3806dcb-5a6a-486e-9042-20b9a09591c9",
+        "eosc_id": "funding_body-tekes"
     },
     {
         "fields": {
-            "name": "Secretariat-General for Investment (SGPI) - France"
+            "name": "Secretariat-General for Investment (SGPI)"
         },
         "model": "service.fundingprogram",
-        "pk": "e3fe7c81-6fa0-48e3-8e12-dc34726b7e62"
+        "pk": "e3fe7c81-6fa0-48e3-8e12-dc34726b7e62",
+        "eosc_id": "funding_body-sgpi"
     },
     {
         "fields": {
             "name": "Creative Europe programme (CREA)"
         },
         "model": "service.fundingprogram",
-        "pk": "e5f97c01-a1c3-49ef-b5da-b453ed2944a6"
+        "pk": "e5f97c01-a1c3-49ef-b5da-b453ed2944a6",
+        "eosc_id": "funding_program-crea"
     },
     {
         "fields": {
-            "name": "Swedish Foundation for Strategic Research (SSF) - Sweden"
+            "name": "Swedish Foundation for Strategic Research (SSF)"
         },
         "model": "service.fundingprogram",
-        "pk": "e73f9c67-9526-411c-9f1c-2c3619a9ca36"
+        "pk": "e73f9c67-9526-411c-9f1c-2c3619a9ca36",
+        "eosc_id": "funding_body-ssf"
     },
     {
         "fields": {
             "name": "Action programme for taxation in the European Union (FISC2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "e7ab6240-601b-4015-bf37-a18fc00f596f"
+        "pk": "e7ab6240-601b-4015-bf37-a18fc00f596f",
+        "eosc_id": "funding_program-fisc2020"
     },
     {
         "fields": {
             "name": "The Union programme for education, training, youth and sport (Erasmus+) (E4A)"
         },
         "model": "service.fundingprogram",
-        "pk": "ea7e0d6e-62f0-482b-930d-8673340bc187"
+        "pk": "ea7e0d6e-62f0-482b-930d-8673340bc187",
+        "eosc_id": "funding_program-e4a"
     },
     {
         "fields": {
             "name": "Instrument for Pre-accession Assistance (IPA2)"
         },
         "model": "service.fundingprogram",
-        "pk": "eb34bde1-07fd-4d79-98f2-b594c95bd9d3"
+        "pk": "eb34bde1-07fd-4d79-98f2-b594c95bd9d3",
+        "eosc_id": "funding_program-ipa2"
     },
     {
         "fields": {
-            "name": "Technology Agency of the Czech Republic (TACR) - Czechia"
+            "name": "Technology Agency of the Czech Republic (TACR)"
         },
         "model": "service.fundingprogram",
-        "pk": "efe1f223-2ad9-4fac-893d-c11343287ed8"
+        "pk": "efe1f223-2ad9-4fac-893d-c11343287ed8",
+        "eosc_id": "funding_body-tacr"
     },
     {
         "fields": {
-            "name": "Swedish Environmental Protection Agency - Sweden"
+            "name": "Swedish Environmental Protection Agency (SEPA)"
         },
         "model": "service.fundingprogram",
-        "pk": "f2829509-dfc9-48bf-bc4c-41773a3710fb"
+        "pk": "f2829509-dfc9-48bf-bc4c-41773a3710fb",
+        "eosc_id": "funding_body-sepa"
     },
     {
         "fields": {
             "name": "Consumer programme (CONS)"
         },
         "model": "service.fundingprogram",
-        "pk": "fa50bfff-7145-485a-8860-a39d5656bb49"
+        "pk": "fa50bfff-7145-485a-8860-a39d5656bb49",
+        "eosc_id": "funding_program-cons"
     },
     {
         "fields": {
             "name": "Union's action in the field of health (Health programme) (HEALTH)"
         },
         "model": "service.fundingprogram",
-        "pk": "fd308e5c-819e-4f3d-bf8b-dd0c09b7bf38"
+        "pk": "fd308e5c-819e-4f3d-bf8b-dd0c09b7bf38",
+        "eosc_id": "funding_program-health"
     },
     {
         "fields": {
             "name": "Nuclear decommissioning assistance programmes in Bulgaria, Lithuania and Slovakia (ND)"
         },
         "model": "service.fundingprogram",
-        "pk": "fd62be57-49ae-4567-aaf8-f4f9532c3b20"
+        "pk": "fd62be57-49ae-4567-aaf8-f4f9532c3b20",
+        "eosc_id": "funding_program-nd"
     },
     {
         "fields": {
             "name": "Comparison of fingerprints for the effective application of the Dublin Convention (EURODAC2020)"
         },
         "model": "service.fundingprogram",
-        "pk": "ff79dc55-7543-4d3d-8cfa-cf1f25d2a21b"
+        "pk": "ff79dc55-7543-4d3d-8cfa-cf1f25d2a21b",
+        "eosc_id": "funding_program-eurodac2020"
     }
 ]

@@ -3,10 +3,11 @@
         "fields": {
             "description": "Single- or multi-sited facilities that offer scientists and engineers access to devices for handling light, utilizing properties of light, and detecting light or access to infrastructure for research and development in the fields of electricity, electronics, and electromagnetism. These infrastructures may either broadly deal with electrical or electronic engineering, or be focused specifically on some of the numerous subtopics, like electronics, electric power, telecommunications, control systems, or other.",
             "domain": "6d28fbd2-d04c-42d7-99f5-092e722b75a6",
-            "name": "Electrical and Optical Engineering Facilities"
+            "name": "Electrical & Optical Engineering Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "06429107-70df-4fdf-bc90-70f77974a5ac"
+        "pk": "06429107-70df-4fdf-bc90-70f77974a5ac",
+        "eosc_id": "provider_meril_scientific_subdomain-engineering_and_energy-electrical_and_optical_engineering_facilities"
     },
     {
         "fields": {
@@ -15,7 +16,8 @@
             "name": "Other"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "0b83de31-0c87-4552-9345-af67e51f30f5"
+        "pk": "0b83de31-0c87-4552-9345-af67e51f30f5",
+        "eosc_id": "provider_meril_scientific_subdomain-other-other"
     },
     {
         "fields": {
@@ -24,7 +26,8 @@
             "name": "Mechanical Engineering Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "0cf3aa17-9d6d-4c41-8070-8396412893a1"
+        "pk": "0cf3aa17-9d6d-4c41-8070-8396412893a1",
+        "eosc_id": "provider_meril_scientific_subdomain-engineering_and_energy-mechanical_engineering_facilities"
     },
     {
         "fields": {
@@ -33,7 +36,8 @@
             "name": "Cell Culture Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "0f4714ea-0129-4f6a-a0d0-8cd15167f888"
+        "pk": "0f4714ea-0129-4f6a-a0d0-8cd15167f888",
+        "eosc_id": "provider_meril_scientific_subdomain-biological_and_medical_sciences-cell_culture_facilities"
     },
     {
         "fields": {
@@ -42,7 +46,8 @@
             "name": "Nuclear Research Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "120826ab-90ec-4472-bcf0-4b92fcde7430"
+        "pk": "120826ab-90ec-4472-bcf0-4b92fcde7430",
+        "eosc_id": "provider_meril_scientific_subdomain-physics_astronomy_astrophysics_and_mathematics-nuclear_research_facilities"
     },
     {
         "fields": {
@@ -51,7 +56,8 @@
             "name": "Research Libraries"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "12248ead-29bb-4c5b-838b-2884a6fda7fb"
+        "pk": "12248ead-29bb-4c5b-838b-2884a6fda7fb",
+        "eosc_id": "provider_meril_scientific_subdomain-humanities_and_arts-research_libraries"
     },
     {
         "fields": {
@@ -60,7 +66,8 @@
             "name": "Earth Observation Satellites"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "19dc461a-d8f2-4dd7-8e13-f0b0a2814de3"
+        "pk": "19dc461a-d8f2-4dd7-8e13-f0b0a2814de3",
+        "eosc_id": "provider_meril_scientific_subdomain-earth_and_environmental_sciences-earth_observation_satellites"
     },
     {
         "fields": {
@@ -69,7 +76,8 @@
             "name": "Analytical Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "1b262b49-92d4-40a9-b379-b2d40b8465dd"
+        "pk": "1b262b49-92d4-40a9-b379-b2d40b8465dd",
+        "eosc_id": "provider_meril_scientific_subdomain-chemistry_and_material_sciences-analytical_facilities"
     },
     {
         "fields": {
@@ -78,16 +86,18 @@
             "name": "Other"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "1b8ee401-b443-4d6a-9736-97e7e0a1bf6c"
+        "pk": "1b8ee401-b443-4d6a-9736-97e7e0a1bf6c",
+        "eosc_id": "provider_meril_scientific_subdomain-other-other"
     },
     {
         "fields": {
             "description": "Micro and nanotechnology facilities deals with the understanding and control of matter at the nanoscale and microscales, at dimensions between approximately 1 and 1000 nanometres, involving imaging, measuring, modelling, and manipulating matter at this length scale.",
             "domain": "2d2935e8-112b-43fe-9bed-5300da2760c3",
-            "name": "Micro and Nanotechnology Facilities"
+            "name": "Micro & Nanotechnology Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "25fa0af2-3564-4c36-8da7-da5b8fd772b9"
+        "pk": "25fa0af2-3564-4c36-8da7-da5b8fd772b9",
+        "eosc_id": "provider_meril_scientific_subdomain-physics_astronomy_astrophysics_and_mathematics-micro_and_nanotechnology_facilities"
     },
     {
         "fields": {
@@ -96,16 +106,18 @@
             "name": "Complex Data Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "28ed87eb-a89f-4ac6-8212-a45597db618d"
+        "pk": "28ed87eb-a89f-4ac6-8212-a45597db618d",
+        "eosc_id": "provider_meril_scientific_subdomain-information_science_and_technology-complex_data_facilities"
     },
     {
         "fields": {
             "description": "Facilities for storage of collections of microorganisms, biological material and the associated data and information facilities for a population or a large subset of a population, maintained under controlled conditions (temperature, humidity, atmosphere, etc.). The biological resources, including microorganisms, human/animal cells, tissue, blood and DNA, seeds of crops, trees and wild plant species, are conserved for their genetic endowment. Databases established on these provide holistic information on each accession with scientific descriptors, ethno-botanical/ zoological/microbiological/medical knowledge, including for the purpose of establishing intellectual property rights and ownership over the biomaterial stored",
             "domain": "88b2813a-4b54-4350-aeee-da8c6118d5f9",
-            "name": "Collections of Biological Resources (e.g. Microorganisms, Biobanks and Seed Banks)"
+            "name": "Collections of Biological Resources"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "2c305f7a-92a8-439d-a59d-f1a4ab74987d"
+        "pk": "2c305f7a-92a8-439d-a59d-f1a4ab74987d",
+        "eosc_id": "provider_meril_scientific_subdomain-biological_and_medical_sciences-collections_of_biological_resources"
     },
     {
         "fields": {
@@ -114,7 +126,8 @@
             "name": "Earthquake Simulation Laboratories"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "2e6eb647-0dad-4e7b-a39c-b01f4658e947"
+        "pk": "2e6eb647-0dad-4e7b-a39c-b01f4658e947",
+        "eosc_id": "provider_meril_scientific_subdomain-earth_and_environmental_sciences-earthquake_simulation_laboratories"
     },
     {
         "fields": {
@@ -123,7 +136,8 @@
             "name": "Space Environment Test Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "31560549-4f67-495e-b652-2106a40542ee"
+        "pk": "31560549-4f67-495e-b652-2106a40542ee",
+        "eosc_id": "provider_meril_scientific_subdomain-physics_astronomy_astrophysics_and_mathematics-space_environment_test_facilities"
     },
     {
         "fields": {
@@ -132,7 +146,8 @@
             "name": "Research Bibliographies"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "328eef18-9699-40b6-94ab-6738d7b2436a"
+        "pk": "328eef18-9699-40b6-94ab-6738d7b2436a",
+        "eosc_id": "provider_meril_scientific_subdomain-humanities_and_arts-research_bibliographies"
     },
     {
         "fields": {
@@ -141,7 +156,8 @@
             "name": "National Statistical Facilities (offices)"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "35ee8f15-69f0-46ee-8bdf-9fa923279db8"
+        "pk": "35ee8f15-69f0-46ee-8bdf-9fa923279db8",
+        "eosc_id": "provider_meril_scientific_subdomain-social_sciences-national_statistical_facilities"
     },
     {
         "fields": {
@@ -150,7 +166,8 @@
             "name": "Animal Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "3cd7ac60-ea37-4062-953a-5bc9f3d7ef26"
+        "pk": "3cd7ac60-ea37-4062-953a-5bc9f3d7ef26",
+        "eosc_id": "provider_meril_scientific_subdomain-biological_and_medical_sciences-animal_facilities"
     },
     {
         "fields": {
@@ -159,7 +176,8 @@
             "name": "Polar and Cryospheric Research Infrastructures"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "3d5b1825-784f-41eb-a375-024bb8fc8c94"
+        "pk": "3d5b1825-784f-41eb-a375-024bb8fc8c94",
+        "eosc_id": "provider_meril_scientific_subdomain-earth_and_environmental_sciences-polar_and_cryospheric_research_infrastructures"
     },
     {
         "fields": {
@@ -168,16 +186,18 @@
             "name": "Collections"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "41a69b59-5416-41bf-b00e-4508eb742ebb"
+        "pk": "41a69b59-5416-41bf-b00e-4508eb742ebb",
+        "eosc_id": "provider_meril_scientific_subdomain-humanities_and_arts-collections"
     },
     {
         "fields": {
             "description": "Instruments using laser interferometry between freely hung test masses up to several km apart in vacuum. The lengths of two perpendicular arms, defined by the test masses, are compared and fluctuations in the arm length differences are recorded and analysed for potential GW signals. Links to earth observation.",
             "domain": "2d2935e8-112b-43fe-9bed-5300da2760c3",
-            "name": "Gravitational Wave Detectors and Observatories"
+            "name": "Gravitational Wave Detectors & Observatories"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "441fd0ac-e25b-4504-9ae9-9a5f2a60a72a"
+        "pk": "441fd0ac-e25b-4504-9ae9-9a5f2a60a72a",
+        "eosc_id": "provider_meril_scientific_subdomain-physics_astronomy_astrophysics_and_mathematics-gravitational_wave_detectors_and_observatories"
     },
     {
         "fields": {
@@ -186,7 +206,8 @@
             "name": "Bio-Informatics Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "44d51d59-399e-4ddf-8e94-d46b3841f146"
+        "pk": "44d51d59-399e-4ddf-8e94-d46b3841f146",
+        "eosc_id": "provider_meril_scientific_subdomain-biological_and_medical_sciences-bioinformatics_facilities"
     },
     {
         "fields": {
@@ -195,7 +216,8 @@
             "name": "Other"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "4514606f-1034-4dce-8bf6-1f79a6097cf3"
+        "pk": "4514606f-1034-4dce-8bf6-1f79a6097cf3",
+        "eosc_id": "provider_meril_scientific_subdomain-other-other"
     },
     {
         "fields": {
@@ -204,7 +226,8 @@
             "name": "Conceptual Models"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "4769e5b7-6f27-4292-80dd-7e73f2cf8afb"
+        "pk": "4769e5b7-6f27-4292-80dd-7e73f2cf8afb",
+        "eosc_id": "provider_meril_scientific_subdomain-humanities_and_arts-conceptual_models"
     },
     {
         "fields": {
@@ -213,7 +236,8 @@
             "name": "Environmental Management Infrastructures"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "47df572a-fa24-43c8-8d78-cbeeb05f8586"
+        "pk": "47df572a-fa24-43c8-8d78-cbeeb05f8586",
+        "eosc_id": "provider_meril_scientific_subdomain-earth_and_environmental_sciences-environmental_management_infrastructures"
     },
     {
         "fields": {
@@ -222,16 +246,18 @@
             "name": "Other"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "498a6344-d95f-4558-a1bf-1952afd89dd0"
+        "pk": "498a6344-d95f-4558-a1bf-1952afd89dd0",
+        "eosc_id": "provider_meril_scientific_subdomain-other-other"
     },
     {
         "fields": {
             "description": "Single-sited facilities providing a controlled wind stream in which objects (aircrafts, vehicles, buildings) are placed in order to measure their aerodynamic properties, using for instance lasers and/or simulate an operation and control during flight/ drive; includes wind tunnels.",
             "domain": "6d28fbd2-d04c-42d7-99f5-092e722b75a6",
-            "name": "Aerospace and Aerodynamics Research Facilities"
+            "name": "Aerospace & Aerodynamics Research Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "49a90b3f-edb9-472a-b2d3-800b0d8ba33f"
+        "pk": "49a90b3f-edb9-472a-b2d3-800b0d8ba33f",
+        "eosc_id": "provider_meril_scientific_subdomain-engineering_and_energy-aerospace_and_aerodynamics_research_facilities"
     },
     {
         "fields": {
@@ -240,7 +266,8 @@
             "name": "Environmental Health Research Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "4c985178-2c3f-4501-8ca9-8c1cbec9dcd5"
+        "pk": "4c985178-2c3f-4501-8ca9-8c1cbec9dcd5",
+        "eosc_id": "provider_meril_scientific_subdomain-biological_and_medical_sciences-environmental_health_research_facilities"
     },
     {
         "fields": {
@@ -249,16 +276,18 @@
             "name": "Research Archives"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "4d39c294-4369-4a50-9227-1bcdb79f2733"
+        "pk": "4d39c294-4369-4a50-9227-1bcdb79f2733",
+        "eosc_id": "provider_meril_scientific_subdomain-humanities_and_arts-research_archives"
     },
     {
         "fields": {
             "description": "Centres of expertise or methodological resources for extracting patterns from large data sets by combining methods from statistics and artificial intelligence. These RIs enable researchers to overcome the challenge of working with increasingly larger data-sets. Data-mining and statistical techniques populate every scientific domain but what counts as data is domain specific. Therefore, this category should be understood as specific to social sciences because it refers to data in the social sciences.",
             "domain": "70df3625-46f6-4ee9-976d-b9920af578d5",
-            "name": "Data mining and Analysis (Methodological) Centres, including statistical analysis"
+            "name": "Data mining & Analysis (Methodological) Centres, including statistical analysis"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "4e309260-4d18-4a36-98cd-14658fce8e52"
+        "pk": "4e309260-4d18-4a36-98cd-14658fce8e52",
+        "eosc_id": "provider_meril_scientific_subdomain-social_sciences-data_mining_and_analysis_centres"
     },
     {
         "fields": {
@@ -267,7 +296,8 @@
             "name": "Translational Research Centres"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "4e54c20b-37d6-49d9-ad3f-6bd039a2f258"
+        "pk": "4e54c20b-37d6-49d9-ad3f-6bd039a2f258",
+        "eosc_id": "provider_meril_scientific_subdomain-biological_and_medical_sciences-translational_research_centres"
     },
     {
         "fields": {
@@ -276,7 +306,8 @@
             "name": "Civil Engineering Research Infrastructures"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "5258c634-c3d6-4995-a280-aaf982ec43ea"
+        "pk": "5258c634-c3d6-4995-a280-aaf982ec43ea",
+        "eosc_id": "provider_meril_scientific_subdomain-engineering_and_energy-civil_engineering_research_infrastructures"
     },
     {
         "fields": {
@@ -285,16 +316,18 @@
             "name": "Research Aircraft"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "62608d3f-8519-4e99-8920-5b25f3e6b193"
+        "pk": "62608d3f-8519-4e99-8920-5b25f3e6b193",
+        "eosc_id": "provider_meril_scientific_subdomain-earth_and_environmental_sciences-research_aircraft"
     },
     {
         "fields": {
             "description": "Organized and systematic collection of data (time or spatial series) for one or more purposes (research, evidence-based policy, non-governmental organisations) in digital form or not. These type of RIs are particularly acute to the social sciences, which often rely on the aggregation of masses of longitudinal data but they can be relevant for all the other domains, that is, the humanities, the life and environmental sciences, the physical sciences and engineering, and the medical sciences.",
             "domain": "70df3625-46f6-4ee9-976d-b9920af578d5",
-            "name": "Registers and Survey-led Studies/Databases"
+            "name": "Registers & Survey-led Studies/Databases"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "669afe38-e915-416f-82a0-d9f9f9c10a19"
+        "pk": "669afe38-e915-416f-82a0-d9f9f9c10a19",
+        "eosc_id": "provider_meril_scientific_subdomain-social_sciences-registers_and_survey_led_studies_databases"
     },
     {
         "fields": {
@@ -303,7 +336,8 @@
             "name": "Intense Neutron Sources"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "68e78a9e-b586-4f9e-ae4e-4e6a48a8d9f9"
+        "pk": "68e78a9e-b586-4f9e-ae4e-4e6a48a8d9f9",
+        "eosc_id": "provider_meril_scientific_subdomain-chemistry_and_material_sciences-intense_neutron_sources"
     },
     {
         "fields": {
@@ -312,7 +346,8 @@
             "name": "In Situ Earth Observatories"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "693059d3-2999-4b68-b794-2dab8b5fc47e"
+        "pk": "693059d3-2999-4b68-b794-2dab8b5fc47e",
+        "eosc_id": "provider_meril_scientific_subdomain-earth_and_environmental_sciences-in_situ_earth_observatories"
     },
     {
         "fields": {
@@ -321,7 +356,8 @@
             "name": "Genomic, Transcriptomic, Proteomics and Metabolomics Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "69967cc7-1b9f-45e6-867a-f86e226392c0"
+        "pk": "69967cc7-1b9f-45e6-867a-f86e226392c0",
+        "eosc_id": "provider_meril_scientific_subdomain-biological_and_medical_sciences-genomic_transcriptomic_proteomics_and_metabolomics_facilities"
     },
     {
         "fields": {
@@ -330,7 +366,8 @@
             "name": "Databases"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "6fb4f3af-155d-4114-8ab8-18148b2e0088"
+        "pk": "6fb4f3af-155d-4114-8ab8-18148b2e0088",
+        "eosc_id": "provider_meril_scientific_subdomain-humanities_and_arts-databases"
     },
     {
         "fields": {
@@ -339,16 +376,18 @@
             "name": "Structural Biology Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "78275334-3334-401e-bd4f-82cceb3c5535"
+        "pk": "78275334-3334-401e-bd4f-82cceb3c5535",
+        "eosc_id": "provider_meril_scientific_subdomain-biological_and_medical_sciences-structural_biology_facilities"
     },
     {
         "fields": {
             "description": "A digital data archive is a centre of expertise in data acquisition, preservation, management, dissemination and promotion of an access to the national and international collections and repositories of digital data. These type of RIs are particularly acute to the social sciences, which often rely on the aggregation of longitudinal data, and to the humanities, which often rely on preservation, but they can be relevant for other domains, particularly, the life and environmental sciences and the medical sciences.",
             "domain": "70df3625-46f6-4ee9-976d-b9920af578d5",
-            "name": "Data Archives, Data Repositories and Collections"
+            "name": "Data Archives, Data Repositories & Collections"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "798e160f-41fb-4652-a83c-75a2f01a5559"
+        "pk": "798e160f-41fb-4652-a83c-75a2f01a5559",
+        "eosc_id": "provider_meril_scientific_subdomain-social_sciences-data_archives_data_repositories_and_collections"
     },
     {
         "fields": {
@@ -357,7 +396,8 @@
             "name": "Intense Light Sources"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "7a42ac5a-6e6a-4e15-a649-6f5465d5189d"
+        "pk": "7a42ac5a-6e6a-4e15-a649-6f5465d5189d",
+        "eosc_id": "provider_meril_scientific_subdomain-chemistry_and_material_sciences-intense_light_sources"
     },
     {
         "fields": {
@@ -366,7 +406,8 @@
             "name": "High Energy Physics Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "7be40ccd-7781-4730-b3f0-52abc9f41040"
+        "pk": "7be40ccd-7781-4730-b3f0-52abc9f41040",
+        "eosc_id": "provider_meril_scientific_subdomain-physics_astronomy_astrophysics_and_mathematics-high_energy_physics_facilities"
     },
     {
         "fields": {
@@ -375,7 +416,8 @@
             "name": "Telescopes"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "7c6e4b0f-fd7f-448d-b6a9-8f60f94dabeb"
+        "pk": "7c6e4b0f-fd7f-448d-b6a9-8f60f94dabeb",
+        "eosc_id": "provider_meril_scientific_subdomain-physics_astronomy_astrophysics_and_mathematics-telescopes"
     },
     {
         "fields": {
@@ -384,7 +426,8 @@
             "name": "Centres for Development of Industrial Mathematics"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "7f701aa3-593c-4faf-b3f8-55a3b9e7aead"
+        "pk": "7f701aa3-593c-4faf-b3f8-55a3b9e7aead",
+        "eosc_id": "provider_meril_scientific_subdomain-physics_astronomy_astrophysics_and_mathematics-centres_for_development_of_industrial_mathematics"
     },
     {
         "fields": {
@@ -393,7 +436,8 @@
             "name": "Research Data Service Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "810fcb0e-1168-4fa2-af3c-0e341e3fcbe5"
+        "pk": "810fcb0e-1168-4fa2-af3c-0e341e3fcbe5",
+        "eosc_id": "provider_meril_scientific_subdomain-social_sciences-research_data_service_facilities"
     },
     {
         "fields": {
@@ -402,7 +446,8 @@
             "name": "Solid Earth Observatories, including Seismological Monitoring Stations"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "827c96a0-4acc-4416-8faa-5dc99e448789"
+        "pk": "827c96a0-4acc-4416-8faa-5dc99e448789",
+        "eosc_id": "provider_meril_scientific_subdomain-earth_and_environmental_sciences-solid_earth_observatories"
     },
     {
         "fields": {
@@ -411,7 +456,8 @@
             "name": "Reference Material Repositories"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "842c5478-3907-4917-a3d2-eb221de92d44"
+        "pk": "842c5478-3907-4917-a3d2-eb221de92d44",
+        "eosc_id": "provider_meril_scientific_subdomain-chemistry_and_material_sciences-reference_material_repositories"
     },
     {
         "fields": {
@@ -420,7 +466,8 @@
             "name": "Energy Engineering Facilities (non-nuclear)"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "946b30b1-0bfd-481c-acd9-3b7fb38005c4"
+        "pk": "946b30b1-0bfd-481c-acd9-3b7fb38005c4",
+        "eosc_id": "provider_meril_scientific_subdomain-engineering_and_energy-energy_engineering_facilities"
     },
     {
         "fields": {
@@ -429,7 +476,8 @@
             "name": "Other"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "965e6dbe-3a64-41f2-b612-f2421e3207a8"
+        "pk": "965e6dbe-3a64-41f2-b612-f2421e3207a8",
+        "eosc_id": "provider_meril_scientific_subdomain-other-other"
     },
     {
         "fields": {
@@ -438,7 +486,8 @@
             "name": "Repositories"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "982508b6-6c47-4284-8f85-c8ef23f1b304"
+        "pk": "982508b6-6c47-4284-8f85-c8ef23f1b304",
+        "eosc_id": "provider_meril_scientific_subdomain-humanities_and_arts-repositories"
     },
     {
         "fields": {
@@ -447,7 +496,8 @@
             "name": "Natural History Collections"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "9aada323-1faf-4ffe-abcd-7d46db477e78"
+        "pk": "9aada323-1faf-4ffe-abcd-7d46db477e78",
+        "eosc_id": "provider_meril_scientific_subdomain-earth_and_environmental_sciences-natural_history_collections"
     },
     {
         "fields": {
@@ -456,7 +506,8 @@
             "name": "Centres for Advanced Research in Mathematics"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "a14b11c4-8e57-42ca-92ab-e67d0c4ec15f"
+        "pk": "a14b11c4-8e57-42ca-92ab-e67d0c4ec15f",
+        "eosc_id": "provider_meril_scientific_subdomain-physics_astronomy_astrophysics_and_mathematics-centres_for_advanced_research_in_mathematics"
     },
     {
         "fields": {
@@ -465,7 +516,8 @@
             "name": "Biomedical Imaging Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "a7d6a39c-c7fd-4360-8bc9-292b42ef4313"
+        "pk": "a7d6a39c-c7fd-4360-8bc9-292b42ef4313",
+        "eosc_id": "provider_meril_scientific_subdomain-biological_and_medical_sciences-biomedical_imaging_facilities"
     },
     {
         "fields": {
@@ -474,7 +526,8 @@
             "name": "Other"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "ab4e9013-750f-4d91-b60f-66c5e7e23147"
+        "pk": "ab4e9013-750f-4d91-b60f-66c5e7e23147",
+        "eosc_id": "provider_meril_scientific_subdomain-other-other"
     },
     {
         "fields": {
@@ -483,7 +536,8 @@
             "name": "Acoustic Monitoring Stations"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "b07338b5-a690-4ebb-8e11-990cd0c64651"
+        "pk": "b07338b5-a690-4ebb-8e11-990cd0c64651",
+        "eosc_id": "provider_meril_scientific_subdomain-earth_and_environmental_sciences-acoustic_monitoring_stations"
     },
     {
         "fields": {
@@ -492,7 +546,8 @@
             "name": "Agronomy, Forestry, Plant Breeding Centres"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "b212168a-081b-4dc1-9f46-84758f7ccf32"
+        "pk": "b212168a-081b-4dc1-9f46-84758f7ccf32",
+        "eosc_id": "provider_meril_scientific_subdomain-biological_and_medical_sciences-agronomy_forestry_plant_breeding_centres"
     },
     {
         "fields": {
@@ -501,7 +556,8 @@
             "name": "Marine & Maritime Engineering Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "b2121ba1-8559-47e7-8f8a-3b839c455947"
+        "pk": "b2121ba1-8559-47e7-8f8a-3b839c455947",
+        "eosc_id": "provider_meril_scientific_subdomain-engineering_and_energy-marine_and_maritime_engineering_facilities"
     },
     {
         "fields": {
@@ -510,7 +566,8 @@
             "name": "Extreme Conditions Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "b57ddffd-d0ae-44b7-858a-3b06c2b99e53"
+        "pk": "b57ddffd-d0ae-44b7-858a-3b06c2b99e53",
+        "eosc_id": "provider_meril_scientific_subdomain-physics_astronomy_astrophysics_and_mathematics-extreme_conditions_facilities"
     },
     {
         "fields": {
@@ -519,7 +576,8 @@
             "name": "Materials Synthesis or Testing Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "b6385214-8f14-4274-b103-2fff85ecdedf"
+        "pk": "b6385214-8f14-4274-b103-2fff85ecdedf",
+        "eosc_id": "provider_meril_scientific_subdomain-chemistry_and_material_sciences-materials_synthesis_or_testing_facilities"
     },
     {
         "fields": {
@@ -528,16 +586,18 @@
             "name": "Centralised Computing Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "b6c69b55-e931-4aa0-9cb8-a6fc240c1a22"
+        "pk": "b6c69b55-e931-4aa0-9cb8-a6fc240c1a22",
+        "eosc_id": "provider_meril_scientific_subdomain-information_science_and_technology-centralised_computing_facilities"
     },
     {
         "fields": {
             "description": "Range of detectors/observatories, using interactions in water or ice for detecting astrophysical neutrinos, interactions in liquid noble gases or solids for searching for dark matter particles, and light emission in the atmosphere for the detection of gamma rays from astrophysical sources.",
             "domain": "2d2935e8-112b-43fe-9bed-5300da2760c3",
-            "name": "Astro-Particle and Neutrino Detectors and Observatories"
+            "name": "Astro-Particle & Neutrino Detectors & Observatories"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "b6cfb3c4-6403-420d-8bb3-9b43f7a947e4"
+        "pk": "b6cfb3c4-6403-420d-8bb3-9b43f7a947e4",
+        "eosc_id": "provider_meril_scientific_subdomain-physics_astronomy_astrophysics_and_mathematics-astro_particle_and_neutrino_detectors_and_observatories"
     },
     {
         "fields": {
@@ -546,7 +606,8 @@
             "name": "Other"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "bbac5b84-c8d2-4db0-bac8-8782fbd81b66"
+        "pk": "bbac5b84-c8d2-4db0-bac8-8782fbd81b66",
+        "eosc_id": "provider_meril_scientific_subdomain-other-other"
     },
     {
         "fields": {
@@ -555,7 +616,8 @@
             "name": "Software Service Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "c06f4222-404a-403d-8e8c-2f990e7e5237"
+        "pk": "c06f4222-404a-403d-8e8c-2f990e7e5237",
+        "eosc_id": "provider_meril_scientific_subdomain-information_science_and_technology-software_service_facilities"
     },
     {
         "fields": {
@@ -564,7 +626,8 @@
             "name": "Cross-Disciplinary Centres in Mathematics"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "c51ce4c2-2f46-48b9-9251-ed15af4b9b67"
+        "pk": "c51ce4c2-2f46-48b9-9251-ed15af4b9b67",
+        "eosc_id": "provider_meril_scientific_subdomain-physics_astronomy_astrophysics_and_mathematics-cross_disciplinary_centres_in_mathematics"
     },
     {
         "fields": {
@@ -573,7 +636,8 @@
             "name": "Communication Networks"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "c8912d8d-5954-4ca3-984d-4b08e1fb917f"
+        "pk": "c8912d8d-5954-4ca3-984d-4b08e1fb917f",
+        "eosc_id": "provider_meril_scientific_subdomain-information_science_and_technology-communication_networks"
     },
     {
         "fields": {
@@ -582,7 +646,8 @@
             "name": "Underground Laboratories"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "cc08d025-dedd-4a83-93da-6a6bca1e7bd9"
+        "pk": "cc08d025-dedd-4a83-93da-6a6bca1e7bd9",
+        "eosc_id": "provider_meril_scientific_subdomain-physics_astronomy_astrophysics_and_mathematics-underground_laboratories"
     },
     {
         "fields": {
@@ -591,16 +656,18 @@
             "name": "Other"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "ce326a2f-bad4-414d-b735-dfb4f3c25830"
+        "pk": "ce326a2f-bad4-414d-b735-dfb4f3c25830",
+        "eosc_id": "provider_meril_scientific_subdomain-other-other"
     },
     {
         "fields": {
             "description": "Digital libraries related to chemistry as well as screening facilities.",
             "domain": "2afbdcd0-7a0e-4ac0-8ea8-518a6405ce58",
-            "name": "Chemical Libraries and Screening Facilities"
+            "name": "Chemical Libraries & Screening Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "db3b4c0f-92bf-4802-a5b0-fb28d9a392f3"
+        "pk": "db3b4c0f-92bf-4802-a5b0-fb28d9a392f3",
+        "eosc_id": "provider_meril_scientific_subdomain-chemistry_and_material_sciences-chemical_libraries_and_screening_facilities"
     },
     {
         "fields": {
@@ -609,7 +676,8 @@
             "name": "Pilot Plants for Process Testing"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "de063178-0107-4c91-b5e8-e9c089ae711d"
+        "pk": "de063178-0107-4c91-b5e8-e9c089ae711d",
+        "eosc_id": "provider_meril_scientific_subdomain-chemistry_and_material_sciences-pilot_plants_for_process_testing"
     },
     {
         "fields": {
@@ -618,7 +686,8 @@
             "name": "Clinical Research Centres"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "e267e7b9-b9b9-445b-a963-9464afe8da7a"
+        "pk": "e267e7b9-b9b9-445b-a963-9464afe8da7a",
+        "eosc_id": "provider_meril_scientific_subdomain-biological_and_medical_sciences-clinical_research_centres"
     },
     {
         "fields": {
@@ -627,7 +696,8 @@
             "name": "Mathematics Centres of Competence"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "e7a31d11-9bb2-444a-ac94-54d2dbe48d67"
+        "pk": "e7a31d11-9bb2-444a-ac94-54d2dbe48d67",
+        "eosc_id": "provider_meril_scientific_subdomain-physics_astronomy_astrophysics_and_mathematics-mathematics_centres_of_competence"
     },
     {
         "fields": {
@@ -636,7 +706,8 @@
             "name": "Distributed Computing Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "e8fb47f9-10f5-4942-aa2b-c32b22a149d4"
+        "pk": "e8fb47f9-10f5-4942-aa2b-c32b22a149d4",
+        "eosc_id": "provider_meril_scientific_subdomain-information_science_and_technology-distributed_computing_facilities"
     },
     {
         "fields": {
@@ -645,7 +716,8 @@
             "name": "In Situ Marine/Freshwater Observatories"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "eb8022d2-f953-4908-b03f-c43defcf276e"
+        "pk": "eb8022d2-f953-4908-b03f-c43defcf276e",
+        "eosc_id": "provider_meril_scientific_subdomain-earth_and_environmental_sciences-in_situ_marine_freshwater_observatories"
     },
     {
         "fields": {
@@ -654,7 +726,8 @@
             "name": "Atmospheric Measurement Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "ec95a569-e776-497c-9aa2-b052d19e50fd"
+        "pk": "ec95a569-e776-497c-9aa2-b052d19e50fd",
+        "eosc_id": "provider_meril_scientific_subdomain-earth_and_environmental_sciences-atmospheric_measurement_facilities"
     },
     {
         "fields": {
@@ -663,16 +736,18 @@
             "name": "Safety Handling Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "ed7ba5ec-54b6-409e-9ab7-2351a6625a0e"
+        "pk": "ed7ba5ec-54b6-409e-9ab7-2351a6625a0e",
+        "eosc_id": "provider_meril_scientific_subdomain-physics_astronomy_astrophysics_and_mathematics-safety_handling_facilities"
     },
     {
         "fields": {
             "description": "Platforms for the exchange of earth, oceanographic, marine, freshwater and atmospheric data and information, and for advisory services in the field of earth, ocean, marine, freshwater and atmospheric data management. National Data Centres, Designated National Agencies for international data exchange and Satellite Data Centres represent the backbone of the data and information infrastructure. National networks are usually put in place to interconnect the data centres of major national institutes. The overall objective is to significantly improve the overview and access to data and data analysis from government and research institutes.",
             "domain": "7d948370-00e3-4ba0-88e5-38211863fa80",
-            "name": "Earth, Ocean, Marine, Freshwater, and Atmosphere Data Centres"
+            "name": "Earth, Ocean, Marine, Freshwater, & Atmosphere Data Centres"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "f0de9c11-f1da-44eb-80c8-9bede46d06d2"
+        "pk": "f0de9c11-f1da-44eb-80c8-9bede46d06d2",
+        "eosc_id": "provider_meril_scientific_subdomain-earth_and_environmental_sciences-earth_ocean_marine_freshwater_and_atmosphere_data_centres"
     },
     {
         "fields": {
@@ -681,7 +756,8 @@
             "name": "Geothermal Research Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "f2b8ce9f-d733-4cd5-9a7c-43d43e6eaad1"
+        "pk": "f2b8ce9f-d733-4cd5-9a7c-43d43e6eaad1",
+        "eosc_id": "provider_meril_scientific_subdomain-earth_and_environmental_sciences-geothermal_research_facilities"
     },
     {
         "fields": {
@@ -690,25 +766,28 @@
             "name": "Other"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "f584ade3-8708-4f0e-97be-6ffc894fc1d8"
+        "pk": "f584ade3-8708-4f0e-97be-6ffc894fc1d8",
+        "eosc_id": "provider_meril_scientific_subdomain-other-other"
     },
     {
         "fields": {
             "description": "Facilities that are dedicated to application of concepts and methods of bioscience and/or nanoscience, and/or use of living systems and organisms to develop solutions to problems in life- and preclinical sciences using engineering methodologies.",
             "domain": "88b2813a-4b54-4350-aeee-da8c6118d5f9",
-            "name": "Biological/Biomedical Engineering and Biotechnology/Nanotechnology Research Facilities"
+            "name": "Biological/Biomedical Engineering & Biotechnology/Nanotechnology Research Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "f8c5803b-1f45-4c5e-9027-111eba14a752"
+        "pk": "f8c5803b-1f45-4c5e-9027-111eba14a752",
+        "eosc_id": "provider_meril_scientific_subdomain-biological_and_medical_sciences-biological_biomedical_engineering_and_biotechnology_nanotechnology_research_facilities"
     },
     {
         "fields": {
             "description": "E-Health is an emerging concept relating to the use of networked digital ICTs (primarily the Internet) to facilitate the organisation & delivery of health care and services. It encompasses applications for providers and organisations (e.g. for storing, exchanging and using clinical or administrative data, or aiding evidence-based practice) and for citizens and patients (e.g. web- based health information, education, virtual consulting), as well as research applications of e- Health technologies.",
             "domain": "88b2813a-4b54-4350-aeee-da8c6118d5f9",
-            "name": "Telemedicine Laboratories and E-Health Technologies"
+            "name": "Telemedicine Laboratories & E-Health Technologies"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "fac4b42f-a3c1-402d-b7f0-6653c4530e1a"
+        "pk": "fac4b42f-a3c1-402d-b7f0-6653c4530e1a",
+        "eosc_id": "provider_meril_scientific_subdomain-biological_and_medical_sciences-telemedicine_laboratories_and_ehealth_technologies"
     },
     {
         "fields": {
@@ -717,6 +796,7 @@
             "name": "Systems Biology/Computational Biology Facilities"
         },
         "model": "accounts.merilsubdomain",
-        "pk": "fc90ec9c-f983-4f1c-905e-af187dd2423d"
+        "pk": "fc90ec9c-f983-4f1c-905e-af187dd2423d",
+        "eosc_id": "provider_meril_scientific_subdomain-biological_and_medical_sciences-systems_biology_computational_biology_facilities"
     }
 ]

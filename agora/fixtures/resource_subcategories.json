@@ -5,7 +5,8 @@
             "name": "Digitisation"
         },
         "model": "service.subcategory",
-        "pk": "0428a8e9-4b66-4d96-bb50-98a6baa126d6"
+        "pk": "0428a8e9-4b66-4d96-bb50-98a6baa126d6",
+        "eosc_id": "subcategory-processing_and_analysis-data_management-digitisation"
     },
     {
         "fields": {
@@ -13,7 +14,8 @@
             "name": "Software Development"
         },
         "model": "service.subcategory",
-        "pk": "044ab873-fefe-421a-8c6f-ea1801bec5c3"
+        "pk": "044ab873-fefe-421a-8c6f-ea1801bec5c3",
+        "eosc_id": "subcategory-training_and_support-consultancy_and_support-software_development"
     },
     {
         "fields": {
@@ -21,7 +23,8 @@
             "name": "Coordination"
         },
         "model": "service.subcategory",
-        "pk": "089376f5-5c23-40d0-b6c4-764bec09873c"
+        "pk": "089376f5-5c23-40d0-b6c4-764bec09873c",
+        "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-coordination"
     },
     {
         "fields": {
@@ -29,7 +32,8 @@
             "name": "Analysis"
         },
         "model": "service.subcategory",
-        "pk": "08e73d73-72ee-4ad5-b569-1ef0e8d0bd4c"
+        "pk": "08e73d73-72ee-4ad5-b569-1ef0e8d0bd4c",
+        "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-analysis"
     },
     {
         "fields": {
@@ -37,7 +41,8 @@
             "name": "Utilities"
         },
         "model": "service.subcategory",
-        "pk": "0aff19a0-617f-445b-a78f-1d510aa43744"
+        "pk": "0aff19a0-617f-445b-a78f-1d510aa43744",
+        "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-utilities"
     },
     {
         "fields": {
@@ -45,7 +50,8 @@
             "name": "Radiation"
         },
         "model": "service.subcategory",
-        "pk": "0e1b565f-9aeb-4e33-b22f-a64160492511"
+        "pk": "0e1b565f-9aeb-4e33-b22f-a64160492511",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-radiation"
     },
     {
         "fields": {
@@ -61,7 +67,8 @@
             "name": "Annotation"
         },
         "model": "service.subcategory",
-        "pk": "137c6c90-2265-4135-a668-71c399386fdc"
+        "pk": "137c6c90-2265-4135-a668-71c399386fdc",
+        "eosc_id": "subcategory-processing_and_analysis-data_management-annotation"
     },
     {
         "fields": {
@@ -69,7 +76,8 @@
             "name": "Communication"
         },
         "model": "service.subcategory",
-        "pk": "17705af4-0a3a-4298-af28-546bfa7c7950"
+        "pk": "17705af4-0a3a-4298-af28-546bfa7c7950",
+        "eosc_id": "subcategory-sharing_and_discovery-applications-communication"
     },
     {
         "fields": {
@@ -77,15 +85,17 @@
             "name": "Virtual Machine Management"
         },
         "model": "service.subcategory",
-        "pk": "1a421add-0ec8-4b36-bf4a-028a906f23c2"
+        "pk": "1a421add-0ec8-4b36-bf4a-028a906f23c2",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-compute-virtual_machine_management"
     },
     {
         "fields": {
             "category": "abad8012-42f9-4c70-94e1-dd58d0e934ab",
-            "name": "Services & Data"
+            "name": "Data"
         },
         "model": "service.subcategory",
-        "pk": "1aebc230-c21d-4a29-b402-04a7985e0221"
+        "pk": "1aebc230-c21d-4a29-b402-04a7985e0221",
+        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-data"
     },
     {
         "fields": {
@@ -98,10 +108,11 @@
     {
         "fields": {
             "category": "7c4b272b-6f58-4778-9eba-5fbac6cc9fa3",
-            "name": "In-house Courses"
+            "name": "In-House Courses"
         },
         "model": "service.subcategory",
-        "pk": "1cb35551-5216-45c9-9d4c-20544765087f"
+        "pk": "1cb35551-5216-45c9-9d4c-20544765087f",
+        "eosc_id": "subcategory-training_and_support-education_and_training-in_house_courses"
     },
     {
         "fields": {
@@ -109,15 +120,17 @@
             "name": "Configuration"
         },
         "model": "service.subcategory",
-        "pk": "1d4a7dcf-fbb4-44aa-a592-ec525ee9492d"
+        "pk": "1d4a7dcf-fbb4-44aa-a592-ec525ee9492d",
+        "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-configuration"
     },
     {
         "fields": {
             "category": "abad8012-42f9-4c70-94e1-dd58d0e934ab",
-            "name": "Services & Applications & Data"
+            "name": "Applications"
         },
         "model": "service.subcategory",
-        "pk": "1ef6e209-9444-4f2d-be26-541d01095e14"
+        "pk": "1ef6e209-9444-4f2d-be26-541d01095e14",
+        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-applications"
     },
     {
         "fields": {
@@ -125,7 +138,8 @@
             "name": "Software Improvement"
         },
         "model": "service.subcategory",
-        "pk": "1f7296d5-b5cb-4663-8cc7-f11cc03d3204"
+        "pk": "1f7296d5-b5cb-4663-8cc7-f11cc03d3204",
+        "eosc_id": "subcategory-training_and_support-consultancy_and_support-software_improvement"
     },
     {
         "fields": {
@@ -133,7 +147,8 @@
             "name": "Interlinking"
         },
         "model": "service.subcategory",
-        "pk": "240ce967-b92d-45a2-93be-5fc98180a0bd"
+        "pk": "240ce967-b92d-45a2-93be-5fc98180a0bd",
+        "eosc_id": "subcategory-processing_and_analysis-data_management-interlinking"
     },
     {
         "fields": {
@@ -141,7 +156,8 @@
             "name": "Serverless Applications Repository"
         },
         "model": "service.subcategory",
-        "pk": "279053b3-0625-412c-8f12-cfd3a4e5a025"
+        "pk": "279053b3-0625-412c-8f12-cfd3a4e5a025",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-compute-serverless_applications_repository"
     },
     {
         "fields": {
@@ -149,15 +165,17 @@
             "name": "Preparation"
         },
         "model": "service.subcategory",
-        "pk": "2a913d88-4933-414f-b8f1-c23e4ee5dcae"
+        "pk": "2a913d88-4933-414f-b8f1-c23e4ee5dcae",
+        "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-preparation"
     },
     {
         "fields": {
             "category": "59aeb559-7952-4852-9421-ce44e79538bc",
-            "name": "Biological samples"
+            "name": "Biological Samples"
         },
         "model": "service.subcategory",
-        "pk": "2ae74b22-2b7e-4ea3-b671-9f7051423c02"
+        "pk": "2ae74b22-2b7e-4ea3-b671-9f7051423c02",
+        "eosc_id": "subcategory-sharing_and_discovery-samples-biological_samples"
     },
     {
         "fields": {
@@ -165,7 +183,8 @@
             "name": "Software Package"
         },
         "model": "service.subcategory",
-        "pk": "2aee5bc1-84ab-413f-83a4-3f4d319941c5"
+        "pk": "2aee5bc1-84ab-413f-83a4-3f4d319941c5",
+        "eosc_id": "subcategory-sharing_and_discovery-software-software_package"
     },
     {
         "fields": {
@@ -173,7 +192,8 @@
             "name": "Embargo"
         },
         "model": "service.subcategory",
-        "pk": "2b251279-196b-41d1-99fb-619c6c7870f7"
+        "pk": "2b251279-196b-41d1-99fb-619c6c7870f7",
+        "eosc_id": "subcategory-processing_and_analysis-data_management-embargo"
     },
     {
         "fields": {
@@ -181,7 +201,8 @@
             "name": "2D/3D Digitisation"
         },
         "model": "service.subcategory",
-        "pk": "2ccebe27-6d42-45e9-85a3-3f0f63d54482"
+        "pk": "2ccebe27-6d42-45e9-85a3-3f0f63d54482",
+        "eosc_id": "subcategory-processing_and_analysis-data_analysis-2d_3d_digitisation"
     },
     {
         "fields": {
@@ -189,7 +210,8 @@
             "name": "Mining"
         },
         "model": "service.subcategory",
-        "pk": "2d11abdf-58ad-4a6e-a93c-6937c0b02a63"
+        "pk": "2d11abdf-58ad-4a6e-a93c-6937c0b02a63",
+        "eosc_id": "subcategory-processing_and_analysis-data_management-mining"
     },
     {
         "fields": {
@@ -197,7 +219,8 @@
             "name": "Applications Repository"
         },
         "model": "service.subcategory",
-        "pk": "2f0abe8b-27b6-408a-80a7-5e9940fed83a"
+        "pk": "2f0abe8b-27b6-408a-80a7-5e9940fed83a",
+        "eosc_id": "subcategory-sharing_and_discovery-applications-applications_repository"
     },
     {
         "fields": {
@@ -205,7 +228,8 @@
             "name": "Business"
         },
         "model": "service.subcategory",
-        "pk": "30c286c2-df3c-46a8-95cb-b8b68bc326fa"
+        "pk": "30c286c2-df3c-46a8-95cb-b8b68bc326fa",
+        "eosc_id": "subcategory-sharing_and_discovery-applications-business"
     },
     {
         "fields": {
@@ -213,7 +237,8 @@
             "name": "Libraries"
         },
         "model": "service.subcategory",
-        "pk": "30c2ad51-6d18-42b6-8021-38a281192531"
+        "pk": "30c2ad51-6d18-42b6-8021-38a281192531",
+        "eosc_id": "subcategory-sharing_and_discovery-software-libraries"
     },
     {
         "fields": {
@@ -221,7 +246,8 @@
             "name": "Billing"
         },
         "model": "service.subcategory",
-        "pk": "3360495a-2dcc-48ec-900f-84cc0b19b2d4"
+        "pk": "3360495a-2dcc-48ec-900f-84cc0b19b2d4",
+        "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-billing"
     },
     {
         "fields": {
@@ -234,18 +260,20 @@
     {
         "fields": {
             "category": "abad8012-42f9-4c70-94e1-dd58d0e934ab",
-            "name": "Services & Software & Data"
+            "name": "Data"
         },
         "model": "service.subcategory",
-        "pk": "354d65ef-f40b-4123-9f7c-ee83107c5e4f"
+        "pk": "354d65ef-f40b-4123-9f7c-ee83107c5e4f",
+        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-data"
     },
     {
         "fields": {
             "category": "063268e6-e990-44e2-af1d-5d1711caba89",
-            "name": "User authentication"
+            "name": "User Authentication"
         },
         "model": "service.subcategory",
-        "pk": "3783b972-0709-47eb-bdae-4a36eea5d487"
+        "pk": "3783b972-0709-47eb-bdae-4a36eea5d487",
+        "eosc_id": "subcategory-security_and_operations-security_and_identity-user_authentication"
     },
     {
         "fields": {
@@ -253,7 +281,8 @@
             "name": "Access"
         },
         "model": "service.subcategory",
-        "pk": "394cba3a-211a-4b27-ba65-c5080fd93d2a"
+        "pk": "394cba3a-211a-4b27-ba65-c5080fd93d2a",
+        "eosc_id": "subcategory-processing_and_analysis-data_management-access"
     },
     {
         "fields": {
@@ -261,15 +290,17 @@
             "name": "Data"
         },
         "model": "service.subcategory",
-        "pk": "396a64ce-d3d1-4b40-8456-04ec31355254"
+        "pk": "396a64ce-d3d1-4b40-8456-04ec31355254",
+        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-data"
     },
     {
         "fields": {
             "category": "a5d1f298-abd7-4b31-94ba-58cb8eb1d44a",
-            "name": "Maintenance and Modification"
+            "name": "Maintenance & Modification"
         },
         "model": "service.subcategory",
-        "pk": "39c4e08f-270b-4100-baf3-fca697161cf2"
+        "pk": "39c4e08f-270b-4100-baf3-fca697161cf2",
+        "eosc_id": "subcategory-processing_and_analysis-measurement_and_materials_analysis-maintenance_and_modification"
     },
     {
         "fields": {
@@ -277,7 +308,8 @@
             "name": "Benchmarking"
         },
         "model": "service.subcategory",
-        "pk": "3a109310-5194-4f71-ad53-f4b2e0661f3a"
+        "pk": "3a109310-5194-4f71-ad53-f4b2e0661f3a",
+        "eosc_id": "subcategory-training_and_support-consultancy_and_support-benchmarking"
     },
     {
         "fields": {
@@ -285,31 +317,35 @@
             "name": "Developer Tools"
         },
         "model": "service.subcategory",
-        "pk": "3a4aa431-4a7b-41ee-94be-0c7b643bd421"
+        "pk": "3a4aa431-4a7b-41ee-94be-0c7b643bd421",
+        "eosc_id": "subcategory-sharing_and_discovery-development_resources-developer_tools"
     },
     {
         "fields": {
             "category": "3ddaf0af-4e7e-4c23-86ef-d5db4ae5312c",
-            "name": "Digital preservation"
+            "name": "Digital Preservation"
         },
         "model": "service.subcategory",
-        "pk": "3ef168e0-124a-42de-b2bb-f9f498fe392b"
+        "pk": "3ef168e0-124a-42de-b2bb-f9f498fe392b",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-digital_preservation"
     },
     {
         "fields": {
             "category": "abad8012-42f9-4c70-94e1-dd58d0e934ab",
-            "name": "Software & Data"
+            "name": "Data"
         },
         "model": "service.subcategory",
-        "pk": "3f5f709e-e14f-4309-8979-4311615f13cb"
+        "pk": "3f5f709e-e14f-4309-8979-4311615f13cb",
+        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-data"
     },
     {
         "fields": {
             "category": "abad8012-42f9-4c70-94e1-dd58d0e934ab",
-            "name": "Services & Applications & Software & Data"
+            "name": "Applications"
         },
         "model": "service.subcategory",
-        "pk": "41e850f3-a7cf-4176-bc59-f8dce17b01a2"
+        "pk": "41e850f3-a7cf-4176-bc59-f8dce17b01a2",
+        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-applications"
     },
     {
         "fields": {
@@ -317,7 +353,8 @@
             "name": "Tools"
         },
         "model": "service.subcategory",
-        "pk": "4276a8d9-dca8-4d03-aa57-d5698b27c0a3"
+        "pk": "4276a8d9-dca8-4d03-aa57-d5698b27c0a3",
+        "eosc_id": "subcategory-security_and_operations-security_and_identity-tools"
     },
     {
         "fields": {
@@ -325,15 +362,17 @@
             "name": "Social/Networking"
         },
         "model": "service.subcategory",
-        "pk": "44d0057b-76e9-4c89-964b-276b24fa0f28"
+        "pk": "44d0057b-76e9-4c89-964b-276b24fa0f28",
+        "eosc_id": "subcategory-sharing_and_discovery-applications-social_networking"
     },
     {
         "fields": {
             "category": "133d9c60-ef9e-4cb4-9dba-13a38048637c",
-            "name": "Audit and Assessment"
+            "name": "Audit & Assessment"
         },
         "model": "service.subcategory",
-        "pk": "4558b08c-6e47-49c3-93e4-707c2f433ddd"
+        "pk": "4558b08c-6e47-49c3-93e4-707c2f433ddd",
+        "eosc_id": "subcategory-training_and_support-consultancy_and_support-audit_and_assessment"
     },
     {
         "fields": {
@@ -341,7 +380,8 @@
             "name": "Job Execution"
         },
         "model": "service.subcategory",
-        "pk": "4773571f-13dd-4e81-849a-5ae415f80faf"
+        "pk": "4773571f-13dd-4e81-849a-5ae415f80faf",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-compute-job_execution"
     },
     {
         "fields": {
@@ -349,7 +389,8 @@
             "name": "Discovery"
         },
         "model": "service.subcategory",
-        "pk": "486255d6-a361-4ddb-ae93-7e796a22fb3b"
+        "pk": "486255d6-a361-4ddb-ae93-7e796a22fb3b",
+        "eosc_id": "subcategory-processing_and_analysis-data_management-discovery"
     },
     {
         "fields": {
@@ -357,7 +398,8 @@
             "name": "Anonymisation"
         },
         "model": "service.subcategory",
-        "pk": "4af66572-2847-4d9a-bb4b-70c800638021"
+        "pk": "4af66572-2847-4d9a-bb4b-70c800638021",
+        "eosc_id": "subcategory-processing_and_analysis-data_management-anonymisation"
     },
     {
         "fields": {
@@ -365,7 +407,8 @@
             "name": "Container Management"
         },
         "model": "service.subcategory",
-        "pk": "4c93047b-1e9d-4750-9e37-101a39a81514"
+        "pk": "4c93047b-1e9d-4750-9e37-101a39a81514",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-compute-container_management"
     },
     {
         "fields": {
@@ -373,7 +416,8 @@
             "name": "Single Sign-On"
         },
         "model": "service.subcategory",
-        "pk": "4de96b53-321a-4439-aa2f-fbf9a11677af"
+        "pk": "4de96b53-321a-4439-aa2f-fbf9a11677af",
+        "eosc_id": "subcategory-security_and_operations-security_and_identity-single_sign_on"
     },
     {
         "fields": {
@@ -381,7 +425,8 @@
             "name": "Transportation"
         },
         "model": "service.subcategory",
-        "pk": "4dfd6b1f-0b94-4b93-b20a-24834af526bc"
+        "pk": "4dfd6b1f-0b94-4b93-b20a-24834af526bc",
+        "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-transportation"
     },
     {
         "fields": {
@@ -389,7 +434,8 @@
             "name": "VPN Gateway"
         },
         "model": "service.subcategory",
-        "pk": "4e8f9854-9dd1-4e95-bbca-0ed87ed050ec"
+        "pk": "4e8f9854-9dd1-4e95-bbca-0ed87ed050ec",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-network-vpn_gateway"
     },
     {
         "fields": {
@@ -397,31 +443,35 @@
             "name": "Discovery"
         },
         "model": "service.subcategory",
-        "pk": "4f1e3596-c1ec-46b9-bb6b-4e657f92af8b"
+        "pk": "4f1e3596-c1ec-46b9-bb6b-4e657f92af8b",
+        "eosc_id": "subcategory-processing_and_analysis-data_management-discovery"
     },
     {
         "fields": {
             "category": "941eea82-491a-46db-92ef-bd25cbb4060c",
-            "name": "Digitisation equipment"
+            "name": "Digitisation Equipment"
         },
         "model": "service.subcategory",
-        "pk": "50f2d8c4-b618-4ace-821f-852b7df91d75"
+        "pk": "50f2d8c4-b618-4ace-821f-852b7df91d75",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-digitisation_equipment"
     },
     {
         "fields": {
             "category": "59aeb559-7952-4852-9421-ce44e79538bc",
-            "name": "Chemical compounds library"
+            "name": "Chemical Compounds Library"
         },
         "model": "service.subcategory",
-        "pk": "56189f68-4510-40b4-b26f-b6281d9d5019"
+        "pk": "56189f68-4510-40b4-b26f-b6281d9d5019",
+        "eosc_id": "subcategory-sharing_and_discovery-samples-chemical_compounds_library"
     },
     {
         "fields": {
             "category": "09148c1e-775a-4925-9e5c-3df2375cb9d8",
-            "name": "Data archives"
+            "name": "Data Archives"
         },
         "model": "service.subcategory",
-        "pk": "5662785b-49e8-43af-bc38-6827aa6f2896"
+        "pk": "5662785b-49e8-43af-bc38-6827aa6f2896",
+        "eosc_id": "subcategory-sharing_and_discovery-data-data_archives"
     },
     {
         "fields": {
@@ -429,7 +479,8 @@
             "name": "Characterisation"
         },
         "model": "service.subcategory",
-        "pk": "577bbbe9-3ebc-4f04-8927-48365477d93c"
+        "pk": "577bbbe9-3ebc-4f04-8927-48365477d93c",
+        "eosc_id": "subcategory-processing_and_analysis-measurement_and_materials_analysis-characterisation"
     },
     {
         "fields": {
@@ -437,7 +488,8 @@
             "name": "Preservation"
         },
         "model": "service.subcategory",
-        "pk": "58a90b2b-f43b-4475-9f08-9177b214ca0e"
+        "pk": "58a90b2b-f43b-4475-9f08-9177b214ca0e",
+        "eosc_id": "subcategory-processing_and_analysis-data_management-preservation"
     },
     {
         "fields": {
@@ -445,7 +497,8 @@
             "name": "Microscopy"
         },
         "model": "service.subcategory",
-        "pk": "5b4eed97-e774-4025-aad7-23694ede67d6"
+        "pk": "5b4eed97-e774-4025-aad7-23694ede67d6",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-microscopy"
     },
     {
         "fields": {
@@ -453,7 +506,8 @@
             "name": "Order Management"
         },
         "model": "service.subcategory",
-        "pk": "5b779917-7b15-4ba7-ac61-2a983573156a"
+        "pk": "5b779917-7b15-4ba7-ac61-2a983573156a",
+        "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-order_management"
     },
     {
         "fields": {
@@ -461,7 +515,8 @@
             "name": "Education"
         },
         "model": "service.subcategory",
-        "pk": "5cc6515e-0ac2-416a-b690-bf88c69e378a"
+        "pk": "5cc6515e-0ac2-416a-b690-bf88c69e378a",
+        "eosc_id": "subcategory-sharing_and_discovery-applications-education"
     },
     {
         "fields": {
@@ -469,7 +524,8 @@
             "name": "Required Training"
         },
         "model": "service.subcategory",
-        "pk": "5cd379b8-d2a7-46be-a9c8-db85a5f66383"
+        "pk": "5cd379b8-d2a7-46be-a9c8-db85a5f66383",
+        "eosc_id": "subcategory-training_and_support-education_and_training-required_training"
     },
     {
         "fields": {
@@ -477,7 +533,8 @@
             "name": "Queue"
         },
         "model": "service.subcategory",
-        "pk": "5e5fa149-62c2-4ec7-ad0a-d0f62a14a237"
+        "pk": "5e5fa149-62c2-4ec7-ad0a-d0f62a14a237",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-queue"
     },
     {
         "fields": {
@@ -485,23 +542,26 @@
             "name": "Coordination"
         },
         "model": "service.subcategory",
-        "pk": "5f2f230c-e8b0-4a36-8043-9fe58a4e3a37"
+        "pk": "5f2f230c-e8b0-4a36-8043-9fe58a4e3a37",
+        "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-coordination"
     },
     {
         "fields": {
             "category": "09148c1e-775a-4925-9e5c-3df2375cb9d8",
-            "name": "Government and agency data"
+            "name": "Government & Agency Data"
         },
         "model": "service.subcategory",
-        "pk": "60b581d7-c8f7-4958-a47a-0639379a4f95"
+        "pk": "60b581d7-c8f7-4958-a47a-0639379a4f95",
+        "eosc_id": "subcategory-sharing_and_discovery-data-government_and_agency_data"
     },
     {
         "fields": {
             "category": "abad8012-42f9-4c70-94e1-dd58d0e934ab",
-            "name": "Applications & Data"
+            "name": "Applications"
         },
         "model": "service.subcategory",
-        "pk": "618dd0fb-b6ed-43cb-b996-30d95658c7b8"
+        "pk": "618dd0fb-b6ed-43cb-b996-30d95658c7b8",
+        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-applications"
     },
     {
         "fields": {
@@ -509,15 +569,17 @@
             "name": "Geophysical"
         },
         "model": "service.subcategory",
-        "pk": "61ba5f03-fdbd-47d9-a2b0-3eef2ef02c05"
+        "pk": "61ba5f03-fdbd-47d9-a2b0-3eef2ef02c05",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-geophysical"
     },
     {
         "fields": {
             "category": "09148c1e-775a-4925-9e5c-3df2375cb9d8",
-            "name": "Statistical data"
+            "name": "Statistical Data"
         },
         "model": "service.subcategory",
-        "pk": "65982d86-6715-477c-8426-3950cd073448"
+        "pk": "65982d86-6715-477c-8426-3950cd073448",
+        "eosc_id": "subcategory-sharing_and_discovery-data-statistical_data"
     },
     {
         "fields": {
@@ -525,7 +587,8 @@
             "name": "Software Repository"
         },
         "model": "service.subcategory",
-        "pk": "6631946a-e360-4170-a1a9-33c4676ff731"
+        "pk": "6631946a-e360-4170-a1a9-33c4676ff731",
+        "eosc_id": "subcategory-sharing_and_discovery-software-software_repository"
     },
     {
         "fields": {
@@ -533,7 +596,8 @@
             "name": "Registration"
         },
         "model": "service.subcategory",
-        "pk": "673a2b84-b3b8-45cb-b965-fde03df6f04a"
+        "pk": "673a2b84-b3b8-45cb-b965-fde03df6f04a",
+        "eosc_id": "subcategory-processing_and_analysis-data_management-registration"
     },
     {
         "fields": {
@@ -541,15 +605,17 @@
             "name": "Prototype Development"
         },
         "model": "service.subcategory",
-        "pk": "6c3bbc96-fe10-46bf-8408-038360681412"
+        "pk": "6c3bbc96-fe10-46bf-8408-038360681412",
+        "eosc_id": "subcategory-training_and_support-consultancy_and_support-prototype_development"
     },
     {
         "fields": {
             "category": "063268e6-e990-44e2-af1d-5d1711caba89",
-            "name": "Certification authority"
+            "name": "Certification Authority"
         },
         "model": "service.subcategory",
-        "pk": "6ed7edd2-7b87-4765-9fb8-772f78b9d2bb"
+        "pk": "6ed7edd2-7b87-4765-9fb8-772f78b9d2bb",
+        "eosc_id": "subcategory-security_and_operations-security_and_identity-certification_authority"
     },
     {
         "fields": {
@@ -557,7 +623,8 @@
             "name": "Writing"
         },
         "model": "service.subcategory",
-        "pk": "6f59de22-a992-4d2b-bee3-f0c07cb06494"
+        "pk": "6f59de22-a992-4d2b-bee3-f0c07cb06494",
+        "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-writing"
     },
     {
         "fields": {
@@ -565,23 +632,26 @@
             "name": "Application Optimisation"
         },
         "model": "service.subcategory",
-        "pk": "6f99d353-cc6b-46aa-8eb5-b0b00d810224"
+        "pk": "6f99d353-cc6b-46aa-8eb5-b0b00d810224",
+        "eosc_id": "subcategory-training_and_support-consultancy_and_support-application_optimisation"
     },
     {
         "fields": {
             "category": "abad8012-42f9-4c70-94e1-dd58d0e934ab",
-            "name": "Applications & Software"
+            "name": "Applications"
         },
         "model": "service.subcategory",
-        "pk": "702fba94-f373-4c58-8dbb-6a50d6230a10"
+        "pk": "702fba94-f373-4c58-8dbb-6a50d6230a10",
+        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-applications"
     },
     {
         "fields": {
             "category": "09148c1e-775a-4925-9e5c-3df2375cb9d8",
-            "name": "Scientific/Research data"
+            "name": "Scientific/Research Data"
         },
         "model": "service.subcategory",
-        "pk": "7063c781-2c9f-44cd-a393-24054f398f1b"
+        "pk": "7063c781-2c9f-44cd-a393-24054f398f1b",
+        "eosc_id": "subcategory-sharing_and_discovery-data-scientific_research_data"
     },
     {
         "fields": {
@@ -589,7 +659,8 @@
             "name": "Cytometer"
         },
         "model": "service.subcategory",
-        "pk": "70dd9a56-0089-4708-9cf1-f8591e028b15"
+        "pk": "70dd9a56-0089-4708-9cf1-f8591e028b15",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-cytometer"
     },
     {
         "fields": {
@@ -597,7 +668,8 @@
             "name": "Synchronised"
         },
         "model": "service.subcategory",
-        "pk": "72f983ae-3857-4c30-92eb-f1ba3fe3973f"
+        "pk": "72f983ae-3857-4c30-92eb-f1ba3fe3973f",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-synchronised"
     },
     {
         "fields": {
@@ -605,7 +677,8 @@
             "name": "Collaboration"
         },
         "model": "service.subcategory",
-        "pk": "740c2b88-829b-4895-a6ec-252307b377a9"
+        "pk": "740c2b88-829b-4895-a6ec-252307b377a9",
+        "eosc_id": "subcategory-sharing_and_discovery-applications-collaboration"
     },
     {
         "fields": {
@@ -613,7 +686,8 @@
             "name": "Fulfilment"
         },
         "model": "service.subcategory",
-        "pk": "7485f6c5-6a8a-4fb6-bdd8-a8bed66caf3e"
+        "pk": "7485f6c5-6a8a-4fb6-bdd8-a8bed66caf3e",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-fulfilment"
     },
     {
         "fields": {
@@ -621,15 +695,17 @@
             "name": "Virtual Network"
         },
         "model": "service.subcategory",
-        "pk": "7610d0dd-9b96-4399-bce8-0918babc0db4"
+        "pk": "7610d0dd-9b96-4399-bce8-0918babc0db4",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-network-virtual_nework"
     },
     {
         "fields": {
             "category": "09148c1e-775a-4925-9e5c-3df2375cb9d8",
-            "name": "Clinical trial data"
+            "name": "Clinical Trial Data"
         },
         "model": "service.subcategory",
-        "pk": "762cb014-d7d4-4bbe-807f-efd085d81817"
+        "pk": "762cb014-d7d4-4bbe-807f-efd085d81817",
+        "eosc_id": "subcategory-sharing_and_discovery-data-clinical_trial_data"
     },
     {
         "fields": {
@@ -637,7 +713,8 @@
             "name": "Certification"
         },
         "model": "service.subcategory",
-        "pk": "767f9b4c-2ab9-40c7-ae6f-b729d1361ea7"
+        "pk": "767f9b4c-2ab9-40c7-ae6f-b729d1361ea7",
+        "eosc_id": "subcategory-training_and_support-consultancy_and_support-certification"
     },
     {
         "fields": {
@@ -645,15 +722,17 @@
             "name": "Methodology Development"
         },
         "model": "service.subcategory",
-        "pk": "7baf71a7-8778-47b6-8a21-38a036715bdf"
+        "pk": "7baf71a7-8778-47b6-8a21-38a036715bdf",
+        "eosc_id": "subcategory-training_and_support-consultancy_and_support-methodology_development"
     },
     {
         "fields": {
             "category": "063268e6-e990-44e2-af1d-5d1711caba89",
-            "name": "Threat protection"
+            "name": "Threat Protection"
         },
         "model": "service.subcategory",
-        "pk": "7d571228-aa53-4f65-8870-e2d48c2585d3"
+        "pk": "7d571228-aa53-4f65-8870-e2d48c2585d3",
+        "eosc_id": "subcategory-security_and_operations-security_and_identity-threat_protection"
     },
     {
         "fields": {
@@ -661,7 +740,8 @@
             "name": "Validation"
         },
         "model": "service.subcategory",
-        "pk": "7dbb7600-232c-407a-831f-001b9c3aedca"
+        "pk": "7dbb7600-232c-407a-831f-001b9c3aedca",
+        "eosc_id": "subcategory-processing_and_analysis-measurement_and_materials_analysis-validation"
     },
     {
         "fields": {
@@ -669,15 +749,17 @@
             "name": "Firewall"
         },
         "model": "service.subcategory",
-        "pk": "7dd63709-d94f-4bcf-880e-2545fd2245bb"
+        "pk": "7dd63709-d94f-4bcf-880e-2545fd2245bb",
+        "eosc_id": "subcategory-security_and_operations-security_and_identity-firewall"
     },
     {
         "fields": {
             "category": "09148c1e-775a-4925-9e5c-3df2375cb9d8",
-            "name": "Epidemiological data"
+            "name": "Epidemiological Data"
         },
         "model": "service.subcategory",
-        "pk": "83bab58b-1858-40b8-bdba-89f98bbc5338"
+        "pk": "83bab58b-1858-40b8-bdba-89f98bbc5338",
+        "eosc_id": "subcategory-sharing_and_discovery-data-epidemiological_data"
     },
     {
         "fields": {
@@ -685,15 +767,17 @@
             "name": "Machine Learning"
         },
         "model": "service.subcategory",
-        "pk": "86add05d-f476-4908-a03c-979522ac53ea"
+        "pk": "86add05d-f476-4908-a03c-979522ac53ea",
+        "eosc_id": "subcategory-processing_and_analysis-data_analysis-machine_learning"
     },
     {
         "fields": {
             "category": "94d4e542-f996-4bb1-b4de-d57d2430e7fb",
-            "name": "Image/data analysis"
+            "name": "Image/Data Analysis"
         },
         "model": "service.subcategory",
-        "pk": "879bdce1-3b73-41d2-91cd-7c9d760a11e5"
+        "pk": "879bdce1-3b73-41d2-91cd-7c9d760a11e5",
+        "eosc_id": "subcategory-processing_and_analysis-data_analysis-image_data_analysis"
     },
     {
         "fields": {
@@ -709,7 +793,8 @@
             "name": "APIs Repository/Gateway"
         },
         "model": "service.subcategory",
-        "pk": "8a1bdc0c-08cc-4912-aba7-20ff8c397434"
+        "pk": "8a1bdc0c-08cc-4912-aba7-20ff8c397434",
+        "eosc_id": "subcategory-sharing_and_discovery-development_resources-apis_repository_gateway"
     },
     {
         "fields": {
@@ -717,7 +802,8 @@
             "name": "Group Management"
         },
         "model": "service.subcategory",
-        "pk": "8c27a414-958d-4afa-97b7-83102f0bb0db"
+        "pk": "8c27a414-958d-4afa-97b7-83102f0bb0db",
+        "eosc_id": "subcategory-security_and_operations-security_and_identity-group_management"
     },
     {
         "fields": {
@@ -725,7 +811,8 @@
             "name": "Assembly"
         },
         "model": "service.subcategory",
-        "pk": "8cf20027-8f72-4a50-bc9d-52c0d3d093a5"
+        "pk": "8cf20027-8f72-4a50-bc9d-52c0d3d093a5",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-assembly"
     },
     {
         "fields": {
@@ -733,7 +820,8 @@
             "name": "Archive"
         },
         "model": "service.subcategory",
-        "pk": "8eccdfa3-cb5c-4c37-bf10-b585ff167076"
+        "pk": "8eccdfa3-cb5c-4c37-bf10-b585ff167076",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-archive"
     },
     {
         "fields": {
@@ -741,7 +829,8 @@
             "name": "Platform"
         },
         "model": "service.subcategory",
-        "pk": "8fadc304-e67d-4b05-b954-cbd25da0ef88"
+        "pk": "8fadc304-e67d-4b05-b954-cbd25da0ef88",
+        "eosc_id": "subcategory-sharing_and_discovery-software-platform"
     },
     {
         "fields": {
@@ -749,15 +838,17 @@
             "name": "Chromatographer"
         },
         "model": "service.subcategory",
-        "pk": "94c332fc-2395-4492-8dd4-78bb241c950a"
+        "pk": "94c332fc-2395-4492-8dd4-78bb241c950a",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-chromatographer"
     },
     {
         "fields": {
             "category": "abad8012-42f9-4c70-94e1-dd58d0e934ab",
-            "name": "Services & Software"
+            "name": "Services"
         },
         "model": "service.subcategory",
-        "pk": "952fa836-042d-47ec-9121-45d71dbb7d43"
+        "pk": "952fa836-042d-47ec-9121-45d71dbb7d43",
+        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-services"
     },
     {
         "fields": {
@@ -773,15 +864,17 @@
             "name": "Recovery"
         },
         "model": "service.subcategory",
-        "pk": "95941265-29ea-4036-b2e3-5b7e1addeeb3"
+        "pk": "95941265-29ea-4036-b2e3-5b7e1addeeb3",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-recovery"
     },
     {
         "fields": {
             "category": "0e22ebcf-1545-4662-983c-8e2b9f5bed83",
-            "name": "Quality inspecting"
+            "name": "Quality Inspecting"
         },
         "model": "service.subcategory",
-        "pk": "9645fdcb-8dc1-45c2-a9cc-abc86b02d72f"
+        "pk": "9645fdcb-8dc1-45c2-a9cc-abc86b02d72f",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-quality_inspecting"
     },
     {
         "fields": {
@@ -789,7 +882,8 @@
             "name": "Software Development Kits"
         },
         "model": "service.subcategory",
-        "pk": "99209aeb-b624-40cf-a755-1211fbbc47de"
+        "pk": "99209aeb-b624-40cf-a755-1211fbbc47de",
+        "eosc_id": "subcategory-sharing_and_discovery-development_resources-software_development_kits"
     },
     {
         "fields": {
@@ -797,15 +891,17 @@
             "name": "Traffic Manager"
         },
         "model": "service.subcategory",
-        "pk": "992941a1-1e3a-4ebd-92d1-939e738491ae"
+        "pk": "992941a1-1e3a-4ebd-92d1-939e738491ae",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-network-traffic_manager"
     },
     {
         "fields": {
             "category": "063268e6-e990-44e2-af1d-5d1711caba89",
-            "name": "Identity and access management"
+            "name": "Identity & Access Management"
         },
         "model": "service.subcategory",
-        "pk": "9a42784e-30f2-43de-bb18-660db3eb26b7"
+        "pk": "9a42784e-30f2-43de-bb18-660db3eb26b7",
+        "eosc_id": "subcategory-security_and_operations-security_and_identity-identity_and_access_management"
     },
     {
         "fields": {
@@ -813,7 +909,8 @@
             "name": "Online Courses"
         },
         "model": "service.subcategory",
-        "pk": "9a5410ef-c304-4f7e-9085-7694fa70793d"
+        "pk": "9a5410ef-c304-4f7e-9085-7694fa70793d",
+        "eosc_id": "subcategory-training_and_support-education_and_training-online_courses"
     },
     {
         "fields": {
@@ -821,7 +918,8 @@
             "name": "Backup"
         },
         "model": "service.subcategory",
-        "pk": "9b3f5ad0-4a38-4740-874e-8b6a7762368e"
+        "pk": "9b3f5ad0-4a38-4740-874e-8b6a7762368e",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-backup"
     },
     {
         "fields": {
@@ -829,7 +927,8 @@
             "name": "Preservation"
         },
         "model": "service.subcategory",
-        "pk": "9bb3ac7d-7819-409a-b6c4-2a60283bc70d"
+        "pk": "9bb3ac7d-7819-409a-b6c4-2a60283bc70d",
+        "eosc_id": "subcategory-processing_and_analysis-data_management-preservation"
     },
     {
         "fields": {
@@ -837,15 +936,17 @@
             "name": "Forecast"
         },
         "model": "service.subcategory",
-        "pk": "9c34dd34-5365-47a4-8d8c-22ccb9ea9609"
+        "pk": "9c34dd34-5365-47a4-8d8c-22ccb9ea9609",
+        "eosc_id": "subcategory-processing_and_analysis-data_analysis-forecast"
     },
     {
         "fields": {
             "category": "94d4e542-f996-4bb1-b4de-d57d2430e7fb",
-            "name": "Data extrapolation"
+            "name": "Data"
         },
         "model": "service.subcategory",
-        "pk": "9f67f95e-3997-4a1d-977d-17be5ddab05a"
+        "pk": "9f67f95e-3997-4a1d-977d-17be5ddab05a",
+        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-data"
     },
     {
         "fields": {
@@ -853,7 +954,8 @@
             "name": "Transfer"
         },
         "model": "service.subcategory",
-        "pk": "a12b43f6-7d67-4474-bfec-2792c03a4de3"
+        "pk": "a12b43f6-7d67-4474-bfec-2792c03a4de3",
+        "eosc_id": "subcategory-processing_and_analysis-data_management-transfer"
     },
     {
         "fields": {
@@ -861,7 +963,8 @@
             "name": "Open Registration Courses"
         },
         "model": "service.subcategory",
-        "pk": "a229c286-53dd-4b94-b042-74b282bf5d07"
+        "pk": "a229c286-53dd-4b94-b042-74b282bf5d07",
+        "eosc_id": "subcategory-training_and_support-education_and_training-open_registration_courses"
     },
     {
         "fields": {
@@ -869,15 +972,17 @@
             "name": "Orchestration"
         },
         "model": "service.subcategory",
-        "pk": "a2e82ef2-a8c7-49b9-bd2f-92365525942e"
+        "pk": "a2e82ef2-a8c7-49b9-bd2f-92365525942e",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-compute-orchestration"
     },
     {
         "fields": {
             "category": "133d9c60-ef9e-4cb4-9dba-13a38048637c",
-            "name": "Modeling and Simulation"
+            "name": "Modeling & Simulation"
         },
         "model": "service.subcategory",
-        "pk": "a56d9be5-5106-4a14-8d54-c28218362384"
+        "pk": "a56d9be5-5106-4a14-8d54-c28218362384",
+        "eosc_id": "subcategory-training_and_support-consultancy_and_support-modeling_and_simulation"
     },
     {
         "fields": {
@@ -885,15 +990,17 @@
             "name": "Related Training"
         },
         "model": "service.subcategory",
-        "pk": "a769eb62-e1d3-4891-b8fa-59fe9a04e53f"
+        "pk": "a769eb62-e1d3-4891-b8fa-59fe9a04e53f",
+        "eosc_id": "subcategory-training_and_support-education_and_training-related_training"
     },
     {
         "fields": {
             "category": "0e22ebcf-1545-4662-983c-8e2b9f5bed83",
-            "name": "Re-working"
+            "name": "Reworking"
         },
         "model": "service.subcategory",
-        "pk": "a7ad339d-0e12-4780-a517-14aa3c6b40f9"
+        "pk": "a7ad339d-0e12-4780-a517-14aa3c6b40f9",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-reworking"
     },
     {
         "fields": {
@@ -901,7 +1008,8 @@
             "name": "Utilities"
         },
         "model": "service.subcategory",
-        "pk": "a80d1d87-0944-4d70-b86b-f4dfe859fd26"
+        "pk": "a80d1d87-0944-4d70-b86b-f4dfe859fd26",
+        "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-utilities"
     },
     {
         "fields": {
@@ -909,7 +1017,8 @@
             "name": "Monitoring"
         },
         "model": "service.subcategory",
-        "pk": "ad9664ed-fc74-402e-a5e9-aa73ad480800"
+        "pk": "ad9664ed-fc74-402e-a5e9-aa73ad480800",
+        "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-monitoring"
     },
     {
         "fields": {
@@ -917,7 +1026,8 @@
             "name": "Application Scaling"
         },
         "model": "service.subcategory",
-        "pk": "ae358074-ef28-4101-97b1-06a649b68510"
+        "pk": "ae358074-ef28-4101-97b1-06a649b68510",
+        "eosc_id": "subcategory-training_and_support-consultancy_and_support-application_scaling"
     },
     {
         "fields": {
@@ -925,15 +1035,17 @@
             "name": "Analysis"
         },
         "model": "service.subcategory",
-        "pk": "ae45994c-0ac5-4565-b623-f191ed93353b"
+        "pk": "ae45994c-0ac5-4565-b623-f191ed93353b",
+        "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-analysis"
     },
     {
         "fields": {
             "category": "abad8012-42f9-4c70-94e1-dd58d0e934ab",
-            "name": "Services & Applications"
+            "name": "Applications"
         },
         "model": "service.subcategory",
-        "pk": "af671301-e0e9-4cb1-bdf3-0b4886f89531"
+        "pk": "af671301-e0e9-4cb1-bdf3-0b4886f89531",
+        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-applications"
     },
     {
         "fields": {
@@ -941,7 +1053,8 @@
             "name": "Production"
         },
         "model": "service.subcategory",
-        "pk": "b059e609-f1cc-4a52-b2b3-30e41343b92b"
+        "pk": "b059e609-f1cc-4a52-b2b3-30e41343b92b",
+        "eosc_id": "subcategory-processing_and_analysis-measurement_and_materials_analysis-production"
     },
     {
         "fields": {
@@ -949,7 +1062,8 @@
             "name": "Content Delivery Network"
         },
         "model": "service.subcategory",
-        "pk": "b2996974-12b0-467e-9232-c6737cac5401"
+        "pk": "b2996974-12b0-467e-9232-c6737cac5401",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-network-content_delivery_network"
     },
     {
         "fields": {
@@ -957,7 +1071,8 @@
             "name": "Visualization"
         },
         "model": "service.subcategory",
-        "pk": "b2c67027-351b-4244-9680-61d506b72fbb"
+        "pk": "b2c67027-351b-4244-9680-61d506b72fbb",
+        "eosc_id": "subcategory-processing_and_analysis-data_analysis-visualization"
     },
     {
         "fields": {
@@ -965,15 +1080,17 @@
             "name": "Packaging"
         },
         "model": "service.subcategory",
-        "pk": "b747cc30-03da-4890-b498-bec66149bf19"
+        "pk": "b747cc30-03da-4890-b498-bec66149bf19",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-packaging"
     },
     {
         "fields": {
             "category": "a5d1f298-abd7-4b31-94ba-58cb8eb1d44a",
-            "name": "Testing and Validation"
+            "name": "TEsting & Validation"
         },
         "model": "service.subcategory",
-        "pk": "b778cc7e-aeae-40ef-b446-fd15973ff474"
+        "pk": "b778cc7e-aeae-40ef-b446-fd15973ff474",
+        "eosc_id": "subcategory-processing_and_analysis-measurement_and_materials_analysis-testing_and_validation"
     },
     {
         "fields": {
@@ -981,7 +1098,8 @@
             "name": "Replicated"
         },
         "model": "service.subcategory",
-        "pk": "b7f901c5-5497-45c0-8011-4ba2b29f6df8"
+        "pk": "b7f901c5-5497-45c0-8011-4ba2b29f6df8",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-replicated"
     },
     {
         "fields": {
@@ -989,7 +1107,8 @@
             "name": "Archiving"
         },
         "model": "service.subcategory",
-        "pk": "b8dde40e-9ff3-488e-b5fa-ba6ba31c1a00"
+        "pk": "b8dde40e-9ff3-488e-b5fa-ba6ba31c1a00",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-archiving"
     },
     {
         "fields": {
@@ -997,7 +1116,8 @@
             "name": "Persistent Identifier"
         },
         "model": "service.subcategory",
-        "pk": "baa07e5f-5b1b-4f5b-8261-800ebe9719a4"
+        "pk": "baa07e5f-5b1b-4f5b-8261-800ebe9719a4",
+        "eosc_id": "subcategory-processing_and_analysis-data_management-persistent_identifier"
     },
     {
         "fields": {
@@ -1005,15 +1125,17 @@
             "name": "Services"
         },
         "model": "service.subcategory",
-        "pk": "be13b389-3b7f-4275-85b2-7ed911a4623e"
+        "pk": "be13b389-3b7f-4275-85b2-7ed911a4623e",
+        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-services"
     },
     {
         "fields": {
             "category": "941eea82-491a-46db-92ef-bd25cbb4060c",
-            "name": "Monument maintenance equipment"
+            "name": "Monument Maintenance Equipment"
         },
         "model": "service.subcategory",
-        "pk": "be9e8a7b-4a2c-472d-9765-c857b7354dd6"
+        "pk": "be9e8a7b-4a2c-472d-9765-c857b7354dd6",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-monument_maintenance_equipment"
     },
     {
         "fields": {
@@ -1021,7 +1143,8 @@
             "name": "Workflows"
         },
         "model": "service.subcategory",
-        "pk": "c301fef6-0f21-40bc-bfb3-6cb63a353709"
+        "pk": "c301fef6-0f21-40bc-bfb3-6cb63a353709",
+        "eosc_id": "subcategory-processing_and_analysis-data_analysis-workflows"
     },
     {
         "fields": {
@@ -1029,7 +1152,8 @@
             "name": "Analysis"
         },
         "model": "service.subcategory",
-        "pk": "c31b2085-9de9-4a57-a311-9a7279573da0"
+        "pk": "c31b2085-9de9-4a57-a311-9a7279573da0",
+        "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-analysis"
     },
     {
         "fields": {
@@ -1037,7 +1161,8 @@
             "name": "Software Libraries"
         },
         "model": "service.subcategory",
-        "pk": "c3251b90-5b6c-4935-92c7-9d859f8a466f"
+        "pk": "c3251b90-5b6c-4935-92c7-9d859f8a466f",
+        "eosc_id": "subcategory-sharing_and_discovery-development_resources-software_libraries"
     },
     {
         "fields": {
@@ -1045,7 +1170,8 @@
             "name": "File"
         },
         "model": "service.subcategory",
-        "pk": "c4a913c3-06b3-4065-b1a6-422a21d20bad"
+        "pk": "c4a913c3-06b3-4065-b1a6-422a21d20bad",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-file"
     },
     {
         "fields": {
@@ -1053,15 +1179,17 @@
             "name": "Brokering"
         },
         "model": "service.subcategory",
-        "pk": "c4e9028a-d1e8-4840-9d44-43f2a5fc6532"
+        "pk": "c4e9028a-d1e8-4840-9d44-43f2a5fc6532",
+        "eosc_id": "subcategory-processing_and_analysis-data_management-brokering"
     },
     {
         "fields": {
             "category": "abad8012-42f9-4c70-94e1-dd58d0e934ab",
-            "name": "Services & Applications & Software"
+            "name": "Applications"
         },
         "model": "service.subcategory",
-        "pk": "c4f98033-c1b3-43e0-a844-ed0b649864b1"
+        "pk": "c4f98033-c1b3-43e0-a844-ed0b649864b1",
+        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-applications"
     },
     {
         "fields": {
@@ -1077,7 +1205,8 @@
             "name": "Training Tool"
         },
         "model": "service.subcategory",
-        "pk": "cd65d267-3bb2-4e87-a3ef-c41c946bdaf1"
+        "pk": "cd65d267-3bb2-4e87-a3ef-c41c946bdaf1",
+        "eosc_id": "subcategory-training_and_support-education_and_training-training_tool"
     },
     {
         "fields": {
@@ -1085,7 +1214,8 @@
             "name": "Artificial Intelligence"
         },
         "model": "service.subcategory",
-        "pk": "ce3df549-ef6a-4423-9c76-1c84c172f219"
+        "pk": "ce3df549-ef6a-4423-9c76-1c84c172f219",
+        "eosc_id": "subcategory-processing_and_analysis-data_analysis-artificial_intelligence"
     },
     {
         "fields": {
@@ -1093,7 +1223,8 @@
             "name": "Repository"
         },
         "model": "service.subcategory",
-        "pk": "ce5b4f13-9e3c-4a5c-9260-bc79805f636f"
+        "pk": "ce5b4f13-9e3c-4a5c-9260-bc79805f636f",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-repository"
     },
     {
         "fields": {
@@ -1101,7 +1232,8 @@
             "name": "Outreach"
         },
         "model": "service.subcategory",
-        "pk": "cf32ec20-91a8-4858-b6ae-4b91a2c4452a"
+        "pk": "cf32ec20-91a8-4858-b6ae-4b91a2c4452a",
+        "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-outreach"
     },
     {
         "fields": {
@@ -1109,7 +1241,8 @@
             "name": "Sorting"
         },
         "model": "service.subcategory",
-        "pk": "d1ed5898-1d86-43e0-a659-284745487850"
+        "pk": "d1ed5898-1d86-43e0-a659-284745487850",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-sorting"
     },
     {
         "fields": {
@@ -1117,7 +1250,8 @@
             "name": "Training Platform"
         },
         "model": "service.subcategory",
-        "pk": "d21fe30f-ff8d-48db-ae74-14be8847fc76"
+        "pk": "d21fe30f-ff8d-48db-ae74-14be8847fc76",
+        "eosc_id": "subcategory-training_and_support-education_and_training-training_platform"
     },
     {
         "fields": {
@@ -1125,7 +1259,8 @@
             "name": "Disk"
         },
         "model": "service.subcategory",
-        "pk": "d388ca1f-1c52-4891-a417-8eb5cb2ea535"
+        "pk": "d388ca1f-1c52-4891-a417-8eb5cb2ea535",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-disk"
     },
     {
         "fields": {
@@ -1133,7 +1268,8 @@
             "name": "Maintenance"
         },
         "model": "service.subcategory",
-        "pk": "d4b905c7-b12a-4171-922a-434676c91fd3"
+        "pk": "d4b905c7-b12a-4171-922a-434676c91fd3",
+        "eosc_id": "subcategory-processing_and_analysis-data_management-maintenance"
     },
     {
         "fields": {
@@ -1141,7 +1277,8 @@
             "name": "Laser"
         },
         "model": "service.subcategory",
-        "pk": "d4fd87d5-772f-44ec-91d9-524ccfa4fe1d"
+        "pk": "d4fd87d5-772f-44ec-91d9-524ccfa4fe1d",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-laser"
     },
     {
         "fields": {
@@ -1149,7 +1286,8 @@
             "name": "Assessment"
         },
         "model": "service.subcategory",
-        "pk": "d56d1ea9-cf5a-46f2-bdd1-a31ceae5337d"
+        "pk": "d56d1ea9-cf5a-46f2-bdd1-a31ceae5337d",
+        "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-assessment"
     },
     {
         "fields": {
@@ -1157,7 +1295,8 @@
             "name": "Load Balancer"
         },
         "model": "service.subcategory",
-        "pk": "dd4ee174-1bec-4241-b36f-1f66e3142160"
+        "pk": "dd4ee174-1bec-4241-b36f-1f66e3142160",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-network-load_balancer"
     },
     {
         "fields": {
@@ -1165,7 +1304,8 @@
             "name": "Spectrometer"
         },
         "model": "service.subcategory",
-        "pk": "de6d0d20-acd0-4ed9-895c-f9bf0396c5be"
+        "pk": "de6d0d20-acd0-4ed9-895c-f9bf0396c5be",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-spectrometer"
     },
     {
         "fields": {
@@ -1173,7 +1313,8 @@
             "name": "Publication"
         },
         "model": "service.subcategory",
-        "pk": "e1fb1b4f-2d2b-4cdb-a42b-9f55646d80c5"
+        "pk": "e1fb1b4f-2d2b-4cdb-a42b-9f55646d80c5",
+        "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-publication"
     },
     {
         "fields": {
@@ -1181,7 +1322,8 @@
             "name": "Workload Management"
         },
         "model": "service.subcategory",
-        "pk": "e6b0b763-a683-4d04-a335-299e219e43f1"
+        "pk": "e6b0b763-a683-4d04-a335-299e219e43f1",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-compute-workload_management"
     },
     {
         "fields": {
@@ -1189,15 +1331,17 @@
             "name": "Accounting"
         },
         "model": "service.subcategory",
-        "pk": "e74d42d4-f836-4238-90cd-8fa990df5a56"
+        "pk": "e74d42d4-f836-4238-90cd-8fa990df5a56",
+        "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-accounting"
     },
     {
         "fields": {
             "category": "94d4e542-f996-4bb1-b4de-d57d2430e7fb",
-            "name": "Workfows"
+            "name": "Workflows"
         },
         "model": "service.subcategory",
-        "pk": "e75beba6-919c-43e6-8fc2-fcc9e64bb4d6"
+        "pk": "e75beba6-919c-43e6-8fc2-fcc9e64bb4d6",
+        "eosc_id": "subcategory-processing_and_analysis-data_analysis-workflows"
     },
     {
         "fields": {
@@ -1205,7 +1349,8 @@
             "name": "Technology Transfer"
         },
         "model": "service.subcategory",
-        "pk": "eba06403-83d1-44d3-9e2a-21e1748b9a6d"
+        "pk": "eba06403-83d1-44d3-9e2a-21e1748b9a6d",
+        "eosc_id": "subcategory-training_and_support-consultancy_and_support-technology_transfer"
     },
     {
         "fields": {
@@ -1213,7 +1358,8 @@
             "name": "Calibration"
         },
         "model": "service.subcategory",
-        "pk": "eca86501-9baa-4bb7-9fac-3b8af0f2174d"
+        "pk": "eca86501-9baa-4bb7-9fac-3b8af0f2174d",
+        "eosc_id": "subcategory-training_and_support-consultancy_and_support-calibration"
     },
     {
         "fields": {
@@ -1221,7 +1367,8 @@
             "name": "Validation"
         },
         "model": "service.subcategory",
-        "pk": "ecd37780-45e9-43ab-954d-5f16eb5babd0"
+        "pk": "ecd37780-45e9-43ab-954d-5f16eb5babd0",
+        "eosc_id": "subcategory-processing_and_analysis-measurement_and_materials_analysis-validation"
     },
     {
         "fields": {
@@ -1229,15 +1376,17 @@
             "name": "Online"
         },
         "model": "service.subcategory",
-        "pk": "ef56adb5-6850-4c0d-889e-caef72800337"
+        "pk": "ef56adb5-6850-4c0d-889e-caef72800337",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-online"
     },
     {
         "fields": {
             "category": "09148c1e-775a-4925-9e5c-3df2375cb9d8",
-            "name": "Online service data"
+            "name": "Online Service Data"
         },
         "model": "service.subcategory",
-        "pk": "f0ceaf12-31ed-49d9-9cd9-7c0d45267966"
+        "pk": "f0ceaf12-31ed-49d9-9cd9-7c0d45267966",
+        "eosc_id": "subcategory-sharing_and_discovery-data-online_service_data"
     },
     {
         "fields": {
@@ -1245,15 +1394,17 @@
             "name": "Disposal"
         },
         "model": "service.subcategory",
-        "pk": "f10878d9-2f47-49cb-906c-c1b4b840b019"
+        "pk": "f10878d9-2f47-49cb-906c-c1b4b840b019",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-disposal"
     },
     {
         "fields": {
             "category": "133d9c60-ef9e-4cb4-9dba-13a38048637c",
-            "name": "Application Porting"
+            "name": "Application Scaling"
         },
         "model": "service.subcategory",
-        "pk": "f13abbc0-9741-4bee-8685-723fdba72a5c"
+        "pk": "f13abbc0-9741-4bee-8685-723fdba72a5c",
+        "eosc_id": "subcategory-training_and_support-consultancy_and_support-application_scaling"
     },
     {
         "fields": {
@@ -1261,7 +1412,8 @@
             "name": "Testing"
         },
         "model": "service.subcategory",
-        "pk": "f20fdfb9-87f8-49b5-8d76-796e85b9dd4a"
+        "pk": "f20fdfb9-87f8-49b5-8d76-796e85b9dd4a",
+        "eosc_id": "subcategory-training_and_support-consultancy_and_support-testing"
     },
     {
         "fields": {
@@ -1269,7 +1421,8 @@
             "name": "Warehousing"
         },
         "model": "service.subcategory",
-        "pk": "f2e43823-ea2f-457f-86af-df91ba236629"
+        "pk": "f2e43823-ea2f-457f-86af-df91ba236629",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-warehousing"
     },
     {
         "fields": {
@@ -1277,7 +1430,8 @@
             "name": "Consulting"
         },
         "model": "service.subcategory",
-        "pk": "f4e4e064-749e-4184-b92c-231639e575cb"
+        "pk": "f4e4e064-749e-4184-b92c-231639e575cb",
+        "eosc_id": "subcategory-training_and_support-consultancy_and_support-consulting"
     },
     {
         "fields": {
@@ -1285,7 +1439,8 @@
             "name": "Productivity"
         },
         "model": "service.subcategory",
-        "pk": "f65f2a43-7d13-467b-917b-1b26bd9c2ff8"
+        "pk": "f65f2a43-7d13-467b-917b-1b26bd9c2ff8",
+        "eosc_id": "subcategory-sharing_and_discovery-applications-productivity"
     },
     {
         "fields": {
@@ -1293,7 +1448,8 @@
             "name": "Characterisation"
         },
         "model": "service.subcategory",
-        "pk": "fa5ff700-55ce-4237-8b36-729a3cf4bc64"
+        "pk": "fa5ff700-55ce-4237-8b36-729a3cf4bc64",
+        "eosc_id": "subcategory-processing_and_analysis-measurement_and_materials_analysis-characterisation"
     },
     {
         "fields": {
@@ -1301,7 +1457,8 @@
             "name": "Direct Connect"
         },
         "model": "service.subcategory",
-        "pk": "fae5a962-3661-48eb-8c79-a782fad82464"
+        "pk": "fae5a962-3661-48eb-8c79-a782fad82464",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-network-direct_connect"
     },
     {
         "fields": {
@@ -1309,7 +1466,8 @@
             "name": "Preparation"
         },
         "model": "service.subcategory",
-        "pk": "fba318de-30f1-465b-8318-33e23dadcc78"
+        "pk": "fba318de-30f1-465b-8318-33e23dadcc78",
+        "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-preparation"
     },
     {
         "fields": {
@@ -1317,7 +1475,8 @@
             "name": "Spectrophotometer"
         },
         "model": "service.subcategory",
-        "pk": "fc11019e-5214-4716-9754-f29ea70d9174"
+        "pk": "fc11019e-5214-4716-9754-f29ea70d9174",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-spectrophotometer"
     },
     {
         "fields": {
@@ -1325,7 +1484,8 @@
             "name": "Helpdesk"
         },
         "model": "service.subcategory",
-        "pk": "fe8ea8b3-5451-44d4-9e8d-89f258cd3a77"
+        "pk": "fe8ea8b3-5451-44d4-9e8d-89f258cd3a77",
+        "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-helpdesk"
     },
     {
         "fields": {
@@ -1333,6 +1493,7 @@
             "name": "Exchange"
         },
         "model": "service.subcategory",
-        "pk": "ff9317da-be45-4a1e-8818-07d5f14ca3fb"
+        "pk": "ff9317da-be45-4a1e-8818-07d5f14ca3fb",
+        "eosc_id": "subcategory-access_physical_and_eInfrastructures-network-exchange"
     }
 ]

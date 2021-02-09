@@ -1,37 +1,42 @@
 [
     {
         "fields": {
-            "name": "RI is an ESFRI project"
+            "name": "Project"
         },
         "model": "accounts.esfritype",
-        "pk": "5489a07c-8417-4a4c-96b1-9bb34e9e7908"
+        "pk": "5489a07c-8417-4a4c-96b1-9bb34e9e7908",
+        "eosc_id": "provider_esfri_type-project"
     },
     {
         "fields": {
-            "name": "RI is a node of an ESFRI project"
+            "name": "Project"
         },
         "model": "accounts.esfritype",
-        "pk": "608a6fe9-f078-429f-a02f-84aa359b32c5"
+        "pk": "608a6fe9-f078-429f-a02f-84aa359b32c5",
+        "eosc_id": "provider_esfri_type-project"
     },
     {
         "fields": {
-            "name": "Not an ESFRI project or landmark"
+            "name": "Not ESFRI"
         },
         "model": "accounts.esfritype",
-        "pk": "81ab69f6-f069-4eef-9d6d-807cf2632520"
+        "pk": "81ab69f6-f069-4eef-9d6d-807cf2632520",
+        "eosc_id": "provider_esfri_type-not_esfri"
     },
     {
         "fields": {
-            "name": "RI is an ESFRI landmark"
+            "name": "Landmark"
         },
         "model": "accounts.esfritype",
-        "pk": "8dcaa44c-b3ca-4ea1-9200-bbb92f2b5dcc"
+        "pk": "8dcaa44c-b3ca-4ea1-9200-bbb92f2b5dcc",
+        "eosc_id": "provider_esfri_type-landmark"
     },
     {
         "fields": {
             "name": "Other"
         },
         "model": "accounts.esfritype",
-        "pk": "9f021353-b5fb-442c-9656-778d4960646c"
+        "pk": "9f021353-b5fb-442c-9656-778d4960646c",
+        "eosc_id": "provider_esfri_type-other"
     }
 ]

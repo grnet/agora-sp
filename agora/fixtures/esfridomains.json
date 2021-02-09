@@ -5,7 +5,8 @@
             "name": "Social & Cultural Innovation"
         },
         "model": "accounts.esfridomain",
-        "pk": "4b617c6d-0c85-4a5c-b1d1-49a9abc723f6"
+        "pk": "4b617c6d-0c85-4a5c-b1d1-49a9abc723f6",
+        "eosc_id": "provider_esfri_domain-social_and_cultural_innovation"
     },
     {
         "fields": {
@@ -13,7 +14,8 @@
             "name": "Other"
         },
         "model": "accounts.esfridomain",
-        "pk": "67365540-3863-4314-ad98-1026770cde4e"
+        "pk": "67365540-3863-4314-ad98-1026770cde4e",
+        "eosc_id": "provider_esfri_domain-other"
     },
     {
         "fields": {
@@ -21,7 +23,8 @@
             "name": "Physical Sciences & Engineering"
         },
         "model": "accounts.esfridomain",
-        "pk": "7cfe6e8c-47ca-40ea-88c1-ef14b660be46"
+        "pk": "7cfe6e8c-47ca-40ea-88c1-ef14b660be46",
+        "eosc_id": "provider_esfri_domain-physical_sciences_and_engineering"
     },
     {
         "fields": {
@@ -29,7 +32,8 @@
             "name": "Energy"
         },
         "model": "accounts.esfridomain",
-        "pk": "8c3ca151-b0f7-4e20-a3c3-21ccb7ad21bf"
+        "pk": "8c3ca151-b0f7-4e20-a3c3-21ccb7ad21bf",
+        "eosc_id": "provider_esfri_domain-energy"
     },
     {
         "fields": {
@@ -37,15 +41,17 @@
             "name": "Health & Food"
         },
         "model": "accounts.esfridomain",
-        "pk": "a57fc267-9282-4e79-90e4-4bf621949db1"
+        "pk": "a57fc267-9282-4e79-90e4-4bf621949db1",
+        "eosc_id": "provider_esfri_domain-health_and_food"
     },
     {
         "fields": {
             "description": "In research, as in all fields of society, Information and Communications Technology (ICT) has become a key enabling factor for progress. ICT is also changing the modus operandi of research by providing new possibilities for geographically distributed collaboration and sharing. Data-driven science, as well as more and more open access to data and scientific results, is transforming not only how research is conducted, but its overall reach.",
-            "name": "Data, Computing and Digital Research Infrastructures"
+            "name": "Data, Computing & Digital Research Infrastructures"
         },
         "model": "accounts.esfridomain",
-        "pk": "c7fcd889-9ec7-407c-8218-eb3fd39808bb"
+        "pk": "c7fcd889-9ec7-407c-8218-eb3fd39808bb",
+        "eosc_id": "provider_esfri_domain-data_computing_and_digital_research_infrastructures"
     },
     {
         "fields": {
@@ -53,6 +59,7 @@
             "name": "Environment"
         },
         "model": "accounts.esfridomain",
-        "pk": "c8a93f28-7429-47d9-b4b9-31edc7789fd2"
+        "pk": "c8a93f28-7429-47d9-b4b9-31edc7789fd2",
+        "eosc_id": "provider_esfri_domain-environment"
     }
 ]

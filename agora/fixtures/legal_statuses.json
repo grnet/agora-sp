@@ -4,146 +4,167 @@
             "name": "European Economic Interest Grouping"
         },
         "model": "accounts.legalstatus",
-        "pk": "11ab93a2-3420-41e3-ae76-76528dd213c6"
+        "pk": "11ab93a2-3420-41e3-ae76-76528dd213c6",
+        "eosc_id": "provider_legal_status-european_economic_interest_grouping"
     },
     {
         "fields": {
             "name": "Public Legal Entity under Private Law"
         },
         "model": "accounts.legalstatus",
-        "pk": "27cebd5b-0087-43d9-899b-1a6a5b0a341a"
+        "pk": "27cebd5b-0087-43d9-899b-1a6a5b0a341a",
+        "eosc_id": "provider_legal_status-public_legal_entity_under_private_law"
     },
     {
         "fields": {
             "name": "Non For Profit Company"
         },
         "model": "accounts.legalstatus",
-        "pk": "2a03006d-19f3-4edc-934c-0b97cce13e29"
+        "pk": "2a03006d-19f3-4edc-934c-0b97cce13e29",
+        "eosc_id": "provider_legal_status-non_for_profit_company"
     },
     {
         "fields": {
             "name": "Society"
         },
         "model": "accounts.legalstatus",
-        "pk": "39424b73-7a5d-4067-9c65-34e68210cf61"
+        "pk": "39424b73-7a5d-4067-9c65-34e68210cf61",
+        "eosc_id": "provider_legal_status-society"
     },
     {
         "fields": {
             "name": "Consortium"
         },
         "model": "accounts.legalstatus",
-        "pk": "4755d0d3-a1cb-4568-b531-5dcc4cb16d29"
+        "pk": "4755d0d3-a1cb-4568-b531-5dcc4cb16d29",
+        "eosc_id": "provider_legal_status-consortium"
     },
     {
         "fields": {
             "name": "European Research Infrastructure Consortium (ERIC)"
         },
         "model": "accounts.legalstatus",
-        "pk": "4fd9b9aa-cd54-4bce-a320-b49858d705ba"
+        "pk": "4fd9b9aa-cd54-4bce-a320-b49858d705ba",
+        "eosc_id": "provider_legal_status-european_research_infrastructure_consortium"
     },
     {
         "fields": {
             "name": "Not a Legal Entity"
         },
         "model": "accounts.legalstatus",
-        "pk": "5a09b2b1-0f86-416a-88d0-3d1b8d4126fa"
+        "pk": "5a09b2b1-0f86-416a-88d0-3d1b8d4126fa",
+        "eosc_id": "provider_legal_status-not_a_legal_entity"
     },
     {
         "fields": {
             "name": "Trust"
         },
         "model": "accounts.legalstatus",
-        "pk": "6182e73e-1282-4f74-9a76-9c0aea30469b"
+        "pk": "6182e73e-1282-4f74-9a76-9c0aea30469b",
+        "eosc_id": "provider_legal_status-trust"
     },
     {
         "fields": {
             "name": "Partnership"
         },
         "model": "accounts.legalstatus",
-        "pk": "6bffc844-1df0-4d20-b1e4-540dedc84955"
+        "pk": "6bffc844-1df0-4d20-b1e4-540dedc84955",
+        "eosc_id": "provider_legal_status-partnership"
     },
     {
         "fields": {
             "name": "Foundation"
         },
         "model": "accounts.legalstatus",
-        "pk": "8b7b5c1e-56c3-4d6b-8d5a-b9f0d0ddfac8"
+        "pk": "8b7b5c1e-56c3-4d6b-8d5a-b9f0d0ddfac8",
+        "eosc_id": "provider_legal_status-foundation"
     },
     {
         "fields": {
             "name": "Self Employed"
         },
         "model": "accounts.legalstatus",
-        "pk": "94c2025b-54e5-4cb7-99c6-4e71cbdfcf9b"
+        "pk": "94c2025b-54e5-4cb7-99c6-4e71cbdfcf9b",
+        "eosc_id": "provider_legal_status-self_employed"
     },
     {
         "fields": {
             "name": "Non-Governmental Organisation"
         },
         "model": "accounts.legalstatus",
-        "pk": "9b8ea304-e955-4019-9dee-0d7cd0ba3f23"
+        "pk": "9b8ea304-e955-4019-9dee-0d7cd0ba3f23",
+        "eosc_id": "provider_legal_status-non_governmental_organisation"
     },
     {
         "fields": {
             "name": "Union"
         },
         "model": "accounts.legalstatus",
-        "pk": "9d92a177-40f5-4da3-900e-44bd5d1275ec"
+        "pk": "9d92a177-40f5-4da3-900e-44bd5d1275ec",
+        "eosc_id": "provider_legal_status-union"
     },
     {
         "fields": {
-            "name": "International or Intergovernmental Organisation or Framework"
+            "name": "International or intergovernmental organisation or framework"
         },
         "model": "accounts.legalstatus",
-        "pk": "a5a75ed5-3eed-4eb4-9869-c6c0c633691b"
+        "pk": "a5a75ed5-3eed-4eb4-9869-c6c0c633691b",
+        "eosc_id": "provider_legal_status-international_or_intergovernmental_organisation_or_framework"
     },
     {
         "fields": {
             "name": "Public Company"
         },
         "model": "accounts.legalstatus",
-        "pk": "be2d8b58-2c9e-476f-9552-900b61b4f31e"
+        "pk": "be2d8b58-2c9e-476f-9552-900b61b4f31e",
+        "eosc_id": "provider_legal_status-public_company"
     },
     {
         "fields": {
             "name": "Association"
         },
         "model": "accounts.legalstatus",
-        "pk": "bf81a5f2-9b14-4fe0-8931-41dde90907a5"
+        "pk": "bf81a5f2-9b14-4fe0-8931-41dde90907a5",
+        "eosc_id": "provider_legal_status-association"
     },
     {
         "fields": {
             "name": "Grouping"
         },
         "model": "accounts.legalstatus",
-        "pk": "c35fbd36-e3a3-45b3-affb-c37aed449149"
+        "pk": "c35fbd36-e3a3-45b3-affb-c37aed449149",
+        "eosc_id": "provider_legal_status-grouping"
     },
     {
         "fields": {
             "name": "Private Company"
         },
         "model": "accounts.legalstatus",
-        "pk": "d4f3933b-716f-4c63-a8bc-3d44fb6b5b00"
+        "pk": "d4f3933b-716f-4c63-a8bc-3d44fb6b5b00",
+        "eosc_id": "provider_legal_status-private_company"
     },
     {
         "fields": {
             "name": "Corporation"
         },
         "model": "accounts.legalstatus",
-        "pk": "e94a0ff6-76d0-4c97-a39c-e96b75b125b2"
+        "pk": "e94a0ff6-76d0-4c97-a39c-e96b75b125b2",
+        "eosc_id": "provider_legal_status-corporation"
     },
     {
         "fields": {
             "name": "Public Legal Entity"
         },
         "model": "accounts.legalstatus",
-        "pk": "ecee1088-bda1-4d46-a708-1caf231599ee"
+        "pk": "ecee1088-bda1-4d46-a708-1caf231599ee",
+        "eosc_id": "provider_legal_status-public_legal_entity"
     },
     {
         "fields": {
             "name": "Other"
         },
         "model": "accounts.legalstatus",
-        "pk": "f4a86627-1c82-4ea7-b596-d4772f1e0306"
+        "pk": "f4a86627-1c82-4ea7-b596-d4772f1e0306",
+        "eosc_id": "provider_legal_status-other"
     }
 ]
