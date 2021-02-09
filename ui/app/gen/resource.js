@@ -103,12 +103,10 @@ export default AgoraGen.extend({
       order: 1,
     },
     row: {
-      actions: ['gen:details', 'gen:edit', 'publishResource', 'unpublishResource', 'postResourceEOSC', 'putResourceEOSC', 'remove'],
+      actions: ['gen:details', 'gen:edit', 'publishResource', 'unpublishResource', 'remove'],
       actionsMap: {
         unpublishResource,
         publishResource,
-        postResourceEOSC,
-        putResourceEOSC,
       },
       fields: TABLE_FIELDS,
     },
@@ -151,15 +149,28 @@ export default AgoraGen.extend({
       'applyResourceAdminship',
       'revokeResourceAdminship',
       'informAdminshipRejected',
+      'postResourceEOSC',
+      'putResourceEOSC',
     ],
     actionsMap: {
       applyResourceAdminship,
       revokeResourceAdminship,
       informAdminshipRejected,
+      postResourceEOSC,
+      putResourceEOSC,
     },
   },
   edit: {
     fieldsets: EDIT_FIELDSETS,
+    actions: [
+      'gen:details',
+      'postResourceEOSC',
+      'putResourceEOSC',
+    ],
+    actionsMap: {
+      postResourceEOSC,
+      putResourceEOSC,
+    },
   },
   create: {
     fieldsets: CREATE_FIELDSETS,
