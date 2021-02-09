@@ -56,9 +56,12 @@ body .model-form .model-form-field:last-child .checkbox-container  + .md-input-h
   top: -12px;
 }
 
-body .page-content .actions {
-  a.md-button {
+body .page-content .page-main-toolbar .actions {
+  .md-button {
     padding: 2px 20px;
+  }
+  md-icon {
+    margin-right: 3px;
   }
 
 }
@@ -186,5 +189,8 @@ img.logo {
 .eosc-portal-modal {
   img {
     max-width: 200px;
+  }
+  li {
+    padding: 4px 0;
   }
 }
