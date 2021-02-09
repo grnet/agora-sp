@@ -13,7 +13,12 @@ def resource_organisation_owned(backend_input, instance, context):
     serviceadmin belongs to.
     """
     auth_user = context['auth/user']
-    resource_org_id =  str(backend_input.get('erp_bai_2_organisation_id', instance.erp_bai_2_organisation_id))
+    # create
+    if instance:
+        resource_org_id  = str(instance.erp_bai_2_organisation_id)
+    # edit
+    else:
+        resource_org_id =  str(backend_input.get('erp_bai_2_organisation_id'))
     user_org_id = str(auth_user.organisation.id)
 
     if not user_org_id == resource_org_id:
