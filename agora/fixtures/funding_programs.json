@@ -69,7 +69,7 @@
         },
         "model": "service.fundingprogram",
         "pk": "1dbc7595-ca6a-48c9-8b14-e80cff64e1ab",
-        "eosc_id": "funding_body-other"
+        "eosc_id": "funding_program-other"
     },
     {
         "fields": {
