@@ -195,6 +195,11 @@ MERIL_DOMAINS = {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -217,6 +222,11 @@ DOMAINS = {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -249,6 +259,11 @@ MERIL_SUBDOMAINS = {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -277,6 +292,11 @@ SUBDOMAINS = {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -299,6 +319,11 @@ SUPERCATEGORIES = {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -327,6 +352,11 @@ CATEGORIES = {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -355,6 +385,11 @@ SUBCATEGORIES = {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -377,6 +412,11 @@ LEGAL_STATUSES = {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -403,6 +443,11 @@ NETWORKS = {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -429,6 +474,11 @@ STRUCTURES = {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -477,6 +527,11 @@ ESFRI_DOMAINS= {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -499,6 +554,11 @@ ESFRI_TYPES= {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -521,6 +581,11 @@ ACTIVITIES= {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -543,6 +608,11 @@ FUNDING_BODIES= {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -565,6 +635,11 @@ FUNDING_PROGRAMS = {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -590,6 +665,11 @@ ORDER_TYPES= {
         'description': {
             '.field.string': {},
             '.flag.nullable.default': {}},
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -616,6 +696,11 @@ ACCESS_TYPES= {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -642,6 +727,11 @@ ACCESS_MODES= {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -668,6 +758,11 @@ TRLS= {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -694,6 +789,11 @@ RESOURCE_LIFECYCLE_STATUSES= {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -716,6 +816,11 @@ CHALLENGES= {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -1122,6 +1227,11 @@ TARGET_USERS = {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
     },
     'actions': {
         '.action-template.django.list': {},
