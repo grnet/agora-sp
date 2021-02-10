@@ -1400,11 +1400,11 @@
     {
         "fields": {
             "category": "133d9c60-ef9e-4cb4-9dba-13a38048637c",
-            "name": "Application Scaling"
+            "name": "Application Porting"
         },
         "model": "service.subcategory",
         "pk": "f13abbc0-9741-4bee-8685-723fdba72a5c",
-        "eosc_id": "subcategory-training_and_support-consultancy_and_support-application_scaling"
+        "eosc_id": "subcategory-training_and_support-consultancy_and_support-application_porting"
     },
     {
         "fields": {
