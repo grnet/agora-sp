@@ -39,6 +39,7 @@ class TargetUser(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.CharField(max_length=255, unique=True)
     description = RichTextUploadingField(default=None, blank=True, null=True)
+    eosc_id = models.CharField(max_length=255, blank=True, null=True)
 
     def __unicode__(self):
         return str(self.user)
@@ -50,6 +51,7 @@ class TargetUser(models.Model):
 class Supercategory(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
+    eosc_id = models.CharField(max_length=255, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)
@@ -59,6 +61,7 @@ class Category(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     supercategory = models.ForeignKey('service.Supercategory', blank=True, null=True, related_name='supercategory_category')
     name = models.CharField(max_length=255, unique=True)
+    eosc_id = models.CharField(max_length=255, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)
@@ -68,6 +71,7 @@ class Subcategory(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     category = models.ForeignKey('service.Category', blank=True, null=True, related_name='category_subcategory')
     name = models.CharField(max_length=255)
+    eosc_id = models.CharField(max_length=255, blank=True, null=True)
 
     class Meta:
         unique_together = ('category', 'name')
@@ -81,6 +85,7 @@ class OrderType(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField(default=None, blank=True, null=True)
+    eosc_id = models.CharField(max_length=255, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)
@@ -89,31 +94,37 @@ class OrderType(models.Model):
 class FundingBody(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
+    eosc_id = models.CharField(max_length=255, blank=True, null=True)
 
 class FundingProgram(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
+    eosc_id = models.CharField(max_length=255, blank=True, null=True)
 
 class AccessType(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField(default=None, blank=True, null=True)
+    eosc_id = models.CharField(max_length=255, blank=True, null=True)
 
 
 class AccessMode(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField(default=None, blank=True, null=True)
+    eosc_id = models.CharField(max_length=255, blank=True, null=True)
 
 class TRL(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField(default=None, blank=True, null=True)
+    eosc_id = models.CharField(max_length=255, blank=True, null=True)
 
 class LifeCycleStatus(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField(default=None, blank=True, null=True)
+    eosc_id = models.CharField(max_length=255, blank=True, null=True)
 
 class Resource(models.Model):
 
