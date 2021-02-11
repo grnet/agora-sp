@@ -59,7 +59,8 @@
             "name": "TBC"
         },
         "model": "service.subcategory",
-        "pk": "0f142895-17e7-4d49-ba6c-1be0c1546c83"
+        "pk": "0f142895-17e7-4d49-ba6c-1be0c1546c83",
+        "eosc_id": ""
     },
     {
         "fields": {
@@ -103,7 +104,8 @@
             "name": "TBC"
         },
         "model": "service.subcategory",
-        "pk": "1bb4d6b2-c781-41bb-bbf6-faf22d3665c6"
+        "pk": "1bb4d6b2-c781-41bb-bbf6-faf22d3665c6",
+        "eosc_id": ""
     },
     {
         "fields": {
@@ -255,7 +257,8 @@
             "name": "TBC"
         },
         "model": "service.subcategory",
-        "pk": "33eec6c5-6471-462f-8bf0-54df382b0846"
+        "pk": "33eec6c5-6471-462f-8bf0-54df382b0846",
+        "eosc_id": ""
     },
     {
         "fields": {
@@ -785,7 +788,8 @@
             "name": "Publishing"
         },
         "model": "service.subcategory",
-        "pk": "8908a6b6-9ef5-4ae6-85a0-c01e8c04a6c3"
+        "pk": "8908a6b6-9ef5-4ae6-85a0-c01e8c04a6c3",
+        "eosc_id": ""
     },
     {
         "fields": {
@@ -856,7 +860,8 @@
             "name": "TBD"
         },
         "model": "service.subcategory",
-        "pk": "955eaf92-200e-45b9-ad9b-7546e59568d6"
+        "pk": "955eaf92-200e-45b9-ad9b-7546e59568d6",
+        "eosc_id": ""
     },
     {
         "fields": {
@@ -1197,7 +1202,8 @@
             "name": "TBC"
         },
         "model": "service.subcategory",
-        "pk": "c56817ae-8213-462a-b75f-4fbb31a8c759"
+        "pk": "c56817ae-8213-462a-b75f-4fbb31a8c759",
+        "eosc_id": ""
     },
     {
         "fields": {
