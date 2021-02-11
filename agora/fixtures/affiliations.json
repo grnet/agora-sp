@@ -4,2855 +4,3263 @@
             "name": "4M Association"
         },
         "model": "accounts.affiliation",
-        "pk": "22205e78-f133-4a76-aa3c-2e63ff405cc0"
+        "pk": "22205e78-f133-4a76-aa3c-2e63ff405cc0",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "AAA African Archeologists Association"
         },
         "model": "accounts.affiliation",
-        "pk": "a3c6ddef-0d78-48cc-a046-5fa62c770e14"
+        "pk": "a3c6ddef-0d78-48cc-a046-5fa62c770e14",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Academic Careers Understood through MEasurement and Norms (ACUMEN)"
         },
         "model": "accounts.affiliation",
-        "pk": "efddc19c-a7a7-4c15-8811-108c1a111c25"
+        "pk": "efddc19c-a7a7-4c15-8811-108c1a111c25",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Accessibility Assessment Simulation Environment for New Applications Design and Development (ACCESSIBLE)"
         },
         "model": "accounts.affiliation",
-        "pk": "494e6842-5d2e-430a-9680-20dce2f3bdce"
+        "pk": "494e6842-5d2e-430a-9680-20dce2f3bdce",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ACTRIS"
         },
         "model": "accounts.affiliation",
-        "pk": "0c6464f5-2b55-4240-9a99-dc137033bce1"
+        "pk": "0c6464f5-2b55-4240-9a99-dc137033bce1",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Advancing 3Rs and International Standards in Biological and Biomedical Research (EUPRIM-Net)"
         },
         "model": "accounts.affiliation",
-        "pk": "9d9f3304-92b1-4feb-b714-bf4a4d507067"
+        "pk": "9d9f3304-92b1-4feb-b714-bf4a4d507067",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "AErosol Robotic NETwork (AERONET)"
         },
         "model": "accounts.affiliation",
-        "pk": "93a10bbc-7259-47c7-b835-3796a200f7a1"
+        "pk": "93a10bbc-7259-47c7-b835-3796a200f7a1",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "African Studies in Europe (AEGIS)"
         },
         "model": "accounts.affiliation",
-        "pk": "abcda47b-64e9-4cd3-b0bd-b5d4afad5356"
+        "pk": "abcda47b-64e9-4cd3-b0bd-b5d4afad5356",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Alianza por la Investigaci\u00f3n y la Innovaci\u00f3n Energ\u00e9ticas (ALINNE)"
         },
         "model": "accounts.affiliation",
-        "pk": "93d62d64-02e2-4582-822a-e6bea8372ec7"
+        "pk": "93d62d64-02e2-4582-822a-e6bea8372ec7",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ALISTORE"
         },
         "model": "accounts.affiliation",
-        "pk": "46fa6f6e-7e78-4570-9c8c-8f284836ef58"
+        "pk": "46fa6f6e-7e78-4570-9c8c-8f284836ef58",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "AMICOM"
         },
         "model": "accounts.affiliation",
-        "pk": "5a5a49e1-f590-4576-a4a2-a801685ea62f"
+        "pk": "5a5a49e1-f590-4576-a4a2-a801685ea62f",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "AM-SPAN"
         },
         "model": "accounts.affiliation",
-        "pk": "f8b063bb-b04a-4cca-b069-37780dbf346e"
+        "pk": "f8b063bb-b04a-4cca-b069-37780dbf346e",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ANAEE"
         },
         "model": "accounts.affiliation",
-        "pk": "8cd7dea8-ad87-41d9-a32f-18c99df71e94"
+        "pk": "8cd7dea8-ad87-41d9-a32f-18c99df71e94",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ANAEE-Services"
         },
         "model": "accounts.affiliation",
-        "pk": "a38537c5-aaea-46d8-ac81-0f26cd31b22b"
+        "pk": "a38537c5-aaea-46d8-ac81-0f26cd31b22b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Animal Health and Welfare ERA-Net (ANIHWA)"
         },
         "model": "accounts.affiliation",
-        "pk": "8fea9a58-1018-4dd2-b33b-e717d5bfb660"
+        "pk": "8fea9a58-1018-4dd2-b33b-e717d5bfb660",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "APARSEN"
         },
         "model": "accounts.affiliation",
-        "pk": "dcd319e2-a592-404d-a015-414c9d7a674d"
+        "pk": "dcd319e2-a592-404d-a015-414c9d7a674d",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "APPA Marina"
         },
         "model": "accounts.affiliation",
-        "pk": "98263d7f-e702-4879-a025-13ffbc68999c"
+        "pk": "98263d7f-e702-4879-a025-13ffbc68999c",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "AQUAEXCEL"
         },
         "model": "accounts.affiliation",
-        "pk": "1cf612ad-d19c-40a9-9844-0f59be770716"
+        "pk": "1cf612ad-d19c-40a9-9844-0f59be770716",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "AQUAMED"
         },
         "model": "accounts.affiliation",
-        "pk": "fbc328fc-cc9b-4fa9-81d4-9457ab4efc22"
+        "pk": "fbc328fc-cc9b-4fa9-81d4-9457ab4efc22",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "AQUAtic MesoCOSM Facilities"
         },
         "model": "accounts.affiliation",
-        "pk": "52a796a5-2c91-4ae8-bd13-9199cdc9b768"
+        "pk": "52a796a5-2c91-4ae8-bd13-9199cdc9b768",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ARBO-ZOONET"
         },
         "model": "accounts.affiliation",
-        "pk": "1c4e477a-a799-4e2a-bd08-4a67d880fff8"
+        "pk": "1c4e477a-a799-4e2a-bd08-4a67d880fff8",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ASEM"
         },
         "model": "accounts.affiliation",
-        "pk": "dca4567a-c1d6-4ca2-866a-5d903a10a609"
+        "pk": "dca4567a-c1d6-4ca2-866a-5d903a10a609",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Asian Pacific Atomic Network"
         },
         "model": "accounts.affiliation",
-        "pk": "5883dc12-a96f-48e8-a551-1f3ddef3528d"
+        "pk": "5883dc12-a96f-48e8-a551-1f3ddef3528d",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ASSEMBLE"
         },
         "model": "accounts.affiliation",
-        "pk": "865b04e2-32b4-4101-93aa-96c2079ceed3"
+        "pk": "865b04e2-32b4-4101-93aa-96c2079ceed3",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ASSEMIC"
         },
         "model": "accounts.affiliation",
-        "pk": "33220231-2ef0-4d2d-8f98-3a631455a178"
+        "pk": "33220231-2ef0-4d2d-8f98-3a631455a178",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Association of International Research and Development Centers for Agriculture"
         },
         "model": "accounts.affiliation",
-        "pk": "da9b4572-da59-4e38-8418-c4953c0c8db9"
+        "pk": "da9b4572-da59-4e38-8418-c4953c0c8db9",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ASTARTE - Assessment, STrategy And Risk Reduction for Tsunamis in Europe"
         },
         "model": "accounts.affiliation",
-        "pk": "522f9905-8674-4977-bf89-e7bd6d79494b"
+        "pk": "522f9905-8674-4977-bf89-e7bd6d79494b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ASTRONET"
         },
         "model": "accounts.affiliation",
-        "pk": "cc5b4396-bdba-44c8-8479-731a5ad9402b"
+        "pk": "cc5b4396-bdba-44c8-8479-731a5ad9402b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Astroparticle Physics European Coordination (ApPEC)"
         },
         "model": "accounts.affiliation",
-        "pk": "7caf6dd4-35aa-47d6-a23e-724de781de05"
+        "pk": "7caf6dd4-35aa-47d6-a23e-724de781de05",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Atlantic Network of Geodynamical and Space Stations (REAGE)"
         },
         "model": "accounts.affiliation",
-        "pk": "36eeb9b4-4a7f-47f3-b235-2f875f483383"
+        "pk": "36eeb9b4-4a7f-47f3-b235-2f875f483383",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Austrian Centre for Scientific Comuting (ACSC)"
         },
         "model": "accounts.affiliation",
-        "pk": "c47068a3-0468-4014-badb-82803114b0dc"
+        "pk": "c47068a3-0468-4014-badb-82803114b0dc",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Baseline Surface Radiation Network (BSRN)"
         },
         "model": "accounts.affiliation",
-        "pk": "43940359-0bda-4c8b-a40a-681a17fa84e0"
+        "pk": "43940359-0bda-4c8b-a40a-681a17fa84e0",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "BBIB Berlin-Brandenburg Institute of Advanced Biodiversity Research"
         },
         "model": "accounts.affiliation",
-        "pk": "d8ad9b05-eddb-4583-8d59-98498a30f88b"
+        "pk": "d8ad9b05-eddb-4583-8d59-98498a30f88b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "BBMRI"
         },
         "model": "accounts.affiliation",
-        "pk": "ddbd475f-c775-48c4-82d9-de9fbcff165c"
+        "pk": "ddbd475f-c775-48c4-82d9-de9fbcff165c",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "BING"
         },
         "model": "accounts.affiliation",
-        "pk": "107aa77f-b62d-45d6-ac5a-8f5bf60564f8"
+        "pk": "107aa77f-b62d-45d6-ac5a-8f5bf60564f8",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "BIOBANQUES"
         },
         "model": "accounts.affiliation",
-        "pk": "d5ae47dd-c34c-4f77-8011-76a969ae7d8d"
+        "pk": "d5ae47dd-c34c-4f77-8011-76a969ae7d8d",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Bio-based Industries Consortium (BIC)"
         },
         "model": "accounts.affiliation",
-        "pk": "2e3a8f45-a66c-42ef-bf6b-9f2350c05cba"
+        "pk": "2e3a8f45-a66c-42ef-bf6b-9f2350c05cba",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Biocenter Finland"
         },
         "model": "accounts.affiliation",
-        "pk": "602c633d-0443-4e13-8d37-24fe12120f68"
+        "pk": "602c633d-0443-4e13-8d37-24fe12120f68",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Biodiversity Research Network (ALTER-Net)"
         },
         "model": "accounts.affiliation",
-        "pk": "e4642b19-4dfd-4ab9-884b-ebe1d96425b1"
+        "pk": "e4642b19-4dfd-4ab9-884b-ebe1d96425b1",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Biological Alert Laboratories Network, Spain (RELAB)"
         },
         "model": "accounts.affiliation",
-        "pk": "d7953c92-662e-4b8e-b9d2-2619995ee760"
+        "pk": "d7953c92-662e-4b8e-b9d2-2619995ee760",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Biomass Research Infrastructure for Sharing Knowledge (BRISK)"
         },
         "model": "accounts.affiliation",
-        "pk": "c199912d-8781-4d07-824a-6e80cb3640f8"
+        "pk": "c199912d-8781-4d07-824a-6e80cb3640f8",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "BioMedBridges"
         },
         "model": "accounts.affiliation",
-        "pk": "cd2fdce2-7a96-46ee-9df3-80d54708c2a1"
+        "pk": "cd2fdce2-7a96-46ee-9df3-80d54708c2a1",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Bio-NMR"
         },
         "model": "accounts.affiliation",
-        "pk": "b4180fe8-51ab-4d14-8b0b-6da118481dae"
+        "pk": "b4180fe8-51ab-4d14-8b0b-6da118481dae",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "BioSHaRE"
         },
         "model": "accounts.affiliation",
-        "pk": "4a3a7bc0-4eff-4249-912a-ec8851b6dc14"
+        "pk": "4a3a7bc0-4eff-4249-912a-ec8851b6dc14",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "BioStruct-X"
         },
         "model": "accounts.affiliation",
-        "pk": "c37288ba-8c8b-428d-8f24-242e8fd17522"
+        "pk": "c37288ba-8c8b-428d-8f24-242e8fd17522",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Botanic Gardens Consortium International"
         },
         "model": "accounts.affiliation",
-        "pk": "904e4225-0394-47e4-b820-d541d7021551"
+        "pk": "904e4225-0394-47e4-b820-d541d7021551",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "BRIDGE - Europractice"
         },
         "model": "accounts.affiliation",
-        "pk": "2df5f3aa-e325-4da3-8d6d-83b12ec65cca"
+        "pk": "2df5f3aa-e325-4da3-8d6d-83b12ec65cca",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Budapest Neutron Centre"
         },
         "model": "accounts.affiliation",
-        "pk": "248359a4-7f56-44dc-9762-67a025c6227e"
+        "pk": "248359a4-7f56-44dc-9762-67a025c6227e",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "CALIPSO"
         },
         "model": "accounts.affiliation",
-        "pk": "a7bc474f-687c-497d-94df-2298dd090e00"
+        "pk": "a7bc474f-687c-497d-94df-2298dd090e00",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "CARARE"
         },
         "model": "accounts.affiliation",
-        "pk": "85cdbb4f-beb8-4c0f-9a90-d0d39d83f438"
+        "pk": "85cdbb4f-beb8-4c0f-9a90-d0d39d83f438",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "CASyM"
         },
         "model": "accounts.affiliation",
-        "pk": "72c60a32-1140-470c-a73f-a1986c487c6c"
+        "pk": "72c60a32-1140-470c-a73f-a1986c487c6c",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Census Data Open Linked (CEDAR)"
         },
         "model": "accounts.affiliation",
-        "pk": "ddcce68e-51e0-4c44-ad9f-ad86d0c0ecd0"
+        "pk": "ddcce68e-51e0-4c44-ad9f-ad86d0c0ecd0",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Center for Organelle Research (CORE)"
         },
         "model": "accounts.affiliation",
-        "pk": "1bc54cb0-2a03-4704-8f54-38f38b4e9794"
+        "pk": "1bc54cb0-2a03-4704-8f54-38f38b4e9794",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "C-ERIC"
         },
         "model": "accounts.affiliation",
-        "pk": "ec9d4463-66f4-4fa0-a497-64d1628e64ad"
+        "pk": "ec9d4463-66f4-4fa0-a497-64d1628e64ad",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Chimioth\u00e8que Nationale Fran\u00e7aise"
         },
         "model": "accounts.affiliation",
-        "pk": "e96fb559-9214-4228-91f5-7133b97d2a05"
+        "pk": "e96fb559-9214-4228-91f5-7133b97d2a05",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "CLARIN"
         },
         "model": "accounts.affiliation",
-        "pk": "3b8571e1-503a-4b73-85d8-8e7add43bee2"
+        "pk": "3b8571e1-503a-4b73-85d8-8e7add43bee2",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "CLOUDNET"
         },
         "model": "accounts.affiliation",
-        "pk": "ea73d669-7ea7-4322-9ceb-866f1c31f32b"
+        "pk": "ea73d669-7ea7-4322-9ceb-866f1c31f32b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "CNEF"
         },
         "model": "accounts.affiliation",
-        "pk": "8b1f601c-cbe6-421a-add8-ab778b31f4dc"
+        "pk": "8b1f601c-cbe6-421a-add8-ab778b31f4dc",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Cohort & Longitudinal Studies Enhancement Resources"
         },
         "model": "accounts.affiliation",
-        "pk": "96b0d6e6-7108-453c-800e-880d4bcc2e36"
+        "pk": "96b0d6e6-7108-453c-800e-880d4bcc2e36",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Collaboration to Clarify the Costs of Curation (4C)"
         },
         "model": "accounts.affiliation",
-        "pk": "51ce8ac1-e940-4049-aec9-3710ff923f69"
+        "pk": "51ce8ac1-e940-4049-aec9-3710ff923f69",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Collections Policy Board (CPB)"
         },
         "model": "accounts.affiliation",
-        "pk": "e4a48a82-465f-41bc-b51e-9bee4ea64d23"
+        "pk": "e4a48a82-465f-41bc-b51e-9bee4ea64d23",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Comit\u00e9 Polar Espa\u00f1ol (CPE)"
         },
         "model": "accounts.affiliation",
-        "pk": "ae07cf04-0053-4cec-aaf1-6f1deffcc028"
+        "pk": "ae07cf04-0053-4cec-aaf1-6f1deffcc028",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "COMMIT"
         },
         "model": "accounts.affiliation",
-        "pk": "a33873d4-693d-4be2-887a-5c6bcac80998"
+        "pk": "a33873d4-693d-4be2-887a-5c6bcac80998",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Committee Research with Neutrons (KFN)"
         },
         "model": "accounts.affiliation",
-        "pk": "09716f41-9dce-42a3-9f65-705461fc935a"
+        "pk": "09716f41-9dce-42a3-9f65-705461fc935a",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Common Access to Biotechnological Resources and Information (CABRI)"
         },
         "model": "accounts.affiliation",
-        "pk": "77245227-e117-4388-a7c9-8d1525693359"
+        "pk": "77245227-e117-4388-a7c9-8d1525693359",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Connecting Africa"
         },
         "model": "accounts.affiliation",
-        "pk": "fe5824ff-19c6-46f9-82e3-cb3278d1a6d6"
+        "pk": "fe5824ff-19c6-46f9-82e3-cb3278d1a6d6",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Consortium for the Barcode of Life"
         },
         "model": "accounts.affiliation",
-        "pk": "ee06a9f9-e60f-4716-816b-be42c79cd14b"
+        "pk": "ee06a9f9-e60f-4716-816b-be42c79cd14b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Consortium of European Social Science Data Archives"
         },
         "model": "accounts.affiliation",
-        "pk": "70311787-07e7-45a2-9bcb-81bb4ea7f5bd"
+        "pk": "70311787-07e7-45a2-9bcb-81bb4ea7f5bd",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Consortium of European Taxonomic Facilities (CETAF)"
         },
         "model": "accounts.affiliation",
-        "pk": "f912a53d-f8a1-4424-b3a1-85ed4a511529"
+        "pk": "f912a53d-f8a1-4424-b3a1-85ed4a511529",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Cooperative Research Ships (CRS)"
         },
         "model": "accounts.affiliation",
-        "pk": "75bebef0-7aec-4a90-993b-4197e89381df"
+        "pk": "75bebef0-7aec-4a90-993b-4197e89381df",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Coordinated Access to Lightsources to Promote Standards and Optimization (CALIPSO)"
         },
         "model": "accounts.affiliation",
-        "pk": "02c2bcce-75fa-41e6-8ee2-a6dfd6fa8bd2"
+        "pk": "02c2bcce-75fa-41e6-8ee2-a6dfd6fa8bd2",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Coordinated Research Infrastructures Building Enduring Life-Science Services (CORBEL)"
         },
         "model": "accounts.affiliation",
-        "pk": "1e55fec4-7483-409d-9572-9eb443ac71a5"
+        "pk": "1e55fec4-7483-409d-9572-9eb443ac71a5",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "COPERNICUS"
         },
         "model": "accounts.affiliation",
-        "pk": "a58c5182-5a7b-44d6-96a2-ba37fa4bce61"
+        "pk": "a58c5182-5a7b-44d6-96a2-ba37fa4bce61",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "CoPoRI"
         },
         "model": "accounts.affiliation",
-        "pk": "9cd309df-7b30-4cdf-81d2-c1e365c81158"
+        "pk": "9cd309df-7b30-4cdf-81d2-c1e365c81158",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Core Facility Net"
         },
         "model": "accounts.affiliation",
-        "pk": "0bb99c56-cf40-4a5a-bbaf-e7600e280c4d"
+        "pk": "0bb99c56-cf40-4a5a-bbaf-e7600e280c4d",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Council for the Development of Social Science Research in Africa (CODESRIA)"
         },
         "model": "accounts.affiliation",
-        "pk": "02a9021d-98c2-467f-b49c-d45795bd08ce"
+        "pk": "02a9021d-98c2-467f-b49c-d45795bd08ce",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Council of Managers of National Antarctic Programs (COMNAP)"
         },
         "model": "accounts.affiliation",
-        "pk": "94ad19db-b018-4593-8be9-3f229a8069a5"
+        "pk": "94ad19db-b018-4593-8be9-3f229a8069a5",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "CRISP"
         },
         "model": "accounts.affiliation",
-        "pk": "2156b1bc-5db6-4597-ae15-234bc229b206"
+        "pk": "2156b1bc-5db6-4597-ae15-234bc229b206",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Cultural Heritage Advanced Research Infrastructures (CHARISMA)"
         },
         "model": "accounts.affiliation",
-        "pk": "deb2194a-74ce-41ed-8713-0a20f0082107"
+        "pk": "deb2194a-74ce-41ed-8713-0a20f0082107",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Data Centre Network"
         },
         "model": "accounts.affiliation",
-        "pk": "83c6bee9-9d32-4c48-b62d-347abae25343"
+        "pk": "83c6bee9-9d32-4c48-b62d-347abae25343",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Data without Boundaries project (DwB)"
         },
         "model": "accounts.affiliation",
-        "pk": "7a36e2a3-1e67-4eba-a3c9-dc0b5a8e53c5"
+        "pk": "7a36e2a3-1e67-4eba-a3c9-dc0b5a8e53c5",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "DFG LIS"
         },
         "model": "accounts.affiliation",
-        "pk": "47d9fa06-f2ed-4180-aa49-a0aced593e97"
+        "pk": "47d9fa06-f2ed-4180-aa49-a0aced593e97",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Digital Research Infrastructure for Arts and Humanities (DARIAH)"
         },
         "model": "accounts.affiliation",
-        "pk": "1e91e98d-f2fe-4eec-ae17-9abd1392a3b2"
+        "pk": "1e91e98d-f2fe-4eec-ae17-9abd1392a3b2",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Digital Services Infrastructure for Social Sciences and Humanities (DASISH)"
         },
         "model": "accounts.affiliation",
-        "pk": "98030251-7c70-4554-a1d6-d70af02c0f34"
+        "pk": "98030251-7c70-4554-a1d6-d70af02c0f34",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "DNFS"
         },
         "model": "accounts.affiliation",
-        "pk": "ba1c633f-133f-40a0-9e18-db2c66e71fbe"
+        "pk": "ba1c633f-133f-40a0-9e18-db2c66e71fbe",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "DTL"
         },
         "model": "accounts.affiliation",
-        "pk": "54c0dd98-66b9-4522-9580-3fd8c76f9277"
+        "pk": "54c0dd98-66b9-4522-9580-3fd8c76f9277",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "EAST-NMR"
         },
         "model": "accounts.affiliation",
-        "pk": "937f00ef-280a-41e1-ba2a-e95838b10f96"
+        "pk": "937f00ef-280a-41e1-ba2a-e95838b10f96",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "EATRIS"
         },
         "model": "accounts.affiliation",
-        "pk": "7dd05502-c5a4-452a-b5be-98dcae028b74"
+        "pk": "7dd05502-c5a4-452a-b5be-98dcae028b74",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "EcoChange"
         },
         "model": "accounts.affiliation",
-        "pk": "06c750c8-2b7c-4896-8078-02e2c3fd6a93"
+        "pk": "06c750c8-2b7c-4896-8078-02e2c3fd6a93",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ECRIN"
         },
         "model": "accounts.affiliation",
-        "pk": "a21ab5d0-11a4-41bd-8be7-86e7771e5d47"
+        "pk": "a21ab5d0-11a4-41bd-8be7-86e7771e5d47",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "EDENext"
         },
         "model": "accounts.affiliation",
-        "pk": "8d57b106-cdb3-4c16-aab6-18b859d4ba8f"
+        "pk": "8d57b106-cdb3-4c16-aab6-18b859d4ba8f",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "E-FAST"
         },
         "model": "accounts.affiliation",
-        "pk": "f61c512e-ff4f-43dd-860f-d20c93ee4c1b"
+        "pk": "f61c512e-ff4f-43dd-860f-d20c93ee4c1b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "EFDA"
         },
         "model": "accounts.affiliation",
-        "pk": "132cf7c5-8642-4bea-9b65-d43e9580d258"
+        "pk": "132cf7c5-8642-4bea-9b65-d43e9580d258",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "EHRI"
         },
         "model": "accounts.affiliation",
-        "pk": "6ffd538b-b9a1-46b9-8a89-35db0074c23b"
+        "pk": "6ffd538b-b9a1-46b9-8a89-35db0074c23b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "EIROforum"
         },
         "model": "accounts.affiliation",
-        "pk": "f234c638-dd85-4437-8ae5-961ea37d9838"
+        "pk": "f234c638-dd85-4437-8ae5-961ea37d9838",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ELIXIR"
         },
         "model": "accounts.affiliation",
-        "pk": "e4603f9b-b58c-446b-acb3-c7d83bc1b3db"
+        "pk": "e4603f9b-b58c-446b-acb3-c7d83bc1b3db",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "EMBRC"
         },
         "model": "accounts.affiliation",
-        "pk": "458a3624-bb3f-4ec9-9a4d-453c5cc1704a"
+        "pk": "458a3624-bb3f-4ec9-9a4d-453c5cc1704a",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "EMFL"
         },
         "model": "accounts.affiliation",
-        "pk": "cf637265-aa60-41f0-b7b4-adbe25f84a3c"
+        "pk": "cf637265-aa60-41f0-b7b4-adbe25f84a3c",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ENIVD"
         },
         "model": "accounts.affiliation",
-        "pk": "5bea9e5c-ad9e-4987-8f80-abbcd002844c"
+        "pk": "5bea9e5c-ad9e-4987-8f80-abbcd002844c",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Entreprise Europe Network"
         },
         "model": "accounts.affiliation",
-        "pk": "8b999cd8-73eb-4bb3-bfe3-00dd83d75bd3"
+        "pk": "8b999cd8-73eb-4bb3-bfe3-00dd83d75bd3",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ENVRI"
         },
         "model": "accounts.affiliation",
-        "pk": "6fe7c54f-6f76-446a-ab2d-e104bedf2b37"
+        "pk": "6fe7c54f-6f76-446a-ab2d-e104bedf2b37",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "EPIZONE European Research Group (ERG)"
         },
         "model": "accounts.affiliation",
-        "pk": "df5aee8a-676d-457b-a7d5-acf5790d82c6"
+        "pk": "df5aee8a-676d-457b-a7d5-acf5790d82c6",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "EPOS"
         },
         "model": "accounts.affiliation",
-        "pk": "a6442c84-3a21-4882-bdea-44dd3ba200e9"
+        "pk": "a6442c84-3a21-4882-bdea-44dd3ba200e9",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "EPoSS"
         },
         "model": "accounts.affiliation",
-        "pk": "714a7564-d9b4-4146-ba8f-59e77a19c3df"
+        "pk": "714a7564-d9b4-4146-ba8f-59e77a19c3df",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "EREA"
         },
         "model": "accounts.affiliation",
-        "pk": "74e4b375-f765-4468-8eb7-1171941f6b80"
+        "pk": "74e4b375-f765-4468-8eb7-1171941f6b80",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "E-RIHS"
         },
         "model": "accounts.affiliation",
-        "pk": "ee1b85dc-86df-4b8b-bd34-e2f759ee4a57"
+        "pk": "ee1b85dc-86df-4b8b-bd34-e2f759ee4a57",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ERINHA"
         },
         "model": "accounts.affiliation",
-        "pk": "cc7fb362-1229-4809-9c88-203181cf185a"
+        "pk": "cc7fb362-1229-4809-9c88-203181cf185a",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ERNCIP"
         },
         "model": "accounts.affiliation",
-        "pk": "6fa2116a-ae3e-4def-a92a-f2f82c2a3272"
+        "pk": "6fa2116a-ae3e-4def-a92a-f2f82c2a3272",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ESGI"
         },
         "model": "accounts.affiliation",
-        "pk": "bce127b5-8f24-4446-ac89-fefbae975b44"
+        "pk": "bce127b5-8f24-4446-ac89-fefbae975b44",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ESHE"
         },
         "model": "accounts.affiliation",
-        "pk": "a07da961-6fbf-4f4c-bb92-b0b6a40280cd"
+        "pk": "a07da961-6fbf-4f4c-bb92-b0b6a40280cd",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ESTEEM"
         },
         "model": "accounts.affiliation",
-        "pk": "2db7cccd-3066-4316-b61b-afc74189562a"
+        "pk": "2db7cccd-3066-4316-b61b-afc74189562a",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ESWIRP"
         },
         "model": "accounts.affiliation",
-        "pk": "f6637b41-e321-4a36-a42a-520cc8f67902"
+        "pk": "f6637b41-e321-4a36-a42a-520cc8f67902",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ETP Nanomedicine"
         },
         "model": "accounts.affiliation",
-        "pk": "009a1b84-f79f-4635-a2d5-3dfecba3685a"
+        "pk": "009a1b84-f79f-4635-a2d5-3dfecba3685a",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Eucowas"
         },
         "model": "accounts.affiliation",
-        "pk": "7b137f01-75be-48e9-9b38-e5a76c6d4bca"
+        "pk": "7b137f01-75be-48e9-9b38-e5a76c6d4bca",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "EU-Life"
         },
         "model": "accounts.affiliation",
-        "pk": "ffc7fd57-7dfd-420e-95df-c5c4e0abbe4a"
+        "pk": "ffc7fd57-7dfd-420e-95df-c5c4e0abbe4a",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "EUMEDCONNECT"
         },
         "model": "accounts.affiliation",
-        "pk": "d5ba0e16-4a24-47a3-bd21-af53b7675574"
+        "pk": "d5ba0e16-4a24-47a3-bd21-af53b7675574",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "EU-OPENSCREEN"
         },
         "model": "accounts.affiliation",
-        "pk": "815255ee-76c2-4bd9-9a6e-b331dce81813"
+        "pk": "815255ee-76c2-4bd9-9a6e-b331dce81813",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Euraqua"
         },
         "model": "accounts.affiliation",
-        "pk": "53202863-96ad-4d75-8a13-86c32f4dffcb"
+        "pk": "53202863-96ad-4d75-8a13-86c32f4dffcb",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "EURATOM"
         },
         "model": "accounts.affiliation",
-        "pk": "aff30460-38dd-420d-9a3f-f9b8343b5806"
+        "pk": "aff30460-38dd-420d-9a3f-f9b8343b5806",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "EURNEX"
         },
         "model": "accounts.affiliation",
-        "pk": "e6a76ca4-3d14-4b2c-b7e6-2e76901f20ad"
+        "pk": "e6a76ca4-3d14-4b2c-b7e6-2e76901f20ad",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Euro-BioImaging"
         },
         "model": "accounts.affiliation",
-        "pk": "1f47211b-ebb2-440e-a123-f28642885041"
+        "pk": "1f47211b-ebb2-440e-a123-f28642885041",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "EUROCHAMP-2020"
         },
         "model": "accounts.affiliation",
-        "pk": "da11a089-d3cd-47a8-88e8-9bac2da7ff21"
+        "pk": "da11a089-d3cd-47a8-88e8-9bac2da7ff21",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "EUROfusion"
         },
         "model": "accounts.affiliation",
-        "pk": "04575f5f-8f02-42a7-8a4a-fb3c4a0adb80"
+        "pk": "04575f5f-8f02-42a7-8a4a-fb3c4a0adb80",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Aerosol Research Lidar Network (EARLINET)"
         },
         "model": "accounts.affiliation",
-        "pk": "b50cc151-ae31-40da-aaff-9a737525ded6"
+        "pk": "b50cc151-ae31-40da-aaff-9a737525ded6",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Aquaculture Technology and Innovation Platform (EATIP)"
         },
         "model": "accounts.affiliation",
-        "pk": "8f73fc28-0eea-4992-93b6-62bddb3167b9"
+        "pk": "8f73fc28-0eea-4992-93b6-62bddb3167b9",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Association for Solar Telescopes (EAST)"
         },
         "model": "accounts.affiliation",
-        "pk": "17a448a1-0108-456e-8601-fa0261f6acac"
+        "pk": "17a448a1-0108-456e-8601-fa0261f6acac",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Cancer Organisation (ECCO)"
         },
         "model": "accounts.affiliation",
-        "pk": "9a635c8b-b0e2-49f9-be41-411d4c9b3d46"
+        "pk": "9a635c8b-b0e2-49f9-be41-411d4c9b3d46",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Commission for the control of Foot and Mouth Disease (EuFMD)"
         },
         "model": "accounts.affiliation",
-        "pk": "4bd78cd3-d886-4345-bcdb-18323c54a3dc"
+        "pk": "4bd78cd3-d886-4345-bcdb-18323c54a3dc",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Consortium for Ocean Research Drilling (ECORD)"
         },
         "model": "accounts.affiliation",
-        "pk": "46bbf9d3-f10f-4d1e-8bf4-f18f979397e3"
+        "pk": "46bbf9d3-f10f-4d1e-8bf4-f18f979397e3",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Coordination for Accelerator Research & Development"
         },
         "model": "accounts.affiliation",
-        "pk": "298a0338-5c59-4ac0-8b88-20b98f347932"
+        "pk": "298a0338-5c59-4ac0-8b88-20b98f347932",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Culture Collections' Organisation (ECCO)"
         },
         "model": "accounts.affiliation",
-        "pk": "f7afd72b-93d0-4690-b3af-30b69116193d"
+        "pk": "f7afd72b-93d0-4690-b3af-30b69116193d",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Data Infrastructure (EUDAT)"
         },
         "model": "accounts.affiliation",
-        "pk": "d7622bd1-4829-4f4d-8d77-96da12302a72"
+        "pk": "d7622bd1-4829-4f4d-8d77-96da12302a72",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Energy Research Alliance"
         },
         "model": "accounts.affiliation",
-        "pk": "435de3ee-2f45-43a2-862e-c5251e3ee122"
+        "pk": "435de3ee-2f45-43a2-862e-c5251e3ee122",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Facility for Airborne Research (EUFAR)"
         },
         "model": "accounts.affiliation",
-        "pk": "da507b25-1828-45b1-b8c2-f1e0edd3003b"
+        "pk": "da507b25-1828-45b1-b8c2-f1e0edd3003b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Federation for Primatology (EFP)"
         },
         "model": "accounts.affiliation",
-        "pk": "c324c8c9-4de5-421d-8c55-70ef9159e531"
+        "pk": "c324c8c9-4de5-421d-8c55-70ef9159e531",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Grid Infrastructure (EGI)"
         },
         "model": "accounts.affiliation",
-        "pk": "0f881793-419e-42b5-91e1-3c968023f9b6"
+        "pk": "0f881793-419e-42b5-91e1-3c968023f9b6",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Infrastructure of Open Screening Platforms for Chemical Biology"
         },
         "model": "accounts.affiliation",
-        "pk": "1a9306b6-9c72-4d5d-85bc-aa6df344063a"
+        "pk": "1a9306b6-9c72-4d5d-85bc-aa6df344063a",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Institute for Biomedical Imaging Research (EIBIR)"
         },
         "model": "accounts.affiliation",
-        "pk": "7ccb1b56-d7ab-4d37-937a-ce5dcc38b621"
+        "pk": "7ccb1b56-d7ab-4d37-937a-ce5dcc38b621",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Labour History Network (ELHN)"
         },
         "model": "accounts.affiliation",
-        "pk": "908fa3c6-14d5-427c-a221-d32a41573a4b"
+        "pk": "908fa3c6-14d5-427c-a221-d32a41573a4b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Librarians in African Studies (ELIAS)"
         },
         "model": "accounts.affiliation",
-        "pk": "dc560c44-17aa-4e60-a7a3-c210cf155e30"
+        "pk": "dc560c44-17aa-4e60-a7a3-c210cf155e30",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Life Sciences Infrastructure For Biological Information"
         },
         "model": "accounts.affiliation",
-        "pk": "a0c8b326-e8ad-4064-8be1-0f13a389ee80"
+        "pk": "a0c8b326-e8ad-4064-8be1-0f13a389ee80",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Light Microscopy Initiative (ELMI)"
         },
         "model": "accounts.affiliation",
-        "pk": "c34c8121-0775-4855-87b4-cbf8e4de1de8"
+        "pk": "c34c8121-0775-4855-87b4-cbf8e4de1de8",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Molecular Biology Network (EMBnet)"
         },
         "model": "accounts.affiliation",
-        "pk": "df7307c5-46a7-4ce7-a619-586a2709da5b"
+        "pk": "df7307c5-46a7-4ce7-a619-586a2709da5b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Monitoring Agency for Drugs and Drug Addition (EMCDDA)"
         },
         "model": "accounts.affiliation",
-        "pk": "d7ce1957-b477-4046-baea-10f57ea3bd14"
+        "pk": "d7ce1957-b477-4046-baea-10f57ea3bd14",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Mouse Mutant Archive (EMMA)"
         },
         "model": "accounts.affiliation",
-        "pk": "618cbe26-623a-479e-8c9a-8129e1527d23"
+        "pk": "618cbe26-623a-479e-8c9a-8129e1527d23",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Multidisciplinary Seafloor Observation (EMSO)"
         },
         "model": "accounts.affiliation",
-        "pk": "002c443d-fe58-4821-9bf7-110ee7636eeb"
+        "pk": "002c443d-fe58-4821-9bf7-110ee7636eeb",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Network for Animal Disease and Infectiology Research Facilities (NADIR)"
         },
         "model": "accounts.affiliation",
-        "pk": "5ba37078-dfcf-4b59-82f3-502ba10558dd"
+        "pk": "5ba37078-dfcf-4b59-82f3-502ba10558dd",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Network of Marine Research Institutes and Stations (MARS)"
         },
         "model": "accounts.affiliation",
-        "pk": "958e2ffd-9af3-4bd3-aaf5-f659ccd9f791"
+        "pk": "958e2ffd-9af3-4bd3-aaf5-f659ccd9f791",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Network of Vaccine Research and Development"
         },
         "model": "accounts.affiliation",
-        "pk": "009cf28e-8915-4de3-a0fe-0b9deb63f220"
+        "pk": "009cf28e-8915-4de3-a0fe-0b9deb63f220",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Nuclear Science and Applications Research (ENSAR)"
         },
         "model": "accounts.affiliation",
-        "pk": "963e4867-1db4-44d5-9984-29884679d7e2"
+        "pk": "963e4867-1db4-44d5-9984-29884679d7e2",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Plant Phenotyping Network (EPPN)"
         },
         "model": "accounts.affiliation",
-        "pk": "9dcaa85a-4c00-45a4-b567-d7d92ac49f77"
+        "pk": "9dcaa85a-4c00-45a4-b567-d7d92ac49f77",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Plate Observing System (EPOS)"
         },
         "model": "accounts.affiliation",
-        "pk": "41553c62-58f3-48c8-aac6-25ab2109d6a7"
+        "pk": "41553c62-58f3-48c8-aac6-25ab2109d6a7",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Polar Board (EPB)"
         },
         "model": "accounts.affiliation",
-        "pk": "4759ecb6-9ef6-403d-a92b-e4c351591e8d"
+        "pk": "4759ecb6-9ef6-403d-a92b-e4c351591e8d",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Research Vessels Operators (ERVO)"
         },
         "model": "accounts.affiliation",
-        "pk": "7f7e727a-75a4-4c50-8cca-e9ce142f7c77"
+        "pk": "7f7e727a-75a4-4c50-8cca-e9ce142f7c77",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Social Survey"
         },
         "model": "accounts.affiliation",
-        "pk": "42a012ac-e286-46a2-92b3-8b8ed6dcacf6"
+        "pk": "42a012ac-e286-46a2-92b3-8b8ed6dcacf6",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Technology Platform for High Performance Computing (ETP4HPC)"
         },
         "model": "accounts.affiliation",
-        "pk": "c482246e-0226-4343-9b6a-0cd634b90d57"
+        "pk": "c482246e-0226-4343-9b6a-0cd634b90d57",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European VLBI Network (EVN)"
         },
         "model": "accounts.affiliation",
-        "pk": "ef9170c9-ed48-490b-a7e4-7f8adb1011ac"
+        "pk": "ef9170c9-ed48-490b-a7e4-7f8adb1011ac",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European Windtunnel Association"
         },
         "model": "accounts.affiliation",
-        "pk": "9d99b750-7d03-4755-a892-0d467027212a"
+        "pk": "9d99b750-7d03-4755-a892-0d467027212a",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "European, Middle Eastern and African Society for Biopreservation and Biobanking (ESBB)"
         },
         "model": "accounts.affiliation",
-        "pk": "6efac4b9-8097-47d5-ae07-8ee7d394ff27"
+        "pk": "6efac4b9-8097-47d5-ae07-8ee7d394ff27",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Europeana"
         },
         "model": "accounts.affiliation",
-        "pk": "785c0e60-16bc-4f18-9c2b-8cdbdcdd0a68"
+        "pk": "785c0e60-16bc-4f18-9c2b-8cdbdcdd0a68",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "EUROPLANET RI"
         },
         "model": "accounts.affiliation",
-        "pk": "b0b9daa0-09d0-4d3a-a25f-530c91d2e147"
+        "pk": "b0b9daa0-09d0-4d3a-a25f-530c91d2e147",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "EU-SOLARIS"
         },
         "model": "accounts.affiliation",
-        "pk": "30333c36-a5c3-4447-89f6-47abca9aa09a"
+        "pk": "30333c36-a5c3-4447-89f6-47abca9aa09a",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "EUVAS"
         },
         "model": "accounts.affiliation",
-        "pk": "957b8d3e-835a-4659-8641-23aad511bb68"
+        "pk": "957b8d3e-835a-4659-8641-23aad511bb68",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Event Horizon Telescope"
         },
         "model": "accounts.affiliation",
-        "pk": "37b70ff4-5d39-4e55-9767-87317ec67c9d"
+        "pk": "37b70ff4-5d39-4e55-9767-87317ec67c9d",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "EVICTS"
         },
         "model": "accounts.affiliation",
-        "pk": "aba2e8d9-203f-43cf-a02c-c0458b2cc450"
+        "pk": "aba2e8d9-203f-43cf-a02c-c0458b2cc450",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "EVN"
         },
         "model": "accounts.affiliation",
-        "pk": "0abb1a62-7bf4-49d6-a93f-f78437c18a72"
+        "pk": "0abb1a62-7bf4-49d6-a93f-f78437c18a72",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Experimentation in Ecosystem Research (ExpeER)"
         },
         "model": "accounts.affiliation",
-        "pk": "96117386-a0cb-4483-8ded-e4201e4c2de7"
+        "pk": "96117386-a0cb-4483-8ded-e4201e4c2de7",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Federation of European Neurosciences (FENS)"
         },
         "model": "accounts.affiliation",
-        "pk": "9e2e9bce-42ee-499e-b6c7-33aa419cf28f"
+        "pk": "9e2e9bce-42ee-499e-b6c7-33aa419cf28f",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Finnish BioImaging Network"
         },
         "model": "accounts.affiliation",
-        "pk": "85d45923-4c2e-4489-8c10-8bf5014092f1"
+        "pk": "85d45923-4c2e-4489-8c10-8bf5014092f1",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Food and Agricultural Organisation of the United Nations (FAO)"
         },
         "model": "accounts.affiliation",
-        "pk": "64139288-f96b-440a-80c8-f23a088455d8"
+        "pk": "64139288-f96b-440a-80c8-f23a088455d8",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "FUSENET"
         },
         "model": "accounts.affiliation",
-        "pk": "9cf90278-4faf-4a3a-9a2e-883f31dc1aa3"
+        "pk": "9cf90278-4faf-4a3a-9a2e-883f31dc1aa3",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "GALION"
         },
         "model": "accounts.affiliation",
-        "pk": "8a66571f-49c3-4cd8-a815-6b3018a1e566"
+        "pk": "8a66571f-49c3-4cd8-a815-6b3018a1e566",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Gauss Centre for Supercomputing (GCS e.V.)"
         },
         "model": "accounts.affiliation",
-        "pk": "742026d1-2f88-4f37-abec-c477f3cc7e76"
+        "pk": "742026d1-2f88-4f37-abec-c477f3cc7e76",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "GAW"
         },
         "model": "accounts.affiliation",
-        "pk": "6f4082d7-719b-4f25-82a9-7e5c7e495d63"
+        "pk": "6f4082d7-719b-4f25-82a9-7e5c7e495d63",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "GBIF Nodes Network"
         },
         "model": "accounts.affiliation",
-        "pk": "f8947757-37e7-43e4-a20b-bf36230ea0b6"
+        "pk": "f8947757-37e7-43e4-a20b-bf36230ea0b6",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "GCOS"
         },
         "model": "accounts.affiliation",
-        "pk": "b7c285e1-beba-4532-b707-b3bcf5baa55b"
+        "pk": "b7c285e1-beba-4532-b707-b3bcf5baa55b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "GDR 3056 'ChemBioScreen'"
         },
         "model": "accounts.affiliation",
-        "pk": "3e057621-7bf6-4285-a590-a2a432131f4a"
+        "pk": "3e057621-7bf6-4285-a590-a2a432131f4a",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "G\u00c9ANT"
         },
         "model": "accounts.affiliation",
-        "pk": "59ce355a-af3c-49a7-adea-cc4294788001"
+        "pk": "59ce355a-af3c-49a7-adea-cc4294788001",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Genomics Research Network"
         },
         "model": "accounts.affiliation",
-        "pk": "eab4f027-9549-42d5-8224-4e7212621ceb"
+        "pk": "eab4f027-9549-42d5-8224-4e7212621ceb",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "German African Studies Association"
         },
         "model": "accounts.affiliation",
-        "pk": "c6ab51a7-4165-4bbc-80e7-1ddaea993fa9"
+        "pk": "c6ab51a7-4165-4bbc-80e7-1ddaea993fa9",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "German Consortium for Translational Cancer Research (DKTK)"
         },
         "model": "accounts.affiliation",
-        "pk": "76394d3a-7517-4398-986f-61a45f311b6e"
+        "pk": "76394d3a-7517-4398-986f-61a45f311b6e",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "German Data Forum"
         },
         "model": "accounts.affiliation",
-        "pk": "28cbc44f-c768-4205-9414-1f5b08f66a38"
+        "pk": "28cbc44f-c768-4205-9414-1f5b08f66a38",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Global Alliance for Zika Virus Control and Prevention"
         },
         "model": "accounts.affiliation",
-        "pk": "c021200e-c74f-4ace-b9ef-8fc76aac6388"
+        "pk": "c021200e-c74f-4ace-b9ef-8fc76aac6388",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Global Atmosphere Watch Programme-cooperation Germany, Austria, Switzerland (GAW-DACH)"
         },
         "model": "accounts.affiliation",
-        "pk": "5f22d2bf-fe93-4077-92e9-4fcb03c1ca26"
+        "pk": "5f22d2bf-fe93-4077-92e9-4fcb03c1ca26",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Global Biodiversity Information Facility (GBIF)"
         },
         "model": "accounts.affiliation",
-        "pk": "d90e9fef-953c-4815-b76f-cb2f42f7aee2"
+        "pk": "d90e9fef-953c-4815-b76f-cb2f42f7aee2",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Global Earth Observation System of Systems (GEOSS)"
         },
         "model": "accounts.affiliation",
-        "pk": "d61a0cf0-9c2d-493b-a5f4-42e4ef34e0a9"
+        "pk": "d61a0cf0-9c2d-493b-a5f4-42e4ef34e0a9",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Global Genome Biodiversity Network (GGBN)"
         },
         "model": "accounts.affiliation",
-        "pk": "1a353684-3053-410a-92c8-5d02840895ac"
+        "pk": "1a353684-3053-410a-92c8-5d02840895ac",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Global Lake Ecology Observatory Network (GLEON)"
         },
         "model": "accounts.affiliation",
-        "pk": "a4da44dd-2b55-4f41-81d3-ed4f5155c3a6"
+        "pk": "a4da44dd-2b55-4f41-81d3-ed4f5155c3a6",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Global Millimeter VLBI Array"
         },
         "model": "accounts.affiliation",
-        "pk": "33e2f5e9-b722-4da8-a626-d4657d544249"
+        "pk": "33e2f5e9-b722-4da8-a626-d4657d544249",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Global Network for Taxonomy (BioNET)"
         },
         "model": "accounts.affiliation",
-        "pk": "332e4362-a4c9-440f-8832-18d036550989"
+        "pk": "332e4362-a4c9-440f-8832-18d036550989",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "GMOS"
         },
         "model": "accounts.affiliation",
-        "pk": "7051e684-a384-4c67-930c-e626bb611180"
+        "pk": "7051e684-a384-4c67-930c-e626bb611180",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "GNSS Service Centre"
         },
         "model": "accounts.affiliation",
-        "pk": "5427ced0-3d44-45d2-beeb-d01053e780c0"
+        "pk": "5427ced0-3d44-45d2-beeb-d01053e780c0",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "GOOS"
         },
         "model": "accounts.affiliation",
-        "pk": "87a48772-4e70-4a76-bfab-fe503058b2a6"
+        "pk": "87a48772-4e70-4a76-bfab-fe503058b2a6",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Goportis - Leibniz Library Network for Research Information"
         },
         "model": "accounts.affiliation",
-        "pk": "70cfac89-2ad8-42b3-942a-b287eb5f7c35"
+        "pk": "70cfac89-2ad8-42b3-942a-b287eb5f7c35",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "GRUAN"
         },
         "model": "accounts.affiliation",
-        "pk": "5776e736-fb97-4451-b0e3-4f59c9bc67d5"
+        "pk": "5776e736-fb97-4451-b0e3-4f59c9bc67d5",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Grupo Interinstitucional y Comunitario de Pesca Artesanal del Pac\u00edfico Chocoano (GIPCA)"
         },
         "model": "accounts.affiliation",
-        "pk": "3edfebe1-76c2-4b5b-9328-bb90cce5d07a"
+        "pk": "3edfebe1-76c2-4b5b-9328-bb90cce5d07a",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "GUIDE\u2014Gentle User Interfaces for Disabled and Elderly Citizens"
         },
         "model": "accounts.affiliation",
-        "pk": "5eb912d5-560d-4ee5-9f49-12775f5d1e70"
+        "pk": "5eb912d5-560d-4ee5-9f49-12775f5d1e70",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "H2FC"
         },
         "model": "accounts.affiliation",
-        "pk": "8e0de181-43e7-469b-aaa8-2f623195d917"
+        "pk": "8e0de181-43e7-469b-aaa8-2f623195d917",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "HAIDA Network"
         },
         "model": "accounts.affiliation",
-        "pk": "f8841ecb-c3a2-470e-a3cc-c8ccb31e0953"
+        "pk": "f8841ecb-c3a2-470e-a3cc-c8ccb31e0953",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Helmholtz Alliance Drug Research"
         },
         "model": "accounts.affiliation",
-        "pk": "2bd72cab-57c4-4f00-b626-22c177859804"
+        "pk": "2bd72cab-57c4-4f00-b626-22c177859804",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "High-Intensity Extreme-Wavelength Ultrafast Lasers"
         },
         "model": "accounts.affiliation",
-        "pk": "f18f1705-b170-4419-b477-e2ab49fea981"
+        "pk": "f18f1705-b170-4419-b477-e2ab49fea981",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "HLD"
         },
         "model": "accounts.affiliation",
-        "pk": "c79244f2-f8de-40d4-804f-441b441a40b1"
+        "pk": "c79244f2-f8de-40d4-804f-441b441a40b1",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Human Brain Project - International Consortium on Brain Imaging (HBP)"
         },
         "model": "accounts.affiliation",
-        "pk": "ace31c09-98b3-4647-a65d-f1346ebc7b0f"
+        "pk": "ace31c09-98b3-4647-a65d-f1346ebc7b0f",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Human Proteome Project (HUPO)"
         },
         "model": "accounts.affiliation",
-        "pk": "a14c634a-0eda-43be-969c-ebe25759a5dc"
+        "pk": "a14c634a-0eda-43be-969c-ebe25759a5dc",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Humanist"
         },
         "model": "accounts.affiliation",
-        "pk": "cf52d235-783a-4a2a-9f39-5d1fa498b60c"
+        "pk": "cf52d235-783a-4a2a-9f39-5d1fa498b60c",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "HVI"
         },
         "model": "accounts.affiliation",
-        "pk": "55018ca4-7415-4267-97b8-6061a3210b23"
+        "pk": "55018ca4-7415-4267-97b8-6061a3210b23",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "HYCON2"
         },
         "model": "accounts.affiliation",
-        "pk": "a7f56833-a787-470f-94dd-ad99efe133b2"
+        "pk": "a7f56833-a787-470f-94dd-ad99efe133b2",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Hydralab IV"
         },
         "model": "accounts.affiliation",
-        "pk": "59ff5857-f960-41cc-aff1-ac8ed62c187a"
+        "pk": "59ff5857-f960-41cc-aff1-ac8ed62c187a",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Ibero-american network for the study of carotenoids as food ingredients (IBERCAROT)"
         },
         "model": "accounts.affiliation",
-        "pk": "347ddee9-a4e6-40ef-a6ff-e30efe2314e6"
+        "pk": "347ddee9-a4e6-40ef-a6ff-e30efe2314e6",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "IBiSA"
         },
         "model": "accounts.affiliation",
-        "pk": "20930b7e-598d-4eb3-a406-f6b005aff793"
+        "pk": "20930b7e-598d-4eb3-a406-f6b005aff793",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Ice Age Europe"
         },
         "model": "accounts.affiliation",
-        "pk": "a7cab63b-1c09-463a-b93e-a0b94d136b94"
+        "pk": "a7cab63b-1c09-463a-b93e-a0b94d136b94",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ICOM- International Council of Museums"
         },
         "model": "accounts.affiliation",
-        "pk": "e20cd45e-415d-4cf1-8e24-5a56d7c9659f"
+        "pk": "e20cd45e-415d-4cf1-8e24-5a56d7c9659f",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ICOS"
         },
         "model": "accounts.affiliation",
-        "pk": "eb4c6806-ad13-4449-8b31-f486f7cc81e3"
+        "pk": "eb4c6806-ad13-4449-8b31-f486f7cc81e3",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ICSTI - The International Council for Scientific and Technical Information"
         },
         "model": "accounts.affiliation",
-        "pk": "adbe8cd0-157d-4dd4-9597-256459c3a44d"
+        "pk": "adbe8cd0-157d-4dd4-9597-256459c3a44d",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ICTS"
         },
         "model": "accounts.affiliation",
-        "pk": "f12cb5ce-56d5-427a-bd64-de6dc732ddca"
+        "pk": "f12cb5ce-56d5-427a-bd64-de6dc732ddca",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "IFAR - International Forum for Research Aviation"
         },
         "model": "accounts.affiliation",
-        "pk": "131b3b18-8df5-4054-b8db-df0740bb51e2"
+        "pk": "131b3b18-8df5-4054-b8db-df0740bb51e2",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ILT"
         },
         "model": "accounts.affiliation",
-        "pk": "d98963f9-f20f-4da6-ae7d-e5850b6ffaea"
+        "pk": "d98963f9-f20f-4da6-ae7d-e5850b6ffaea",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ILTER (International Long Term Ecological Research)"
         },
         "model": "accounts.affiliation",
-        "pk": "8641cec9-dc4d-40b8-8e45-67ec96ce5359"
+        "pk": "8641cec9-dc4d-40b8-8e45-67ec96ce5359",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "iNEXT"
         },
         "model": "accounts.affiliation",
-        "pk": "0658161a-7cb4-421c-8b55-359a0e238678"
+        "pk": "0658161a-7cb4-421c-8b55-359a0e238678",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "INFRAFRONTIER"
         },
         "model": "accounts.affiliation",
-        "pk": "c4914fac-264b-4c0e-98a1-d38256ad088a"
+        "pk": "c4914fac-264b-4c0e-98a1-d38256ad088a",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "INfraStructure in Proton International REsearch"
         },
         "model": "accounts.affiliation",
-        "pk": "e7e8e119-fa95-4d1a-b166-7b2345142be6"
+        "pk": "e7e8e119-fa95-4d1a-b166-7b2345142be6",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "InGOS (Integrated non-CO2 Greenhouse Gas Observing Systems)"
         },
         "model": "accounts.affiliation",
-        "pk": "5e10b30c-441c-4886-80b9-f5f92b083b7d"
+        "pk": "5e10b30c-441c-4886-80b9-f5f92b083b7d",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "INSTRUCT"
         },
         "model": "accounts.affiliation",
-        "pk": "99ee8541-7aa4-466a-bdb7-0d678936c1c0"
+        "pk": "99ee8541-7aa4-466a-bdb7-0d678936c1c0",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Integrated Carbon Observation System (ICOS)"
         },
         "model": "accounts.affiliation",
-        "pk": "c67fc867-1423-43f7-8250-89f9903118fc"
+        "pk": "c67fc867-1423-43f7-8250-89f9903118fc",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Integrated Infrastructure Initiative for Neutron Scattering and Muon Spectroscopy (NMI3)"
         },
         "model": "accounts.affiliation",
-        "pk": "3a48023f-61c0-449f-b02d-26db015c7e8e"
+        "pk": "3a48023f-61c0-449f-b02d-26db015c7e8e",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Intergovernmental Oceanographic Commission/International Oceanographic Data and Information Exchange (IOC/IODE)"
         },
         "model": "accounts.affiliation",
-        "pk": "17d95474-ab6c-44c6-b5c6-9f9a5a8b78ca"
+        "pk": "17d95474-ab6c-44c6-b5c6-9f9a5a8b78ca",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Intergovernmental Science-Policy Platform on Biodiversity and Ecosystem Services (IPBES)"
         },
         "model": "accounts.affiliation",
-        "pk": "4cb39f93-d4ca-4f14-a9c7-c262b38b76e4"
+        "pk": "4cb39f93-d4ca-4f14-a9c7-c262b38b76e4",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Internal Magnets for DNP (DNPMAG)"
         },
         "model": "accounts.affiliation",
-        "pk": "5461134d-df6a-4286-aabf-2b945267356b"
+        "pk": "5461134d-df6a-4286-aabf-2b945267356b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International Association of Labour History Institutions (IALHI)"
         },
         "model": "accounts.affiliation",
-        "pk": "83231c23-b5d7-4517-8fa7-28d3a3e1dbc4"
+        "pk": "83231c23-b5d7-4517-8fa7-28d3a3e1dbc4",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International Barcode of Life"
         },
         "model": "accounts.affiliation",
-        "pk": "05bb7123-a616-46b6-abd6-b93c01ff915b"
+        "pk": "05bb7123-a616-46b6-abd6-b93c01ff915b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International Barcode of Life (IBOL)"
         },
         "model": "accounts.affiliation",
-        "pk": "79d939af-622c-43b1-b163-1db95f579a25"
+        "pk": "79d939af-622c-43b1-b163-1db95f579a25",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International Cancer Genome Consortium (ICGC)"
         },
         "model": "accounts.affiliation",
-        "pk": "112c8dd0-2041-41f4-9ee1-ab25ab1fc110"
+        "pk": "112c8dd0-2041-41f4-9ee1-ab25ab1fc110",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International Council for the Exploration of the Sea (ICES)"
         },
         "model": "accounts.affiliation",
-        "pk": "044dbc7a-959f-4cb0-ab92-5b835f97686e"
+        "pk": "044dbc7a-959f-4cb0-ab92-5b835f97686e",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International Council of Museums (ICOM)"
         },
         "model": "accounts.affiliation",
-        "pk": "2cca3886-9fdd-4451-91b1-2a2a74f94b8a"
+        "pk": "2cca3886-9fdd-4451-91b1-2a2a74f94b8a",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International Council on Archives (ICA)"
         },
         "model": "accounts.affiliation",
-        "pk": "a03dc9d2-8e8d-463d-82b3-e6e0a8e8db53"
+        "pk": "a03dc9d2-8e8d-463d-82b3-e6e0a8e8db53",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International Energy Agency implementing agreement on Ocean Energy Systems"
         },
         "model": "accounts.affiliation",
-        "pk": "72b917e4-d0b1-426b-a223-e84a3571c894"
+        "pk": "72b917e4-d0b1-426b-a223-e84a3571c894",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International Federation of Data Organizations"
         },
         "model": "accounts.affiliation",
-        "pk": "cf24ab70-81e8-4442-ab43-ca75ab7b4021"
+        "pk": "cf24ab70-81e8-4442-ab43-ca75ab7b4021",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International Gravity Reference System (IGRS)"
         },
         "model": "accounts.affiliation",
-        "pk": "116d9637-deea-485d-9054-f30baf7aa461"
+        "pk": "116d9637-deea-485d-9054-f30baf7aa461",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International Mouse Knock-out Consortium (IKMC)"
         },
         "model": "accounts.affiliation",
-        "pk": "3e825f0f-6262-43c6-8190-d9947dd63d65"
+        "pk": "3e825f0f-6262-43c6-8190-d9947dd63d65",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International Mouse Phenotyping Consortium (IMPC)"
         },
         "model": "accounts.affiliation",
-        "pk": "2ebb1133-525b-4c65-8fc8-a69f2f3d265b"
+        "pk": "2ebb1133-525b-4c65-8fc8-a69f2f3d265b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International Mouse Strain Resources (IMSR)"
         },
         "model": "accounts.affiliation",
-        "pk": "90d771fe-0124-47a4-80bd-daf7b9db0525"
+        "pk": "90d771fe-0124-47a4-80bd-daf7b9db0525",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International Network for Terrestrial Research and Monitoring in the Arctic (INTERACT)"
         },
         "model": "accounts.affiliation",
-        "pk": "edbb4540-1eb6-4ec2-a285-ca99bb43fce7"
+        "pk": "edbb4540-1eb6-4ec2-a285-ca99bb43fce7",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International Network of Ground-Based Microwave Radiometers (MWRnet)"
         },
         "model": "accounts.affiliation",
-        "pk": "132eb859-f399-4bc4-8bfb-a2409515ab8f"
+        "pk": "132eb859-f399-4bc4-8bfb-a2409515ab8f",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International Ocean Drilling Program (IODP)"
         },
         "model": "accounts.affiliation",
-        "pk": "c7738aff-b037-4aa5-948e-489aba20fec0"
+        "pk": "c7738aff-b037-4aa5-948e-489aba20fec0",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International Panel Survey Methods Workshops"
         },
         "model": "accounts.affiliation",
-        "pk": "229bf906-8fa1-4ec5-8d9e-375b3fc7e604"
+        "pk": "229bf906-8fa1-4ec5-8d9e-375b3fc7e604",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International Primatological Society"
         },
         "model": "accounts.affiliation",
-        "pk": "6d307728-9154-4a71-95e2-109845a11346"
+        "pk": "6d307728-9154-4a71-95e2-109845a11346",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International programme of biodiversity science (DIVERSITAS)"
         },
         "model": "accounts.affiliation",
-        "pk": "8e6e083b-7819-4fed-af40-b1d69b3be449"
+        "pk": "8e6e083b-7819-4fed-af40-b1d69b3be449",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International Research Institute of Stavanger (IRIS)"
         },
         "model": "accounts.affiliation",
-        "pk": "159e651c-e6f0-45e7-b5a0-1defb49c5020"
+        "pk": "159e651c-e6f0-45e7-b5a0-1defb49c5020",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International Research Ship Operators (IRSO)"
         },
         "model": "accounts.affiliation",
-        "pk": "7194ef0b-ed07-4efd-b4e8-17f535e977bf"
+        "pk": "7194ef0b-ed07-4efd-b4e8-17f535e977bf",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International Society for Atmospheric Research using Remotely Piloted Aircraft"
         },
         "model": "accounts.affiliation",
-        "pk": "913e7940-05c2-42b8-b779-932e3eac47e2"
+        "pk": "913e7940-05c2-42b8-b779-932e3eac47e2",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International Society for Biological and Environmental Repositories (ISBER)"
         },
         "model": "accounts.affiliation",
-        "pk": "f4e809f9-9968-4a44-a145-872cd0dd58bb"
+        "pk": "f4e809f9-9968-4a44-a145-872cd0dd58bb",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International Tokamak Physics Activity (ITPA)"
         },
         "model": "accounts.affiliation",
-        "pk": "20b953cc-cf57-43a0-838c-941c61db538b"
+        "pk": "20b953cc-cf57-43a0-838c-941c61db538b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International Towing Tank Conference (ITTC)"
         },
         "model": "accounts.affiliation",
-        "pk": "a6f18863-630b-4306-972d-a980f6e7d393"
+        "pk": "a6f18863-630b-4306-972d-a980f6e7d393",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International Virtual Observatory"
         },
         "model": "accounts.affiliation",
-        "pk": "ec276ef3-ee31-4b75-9656-9dc65e96c228"
+        "pk": "ec276ef3-ee31-4b75-9656-9dc65e96c228",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "International VLBI Service for Geodesy & Astrometry (IVS)"
         },
         "model": "accounts.affiliation",
-        "pk": "30430743-8e8b-4bfb-ad63-8ee00efad773"
+        "pk": "30430743-8e8b-4bfb-ad63-8ee00efad773",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ISBE"
         },
         "model": "accounts.affiliation",
-        "pk": "af60f219-aa46-4c47-80d9-78677e0d2d1e"
+        "pk": "af60f219-aa46-4c47-80d9-78677e0d2d1e",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ISBER"
         },
         "model": "accounts.affiliation",
-        "pk": "10dd770b-93b2-451a-acb8-b22ccd75e85e"
+        "pk": "10dd770b-93b2-451a-acb8-b22ccd75e85e",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ISN"
         },
         "model": "accounts.affiliation",
-        "pk": "99c6831a-23ae-4b2f-91a4-9feb47d94998"
+        "pk": "99c6831a-23ae-4b2f-91a4-9feb47d94998",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ITACA - Innovation Technologies and Applications for Coastal Archaeological sites"
         },
         "model": "accounts.affiliation",
-        "pk": "9f1ae98d-803a-4154-a206-8df04aa756f1"
+        "pk": "9f1ae98d-803a-4154-a206-8df04aa756f1",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "IUCN-SSC Primate Specialist Group"
         },
         "model": "accounts.affiliation",
-        "pk": "e5bd57b6-5950-4813-8965-a2c55e2b425c"
+        "pk": "e5bd57b6-5950-4813-8965-a2c55e2b425c",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "IVOA"
         },
         "model": "accounts.affiliation",
-        "pk": "0a23a002-2b82-44d4-8315-f0e4df86754c"
+        "pk": "0a23a002-2b82-44d4-8315-f0e4df86754c",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "KARYON - Kernel-Based ARchitecture for safetY-critical cONtrol"
         },
         "model": "accounts.affiliation",
-        "pk": "a1d6736b-8b4a-4f36-8e52-743da2f9ff19"
+        "pk": "a1d6736b-8b4a-4f36-8e52-743da2f9ff19",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Labex IRON"
         },
         "model": "accounts.affiliation",
-        "pk": "d519f41c-c079-4fad-b4d1-2f081175c47b"
+        "pk": "d519f41c-c079-4fad-b4d1-2f081175c47b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Laboratory of excellence Medalis"
         },
         "model": "accounts.affiliation",
-        "pk": "46ad365f-9b75-4090-991c-801a28336fb5"
+        "pk": "46ad365f-9b75-4090-991c-801a28336fb5",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Large Binocular Telescope (LBT)"
         },
         "model": "accounts.affiliation",
-        "pk": "84ee3b4a-bdbd-4215-a890-79bdd84a0e06"
+        "pk": "84ee3b4a-bdbd-4215-a890-79bdd84a0e06",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "LARVANET"
         },
         "model": "accounts.affiliation",
-        "pk": "c2ad66c7-95f8-41a2-8dc9-539412b2a0e6"
+        "pk": "c2ad66c7-95f8-41a2-8dc9-539412b2a0e6",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "LASERLAB Europe"
         },
         "model": "accounts.affiliation",
-        "pk": "58dd9741-10fb-488d-8304-7a8e0c0752b8"
+        "pk": "58dd9741-10fb-488d-8304-7a8e0c0752b8",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Lasers for Applications at Accelerator facilities for ion beam generation, acceleration and diagnostics"
         },
         "model": "accounts.affiliation",
-        "pk": "dc7d8d44-f67e-4b40-bd29-3868271b9c42"
+        "pk": "dc7d8d44-f67e-4b40-bd29-3868271b9c42",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "League of Accelerator based photon sources"
         },
         "model": "accounts.affiliation",
-        "pk": "f92cb71b-b92b-4d62-94af-1e9e66dab961"
+        "pk": "f92cb71b-b92b-4d62-94af-1e9e66dab961",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "League of European Accelerator-based Photon Sources"
         },
         "model": "accounts.affiliation",
-        "pk": "4cba3a7d-d8a5-45b7-b689-7e71f12b4628"
+        "pk": "4cba3a7d-d8a5-45b7-b689-7e71f12b4628",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Ledith"
         },
         "model": "accounts.affiliation",
-        "pk": "ad6129d4-1d5a-4a14-b404-09f3730d06ad"
+        "pk": "ad6129d4-1d5a-4a14-b404-09f3730d06ad",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "LifeWatch"
         },
         "model": "accounts.affiliation",
-        "pk": "5c2f2fb6-2c64-4a38-b08a-d8633e1b2861"
+        "pk": "5c2f2fb6-2c64-4a38-b08a-d8633e1b2861",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "LNCMI-G"
         },
         "model": "accounts.affiliation",
-        "pk": "0a19c5dd-b795-4c43-807f-20c9ff0faae9"
+        "pk": "0a19c5dd-b795-4c43-807f-20c9ff0faae9",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Low Voltage Agreement Group (LOVAG)"
         },
         "model": "accounts.affiliation",
-        "pk": "8926bf88-b6b5-4c19-aa6a-b2b82e48e27e"
+        "pk": "8926bf88-b6b5-4c19-aa6a-b2b82e48e27e",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "LTER-Europe"
         },
         "model": "accounts.affiliation",
-        "pk": "86c0df87-e8d8-4e85-b787-7bf9f5fca277"
+        "pk": "86c0df87-e8d8-4e85-b787-7bf9f5fca277",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "LUNAS"
         },
         "model": "accounts.affiliation",
-        "pk": "c9402c55-0642-404f-bf00-6e8f3bd5113d"
+        "pk": "c9402c55-0642-404f-bf00-6e8f3bd5113d",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "MAnagement of Security information and events in Service InFrastructures (MASSIF)"
         },
         "model": "accounts.affiliation",
-        "pk": "095b998e-0eca-470a-b0e5-69e1bc25db24"
+        "pk": "095b998e-0eca-470a-b0e5-69e1bc25db24",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "MARINET"
         },
         "model": "accounts.affiliation",
-        "pk": "cc9a66e9-e494-4b7e-a28a-ff39ef9feae6"
+        "pk": "cc9a66e9-e494-4b7e-a28a-ff39ef9feae6",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Mediterranean Operational Network for the Global Ocean Observing System"
         },
         "model": "accounts.affiliation",
-        "pk": "c8d8a5b4-964e-4b1d-9baf-025420abcefa"
+        "pk": "c8d8a5b4-964e-4b1d-9baf-025420abcefa",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "MESOAQUA"
         },
         "model": "accounts.affiliation",
-        "pk": "2481c9fa-dd41-4ba4-818e-dc1e544c7b63"
+        "pk": "2481c9fa-dd41-4ba4-818e-dc1e544c7b63",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "MESOCOSM"
         },
         "model": "accounts.affiliation",
-        "pk": "0eac7646-496b-49ab-a0a7-e486f445a970"
+        "pk": "0eac7646-496b-49ab-a0a7-e486f445a970",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Meson Physics in Low-Energy QCD (MesonNet)"
         },
         "model": "accounts.affiliation",
-        "pk": "8e88f2da-a099-4c7c-858e-561c7d3d43b6"
+        "pk": "8e88f2da-a099-4c7c-858e-561c7d3d43b6",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Metabolomics Society"
         },
         "model": "accounts.affiliation",
-        "pk": "28b2bfd7-becd-4e52-a8d9-a219f7e9da10"
+        "pk": "28b2bfd7-becd-4e52-a8d9-a219f7e9da10",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "META-SHARE"
         },
         "model": "accounts.affiliation",
-        "pk": "64954e40-0a67-4cdf-9fd0-dc3503dcba35"
+        "pk": "64954e40-0a67-4cdf-9fd0-dc3503dcba35",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Meters & More"
         },
         "model": "accounts.affiliation",
-        "pk": "955764b2-cd7f-4fc0-bc69-04acbc1f0657"
+        "pk": "955764b2-cd7f-4fc0-bc69-04acbc1f0657",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Microbial Resources Research Infrastructure (MIRRI)"
         },
         "model": "accounts.affiliation",
-        "pk": "cfaa538d-85ca-46c8-bd2d-a7a11d4d87c8"
+        "pk": "cfaa538d-85ca-46c8-bd2d-a7a11d4d87c8",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Millennium Seed Bank Partnership"
         },
         "model": "accounts.affiliation",
-        "pk": "03933ecc-2242-4fc0-a8f6-3df2107f2990"
+        "pk": "03933ecc-2242-4fc0-a8f6-3df2107f2990",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "MINAM"
         },
         "model": "accounts.affiliation",
-        "pk": "7e64e3a6-8106-44b9-9c75-0a8bdb6cec4e"
+        "pk": "7e64e3a6-8106-44b9-9c75-0a8bdb6cec4e",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Musical Instrument Museums Online (MIMO)"
         },
         "model": "accounts.affiliation",
-        "pk": "7df3b784-2925-47f2-ae54-5744f8f68615"
+        "pk": "7df3b784-2925-47f2-ae54-5744f8f68615",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "MyOcean2"
         },
         "model": "accounts.affiliation",
-        "pk": "101c95a1-53e8-4bb3-bb68-0229b3c40f69"
+        "pk": "101c95a1-53e8-4bb3-bb68-0229b3c40f69",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "NANO2LIFE"
         },
         "model": "accounts.affiliation",
-        "pk": "5c733c0e-3db9-4451-9433-da0c9c8c3b9e"
+        "pk": "5c733c0e-3db9-4451-9433-da0c9c8c3b9e",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "NANOFUN-POLY"
         },
         "model": "accounts.affiliation",
-        "pk": "2a0ec59c-5028-45d6-ac61-8edab2e48a36"
+        "pk": "2a0ec59c-5028-45d6-ac61-8edab2e48a36",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Nanofutures"
         },
         "model": "accounts.affiliation",
-        "pk": "731553c2-568a-446d-bdd9-6e3db3879d51"
+        "pk": "731553c2-568a-446d-bdd9-6e3db3879d51",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "National Biobank Network"
         },
         "model": "accounts.affiliation",
-        "pk": "3563751d-3bdc-4424-bb53-adcb7671742e"
+        "pk": "3563751d-3bdc-4424-bb53-adcb7671742e",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "National Civil Protection Department Network"
         },
         "model": "accounts.affiliation",
-        "pk": "203c02c1-2565-486d-9582-e7cd28a49c31"
+        "pk": "203c02c1-2565-486d-9582-e7cd28a49c31",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "National Genome Research Network (NGFN)"
         },
         "model": "accounts.affiliation",
-        "pk": "d11c0af9-ee4b-4a2d-bd82-3c351b0c9de8"
+        "pk": "d11c0af9-ee4b-4a2d-bd82-3c351b0c9de8",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "National Network for Electron Microscopy (RNME)"
         },
         "model": "accounts.affiliation",
-        "pk": "213af750-f8db-4c1e-ab52-fc8b19360b42"
+        "pk": "213af750-f8db-4c1e-ab52-fc8b19360b42",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "NDACC"
         },
         "model": "accounts.affiliation",
-        "pk": "2b9b78d0-f459-47d7-bba3-988381c5a37f"
+        "pk": "2b9b78d0-f459-47d7-bba3-988381c5a37f",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Nearctis"
         },
         "model": "accounts.affiliation",
-        "pk": "7985f27e-7aaf-442a-b81b-1220adeabc49"
+        "pk": "7985f27e-7aaf-442a-b81b-1220adeabc49",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Network for Digital Methods in the Arts and Humanities (NeDiMAH)"
         },
         "model": "accounts.affiliation",
-        "pk": "25fc037b-c517-46d4-87ee-245dd73b1527"
+        "pk": "25fc037b-c517-46d4-87ee-245dd73b1527",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Network for Internationalising Advanced Science"
         },
         "model": "accounts.affiliation",
-        "pk": "6a54055e-82a8-44c1-a423-9075d1de8bf8"
+        "pk": "6a54055e-82a8-44c1-a423-9075d1de8bf8",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Network of Aquaculture Centres in Central-Eastern Europe (NACEE)"
         },
         "model": "accounts.affiliation",
-        "pk": "a8a35b3d-00d5-4548-ac24-09290b070b7f"
+        "pk": "a8a35b3d-00d5-4548-ac24-09290b070b7f",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Network of European CEntrifige for Research (NECER)"
         },
         "model": "accounts.affiliation",
-        "pk": "79354c19-84b9-4f06-b93c-28ab3d4aa8c8"
+        "pk": "79354c19-84b9-4f06-b93c-28ab3d4aa8c8",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Network of Spanish Marine ICTS (Red de ICTS Marinas)"
         },
         "model": "accounts.affiliation",
-        "pk": "d4c3529b-6c7b-453c-87b2-e43514c9fc83"
+        "pk": "d4c3529b-6c7b-453c-87b2-e43514c9fc83",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Network Satellite Navigation Berchtesgadener Land"
         },
         "model": "accounts.affiliation",
-        "pk": "df269c9a-c517-469d-98f5-db74aa427643"
+        "pk": "df269c9a-c517-469d-98f5-db74aa427643",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Networking Lake Observatories in Europe (NETLAKE)"
         },
         "model": "accounts.affiliation",
-        "pk": "57faa9c3-f555-496c-9cc6-125ac7dd20ee"
+        "pk": "57faa9c3-f555-496c-9cc6-125ac7dd20ee",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Neuroscience Society"
         },
         "model": "accounts.affiliation",
-        "pk": "37cf8334-0f79-4258-982e-73a20f435ba6"
+        "pk": "37cf8334-0f79-4258-982e-73a20f435ba6",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Neutron scattering and Muon Spectroscopy Integrating Infrastructure Initiative"
         },
         "model": "accounts.affiliation",
-        "pk": "47bf4408-e0b5-45de-967b-318b6d81f254"
+        "pk": "47bf4408-e0b5-45de-967b-318b6d81f254",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "New operational steps towards an alliance of European research fleets (EUROFLEETS2)"
         },
         "model": "accounts.affiliation",
-        "pk": "d16993f3-6164-4cfa-9ffc-8e9af3a8d36c"
+        "pk": "d16993f3-6164-4cfa-9ffc-8e9af3a8d36c",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "NEXUS"
         },
         "model": "accounts.affiliation",
-        "pk": "76d40203-49ac-4fe1-a888-5dcf3697d8f2"
+        "pk": "76d40203-49ac-4fe1-a888-5dcf3697d8f2",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Nordic Imaging Network"
         },
         "model": "accounts.affiliation",
-        "pk": "7ba9ad23-6679-4fa2-a115-05c201ed2dfa"
+        "pk": "7ba9ad23-6679-4fa2-a115-05c201ed2dfa",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Nordic Microscopy Society (SCANDEM)"
         },
         "model": "accounts.affiliation",
-        "pk": "f28bb2bb-6549-49f0-ab52-89109c06412d"
+        "pk": "f28bb2bb-6549-49f0-ab52-89109c06412d",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Nordic Nanolab Network"
         },
         "model": "accounts.affiliation",
-        "pk": "bcf57927-de32-4f02-b691-596d86e63945"
+        "pk": "bcf57927-de32-4f02-b691-596d86e63945",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Nuclear Physics Network (NuPNET)"
         },
         "model": "accounts.affiliation",
-        "pk": "b0d349e1-80c7-4d72-af7e-6f5257d66ef7"
+        "pk": "b0d349e1-80c7-4d72-af7e-6f5257d66ef7",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Ocean Facilities Exchange Group (OFEG)"
         },
         "model": "accounts.affiliation",
-        "pk": "0dfc1522-fc85-4d5d-8310-0f8b7407cb6d"
+        "pk": "0dfc1522-fc85-4d5d-8310-0f8b7407cb6d",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "One Geology"
         },
         "model": "accounts.affiliation",
-        "pk": "34222c45-c97e-43e1-b615-c7a2c7be0664"
+        "pk": "34222c45-c97e-43e1-b615-c7a2c7be0664",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Open Access Infrastructure for Research in Europe (OpenAIRE)"
         },
         "model": "accounts.affiliation",
-        "pk": "8ece7e53-4b20-40a9-a0f4-edc1b0cd0b7b"
+        "pk": "8ece7e53-4b20-40a9-a0f4-edc1b0cd0b7b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Open Planets Foundation"
         },
         "model": "accounts.affiliation",
-        "pk": "7eee166b-e1ab-409f-a376-dca9a7db9e6b"
+        "pk": "7eee166b-e1ab-409f-a376-dca9a7db9e6b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "OPTICON"
         },
         "model": "accounts.affiliation",
-        "pk": "b2715127-2e60-4cde-84de-fee36cf96f69"
+        "pk": "b2715127-2e60-4cde-84de-fee36cf96f69",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Organisation of European Cancer Institutes (OECI)"
         },
         "model": "accounts.affiliation",
-        "pk": "d3260480-e72a-44d5-ae97-eb91425461af"
+        "pk": "d3260480-e72a-44d5-ae97-eb91425461af",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Parelsnoer Institute"
         },
         "model": "accounts.affiliation",
-        "pk": "4a1bf079-a63f-43b8-ade3-4b3a6dde4199"
+        "pk": "4a1bf079-a63f-43b8-ade3-4b3a6dde4199",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Partnership for European Environmental Research (PEER)"
         },
         "model": "accounts.affiliation",
-        "pk": "72c2c481-d890-40d1-bac1-8dbc4f4546bc"
+        "pk": "72c2c481-d890-40d1-bac1-8dbc4f4546bc",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "PATENT DfMM"
         },
         "model": "accounts.affiliation",
-        "pk": "cd7b3a8b-3f2c-4c14-8de7-5b10af02f693"
+        "pk": "cd7b3a8b-3f2c-4c14-8de7-5b10af02f693",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "PATrimoines mat\u00e9riels : R\u00e9seau d'Instrumentation Multisites Equipex (PATRIMEX)"
         },
         "model": "accounts.affiliation",
-        "pk": "8d755ebf-856a-432c-bdf7-19d788aa01df"
+        "pk": "8d755ebf-856a-432c-bdf7-19d788aa01df",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "PHOTONICS 21"
         },
         "model": "accounts.affiliation",
-        "pk": "01547463-67c2-4247-b036-290b6af1d721"
+        "pk": "01547463-67c2-4247-b036-290b6af1d721",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Polar barcode of life"
         },
         "model": "accounts.affiliation",
-        "pk": "0a5fd437-854e-4de5-8b42-f904e600f007"
+        "pk": "0a5fd437-854e-4de5-8b42-f904e600f007",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "PRACE"
         },
         "model": "accounts.affiliation",
-        "pk": "49db5031-8989-408a-bc20-8a02b562d1ea"
+        "pk": "49db5031-8989-408a-bc20-8a02b562d1ea",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "PRIME (PoweRline Intelligent Metering Evolution) Alliance"
         },
         "model": "accounts.affiliation",
-        "pk": "b719be3b-5ec9-4df3-8dea-c3110c836139"
+        "pk": "b719be3b-5ec9-4df3-8dea-c3110c836139",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "PRIME-XS"
         },
         "model": "accounts.affiliation",
-        "pk": "4a345111-e869-433b-b1b7-b7706e564412"
+        "pk": "4a345111-e869-433b-b1b7-b7706e564412",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Protein Production and Purification Platforms in Europe (P4EU)"
         },
         "model": "accounts.affiliation",
-        "pk": "d230c2b7-103c-4434-abfa-73e3a463b880"
+        "pk": "d230c2b7-103c-4434-abfa-73e3a463b880",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Proteomics and Metabolomics Core Facility (PROMEC)"
         },
         "model": "accounts.affiliation",
-        "pk": "557cf368-55bd-49d1-809d-0908a1b793a3"
+        "pk": "557cf368-55bd-49d1-809d-0908a1b793a3",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ProteoRed"
         },
         "model": "accounts.affiliation",
-        "pk": "c07724c1-54d8-4aa4-865d-a05035d03f7b"
+        "pk": "c07724c1-54d8-4aa4-865d-a05035d03f7b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Public Population Project in Genomics and Society (P\u00b3G)"
         },
         "model": "accounts.affiliation",
-        "pk": "86969509-7329-4308-a55d-710ed957d155"
+        "pk": "86969509-7329-4308-a55d-710ed957d155",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "QB50"
         },
         "model": "accounts.affiliation",
-        "pk": "72fda937-ff83-4525-8673-9997f5daaa8c"
+        "pk": "72fda937-ff83-4525-8673-9997f5daaa8c",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Rachel Carson Center"
         },
         "model": "accounts.affiliation",
-        "pk": "ed4ecf9e-3194-46e8-bc84-d188c17787e7"
+        "pk": "ed4ecf9e-3194-46e8-bc84-d188c17787e7",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Rad4med"
         },
         "model": "accounts.affiliation",
-        "pk": "648ce013-8c15-4788-a8c2-6ff541539709"
+        "pk": "648ce013-8c15-4788-a8c2-6ff541539709",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "RadioNet"
         },
         "model": "accounts.affiliation",
-        "pk": "a3b310f8-cd0b-4e8c-8a75-0ca8f86ea603"
+        "pk": "a3b310f8-cd0b-4e8c-8a75-0ca8f86ea603",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "READE - Rede de Remedia\u00e7\u00e3o e Reabilita\u00e7\u00e3o de Ambientes Degradados (Brasil-Portugal)"
         },
         "model": "accounts.affiliation",
-        "pk": "75cbfb72-91a7-41be-a4bf-f33e615aaf94"
+        "pk": "75cbfb72-91a7-41be-a4bf-f33e615aaf94",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "REBT International Excellence Research Network"
         },
         "model": "accounts.affiliation",
-        "pk": "6be22518-ac73-46c7-a737-e7e3b9573e48"
+        "pk": "6be22518-ac73-46c7-a737-e7e3b9573e48",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "RED LAB de la Comunidad de Madrid"
         },
         "model": "accounts.affiliation",
-        "pk": "f0c3f728-7ebc-410a-abde-6c6d9584ac9d"
+        "pk": "f0c3f728-7ebc-410a-abde-6c6d9584ac9d",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Research Data Alliance"
         },
         "model": "accounts.affiliation",
-        "pk": "97897106-cea6-447e-b4b7-d920c3a369ff"
+        "pk": "97897106-cea6-447e-b4b7-d920c3a369ff",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Research infrastructures for the control of insect vector-borne diseases"
         },
         "model": "accounts.affiliation",
-        "pk": "814527b8-2863-4c08-961e-e553d29acae0"
+        "pk": "814527b8-2863-4c08-961e-e553d29acae0",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Resource Network Supporting Academic Chemical Biology Research"
         },
         "model": "accounts.affiliation",
-        "pk": "bfba8a95-e881-4ef5-81c9-81e8ea79e42b"
+        "pk": "bfba8a95-e881-4ef5-81c9-81e8ea79e42b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "RITMARE"
         },
         "model": "accounts.affiliation",
-        "pk": "008efb82-8675-4454-8592-083c275318c8"
+        "pk": "008efb82-8675-4454-8592-083c275318c8",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "RS2E"
         },
         "model": "accounts.affiliation",
-        "pk": "cb1cb86b-94e9-4707-ab27-a53dfa253294"
+        "pk": "cb1cb86b-94e9-4707-ab27-a53dfa253294",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "SATA"
         },
         "model": "accounts.affiliation",
-        "pk": "92193254-9038-4943-ad05-6fe62b83395b"
+        "pk": "92193254-9038-4943-ad05-6fe62b83395b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "SatNav Network"
         },
         "model": "accounts.affiliation",
-        "pk": "9b39127e-1560-4177-8c11-88fe2e26857f"
+        "pk": "9b39127e-1560-4177-8c11-88fe2e26857f",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Scalable, Secure Storage of Biobank Data (BiobankCloud)"
         },
         "model": "accounts.affiliation",
-        "pk": "7cb8fb88-f2f5-4342-96a2-fa1430c56a47"
+        "pk": "7cb8fb88-f2f5-4342-96a2-fa1430c56a47",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "ScanDiaSyn"
         },
         "model": "accounts.affiliation",
-        "pk": "e9f57d85-432a-47d7-816f-2b3500018714"
+        "pk": "e9f57d85-432a-47d7-816f-2b3500018714",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "SciColl - Scientific Collections International"
         },
         "model": "accounts.affiliation",
-        "pk": "22bf7a60-a8bf-4859-9195-c10942e80b13"
+        "pk": "22bf7a60-a8bf-4859-9195-c10942e80b13",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Science and Applications of ultrafast and ultraintense lasers (SAUUL)"
         },
         "model": "accounts.affiliation",
-        "pk": "07bf3f0b-d817-4f82-abcd-4e73b609d048"
+        "pk": "07bf3f0b-d817-4f82-abcd-4e73b609d048",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Science and Innovation with Neutrons in Europe"
         },
         "model": "accounts.affiliation",
-        "pk": "7d927fcc-23c6-4c27-acbe-cb0cff4457e8"
+        "pk": "7d927fcc-23c6-4c27-acbe-cb0cff4457e8",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Science Link"
         },
         "model": "accounts.affiliation",
-        "pk": "dc71a657-6bb7-4d74-b06d-3711be7b410e"
+        "pk": "dc71a657-6bb7-4d74-b06d-3711be7b410e",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "SCOLMA - Standard Conference on Library Materials on Africa"
         },
         "model": "accounts.affiliation",
-        "pk": "a56f5661-955b-489e-8d87-b340113ba8b2"
+        "pk": "a56f5661-955b-489e-8d87-b340113ba8b2",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "SeaDataNet"
         },
         "model": "accounts.affiliation",
-        "pk": "8fdf929b-669e-4c88-b91c-7a04cba79e54"
+        "pk": "8fdf929b-669e-4c88-b91c-7a04cba79e54",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "SecFuNet - Security for Future Networks"
         },
         "model": "accounts.affiliation",
-        "pk": "ddc05785-2986-4b8e-9a76-b30b5264b801"
+        "pk": "ddc05785-2986-4b8e-9a76-b30b5264b801",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "SEGRID - Security for smart Electricity GRIDs"
         },
         "model": "accounts.affiliation",
-        "pk": "4dad4d49-ac77-49ac-8968-22e93b08ada4"
+        "pk": "4dad4d49-ac77-49ac-8968-22e93b08ada4",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Seismic Engineering Research Infrastructures for European Synergies (SERIES)"
         },
         "model": "accounts.affiliation",
-        "pk": "36012c18-0962-4b64-920b-3c67083f84d6"
+        "pk": "36012c18-0962-4b64-920b-3c67083f84d6",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Seismology"
         },
         "model": "accounts.affiliation",
-        "pk": "ceda0714-4eb5-45e9-868f-03dab9d46a2b"
+        "pk": "ceda0714-4eb5-45e9-868f-03dab9d46a2b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "SEMACA"
         },
         "model": "accounts.affiliation",
-        "pk": "db2315ba-a449-4da5-b35b-6ded008952a4"
+        "pk": "db2315ba-a449-4da5-b35b-6ded008952a4",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Seprise"
         },
         "model": "accounts.affiliation",
-        "pk": "ad44bb0d-e9a9-44ba-930b-1f18523a5481"
+        "pk": "ad44bb0d-e9a9-44ba-930b-1f18523a5481",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "SINE2020"
         },
         "model": "accounts.affiliation",
-        "pk": "d3123a3d-8b6d-4b99-b050-1db1ce3e8f60"
+        "pk": "d3123a3d-8b6d-4b99-b050-1db1ce3e8f60",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "SKA - Square Kilometer Array"
         },
         "model": "accounts.affiliation",
-        "pk": "e6c5935e-0991-43cf-9e60-63b34c1a4ec3"
+        "pk": "e6c5935e-0991-43cf-9e60-63b34c1a4ec3",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Society for Neuroscience"
         },
         "model": "accounts.affiliation",
-        "pk": "3bde30c8-b5f0-458c-a303-1d5188a7cf9c"
+        "pk": "3bde30c8-b5f0-458c-a303-1d5188a7cf9c",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Society for the Preservation of Natural History Collections (SPNHC)"
         },
         "model": "accounts.affiliation",
-        "pk": "539d6b16-5e91-4bad-a181-1bacc6881bf1"
+        "pk": "539d6b16-5e91-4bad-a181-1bacc6881bf1",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Society for Tropical Ecology"
         },
         "model": "accounts.affiliation",
-        "pk": "aac006c5-936e-4f27-980d-8c25e1daac2c"
+        "pk": "aac006c5-936e-4f27-980d-8c25e1daac2c",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Society of Primatology"
         },
         "model": "accounts.affiliation",
-        "pk": "3d0f86e4-95c6-4fac-bb29-0b79aa52e506"
+        "pk": "3d0f86e4-95c6-4fac-bb29-0b79aa52e506",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "SofComp Consortium"
         },
         "model": "accounts.affiliation",
-        "pk": "d5ec853f-1bcc-4c45-84dd-ae7fa4fd4a23"
+        "pk": "d5ec853f-1bcc-4c45-84dd-ae7fa4fd4a23",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "SOLARNET"
         },
         "model": "accounts.affiliation",
-        "pk": "68800d91-ee8d-4b88-8b66-97e448a97692"
+        "pk": "68800d91-ee8d-4b88-8b66-97e448a97692",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "SOPHIA"
         },
         "model": "accounts.affiliation",
-        "pk": "17f96cc7-213e-45c5-9771-01f3a7ed465a"
+        "pk": "17f96cc7-213e-45c5-9771-01f3a7ed465a",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "SPIRIT"
         },
         "model": "accounts.affiliation",
-        "pk": "66c7dd18-a990-40b6-9b0a-2eb7f83f4315"
+        "pk": "66c7dd18-a990-40b6-9b0a-2eb7f83f4315",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "STAI"
         },
         "model": "accounts.affiliation",
-        "pk": "341142ce-1126-4a8b-8289-56c13852bf95"
+        "pk": "341142ce-1126-4a8b-8289-56c13852bf95",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Standing Committee Research Data Infrastructure (FDI)"
         },
         "model": "accounts.affiliation",
-        "pk": "47315b45-3d45-4798-9cf5-b2f8503f3889"
+        "pk": "47315b45-3d45-4798-9cf5-b2f8503f3889",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Stations at High Altitude for Research on the Environment (SHARE)"
         },
         "model": "accounts.affiliation",
-        "pk": "c18d8d15-5fdb-4ffb-89ac-c1660b9adcdc"
+        "pk": "c18d8d15-5fdb-4ffb-89ac-c1660b9adcdc",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "STN International"
         },
         "model": "accounts.affiliation",
-        "pk": "2ca946a8-b441-4867-a89f-0cc95a93d532"
+        "pk": "2ca946a8-b441-4867-a89f-0cc95a93d532",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Strange Particles in Hadronic Environment Research in Europe (SPHERE)"
         },
         "model": "accounts.affiliation",
-        "pk": "faac9c4b-486c-4708-9a9d-b9737ac4540f"
+        "pk": "faac9c4b-486c-4708-9a9d-b9737ac4540f",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "SuperMAG"
         },
         "model": "accounts.affiliation",
-        "pk": "e0566d17-6eb2-47a0-b4a3-842622c0eaf7"
+        "pk": "e0566d17-6eb2-47a0-b4a3-842622c0eaf7",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "SWEPOS"
         },
         "model": "accounts.affiliation",
-        "pk": "291151ed-fabe-4b1d-956e-9fa94d542e5a"
+        "pk": "291151ed-fabe-4b1d-956e-9fa94d542e5a",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Swiss Institute for Art Research (SIK-ISEA)"
         },
         "model": "accounts.affiliation",
-        "pk": "6f0edc57-cc12-4254-ac70-8a634e154949"
+        "pk": "6f0edc57-cc12-4254-ac70-8a634e154949",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "SYNTHESYS - Information Network of European Natural History Collections"
         },
         "model": "accounts.affiliation",
-        "pk": "4833d67c-851d-4a91-b1d7-c39bfdee48bc"
+        "pk": "4833d67c-851d-4a91-b1d7-c39bfdee48bc",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "TClouds - Trustworthy Clouds Privacy and Resilience for Internet-scale Critical Infrastructure"
         },
         "model": "accounts.affiliation",
-        "pk": "7fc0b1fd-e8a9-4ba2-9285-3ecaaac89d7b"
+        "pk": "7fc0b1fd-e8a9-4ba2-9285-3ecaaac89d7b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "TDWG (Biodiversity Information Standards)"
         },
         "model": "accounts.affiliation",
-        "pk": "58d07488-2989-4735-b69d-c1db76bd4741"
+        "pk": "58d07488-2989-4735-b69d-c1db76bd4741",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Teide and Roque de los Muchachos Observatories-Canary Islands"
         },
         "model": "accounts.affiliation",
-        "pk": "355006c2-411b-40ae-a4ea-958ea62d8308"
+        "pk": "355006c2-411b-40ae-a4ea-958ea62d8308",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Telescopio Nazionale Galileo (TNG)"
         },
         "model": "accounts.affiliation",
-        "pk": "3cfbc6c0-304c-47c2-ac35-e07c446f798a"
+        "pk": "3cfbc6c0-304c-47c2-ac35-e07c446f798a",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "TI Food and Nutrition"
         },
         "model": "accounts.affiliation",
-        "pk": "6087971e-5ec9-4e86-b3fc-553dc60566c3"
+        "pk": "6087971e-5ec9-4e86-b3fc-553dc60566c3",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "TI Pharma"
         },
         "model": "accounts.affiliation",
-        "pk": "c4c2da9c-f37e-4b51-bf16-163ea12f8678"
+        "pk": "c4c2da9c-f37e-4b51-bf16-163ea12f8678",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Ti-COAST"
         },
         "model": "accounts.affiliation",
-        "pk": "6f2324ae-4fee-44ac-8bc7-a9a031da1b97"
+        "pk": "6f2324ae-4fee-44ac-8bc7-a9a031da1b97",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Towards a joint European research infrastructure network for coastal observatories (Jerico)"
         },
         "model": "accounts.affiliation",
-        "pk": "8b961f35-26f9-47d2-a07c-503a1292e785"
+        "pk": "8b961f35-26f9-47d2-a07c-503a1292e785",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Towards an Alliance of European Research Fleets (EUROFLEETS)"
         },
         "model": "accounts.affiliation",
-        "pk": "7ff8ce87-8dad-448b-b5a0-e3b6f686c138"
+        "pk": "7ff8ce87-8dad-448b-b5a0-e3b6f686c138",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Transnational Access to MAMI (MAMI)"
         },
         "model": "accounts.affiliation",
-        "pk": "b0b3b313-f842-47bf-a49a-51caefdee5d0"
+        "pk": "b0b3b313-f842-47bf-a49a-51caefdee5d0",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "TREES4FUTURE"
         },
         "model": "accounts.affiliation",
-        "pk": "db27b1c5-5eda-4cf6-95ad-48894cf55b10"
+        "pk": "db27b1c5-5eda-4cf6-95ad-48894cf55b10",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "UK Environmental Change Network (ECN)"
         },
         "model": "accounts.affiliation",
-        "pk": "2cedfdc5-d094-4cde-91af-3584f0e85e8a"
+        "pk": "2cedfdc5-d094-4cde-91af-3584f0e85e8a",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Veterinary Biocontained facility Network for excellence in animal infectious disease research and experimentation"
         },
         "model": "accounts.affiliation",
-        "pk": "c29373dc-b236-4330-9ef4-1b3afe7d031a"
+        "pk": "c29373dc-b236-4330-9ef4-1b3afe7d031a",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "VIRCA Network"
         },
         "model": "accounts.affiliation",
-        "pk": "25b9fdb0-1805-4db3-9b00-1fb595c404ee"
+        "pk": "25b9fdb0-1805-4db3-9b00-1fb595c404ee",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Virtual Atomic and Molecular Data Center (VAMDC)"
         },
         "model": "accounts.affiliation",
-        "pk": "c1f4d39c-5562-487e-a0c8-7dc96b770c8f"
+        "pk": "c1f4d39c-5562-487e-a0c8-7dc96b770c8f",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "VISIONAIR"
         },
         "model": "accounts.affiliation",
-        "pk": "68fd9bc2-fa4a-4935-8f47-a7b2fbfa607b"
+        "pk": "68fd9bc2-fa4a-4935-8f47-a7b2fbfa607b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "VLBI2010 Global Observing System (VGOS)"
         },
         "model": "accounts.affiliation",
-        "pk": "219c3b21-0e5e-42b2-b11d-351408af5a08"
+        "pk": "219c3b21-0e5e-42b2-b11d-351408af5a08",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "VPH"
         },
         "model": "accounts.affiliation",
-        "pk": "02ef7162-2069-4791-8c7f-c4292547783b"
+        "pk": "02ef7162-2069-4791-8c7f-c4292547783b",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "WeNMR"
         },
         "model": "accounts.affiliation",
-        "pk": "c23f0465-1105-4ccf-b58b-159e79179071"
+        "pk": "c23f0465-1105-4ccf-b58b-159e79179071",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Wigner Femtosecond Laser Laboratory"
         },
         "model": "accounts.affiliation",
-        "pk": "af469b21-67d8-4474-866d-a25037030947"
+        "pk": "af469b21-67d8-4474-866d-a25037030947",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Workshop of Panelsurveys in Germany"
         },
         "model": "accounts.affiliation",
-        "pk": "2ebe308e-5bb9-466e-9cf3-09cde35b1146"
+        "pk": "2ebe308e-5bb9-466e-9cf3-09cde35b1146",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "World Data Centre for Microorganisms"
         },
         "model": "accounts.affiliation",
-        "pk": "54e17f78-1304-426a-a32f-e471b340a081"
+        "pk": "54e17f78-1304-426a-a32f-e471b340a081",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "World Data System (WDS)"
         },
         "model": "accounts.affiliation",
-        "pk": "b4353665-e124-4056-86c4-5e7e78330e66"
+        "pk": "b4353665-e124-4056-86c4-5e7e78330e66",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "World Federation for Culture Collections (WFCC)"
         },
         "model": "accounts.affiliation",
-        "pk": "11b65d15-ae23-414f-86b6-d4dc02ccae7c"
+        "pk": "11b65d15-ae23-414f-86b6-d4dc02ccae7c",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "World Organisation for Animal Health (OIE)"
         },
         "model": "accounts.affiliation",
-        "pk": "61ab0712-8cd4-48a5-b502-7e5fd4f2a744"
+        "pk": "61ab0712-8cd4-48a5-b502-7e5fd4f2a744",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "WorldWide LHC Computing Grid (wLCG)"
         },
         "model": "accounts.affiliation",
-        "pk": "c91bc8df-86a2-48ed-b140-13c170e5c374"
+        "pk": "c91bc8df-86a2-48ed-b140-13c170e5c374",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "WW-NMR"
         },
         "model": "accounts.affiliation",
-        "pk": "7fb290d9-9d6a-4716-9b51-6018c6c5f092"
+        "pk": "7fb290d9-9d6a-4716-9b51-6018c6c5f092",
+        "eosc_id": ""
     },
     {
         "fields": {
             "name": "Zoonoses Anticipation and Preparedness Initiative"
         },
         "model": "accounts.affiliation",
-        "pk": "d3523242-7a47-4ea5-8bef-62eaa538e951"
+        "pk": "d3523242-7a47-4ea5-8bef-62eaa538e951",
+        "eosc_id": ""
     }
 ]

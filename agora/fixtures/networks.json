@@ -1040,7 +1040,8 @@
         "fields": {
             "name": "European Energy Research Alliance",
             "abbreviation": "EERA"
-        }
+        },
+        "eosc_id": ""
     },
     {
         "model": "accounts.network",
