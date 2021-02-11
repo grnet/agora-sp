@@ -25,14 +25,6 @@
     },
     {
         "fields": {
-            "name": "Swedish Research Council (VR)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "1297484a-a841-41bc-87e7-78ddd384856b",
-        "eosc_id": "funding_body-vr"
-    },
-    {
-        "fields": {
             "name": "Outermost and sparsely populated regions (OUTREG)"
         },
         "model": "service.fundingprogram",
@@ -54,14 +46,6 @@
         "model": "service.fundingprogram",
         "pk": "1a49b128-c8e6-488e-b7c6-2874dda663c3",
         "eosc_id": "funding_program-cf_det"
-    },
-    {
-        "fields": {
-            "name": "Research Council UK (RCUK)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "1c64bd1e-2e60-4dd5-a8dd-30264b10f3cd",
-        "eosc_id": "funding_body-rcuk"
     },
     {
         "fields": {
@@ -97,14 +81,6 @@
     },
     {
         "fields": {
-            "name": "Scientific Grant Agency (VEGA)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "23953745-620f-4b35-82dd-5d90944754d9",
-        "eosc_id": "funding_body-vega"
-    },
-    {
-        "fields": {
             "name": "Connecting Europe Facility (CEF)"
         },
         "model": "service.fundingprogram",
@@ -126,14 +102,6 @@
         "model": "service.fundingprogram",
         "pk": "280f22d2-7907-49a1-abfe-08f27bab8136",
         "eosc_id": "funding_program-ies"
-    },
-    {
-        "fields": {
-            "name": "Netherlands Organisation for Scientific Research (NWO)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "2919270f-185c-4d7e-86d2-4199367e7fb6",
-        "eosc_id": "funding_body-nwo"
     },
     {
         "fields": {
@@ -185,14 +153,6 @@
     },
     {
         "fields": {
-            "name": "Research Council of Lithuania (LMT)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "3e5b5ab8-9b7b-4ea0-9b8d-caf6db91068c",
-        "eosc_id": "funding_body-lmt"
-    },
-    {
-        "fields": {
             "name": "Technical assistance and innovative actions (TA_IA)"
         },
         "model": "service.fundingprogram",
@@ -217,51 +177,11 @@
     },
     {
         "fields": {
-            "name": "Swedish Foundation for Strategic Environmental Research (MISTRA)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "4505a2ab-b35e-4290-b48b-96e43ea9c2f5",
-        "eosc_id": "funding_body-mistra"
-    },
-    {
-        "fields": {
-            "name": "Volkswagen Foundation (VS)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "4597ff67-f96b-4dbe-bfd8-e22c4e8e04f8",
-        "eosc_id": "funding_body-vs"
-    },
-    {
-        "fields": {
-            "name": "Social Sciences and Humanities Research Council (SSHRC)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "45e9d649-47c6-49b7-b7ee-47d9436cc1fa",
-        "eosc_id": "funding_body-sshrc"
-    },
-    {
-        "fields": {
             "name": "Specific activities in the field of financial reporting and auditing (FINSER2020)"
         },
         "model": "service.fundingprogram",
         "pk": "489418a3-1e4d-49b2-8727-535c88a0a071",
         "eosc_id": "funding_program-finser2020"
-    },
-    {
-        "fields": {
-            "name": "Swedish Research Council for Health, Working Life and Welfare (FORTE)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "4a8633d8-8449-46f4-b32f-cae52c938655",
-        "eosc_id": "funding_body-forte"
-    },
-    {
-        "fields": {
-            "name": "National Science Foundation (NSF)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "4d0f46bf-b530-499d-aea7-a09f09f00ad4",
-        "eosc_id": "funding_body-nsf"
     },
     {
         "fields": {
@@ -305,35 +225,11 @@
     },
     {
         "fields": {
-            "name": "Natural Environment Research Council (NERC)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "5794ac21-855b-4ac7-bd68-59d02887d43e",
-        "eosc_id": "funding_body-nerc"
-    },
-    {
-        "fields": {
-            "name": "Spanish National Research Council (CSIC)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "5b134ef7-703d-49d1-b7ef-ebaed5a6c17f",
-        "eosc_id": "funding_body-csic"
-    },
-    {
-        "fields": {
             "name": "European statistical programme (ESP2020)"
         },
         "model": "service.fundingprogram",
         "pk": "5c08db5a-fb3e-4105-986a-d63ecb966ac1",
         "eosc_id": "funding_program-esp2020"
-    },
-    {
-        "fields": {
-            "name": "National Research, Development and Innovation Fund (NKFIA)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "5d0bda02-6802-41ad-b7b6-49f86d451d58",
-        "eosc_id": "funding_body-nkfia"
     },
     {
         "fields": {
@@ -361,14 +257,6 @@
     },
     {
         "fields": {
-            "name": "Research Promotion Foundation (RPF)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "61b6e3fb-74e6-4aca-9d74-ebeb931424d6",
-        "eosc_id": "funding_body-rpf"
-    },
-    {
-        "fields": {
             "name": "Youth employment initiative (specific top-up allocation) (YEI))"
         },
         "model": "service.fundingprogram",
@@ -382,14 +270,6 @@
         "model": "service.fundingprogram",
         "pk": "667ee9ed-9e99-4976-9ac5-7e52411d7d07",
         "eosc_id": "funding_program-eusf2020"
-    },
-    {
-        "fields": {
-            "name": "Natural Sciences and Engineering Research Council of Canada (NSERC)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "668c7679-5a14-40c8-af7e-e7d916c59836",
-        "eosc_id": "funding_body-nserc"
     },
     {
         "fields": {
@@ -497,30 +377,6 @@
     },
     {
         "fields": {
-            "name": "National University Research Council (CNCSIS) - Romania"
-        },
-        "model": "service.fundingprogram",
-        "pk": "7cce63d0-8af8-48a0-82ad-3e6f5acf7980",
-        "eosc_id": "funding_body-cncsis"
-    },
-    {
-        "fields": {
-            "name": "Vienna Science and Technology Fund (WWTF)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "7e813d69-2382-4a47-bf7f-a0324d72bc8d",
-        "eosc_id": "funding_body-wwtf"
-    },
-    {
-        "fields": {
-            "name": "Wellcome trust (WT)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "7e888045-1fb8-43b0-9012-1317cb1a47ac",
-        "eosc_id": "funding_body-wt"
-    },
-    {
-        "fields": {
             "name": "European Fund for Sustainable Development (EFSD)"
         },
         "model": "service.fundingprogram",
@@ -545,43 +401,11 @@
     },
     {
         "fields": {
-            "name": "Technology Foundation (STW)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "855037f8-9fd2-41f4-99d3-b36063575816",
-        "eosc_id": "funding_body-stw"
-    },
-    {
-        "fields": {
             "name": "Implementation and exploitation of European satellite navigation systems (EGNOS and Galileo) (GAL2014)"
         },
         "model": "service.fundingprogram",
         "pk": "87efd223-0b6c-4c9a-a336-2c4b06edad92",
         "eosc_id": "funding_program-gal2014"
-    },
-    {
-        "fields": {
-            "name": "Swedish Energy Agency (SEA)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "880120bd-1c21-44f2-bfd9-ee2f66985f2a",
-        "eosc_id": "funding_body-sea"
-    },
-    {
-        "fields": {
-            "name": "Icelandic Centre for Research (RANNIS)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "897f257a-886e-4020-8d38-21523fb87c3d",
-        "eosc_id": "funding_body-rannis"
-    },
-    {
-        "fields": {
-            "name": "The Ministry of Education, Science, Research and Sports of the Slovak Republic (MSVVaS SR)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "8d28cbbd-7a60-433a-9e1f-aa214c5331a5",
-        "eosc_id": "funding_body-msvvas_sr"
     },
     {
         "fields": {
@@ -609,14 +433,6 @@
     },
     {
         "fields": {
-            "name": "Swedish Governmental Agency for Innovation Systems (VINNOVA)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "96b57a58-9315-4c9c-8cbe-355abb71a5da",
-        "eosc_id": "funding_body-vinnova"
-    },
-    {
-        "fields": {
             "name": "Instrument for Nuclear Safety Cooperation (INSC2020)"
         },
         "model": "service.fundingprogram",
@@ -633,14 +449,6 @@
     },
     {
         "fields": {
-            "name": "UK Research and Innovation (UKRI)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "9c2e13e4-f301-42c1-b195-95ca4206ff6e",
-        "eosc_id": "funding_body-ukri"
-    },
-    {
-        "fields": {
             "name": "European Union programme for employment and social innovation (PSCI)"
         },
         "model": "service.fundingprogram",
@@ -649,27 +457,11 @@
     },
     {
         "fields": {
-            "name": "Slovenian Research Agency (ARRS)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "a1b4ae31-3ec4-403d-ba6c-1eb322a504cd",
-        "eosc_id": "funding_body-arrs"
-    },
-    {
-        "fields": {
             "name": "Food and feed (FF2020)"
         },
         "model": "service.fundingprogram",
         "pk": "a42e8c1b-788c-439b-b6f5-c8feac899555",
         "eosc_id": "funding_program-ff2020"
-    },
-    {
-        "fields": {
-            "name": "Swiss National Science Foundation (SNF)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "aa3c2b08-26c8-49bb-9583-8ec48104150d",
-        "eosc_id": "funding_body-snf"
     },
     {
         "fields": {
@@ -697,43 +489,11 @@
     },
     {
         "fields": {
-            "name": "Science and Technology Facilities Council (STFC)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "b0d1ccb9-2079-4e4f-9ca3-d456ee2e721b",
-        "eosc_id": "funding_body-stfc"
-    },
-    {
-        "fields": {
-            "name": "Swedish Radiation Safety Authority (SRSA)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "b149d3cc-b654-44a9-afb7-d95d9cdd21a7",
-        "eosc_id": "funding_body-srsa"
-    },
-    {
-        "fields": {
-            "name": "Research and Development Agency (APVV)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "b3ab7889-d749-4fa7-9d65-3ee4ef3d0137",
-        "eosc_id": "funding_body-apvv"
-    },
-    {
-        "fields": {
             "name": "Europe for Citizens (CIT2020)"
         },
         "model": "service.fundingprogram",
         "pk": "b53c1897-b8b7-45e0-b409-eba815abca41",
         "eosc_id": "funding_program-cit2020"
-    },
-    {
-        "fields": {
-            "name": "Tara Expeditions Foundation (TARA)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "b55d218f-e604-4b42-b9c6-b1b6d3476b89",
-        "eosc_id": "funding_body-tara"
     },
     {
         "fields": {
@@ -745,35 +505,11 @@
     },
     {
         "fields": {
-            "name": "Scientific and Technological Research Council of Turkey (TUBITAK)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "b5ffbc88-e80d-434d-bf32-4091f4d1eb38",
-        "eosc_id": "funding_body-tubitak"
-    },
-    {
-        "fields": {
-            "name": "Swedish National Space Board (SNSB)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "bbf5f329-17cb-49c5-a45b-1f3e1684cdce",
-        "eosc_id": "funding_body-snsb"
-    },
-    {
-        "fields": {
             "name": "Anti Fraud Information System (AFIS2020)"
         },
         "model": "service.fundingprogram",
         "pk": "bcc85f8b-1dff-422b-981d-0ca147a3c985",
         "eosc_id": "funding_program-afis2020"
-    },
-    {
-        "fields": {
-            "name": "S\u00e3o Paulo Research Foundation (FAPESP)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "bdd3dfd4-5963-4e7c-8a41-8376505e5c49",
-        "eosc_id": "funding_body-fapesp"
     },
     {
         "fields": {
@@ -801,22 +537,6 @@
     },
     {
         "fields": {
-            "name": "State Education Development Agency (VIAA)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "c40b3ff7-1e4b-4141-8658-4ccd2c560f8e",
-        "eosc_id": "funding_body-viaa"
-    },
-    {
-        "fields": {
-            "name": "National Science Center (NCN)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "c4aab9d1-c583-4f4d-bba2-2fa15d203ebc",
-        "eosc_id": "funding_body-ncn"
-    },
-    {
-        "fields": {
             "name": "Macro financial assistance (MFA)"
         },
         "model": "service.fundingprogram",
@@ -825,35 +545,11 @@
     },
     {
         "fields": {
-            "name": "Swedish Reseach Council Formas (SRCF)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "cc23c63f-d65c-4c0b-a236-1079bc4343e4",
-        "eosc_id": "funding_body-srcf"
-    },
-    {
-        "fields": {
-            "name": "The Swedish Foundation for Humanities and Social Sciences (RJ)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "cd8f760a-e2ae-4deb-91d4-09907e17c0e1",
-        "eosc_id": "funding_body-rj"
-    },
-    {
-        "fields": {
             "name": "Supplementary high flux reactor (HFR) programmes (HFR2015)"
         },
         "model": "service.fundingprogram",
         "pk": "ce371ab7-c07b-4eb0-963d-12a190ad643c",
         "eosc_id": "funding_program-hfr2015"
-    },
-    {
-        "fields": {
-            "name": "The Danish Council for Independent Research (DDF)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "cf8c4203-73fe-408c-91cd-a4f174ca1a9c",
-        "eosc_id": "funding_body-ddf"
     },
     {
         "fields": {
@@ -870,14 +566,6 @@
         "model": "service.fundingprogram",
         "pk": "d1dd684d-dc9b-4343-a289-95e00f460e9b",
         "eosc_id": "funding_program-cpm_h3"
-    },
-    {
-        "fields": {
-            "name": "Research Foundation Flanders (FWO)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "d30a7349-088a-40bc-985e-189ad9bbe062",
-        "eosc_id": "funding_body-fwo"
     },
     {
         "fields": {
@@ -913,14 +601,6 @@
     },
     {
         "fields": {
-            "name": "Research Council of Norway (RCN)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "dccc373a-8a0e-48f0-8bc9-4c6565044b1d",
-        "eosc_id": "funding_body-rcn"
-    },
-    {
-        "fields": {
             "name": "European Regional Development Fund (ERDF)"
         },
         "model": "service.fundingprogram",
@@ -929,35 +609,11 @@
     },
     {
         "fields": {
-            "name": "Finnish Funding Agency for Technology and Innovation (TEKES)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "e3806dcb-5a6a-486e-9042-20b9a09591c9",
-        "eosc_id": "funding_body-tekes"
-    },
-    {
-        "fields": {
-            "name": "Secretariat-General for Investment (SGPI)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "e3fe7c81-6fa0-48e3-8e12-dc34726b7e62",
-        "eosc_id": "funding_body-sgpi"
-    },
-    {
-        "fields": {
             "name": "Creative Europe programme (CREA)"
         },
         "model": "service.fundingprogram",
         "pk": "e5f97c01-a1c3-49ef-b5da-b453ed2944a6",
         "eosc_id": "funding_program-crea"
-    },
-    {
-        "fields": {
-            "name": "Swedish Foundation for Strategic Research (SSF)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "e73f9c67-9526-411c-9f1c-2c3619a9ca36",
-        "eosc_id": "funding_body-ssf"
     },
     {
         "fields": {
@@ -982,22 +638,6 @@
         "model": "service.fundingprogram",
         "pk": "eb34bde1-07fd-4d79-98f2-b594c95bd9d3",
         "eosc_id": "funding_program-ipa2"
-    },
-    {
-        "fields": {
-            "name": "Technology Agency of the Czech Republic (TACR)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "efe1f223-2ad9-4fac-893d-c11343287ed8",
-        "eosc_id": "funding_body-tacr"
-    },
-    {
-        "fields": {
-            "name": "Swedish Environmental Protection Agency (SEPA)"
-        },
-        "model": "service.fundingprogram",
-        "pk": "f2829509-dfc9-48bf-bc4c-41773a3710fb",
-        "eosc_id": "funding_body-sepa"
     },
     {
         "fields": {
