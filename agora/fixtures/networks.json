@@ -1324,15 +1324,6 @@
     },
     {
         "model": "accounts.network",
-        "pk": "faaff048-be0e-4b21-ac7e-21456fcedbc2",
-        "fields": {
-            "name": "European Federation for Primatology (EFP)",
-            "abbreviation": "FENS"
-        },
-        "eosc_id": "provider_network-efp"
-    },
-    {
-        "model": "accounts.network",
         "pk": "4b4c0c5d-0ba3-4226-8acb-94eceb4397f4",
         "fields": {
             "name": "European research infrastructure for imaging technologies in biological and biomedical sciences (BioImaging Network)",
@@ -2392,15 +2383,6 @@
             "abbreviation": "FENS"
         },
         "eosc_id": "provider_network-fens"
-    },
-    {
-        "model": "accounts.network",
-        "pk": "287b0b9f-999d-4ea6-b1d5-b9225b4ea2c9",
-        "fields": {
-            "name": "Neutron scattering and Muon Spectroscopy Integrating Infrastructure Initiative (NMI3)",
-            "abbreviation": "NMI3"
-        },
-        "eosc_id": "provider_network-nmi3"
     },
     {
         "model": "accounts.network",

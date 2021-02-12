@@ -262,15 +262,6 @@
     },
     {
         "fields": {
-            "category": "abad8012-42f9-4c70-94e1-dd58d0e934ab",
-            "name": "Data"
-        },
-        "model": "service.subcategory",
-        "pk": "354d65ef-f40b-4123-9f7c-ee83107c5e4f",
-        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-data"
-    },
-    {
-        "fields": {
             "category": "063268e6-e990-44e2-af1d-5d1711caba89",
             "name": "User Authentication"
         },
@@ -286,15 +277,6 @@
         "model": "service.subcategory",
         "pk": "394cba3a-211a-4b27-ba65-c5080fd93d2a",
         "eosc_id": "subcategory-processing_and_analysis-data_management-access"
-    },
-    {
-        "fields": {
-            "category": "3ddaf0af-4e7e-4c23-86ef-d5db4ae5312c",
-            "name": "Data"
-        },
-        "model": "service.subcategory",
-        "pk": "396a64ce-d3d1-4b40-8456-04ec31355254",
-        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-data"
     },
     {
         "fields": {
@@ -331,24 +313,6 @@
         "model": "service.subcategory",
         "pk": "3ef168e0-124a-42de-b2bb-f9f498fe392b",
         "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-digital_preservation"
-    },
-    {
-        "fields": {
-            "category": "abad8012-42f9-4c70-94e1-dd58d0e934ab",
-            "name": "Data"
-        },
-        "model": "service.subcategory",
-        "pk": "3f5f709e-e14f-4309-8979-4311615f13cb",
-        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-data"
-    },
-    {
-        "fields": {
-            "category": "abad8012-42f9-4c70-94e1-dd58d0e934ab",
-            "name": "Applications"
-        },
-        "model": "service.subcategory",
-        "pk": "41e850f3-a7cf-4176-bc59-f8dce17b01a2",
-        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-applications"
     },
     {
         "fields": {
@@ -559,15 +523,6 @@
     },
     {
         "fields": {
-            "category": "abad8012-42f9-4c70-94e1-dd58d0e934ab",
-            "name": "Applications"
-        },
-        "model": "service.subcategory",
-        "pk": "618dd0fb-b6ed-43cb-b996-30d95658c7b8",
-        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-applications"
-    },
-    {
-        "fields": {
             "category": "941eea82-491a-46db-92ef-bd25cbb4060c",
             "name": "Geophysical"
         },
@@ -637,15 +592,6 @@
         "model": "service.subcategory",
         "pk": "6f99d353-cc6b-46aa-8eb5-b0b00d810224",
         "eosc_id": "subcategory-training_and_support-consultancy_and_support-application_optimisation"
-    },
-    {
-        "fields": {
-            "category": "abad8012-42f9-4c70-94e1-dd58d0e934ab",
-            "name": "Applications"
-        },
-        "model": "service.subcategory",
-        "pk": "702fba94-f373-4c58-8dbb-6a50d6230a10",
-        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-applications"
     },
     {
         "fields": {
@@ -946,15 +892,6 @@
     },
     {
         "fields": {
-            "category": "94d4e542-f996-4bb1-b4de-d57d2430e7fb",
-            "name": "Data"
-        },
-        "model": "service.subcategory",
-        "pk": "9f67f95e-3997-4a1d-977d-17be5ddab05a",
-        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-data"
-    },
-    {
-        "fields": {
             "category": "dca17a04-2569-406f-8609-465716a685ce",
             "name": "Transfer"
         },
@@ -1037,24 +974,6 @@
     {
         "fields": {
             "category": "a5d1f298-abd7-4b31-94ba-58cb8eb1d44a",
-            "name": "Analysis"
-        },
-        "model": "service.subcategory",
-        "pk": "ae45994c-0ac5-4565-b623-f191ed93353b",
-        "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-analysis"
-    },
-    {
-        "fields": {
-            "category": "abad8012-42f9-4c70-94e1-dd58d0e934ab",
-            "name": "Applications"
-        },
-        "model": "service.subcategory",
-        "pk": "af671301-e0e9-4cb1-bdf3-0b4886f89531",
-        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-applications"
-    },
-    {
-        "fields": {
-            "category": "a5d1f298-abd7-4b31-94ba-58cb8eb1d44a",
             "name": "Production"
         },
         "model": "service.subcategory",
@@ -1126,15 +1045,6 @@
     },
     {
         "fields": {
-            "category": "abad8012-42f9-4c70-94e1-dd58d0e934ab",
-            "name": "Services"
-        },
-        "model": "service.subcategory",
-        "pk": "be13b389-3b7f-4275-85b2-7ed911a4623e",
-        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-services"
-    },
-    {
-        "fields": {
             "category": "941eea82-491a-46db-92ef-bd25cbb4060c",
             "name": "Monument Maintenance Equipment"
         },
@@ -1150,15 +1060,6 @@
         "model": "service.subcategory",
         "pk": "c301fef6-0f21-40bc-bfb3-6cb63a353709",
         "eosc_id": "subcategory-processing_and_analysis-data_analysis-workflows"
-    },
-    {
-        "fields": {
-            "category": "48b736ef-9541-45de-a1e1-dea2f98f1891",
-            "name": "Analysis"
-        },
-        "model": "service.subcategory",
-        "pk": "c31b2085-9de9-4a57-a311-9a7279573da0",
-        "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-analysis"
     },
     {
         "fields": {
@@ -1186,15 +1087,6 @@
         "model": "service.subcategory",
         "pk": "c4e9028a-d1e8-4840-9d44-43f2a5fc6532",
         "eosc_id": "subcategory-processing_and_analysis-data_management-brokering"
-    },
-    {
-        "fields": {
-            "category": "abad8012-42f9-4c70-94e1-dd58d0e934ab",
-            "name": "Applications"
-        },
-        "model": "service.subcategory",
-        "pk": "c4f98033-c1b3-43e0-a844-ed0b649864b1",
-        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-applications"
     },
     {
         "fields": {

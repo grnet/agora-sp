@@ -513,14 +513,6 @@
     },
     {
         "fields": {
-            "name": "Icelandic Centre for Research (RANNIS)"
-        },
-        "model": "service.fundingbody",
-        "pk": "789bc09b-bf42-4940-9886-34a45651531c",
-        "eosc_id": "funding_body-rannis"
-    },
-    {
-        "fields": {
             "name": "Science Foundation Ireland (SFI)"
         },
         "model": "service.fundingbody",
@@ -753,14 +745,6 @@
     },
     {
         "fields": {
-            "name": "Finnish Funding Agency for Technology and Innovation (TEKES)"
-        },
-        "model": "service.fundingbody",
-        "pk": "b971b315-1142-4b72-9c75-1328e91b4fe9",
-        "eosc_id": "funding_body-tekes"
-    },
-    {
-        "fields": {
             "name": "Swiss National Science Foundation (SNF)"
         },
         "model": "service.fundingbody",
@@ -982,14 +966,6 @@
         "model": "service.fundingbody",
         "pk": "f210d476-0e4a-4ec9-b015-e66e6bf9cfd1",
         "eosc_id": "funding_body-dlr"
-    },
-    {
-        "fields": {
-            "name": "Research Council of Norway (RCN)"
-        },
-        "model": "service.fundingbody",
-        "pk": "f5ad83f9-fcff-42c4-934e-a5a1e1875bbe",
-        "eosc_id": "funding_body-rcn"
     },
     {
         "fields": {
