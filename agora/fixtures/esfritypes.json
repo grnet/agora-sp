@@ -9,14 +9,6 @@
     },
     {
         "fields": {
-            "name": "Project"
-        },
-        "model": "accounts.esfritype",
-        "pk": "608a6fe9-f078-429f-a02f-84aa359b32c5",
-        "eosc_id": "provider_esfri_type-project"
-    },
-    {
-        "fields": {
             "name": "Not ESFRI"
         },
         "model": "accounts.esfritype",
