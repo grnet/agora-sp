@@ -47,6 +47,7 @@ class Network(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
     abbreviation = models.CharField(max_length=60, default=None)
+    eosc_id = models.CharField(max_length=255, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)
@@ -56,6 +57,7 @@ class Structure(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField(default=None, blank=True, null=True)
+    eosc_id = models.CharField(max_length=255, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)
@@ -64,6 +66,7 @@ class Structure(models.Model):
 class Affiliation(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
+    eosc_id = models.CharField(max_length=255, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)
@@ -73,6 +76,7 @@ class EsfriDomain(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
     description = models.TextField(default=None, blank=True, null=True)
+    eosc_id = models.CharField(max_length=255, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)
@@ -81,6 +85,7 @@ class EsfriDomain(models.Model):
 class EsfriType(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
+    eosc_id = models.CharField(max_length=255, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)
@@ -89,6 +94,7 @@ class EsfriType(models.Model):
 class Activity(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
+    eosc_id = models.CharField(max_length=255, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)
@@ -97,6 +103,7 @@ class Activity(models.Model):
 class Challenge(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
+    eosc_id = models.CharField(max_length=255, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)
@@ -105,6 +112,7 @@ class Challenge(models.Model):
 class Domain(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
+    eosc_id = models.CharField(max_length=255, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)
@@ -113,11 +121,13 @@ class Domain(models.Model):
 class MerilDomain(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
+    eosc_id = models.CharField(max_length=255, blank=True, null=True)
 
 class Subdomain(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     domain = models.ForeignKey('accounts.Domain', blank=True, null=True, related_name='domain_subdomain')
     name = models.CharField(max_length=255, unique=True)
+    eosc_id = models.CharField(max_length=255, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)
@@ -128,6 +138,7 @@ class MerilSubdomain(models.Model):
     domain = models.ForeignKey('accounts.MerilDomain', blank=True, null=True, related_name='merildomain_merilsubdomain')
     name = models.CharField(max_length=255, unique=False)
     description = models.TextField(default=None, blank=True, null=True)
+    eosc_id = models.CharField(max_length=255, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)
@@ -136,6 +147,7 @@ class MerilSubdomain(models.Model):
 class LegalStatus(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     name = models.CharField(max_length=255, unique=True)
+    eosc_id = models.CharField(max_length=255, blank=True, null=True)
 
     def save(self, *args, **kwargs):
         clean_html_fields(self)
