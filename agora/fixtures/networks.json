@@ -1041,7 +1041,7 @@
             "name": "European Energy Research Alliance",
             "abbreviation": "EERA"
         },
-        "eosc_id": ""
+        "eosc_id": "provider_network-other"
     },
     {
         "model": "accounts.network",
