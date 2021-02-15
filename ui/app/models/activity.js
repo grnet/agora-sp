@@ -5,4 +5,5 @@ export default DS.Model.extend({
     label: 'activity.fields.name',
     hint: 'activity.hints.name'
   }),
+  eosc_id: DS.attr(),
 });

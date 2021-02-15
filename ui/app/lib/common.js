@@ -2,6 +2,9 @@ import { CRUDGen } from 'ember-gen/lib/gen';
 import { field } from 'ember-gen';
 import _ from 'lodash/lodash';
 import validate from 'ember-gen/validate';
+import ENV from '../config/environment';
+import validate from 'ember-gen/validate';
+const EOSC_DISABLED = ENV.APP.eosc_portal.disabled;
 
 const {
   get,
@@ -88,12 +91,44 @@ const capitalize = (s) => {
 }
 
 
-
 const httpValidator = validate.format({
   regex: /^(https:\/\/|http:\/\/)/i,
   allowBlank: true,
   message: 'urlStarts.message',
 })
+
+
+function basic_model(desc) {
+  let fields = desc? ['name', 'description', 'eosc_id']: ['name', 'eosc_id'];
+  if (EOSC_DISABLED) {
+    fields.pop();
+  }
+  return {
+    common: {
+      fieldsets: [
+        {
+          label: 'common.cards.basic',
+          fields,
+          layout: {
+            flex: [100, 100, 100],
+          },
+        }
+      ],
+      validators: {
+        name: [validate.presence(true)],
+      },
+    },
+    row: {
+      actions: ['gen:details', 'gen:edit', 'remove'],
+      fields
+    },
+    sort: {
+      serverSide: true,
+      active: true,
+      fields: ['name', 'eosc_id'],
+    },
+  }
+}
 
 export {
   AgoraGen,
@@ -101,4 +136,5 @@ export {
   computeI18NChoice,
 	capitalize,
   httpValidator,
+  basic_model,
 };

@@ -7,4 +7,5 @@ export default DS.Model.extend({
   description: DS.attr({
     label: 'order_type.fields.description',
   }),
+  eosc_id: DS.attr(),
 });
