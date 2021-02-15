@@ -17,4 +17,5 @@ export default DS.Model.extend({
     label: 'merilsubdomain.fields.description',
     hint: 'merilsubdomain.hints.description'
   }),
+  eosc_id: DS.attr(),
 });

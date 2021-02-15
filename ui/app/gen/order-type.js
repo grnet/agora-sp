@@ -1,25 +1,17 @@
-import validate from 'ember-gen/validate';
-import { AgoraGen } from '../lib/common';
-import {
-  FIELDSETS,
-  SORT_FIELDS,
-} from '../utils/common/order-type';
+import { AgoraGen, basic_model } from '../lib/common';
 
 const {
   get,
   computed,
 } = Ember;
 
+const {common, row, sort} = basic_model(true);
+
 export default AgoraGen.extend({
   modelName: 'order-type',
   path: 'order-types',
   resourceName: 'api/v2/order-types',
-  common: {
-    fieldsets: FIELDSETS,
-    validators: {
-      name: [validate.presence(true)],
-    },
-  },
+  common,
   list: {
     page: {
       title: 'order_type.menu',
@@ -33,13 +25,13 @@ export default AgoraGen.extend({
       icon: 'attach_money',
       group: 'resource_settings',
     },
-    row: {
-      actions: ['gen:details', 'gen:edit', 'remove'],
-    },
-    sort: {
+    row,
+    filter: {
+      active: false,
       serverSide: true,
-      active: true,
-      fields: SORT_FIELDS,
+      search: true,
+      searchPlaceholder: 'Search by type or description',
     },
+    sort,
   },
 });

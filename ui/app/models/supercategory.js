@@ -5,4 +5,5 @@ export default DS.Model.extend({
     label: 'supercategory.fields.name',
     hint: 'supercategory.hints.name'
   }),
+  eosc_id: DS.attr(),
 });

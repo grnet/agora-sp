@@ -1,23 +1,12 @@
-import validate from 'ember-gen/validate';
-import { AgoraGen } from '../lib/common';
-import {
-  CREATE_FIELDSETS,
-  EDIT_FIELDSETS,
-  DETAILS_FIELDSETS,
-  TABLE_FIELDS,
-  SORT_FIELDS,
-} from '../utils/common/merildomain';
+import { AgoraGen, basic_model } from '../lib/common';
+
+const {common, row, sort} = basic_model();
 
 export default AgoraGen.extend({
   modelName: 'merildomain',
   path: 'merildomains',
   resourceName: 'api/v2/merildomains',
-  common: {
-    validators: {
-      id: [validate.presence(true)],
-      name: [validate.presence(true)],
-    },
-  },
+  common,
   list: {
     page: {
       title: 'merildomain.menu',
@@ -28,30 +17,13 @@ export default AgoraGen.extend({
       group: 'provider_settings',
       order: 93,
     },
-    row: {
-      actions: ['gen:details', 'gen:edit', 'remove'],
-      fields: TABLE_FIELDS,
-    },
+    row,
     filter: {
       active: false,
       serverSide: true,
       search: true,
       searchPlaceholder: 'common.placeholders.search',
     },
-    sort: {
-      serverSide: true,
-      active: true,
-      sortBy: 'name',
-      fields: SORT_FIELDS,
-    },
-  },
-  details: {
-    fieldsets: DETAILS_FIELDSETS,
-  },
-  edit: {
-    fieldsets: EDIT_FIELDSETS,
-  },
-  create: {
-    fieldsets: CREATE_FIELDSETS,
+    sort,
   },
 });

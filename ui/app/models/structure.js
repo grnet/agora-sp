@@ -9,4 +9,5 @@ export default DS.Model.extend({
     label: 'structure.fields.description',
     hint: 'structure.hints.description'
   }),
+  eosc_id: DS.attr(),
 });
