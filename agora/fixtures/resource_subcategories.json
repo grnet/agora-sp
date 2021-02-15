@@ -55,15 +55,6 @@
     },
     {
         "fields": {
-            "category": "3ddaf0af-4e7e-4c23-86ef-d5db4ae5312c",
-            "name": "TBC"
-        },
-        "model": "service.subcategory",
-        "pk": "0f142895-17e7-4d49-ba6c-1be0c1546c83",
-        "eosc_id": ""
-    },
-    {
-        "fields": {
             "category": "dca17a04-2569-406f-8609-465716a685ce",
             "name": "Annotation"
         },
@@ -97,15 +88,6 @@
         "model": "service.subcategory",
         "pk": "1aebc230-c21d-4a29-b402-04a7985e0221",
         "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-data"
-    },
-    {
-        "fields": {
-            "category": "a5d1f298-abd7-4b31-94ba-58cb8eb1d44a",
-            "name": "TBC"
-        },
-        "model": "service.subcategory",
-        "pk": "1bb4d6b2-c781-41bb-bbf6-faf22d3665c6",
-        "eosc_id": ""
     },
     {
         "fields": {
@@ -250,15 +232,6 @@
         "model": "service.subcategory",
         "pk": "3360495a-2dcc-48ec-900f-84cc0b19b2d4",
         "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-billing"
-    },
-    {
-        "fields": {
-            "category": "941eea82-491a-46db-92ef-bd25cbb4060c",
-            "name": "TBC"
-        },
-        "model": "service.subcategory",
-        "pk": "33eec6c5-6471-462f-8bf0-54df382b0846",
-        "eosc_id": ""
     },
     {
         "fields": {
@@ -735,7 +708,7 @@
         },
         "model": "service.subcategory",
         "pk": "8908a6b6-9ef5-4ae6-85a0-c01e8c04a6c3",
-        "eosc_id": ""
+        "eosc_id": "subcategory-processing_and_analysis-data_management-publishing"
     },
     {
         "fields": {
@@ -799,15 +772,6 @@
         "model": "service.subcategory",
         "pk": "952fa836-042d-47ec-9121-45d71dbb7d43",
         "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-services"
-    },
-    {
-        "fields": {
-            "category": "59aeb559-7952-4852-9421-ce44e79538bc",
-            "name": "TBD"
-        },
-        "model": "service.subcategory",
-        "pk": "955eaf92-200e-45b9-ad9b-7546e59568d6",
-        "eosc_id": ""
     },
     {
         "fields": {
@@ -1087,15 +1051,6 @@
         "model": "service.subcategory",
         "pk": "c4e9028a-d1e8-4840-9d44-43f2a5fc6532",
         "eosc_id": "subcategory-processing_and_analysis-data_management-brokering"
-    },
-    {
-        "fields": {
-            "category": "dca17a04-2569-406f-8609-465716a685ce",
-            "name": "TBC"
-        },
-        "model": "service.subcategory",
-        "pk": "c56817ae-8213-462a-b75f-4fbb31a8c759",
-        "eosc_id": ""
     },
     {
         "fields": {
