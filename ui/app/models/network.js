@@ -9,4 +9,5 @@ export default DS.Model.extend({
     label: 'network.fields.abbreviation',
     hint: 'network.hints.abbreviation'
   }),
+  eosc_id: DS.attr(),
 });

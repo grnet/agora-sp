@@ -1,4 +1,7 @@
 const common = {
+  'cards': {
+    'basic': 'Basic information'
+  },
   'file': {
     'field': {
       'no.files': 'No files',
