@@ -1,34 +1,42 @@
 [
     {
         "fields": {
-            "name": "Project"
+            "name": "Project",
+            "eosc_id": "provider_esfri_type-project"
         },
         "model": "accounts.esfritype",
-        "pk": "5489a07c-8417-4a4c-96b1-9bb34e9e7908",
-        "eosc_id": "provider_esfri_type-project"
+        "pk": "5489a07c-8417-4a4c-96b1-9bb34e9e7908"
     },
     {
         "fields": {
-            "name": "Not ESFRI"
+            "name": "Not ESFRI",
+            "eosc_id": "provider_esfri_type-not_esfri"
         },
         "model": "accounts.esfritype",
-        "pk": "81ab69f6-f069-4eef-9d6d-807cf2632520",
-        "eosc_id": "provider_esfri_type-not_esfri"
+        "pk": "81ab69f6-f069-4eef-9d6d-807cf2632520"
     },
     {
         "fields": {
-            "name": "Landmark"
+            "name": "Landmark",
+            "eosc_id": "provider_esfri_type-landmark"
         },
         "model": "accounts.esfritype",
-        "pk": "8dcaa44c-b3ca-4ea1-9200-bbb92f2b5dcc",
-        "eosc_id": "provider_esfri_type-landmark"
+        "pk": "8dcaa44c-b3ca-4ea1-9200-bbb92f2b5dcc"
     },
     {
         "fields": {
-            "name": "Other"
+            "name": "Other",
+            "eosc_id": "provider_esfri_type-other"
         },
         "model": "accounts.esfritype",
-        "pk": "9f021353-b5fb-442c-9656-778d4960646c",
-        "eosc_id": "provider_esfri_type-other"
+        "pk": "9f021353-b5fb-442c-9656-778d4960646c"
+    },
+    {
+        "model": "accounts.esfritype",
+        "pk": "50c6f6e4-51a5-4375-a86e-7cf4798e89d1",
+        "fields": {
+            "name": "Node",
+            "eosc_id": "provider_esfri_type-node"
+        }
     }
 ]

@@ -1,66 +1,66 @@
 [
     {
         "fields": {
-            "name": "Natural Resources"
+            "name": "Natural Resources",
+            "eosc_id": "provider_societal_grand_challenge-natural_resources"
         },
         "model": "accounts.challenge",
-        "pk": "12decd91-c12d-4563-8028-f3cfbb0276b4",
-        "eosc_id": "provider_societal_grand_challenge-natural_resources"
+        "pk": "12decd91-c12d-4563-8028-f3cfbb0276b4"
     },
     {
         "fields": {
-            "name": "Other"
+            "name": "Other",
+            "eosc_id": "provider_societal_grand_challenge-other"
         },
         "model": "accounts.challenge",
-        "pk": "1e31126f-c25c-417c-af86-91a6a2eacc82",
-        "eosc_id": "provider_societal_grand_challenge-other"
+        "pk": "1e31126f-c25c-417c-af86-91a6a2eacc82"
     },
     {
         "fields": {
-            "name": "Energy"
+            "name": "Energy",
+            "eosc_id": "provider_societal_grand_challenge-energy"
         },
         "model": "accounts.challenge",
-        "pk": "3995c66c-a0a6-458c-9d47-fca733236a93",
-        "eosc_id": "provider_societal_grand_challenge-energy"
+        "pk": "3995c66c-a0a6-458c-9d47-fca733236a93"
     },
     {
         "fields": {
-            "name": "Europe in a changing world"
+            "name": "Europe in a changing world",
+            "eosc_id": "provider_societal_grand_challenge-europe_in_a_changing_world"
         },
         "model": "accounts.challenge",
-        "pk": "3a090360-f7a1-487c-833a-1f798382bfd0",
-        "eosc_id": "provider_societal_grand_challenge-europe_in_a_changing_world"
+        "pk": "3a090360-f7a1-487c-833a-1f798382bfd0"
     },
     {
         "fields": {
-            "name": "Environment"
+            "name": "Environment",
+            "eosc_id": "provider_societal_grand_challenge-environment"
         },
         "model": "accounts.challenge",
-        "pk": "3f3b4a0d-a9c5-4cd0-bd19-a7bdac1aa8c0",
-        "eosc_id": "provider_societal_grand_challenge-environment"
+        "pk": "3f3b4a0d-a9c5-4cd0-bd19-a7bdac1aa8c0"
     },
     {
         "fields": {
-            "name": "Secure Societies"
+            "name": "Secure Societies",
+            "eosc_id": "provider_societal_grand_challenge-secure_societies"
         },
         "model": "accounts.challenge",
-        "pk": "55c4900b-fafe-4581-ad8c-fa3a4c95858f",
-        "eosc_id": "provider_societal_grand_challenge-secure_societies"
+        "pk": "55c4900b-fafe-4581-ad8c-fa3a4c95858f"
     },
     {
         "fields": {
-            "name": "Wellbeing"
+            "name": "Wellbeing",
+            "eosc_id": "provider_societal_grand_challenge-wellbeing"
         },
         "model": "accounts.challenge",
-        "pk": "78516d68-5623-4473-a44d-262052ee41b0",
-        "eosc_id": "provider_societal_grand_challenge-wellbeing"
+        "pk": "78516d68-5623-4473-a44d-262052ee41b0"
     },
     {
         "fields": {
-            "name": "Transport"
+            "name": "Transport",
+            "eosc_id": "provider_societal_grand_challenge-transport"
         },
         "model": "accounts.challenge",
-        "pk": "c2b6003b-91fa-41f1-9d03-ff4eb5fb1502",
-        "eosc_id": "provider_societal_grand_challenge-transport"
+        "pk": "c2b6003b-91fa-41f1-9d03-ff4eb5fb1502"
     }
 ]
