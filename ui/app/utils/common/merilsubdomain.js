@@ -2,7 +2,6 @@ import { field } from 'ember-gen';
 import ENV from '../../config/environment';
 const EOSC_DISABLED = ENV.APP.eosc_portal.disabled;
 
-
 const SORT_FIELDS = [
   'name',
   'eosc_id',
