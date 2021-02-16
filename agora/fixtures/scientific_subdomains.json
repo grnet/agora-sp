@@ -2,397 +2,397 @@
     {
         "fields": {
             "domain": "844384cf-e7bf-4166-a233-d5020e483fe7",
-            "name": "Electrical, Electronic & Information Engineering"
+            "name": "Electrical, Electronic & Information Engineering",
+            "eosc_id": "scientific_subdomain-engineering_and_technology-electrical_electronic_and_information_engineering"
         },
         "model": "accounts.subdomain",
-        "pk": "003605bd-5252-4258-8d45-6356667b66fa",
-        "eosc_id": "scientific_subdomain-engineering_and_technology-electrical_electronic_and_information_engineering"
+        "pk": "003605bd-5252-4258-8d45-6356667b66fa"
     },
     {
         "fields": {
             "domain": "befdbe50-8122-49aa-9d53-07f8a31c84ab",
-            "name": "Economics & Business"
+            "name": "Economics & Business",
+            "eosc_id": "scientific_subdomain-social_sciences-economics_and_business"
         },
         "model": "accounts.subdomain",
-        "pk": "07d9ff9f-c639-4b4f-8918-dc2ce93a019c",
-        "eosc_id": "scientific_subdomain-social_sciences-economics_and_business"
+        "pk": "07d9ff9f-c639-4b4f-8918-dc2ce93a019c"
     },
     {
         "fields": {
             "domain": "5df3124a-b8af-44d3-9dbf-64f18022d8cd",
-            "name": "Chemical Sciences"
+            "name": "Chemical Sciences",
+            "eosc_id": "scientific_subdomain-natural_sciences-chemical_sciences"
         },
         "model": "accounts.subdomain",
-        "pk": "082da865-0c69-48d4-83c4-094a2cd65e43",
-        "eosc_id": "scientific_subdomain-natural_sciences-chemical_sciences"
+        "pk": "082da865-0c69-48d4-83c4-094a2cd65e43"
     },
     {
         "fields": {
             "domain": "befdbe50-8122-49aa-9d53-07f8a31c84ab",
-            "name": "Other Social Sciences"
+            "name": "Other Social Sciences",
+            "eosc_id": "scientific_subdomain-social_sciences-other_social_sciences"
         },
         "model": "accounts.subdomain",
-        "pk": "0dd7c087-ce08-4567-8d3d-3457929cf758",
-        "eosc_id": "scientific_subdomain-social_sciences-other_social_sciences"
+        "pk": "0dd7c087-ce08-4567-8d3d-3457929cf758"
     },
     {
         "fields": {
             "domain": "e6f133ff-d47b-4586-a1d2-b401751ab3d3",
-            "name": "Other Humanities"
+            "name": "Other Humanities",
+            "eosc_id": "scientific_subdomain-humanities-other_humanities"
         },
         "model": "accounts.subdomain",
-        "pk": "109c8a27-ba5c-4692-aa14-e26150fa20e8",
-        "eosc_id": "scientific_subdomain-humanities-other_humanities"
+        "pk": "109c8a27-ba5c-4692-aa14-e26150fa20e8"
     },
     {
         "fields": {
             "domain": "e6f133ff-d47b-4586-a1d2-b401751ab3d3",
-            "name": "History & Archaeology"
+            "name": "History & Archaeology",
+            "eosc_id": "scientific_subdomain-humanities-history_and_archaeology"
         },
         "model": "accounts.subdomain",
-        "pk": "139fe4a8-f456-401a-9442-9760c12f9298",
-        "eosc_id": "scientific_subdomain-humanities-history_and_archaeology"
+        "pk": "139fe4a8-f456-401a-9442-9760c12f9298"
     },
     {
         "fields": {
             "domain": "06b02ff3-16d9-4c9f-a078-37c366e4f15c",
-            "name": "Veterinary Sciences"
+            "name": "Veterinary Sciences",
+            "eosc_id": "scientific_subdomain-agricultural_sciences-veterinary_sciences"
         },
         "model": "accounts.subdomain",
-        "pk": "26ef3ed0-15e3-49e9-ab57-5a8cf6a19639",
-        "eosc_id": "scientific_subdomain-agricultural_sciences-veterinary_sciences"
+        "pk": "26ef3ed0-15e3-49e9-ab57-5a8cf6a19639"
     },
     {
         "fields": {
             "domain": "844384cf-e7bf-4166-a233-d5020e483fe7",
-            "name": "Other Engineering & Technology Sciences"
+            "name": "Other Engineering & Technology Sciences",
+            "eosc_id": "scientific_subdomain-engineering_and_technology-other_engineering_and_technology_sciences"
         },
         "model": "accounts.subdomain",
-        "pk": "2831e229-a1ae-40a9-9915-a6448b48d337",
-        "eosc_id": "scientific_subdomain-engineering_and_technology-other_engineering_and_technology_sciences"
+        "pk": "2831e229-a1ae-40a9-9915-a6448b48d337"
     },
     {
         "fields": {
             "domain": "68abe091-ec20-4050-8f5e-40a2c2526252",
-            "name": "Generic"
+            "name": "Generic",
+            "eosc_id": "scientific_subdomain-generic-generic"
         },
         "model": "accounts.subdomain",
-        "pk": "31abf908-8f06-4ab5-8e04-fb35cf9e41bf",
-        "eosc_id": "scientific_subdomain-generic-generic"
+        "pk": "31abf908-8f06-4ab5-8e04-fb35cf9e41bf"
     },
     {
         "fields": {
             "domain": "e6f133ff-d47b-4586-a1d2-b401751ab3d3",
-            "name": "Languages & Literature"
+            "name": "Languages & Literature",
+            "eosc_id": "scientific_subdomain-humanities-languages_and_literature"
         },
         "model": "accounts.subdomain",
-        "pk": "35dc8d76-a7fe-4728-b368-26322888325c",
-        "eosc_id": "scientific_subdomain-humanities-languages_and_literature"
+        "pk": "35dc8d76-a7fe-4728-b368-26322888325c"
     },
     {
         "fields": {
             "domain": "844384cf-e7bf-4166-a233-d5020e483fe7",
-            "name": "Medical Engineering"
+            "name": "Medical Engineering",
+            "eosc_id": "scientific_subdomain-engineering_and_technology-medical_engineering"
         },
         "model": "accounts.subdomain",
-        "pk": "3991313f-523a-474e-b693-bac3d9199539",
-        "eosc_id": "scientific_subdomain-engineering_and_technology-medical_engineering"
+        "pk": "3991313f-523a-474e-b693-bac3d9199539"
     },
     {
         "fields": {
             "domain": "e6f133ff-d47b-4586-a1d2-b401751ab3d3",
-            "name": "Arts"
+            "name": "Arts",
+            "eosc_id": "scientific_subdomain-humanities-arts"
         },
         "model": "accounts.subdomain",
-        "pk": "39fb6be5-a178-426c-a3d6-8036f629b907",
-        "eosc_id": "scientific_subdomain-humanities-arts"
+        "pk": "39fb6be5-a178-426c-a3d6-8036f629b907"
     },
     {
         "fields": {
             "domain": "befdbe50-8122-49aa-9d53-07f8a31c84ab",
-            "name": "Media & Communications"
+            "name": "Media & Communications",
+            "eosc_id": "scientific_subdomain-social_sciences-media_and_communications"
         },
         "model": "accounts.subdomain",
-        "pk": "3a3abc8a-66d2-44a1-bbfb-3482c24c9a0e",
-        "eosc_id": "scientific_subdomain-social_sciences-media_and_communications"
+        "pk": "3a3abc8a-66d2-44a1-bbfb-3482c24c9a0e"
     },
     {
         "fields": {
             "domain": "befdbe50-8122-49aa-9d53-07f8a31c84ab",
-            "name": "Social & Economic Geography"
+            "name": "Social & Economic Geography",
+            "eosc_id": "scientific_subdomain-social_sciences-social_and_economic_geography"
         },
         "model": "accounts.subdomain",
-        "pk": "3ead21d6-f477-44d7-bc56-4173c84ea9a9",
-        "eosc_id": "scientific_subdomain-social_sciences-social_and_economic_geography"
+        "pk": "3ead21d6-f477-44d7-bc56-4173c84ea9a9"
     },
     {
         "fields": {
             "domain": "844384cf-e7bf-4166-a233-d5020e483fe7",
-            "name": "Civil Engineering"
+            "name": "Civil Engineering",
+            "eosc_id": "scientific_subdomain-engineering_and_technology-civil_engineering"
         },
         "model": "accounts.subdomain",
-        "pk": "4221c0d2-2048-4306-ba0b-81fa124da656",
-        "eosc_id": "scientific_subdomain-engineering_and_technology-civil_engineering"
+        "pk": "4221c0d2-2048-4306-ba0b-81fa124da656"
     },
     {
         "fields": {
             "domain": "96823e1d-77fb-4aa6-80a3-8ffe317112c4",
-            "name": "Other"
+            "name": "Other",
+            "eosc_id": "scientific_subdomain-other-other"
         },
         "model": "accounts.subdomain",
-        "pk": "42225365-e8be-4ab2-b5fb-9df15c8a767d",
-        "eosc_id": "scientific_subdomain-other-other"
+        "pk": "42225365-e8be-4ab2-b5fb-9df15c8a767d"
     },
     {
         "fields": {
             "domain": "befdbe50-8122-49aa-9d53-07f8a31c84ab",
-            "name": "Political Sciences"
+            "name": "Political Sciences",
+            "eosc_id": "scientific_subdomain-social_sciences-political_sciences"
         },
         "model": "accounts.subdomain",
-        "pk": "4c33e554-16ba-47e8-9f7e-d433c557e258",
-        "eosc_id": "scientific_subdomain-social_sciences-political_sciences"
+        "pk": "4c33e554-16ba-47e8-9f7e-d433c557e258"
     },
     {
         "fields": {
             "domain": "06b02ff3-16d9-4c9f-a078-37c366e4f15c",
-            "name": "Animal & Dairy Sciences"
+            "name": "Animal & Dairy Sciences",
+            "eosc_id": "scientific_subdomain-agricultural_sciences-animal_and_dairy_sciences"
         },
         "model": "accounts.subdomain",
-        "pk": "55e0e478-b60b-4d87-b078-7e59b4a73ce4",
-        "eosc_id": "scientific_subdomain-agricultural_sciences-animal_and_dairy_sciences"
+        "pk": "55e0e478-b60b-4d87-b078-7e59b4a73ce4"
     },
     {
         "fields": {
             "domain": "06b02ff3-16d9-4c9f-a078-37c366e4f15c",
-            "name": "Other Agricultural Sciences"
+            "name": "Other Agricultural Sciences",
+            "eosc_id": "scientific_subdomain-agricultural_sciences-other_agricultural_sciences"
         },
         "model": "accounts.subdomain",
-        "pk": "614c9030-ff4b-41e0-9664-bc5c7ee0751b",
-        "eosc_id": "scientific_subdomain-agricultural_sciences-other_agricultural_sciences"
+        "pk": "614c9030-ff4b-41e0-9664-bc5c7ee0751b"
     },
     {
         "fields": {
             "domain": "5df3124a-b8af-44d3-9dbf-64f18022d8cd",
-            "name": "Physical Sciences"
+            "name": "Physical Sciences",
+            "eosc_id": "scientific_subdomain-natural_sciences-physical_sciences"
         },
         "model": "accounts.subdomain",
-        "pk": "63639c10-7cee-4ef0-891c-88a8c9e3d822",
-        "eosc_id": "scientific_subdomain-natural_sciences-physical_sciences"
+        "pk": "63639c10-7cee-4ef0-891c-88a8c9e3d822"
     },
     {
         "fields": {
             "domain": "06b02ff3-16d9-4c9f-a078-37c366e4f15c",
-            "name": "Agricultural Biotechnology"
+            "name": "Agricultural Biotechnology",
+            "eosc_id": "scientific_subdomain-agricultural_sciences-agricultural_biotechnology"
         },
         "model": "accounts.subdomain",
-        "pk": "7646fe9c-6a8e-423e-802c-aed77510a002",
-        "eosc_id": "scientific_subdomain-agricultural_sciences-agricultural_biotechnology"
+        "pk": "7646fe9c-6a8e-423e-802c-aed77510a002"
     },
     {
         "fields": {
             "domain": "5df3124a-b8af-44d3-9dbf-64f18022d8cd",
-            "name": "Biological Sciences"
+            "name": "Biological Sciences",
+            "eosc_id": "scientific_subdomain-natural_sciences-biological_sciences"
         },
         "model": "accounts.subdomain",
-        "pk": "7e1f6beb-418d-42ea-96c0-c343fd1b71d5",
-        "eosc_id": "scientific_subdomain-natural_sciences-biological_sciences"
+        "pk": "7e1f6beb-418d-42ea-96c0-c343fd1b71d5"
     },
     {
         "fields": {
             "domain": "844384cf-e7bf-4166-a233-d5020e483fe7",
-            "name": "Environmental Biotechnology"
+            "name": "Environmental Biotechnology",
+            "eosc_id": "scientific_subdomain-engineering_and_technology-environmental_biotechnology"
         },
         "model": "accounts.subdomain",
-        "pk": "825ea804-e436-4aaf-aca4-965738d2e556",
-        "eosc_id": "scientific_subdomain-engineering_and_technology-environmental_biotechnology"
+        "pk": "825ea804-e436-4aaf-aca4-965738d2e556"
     },
     {
         "fields": {
             "domain": "81e63d47-85b2-422c-a5d4-ad33b803768b",
-            "name": "Clinical Medicine"
+            "name": "Clinical Medicine",
+            "eosc_id": "scientific_subdomain-medical_and_health_sciences-clinical_medicine"
         },
         "model": "accounts.subdomain",
-        "pk": "82e0a8d8-5e8b-4a25-bb5b-a98d7afa3b7d",
-        "eosc_id": "scientific_subdomain-medical_and_health_sciences-clinical_medicine"
+        "pk": "82e0a8d8-5e8b-4a25-bb5b-a98d7afa3b7d"
     },
     {
         "fields": {
             "domain": "befdbe50-8122-49aa-9d53-07f8a31c84ab",
-            "name": "Law"
+            "name": "Law",
+            "eosc_id": "scientific_subdomain-social_sciences-law"
         },
         "model": "accounts.subdomain",
-        "pk": "8507f5ed-013e-4f47-afc3-e4b5be50947e",
-        "eosc_id": "scientific_subdomain-social_sciences-law"
+        "pk": "8507f5ed-013e-4f47-afc3-e4b5be50947e"
     },
     {
         "fields": {
             "domain": "5df3124a-b8af-44d3-9dbf-64f18022d8cd",
-            "name": "Mathematics"
+            "name": "Mathematics",
+            "eosc_id": "scientific_subdomain-natural_sciences-mathematics"
         },
         "model": "accounts.subdomain",
-        "pk": "8f354dcf-0f2a-4e3a-9a3e-3d47b9fe0ea9",
-        "eosc_id": "scientific_subdomain-natural_sciences-mathematics"
+        "pk": "8f354dcf-0f2a-4e3a-9a3e-3d47b9fe0ea9"
     },
     {
         "fields": {
             "domain": "5df3124a-b8af-44d3-9dbf-64f18022d8cd",
-            "name": "Other Natural Sciences"
+            "name": "Other Natural Sciences",
+            "eosc_id": "scientific_subdomain-natural_sciences-other_natural_sciences"
         },
         "model": "accounts.subdomain",
-        "pk": "91874997-84ac-4ac2-8d30-54b2ddc1fd21",
-        "eosc_id": "scientific_subdomain-natural_sciences-other_natural_sciences"
+        "pk": "91874997-84ac-4ac2-8d30-54b2ddc1fd21"
     },
     {
         "fields": {
             "domain": "844384cf-e7bf-4166-a233-d5020e483fe7",
-            "name": "Materials Engineering"
+            "name": "Materials Engineering",
+            "eosc_id": "scientific_subdomain-engineering_and_technology-materials_engineering"
         },
         "model": "accounts.subdomain",
-        "pk": "98678f0b-dafd-44ae-8144-27f9522daffc",
-        "eosc_id": "scientific_subdomain-engineering_and_technology-materials_engineering"
+        "pk": "98678f0b-dafd-44ae-8144-27f9522daffc"
     },
     {
         "fields": {
             "domain": "81e63d47-85b2-422c-a5d4-ad33b803768b",
-            "name": "Basic Medicine"
+            "name": "Basic Medicine",
+            "eosc_id": "scientific_subdomain-medical_and_health_sciences-basic_medicine"
         },
         "model": "accounts.subdomain",
-        "pk": "9a3350f4-2980-4c8a-b5e4-2650a849c0ea",
-        "eosc_id": "scientific_subdomain-medical_and_health_sciences-basic_medicine"
+        "pk": "9a3350f4-2980-4c8a-b5e4-2650a849c0ea"
     },
     {
         "fields": {
             "domain": "befdbe50-8122-49aa-9d53-07f8a31c84ab",
-            "name": "Psychology"
+            "name": "Psychology",
+            "eosc_id": "scientific_subdomain-social_sciences-psychology"
         },
         "model": "accounts.subdomain",
-        "pk": "9e360b60-537d-431b-8004-d3717b586c3f",
-        "eosc_id": "scientific_subdomain-social_sciences-psychology"
+        "pk": "9e360b60-537d-431b-8004-d3717b586c3f"
     },
     {
         "fields": {
             "domain": "befdbe50-8122-49aa-9d53-07f8a31c84ab",
-            "name": "Sociology"
+            "name": "Sociology",
+            "eosc_id": "scientific_subdomain-social_sciences-sociology"
         },
         "model": "accounts.subdomain",
-        "pk": "a00b5c2d-94dc-4c26-a5ab-c94984773142",
-        "eosc_id": "scientific_subdomain-social_sciences-sociology"
+        "pk": "a00b5c2d-94dc-4c26-a5ab-c94984773142"
     },
     {
         "fields": {
             "domain": "844384cf-e7bf-4166-a233-d5020e483fe7",
-            "name": "Chemical Engineering"
+            "name": "Chemical Engineering",
+            "eosc_id": "scientific_subdomain-engineering_and_technology-chemical_engineering"
         },
         "model": "accounts.subdomain",
-        "pk": "a5e49dec-047b-42d3-be70-9967618a1b0a",
-        "eosc_id": "scientific_subdomain-engineering_and_technology-chemical_engineering"
+        "pk": "a5e49dec-047b-42d3-be70-9967618a1b0a"
     },
     {
         "fields": {
             "domain": "5df3124a-b8af-44d3-9dbf-64f18022d8cd",
-            "name": "Computer & Information Sciences"
+            "name": "Computer & Information Sciences",
+            "eosc_id": "scientific_subdomain-natural_sciences-computer_and_information_sciences"
         },
         "model": "accounts.subdomain",
-        "pk": "a68a80c8-dec1-4b36-8525-f7a69ff7cbf6",
-        "eosc_id": "scientific_subdomain-natural_sciences-computer_and_information_sciences"
+        "pk": "a68a80c8-dec1-4b36-8525-f7a69ff7cbf6"
     },
     {
         "fields": {
             "domain": "befdbe50-8122-49aa-9d53-07f8a31c84ab",
-            "name": "Educational Sciences"
+            "name": "Educational Sciences",
+            "eosc_id": "scientific_subdomain-social_sciences-educational_sciences"
         },
         "model": "accounts.subdomain",
-        "pk": "aa07bd1f-8d45-47e0-b1b4-a3b895417fb4",
-        "eosc_id": "scientific_subdomain-social_sciences-educational_sciences"
+        "pk": "aa07bd1f-8d45-47e0-b1b4-a3b895417fb4"
     },
     {
         "fields": {
             "domain": "06b02ff3-16d9-4c9f-a078-37c366e4f15c",
-            "name": "Agriculture, Forestry & Fisheries"
+            "name": "Agriculture, Forestry & Fisheries",
+            "eosc_id": "scientific_subdomain-agricultural_sciences-agriculture_forestry_and_fisheries"
         },
         "model": "accounts.subdomain",
-        "pk": "b6c63b2f-a246-4b69-b8c6-21ac3e5a38b9",
-        "eosc_id": "scientific_subdomain-agricultural_sciences-agriculture_forestry_and_fisheries"
+        "pk": "b6c63b2f-a246-4b69-b8c6-21ac3e5a38b9"
     },
     {
         "fields": {
             "domain": "844384cf-e7bf-4166-a233-d5020e483fe7",
-            "name": "Environmental Engineering"
+            "name": "Environmental Engineering",
+            "eosc_id": "scientific_subdomain-engineering_and_technology-environmental_engineering"
         },
         "model": "accounts.subdomain",
-        "pk": "ba016a0c-0ea4-4e60-ac34-ee9035f6e4f2",
-        "eosc_id": "scientific_subdomain-engineering_and_technology-environmental_engineering"
+        "pk": "ba016a0c-0ea4-4e60-ac34-ee9035f6e4f2"
     },
     {
         "fields": {
             "domain": "844384cf-e7bf-4166-a233-d5020e483fe7",
-            "name": "Industrial Biotechnology"
+            "name": "Industrial Biotechnology",
+            "eosc_id": "scientific_subdomain-engineering_and_technology-industrial_biotechnology"
         },
         "model": "accounts.subdomain",
-        "pk": "c0de3fce-2a56-4b87-bfc9-8294131a0fc1",
-        "eosc_id": "scientific_subdomain-engineering_and_technology-industrial_biotechnology"
+        "pk": "c0de3fce-2a56-4b87-bfc9-8294131a0fc1"
     },
     {
         "fields": {
             "domain": "844384cf-e7bf-4166-a233-d5020e483fe7",
-            "name": "Nanotechnology"
+            "name": "Nanotechnology",
+            "eosc_id": "scientific_subdomain-engineering_and_technology-nanotechnology"
         },
         "model": "accounts.subdomain",
-        "pk": "d4ae31dd-26ce-4c5b-98ac-1ac69300fbf3",
-        "eosc_id": "scientific_subdomain-engineering_and_technology-nanotechnology"
+        "pk": "d4ae31dd-26ce-4c5b-98ac-1ac69300fbf3"
     },
     {
         "fields": {
             "domain": "e6f133ff-d47b-4586-a1d2-b401751ab3d3",
-            "name": "Philosophy, Ethics & Religion"
+            "name": "Philosophy, Ethics & Religion",
+            "eosc_id": "scientific_subdomain-humanities-philosophy_ethics_and_religion"
         },
         "model": "accounts.subdomain",
-        "pk": "dc1d68d4-df34-4aa5-adab-01f1289d7fc8",
-        "eosc_id": "scientific_subdomain-humanities-philosophy_ethics_and_religion"
+        "pk": "dc1d68d4-df34-4aa5-adab-01f1289d7fc8"
     },
     {
         "fields": {
             "domain": "81e63d47-85b2-422c-a5d4-ad33b803768b",
-            "name": "Other Medical Sciences"
+            "name": "Other Medical Sciences",
+            "eosc_id": "scientific_subdomain-medical_and_health_sciences-other_medical_sciences"
         },
         "model": "accounts.subdomain",
-        "pk": "de7a7a22-62b1-4ef1-b10f-faf7f41d0644",
-        "eosc_id": "scientific_subdomain-medical_and_health_sciences-other_medical_sciences"
+        "pk": "de7a7a22-62b1-4ef1-b10f-faf7f41d0644"
     },
     {
         "fields": {
             "domain": "81e63d47-85b2-422c-a5d4-ad33b803768b",
-            "name": "Medical Biotechnology"
+            "name": "Medical Biotechnology",
+            "eosc_id": "scientific_subdomain-medical_and_health_sciences-medical_biotechnology"
         },
         "model": "accounts.subdomain",
-        "pk": "ef1a7b03-0dbc-4fd2-8333-b35f3f6628c3",
-        "eosc_id": "scientific_subdomain-medical_and_health_sciences-medical_biotechnology"
+        "pk": "ef1a7b03-0dbc-4fd2-8333-b35f3f6628c3"
     },
     {
         "fields": {
             "domain": "81e63d47-85b2-422c-a5d4-ad33b803768b",
-            "name": "Health Sciences"
+            "name": "Health Sciences",
+            "eosc_id": "scientific_subdomain-medical_and_health_sciences-health_sciences"
         },
         "model": "accounts.subdomain",
-        "pk": "f1735c04-37d4-4bfd-a7fd-d6113c4eece8",
-        "eosc_id": "scientific_subdomain-medical_and_health_sciences-health_sciences"
+        "pk": "f1735c04-37d4-4bfd-a7fd-d6113c4eece8"
     },
     {
         "fields": {
             "domain": "844384cf-e7bf-4166-a233-d5020e483fe7",
-            "name": "Mechanical Engineering"
+            "name": "Mechanical Engineering",
+            "eosc_id": "scientific_subdomain-engineering_and_technology-mechanical_engineering"
         },
         "model": "accounts.subdomain",
-        "pk": "f6dad43f-47f5-498c-b704-118b0ea697fb",
-        "eosc_id": "scientific_subdomain-engineering_and_technology-mechanical_engineering"
+        "pk": "f6dad43f-47f5-498c-b704-118b0ea697fb"
     },
     {
         "fields": {
             "domain": "5df3124a-b8af-44d3-9dbf-64f18022d8cd",
-            "name": "Earth & Related Environmental Sciences"
+            "name": "Earth & Related Environmental Sciences",
+            "eosc_id": "scientific_subdomain-natural_sciences-earth_and_related_environmental_sciences"
         },
         "model": "accounts.subdomain",
-        "pk": "fe3bfb21-a082-4390-89d1-852d6b4e3e36",
-        "eosc_id": "scientific_subdomain-natural_sciences-earth_and_related_environmental_sciences"
+        "pk": "fe3bfb21-a082-4390-89d1-852d6b4e3e36"
     }
 ]

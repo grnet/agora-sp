@@ -2,37 +2,37 @@
     {
         "fields": {
             "description": null,
-            "name": "Other"
+            "name": "Other",
+            "eosc_id": "order_type-other"
         },
         "model": "service.ordertype",
-        "pk": "214f97dd-f9f5-475d-a41e-0a6aeaaa5f51",
-        "eosc_id": "order_type-other"
+        "pk": "214f97dd-f9f5-475d-a41e-0a6aeaaa5f51"
     },
     {
         "fields": {
             "description": "Resource requires an ordering procedure",
-            "name": "Order Required"
+            "name": "Order Required",
+            "eosc_id": "order_type-order_required"
         },
         "model": "service.ordertype",
-        "pk": "27443922-0083-4e4e-bec1-5eff56e92191",
-        "eosc_id": "order_type-order_required"
+        "pk": "27443922-0083-4e4e-bec1-5eff56e92191"
     },
     {
         "fields": {
             "description": "No ordering procedure necessary to access the resource and no user authentication required",
-            "name": "Fully Open Access"
+            "name": "Fully Open Access",
+            "eosc_id": "order_type-fully_open_access"
         },
         "model": "service.ordertype",
-        "pk": "348e49d1-ea56-4e7f-aef5-287f7445e0c7",
-        "eosc_id": "order_type-fully_open_access"
+        "pk": "348e49d1-ea56-4e7f-aef5-287f7445e0c7"
     },
     {
         "fields": {
             "description": "No ordering procedure necessary to access the resource but requires user authentication",
-            "name": "Open Access"
+            "name": "Open Access",
+            "eosc_id": "order_type-open_access"
         },
         "model": "service.ordertype",
-        "pk": "3608d14c-ffaa-4423-a592-53ebc83a1e77",
-        "eosc_id": "order_type-open_access"
+        "pk": "3608d14c-ffaa-4423-a592-53ebc83a1e77"
     }
 ]

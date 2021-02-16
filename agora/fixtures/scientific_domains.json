@@ -1,66 +1,66 @@
 [
     {
         "fields": {
-            "name": "Agricultural Sciences"
+            "name": "Agricultural Sciences",
+            "eosc_id": "scientific_domain-agricultural_sciences"
         },
         "model": "accounts.domain",
-        "pk": "06b02ff3-16d9-4c9f-a078-37c366e4f15c",
-        "eosc_id": "scientific_domain-agricultural_sciences"
+        "pk": "06b02ff3-16d9-4c9f-a078-37c366e4f15c"
     },
     {
         "fields": {
-            "name": "Natural Sciences"
+            "name": "Natural Sciences",
+            "eosc_id": "scientific_domain-natural_sciences"
         },
         "model": "accounts.domain",
-        "pk": "5df3124a-b8af-44d3-9dbf-64f18022d8cd",
-        "eosc_id": "scientific_domain-natural_sciences"
+        "pk": "5df3124a-b8af-44d3-9dbf-64f18022d8cd"
     },
     {
         "fields": {
-            "name": "Generic"
+            "name": "Generic",
+            "eosc_id": "scientific_domain-generic"
         },
         "model": "accounts.domain",
-        "pk": "68abe091-ec20-4050-8f5e-40a2c2526252",
-        "eosc_id": "scientific_domain-generic"
+        "pk": "68abe091-ec20-4050-8f5e-40a2c2526252"
     },
     {
         "fields": {
-            "name": "Medical & Health Sciences"
+            "name": "Medical & Health Sciences",
+            "eosc_id": "scientific_domain-medical_and_health_sciences"
         },
         "model": "accounts.domain",
-        "pk": "81e63d47-85b2-422c-a5d4-ad33b803768b",
-        "eosc_id": "scientific_domain-medical_and_health_sciences"
+        "pk": "81e63d47-85b2-422c-a5d4-ad33b803768b"
     },
     {
         "fields": {
-            "name": "Engineering & Technology"
+            "name": "Engineering & Technology",
+            "eosc_id": "scientific_domain-engineering_and_technology"
         },
         "model": "accounts.domain",
-        "pk": "844384cf-e7bf-4166-a233-d5020e483fe7",
-        "eosc_id": "scientific_domain-engineering_and_technology"
+        "pk": "844384cf-e7bf-4166-a233-d5020e483fe7"
     },
     {
         "fields": {
-            "name": "Other"
+            "name": "Other",
+            "eosc_id": "scientific_domain-other"
         },
         "model": "accounts.domain",
-        "pk": "96823e1d-77fb-4aa6-80a3-8ffe317112c4",
-        "eosc_id": "scientific_domain-other"
+        "pk": "96823e1d-77fb-4aa6-80a3-8ffe317112c4"
     },
     {
         "fields": {
-            "name": "Social Sciences"
+            "name": "Social Sciences",
+            "eosc_id": "scientific_domain-social_sciences"
         },
         "model": "accounts.domain",
-        "pk": "befdbe50-8122-49aa-9d53-07f8a31c84ab",
-        "eosc_id": "scientific_domain-social_sciences"
+        "pk": "befdbe50-8122-49aa-9d53-07f8a31c84ab"
     },
     {
         "fields": {
-            "name": "Humanities"
+            "name": "Humanities",
+            "eosc_id": "scientific_domain-humanities"
         },
         "model": "accounts.domain",
-        "pk": "e6f133ff-d47b-4586-a1d2-b401751ab3d3",
-        "eosc_id": "scientific_domain-humanities"
+        "pk": "e6f133ff-d47b-4586-a1d2-b401751ab3d3"
     }
 ]
