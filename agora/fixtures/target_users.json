@@ -2,154 +2,154 @@
     {
         "fields": {
             "description": "A research group is a group of researchers working together on a particular issue or topic. Research groups may be composed of researchers all from the same subject/discipline or from different subjects/disciplines.",
-            "user": "Research Groups"
+            "user": "Research Groups",
+            "eosc_id": "target_user-research_groups"
         },
         "model": "service.targetuser",
-        "pk": "3d840ff1-d5dc-496b-a10f-1c23a1bac49b",
-        "eosc_id": "target_user-research_groups"
+        "pk": "3d840ff1-d5dc-496b-a10f-1c23a1bac49b"
     },
     {
         "fields": {
             "description": "A resource provider manager is an individual within an organisation that is responsible for the quality of the resources provided and monitors the delivery of the resource.",
-            "user": "Resource Provider Managers"
+            "user": "Resource Provider Managers",
+            "eosc_id": "target_user-resource_provider_managers"
         },
         "model": "service.targetuser",
-        "pk": "406b8a08-bb16-4e0d-b6c1-365c93ac9f47",
-        "eosc_id": "target_user-resource_provider_managers"
+        "pk": "406b8a08-bb16-4e0d-b6c1-365c93ac9f47"
     },
     {
         "fields": {
             "description": "Someone in an organization whose job is to manage a research initiative aiming to the development of new scientific results, products or ideas.",
-            "user": "Research Managers"
+            "user": "Research Managers",
+            "eosc_id": "target_user-research_managers"
         },
         "model": "service.targetuser",
-        "pk": "47568a8b-b704-4f3b-940e-afe03a87fb86",
-        "eosc_id": "target_user-research_managers"
+        "pk": "47568a8b-b704-4f3b-940e-afe03a87fb86"
     },
     {
         "fields": {
             "description": "An organization or economic system where goods and services are exchanged for one another or for money. Businesses can be privately owned, not-for-profit or state-owned.",
-            "user": "Businesses"
+            "user": "Businesses",
+            "eosc_id": "target_user-businesses"
         },
         "model": "service.targetuser",
-        "pk": "5be9b0f5-5921-482f-a6bf-c617d47a006b",
-        "eosc_id": "target_user-businesses"
+        "pk": "5be9b0f5-5921-482f-a6bf-c617d47a006b"
     },
     {
         "fields": {
             "description": "Individual or organization financing a part or all of a project's cost as a grant, investment, or loan.",
-            "user": "Funders"
+            "user": "Funders",
+            "eosc_id": "target_user-funders"
         },
         "model": "service.targetuser",
-        "pk": "5dd014bb-0cb9-44a0-92e3-48b0d6c1117f",
-        "eosc_id": "target_user-funders"
+        "pk": "5dd014bb-0cb9-44a0-92e3-48b0d6c1117f"
     },
     {
         "fields": {
             "description": "The group or individual which is the first to try new ideas, processes, goods and services. Innovators are followed by early adopters, early majority, late majority, and laggards, in that order.",
-            "user": "Innovators"
+            "user": "Innovators",
+            "eosc_id": "target_user-innovators"
         },
         "model": "service.targetuser",
-        "pk": "87c613d3-d8fd-4581-a079-c3b5ac6e7408",
-        "eosc_id": "target_user-innovators"
+        "pk": "87c613d3-d8fd-4581-a079-c3b5ac6e7408"
     },
     {
         "fields": {
             "description": "A person who is studying at a university or other place of higher education.",
-            "user": "Students"
+            "user": "Students",
+            "eosc_id": "target_user-students"
         },
         "model": "service.targetuser",
-        "pk": "9507c6c6-beee-4bc5-b61b-eb3bd1066d5f",
-        "eosc_id": "target_user-students"
+        "pk": "9507c6c6-beee-4bc5-b61b-eb3bd1066d5f"
     },
     {
         "fields": {
             "description": "Individuals (usually members of the board of directors) who have the authority to set the policy framework of an organization.",
-            "user": "Policy Makers"
+            "user": "Policy Makers",
+            "eosc_id": "target_user-policy_makers"
         },
         "model": "service.targetuser",
-        "pk": "9fb6605f-cf3e-468d-9355-0c44c7fe4c8f",
-        "eosc_id": "target_user-policy_makers"
+        "pk": "9fb6605f-cf3e-468d-9355-0c44c7fe4c8f"
     },
     {
         "fields": {
             "description": "A privately or publicly funded project on a research topic.",
-            "user": "Research Projects"
+            "user": "Research Projects",
+            "eosc_id": "target_user-research_projects"
         },
         "model": "service.targetuser",
-        "pk": "a3a799bc-1d78-4b76-9542-3651a69573b3",
-        "eosc_id": "target_user-research_projects"
+        "pk": "a3a799bc-1d78-4b76-9542-3651a69573b3"
     },
     {
         "fields": {
             "description": "A resource provider is an organisation that provides different kind of solutions and/or services or other resources to end users and other organizations. This broad term incorporates all businesses and organisations that provide products and solutions that are offered for free, on-demand, pay per use or a hybrid delivery model.",
-            "user": "Providers"
+            "user": "Providers",
+            "eosc_id": "target_user-providers"
         },
         "model": "service.targetuser",
-        "pk": "a638d8d5-123c-4475-a820-ca28cb9146b6",
-        "eosc_id": "target_user-providers"
+        "pk": "a638d8d5-123c-4475-a820-ca28cb9146b6"
     },
     {
         "fields": {
             "description": "Someone who conducts scientific research, i.e., an organized and systematic investigation by using scientific methods.",
-            "user": "Researchers"
+            "user": "Researchers",
+            "eosc_id": "target_user-researchers"
         },
         "model": "service.targetuser",
-        "pk": "ae6bdfd4-95f5-4019-8fa9-1bae6c59d4fa",
-        "eosc_id": "target_user-researchers"
+        "pk": "ae6bdfd4-95f5-4019-8fa9-1bae6c59d4fa"
     },
     {
         "fields": {
             "description": "A RI Manager is a type of Project Coordinator who specializes in research infrastructures. They are responsible for things like managing researchers, making sure costs are on budget and serving as a liaison between reserach staff and project stakeholders.",
-            "user": "Research Infrastructure Managers"
+            "user": "Research Infrastructure Managers",
+            "eosc_id": "target_user-research_infrastructure_managers"
         },
         "model": "service.targetuser",
-        "pk": "ba5b9400-cc4f-414e-ad44-15e70b22a941",
-        "eosc_id": "target_user-research_infrastructure_managers"
+        "pk": "ba5b9400-cc4f-414e-ad44-15e70b22a941"
     },
     {
         "fields": {
             "description": "Resource Managers are typically responsible for managing resource/service level agreements with customers and external service providers.",
-            "user": "Resource Managers"
+            "user": "Resource Managers",
+            "eosc_id": "target_user-resource_managers"
         },
         "model": "service.targetuser",
-        "pk": "c98aaa8a-17e0-4fc0-ad69-bc80a5dfe824",
-        "eosc_id": "target_user-resource_managers"
+        "pk": "c98aaa8a-17e0-4fc0-ad69-bc80a5dfe824"
     },
     {
         "fields": {
             "description": null,
-            "user": "Other"
+            "user": "Other",
+            "eosc_id": "target_user-other"
         },
         "model": "service.targetuser",
-        "pk": "f027ffbd-0ae4-4fe5-aecb-6a0c6f26cd40",
-        "eosc_id": "target_user-other"
+        "pk": "f027ffbd-0ae4-4fe5-aecb-6a0c6f26cd40"
     },
     {
         "fields": {
             "description": "A public or private legal entity (e.g. academia, business, industry, public services, etc.) representing the User.",
-            "user": "Research Organisations"
+            "user": "Research Organisations",
+            "eosc_id": "target_user-research_organisations"
         },
         "model": "service.targetuser",
-        "pk": "f16ba466-da13-4de6-8c76-0c5b5f2a013f",
-        "eosc_id": "target_user-research_organisations"
+        "pk": "f16ba466-da13-4de6-8c76-0c5b5f2a013f"
     },
     {
         "fields": {
             "description": "Research networks aim to stimulate interaction between researchers and promote information exchange.",
-            "user": "Research Networks"
+            "user": "Research Networks",
+            "eosc_id": "target_user-research_networks"
         },
         "model": "service.targetuser",
-        "pk": "f4203822-4607-4241-ba6c-079eb3e4256e",
-        "eosc_id": "target_user-research_networks"
+        "pk": "f4203822-4607-4241-ba6c-079eb3e4256e"
     },
     {
         "fields": {
             "description": "Research communities provide an infrastructure through which scientists of discipline-specific scientific areas are able to advance their research goals, reaching out to other researchers.",
-            "user": "Research Communities"
+            "user": "Research Communities",
+            "eosc_id": "target_user-research_communities"
         },
         "model": "service.targetuser",
-        "pk": "fccaedbc-85b6-46b0-9767-bc03bab46924",
-        "eosc_id": "target_user-research_communities"
+        "pk": "fccaedbc-85b6-46b0-9767-bc03bab46924"
     }
 ]

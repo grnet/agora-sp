@@ -2,1351 +2,1576 @@
     {
         "fields": {
             "category": "dca17a04-2569-406f-8609-465716a685ce",
-            "name": "Digitisation"
+            "name": "Digitisation",
+            "eosc_id": "subcategory-processing_and_analysis-data_management-digitisation"
         },
         "model": "service.subcategory",
-        "pk": "0428a8e9-4b66-4d96-bb50-98a6baa126d6",
-        "eosc_id": "subcategory-processing_and_analysis-data_management-digitisation"
+        "pk": "0428a8e9-4b66-4d96-bb50-98a6baa126d6"
     },
     {
         "fields": {
             "category": "133d9c60-ef9e-4cb4-9dba-13a38048637c",
-            "name": "Software Development"
+            "name": "Software Development",
+            "eosc_id": "subcategory-training_and_support-consultancy_and_support-software_development"
         },
         "model": "service.subcategory",
-        "pk": "044ab873-fefe-421a-8c6f-ea1801bec5c3",
-        "eosc_id": "subcategory-training_and_support-consultancy_and_support-software_development"
+        "pk": "044ab873-fefe-421a-8c6f-ea1801bec5c3"
     },
     {
         "fields": {
             "category": "48b736ef-9541-45de-a1e1-dea2f98f1891",
-            "name": "Coordination"
+            "name": "Coordination",
+            "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-coordination"
         },
         "model": "service.subcategory",
-        "pk": "089376f5-5c23-40d0-b6c4-764bec09873c",
-        "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-coordination"
+        "pk": "089376f5-5c23-40d0-b6c4-764bec09873c"
     },
     {
         "fields": {
             "category": "1abceb33-321b-479d-ba0a-0c05c5b6012e",
-            "name": "Analysis"
+            "name": "Analysis",
+            "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-analysis"
         },
         "model": "service.subcategory",
-        "pk": "08e73d73-72ee-4ad5-b569-1ef0e8d0bd4c",
-        "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-analysis"
+        "pk": "08e73d73-72ee-4ad5-b569-1ef0e8d0bd4c"
     },
     {
         "fields": {
             "category": "5ad63f0b-e3bf-4544-8d4c-30f0a1808db2",
-            "name": "Utilities"
+            "name": "Utilities",
+            "eosc_id": "subcategory-sharing_and_discovery-applications-utilities"
         },
         "model": "service.subcategory",
-        "pk": "0aff19a0-617f-445b-a78f-1d510aa43744",
-        "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-utilities"
+        "pk": "0aff19a0-617f-445b-a78f-1d510aa43744"
     },
     {
         "fields": {
             "category": "941eea82-491a-46db-92ef-bd25cbb4060c",
-            "name": "Radiation"
+            "name": "Radiation",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-radiation"
         },
         "model": "service.subcategory",
-        "pk": "0e1b565f-9aeb-4e33-b22f-a64160492511",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-radiation"
+        "pk": "0e1b565f-9aeb-4e33-b22f-a64160492511"
     },
     {
         "fields": {
             "category": "dca17a04-2569-406f-8609-465716a685ce",
-            "name": "Annotation"
+            "name": "Annotation",
+            "eosc_id": "subcategory-processing_and_analysis-data_management-annotation"
         },
         "model": "service.subcategory",
-        "pk": "137c6c90-2265-4135-a668-71c399386fdc",
-        "eosc_id": "subcategory-processing_and_analysis-data_management-annotation"
+        "pk": "137c6c90-2265-4135-a668-71c399386fdc"
     },
     {
         "fields": {
             "category": "5ad63f0b-e3bf-4544-8d4c-30f0a1808db2",
-            "name": "Communication"
+            "name": "Communication",
+            "eosc_id": "subcategory-sharing_and_discovery-applications-communication"
         },
         "model": "service.subcategory",
-        "pk": "17705af4-0a3a-4298-af28-546bfa7c7950",
-        "eosc_id": "subcategory-sharing_and_discovery-applications-communication"
+        "pk": "17705af4-0a3a-4298-af28-546bfa7c7950"
     },
     {
         "fields": {
             "category": "ee0c7cb0-e861-4de3-9319-074015419d4f",
-            "name": "Virtual Machine Management"
+            "name": "Virtual Machine Management",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-compute-virtual_machine_management"
         },
         "model": "service.subcategory",
-        "pk": "1a421add-0ec8-4b36-bf4a-028a906f23c2",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-compute-virtual_machine_management"
+        "pk": "1a421add-0ec8-4b36-bf4a-028a906f23c2"
     },
     {
         "fields": {
             "category": "abad8012-42f9-4c70-94e1-dd58d0e934ab",
-            "name": "Data"
+            "name": "Data",
+            "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-data"
         },
         "model": "service.subcategory",
-        "pk": "1aebc230-c21d-4a29-b402-04a7985e0221",
-        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-data"
+        "pk": "1aebc230-c21d-4a29-b402-04a7985e0221"
     },
     {
         "fields": {
             "category": "7c4b272b-6f58-4778-9eba-5fbac6cc9fa3",
-            "name": "In-House Courses"
+            "name": "In-House Courses",
+            "eosc_id": "subcategory-training_and_support-education_and_training-in_house_courses"
         },
         "model": "service.subcategory",
-        "pk": "1cb35551-5216-45c9-9d4c-20544765087f",
-        "eosc_id": "subcategory-training_and_support-education_and_training-in_house_courses"
+        "pk": "1cb35551-5216-45c9-9d4c-20544765087f"
     },
     {
         "fields": {
             "category": "48b736ef-9541-45de-a1e1-dea2f98f1891",
-            "name": "Configuration"
+            "name": "Configuration",
+            "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-configuration"
         },
         "model": "service.subcategory",
-        "pk": "1d4a7dcf-fbb4-44aa-a592-ec525ee9492d",
-        "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-configuration"
+        "pk": "1d4a7dcf-fbb4-44aa-a592-ec525ee9492d"
     },
     {
         "fields": {
             "category": "abad8012-42f9-4c70-94e1-dd58d0e934ab",
-            "name": "Applications"
+            "name": "Applications",
+            "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-applications"
         },
         "model": "service.subcategory",
-        "pk": "1ef6e209-9444-4f2d-be26-541d01095e14",
-        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-applications"
+        "pk": "1ef6e209-9444-4f2d-be26-541d01095e14"
     },
     {
         "fields": {
             "category": "133d9c60-ef9e-4cb4-9dba-13a38048637c",
-            "name": "Software Improvement"
+            "name": "Software Improvement",
+            "eosc_id": "subcategory-training_and_support-consultancy_and_support-software_improvement"
         },
         "model": "service.subcategory",
-        "pk": "1f7296d5-b5cb-4663-8cc7-f11cc03d3204",
-        "eosc_id": "subcategory-training_and_support-consultancy_and_support-software_improvement"
+        "pk": "1f7296d5-b5cb-4663-8cc7-f11cc03d3204"
     },
     {
         "fields": {
             "category": "dca17a04-2569-406f-8609-465716a685ce",
-            "name": "Interlinking"
+            "name": "Interlinking",
+            "eosc_id": "subcategory-processing_and_analysis-data_management-interlinking"
         },
         "model": "service.subcategory",
-        "pk": "240ce967-b92d-45a2-93be-5fc98180a0bd",
-        "eosc_id": "subcategory-processing_and_analysis-data_management-interlinking"
+        "pk": "240ce967-b92d-45a2-93be-5fc98180a0bd"
     },
     {
         "fields": {
             "category": "ee0c7cb0-e861-4de3-9319-074015419d4f",
-            "name": "Serverless Applications Repository"
+            "name": "Serverless Applications Repository",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-compute-serverless_applications_repository"
         },
         "model": "service.subcategory",
-        "pk": "279053b3-0625-412c-8f12-cfd3a4e5a025",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-compute-serverless_applications_repository"
+        "pk": "279053b3-0625-412c-8f12-cfd3a4e5a025"
     },
     {
         "fields": {
             "category": "1abceb33-321b-479d-ba0a-0c05c5b6012e",
-            "name": "Preparation"
+            "name": "Preparation",
+            "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-preparation"
         },
         "model": "service.subcategory",
-        "pk": "2a913d88-4933-414f-b8f1-c23e4ee5dcae",
-        "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-preparation"
+        "pk": "2a913d88-4933-414f-b8f1-c23e4ee5dcae"
     },
     {
         "fields": {
             "category": "59aeb559-7952-4852-9421-ce44e79538bc",
-            "name": "Biological Samples"
+            "name": "Biological Samples",
+            "eosc_id": "subcategory-sharing_and_discovery-samples-biological_samples"
         },
         "model": "service.subcategory",
-        "pk": "2ae74b22-2b7e-4ea3-b671-9f7051423c02",
-        "eosc_id": "subcategory-sharing_and_discovery-samples-biological_samples"
+        "pk": "2ae74b22-2b7e-4ea3-b671-9f7051423c02"
     },
     {
         "fields": {
             "category": "a05700b7-81a8-476c-9ba3-c3952092280a",
-            "name": "Software Package"
+            "name": "Software Package",
+            "eosc_id": "subcategory-sharing_and_discovery-software-software_package"
         },
         "model": "service.subcategory",
-        "pk": "2aee5bc1-84ab-413f-83a4-3f4d319941c5",
-        "eosc_id": "subcategory-sharing_and_discovery-software-software_package"
+        "pk": "2aee5bc1-84ab-413f-83a4-3f4d319941c5"
     },
     {
         "fields": {
             "category": "dca17a04-2569-406f-8609-465716a685ce",
-            "name": "Embargo"
+            "name": "Embargo",
+            "eosc_id": "subcategory-processing_and_analysis-data_management-embargo"
         },
         "model": "service.subcategory",
-        "pk": "2b251279-196b-41d1-99fb-619c6c7870f7",
-        "eosc_id": "subcategory-processing_and_analysis-data_management-embargo"
+        "pk": "2b251279-196b-41d1-99fb-619c6c7870f7"
     },
     {
         "fields": {
             "category": "94d4e542-f996-4bb1-b4de-d57d2430e7fb",
-            "name": "2D/3D Digitisation"
+            "name": "2D/3D Digitisation",
+            "eosc_id": "subcategory-processing_and_analysis-data_analysis-2d_3d_digitisation"
         },
         "model": "service.subcategory",
-        "pk": "2ccebe27-6d42-45e9-85a3-3f0f63d54482",
-        "eosc_id": "subcategory-processing_and_analysis-data_analysis-2d_3d_digitisation"
+        "pk": "2ccebe27-6d42-45e9-85a3-3f0f63d54482"
     },
     {
         "fields": {
             "category": "dca17a04-2569-406f-8609-465716a685ce",
-            "name": "Mining"
+            "name": "Mining",
+            "eosc_id": "subcategory-processing_and_analysis-data_management-mining"
         },
         "model": "service.subcategory",
-        "pk": "2d11abdf-58ad-4a6e-a93c-6937c0b02a63",
-        "eosc_id": "subcategory-processing_and_analysis-data_management-mining"
+        "pk": "2d11abdf-58ad-4a6e-a93c-6937c0b02a63"
     },
     {
         "fields": {
             "category": "5ad63f0b-e3bf-4544-8d4c-30f0a1808db2",
-            "name": "Applications Repository"
+            "name": "Applications Repository",
+            "eosc_id": "subcategory-sharing_and_discovery-applications-applications_repository"
         },
         "model": "service.subcategory",
-        "pk": "2f0abe8b-27b6-408a-80a7-5e9940fed83a",
-        "eosc_id": "subcategory-sharing_and_discovery-applications-applications_repository"
+        "pk": "2f0abe8b-27b6-408a-80a7-5e9940fed83a"
     },
     {
         "fields": {
             "category": "5ad63f0b-e3bf-4544-8d4c-30f0a1808db2",
-            "name": "Business"
+            "name": "Business",
+            "eosc_id": "subcategory-sharing_and_discovery-applications-business"
         },
         "model": "service.subcategory",
-        "pk": "30c286c2-df3c-46a8-95cb-b8b68bc326fa",
-        "eosc_id": "subcategory-sharing_and_discovery-applications-business"
+        "pk": "30c286c2-df3c-46a8-95cb-b8b68bc326fa"
     },
     {
         "fields": {
             "category": "a05700b7-81a8-476c-9ba3-c3952092280a",
-            "name": "Libraries"
+            "name": "Libraries",
+            "eosc_id": "subcategory-sharing_and_discovery-software-libraries"
         },
         "model": "service.subcategory",
-        "pk": "30c2ad51-6d18-42b6-8021-38a281192531",
-        "eosc_id": "subcategory-sharing_and_discovery-software-libraries"
+        "pk": "30c2ad51-6d18-42b6-8021-38a281192531"
     },
     {
         "fields": {
             "category": "48b736ef-9541-45de-a1e1-dea2f98f1891",
-            "name": "Billing"
+            "name": "Billing",
+            "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-billing"
         },
         "model": "service.subcategory",
-        "pk": "3360495a-2dcc-48ec-900f-84cc0b19b2d4",
-        "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-billing"
+        "pk": "3360495a-2dcc-48ec-900f-84cc0b19b2d4"
     },
     {
         "fields": {
             "category": "063268e6-e990-44e2-af1d-5d1711caba89",
-            "name": "User Authentication"
+            "name": "User Authentication",
+            "eosc_id": "subcategory-security_and_operations-security_and_identity-user_authentication"
         },
         "model": "service.subcategory",
-        "pk": "3783b972-0709-47eb-bdae-4a36eea5d487",
-        "eosc_id": "subcategory-security_and_operations-security_and_identity-user_authentication"
+        "pk": "3783b972-0709-47eb-bdae-4a36eea5d487"
     },
     {
         "fields": {
             "category": "dca17a04-2569-406f-8609-465716a685ce",
-            "name": "Access"
+            "name": "Access",
+            "eosc_id": "subcategory-processing_and_analysis-data_management-access"
         },
         "model": "service.subcategory",
-        "pk": "394cba3a-211a-4b27-ba65-c5080fd93d2a",
-        "eosc_id": "subcategory-processing_and_analysis-data_management-access"
+        "pk": "394cba3a-211a-4b27-ba65-c5080fd93d2a"
     },
     {
         "fields": {
             "category": "a5d1f298-abd7-4b31-94ba-58cb8eb1d44a",
-            "name": "Maintenance & Modification"
+            "name": "Maintenance & Modification",
+            "eosc_id": "subcategory-processing_and_analysis-measurement_and_materials_analysis-maintenance_and_modification"
         },
         "model": "service.subcategory",
-        "pk": "39c4e08f-270b-4100-baf3-fca697161cf2",
-        "eosc_id": "subcategory-processing_and_analysis-measurement_and_materials_analysis-maintenance_and_modification"
+        "pk": "39c4e08f-270b-4100-baf3-fca697161cf2"
     },
     {
         "fields": {
             "category": "133d9c60-ef9e-4cb4-9dba-13a38048637c",
-            "name": "Benchmarking"
+            "name": "Benchmarking",
+            "eosc_id": "subcategory-training_and_support-consultancy_and_support-benchmarking"
         },
         "model": "service.subcategory",
-        "pk": "3a109310-5194-4f71-ad53-f4b2e0661f3a",
-        "eosc_id": "subcategory-training_and_support-consultancy_and_support-benchmarking"
+        "pk": "3a109310-5194-4f71-ad53-f4b2e0661f3a"
     },
     {
         "fields": {
             "category": "e331cddc-2644-465c-981d-0e3eeceaedf4",
-            "name": "Developer Tools"
+            "name": "Developer Tools",
+            "eosc_id": "subcategory-sharing_and_discovery-development_resources-developer_tools"
         },
         "model": "service.subcategory",
-        "pk": "3a4aa431-4a7b-41ee-94be-0c7b643bd421",
-        "eosc_id": "subcategory-sharing_and_discovery-development_resources-developer_tools"
+        "pk": "3a4aa431-4a7b-41ee-94be-0c7b643bd421"
     },
     {
         "fields": {
             "category": "3ddaf0af-4e7e-4c23-86ef-d5db4ae5312c",
-            "name": "Digital Preservation"
+            "name": "Digital Preservation",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-digital_preservation"
         },
         "model": "service.subcategory",
-        "pk": "3ef168e0-124a-42de-b2bb-f9f498fe392b",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-digital_preservation"
+        "pk": "3ef168e0-124a-42de-b2bb-f9f498fe392b"
     },
     {
         "fields": {
             "category": "063268e6-e990-44e2-af1d-5d1711caba89",
-            "name": "Tools"
+            "name": "Tools",
+            "eosc_id": "subcategory-security_and_operations-security_and_identity-tools"
         },
         "model": "service.subcategory",
-        "pk": "4276a8d9-dca8-4d03-aa57-d5698b27c0a3",
-        "eosc_id": "subcategory-security_and_operations-security_and_identity-tools"
+        "pk": "4276a8d9-dca8-4d03-aa57-d5698b27c0a3"
     },
     {
         "fields": {
             "category": "5ad63f0b-e3bf-4544-8d4c-30f0a1808db2",
-            "name": "Social/Networking"
+            "name": "Social/Networking",
+            "eosc_id": "subcategory-sharing_and_discovery-applications-social_networking"
         },
         "model": "service.subcategory",
-        "pk": "44d0057b-76e9-4c89-964b-276b24fa0f28",
-        "eosc_id": "subcategory-sharing_and_discovery-applications-social_networking"
+        "pk": "44d0057b-76e9-4c89-964b-276b24fa0f28"
     },
     {
         "fields": {
             "category": "133d9c60-ef9e-4cb4-9dba-13a38048637c",
-            "name": "Audit & Assessment"
+            "name": "Audit & Assessment",
+            "eosc_id": "subcategory-training_and_support-consultancy_and_support-audit_and_assessment"
         },
         "model": "service.subcategory",
-        "pk": "4558b08c-6e47-49c3-93e4-707c2f433ddd",
-        "eosc_id": "subcategory-training_and_support-consultancy_and_support-audit_and_assessment"
+        "pk": "4558b08c-6e47-49c3-93e4-707c2f433ddd"
     },
     {
         "fields": {
             "category": "ee0c7cb0-e861-4de3-9319-074015419d4f",
-            "name": "Job Execution"
+            "name": "Job Execution",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-compute-job_execution"
         },
         "model": "service.subcategory",
-        "pk": "4773571f-13dd-4e81-849a-5ae415f80faf",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-compute-job_execution"
+        "pk": "4773571f-13dd-4e81-849a-5ae415f80faf"
     },
     {
         "fields": {
             "category": "dca17a04-2569-406f-8609-465716a685ce",
-            "name": "Discovery"
+            "name": "Discovery",
+            "eosc_id": "subcategory-processing_and_analysis-data_management-discovery"
         },
         "model": "service.subcategory",
-        "pk": "486255d6-a361-4ddb-ae93-7e796a22fb3b",
-        "eosc_id": "subcategory-processing_and_analysis-data_management-discovery"
+        "pk": "486255d6-a361-4ddb-ae93-7e796a22fb3b"
     },
     {
         "fields": {
             "category": "dca17a04-2569-406f-8609-465716a685ce",
-            "name": "Anonymisation"
+            "name": "Anonymisation",
+            "eosc_id": "subcategory-processing_and_analysis-data_management-anonymisation"
         },
         "model": "service.subcategory",
-        "pk": "4af66572-2847-4d9a-bb4b-70c800638021",
-        "eosc_id": "subcategory-processing_and_analysis-data_management-anonymisation"
+        "pk": "4af66572-2847-4d9a-bb4b-70c800638021"
     },
     {
         "fields": {
             "category": "ee0c7cb0-e861-4de3-9319-074015419d4f",
-            "name": "Container Management"
+            "name": "Container Management",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-compute-container_management"
         },
         "model": "service.subcategory",
-        "pk": "4c93047b-1e9d-4750-9e37-101a39a81514",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-compute-container_management"
+        "pk": "4c93047b-1e9d-4750-9e37-101a39a81514"
     },
     {
         "fields": {
             "category": "063268e6-e990-44e2-af1d-5d1711caba89",
-            "name": "Single Sign-On"
+            "name": "Single Sign-On",
+            "eosc_id": "subcategory-security_and_operations-security_and_identity-single_sign_on"
         },
         "model": "service.subcategory",
-        "pk": "4de96b53-321a-4439-aa2f-fbf9a11677af",
-        "eosc_id": "subcategory-security_and_operations-security_and_identity-single_sign_on"
+        "pk": "4de96b53-321a-4439-aa2f-fbf9a11677af"
     },
     {
         "fields": {
             "category": "48b736ef-9541-45de-a1e1-dea2f98f1891",
-            "name": "Transportation"
+            "name": "Transportation",
+            "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-transportation"
         },
         "model": "service.subcategory",
-        "pk": "4dfd6b1f-0b94-4b93-b20a-24834af526bc",
-        "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-transportation"
+        "pk": "4dfd6b1f-0b94-4b93-b20a-24834af526bc"
     },
     {
         "fields": {
             "category": "9db04160-522e-4785-bbf7-ab82b3c434f7",
-            "name": "VPN Gateway"
+            "name": "VPN Gateway",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-network-vpn_gateway"
         },
         "model": "service.subcategory",
-        "pk": "4e8f9854-9dd1-4e95-bbca-0ed87ed050ec",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-network-vpn_gateway"
+        "pk": "4e8f9854-9dd1-4e95-bbca-0ed87ed050ec"
     },
     {
         "fields": {
             "category": "1abceb33-321b-479d-ba0a-0c05c5b6012e",
-            "name": "Discovery"
+            "name": "Discovery",
+            "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-discovery"
         },
         "model": "service.subcategory",
-        "pk": "4f1e3596-c1ec-46b9-bb6b-4e657f92af8b",
-        "eosc_id": "subcategory-processing_and_analysis-data_management-discovery"
+        "pk": "4f1e3596-c1ec-46b9-bb6b-4e657f92af8b"
     },
     {
         "fields": {
             "category": "941eea82-491a-46db-92ef-bd25cbb4060c",
-            "name": "Digitisation Equipment"
+            "name": "Digitisation Equipment",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-digitisation_equipment"
         },
         "model": "service.subcategory",
-        "pk": "50f2d8c4-b618-4ace-821f-852b7df91d75",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-digitisation_equipment"
+        "pk": "50f2d8c4-b618-4ace-821f-852b7df91d75"
     },
     {
         "fields": {
             "category": "59aeb559-7952-4852-9421-ce44e79538bc",
-            "name": "Chemical Compounds Library"
+            "name": "Chemical Compounds Library",
+            "eosc_id": "subcategory-sharing_and_discovery-samples-chemical_compounds_library"
         },
         "model": "service.subcategory",
-        "pk": "56189f68-4510-40b4-b26f-b6281d9d5019",
-        "eosc_id": "subcategory-sharing_and_discovery-samples-chemical_compounds_library"
+        "pk": "56189f68-4510-40b4-b26f-b6281d9d5019"
     },
     {
         "fields": {
             "category": "09148c1e-775a-4925-9e5c-3df2375cb9d8",
-            "name": "Data Archives"
+            "name": "Data Archives",
+            "eosc_id": "subcategory-sharing_and_discovery-data-data_archives"
         },
         "model": "service.subcategory",
-        "pk": "5662785b-49e8-43af-bc38-6827aa6f2896",
-        "eosc_id": "subcategory-sharing_and_discovery-data-data_archives"
+        "pk": "5662785b-49e8-43af-bc38-6827aa6f2896"
     },
     {
         "fields": {
             "category": "59aeb559-7952-4852-9421-ce44e79538bc",
-            "name": "Characterisation"
+            "name": "Characterisation",
+            "eosc_id": "subcategory-sharing_and_discovery-samples-characterisation"
         },
         "model": "service.subcategory",
-        "pk": "577bbbe9-3ebc-4f04-8927-48365477d93c",
-        "eosc_id": "subcategory-processing_and_analysis-measurement_and_materials_analysis-characterisation"
+        "pk": "577bbbe9-3ebc-4f04-8927-48365477d93c"
     },
     {
         "fields": {
             "category": "dca17a04-2569-406f-8609-465716a685ce",
-            "name": "Preservation"
+            "name": "Preservation",
+            "eosc_id": "subcategory-processing_and_analysis-data_management-preservation"
         },
         "model": "service.subcategory",
-        "pk": "58a90b2b-f43b-4475-9f08-9177b214ca0e",
-        "eosc_id": "subcategory-processing_and_analysis-data_management-preservation"
+        "pk": "58a90b2b-f43b-4475-9f08-9177b214ca0e"
     },
     {
         "fields": {
             "category": "941eea82-491a-46db-92ef-bd25cbb4060c",
-            "name": "Microscopy"
+            "name": "Microscopy",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-microscopy"
         },
         "model": "service.subcategory",
-        "pk": "5b4eed97-e774-4025-aad7-23694ede67d6",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-microscopy"
+        "pk": "5b4eed97-e774-4025-aad7-23694ede67d6"
     },
     {
         "fields": {
             "category": "48b736ef-9541-45de-a1e1-dea2f98f1891",
-            "name": "Order Management"
+            "name": "Order Management",
+            "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-order_management"
         },
         "model": "service.subcategory",
-        "pk": "5b779917-7b15-4ba7-ac61-2a983573156a",
-        "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-order_management"
+        "pk": "5b779917-7b15-4ba7-ac61-2a983573156a"
     },
     {
         "fields": {
             "category": "5ad63f0b-e3bf-4544-8d4c-30f0a1808db2",
-            "name": "Education"
+            "name": "Education",
+            "eosc_id": "subcategory-sharing_and_discovery-applications-education"
         },
         "model": "service.subcategory",
-        "pk": "5cc6515e-0ac2-416a-b690-bf88c69e378a",
-        "eosc_id": "subcategory-sharing_and_discovery-applications-education"
+        "pk": "5cc6515e-0ac2-416a-b690-bf88c69e378a"
     },
     {
         "fields": {
             "category": "7c4b272b-6f58-4778-9eba-5fbac6cc9fa3",
-            "name": "Required Training"
+            "name": "Required Training",
+            "eosc_id": "subcategory-training_and_support-education_and_training-required_training"
         },
         "model": "service.subcategory",
-        "pk": "5cd379b8-d2a7-46be-a9c8-db85a5f66383",
-        "eosc_id": "subcategory-training_and_support-education_and_training-required_training"
+        "pk": "5cd379b8-d2a7-46be-a9c8-db85a5f66383"
     },
     {
         "fields": {
             "category": "3ddaf0af-4e7e-4c23-86ef-d5db4ae5312c",
-            "name": "Queue"
+            "name": "Queue",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-queue"
         },
         "model": "service.subcategory",
-        "pk": "5e5fa149-62c2-4ec7-ad0a-d0f62a14a237",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-queue"
+        "pk": "5e5fa149-62c2-4ec7-ad0a-d0f62a14a237"
     },
     {
         "fields": {
             "category": "063268e6-e990-44e2-af1d-5d1711caba89",
-            "name": "Coordination"
+            "name": "Coordination",
+            "eosc_id": "subcategory-security_and_operations-security_and_identity-coordination"
         },
         "model": "service.subcategory",
-        "pk": "5f2f230c-e8b0-4a36-8043-9fe58a4e3a37",
-        "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-coordination"
+        "pk": "5f2f230c-e8b0-4a36-8043-9fe58a4e3a37"
     },
     {
         "fields": {
             "category": "09148c1e-775a-4925-9e5c-3df2375cb9d8",
-            "name": "Government & Agency Data"
+            "name": "Government & Agency Data",
+            "eosc_id": "subcategory-sharing_and_discovery-data-government_and_agency_data"
         },
         "model": "service.subcategory",
-        "pk": "60b581d7-c8f7-4958-a47a-0639379a4f95",
-        "eosc_id": "subcategory-sharing_and_discovery-data-government_and_agency_data"
+        "pk": "60b581d7-c8f7-4958-a47a-0639379a4f95"
     },
     {
         "fields": {
             "category": "941eea82-491a-46db-92ef-bd25cbb4060c",
-            "name": "Geophysical"
+            "name": "Geophysical",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-geophysical"
         },
         "model": "service.subcategory",
-        "pk": "61ba5f03-fdbd-47d9-a2b0-3eef2ef02c05",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-geophysical"
+        "pk": "61ba5f03-fdbd-47d9-a2b0-3eef2ef02c05"
     },
     {
         "fields": {
             "category": "09148c1e-775a-4925-9e5c-3df2375cb9d8",
-            "name": "Statistical Data"
+            "name": "Statistical Data",
+            "eosc_id": "subcategory-sharing_and_discovery-data-statistical_data"
         },
         "model": "service.subcategory",
-        "pk": "65982d86-6715-477c-8426-3950cd073448",
-        "eosc_id": "subcategory-sharing_and_discovery-data-statistical_data"
+        "pk": "65982d86-6715-477c-8426-3950cd073448"
     },
     {
         "fields": {
             "category": "a05700b7-81a8-476c-9ba3-c3952092280a",
-            "name": "Software Repository"
+            "name": "Software Repository",
+            "eosc_id": "subcategory-sharing_and_discovery-software-software_repository"
         },
         "model": "service.subcategory",
-        "pk": "6631946a-e360-4170-a1a9-33c4676ff731",
-        "eosc_id": "subcategory-sharing_and_discovery-software-software_repository"
+        "pk": "6631946a-e360-4170-a1a9-33c4676ff731"
     },
     {
         "fields": {
             "category": "dca17a04-2569-406f-8609-465716a685ce",
-            "name": "Registration"
+            "name": "Registration",
+            "eosc_id": "subcategory-processing_and_analysis-data_management-registration"
         },
         "model": "service.subcategory",
-        "pk": "673a2b84-b3b8-45cb-b965-fde03df6f04a",
-        "eosc_id": "subcategory-processing_and_analysis-data_management-registration"
+        "pk": "673a2b84-b3b8-45cb-b965-fde03df6f04a"
     },
     {
         "fields": {
             "category": "133d9c60-ef9e-4cb4-9dba-13a38048637c",
-            "name": "Prototype Development"
+            "name": "Prototype Development",
+            "eosc_id": "subcategory-training_and_support-consultancy_and_support-prototype_development"
         },
         "model": "service.subcategory",
-        "pk": "6c3bbc96-fe10-46bf-8408-038360681412",
-        "eosc_id": "subcategory-training_and_support-consultancy_and_support-prototype_development"
+        "pk": "6c3bbc96-fe10-46bf-8408-038360681412"
     },
     {
         "fields": {
             "category": "063268e6-e990-44e2-af1d-5d1711caba89",
-            "name": "Certification Authority"
+            "name": "Certification Authority",
+            "eosc_id": "subcategory-security_and_operations-security_and_identity-certification_authority"
         },
         "model": "service.subcategory",
-        "pk": "6ed7edd2-7b87-4765-9fb8-772f78b9d2bb",
-        "eosc_id": "subcategory-security_and_operations-security_and_identity-certification_authority"
+        "pk": "6ed7edd2-7b87-4765-9fb8-772f78b9d2bb"
     },
     {
         "fields": {
             "category": "1abceb33-321b-479d-ba0a-0c05c5b6012e",
-            "name": "Writing"
+            "name": "Writing",
+            "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-writing"
         },
         "model": "service.subcategory",
-        "pk": "6f59de22-a992-4d2b-bee3-f0c07cb06494",
-        "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-writing"
+        "pk": "6f59de22-a992-4d2b-bee3-f0c07cb06494"
     },
     {
         "fields": {
             "category": "133d9c60-ef9e-4cb4-9dba-13a38048637c",
-            "name": "Application Optimisation"
+            "name": "Application Optimisation",
+            "eosc_id": "subcategory-training_and_support-consultancy_and_support-application_optimisation"
         },
         "model": "service.subcategory",
-        "pk": "6f99d353-cc6b-46aa-8eb5-b0b00d810224",
-        "eosc_id": "subcategory-training_and_support-consultancy_and_support-application_optimisation"
+        "pk": "6f99d353-cc6b-46aa-8eb5-b0b00d810224"
     },
     {
         "fields": {
             "category": "09148c1e-775a-4925-9e5c-3df2375cb9d8",
-            "name": "Scientific/Research Data"
+            "name": "Scientific/Research Data",
+            "eosc_id": "subcategory-sharing_and_discovery-data-scientific_research_data"
         },
         "model": "service.subcategory",
-        "pk": "7063c781-2c9f-44cd-a393-24054f398f1b",
-        "eosc_id": "subcategory-sharing_and_discovery-data-scientific_research_data"
+        "pk": "7063c781-2c9f-44cd-a393-24054f398f1b"
     },
     {
         "fields": {
             "category": "941eea82-491a-46db-92ef-bd25cbb4060c",
-            "name": "Cytometer"
+            "name": "Cytometer",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-cytometer"
         },
         "model": "service.subcategory",
-        "pk": "70dd9a56-0089-4708-9cf1-f8591e028b15",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-cytometer"
+        "pk": "70dd9a56-0089-4708-9cf1-f8591e028b15"
     },
     {
         "fields": {
             "category": "3ddaf0af-4e7e-4c23-86ef-d5db4ae5312c",
-            "name": "Synchronised"
+            "name": "Synchronised",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-synchronised"
         },
         "model": "service.subcategory",
-        "pk": "72f983ae-3857-4c30-92eb-f1ba3fe3973f",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-synchronised"
+        "pk": "72f983ae-3857-4c30-92eb-f1ba3fe3973f"
     },
     {
         "fields": {
             "category": "5ad63f0b-e3bf-4544-8d4c-30f0a1808db2",
-            "name": "Collaboration"
+            "name": "Collaboration",
+            "eosc_id": "subcategory-sharing_and_discovery-applications-collaboration"
         },
         "model": "service.subcategory",
-        "pk": "740c2b88-829b-4895-a6ec-252307b377a9",
-        "eosc_id": "subcategory-sharing_and_discovery-applications-collaboration"
+        "pk": "740c2b88-829b-4895-a6ec-252307b377a9"
     },
     {
         "fields": {
             "category": "0e22ebcf-1545-4662-983c-8e2b9f5bed83",
-            "name": "Fulfilment"
+            "name": "Fulfilment",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-fulfilment"
         },
         "model": "service.subcategory",
-        "pk": "7485f6c5-6a8a-4fb6-bdd8-a8bed66caf3e",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-fulfilment"
+        "pk": "7485f6c5-6a8a-4fb6-bdd8-a8bed66caf3e"
     },
     {
         "fields": {
             "category": "9db04160-522e-4785-bbf7-ab82b3c434f7",
-            "name": "Virtual Network"
+            "name": "Virtual Network",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-network-virtual_nework"
         },
         "model": "service.subcategory",
-        "pk": "7610d0dd-9b96-4399-bce8-0918babc0db4",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-network-virtual_nework"
+        "pk": "7610d0dd-9b96-4399-bce8-0918babc0db4"
     },
     {
         "fields": {
             "category": "09148c1e-775a-4925-9e5c-3df2375cb9d8",
-            "name": "Clinical Trial Data"
+            "name": "Clinical Trial Data",
+            "eosc_id": "subcategory-sharing_and_discovery-data-clinical_trial_data"
         },
         "model": "service.subcategory",
-        "pk": "762cb014-d7d4-4bbe-807f-efd085d81817",
-        "eosc_id": "subcategory-sharing_and_discovery-data-clinical_trial_data"
+        "pk": "762cb014-d7d4-4bbe-807f-efd085d81817"
     },
     {
         "fields": {
             "category": "133d9c60-ef9e-4cb4-9dba-13a38048637c",
-            "name": "Certification"
+            "name": "Certification",
+            "eosc_id": "subcategory-training_and_support-consultancy_and_support-certification"
         },
         "model": "service.subcategory",
-        "pk": "767f9b4c-2ab9-40c7-ae6f-b729d1361ea7",
-        "eosc_id": "subcategory-training_and_support-consultancy_and_support-certification"
+        "pk": "767f9b4c-2ab9-40c7-ae6f-b729d1361ea7"
     },
     {
         "fields": {
             "category": "133d9c60-ef9e-4cb4-9dba-13a38048637c",
-            "name": "Methodology Development"
+            "name": "Methodology Development",
+            "eosc_id": "subcategory-training_and_support-consultancy_and_support-methodology_development"
         },
         "model": "service.subcategory",
-        "pk": "7baf71a7-8778-47b6-8a21-38a036715bdf",
-        "eosc_id": "subcategory-training_and_support-consultancy_and_support-methodology_development"
+        "pk": "7baf71a7-8778-47b6-8a21-38a036715bdf"
     },
     {
         "fields": {
             "category": "063268e6-e990-44e2-af1d-5d1711caba89",
-            "name": "Threat Protection"
+            "name": "Threat Protection",
+            "eosc_id": "subcategory-security_and_operations-security_and_identity-threat_protection"
         },
         "model": "service.subcategory",
-        "pk": "7d571228-aa53-4f65-8870-e2d48c2585d3",
-        "eosc_id": "subcategory-security_and_operations-security_and_identity-threat_protection"
+        "pk": "7d571228-aa53-4f65-8870-e2d48c2585d3"
     },
     {
         "fields": {
             "category": "a5d1f298-abd7-4b31-94ba-58cb8eb1d44a",
-            "name": "Validation"
+            "name": "Validation",
+            "eosc_id": "subcategory-processing_and_analysis-measurement_and_materials_analysis-validation"
         },
         "model": "service.subcategory",
-        "pk": "7dbb7600-232c-407a-831f-001b9c3aedca",
-        "eosc_id": "subcategory-processing_and_analysis-measurement_and_materials_analysis-validation"
+        "pk": "7dbb7600-232c-407a-831f-001b9c3aedca"
     },
     {
         "fields": {
             "category": "063268e6-e990-44e2-af1d-5d1711caba89",
-            "name": "Firewall"
+            "name": "Firewall",
+            "eosc_id": "subcategory-security_and_operations-security_and_identity-firewall"
         },
         "model": "service.subcategory",
-        "pk": "7dd63709-d94f-4bcf-880e-2545fd2245bb",
-        "eosc_id": "subcategory-security_and_operations-security_and_identity-firewall"
+        "pk": "7dd63709-d94f-4bcf-880e-2545fd2245bb"
     },
     {
         "fields": {
             "category": "09148c1e-775a-4925-9e5c-3df2375cb9d8",
-            "name": "Epidemiological Data"
+            "name": "Epidemiological Data",
+            "eosc_id": "subcategory-sharing_and_discovery-data-epidemiological_data"
         },
         "model": "service.subcategory",
-        "pk": "83bab58b-1858-40b8-bdba-89f98bbc5338",
-        "eosc_id": "subcategory-sharing_and_discovery-data-epidemiological_data"
+        "pk": "83bab58b-1858-40b8-bdba-89f98bbc5338"
     },
     {
         "fields": {
             "category": "94d4e542-f996-4bb1-b4de-d57d2430e7fb",
-            "name": "Machine Learning"
+            "name": "Machine Learning",
+            "eosc_id": "subcategory-processing_and_analysis-data_analysis-machine_learning"
         },
         "model": "service.subcategory",
-        "pk": "86add05d-f476-4908-a03c-979522ac53ea",
-        "eosc_id": "subcategory-processing_and_analysis-data_analysis-machine_learning"
+        "pk": "86add05d-f476-4908-a03c-979522ac53ea"
     },
     {
         "fields": {
             "category": "94d4e542-f996-4bb1-b4de-d57d2430e7fb",
-            "name": "Image/Data Analysis"
+            "name": "Image/Data Analysis",
+            "eosc_id": "subcategory-processing_and_analysis-data_analysis-image_data_analysis"
         },
         "model": "service.subcategory",
-        "pk": "879bdce1-3b73-41d2-91cd-7c9d760a11e5",
-        "eosc_id": "subcategory-processing_and_analysis-data_analysis-image_data_analysis"
+        "pk": "879bdce1-3b73-41d2-91cd-7c9d760a11e5"
     },
     {
         "fields": {
             "category": "dca17a04-2569-406f-8609-465716a685ce",
-            "name": "Publishing"
+            "name": "Publishing",
+            "eosc_id": "subcategory-processing_and_analysis-data_management-publishing"
         },
         "model": "service.subcategory",
-        "pk": "8908a6b6-9ef5-4ae6-85a0-c01e8c04a6c3",
-        "eosc_id": "subcategory-processing_and_analysis-data_management-publishing"
+        "pk": "8908a6b6-9ef5-4ae6-85a0-c01e8c04a6c3"
     },
     {
         "fields": {
             "category": "e331cddc-2644-465c-981d-0e3eeceaedf4",
-            "name": "APIs Repository/Gateway"
+            "name": "APIs Repository/Gateway",
+            "eosc_id": "subcategory-sharing_and_discovery-development_resources-apis_repository_gateway"
         },
         "model": "service.subcategory",
-        "pk": "8a1bdc0c-08cc-4912-aba7-20ff8c397434",
-        "eosc_id": "subcategory-sharing_and_discovery-development_resources-apis_repository_gateway"
+        "pk": "8a1bdc0c-08cc-4912-aba7-20ff8c397434"
     },
     {
         "fields": {
             "category": "063268e6-e990-44e2-af1d-5d1711caba89",
-            "name": "Group Management"
+            "name": "Group Management",
+            "eosc_id": "subcategory-security_and_operations-security_and_identity-group_management"
         },
         "model": "service.subcategory",
-        "pk": "8c27a414-958d-4afa-97b7-83102f0bb0db",
-        "eosc_id": "subcategory-security_and_operations-security_and_identity-group_management"
+        "pk": "8c27a414-958d-4afa-97b7-83102f0bb0db"
     },
     {
         "fields": {
             "category": "0e22ebcf-1545-4662-983c-8e2b9f5bed83",
-            "name": "Assembly"
+            "name": "Assembly",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-assembly"
         },
         "model": "service.subcategory",
-        "pk": "8cf20027-8f72-4a50-bc9d-52c0d3d093a5",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-assembly"
+        "pk": "8cf20027-8f72-4a50-bc9d-52c0d3d093a5"
     },
     {
         "fields": {
             "category": "3ddaf0af-4e7e-4c23-86ef-d5db4ae5312c",
-            "name": "Archive"
+            "name": "Archive",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-archive"
         },
         "model": "service.subcategory",
-        "pk": "8eccdfa3-cb5c-4c37-bf10-b585ff167076",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-archive"
+        "pk": "8eccdfa3-cb5c-4c37-bf10-b585ff167076"
     },
     {
         "fields": {
             "category": "a05700b7-81a8-476c-9ba3-c3952092280a",
-            "name": "Platform"
+            "name": "Platform",
+            "eosc_id": "subcategory-sharing_and_discovery-software-platform"
         },
         "model": "service.subcategory",
-        "pk": "8fadc304-e67d-4b05-b954-cbd25da0ef88",
-        "eosc_id": "subcategory-sharing_and_discovery-software-platform"
+        "pk": "8fadc304-e67d-4b05-b954-cbd25da0ef88"
     },
     {
         "fields": {
             "category": "941eea82-491a-46db-92ef-bd25cbb4060c",
-            "name": "Chromatographer"
+            "name": "Chromatographer",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-chromatographer"
         },
         "model": "service.subcategory",
-        "pk": "94c332fc-2395-4492-8dd4-78bb241c950a",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-chromatographer"
+        "pk": "94c332fc-2395-4492-8dd4-78bb241c950a"
     },
     {
         "fields": {
             "category": "abad8012-42f9-4c70-94e1-dd58d0e934ab",
-            "name": "Services"
+            "name": "Services",
+            "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-services"
         },
         "model": "service.subcategory",
-        "pk": "952fa836-042d-47ec-9121-45d71dbb7d43",
-        "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-services"
+        "pk": "952fa836-042d-47ec-9121-45d71dbb7d43"
     },
     {
         "fields": {
             "category": "3ddaf0af-4e7e-4c23-86ef-d5db4ae5312c",
-            "name": "Recovery"
+            "name": "Recovery",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-recovery"
         },
         "model": "service.subcategory",
-        "pk": "95941265-29ea-4036-b2e3-5b7e1addeeb3",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-recovery"
+        "pk": "95941265-29ea-4036-b2e3-5b7e1addeeb3"
     },
     {
         "fields": {
             "category": "0e22ebcf-1545-4662-983c-8e2b9f5bed83",
-            "name": "Quality Inspecting"
+            "name": "Quality Inspecting",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-quality_inspecting"
         },
         "model": "service.subcategory",
-        "pk": "9645fdcb-8dc1-45c2-a9cc-abc86b02d72f",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-quality_inspecting"
+        "pk": "9645fdcb-8dc1-45c2-a9cc-abc86b02d72f"
     },
     {
         "fields": {
             "category": "e331cddc-2644-465c-981d-0e3eeceaedf4",
-            "name": "Software Development Kits"
+            "name": "Software Development Kits",
+            "eosc_id": "subcategory-sharing_and_discovery-development_resources-software_development_kits"
         },
         "model": "service.subcategory",
-        "pk": "99209aeb-b624-40cf-a755-1211fbbc47de",
-        "eosc_id": "subcategory-sharing_and_discovery-development_resources-software_development_kits"
+        "pk": "99209aeb-b624-40cf-a755-1211fbbc47de"
     },
     {
         "fields": {
             "category": "9db04160-522e-4785-bbf7-ab82b3c434f7",
-            "name": "Traffic Manager"
+            "name": "Traffic Manager",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-network-traffic_manager"
         },
         "model": "service.subcategory",
-        "pk": "992941a1-1e3a-4ebd-92d1-939e738491ae",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-network-traffic_manager"
+        "pk": "992941a1-1e3a-4ebd-92d1-939e738491ae"
     },
     {
         "fields": {
             "category": "063268e6-e990-44e2-af1d-5d1711caba89",
-            "name": "Identity & Access Management"
+            "name": "Identity & Access Management",
+            "eosc_id": "subcategory-security_and_operations-security_and_identity-identity_and_access_management"
         },
         "model": "service.subcategory",
-        "pk": "9a42784e-30f2-43de-bb18-660db3eb26b7",
-        "eosc_id": "subcategory-security_and_operations-security_and_identity-identity_and_access_management"
+        "pk": "9a42784e-30f2-43de-bb18-660db3eb26b7"
     },
     {
         "fields": {
             "category": "7c4b272b-6f58-4778-9eba-5fbac6cc9fa3",
-            "name": "Online Courses"
+            "name": "Online Courses",
+            "eosc_id": "subcategory-training_and_support-education_and_training-online_courses"
         },
         "model": "service.subcategory",
-        "pk": "9a5410ef-c304-4f7e-9085-7694fa70793d",
-        "eosc_id": "subcategory-training_and_support-education_and_training-online_courses"
+        "pk": "9a5410ef-c304-4f7e-9085-7694fa70793d"
     },
     {
         "fields": {
             "category": "3ddaf0af-4e7e-4c23-86ef-d5db4ae5312c",
-            "name": "Backup"
+            "name": "Backup",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-backup"
         },
         "model": "service.subcategory",
-        "pk": "9b3f5ad0-4a38-4740-874e-8b6a7762368e",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-backup"
+        "pk": "9b3f5ad0-4a38-4740-874e-8b6a7762368e"
     },
     {
         "fields": {
             "category": "0e22ebcf-1545-4662-983c-8e2b9f5bed83",
-            "name": "Preservation"
+            "name": "Preservation",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-preservation"
         },
         "model": "service.subcategory",
-        "pk": "9bb3ac7d-7819-409a-b6c4-2a60283bc70d",
-        "eosc_id": "subcategory-processing_and_analysis-data_management-preservation"
+        "pk": "9bb3ac7d-7819-409a-b6c4-2a60283bc70d"
     },
     {
         "fields": {
             "category": "94d4e542-f996-4bb1-b4de-d57d2430e7fb",
-            "name": "Forecast"
+            "name": "Forecast",
+            "eosc_id": "subcategory-processing_and_analysis-data_analysis-forecast"
         },
         "model": "service.subcategory",
-        "pk": "9c34dd34-5365-47a4-8d8c-22ccb9ea9609",
-        "eosc_id": "subcategory-processing_and_analysis-data_analysis-forecast"
+        "pk": "9c34dd34-5365-47a4-8d8c-22ccb9ea9609"
     },
     {
         "fields": {
             "category": "dca17a04-2569-406f-8609-465716a685ce",
-            "name": "Transfer"
+            "name": "Transfer",
+            "eosc_id": "subcategory-processing_and_analysis-data_management-transfer"
         },
         "model": "service.subcategory",
-        "pk": "a12b43f6-7d67-4474-bfec-2792c03a4de3",
-        "eosc_id": "subcategory-processing_and_analysis-data_management-transfer"
+        "pk": "a12b43f6-7d67-4474-bfec-2792c03a4de3"
     },
     {
         "fields": {
             "category": "7c4b272b-6f58-4778-9eba-5fbac6cc9fa3",
-            "name": "Open Registration Courses"
+            "name": "Open Registration Courses",
+            "eosc_id": "subcategory-training_and_support-education_and_training-open_registration_courses"
         },
         "model": "service.subcategory",
-        "pk": "a229c286-53dd-4b94-b042-74b282bf5d07",
-        "eosc_id": "subcategory-training_and_support-education_and_training-open_registration_courses"
+        "pk": "a229c286-53dd-4b94-b042-74b282bf5d07"
     },
     {
         "fields": {
             "category": "ee0c7cb0-e861-4de3-9319-074015419d4f",
-            "name": "Orchestration"
+            "name": "Orchestration",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-compute-orchestration"
         },
         "model": "service.subcategory",
-        "pk": "a2e82ef2-a8c7-49b9-bd2f-92365525942e",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-compute-orchestration"
+        "pk": "a2e82ef2-a8c7-49b9-bd2f-92365525942e"
     },
     {
         "fields": {
             "category": "133d9c60-ef9e-4cb4-9dba-13a38048637c",
-            "name": "Modeling & Simulation"
+            "name": "Modeling & Simulation",
+            "eosc_id": "subcategory-training_and_support-consultancy_and_support-modeling_and_simulation"
         },
         "model": "service.subcategory",
-        "pk": "a56d9be5-5106-4a14-8d54-c28218362384",
-        "eosc_id": "subcategory-training_and_support-consultancy_and_support-modeling_and_simulation"
+        "pk": "a56d9be5-5106-4a14-8d54-c28218362384"
     },
     {
         "fields": {
             "category": "7c4b272b-6f58-4778-9eba-5fbac6cc9fa3",
-            "name": "Related Training"
+            "name": "Related Training",
+            "eosc_id": "subcategory-training_and_support-education_and_training-related_training"
         },
         "model": "service.subcategory",
-        "pk": "a769eb62-e1d3-4891-b8fa-59fe9a04e53f",
-        "eosc_id": "subcategory-training_and_support-education_and_training-related_training"
+        "pk": "a769eb62-e1d3-4891-b8fa-59fe9a04e53f"
     },
     {
         "fields": {
             "category": "0e22ebcf-1545-4662-983c-8e2b9f5bed83",
-            "name": "Reworking"
+            "name": "Reworking",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-reworking"
         },
         "model": "service.subcategory",
-        "pk": "a7ad339d-0e12-4780-a517-14aa3c6b40f9",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-reworking"
+        "pk": "a7ad339d-0e12-4780-a517-14aa3c6b40f9"
     },
     {
         "fields": {
             "category": "48b736ef-9541-45de-a1e1-dea2f98f1891",
-            "name": "Utilities"
+            "name": "Utilities",
+            "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-utilities"
         },
         "model": "service.subcategory",
-        "pk": "a80d1d87-0944-4d70-b86b-f4dfe859fd26",
-        "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-utilities"
+        "pk": "a80d1d87-0944-4d70-b86b-f4dfe859fd26"
     },
     {
         "fields": {
             "category": "48b736ef-9541-45de-a1e1-dea2f98f1891",
-            "name": "Monitoring"
+            "name": "Monitoring",
+            "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-monitoring"
         },
         "model": "service.subcategory",
-        "pk": "ad9664ed-fc74-402e-a5e9-aa73ad480800",
-        "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-monitoring"
+        "pk": "ad9664ed-fc74-402e-a5e9-aa73ad480800"
     },
     {
         "fields": {
             "category": "133d9c60-ef9e-4cb4-9dba-13a38048637c",
-            "name": "Application Scaling"
+            "name": "Application Scaling",
+            "eosc_id": "subcategory-training_and_support-consultancy_and_support-application_scaling"
         },
         "model": "service.subcategory",
-        "pk": "ae358074-ef28-4101-97b1-06a649b68510",
-        "eosc_id": "subcategory-training_and_support-consultancy_and_support-application_scaling"
+        "pk": "ae358074-ef28-4101-97b1-06a649b68510"
     },
     {
         "fields": {
             "category": "a5d1f298-abd7-4b31-94ba-58cb8eb1d44a",
-            "name": "Production"
+            "name": "Production",
+            "eosc_id": "subcategory-processing_and_analysis-measurement_and_materials_analysis-production"
         },
         "model": "service.subcategory",
-        "pk": "b059e609-f1cc-4a52-b2b3-30e41343b92b",
-        "eosc_id": "subcategory-processing_and_analysis-measurement_and_materials_analysis-production"
+        "pk": "b059e609-f1cc-4a52-b2b3-30e41343b92b"
     },
     {
         "fields": {
             "category": "9db04160-522e-4785-bbf7-ab82b3c434f7",
-            "name": "Content Delivery Network"
+            "name": "Content Delivery Network",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-network-content_delivery_network"
         },
         "model": "service.subcategory",
-        "pk": "b2996974-12b0-467e-9232-c6737cac5401",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-network-content_delivery_network"
+        "pk": "b2996974-12b0-467e-9232-c6737cac5401"
     },
     {
         "fields": {
             "category": "94d4e542-f996-4bb1-b4de-d57d2430e7fb",
-            "name": "Visualization"
+            "name": "Visualization",
+            "eosc_id": "subcategory-processing_and_analysis-data_analysis-visualization"
         },
         "model": "service.subcategory",
-        "pk": "b2c67027-351b-4244-9680-61d506b72fbb",
-        "eosc_id": "subcategory-processing_and_analysis-data_analysis-visualization"
+        "pk": "b2c67027-351b-4244-9680-61d506b72fbb"
     },
     {
         "fields": {
             "category": "0e22ebcf-1545-4662-983c-8e2b9f5bed83",
-            "name": "Packaging"
+            "name": "Packaging",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-packaging"
         },
         "model": "service.subcategory",
-        "pk": "b747cc30-03da-4890-b498-bec66149bf19",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-packaging"
+        "pk": "b747cc30-03da-4890-b498-bec66149bf19"
     },
     {
         "fields": {
             "category": "a5d1f298-abd7-4b31-94ba-58cb8eb1d44a",
-            "name": "TEsting & Validation"
+            "name": "Testing & Validation",
+            "eosc_id": "subcategory-processing_and_analysis-measurement_and_materials_analysis-testing_and_validation"
         },
         "model": "service.subcategory",
-        "pk": "b778cc7e-aeae-40ef-b446-fd15973ff474",
-        "eosc_id": "subcategory-processing_and_analysis-measurement_and_materials_analysis-testing_and_validation"
+        "pk": "b778cc7e-aeae-40ef-b446-fd15973ff474"
     },
     {
         "fields": {
             "category": "3ddaf0af-4e7e-4c23-86ef-d5db4ae5312c",
-            "name": "Replicated"
+            "name": "Replicated",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-replicated"
         },
         "model": "service.subcategory",
-        "pk": "b7f901c5-5497-45c0-8011-4ba2b29f6df8",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-replicated"
+        "pk": "b7f901c5-5497-45c0-8011-4ba2b29f6df8"
     },
     {
         "fields": {
             "category": "0e22ebcf-1545-4662-983c-8e2b9f5bed83",
-            "name": "Archiving"
+            "name": "Archiving",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-archiving"
         },
         "model": "service.subcategory",
-        "pk": "b8dde40e-9ff3-488e-b5fa-ba6ba31c1a00",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-archiving"
+        "pk": "b8dde40e-9ff3-488e-b5fa-ba6ba31c1a00"
     },
     {
         "fields": {
             "category": "dca17a04-2569-406f-8609-465716a685ce",
-            "name": "Persistent Identifier"
+            "name": "Persistent Identifier",
+            "eosc_id": "subcategory-processing_and_analysis-data_management-persistent_identifier"
         },
         "model": "service.subcategory",
-        "pk": "baa07e5f-5b1b-4f5b-8261-800ebe9719a4",
-        "eosc_id": "subcategory-processing_and_analysis-data_management-persistent_identifier"
+        "pk": "baa07e5f-5b1b-4f5b-8261-800ebe9719a4"
     },
     {
         "fields": {
             "category": "941eea82-491a-46db-92ef-bd25cbb4060c",
-            "name": "Monument Maintenance Equipment"
+            "name": "Monument Maintenance Equipment",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-monument_maintenance_equipment"
         },
         "model": "service.subcategory",
-        "pk": "be9e8a7b-4a2c-472d-9765-c857b7354dd6",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-monument_maintenance_equipment"
+        "pk": "be9e8a7b-4a2c-472d-9765-c857b7354dd6"
     },
     {
         "fields": {
             "category": "a5d1f298-abd7-4b31-94ba-58cb8eb1d44a",
-            "name": "Workflows"
+            "name": "Workflows",
+            "eosc_id": "subcategory-processing_and_analysis-measurement_and_materials_analysis-workflows"
         },
         "model": "service.subcategory",
-        "pk": "c301fef6-0f21-40bc-bfb3-6cb63a353709",
-        "eosc_id": "subcategory-processing_and_analysis-data_analysis-workflows"
+        "pk": "c301fef6-0f21-40bc-bfb3-6cb63a353709"
     },
     {
         "fields": {
             "category": "e331cddc-2644-465c-981d-0e3eeceaedf4",
-            "name": "Software Libraries"
+            "name": "Software Libraries",
+            "eosc_id": "subcategory-sharing_and_discovery-development_resources-software_libraries"
         },
         "model": "service.subcategory",
-        "pk": "c3251b90-5b6c-4935-92c7-9d859f8a466f",
-        "eosc_id": "subcategory-sharing_and_discovery-development_resources-software_libraries"
+        "pk": "c3251b90-5b6c-4935-92c7-9d859f8a466f"
     },
     {
         "fields": {
             "category": "3ddaf0af-4e7e-4c23-86ef-d5db4ae5312c",
-            "name": "File"
+            "name": "File",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-file"
         },
         "model": "service.subcategory",
-        "pk": "c4a913c3-06b3-4065-b1a6-422a21d20bad",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-file"
+        "pk": "c4a913c3-06b3-4065-b1a6-422a21d20bad"
     },
     {
         "fields": {
             "category": "dca17a04-2569-406f-8609-465716a685ce",
-            "name": "Brokering"
+            "name": "Brokering",
+            "eosc_id": "subcategory-processing_and_analysis-data_management-brokering"
         },
         "model": "service.subcategory",
-        "pk": "c4e9028a-d1e8-4840-9d44-43f2a5fc6532",
-        "eosc_id": "subcategory-processing_and_analysis-data_management-brokering"
+        "pk": "c4e9028a-d1e8-4840-9d44-43f2a5fc6532"
     },
     {
         "fields": {
             "category": "7c4b272b-6f58-4778-9eba-5fbac6cc9fa3",
-            "name": "Training Tool"
+            "name": "Training Tool",
+            "eosc_id": "subcategory-training_and_support-education_and_training-training_tool"
         },
         "model": "service.subcategory",
-        "pk": "cd65d267-3bb2-4e87-a3ef-c41c946bdaf1",
-        "eosc_id": "subcategory-training_and_support-education_and_training-training_tool"
+        "pk": "cd65d267-3bb2-4e87-a3ef-c41c946bdaf1"
     },
     {
         "fields": {
             "category": "94d4e542-f996-4bb1-b4de-d57d2430e7fb",
-            "name": "Artificial Intelligence"
+            "name": "Artificial Intelligence",
+            "eosc_id": "subcategory-processing_and_analysis-data_analysis-artificial_intelligence"
         },
         "model": "service.subcategory",
-        "pk": "ce3df549-ef6a-4423-9c76-1c84c172f219",
-        "eosc_id": "subcategory-processing_and_analysis-data_analysis-artificial_intelligence"
+        "pk": "ce3df549-ef6a-4423-9c76-1c84c172f219"
     },
     {
         "fields": {
             "category": "0e22ebcf-1545-4662-983c-8e2b9f5bed83",
-            "name": "Repository"
+            "name": "Repository",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-repository"
         },
         "model": "service.subcategory",
-        "pk": "ce5b4f13-9e3c-4a5c-9260-bc79805f636f",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-repository"
+        "pk": "ce5b4f13-9e3c-4a5c-9260-bc79805f636f"
     },
     {
         "fields": {
             "category": "1abceb33-321b-479d-ba0a-0c05c5b6012e",
-            "name": "Outreach"
+            "name": "Outreach",
+            "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-outreach"
         },
         "model": "service.subcategory",
-        "pk": "cf32ec20-91a8-4858-b6ae-4b91a2c4452a",
-        "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-outreach"
+        "pk": "cf32ec20-91a8-4858-b6ae-4b91a2c4452a"
     },
     {
         "fields": {
             "category": "0e22ebcf-1545-4662-983c-8e2b9f5bed83",
-            "name": "Sorting"
+            "name": "Sorting",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-sorting"
         },
         "model": "service.subcategory",
-        "pk": "d1ed5898-1d86-43e0-a659-284745487850",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-sorting"
+        "pk": "d1ed5898-1d86-43e0-a659-284745487850"
     },
     {
         "fields": {
             "category": "7c4b272b-6f58-4778-9eba-5fbac6cc9fa3",
-            "name": "Training Platform"
+            "name": "Training Platform",
+            "eosc_id": "subcategory-training_and_support-education_and_training-training_platform"
         },
         "model": "service.subcategory",
-        "pk": "d21fe30f-ff8d-48db-ae74-14be8847fc76",
-        "eosc_id": "subcategory-training_and_support-education_and_training-training_platform"
+        "pk": "d21fe30f-ff8d-48db-ae74-14be8847fc76"
     },
     {
         "fields": {
             "category": "3ddaf0af-4e7e-4c23-86ef-d5db4ae5312c",
-            "name": "Disk"
+            "name": "Disk",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-disk"
         },
         "model": "service.subcategory",
-        "pk": "d388ca1f-1c52-4891-a417-8eb5cb2ea535",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-disk"
+        "pk": "d388ca1f-1c52-4891-a417-8eb5cb2ea535"
     },
     {
         "fields": {
             "category": "dca17a04-2569-406f-8609-465716a685ce",
-            "name": "Maintenance"
+            "name": "Maintenance",
+            "eosc_id": "subcategory-processing_and_analysis-data_management-maintenance"
         },
         "model": "service.subcategory",
-        "pk": "d4b905c7-b12a-4171-922a-434676c91fd3",
-        "eosc_id": "subcategory-processing_and_analysis-data_management-maintenance"
+        "pk": "d4b905c7-b12a-4171-922a-434676c91fd3"
     },
     {
         "fields": {
             "category": "941eea82-491a-46db-92ef-bd25cbb4060c",
-            "name": "Laser"
+            "name": "Laser",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-laser"
         },
         "model": "service.subcategory",
-        "pk": "d4fd87d5-772f-44ec-91d9-524ccfa4fe1d",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-laser"
+        "pk": "d4fd87d5-772f-44ec-91d9-524ccfa4fe1d"
     },
     {
         "fields": {
             "category": "1abceb33-321b-479d-ba0a-0c05c5b6012e",
-            "name": "Assessment"
+            "name": "Assessment",
+            "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-assessment"
         },
         "model": "service.subcategory",
-        "pk": "d56d1ea9-cf5a-46f2-bdd1-a31ceae5337d",
-        "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-assessment"
+        "pk": "d56d1ea9-cf5a-46f2-bdd1-a31ceae5337d"
     },
     {
         "fields": {
             "category": "9db04160-522e-4785-bbf7-ab82b3c434f7",
-            "name": "Load Balancer"
+            "name": "Load Balancer",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-network-load_balancer"
         },
         "model": "service.subcategory",
-        "pk": "dd4ee174-1bec-4241-b36f-1f66e3142160",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-network-load_balancer"
+        "pk": "dd4ee174-1bec-4241-b36f-1f66e3142160"
     },
     {
         "fields": {
             "category": "941eea82-491a-46db-92ef-bd25cbb4060c",
-            "name": "Spectrometer"
+            "name": "Spectrometer",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-spectrometer"
         },
         "model": "service.subcategory",
-        "pk": "de6d0d20-acd0-4ed9-895c-f9bf0396c5be",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-spectrometer"
+        "pk": "de6d0d20-acd0-4ed9-895c-f9bf0396c5be"
     },
     {
         "fields": {
             "category": "1abceb33-321b-479d-ba0a-0c05c5b6012e",
-            "name": "Publication"
+            "name": "Publication",
+            "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-publication"
         },
         "model": "service.subcategory",
-        "pk": "e1fb1b4f-2d2b-4cdb-a42b-9f55646d80c5",
-        "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-publication"
+        "pk": "e1fb1b4f-2d2b-4cdb-a42b-9f55646d80c5"
     },
     {
         "fields": {
             "category": "ee0c7cb0-e861-4de3-9319-074015419d4f",
-            "name": "Workload Management"
+            "name": "Workload Management",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-compute-workload_management"
         },
         "model": "service.subcategory",
-        "pk": "e6b0b763-a683-4d04-a335-299e219e43f1",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-compute-workload_management"
+        "pk": "e6b0b763-a683-4d04-a335-299e219e43f1"
     },
     {
         "fields": {
             "category": "48b736ef-9541-45de-a1e1-dea2f98f1891",
-            "name": "Accounting"
+            "name": "Accounting",
+            "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-accounting"
         },
         "model": "service.subcategory",
-        "pk": "e74d42d4-f836-4238-90cd-8fa990df5a56",
-        "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-accounting"
+        "pk": "e74d42d4-f836-4238-90cd-8fa990df5a56"
     },
     {
         "fields": {
             "category": "94d4e542-f996-4bb1-b4de-d57d2430e7fb",
-            "name": "Workflows"
+            "name": "Workflows",
+            "eosc_id": "subcategory-processing_and_analysis-data_analysis-workflows"
         },
         "model": "service.subcategory",
-        "pk": "e75beba6-919c-43e6-8fc2-fcc9e64bb4d6",
-        "eosc_id": "subcategory-processing_and_analysis-data_analysis-workflows"
+        "pk": "e75beba6-919c-43e6-8fc2-fcc9e64bb4d6"
     },
     {
         "fields": {
             "category": "133d9c60-ef9e-4cb4-9dba-13a38048637c",
-            "name": "Technology Transfer"
+            "name": "Technology Transfer",
+            "eosc_id": "subcategory-training_and_support-consultancy_and_support-technology_transfer"
         },
         "model": "service.subcategory",
-        "pk": "eba06403-83d1-44d3-9e2a-21e1748b9a6d",
-        "eosc_id": "subcategory-training_and_support-consultancy_and_support-technology_transfer"
+        "pk": "eba06403-83d1-44d3-9e2a-21e1748b9a6d"
     },
     {
         "fields": {
             "category": "133d9c60-ef9e-4cb4-9dba-13a38048637c",
-            "name": "Calibration"
+            "name": "Calibration",
+            "eosc_id": "subcategory-training_and_support-consultancy_and_support-calibration"
         },
         "model": "service.subcategory",
-        "pk": "eca86501-9baa-4bb7-9fac-3b8af0f2174d",
-        "eosc_id": "subcategory-training_and_support-consultancy_and_support-calibration"
+        "pk": "eca86501-9baa-4bb7-9fac-3b8af0f2174d"
     },
     {
         "fields": {
             "category": "dca17a04-2569-406f-8609-465716a685ce",
-            "name": "Validation"
+            "name": "Validation",
+            "eosc_id": "subcategory-processing_and_analysis-data_management-validation"
         },
         "model": "service.subcategory",
-        "pk": "ecd37780-45e9-43ab-954d-5f16eb5babd0",
-        "eosc_id": "subcategory-processing_and_analysis-measurement_and_materials_analysis-validation"
+        "pk": "ecd37780-45e9-43ab-954d-5f16eb5babd0"
     },
     {
         "fields": {
             "category": "3ddaf0af-4e7e-4c23-86ef-d5db4ae5312c",
-            "name": "Online"
+            "name": "Online",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-online"
         },
         "model": "service.subcategory",
-        "pk": "ef56adb5-6850-4c0d-889e-caef72800337",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-online"
+        "pk": "ef56adb5-6850-4c0d-889e-caef72800337"
     },
     {
         "fields": {
             "category": "09148c1e-775a-4925-9e5c-3df2375cb9d8",
-            "name": "Online Service Data"
+            "name": "Online Service Data",
+            "eosc_id": "subcategory-sharing_and_discovery-data-online_service_data"
         },
         "model": "service.subcategory",
-        "pk": "f0ceaf12-31ed-49d9-9cd9-7c0d45267966",
-        "eosc_id": "subcategory-sharing_and_discovery-data-online_service_data"
+        "pk": "f0ceaf12-31ed-49d9-9cd9-7c0d45267966"
     },
     {
         "fields": {
             "category": "0e22ebcf-1545-4662-983c-8e2b9f5bed83",
-            "name": "Disposal"
+            "name": "Disposal",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-disposal"
         },
         "model": "service.subcategory",
-        "pk": "f10878d9-2f47-49cb-906c-c1b4b840b019",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-disposal"
+        "pk": "f10878d9-2f47-49cb-906c-c1b4b840b019"
     },
     {
         "fields": {
             "category": "133d9c60-ef9e-4cb4-9dba-13a38048637c",
-            "name": "Application Porting"
+            "name": "Application Porting",
+            "eosc_id": "subcategory-training_and_support-consultancy_and_support-application_porting"
         },
         "model": "service.subcategory",
-        "pk": "f13abbc0-9741-4bee-8685-723fdba72a5c",
-        "eosc_id": "subcategory-training_and_support-consultancy_and_support-application_porting"
+        "pk": "f13abbc0-9741-4bee-8685-723fdba72a5c"
     },
     {
         "fields": {
             "category": "133d9c60-ef9e-4cb4-9dba-13a38048637c",
-            "name": "Testing"
+            "name": "Testing",
+            "eosc_id": "subcategory-training_and_support-consultancy_and_support-testing"
         },
         "model": "service.subcategory",
-        "pk": "f20fdfb9-87f8-49b5-8d76-796e85b9dd4a",
-        "eosc_id": "subcategory-training_and_support-consultancy_and_support-testing"
+        "pk": "f20fdfb9-87f8-49b5-8d76-796e85b9dd4a"
     },
     {
         "fields": {
             "category": "0e22ebcf-1545-4662-983c-8e2b9f5bed83",
-            "name": "Warehousing"
+            "name": "Warehousing",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-warehousing"
         },
         "model": "service.subcategory",
-        "pk": "f2e43823-ea2f-457f-86af-df91ba236629",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-warehousing"
+        "pk": "f2e43823-ea2f-457f-86af-df91ba236629"
     },
     {
         "fields": {
             "category": "133d9c60-ef9e-4cb4-9dba-13a38048637c",
-            "name": "Consulting"
+            "name": "Consulting",
+            "eosc_id": "subcategory-training_and_support-consultancy_and_support-consulting"
         },
         "model": "service.subcategory",
-        "pk": "f4e4e064-749e-4184-b92c-231639e575cb",
-        "eosc_id": "subcategory-training_and_support-consultancy_and_support-consulting"
+        "pk": "f4e4e064-749e-4184-b92c-231639e575cb"
     },
     {
         "fields": {
             "category": "5ad63f0b-e3bf-4544-8d4c-30f0a1808db2",
-            "name": "Productivity"
+            "name": "Productivity",
+            "eosc_id": "subcategory-sharing_and_discovery-applications-productivity"
         },
         "model": "service.subcategory",
-        "pk": "f65f2a43-7d13-467b-917b-1b26bd9c2ff8",
-        "eosc_id": "subcategory-sharing_and_discovery-applications-productivity"
+        "pk": "f65f2a43-7d13-467b-917b-1b26bd9c2ff8"
     },
     {
         "fields": {
             "category": "a5d1f298-abd7-4b31-94ba-58cb8eb1d44a",
-            "name": "Characterisation"
+            "name": "Characterisation",
+            "eosc_id": "subcategory-processing_and_analysis-measurement_and_materials_analysis-characterisation"
         },
         "model": "service.subcategory",
-        "pk": "fa5ff700-55ce-4237-8b36-729a3cf4bc64",
-        "eosc_id": "subcategory-processing_and_analysis-measurement_and_materials_analysis-characterisation"
+        "pk": "fa5ff700-55ce-4237-8b36-729a3cf4bc64"
     },
     {
         "fields": {
             "category": "9db04160-522e-4785-bbf7-ab82b3c434f7",
-            "name": "Direct Connect"
+            "name": "Direct Connect",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-network-direct_connect"
         },
         "model": "service.subcategory",
-        "pk": "fae5a962-3661-48eb-8c79-a782fad82464",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-network-direct_connect"
+        "pk": "fae5a962-3661-48eb-8c79-a782fad82464"
     },
     {
         "fields": {
             "category": "59aeb559-7952-4852-9421-ce44e79538bc",
-            "name": "Preparation"
+            "name": "Preparation",
+            "eosc_id": "subcategory-sharing_and_discovery-samples-preparation"
         },
         "model": "service.subcategory",
-        "pk": "fba318de-30f1-465b-8318-33e23dadcc78",
-        "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-preparation"
+        "pk": "fba318de-30f1-465b-8318-33e23dadcc78"
     },
     {
         "fields": {
             "category": "941eea82-491a-46db-92ef-bd25cbb4060c",
-            "name": "Spectrophotometer"
+            "name": "Spectrophotometer",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-spectrophotometer"
         },
         "model": "service.subcategory",
-        "pk": "fc11019e-5214-4716-9754-f29ea70d9174",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-spectrophotometer"
+        "pk": "fc11019e-5214-4716-9754-f29ea70d9174"
     },
     {
         "fields": {
             "category": "48b736ef-9541-45de-a1e1-dea2f98f1891",
-            "name": "Helpdesk"
+            "name": "Helpdesk",
+            "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-helpdesk"
         },
         "model": "service.subcategory",
-        "pk": "fe8ea8b3-5451-44d4-9e8d-89f258cd3a77",
-        "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-helpdesk"
+        "pk": "fe8ea8b3-5451-44d4-9e8d-89f258cd3a77"
     },
     {
         "fields": {
             "category": "9db04160-522e-4785-bbf7-ab82b3c434f7",
-            "name": "Exchange"
+            "name": "Exchange",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-network-exchange"
         },
         "model": "service.subcategory",
-        "pk": "ff9317da-be45-4a1e-8818-07d5f14ca3fb",
-        "eosc_id": "subcategory-access_physical_and_eInfrastructures-network-exchange"
+        "pk": "ff9317da-be45-4a1e-8818-07d5f14ca3fb"
+    },
+    {
+        "model": "service.subcategory",
+        "pk": "01cd0cf9-bba3-42b4-955a-f127d0f36eed",
+        "fields": {
+            "category": "ee0c7cb0-e861-4de3-9319-074015419d4f",
+            "name": "Other",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-compute-other"
+        }
+    },
+    {
+        "model": "service.subcategory",
+        "pk": "04362340-8d78-4758-b54f-c98c33b2fb88",
+        "fields": {
+            "category": "5ad63f0b-e3bf-4544-8d4c-30f0a1808db2",
+            "name": "Other",
+            "eosc_id": "subcategory-sharing_and_discovery-applications-other"
+        }
+    },
+    {
+        "model": "service.subcategory",
+        "pk": "106a6a9e-2260-4ea3-8786-7a6cfcc99d12",
+        "fields": {
+            "category": "7c4b272b-6f58-4778-9eba-5fbac6cc9fa3",
+            "name": "Other",
+            "eosc_id": "subcategory-training_and_support-education_and_training-other"
+        }
+    },
+    {
+        "model": "service.subcategory",
+        "pk": "3014f534-b5a0-44b1-9813-b5956f6df8c6",
+        "fields": {
+            "category": "063268e6-e990-44e2-af1d-5d1711caba89",
+            "name": "Other",
+            "eosc_id": "subcategory-security_and_operations-security_and_identity-other"
+        }
+    },
+    {
+        "model": "service.subcategory",
+        "pk": "44daf21b-e5df-49cd-8ec9-b51f56da86d1",
+        "fields": {
+            "category": "a05700b7-81a8-476c-9ba3-c3952092280a",
+            "name": "Other",
+            "eosc_id": "subcategory-sharing_and_discovery-software-other"
+        }
+    },
+    {
+        "model": "service.subcategory",
+        "pk": "77e857c5-3e99-4dcd-bbee-2f293a6d47d1",
+        "fields": {
+            "category": "e331cddc-2644-465c-981d-0e3eeceaedf4",
+            "name": "Other",
+            "eosc_id": "subcategory-sharing_and_discovery-development_resources-other"
+        }
+    },
+    {
+        "model": "service.subcategory",
+        "pk": "78803a03-3848-4f84-ab2d-bd0848532e41",
+        "fields": {
+            "category": "09148c1e-775a-4925-9e5c-3df2375cb9d8",
+            "name": "Other",
+            "eosc_id": "subcategory-sharing_and_discovery-data-other"
+        }
+    },
+    {
+        "model": "service.subcategory",
+        "pk": "84ffbfc4-adc2-4305-94e0-20a3a2f557aa",
+        "fields": {
+            "category": "abad8012-42f9-4c70-94e1-dd58d0e934ab",
+            "name": "Other",
+            "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-other"
+        }
+    },
+    {
+        "model": "service.subcategory",
+        "pk": "9006aa63-1857-4ba2-ae9b-53b7e1ad8d85",
+        "fields": {
+            "category": "94d4e542-f996-4bb1-b4de-d57d2430e7fb",
+            "name": "Other",
+            "eosc_id": "subcategory-processing_and_analysis-data_analysis-other"
+        }
+    },
+    {
+        "model": "service.subcategory",
+        "pk": "ab5dbb1f-8f19-48fb-ae8e-c26fcbbe4f70",
+        "fields": {
+            "category": "133d9c60-ef9e-4cb4-9dba-13a38048637c",
+            "name": "Other",
+            "eosc_id": "subcategory-training_and_support-consultancy_and_support-other"
+        }
+    },
+    {
+        "model": "service.subcategory",
+        "pk": "ae45994c-0ac5-4565-b623-f191ed93353b",
+        "fields": {
+            "category": "a5d1f298-abd7-4b31-94ba-58cb8eb1d44a",
+            "name": "Analysis",
+            "eosc_id": "subcategory-processing_and_analysis-measurement_and_materials_analysis-analysis"
+        }
+    },
+    {
+        "model": "service.subcategory",
+        "pk": "b2ff7b74-baab-4774-978a-19748fcaa056",
+        "fields": {
+            "category": "0e22ebcf-1545-4662-983c-8e2b9f5bed83",
+            "name": "Other",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-material_storage-other"
+        }
+    },
+    {
+        "model": "service.subcategory",
+        "pk": "b51e1208-4d6c-4c6d-948c-e6096ef488a1",
+        "fields": {
+            "category": "3ddaf0af-4e7e-4c23-86ef-d5db4ae5312c",
+            "name": "Other",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-other"
+        }
+    },
+    {
+        "model": "service.subcategory",
+        "pk": "c31b2085-9de9-4a57-a311-9a7279573da0",
+        "fields": {
+            "category": "48b736ef-9541-45de-a1e1-dea2f98f1891",
+            "name": "Analysis",
+            "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-analysis"
+        }
+    },
+    {
+        "model": "service.subcategory",
+        "pk": "c32adaa5-1d92-4865-b79b-90a6c836a455",
+        "fields": {
+            "category": "59aeb559-7952-4852-9421-ce44e79538bc",
+            "name": "Other",
+            "eosc_id": "subcategory-sharing_and_discovery-samples-other"
+        }
+    },
+    {
+        "model": "service.subcategory",
+        "pk": "c6c366fe-667b-45d5-a9d7-86d473fcca6d",
+        "fields": {
+            "category": "abad8012-42f9-4c70-94e1-dd58d0e934ab",
+            "name": "Software",
+            "eosc_id": "subcategory-aggregators_and_integrators-aggregators_and_integrators-software"
+        }
+    },
+    {
+        "model": "service.subcategory",
+        "pk": "ccfe167f-27b7-4daa-a2bf-9c82c705d385",
+        "fields": {
+            "category": "94d4e542-f996-4bb1-b4de-d57d2430e7fb",
+            "name": "Data Exploitation",
+            "eosc_id": "subcategory-processing_and_analysis-data_analysis-data_exploitation"
+        }
+    },
+    {
+        "model": "service.subcategory",
+        "pk": "d11d250f-063b-4137-af99-85711c62c64d",
+        "fields": {
+            "category": "a5d1f298-abd7-4b31-94ba-58cb8eb1d44a",
+            "name": "Other",
+            "eosc_id": "subcategory-processing_and_analysis-measurement_and_materials_analysis-other"
+        }
+    },
+    {
+        "model": "service.subcategory",
+        "pk": "d7e24e2f-4eea-487a-a62d-df190ab01c10",
+        "fields": {
+            "category": "48b736ef-9541-45de-a1e1-dea2f98f1891",
+            "name": "Other",
+            "eosc_id": "subcategory-security_and_operations-operations_and_infrastructure_management_services-other"
+        }
+    },
+    {
+        "model": "service.subcategory",
+        "pk": "d8f56ebf-18ac-4ce8-8024-4db2db544224",
+        "fields": {
+            "category": "dca17a04-2569-406f-8609-465716a685ce",
+            "name": "Other",
+            "eosc_id": "subcategory-processing_and_analysis-data_management-other"
+        }
+    },
+    {
+        "model": "service.subcategory",
+        "pk": "db2120c0-a5ba-45e3-b8d4-e75265e9439e",
+        "fields": {
+            "category": "1abceb33-321b-479d-ba0a-0c05c5b6012e",
+            "name": "Other",
+            "eosc_id": "subcategory-sharing_and_discovery-scholarly_communication-other"
+        }
+    },
+    {
+        "model": "service.subcategory",
+        "pk": "dfd6ea36-3121-47d6-8299-96b3dcb4ae1e",
+        "fields": {
+            "category": "941eea82-491a-46db-92ef-bd25cbb4060c",
+            "name": "Other",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-instrument_and_equipment-other"
+        }
+    },
+    {
+        "model": "service.subcategory",
+        "pk": "e9857bc7-18c8-4de9-b65e-3f21f5e177ed",
+        "fields": {
+            "category": "9db04160-522e-4785-bbf7-ab82b3c434f7",
+            "name": "Other",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-network-other"
+        }
+    },
+    {
+        "model": "service.subcategory",
+        "pk": "fa02d0f3-b298-491b-865a-4b0ac2707bf9",
+        "fields": {
+            "category": "6e94a6d6-4494-417c-ab2a-d98c5a02c3b7",
+            "name": "Other",
+            "eosc_id": "subcategory-other-other-other"
+        }
+    },
+    {
+        "model": "service.subcategory",
+        "pk": "396a64ce-d3d1-4b40-8456-04ec31355254",
+        "fields": {
+            "category": "3ddaf0af-4e7e-4c23-86ef-d5db4ae5312c",
+            "name": "Data",
+            "eosc_id": "subcategory-access_physical_and_eInfrastructures-data_storage-data"
+        }
     }
 ]

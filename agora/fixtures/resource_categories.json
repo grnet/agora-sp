@@ -2,172 +2,181 @@
     {
         "fields": {
             "name": "Security & Identity",
-            "supercategory": "35a2d688-739b-431b-b856-e5ac26ea7a53"
+            "supercategory": "35a2d688-739b-431b-b856-e5ac26ea7a53",
+            "eosc_id": "category-security_and_operations-security_and_identity"
         },
         "model": "service.category",
-        "pk": "063268e6-e990-44e2-af1d-5d1711caba89",
-        "eosc_id": "category-security_and_operations-security_and_identity"
+        "pk": "063268e6-e990-44e2-af1d-5d1711caba89"
     },
     {
         "fields": {
             "name": "Data",
-            "supercategory": "6c609f4c-22ea-44ae-967f-c8921cbf84b0"
+            "supercategory": "6c609f4c-22ea-44ae-967f-c8921cbf84b0",
+            "eosc_id": "category-sharing_and_discovery-data"
         },
         "model": "service.category",
-        "pk": "09148c1e-775a-4925-9e5c-3df2375cb9d8",
-        "eosc_id": "category-sharing_and_discovery-data"
+        "pk": "09148c1e-775a-4925-9e5c-3df2375cb9d8"
     },
     {
         "fields": {
             "name": "Material Storage",
-            "supercategory": "ef1e6a6b-22f3-48d7-8386-d66ab524d784"
+            "supercategory": "ef1e6a6b-22f3-48d7-8386-d66ab524d784",
+            "eosc_id": "category-access_physical_and_eInfrastructures-material_storage"
         },
         "model": "service.category",
-        "pk": "0e22ebcf-1545-4662-983c-8e2b9f5bed83",
-        "eosc_id": "category-access_physical_and_eInfrastructures-material_storage"
+        "pk": "0e22ebcf-1545-4662-983c-8e2b9f5bed83"
     },
     {
         "fields": {
             "name": "Consultancy & Support",
-            "supercategory": "d4dca882-2738-4d35-b3ec-3d7767b26a10"
+            "supercategory": "d4dca882-2738-4d35-b3ec-3d7767b26a10",
+            "eosc_id": "category-training_and_support-consultancy_and_support"
         },
         "model": "service.category",
-        "pk": "133d9c60-ef9e-4cb4-9dba-13a38048637c",
-        "eosc_id": "category-training_and_support-consultancy_and_support"
+        "pk": "133d9c60-ef9e-4cb4-9dba-13a38048637c"
     },
     {
         "fields": {
             "name": "Scholarly Communication",
-            "supercategory": "6c609f4c-22ea-44ae-967f-c8921cbf84b0"
+            "supercategory": "6c609f4c-22ea-44ae-967f-c8921cbf84b0",
+            "eosc_id": "category-sharing_and_discovery-scholarly_communication"
         },
         "model": "service.category",
-        "pk": "1abceb33-321b-479d-ba0a-0c05c5b6012e",
-        "eosc_id": "category-sharing_and_discovery-scholarly_communication"
+        "pk": "1abceb33-321b-479d-ba0a-0c05c5b6012e"
     },
     {
         "fields": {
             "name": "Data Storage",
-            "supercategory": "ef1e6a6b-22f3-48d7-8386-d66ab524d784"
+            "supercategory": "ef1e6a6b-22f3-48d7-8386-d66ab524d784",
+            "eosc_id": "category-access_physical_and_eInfrastructures-data_storage"
         },
         "model": "service.category",
-        "pk": "3ddaf0af-4e7e-4c23-86ef-d5db4ae5312c",
-        "eosc_id": "category-access_physical_and_eInfrastructures-data_storage"
+        "pk": "3ddaf0af-4e7e-4c23-86ef-d5db4ae5312c"
     },
     {
         "fields": {
             "name": "Operations & Infrastructure Management Services",
-            "supercategory": "35a2d688-739b-431b-b856-e5ac26ea7a53"
+            "supercategory": "35a2d688-739b-431b-b856-e5ac26ea7a53",
+            "eosc_id": "category-security_and_operations-operations_and_infrastructure_management_services"
         },
         "model": "service.category",
-        "pk": "48b736ef-9541-45de-a1e1-dea2f98f1891",
-        "eosc_id": "category-security_and_operations-operations_and_infrastructure_management_services"
+        "pk": "48b736ef-9541-45de-a1e1-dea2f98f1891"
     },
     {
         "fields": {
             "name": "Samples",
-            "supercategory": "6c609f4c-22ea-44ae-967f-c8921cbf84b0"
+            "supercategory": "6c609f4c-22ea-44ae-967f-c8921cbf84b0",
+            "eosc_id": "category-sharing_and_discovery-samples"
         },
         "model": "service.category",
-        "pk": "59aeb559-7952-4852-9421-ce44e79538bc",
-        "eosc_id": "category-sharing_and_discovery-samples"
+        "pk": "59aeb559-7952-4852-9421-ce44e79538bc"
     },
     {
         "fields": {
             "name": "Applications",
-            "supercategory": "6c609f4c-22ea-44ae-967f-c8921cbf84b0"
+            "supercategory": "6c609f4c-22ea-44ae-967f-c8921cbf84b0",
+            "eosc_id": "category-sharing_and_discovery-applications"
         },
         "model": "service.category",
-        "pk": "5ad63f0b-e3bf-4544-8d4c-30f0a1808db2",
-        "eosc_id": "category-sharing_and_discovery-applications"
+        "pk": "5ad63f0b-e3bf-4544-8d4c-30f0a1808db2"
     },
     {
         "fields": {
             "name": "Education & Training",
-            "supercategory": "d4dca882-2738-4d35-b3ec-3d7767b26a10"
+            "supercategory": "d4dca882-2738-4d35-b3ec-3d7767b26a10",
+            "eosc_id": "category-training_and_support-education_and_training"
         },
         "model": "service.category",
-        "pk": "7c4b272b-6f58-4778-9eba-5fbac6cc9fa3",
-        "eosc_id": "category-training_and_support-education_and_training"
+        "pk": "7c4b272b-6f58-4778-9eba-5fbac6cc9fa3"
     },
     {
         "fields": {
             "name": "Instrument & Equipment",
-            "supercategory": "ef1e6a6b-22f3-48d7-8386-d66ab524d784"
+            "supercategory": "ef1e6a6b-22f3-48d7-8386-d66ab524d784",
+            "eosc_id": "category-access_physical_and_eInfrastructures-instrument_and_equipment"
         },
         "model": "service.category",
-        "pk": "941eea82-491a-46db-92ef-bd25cbb4060c",
-        "eosc_id": "category-access_physical_and_eInfrastructures-instrument_and_equipment"
+        "pk": "941eea82-491a-46db-92ef-bd25cbb4060c"
     },
     {
         "fields": {
             "name": "Data Analysis",
-            "supercategory": "de968f83-3d9b-4f2e-b729-6d8a6ea80e89"
+            "supercategory": "de968f83-3d9b-4f2e-b729-6d8a6ea80e89",
+            "eosc_id": "category-processing_and_analysis-data_analysis"
         },
         "model": "service.category",
-        "pk": "94d4e542-f996-4bb1-b4de-d57d2430e7fb",
-        "eosc_id": "category-processing_and_analysis-data_analysis"
+        "pk": "94d4e542-f996-4bb1-b4de-d57d2430e7fb"
     },
     {
         "fields": {
             "name": "Network",
-            "supercategory": "ef1e6a6b-22f3-48d7-8386-d66ab524d784"
+            "supercategory": "ef1e6a6b-22f3-48d7-8386-d66ab524d784",
+            "eosc_id": "category-access_physical_and_eInfrastructures-network"
         },
         "model": "service.category",
-        "pk": "9db04160-522e-4785-bbf7-ab82b3c434f7",
-        "eosc_id": "category-access_physical_and_eInfrastructures-network"
+        "pk": "9db04160-522e-4785-bbf7-ab82b3c434f7"
     },
     {
         "fields": {
             "name": "Software",
-            "supercategory": "6c609f4c-22ea-44ae-967f-c8921cbf84b0"
+            "supercategory": "6c609f4c-22ea-44ae-967f-c8921cbf84b0",
+            "eosc_id": "category-sharing_and_discovery-software"
         },
         "model": "service.category",
-        "pk": "a05700b7-81a8-476c-9ba3-c3952092280a",
-        "eosc_id": "category-sharing_and_discovery-software"
+        "pk": "a05700b7-81a8-476c-9ba3-c3952092280a"
     },
     {
         "fields": {
             "name": "Measurement & Materials Analysis",
-            "supercategory": "de968f83-3d9b-4f2e-b729-6d8a6ea80e89"
+            "supercategory": "de968f83-3d9b-4f2e-b729-6d8a6ea80e89",
+            "eosc_id": "category-processing_and_analysis-measurement_and_materials_analysis"
         },
         "model": "service.category",
-        "pk": "a5d1f298-abd7-4b31-94ba-58cb8eb1d44a",
-        "eosc_id": "category-processing_and_analysis-measurement_and_materials_analysis"
+        "pk": "a5d1f298-abd7-4b31-94ba-58cb8eb1d44a"
     },
     {
         "fields": {
             "name": "Aggregators & Integrators",
-            "supercategory": "a5e189dc-989f-448a-b84f-eb587a3331c3"
+            "supercategory": "a5e189dc-989f-448a-b84f-eb587a3331c3",
+            "eosc_id": "category-aggregators_and_integrators-aggregators_and_integrators"
         },
         "model": "service.category",
-        "pk": "abad8012-42f9-4c70-94e1-dd58d0e934ab",
-        "eosc_id": "category-aggregators_and_integrators-aggregators_and_integrators"
+        "pk": "abad8012-42f9-4c70-94e1-dd58d0e934ab"
     },
     {
         "fields": {
             "name": "Data Management",
-            "supercategory": "de968f83-3d9b-4f2e-b729-6d8a6ea80e89"
+            "supercategory": "de968f83-3d9b-4f2e-b729-6d8a6ea80e89",
+            "eosc_id": "category-processing_and_analysis-data_management"
         },
         "model": "service.category",
-        "pk": "dca17a04-2569-406f-8609-465716a685ce",
-        "eosc_id": "category-processing_and_analysis-data_management"
+        "pk": "dca17a04-2569-406f-8609-465716a685ce"
     },
     {
         "fields": {
             "name": "Development Resources",
-            "supercategory": "6c609f4c-22ea-44ae-967f-c8921cbf84b0"
+            "supercategory": "6c609f4c-22ea-44ae-967f-c8921cbf84b0",
+            "eosc_id": "category-sharing_and_discovery-development_resources"
         },
         "model": "service.category",
-        "pk": "e331cddc-2644-465c-981d-0e3eeceaedf4",
-        "eosc_id": "category-sharing_and_discovery-development_resources"
+        "pk": "e331cddc-2644-465c-981d-0e3eeceaedf4"
     },
     {
         "fields": {
             "name": "Compute",
-            "supercategory": "ef1e6a6b-22f3-48d7-8386-d66ab524d784"
+            "supercategory": "ef1e6a6b-22f3-48d7-8386-d66ab524d784",
+            "eosc_id": "category-access_physical_and_eInfrastructures-compute"
         },
         "model": "service.category",
-        "pk": "ee0c7cb0-e861-4de3-9319-074015419d4f",
-        "eosc_id": "category-access_physical_and_eInfrastructures-compute"
+        "pk": "ee0c7cb0-e861-4de3-9319-074015419d4f"
+    },
+    {
+        "model": "service.category",
+        "pk": "6e94a6d6-4494-417c-ab2a-d98c5a02c3b7",
+        "fields": {
+            "supercategory": "f842c49c-db1e-4984-b36f-1bdc7afb5741",
+            "name": "Other",
+            "eosc_id": "category-other-other"
+        }
     }
 ]
