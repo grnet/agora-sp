@@ -1,6 +1,6 @@
-import { AgoraGen, basic_model } from '../lib/common';
+import { AgoraGen, basic_model_fields } from '../lib/common';
 
-const {common, row, sort} = basic_model(true);
+const {common, row, sort} = basic_model_fields(['user', 'description', 'eosc_id'], 'user');
 
 export default AgoraGen.extend({
   modelName: 'target-user',
