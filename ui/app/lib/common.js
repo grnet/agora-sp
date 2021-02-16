@@ -100,8 +100,21 @@ const httpValidator = validate.format({
 
 function basic_model(desc) {
   let fields = desc? ['name', 'description', 'eosc_id']: ['name', 'eosc_id'];
+  return basic_model_fields(fields);
+}
+
+function basic_model_fields(fields, required) {
+
   if (EOSC_DISABLED) {
     fields.pop();
+  }
+  let flex = new Array(fields.length).fill(100);
+  let validators = {};
+  if (fields.includes('name')) {
+    validators.name = [validate.presence(true)]
+  }
+  if (required) {
+    validators[required] = [validate.presence(true)]
   }
   return {
     common: {
@@ -110,13 +123,11 @@ function basic_model(desc) {
           label: 'common.cards.basic',
           fields,
           layout: {
-            flex: [100, 100, 100],
+            flex,
           },
         }
       ],
-      validators: {
-        name: [validate.presence(true)],
-      },
+      validators,
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],
@@ -125,7 +136,7 @@ function basic_model(desc) {
     sort: {
       serverSide: true,
       active: true,
-      fields: ['name', 'eosc_id'],
+      fields: ['name', 'eosc_id', 'user'],
     },
   }
 }
@@ -137,4 +148,5 @@ export {
 	capitalize,
   httpValidator,
   basic_model,
+  basic_model_fields,
 };
