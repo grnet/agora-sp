@@ -1,5 +1,5 @@
 import { field } from 'ember-gen';
-import { fileField } from '../../lib/common';
+import { fileField, fields_eosc } from '../../lib/common';
 
 const MARKETING_FIELDSET = {
   label: 'provider.cards.marketing',
@@ -37,7 +37,7 @@ const merildomain = field('epp_oth_8_meril_scientific_domain', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
-      fields: ['name'],
+      fields: fields_eosc(['name', 'eosc_id']),
     },
   },
 });
@@ -46,7 +46,7 @@ const merilsubdomain = field('epp_oth_9_meril_scientific_subdomain', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
-      fields: ['domain.name','name','description'],
+      fields: fields_eosc(['domain.name', 'name', 'description', 'eosc_id']),
     },
   },
 });
@@ -55,7 +55,7 @@ const domain = field('epp_cli_1_scientific_domain', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
-      fields: ['name'],
+      fields: fields_eosc(['name', 'eosc_id']),
     },
   },
 });
@@ -64,7 +64,7 @@ const subdomain = field('epp_cli_2_scientific_subdomain', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
-      fields: ['domain.name','name'],
+      fields: fields_eosc(['domain.name', 'name', 'eosc_id']),
     },
   },
 });
@@ -74,7 +74,7 @@ const affiliations = field('epp_oth_3_affiliations', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
-      fields: ['name'],
+      fields: fields_eosc(['name', 'eosc_id']),
     },
   },
 });
@@ -83,7 +83,7 @@ const networks = field('epp_oth_4_networks', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
-      fields: ['abbreviation','name'],
+      fields: fields_eosc(['abbreviation', 'name', 'eosc_id']),
     },
   },
 });
@@ -92,7 +92,7 @@ const structure = field('epp_oth_5_structure_type', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
-      fields: ['name','description'],
+      fields: fields_eosc(['name', 'description', 'eosc_id']),
     },
   },
 });
@@ -101,7 +101,7 @@ const esfridomain = field('epp_oth_6_esfri_domain', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
-      fields: ['name','description'],
+      fields: fields_eosc(['name', 'description', 'eosc_id']),
     },
   },
 });
@@ -110,7 +110,7 @@ const activity = field('epp_oth_10_areas_of_activity', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
-      fields: ['name'],
+      fields: fields_eosc(['name', 'eosc_id']),
     },
   },
 });
@@ -119,7 +119,7 @@ const challenge = field('epp_oth_11_societal_grand_challenges', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
-      fields: ['name'],
+      fields: fields_eosc(['name', 'eosc_id']),
     },
   },
 });
