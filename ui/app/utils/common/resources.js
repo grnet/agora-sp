@@ -1,18 +1,10 @@
 import { field } from 'ember-gen';
-import ENV from '../../config/environment';
-const EOSC_DISABLED = ENV.APP.eosc_portal.disabled;
+import { fileField, fields_eosc } from '../../lib/common';
 
 const {
   get,
   computed,
 } = Ember;
-
-function fields_eosc(fields) {
-  if (EOSC_DISABLED) {
-    fields.pop();
-  }
-  return fields;
-}
 
 const domain = field('erp_cli_1_scientific_domain', {
   displayComponent: 'gen-display-field-table',
