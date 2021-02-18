@@ -133,6 +133,13 @@ function basic_model_fields(fields, required) {
   }
 }
 
+function fields_eosc(fields) {
+  if (EOSC_DISABLED) {
+    fields.pop();
+  }
+  return fields;
+}
+
 
 export {
   AgoraGen,
@@ -141,4 +148,5 @@ export {
 	capitalize,
   basic_model,
   basic_model_fields,
+  fields_eosc,
 };
