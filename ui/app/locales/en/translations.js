@@ -88,5 +88,6 @@ export default {
   'Username unique constraint failed': custom_user.errors.unique_username,
   'shibboleth_duplicate_email': custom_user.errors.unique_email,
   eosc,
+  'eosc_id.label': 'EOSC ID',
 };
 

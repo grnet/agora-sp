@@ -5,4 +5,5 @@ export default DS.Model.extend({
     label: 'challenge.fields.name',
     hint: 'challenge.hints.name'
   }),
+  eosc_id: DS.attr(),
 });

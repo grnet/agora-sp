@@ -6,4 +6,5 @@ export default DS.Model.extend({
   }),
   description: DS.attr(),
   menu: 'Technology Readiness Levels',
+  eosc_id: DS.attr(),
 });

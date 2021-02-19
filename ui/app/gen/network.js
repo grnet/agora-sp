@@ -1,24 +1,12 @@
-import validate from 'ember-gen/validate';
-import { AgoraGen } from '../lib/common';
-import {
-  CREATE_FIELDSETS,
-  EDIT_FIELDSETS,
-  DETAILS_FIELDSETS,
-  TABLE_FIELDS,
-  SORT_FIELDS,
-} from '../utils/common/network';
+import { AgoraGen, basic_model_fields } from '../lib/common';
+
+const {common, row} = basic_model_fields(['abbreviation', 'name', 'eosc_id'] );
 
 export default AgoraGen.extend({
   modelName: 'network',
   path: 'networks',
   resourceName: 'api/v2/networks',
-  common: {
-    validators: {
-      id: [validate.presence(true)],
-      name: [validate.presence(true)],
-      abbreviation: [validate.presence(true)],
-    },
-  },
+  common,
   list: {
     page: {
       title: 'network.menu',
@@ -29,10 +17,7 @@ export default AgoraGen.extend({
       group: 'provider_settings',
       order: 32,
     },
-    row: {
-      actions: ['gen:details', 'gen:edit', 'remove'],
-      fields: TABLE_FIELDS,
-    },
+    row,
     filter: {
       active: false,
       serverSide: true,
@@ -45,14 +30,5 @@ export default AgoraGen.extend({
       sortBy: 'abbreviation',
       fields: ['name', 'abbreviation',],
     },
-  },
-  details: {
-    fieldsets: DETAILS_FIELDSETS,
-  },
-  edit: {
-    fieldsets: EDIT_FIELDSETS,
-  },
-  create: {
-    fieldsets: CREATE_FIELDSETS,
   },
 });

@@ -5,4 +5,5 @@ export default DS.Model.extend({
     label: 'resource_lcs.fields.name',
   }),
   description: DS.attr(),
+  eosc_id: DS.attr(),
 });

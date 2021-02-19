@@ -5,4 +5,5 @@ export default DS.Model.extend({
     label: 'esfritype.fields.name',
     hint: 'esfritype.hints.name'
   }),
+  eosc_id: DS.attr(),
 });

@@ -5,4 +5,5 @@ export default DS.Model.extend({
     label: 'merildomain.fields.name',
     hint: 'merildomain.hints.name'
   }),
+  eosc_id: DS.attr(),
 });

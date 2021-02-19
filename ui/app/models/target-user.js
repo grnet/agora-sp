@@ -7,4 +7,5 @@ export default DS.Model.extend({
   description: DS.attr({
     label: 'target_user.fields.description',
   }),
+  eosc_id: DS.attr(),
 });

@@ -15,7 +15,6 @@ export default AgoraGen.extend({
   resourceName: 'api/v2/subcategories',
   common: {
     validators: {
-      id: [validate.presence(true)],
       name: [validate.presence(true)],
     },
   },

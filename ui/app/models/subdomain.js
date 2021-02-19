@@ -13,4 +13,5 @@ export default DS.Model.extend({
     label: 'subdomain.fields.name',
     hint: 'subdomain.hints.name'
   }),
+  eosc_id: DS.attr(),
 });

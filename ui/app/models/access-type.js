@@ -5,4 +5,5 @@ export default DS.Model.extend({
     label: 'access_mode.fields.name',
   }),
   description: DS.attr(),
+  eosc_id: DS.attr(),
 });
