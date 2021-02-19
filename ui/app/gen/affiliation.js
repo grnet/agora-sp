@@ -1,12 +1,24 @@
-import { AgoraGen, basic_model } from '../lib/common';
-
-const {common, row, sort} = basic_model();
+import { AgoraGen } from '../lib/common';
+import validate from 'ember-gen/validate';
 
 export default AgoraGen.extend({
   modelName: 'affiliation',
   path: 'affiliations',
   resourceName: 'api/v2/affiliations',
-  common,
+  common: {
+    validators: {
+      'name': [validate.presence(true)]
+    },
+    fieldsets: [
+      {
+        label: 'common.cards.basic',
+        fields: ['name'],
+        layout: {
+          flex: [100]
+        },
+      }
+    ],
+  },
   list: {
     page: {
       title: 'affiliation.menu',
@@ -22,13 +34,19 @@ export default AgoraGen.extend({
       },
       order: 30,
     },
-    row,
+    row: {
+      actions: ['gen:details', 'gen:edit', 'remove'],
+    },
     filter: {
       active: false,
       serverSide: true,
       search: true,
       searchPlaceholder: 'common.placeholders.search',
     },
-    sort,
+    sort: {
+      serverSide: true,
+      active: true,
+      fields: ['name'],
+    }
   },
 });
