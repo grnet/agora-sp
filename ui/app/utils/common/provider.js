@@ -74,7 +74,7 @@ const affiliations = field('epp_oth_3_affiliations', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
-      fields: fields_eosc(['name', 'eosc_id']),
+      fields: ['name'],
     },
   },
 });
