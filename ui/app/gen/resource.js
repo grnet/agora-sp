@@ -162,15 +162,6 @@ export default AgoraGen.extend({
   },
   edit: {
     fieldsets: EDIT_FIELDSETS,
-    actions: [
-      'gen:details',
-      'postResourceEOSC',
-      'putResourceEOSC',
-    ],
-    actionsMap: {
-      postResourceEOSC,
-      putResourceEOSC,
-    },
   },
   create: {
     fieldsets: CREATE_FIELDSETS,
