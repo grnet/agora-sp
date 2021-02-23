@@ -2,7 +2,8 @@
     {
         "fields": {
             "description": "",
-            "name": "Other"
+            "name": "Other",
+            "eosc_id": "life_cycle_status-other"
         },
         "model": "service.lifecyclestatus",
         "pk": "0525009f-a9e2-4f63-bb9a-922736cb7b67"
@@ -10,7 +11,8 @@
     {
         "fields": {
             "description": "Resource offered",
-            "name": "Operation"
+            "name": "Operation",
+            "eosc_id": "life_cycle_status-operation"
         },
         "model": "service.lifecyclestatus",
         "pk": "2bf6908f-f438-4a44-b06f-3c8efc2c5c74"
@@ -18,7 +20,8 @@
     {
         "fields": {
             "description": "Concept development",
-            "name": "Concept"
+            "name": "Concept",
+            "eosc_id": "life_cycle_status-concept"
         },
         "model": "service.lifecyclestatus",
         "pk": "3746bb1d-6b19-4238-b529-23359979cab2"
@@ -26,7 +29,8 @@
     {
         "fields": {
             "description": "Resource available in the live environment",
-            "name": "Production"
+            "name": "Production",
+            "eosc_id": "life_cycle_status-production"
         },
         "model": "service.lifecyclestatus",
         "pk": "431f335f-7416-4be2-9c79-5908fdc09cc0"
@@ -34,7 +38,8 @@
     {
         "fields": {
             "description": "Resource dissolution, dismantling",
-            "name": "Termination"
+            "name": "Termination",
+            "eosc_id": "life_cycle_status-termination"
         },
         "model": "service.lifecyclestatus",
         "pk": "53c119d1-d2b3-429d-bdb0-6a332b28a160"
@@ -42,7 +47,8 @@
     {
         "fields": {
             "description": "Researching users needs, exploring technological or policy constraints",
-            "name": "Discovery"
+            "name": "Discovery",
+            "eosc_id": "life_cycle_status-discovery"
         },
         "model": "service.lifecyclestatus",
         "pk": "73d76a0e-1e21-46e5-b5c9-51536f74992b"
@@ -50,7 +56,8 @@
     {
         "fields": {
             "description": "Resource in deployment",
-            "name": "Implementation"
+            "name": "Implementation",
+            "eosc_id": "life_cycle_status-implementation"
         },
         "model": "service.lifecyclestatus",
         "pk": "83675dd8-41d3-4ec7-9fd0-ecbaef6106e5"
@@ -58,7 +65,8 @@
     {
         "fields": {
             "description": "Resource plan defined",
-            "name": "Planned"
+            "name": "Planned",
+            "eosc_id": "life_cycle_status-planned"
         },
         "model": "service.lifecyclestatus",
         "pk": "a001d7fc-4671-4a26-8b14-705d6c252979"
@@ -66,7 +74,8 @@
     {
         "fields": {
             "description": "Resource is not anymore offered",
-            "name": "Retirement"
+            "name": "Retirement",
+            "eosc_id": "life_cycle_status-retirement"
         },
         "model": "service.lifecyclestatus",
         "pk": "a871b7b1-0637-45a2-886e-60f447a3c20c"
@@ -74,7 +83,8 @@
     {
         "fields": {
             "description": "Resource being developed while available for testing publicly",
-            "name": "Beta"
+            "name": "Beta",
+            "eosc_id": "life_cycle_status-beta"
         },
         "model": "service.lifecyclestatus",
         "pk": "a89291ef-04ae-40f2-a7ec-e221707651c6"
@@ -82,7 +92,8 @@
     {
         "fields": {
             "description": "Resource prototype available for closed set of users",
-            "name": "Alpha"
+            "name": "Alpha",
+            "eosc_id": "life_cycle_status-alpha"
         },
         "model": "service.lifecyclestatus",
         "pk": "b4cdca46-ca9a-4e8c-a60f-eb53f9a86910"
@@ -90,7 +101,8 @@
     {
         "fields": {
             "description": "Resource in design",
-            "name": "Design"
+            "name": "Design",
+            "eosc_id": "life_cycle_status-design"
         },
         "model": "service.lifecyclestatus",
         "pk": "c490fbb9-1362-4158-858d-3b6fb3e2b0fb"
@@ -98,7 +110,8 @@
     {
         "fields": {
             "description": "Resource in preparatory phase",
-            "name": "Preparation"
+            "name": "Preparation",
+            "eosc_id": "life_cycle_status-preparation"
         },
         "model": "service.lifecyclestatus",
         "pk": "ca92649a-87bb-4a9d-89a7-52950dd3a90a"
@@ -106,7 +119,8 @@
     {
         "fields": {
             "description": "Resource active, but generally not available to new users",
-            "name": "In containment"
+            "name": "In containment",
+            "eosc_id": "life_cycle_status-in_containment"
         },
         "model": "service.lifecyclestatus",
         "pk": "d05b108f-e8ef-40f1-9af7-3947326b3566"

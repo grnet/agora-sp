@@ -1,49 +1,56 @@
 [
     {
         "fields": {
-            "name": "Security & Operations"
+            "name": "Security & Operations",
+            "eosc_id": "supercategory-security_and_operations"
         },
         "model": "service.supercategory",
         "pk": "35a2d688-739b-431b-b856-e5ac26ea7a53"
     },
     {
         "fields": {
-            "name": "Sharing & Discovery"
+            "name": "Sharing & Discovery",
+            "eosc_id": "supercategory-sharing_and_discovery"
         },
         "model": "service.supercategory",
         "pk": "6c609f4c-22ea-44ae-967f-c8921cbf84b0"
     },
     {
         "fields": {
-            "name": "Aggregators & Integrators"
+            "name": "Aggregators & Integrators",
+            "eosc_id": "supercategory-aggregators_and_integrators"
         },
         "model": "service.supercategory",
         "pk": "a5e189dc-989f-448a-b84f-eb587a3331c3"
     },
     {
         "fields": {
-            "name": "Training & Support"
+            "name": "Training & Support",
+            "eosc_id": "supercategory-training_and_support"
         },
         "model": "service.supercategory",
         "pk": "d4dca882-2738-4d35-b3ec-3d7767b26a10"
     },
     {
         "fields": {
-            "name": "Processing & Analysis"
+            "name": "Processing & Analysis",
+            "eosc_id": "supercategory-processing_and_analysis"
         },
         "model": "service.supercategory",
         "pk": "de968f83-3d9b-4f2e-b729-6d8a6ea80e89"
     },
     {
         "fields": {
-            "name": "Access physical & e-Infrastructures"
+            "name": "Access physical & eInfrastructures",
+            "eosc_id": "supercategory-access_physical_and_eInfrastructures"
         },
         "model": "service.supercategory",
         "pk": "ef1e6a6b-22f3-48d7-8386-d66ab524d784"
     },
     {
         "fields": {
-            "name": "Other"
+            "name": "Other",
+            "eosc_id": "supercategory-other"
         },
         "model": "service.supercategory",
         "pk": "f842c49c-db1e-4984-b36f-1bdc7afb5741"
