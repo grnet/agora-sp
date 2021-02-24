@@ -41,7 +41,6 @@ module.exports = function(environment) {
         info: 'Agora is a service developed and maintained by <a href="https://grnet.gr/en/" alt="grnet">GRNET</a> co-funded by <a href="" alt="https://www.eosc-hub.eu/">EOSC-Hub</a> and <a href="https://www.eudat.eu/eudat-collaborative-data-infrastructure-cdi">EUDAT CDI</a>',
         // Privacy Policy settings
         privacy_policy: true,
-        privacy_title: 'Privacy Policy',
         privacy_login_service: 'AGORA AAI',
         privacy_login_url: 'aai.agora.grnet.gr',
         privacy_service_url: 'agora.grnet.gr',
