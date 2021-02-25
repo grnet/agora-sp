@@ -148,6 +148,8 @@ function fields_eosc(fields) {
   return fields;
 }
 
+const EOSC_HINT = EOSC_DISABLED ? '': '<span class="pill">EOSC required</span>';
+
 
 export {
   AgoraGen,
@@ -158,4 +160,5 @@ export {
   basic_model,
   basic_model_fields,
   fields_eosc,
+  EOSC_HINT,
 };
