@@ -267,6 +267,10 @@ class Resource(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     published_at = models.DateTimeField(blank=True, null=True)
 
+    eosc_id = models.CharField(max_length=255, blank=True, null=True)
+    eosc_published = models.DateTimeField(auto_now_add=True, null=True)
+    eosc_state = models.CharField(max_length=255, blank=True, null=True)
+
     def __unicode__(self):
         return str(self.erp_bai_0_id)
 

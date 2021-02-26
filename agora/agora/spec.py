@@ -1760,6 +1760,18 @@ RESOURCES = {
             'default': 'draft',
             '.flag.filterable': {},
         },
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
+        'eosc_published': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
+        'eosc_state': {
+            '.field.string': {},
+            'default': 'draft',
+            '.flag.filterable': {}},
     },
     'actions': {
         '.action-template.django.list': {},
