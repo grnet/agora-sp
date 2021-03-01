@@ -1765,7 +1765,7 @@ RESOURCES = {
             '.flag.nullable.default': {},
             '.flag.searchable': {},
             '.flag.orderable': {}},
-        'eosc_published': {
+        'eosc_published_at': {
             '.flag.nowrite': {},
             '.field.datetime': {}},
         'eosc_state': {
