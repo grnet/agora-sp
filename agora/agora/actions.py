@@ -2,18 +2,15 @@
 import requests
 import logging
 from datetime import datetime
-import pdb
 from django.conf import settings
 import json
 from datetime import datetime
 from django.utils import timezone
+from apimas.errors import ValidationError
 
 EOSC_API_URL = getattr(settings, 'EOSC_API_URL', '')
 EOSC_TOKEN = getattr(settings, 'EOSC_TOKEN', '')
 logger = logging.getLogger(__name__)
-
-def get_list(resource):
-    return [o.name for o in resource.all()]
 
 
 def get_contact(contact):
@@ -258,7 +255,6 @@ def create_eosc_api_json(instance):
 
 
 def resource_post_eosc(backend_input, instance, context):
-    #pdb.set_trace()
     eosc_req = create_eosc_api_json(instance)
     url = EOSC_API_URL+'resource'
     id  = str(instance.id)
@@ -278,9 +274,10 @@ def resource_post_eosc(backend_input, instance, context):
         logger.info('Response json: %s' %(response.json()))
         instance.eosc_state = "Published"
         instance.eosc_id = response.json()['id']
-        instance.eosc_published = datetime.now(timezone.utc)
+        instance.eosc_published_at = datetime.now(timezone.utc)
     except requests.exceptions.RequestException as err:
         logger.info('Response status code: %s, %s, %s' % (url, err, response.json()))
         instance.eosc_state = "Error"
+        raise ValidationError(response.json()['error'])
     instance.save()
     return instance
