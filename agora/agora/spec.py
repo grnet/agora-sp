@@ -842,6 +842,11 @@ ORGANISATIONS = {
             '.field.uuid': {},
             '.flag.nowrite': {}},
             '.flag.orderable': {},
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
         'created_at': {
             '.flag.nowrite': {},
             '.field.datetime': {}},

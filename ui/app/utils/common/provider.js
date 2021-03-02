@@ -251,9 +251,9 @@ const DETAILS_FIELDSETS = [{
   label: 'provider.cards.basic_information',
   text: 'provider.cards.basic_hint',
   layout: {
-    flex: [50, 50, 100, 100, 100, 50, 50]
+    flex: [50, 50, 100, 100, 100, 50, 50, 100]
   },
-  fields: [
+  fields: fields_eosc([
     'epp_bai_0_id',
     'state',
     'epp_bai_1_name',
@@ -261,7 +261,8 @@ const DETAILS_FIELDSETS = [{
     'epp_bai_3_website',
     'epp_bai_4_legal_entity',
     'epp_bai_5_legal_status',
-  ]
+    'eosc_id',
+  ])
 },
 DETAILS_CLASSIFICATION_FIELDSET,
 {
@@ -294,9 +295,9 @@ const EDIT_FIELDSETS = [{
   label: 'provider.cards.basic_information',
   text: 'provider.cards.basic_hint',
   layout: {
-    flex: [50, 50, 100, 100, 100, 50, 50]
+    flex: [50, 50, 100, 100, 100, 50, 50, 100]
   },
-  fields: [
+  fields: fields_eosc([
     'epp_bai_0_id',
     field('state', {disabled: true}),
     'epp_bai_1_name',
@@ -304,7 +305,8 @@ const EDIT_FIELDSETS = [{
     'epp_bai_3_website',
     'epp_bai_4_legal_entity',
     'epp_bai_5_legal_status',
-  ]
+    'eosc_id',
+  ])
 },
 CLASSIFICATION_FIELDSET,
 {
@@ -337,16 +339,17 @@ const CREATE_FIELDSETS = [{
   label: 'provider.cards.basic_information',
   text: 'provider.cards.basic_hint',
   layout: {
-    flex: [100, 100, 100, 100, 50, 50]
+    flex: [100, 100, 100, 100, 50, 50, 100]
   },
-  fields: [
+  fields: fields_eosc([
     'epp_bai_0_id',
     'epp_bai_1_name',
     'epp_bai_2_abbreviation',
     'epp_bai_3_website',
     'epp_bai_4_legal_entity',
     'epp_bai_5_legal_status',
-  ]
+    'eosc_id',
+  ])
 },
 CLASSIFICATION_FIELDSET,
 {
