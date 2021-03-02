@@ -7,7 +7,7 @@ const {
   get,
 } = Ember;
 
-const DISABLED = ENV.APP.eosc_portal.disabled;
+const DISABLED = !ENV.APP.eosc_portal.enabled;
 
 function prompt(self, method) {
   const erp_bai_1_name = get(self, 'model.erp_bai_1_name');

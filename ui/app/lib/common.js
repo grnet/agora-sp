@@ -3,7 +3,7 @@ import { field } from 'ember-gen';
 import _ from 'lodash/lodash';
 import ENV from '../config/environment';
 import validate from 'ember-gen/validate';
-const EOSC_DISABLED = ENV.APP.eosc_portal.disabled;
+const EOSC_DISABLED = !ENV.APP.eosc_portal.enabled;
 
 const {
   get,

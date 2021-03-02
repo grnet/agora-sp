@@ -183,13 +183,12 @@ They are all optional.
 #### API calls to EOSC PORTAL
 
 Users with role `provideradmin` can publish and unpublish resources to  EOSC Portal via agora. 
-This feature is disabled by default.  
-In order to enable it, you must alter `ui/config/environment.js` as follows:
+In order to disable this feature, you must alter `ui/config/environment.js` as follows:
 
 ```javascript
 APP: {
   eosc_portal: {
-    disabled: true 
+    enabled: false 
   }
 }
 ```
