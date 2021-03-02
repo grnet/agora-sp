@@ -163,16 +163,17 @@ const TABLE_FIELDS = [
 
 const DETAILS_BASIC_INFO_FIELDSET = {
   label: 'resource.cards.basic',
-  fields: [
+  fields: fields_eosc([
     'erp_bai_0_id',
     'state',
     'erp_bai_1_name',
     field('erp_bai_2_service_organisation.epp_bai_1_name', {label: 'resource.fields.erp_bai_2_service_organisation'}),
     'erp_bai_3_providers_verbose',
     'erp_bai_4_webpage',
-  ],
+    'eosc_id',
+  ]),
   layout: {
-    flex: [50, 50, 50, 50, 100, 100],
+    flex: [50, 50, 50, 50, 100, 100, 100],
   },
 };
 
@@ -263,7 +264,7 @@ const EDIT_BASIC_INFO_FIELDSET = {
     // serviceadmins cannot change resource organsation
     const disabled = role === 'serviceadmin';
 
-    return [
+    return fields_eosc([
       field('erp_bai_0_id'),
       field('state', {
         disabled: true,
@@ -274,11 +275,12 @@ const EDIT_BASIC_INFO_FIELDSET = {
       }),
       providers,
       'erp_bai_4_webpage',
-    ]
+      field('eosc_id', {disabled: true}),
+    ])
 
   }),
   layout: {
-    flex: [50, 50, 50, 50, 100, 100],
+    flex: [50, 50, 50, 50, 100, 100, 100],
   },
 };
 
@@ -290,7 +292,7 @@ const CREATE_BASIC_INFO_FIELDSET = {
     // serviceadmins/provideradmins cannot change resource organsation
     const disabled = role === 'serviceadmin' || role === 'provideradmin';
 
-    return [
+    return fields_eosc([
       field('erp_bai_0_id'),
       'erp_bai_1_name',
       field('erp_bai_2_service_organisation', {
@@ -298,11 +300,12 @@ const CREATE_BASIC_INFO_FIELDSET = {
       }),
       providers,
       'erp_bai_4_webpage',
-    ]
+      field('eosc_id', {disabled: true}),
+    ])
 
   }),
   layout: {
-    flex: [100, 50, 50, 100, 100],
+    flex: [100, 50, 50, 100, 100, 100],
   },
 };
 const GEO_FIELDSET = {
