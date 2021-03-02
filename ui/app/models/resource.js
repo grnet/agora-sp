@@ -319,6 +319,8 @@ let model = DS.Model.extend({
     hint: 'resource.hints.erp_fni_2_pricing',
   }),
 
+  eosc_id: DS.attr(),
+
   state: DS.attr({
     type: 'select',
     choices: CHOICES.RESOURCE_STATES,
