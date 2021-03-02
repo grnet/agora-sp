@@ -152,54 +152,32 @@ def get_list_sci_domains(categories, subcategories):
 
 def create_eosc_api_json(instance):
     resource_json = {}
-    if instance.erp_bai_1_name != None:
-        resource_json['name'] = instance.erp_bai_1_name
-    if instance.erp_bai_2_organisation.eosc_id != None:
+    resource_json['name'] = instance.erp_bai_1_name
+    if instance.erp_bai_2_organisation != None:
         resource_json['resourceOrganisation'] = instance.erp_bai_2_organisation.eosc_id
-    if len(instance.erp_bai_3_providers.all())> 0:
-        resource_json['resourceProviders'] = [o.eosc_id for o in instance.erp_bai_3_providers.all()]
-    if instance.erp_bai_4_webpage != None:
-        resource_json['webpage'] = instance.erp_bai_4_webpage
-    if instance.erp_mri_1_description != None:
-        resource_json['description'] = instance.erp_mri_1_description
-    if instance.erp_mri_2_tagline != None:
-        resource_json['tagline'] = instance.erp_mri_2_tagline
-    if instance.erp_mri_3_logo != None:
-        resource_json['logo'] = instance.erp_mri_3_logo
-    if instance.erp_mri_4_mulitimedia != None:
-        resource_json['multimedia'] = [instance.erp_mri_4_mulitimedia]
-    if instance.erp_mri_5_use_cases != None:
-        resource_json['useCases'] = [instance.erp_mri_5_use_cases]
-    if instance.erp_cli_1_scientific_domain != None:
-        resource_json['scientificDomains'] = get_list_sci_domains(instance.erp_cli_1_scientific_domain, instance.erp_cli_2_scientific_subdomain)
-    if instance.erp_cli_3_category != None:
-        resource_json['categories'] = get_list_categories(instance.erp_cli_3_category, instance.erp_cli_4_subcategory)
-    if len(instance.erp_cli_5_target_users.all())> 0:
-        resource_json['targetUsers'] = [o.eosc_id for o in instance.erp_cli_5_target_users.all()]
-    if len(instance.erp_cli_6_access_type.all())> 0:
-        resource_json['accessTypes'] = [o.eosc_id for o in instance.erp_cli_6_access_type.all()]
-    if len(instance.erp_cli_7_access_mode.all())> 0:
-        resource_json['accessModes'] = [o.eosc_id for o in instance.erp_cli_7_access_mode.all()]
+    resource_json['resourceProviders'] = [o.eosc_id for o in instance.erp_bai_3_providers.all()]
+    resource_json['webpage'] = instance.erp_bai_4_webpage
+    resource_json['description'] = instance.erp_mri_1_description
+    resource_json['tagline'] = instance.erp_mri_2_tagline
+    resource_json['logo'] = instance.erp_mri_3_logo
+    resource_json['multimedia'] = [instance.erp_mri_4_mulitimedia]
+    resource_json['useCases'] = [instance.erp_mri_5_use_cases]
+    resource_json['scientificDomains'] = get_list_sci_domains(instance.erp_cli_1_scientific_domain, instance.erp_cli_2_scientific_subdomain)
+    resource_json['categories'] = get_list_categories(instance.erp_cli_3_category, instance.erp_cli_4_subcategory)
+    resource_json['targetUsers'] = [o.eosc_id for o in instance.erp_cli_5_target_users.all()]
+    resource_json['accessTypes'] = [o.eosc_id for o in instance.erp_cli_6_access_type.all()]
+    resource_json['accessModes'] = [o.eosc_id for o in instance.erp_cli_7_access_mode.all()]
     if instance.erp_cli_8_tags != None:
         resource_json['tags'] = instance.erp_cli_8_tags.replace(" ","").split(",")
-    if instance.erp_mgi_1_helpdesk_webpage != None:
-        resource_json['helpdeskPage'] = instance.erp_mgi_1_helpdesk_webpage
-    if instance.erp_mgi_2_user_manual != None:
-        resource_json['userManual'] = instance.erp_mgi_2_user_manual
-    if instance.erp_mgi_3_terms_of_use != None:
-        resource_json['termsOfUse'] = instance.erp_mgi_3_terms_of_use
-    if instance.erp_mgi_4_privacy_policy != None:
-        resource_json['privacyPolicy'] = instance.erp_mgi_4_privacy_policy
-    if instance.erp_mgi_5_access_policy != None:
-        resource_json['accessPolicy'] = instance.erp_mgi_5_access_policy
-    if instance.erp_mgi_6_sla_specification != None:
-        resource_json['serviceLevel'] = instance.erp_mgi_6_sla_specification
-    if instance.erp_mgi_7_training_information != None:
-        resource_json['trainingInformation'] = instance.erp_mgi_7_training_information
-    if instance.erp_mgi_8_status_monitoring != None:
-        resource_json['statusMonitoring'] = instance.erp_mgi_8_status_monitoring
-    if instance.erp_mgi_9_maintenance != None:
-        resource_json['maintenance'] = instance.erp_mgi_9_maintenance
+    resource_json['helpdeskPage'] = instance.erp_mgi_1_helpdesk_webpage
+    resource_json['userManual'] = instance.erp_mgi_2_user_manual
+    resource_json['termsOfUse'] = instance.erp_mgi_3_terms_of_use
+    resource_json['privacyPolicy'] = instance.erp_mgi_4_privacy_policy
+    resource_json['accessPolicy'] = instance.erp_mgi_5_access_policy
+    resource_json['serviceLevel'] = instance.erp_mgi_6_sla_specification
+    resource_json['trainingInformation'] = instance.erp_mgi_7_training_information
+    resource_json['statusMonitoring'] = instance.erp_mgi_8_status_monitoring
+    resource_json['maintenance'] = instance.erp_mgi_9_maintenance
     if instance.erp_gla_1_geographical_availability != None:
         resource_json['geographicalAvailabilities'] = [ match_geolocation(o.strip()) for o in instance.erp_gla_1_geographical_availability.split(",")]
     if instance.erp_gla_2_language != None:
@@ -210,13 +188,11 @@ def create_eosc_api_json(instance):
         resource_json['mainContact'] = get_contact(instance.main_contact)
     if instance.public_contact != None:
         resource_json['publicContacts'] = [get_contact(instance.public_contact)]
-    if instance.erp_coi_13_helpdesk_email != None:
-        resource_json['helpdeskEmail'] = instance.erp_coi_13_helpdesk_email
-    if instance.erp_coi_14_security_contact_email != None:
-        resource_json['securityContactEmail'] = instance.erp_coi_14_security_contact_email
-    if instance.erp_mti_1_technology_readiness_level.eosc_id != None:
+    resource_json['helpdeskEmail'] = instance.erp_coi_13_helpdesk_email
+    resource_json['securityContactEmail'] = instance.erp_coi_14_security_contact_email
+    if instance.erp_mti_1_technology_readiness_level != None:
         resource_json['trl'] = instance.erp_mti_1_technology_readiness_level.eosc_id
-    if instance.erp_mti_2_life_cycle_status.eosc_id != None:
+    if instance.erp_mti_2_life_cycle_status != None:
         resource_json['lifeCycleStatus'] = instance.erp_mti_2_life_cycle_status.eosc_id
     if instance.erp_mti_3_certifications != None:
         resource_json['certifications'] = instance.erp_mti_3_certifications.split('\n')
@@ -224,32 +200,22 @@ def create_eosc_api_json(instance):
         resource_json['standards'] = instance.erp_mti_4_standards.split('\n')
     if instance.erp_mti_5_open_source_technologies != None: 
         resource_json['openSourceTechnologies'] = instance.erp_mti_5_open_source_technologies.split('\n')
-    if instance.erp_mti_6_version != None:
-        resource_json['version'] = instance.erp_mti_6_version
-    if instance.erp_mti_7_last_update != None:
-        resource_json['lastUpdate'] = instance.erp_mti_7_last_update
+    resource_json['version'] = instance.erp_mti_6_version
+    resource_json['lastUpdate'] = instance.erp_mti_7_last_update
     if instance.erp_mti_8_changelog != None:
         resource_json['changeLog'] = instance.erp_mti_8_changelog.split('\n')
     if instance.erp_dei_3_related_platforms != None:
         resource_json['relatedPlatforms'] = instance.erp_dei_3_related_platforms.replace(" ","").split(",")
-    if len(instance.erp_ati_1_funding_body.all())> 0:
-        resource_json['fundingBody'] = [o.eosc_id for o in instance.erp_ati_1_funding_body.all()]
-    if len(instance.erp_ati_2_funding_program.all())> 0:
-        resource_json['fundingPrograms'] = [o.eosc_id for o in instance.erp_ati_2_funding_program.all()]
-    if instance.erp_ati_3_grant_project_name != None:
-        resource_json['grantProjectNames'] = [instance.erp_ati_3_grant_project_name]
-    if instance.erp_aoi_1_order_type.eosc_id != None:
+    resource_json['fundingBody'] = [o.eosc_id for o in instance.erp_ati_1_funding_body.all()]
+    resource_json['fundingPrograms'] = [o.eosc_id for o in instance.erp_ati_2_funding_program.all()]
+    resource_json['grantProjectNames'] = [instance.erp_ati_3_grant_project_name]
+    if instance.erp_aoi_1_order_type != None:
         resource_json['orderType'] = instance.erp_aoi_1_order_type.eosc_id
-    if instance.erp_aoi_2_order != None:
-        resource_json['order'] = instance.erp_aoi_2_order
-    if instance.erp_fni_1_payment_model != None:
-        resource_json['paymentModel'] = instance.erp_fni_1_payment_model
-    if instance.erp_fni_2_pricing != None:
-        resource_json['pricing'] = instance.erp_fni_2_pricing
-    if len(instance.required_resources.all())> 0:
-        resource_json['requiredResources'] = [o.eosc_id for o in instance.required_resources.all()]
-    if len(instance.related_resources.all())> 0:
-        resource_json['relatedResources'] = [o.eosc_id for o in instance.related_resources.all()]
+    resource_json['order'] = instance.erp_aoi_2_order
+    resource_json['paymentModel'] = instance.erp_fni_1_payment_model
+    resource_json['pricing'] = instance.erp_fni_2_pricing
+    resource_json['requiredResources'] = [o.eosc_id for o in instance.required_resources.all()]
+    resource_json['relatedResources'] = [o.eosc_id for o in instance.related_resources.all()]
     print(json.dumps(resource_json))
     return resource_json
 
