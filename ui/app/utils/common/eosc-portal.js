@@ -117,7 +117,7 @@ const postResourceEOSC = {
   hidden: computed(
     'role',
     'model.state',
-    'model.eosc-portal-id',
+    'model.eosc_id',
     'model.erp_bai_2_service_organisation',
     function(){
 
@@ -126,7 +126,7 @@ const postResourceEOSC = {
       let user_org = get(this, 'session.session.authenticated.organisation');
       let state = get(this, 'model.state');
       let resource_org = get(this, 'model.erp_bai_2_service_organisation.id');
-      let portal_id = get(this, 'model.eosc-portal-id');
+      let portal_id = get(this, 'model.eosc_id');
 
       let user_is_provideradmin = role === 'provideradmin';
       let user_owns_organisation = user_org === resource_org;
@@ -203,7 +203,7 @@ const putResourceEOSC = {
   hidden: computed(
     'role',
     'model.state',
-    'model.eosc-portal-id',
+    'model.eosc_id',
     'model.erp_bai_2_service_organisation',
     function(){
       if ( DISABLED ) { return true }
@@ -211,7 +211,7 @@ const putResourceEOSC = {
       let user_org = get(this, 'session.session.authenticated.organisation');
       let role = get(this, 'role');
       let state = get(this, 'model.state');
-      let portal_id = get(this, 'model.eosc-portal-id');
+      let portal_id = get(this, 'model.eosc_id');
 
       let user_is_provideradmin = role === 'provideradmin';
       let user_owns_organisation = user_org === resource_org;
