@@ -1804,8 +1804,15 @@ RESOURCES = {
             '.action.django.recipe.partial_update': {},
             'method': 'POST',
             'status_code': 200,
-            'url': '/*/post-eosc/',
+            'url': '/*/publish-eosc/',
             ':custom_update_handler': 'agora.actions.resource_publish_eosc',
+        },
+        'update-eosc': {
+            '.action.django.recipe.partial_update': {},
+            'method': 'POST',
+            'status_code': 200,
+            'url': '/*/update-eosc/',
+            ':custom_update_handler': 'agora.actions.resource_update_eosc',
         },
     },
 }

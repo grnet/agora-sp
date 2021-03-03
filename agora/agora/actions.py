@@ -31,10 +31,37 @@ def resource_publish_eosc(backend_input, instance, context):
         response.raise_for_status()
         logger.info('Response status code: %s' %(response.status_code))
         logger.info('Response json: %s' %(response.json()))
-        if response.status_code == 201:
-            instance.eosc_state = "Published"
-            instance.eosc_id = response.json()['id']
-            instance.eosc_published_at = datetime.now(timezone.utc)
+        instance.eosc_state = "Published"
+        instance.eosc_id = response.json()['id']
+        instance.eosc_published_at = datetime.now(timezone.utc)
+    except requests.exceptions.RequestException as err:
+        logger.info('Response status code: %s, %s, %s' % (url, err, response.json()))
+        instance.eosc_state = "Error"
+        raise ValidationError(response.json()['error'])
+    instance.save()
+    return instance
+
+
+def resource_update_eosc(backend_input, instance, context):
+    eosc_req = create_eosc_api_json(instance)
+    url = EOSC_API_URL+'resource'
+    id  = str(instance.id)
+    username = context['auth/user'].username
+    headers = {
+        'Authorization': EOSC_TOKEN,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+    }
+    logger.info('EOSC PORTAL API call to PUT resource \
+        with id %s to %s has been made by %s at %s \
+        ' %(id, url, username, datetime.now()))
+    try:
+        response = requests.put(url, headers=headers,json=eosc_req)
+        response.raise_for_status()
+        logger.info('Response status code: %s' %(response.status_code))
+        logger.info('Response json: %s' %(response.json()))
+        instance.eosc_state = "Updated"
+        instance.eosc_updated_at = datetime.now(timezone.utc)
     except requests.exceptions.RequestException as err:
         logger.info('Response status code: %s, %s, %s' % (url, err, response.json()))
         instance.eosc_state = "Error"
