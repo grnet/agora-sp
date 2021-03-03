@@ -272,6 +272,8 @@ class Organisation(models.Model):
     published_at = models.DateTimeField(blank=True, null=True)
 
     eosc_id = models.CharField(max_length=255, blank=True, null=True)
+    eosc_published_at = models.DateTimeField(auto_now_add=True, null=True)
+    eosc_state = models.CharField(max_length=255, blank=True, null=True)
 
     @property
     def epp_oth_3_affiliations_verbose(self):
