@@ -94,7 +94,7 @@ const postResourceEOSC = {
 		let adapter = get(route, 'store').adapterFor('resource');
 		let token = get(route, 'user.auth_token');
 		let url = adapter.buildURL('resource', get(model, 'id'), 'findRecord');
-		return fetch(url + 'post-eosc/', {
+		return fetch(url + 'publish-eosc/', {
 			method: 'POST',
 			headers: {
 				Accept: 'application/json',
@@ -180,7 +180,7 @@ const putResourceEOSC = {
 		let adapter = get(route, 'store').adapterFor('resource');
 		let token = get(route, 'user.auth_token');
 		let url = adapter.buildURL('resource', get(model, 'id'), 'findRecord');
-		return fetch(url + 'put-eosc/', {
+		return fetch(url + 'publish-eosc/', {
 			method: 'POST',
 			headers: {
 				Accept: 'application/json',
