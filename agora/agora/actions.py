@@ -220,7 +220,7 @@ def create_eosc_api_json(instance):
     return resource_json
 
 
-def resource_post_eosc(backend_input, instance, context):
+def resource_publish_eosc(backend_input, instance, context):
     eosc_req = create_eosc_api_json(instance)
     url = EOSC_API_URL+'resource'
     id  = str(instance.id)
