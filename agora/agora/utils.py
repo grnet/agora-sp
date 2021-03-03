@@ -326,6 +326,8 @@ def get_list_sci_domains(categories, subcategories):
 
 def create_eosc_api_json(instance):
     resource_json = {}
+    if instance.eosc_id != None:
+        resource_json['id'] = instance.eosc_id
     resource_json['name'] = instance.erp_bai_1_name
     if instance.erp_bai_2_organisation != None:
         resource_json['resourceOrganisation'] = instance.erp_bai_2_organisation.eosc_id
@@ -390,7 +392,6 @@ def create_eosc_api_json(instance):
     resource_json['pricing'] = instance.erp_fni_2_pricing
     resource_json['requiredResources'] = [o.eosc_id for o in instance.required_resources.all()]
     resource_json['relatedResources'] = [o.eosc_id for o in instance.related_resources.all()]
-    print(json.dumps(resource_json))
     return resource_json
 
 
