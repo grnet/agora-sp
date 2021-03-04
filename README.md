@@ -158,6 +158,10 @@ APP: {
     cookies: [
       ['Session State', 'agora.grnet.gr', '_shibsession_xyz', 'No', 'Session', 'Preserve user session information'],
     ],
+    // Acccess Policy settings
+    access_policy: false,
+    // Terms of use settings
+    terms: false,
     // If  set, logos will be visible in footer.
     logos: [{
       url: 'http://grnet.github.io/grnet-media-pack/grnet/logos/grnet_logo_en.svg',
@@ -169,6 +173,7 @@ APP: {
   },
 }
 ```
+
 
 They are all optional.
 
