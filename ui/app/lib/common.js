@@ -1,6 +1,7 @@
 import { CRUDGen } from 'ember-gen/lib/gen';
 import { field } from 'ember-gen';
 import _ from 'lodash/lodash';
+import validate from 'ember-gen/validate';
 
 const {
   get,
@@ -87,9 +88,17 @@ const capitalize = (s) => {
 }
 
 
+
+const httpValidator = validate.format({
+  regex: /^(https:\/\/|http:\/\/)/i,
+  allowBlank: true,
+  message: 'urlStarts.message',
+})
+
 export {
   AgoraGen,
   fileField,
   computeI18NChoice,
 	capitalize,
+  httpValidator,
 };
