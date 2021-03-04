@@ -4,12 +4,10 @@
   </div>
   <div>
     <p>
-    {{{ copyright }}}
-    {{{ info }}}
-    {{{ version_contact }}}
+      {{{ copyright }}}
+      {{{ info }}}
     </p>
-  </div>
-  <div class="footer-links">
+    <div class="footer-links">
     {{# if cookies_policy}}
       <a href="#" onclick={{action 'openDialog' 'cookies'}}>{{ cookies_text}}</a>
     {{/if}}
@@ -22,6 +20,10 @@
     {{#if terms}}
        {{#link-to 'terms'}}{{t 'terms.page.title' }}{{/link-to}}
     {{/if}}
+    </div>
+  </div>
+  <div>
+    {{{ version_contact }}}
   </div>
 </div>
 {{#if dialogVisible}}
