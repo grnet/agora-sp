@@ -15,6 +15,8 @@ logger = logging.getLogger(__name__)
 
 def resource_publish_eosc(backend_input, instance, context):
     eosc_req = create_eosc_api_json(instance)
+    if 'resourceOrganisation' not in eosc_req or len(eosc_req['resourceOrganisation']) == 0:
+        raise ValidationError('Resource provider has not an eosc_id')
     url = EOSC_API_URL+'resource'
     id  = str(instance.id)
     username = context['auth/user'].username
@@ -37,13 +39,15 @@ def resource_publish_eosc(backend_input, instance, context):
     except requests.exceptions.RequestException as err:
         logger.info('Response status code: %s, %s, %s' % (url, err, response.json()))
         instance.eosc_state = "Error"
-        raise ValidationError(response.json()['error'])
+        raise ValidationError("EOSC API: " +response.json()['error'])
     instance.save()
     return instance
 
 
 def resource_update_eosc(backend_input, instance, context):
     eosc_req = create_eosc_api_json(instance)
+    if 'resourceOrganisation' not in eosc_req or len(eosc_req['resourceOrganisation'].strip()) == 0:
+        raise ValidationError('Resource provider has not an eosc_id')
     url = EOSC_API_URL+'resource'
     id  = str(instance.id)
     username = context['auth/user'].username
@@ -65,6 +69,6 @@ def resource_update_eosc(backend_input, instance, context):
     except requests.exceptions.RequestException as err:
         logger.info('Response status code: %s, %s, %s' % (url, err, response.json()))
         instance.eosc_state = "Error"
-        raise ValidationError(response.json()['error'])
+        raise ValidationError("EOSC API: " + response.json()['error'])
     instance.save()
     return instance
