@@ -11,6 +11,8 @@ export const eosc = {
       ok: 'Publish',
       message: `<div class="eosc-portal-modal"><img src="${ROOT_URL}assets/logo-eosc-portal.png" /><p>This action will publish the resource to <strong>${EOSC_PORTAL_API}</strong>.<br />Are you sure you want to continue?</p></div>`,
       message_missing: `<div class="eosc-portal-modal"><img src="${ROOT_URL}assets/logo-eosc-portal.png" /><p>In order to publish the resource to <strong>${EOSC_PORTAL_API}</strong>,<br /> you need to fill the following fields:</p>{{{list_missing}}}</div>`,
+      error: 'The action could not be successfully performed',
+      success: 'The resource has been successfully published to EOSC Portal',
     },
     put: {
       title: 'Update Resource published to EOSC Portal',
@@ -18,6 +20,8 @@ export const eosc = {
       ok: 'Update',
       message: `<div class="eosc-portal-modal"><img src="${ROOT_URL}assets/logo-eosc-portal.png" /><p>This action will update the resource published to <strong>${EOSC_PORTAL_API}</strong>.<br />Are you sure you want to continue?</p></div>`,
       message_missing: `<div class="eosc-portal-modal"><img src="${ROOT_URL}assets/logo-eosc-portal.png" /><p>In order to update the resource published to <strong>${EOSC_PORTAL_API}</strong>,<br /> you need to fill the following fields:</p>{{{list_missing}}}</div>`,
+      error: 'The action could not be successfully performed',
+      success: 'The resource has been successfully updated to EOSC Portal',
     }
   },
 };
