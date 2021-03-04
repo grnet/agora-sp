@@ -52,6 +52,10 @@ module.exports = function(environment) {
         cookies: [
           ['Session State', 'agora.grnet.gr', '_shibsession_xyz', 'No', 'Session', 'Preserve user session information'],
         ],
+        // Acccess Policy settings
+        access_policy: true,
+        // Terms of use settings
+        terms: true,
         logos: [{
           url: 'https://grnet.github.io/grnet-media-pack/grnet/logos/grnet_logo_en.svg',
           alt: 'grnet',

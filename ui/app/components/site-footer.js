@@ -11,6 +11,8 @@ export default Ember.Component.extend({
   cookies_text: ENV.APP.footer["cookies_title"],
   privacy_policy: ENV.APP.footer["privacy_policy"],
   privacy_text: ENV.APP.footer["privacy_title"],
+  access_policy: ENV.APP.footer["access_policy"],
+  terms: ENV.APP.footer["terms"],
 
   logos: computed("", function () {
     let logos = ENV.APP.footer.logos || [];

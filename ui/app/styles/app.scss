@@ -88,6 +88,15 @@ footer {
     height: 40px;
     margin: 0 3px;
   }
+  .footer-links a {
+    display: inline-block;
+    padding-left: 3px;
+    margin-left: 3px;
+    border-left: 1px solid black;
+    &:first-child {
+      border: 0 none;
+    }
+  }
 }
 
 md-input-container.md-default-theme.md-input-invalid {

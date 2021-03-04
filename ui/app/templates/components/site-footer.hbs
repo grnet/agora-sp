@@ -9,13 +9,18 @@
     {{{ version_contact }}}
     </p>
   </div>
-  <div>
+  <div class="footer-links">
     {{# if cookies_policy}}
       <a href="#" onclick={{action 'openDialog' 'cookies'}}>{{ cookies_text}}</a>
     {{/if}}
-    {{# if (and cookies_policy  privacy_policy) }} | {{/if}}
     {{#if privacy_policy}}
       {{#link-to 'privacy-policy'}}{{t 'privacy_policy.page.title' }}{{/link-to}}
+    {{/if}}
+    {{#if access_policy}}
+       {{#link-to 'access-policy'}}{{t 'access_policy.page.title' }}{{/link-to}}
+    {{/if}}
+    {{#if terms}}
+       {{#link-to 'terms'}}{{t 'terms.page.title' }}{{/link-to}}
     {{/if}}
   </div>
 </div>

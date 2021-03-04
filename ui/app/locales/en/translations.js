@@ -19,6 +19,8 @@ import { merilsubdomain} from './merilsubdomain';
 import { network } from './network';
 import { order_type } from './order_type';
 import { privacy_policy } from './privacy_policy';
+import { access_policy } from './access_policy';
+import { terms } from './terms';
 import { profile } from './profile';
 import { provider } from './provider';
 import { resource } from './resource';
@@ -68,6 +70,8 @@ export default {
   network,
   order_type,
   privacy_policy,
+  access_policy,
+  terms,
   profile,
   provider,
   resource,
