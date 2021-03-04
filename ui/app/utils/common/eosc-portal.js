@@ -107,7 +107,10 @@ const postResourceEOSC = {
 					messages.setSuccess('eosc.resource.post.success');
 				});
 			} else {
-				messages.setSuccess('eosc.resource.post.error');
+        resp.json().then((data)=> {
+          let err_msg = data && data.details || 'eosc.resource.post.error';
+				  messages.setError(err_msg);
+        })
 			}
 		})
 		.catch(err => {
@@ -193,7 +196,10 @@ const putResourceEOSC = {
 					messages.setSuccess('eosc.resource.put.success');
 				});
 			} else {
-				messages.setSuccess('eosc.resource.put.error');
+        resp.json().then((data)=> {
+          let err_msg = data && data.details || 'eosc.resource.put.error';
+				  messages.setError(err_msg);
+        })
 			}
 		})
 		.catch(err => {
