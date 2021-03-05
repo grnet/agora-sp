@@ -1,7 +1,6 @@
 import { CRUDGen } from 'ember-gen/lib/gen';
 import { field } from 'ember-gen';
 import _ from 'lodash/lodash';
-import validate from 'ember-gen/validate';
 import ENV from '../config/environment';
 import validate from 'ember-gen/validate';
 const EOSC_DISABLED = ENV.APP.eosc_portal.disabled;
