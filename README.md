@@ -147,7 +147,6 @@ APP: {
     info: 'Agora is a service developed and maintained by <a href="https://grnet.gr/en/" alt="grnet">GRNET</a> co-funded by <a href="" alt="https://www.eosc-hub.eu/">EOSC-Hub</a> and <a href="https://www.eudat.eu/eudat-collaborative-data-infrastructure-cdi">EUDAT CDI</a>',
     // Privacy Policy settings
     privacy_policy: true,
-    privacy_title: 'Privacy Policy',
     privacy_login_service: 'AGORA AAI',
     privacy_login_url: 'aai.agora.grnet.gr',
     privacy_service_url: 'agora.grnet.gr',
@@ -159,6 +158,10 @@ APP: {
     cookies: [
       ['Session State', 'agora.grnet.gr', '_shibsession_xyz', 'No', 'Session', 'Preserve user session information'],
     ],
+    // Acccess Policy settings
+    access_policy: false,
+    // Terms of use settings
+    terms: false,
     // If  set, logos will be visible in footer.
     logos: [{
       url: 'http://grnet.github.io/grnet-media-pack/grnet/logos/grnet_logo_en.svg',
@@ -171,9 +174,9 @@ APP: {
 }
 ```
 
+
 They are all optional.
 
-If you wish to use `policy.hbs` template for you policy page, you can alter the title and the content by editing `ui/app/locales/en/policy.js` file.
 
 #### Text editor configuration
 

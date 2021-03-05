@@ -1,5 +1,10 @@
-{{#gen-page classNames=(if gen.nested 'nested' '') as |page|}}
-  {{page.toolbar}}
+{{#gen-page as |page|}}
+  {{#paper-toolbar class="md-whiteframe-1dp page-main-toolbar"}}
+    <div class="md-padding">
+      {{t gen.page.title }}
+    </div>
+
+  {{/paper-toolbar}}
 
   {{#page.content}}
     <md-content>
@@ -7,9 +12,8 @@
         {{#paper-card}}
           {{#paper-card-title}}
             {{#paper-card-title-text}}
-              <h4>{{t 'policy.page.title'}}</h4>
               <div>
-                {{{t 'policy.page.content'}}}
+                {{component gen.content}}
               </div>
             {{/paper-card-title-text}}
           {{/paper-card-title}}
