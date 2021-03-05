@@ -7,7 +7,7 @@ const {
   get,
 } = Ember;
 
-const DISABLED = ENV.APP.eosc_portal.disabled;
+const DISABLED = !ENV.APP.eosc_portal.enabled;
 
 function prompt(self, method) {
   const erp_bai_1_name = get(self, 'model.erp_bai_1_name');
@@ -94,7 +94,7 @@ const postResourceEOSC = {
 		let adapter = get(route, 'store').adapterFor('resource');
 		let token = get(route, 'user.auth_token');
 		let url = adapter.buildURL('resource', get(model, 'id'), 'findRecord');
-		return fetch(url + 'post-eosc/', {
+		return fetch(url + 'publish-eosc/', {
 			method: 'POST',
 			headers: {
 				Accept: 'application/json',
@@ -107,7 +107,10 @@ const postResourceEOSC = {
 					messages.setSuccess('eosc.resource.post.success');
 				});
 			} else {
-				messages.setSuccess('eosc.resource.post.error');
+        resp.json().then((data)=> {
+          let err_msg = data && data.details || 'eosc.resource.post.error';
+				  messages.setError(err_msg);
+        })
 			}
 		})
 		.catch(err => {
@@ -117,7 +120,7 @@ const postResourceEOSC = {
   hidden: computed(
     'role',
     'model.state',
-    'model.eosc-portal-id',
+    'model.eosc_id',
     'model.erp_bai_2_service_organisation',
     function(){
 
@@ -126,7 +129,7 @@ const postResourceEOSC = {
       let user_org = get(this, 'session.session.authenticated.organisation');
       let state = get(this, 'model.state');
       let resource_org = get(this, 'model.erp_bai_2_service_organisation.id');
-      let portal_id = get(this, 'model.eosc-portal-id');
+      let portal_id = get(this, 'model.eosc_id');
 
       let user_is_provideradmin = role === 'provideradmin';
       let user_owns_organisation = user_org === resource_org;
@@ -180,7 +183,7 @@ const putResourceEOSC = {
 		let adapter = get(route, 'store').adapterFor('resource');
 		let token = get(route, 'user.auth_token');
 		let url = adapter.buildURL('resource', get(model, 'id'), 'findRecord');
-		return fetch(url + 'put-eosc/', {
+		return fetch(url + 'update-eosc/', {
 			method: 'POST',
 			headers: {
 				Accept: 'application/json',
@@ -193,7 +196,10 @@ const putResourceEOSC = {
 					messages.setSuccess('eosc.resource.put.success');
 				});
 			} else {
-				messages.setSuccess('eosc.resource.put.error');
+        resp.json().then((data)=> {
+          let err_msg = data && data.details || 'eosc.resource.put.error';
+				  messages.setError(err_msg);
+        })
 			}
 		})
 		.catch(err => {
@@ -203,7 +209,7 @@ const putResourceEOSC = {
   hidden: computed(
     'role',
     'model.state',
-    'model.eosc-portal-id',
+    'model.eosc_id',
     'model.erp_bai_2_service_organisation',
     function(){
       if ( DISABLED ) { return true }
@@ -211,7 +217,7 @@ const putResourceEOSC = {
       let user_org = get(this, 'session.session.authenticated.organisation');
       let role = get(this, 'role');
       let state = get(this, 'model.state');
-      let portal_id = get(this, 'model.eosc-portal-id');
+      let portal_id = get(this, 'model.eosc_id');
 
       let user_is_provideradmin = role === 'provideradmin';
       let user_owns_organisation = user_org === resource_org;

@@ -244,6 +244,9 @@ export default DS.Model.extend({
     label: 'provider.fields.epp_oth_12_national_roadmaps',
     hint: 'provider.hints.epp_oth_12_national_roadmaps',
   }),
+
+  eosc_id: DS.attr(),
+
   state: DS.attr({
     type: 'select',
     choices: CHOICES.PROVIDER_STATES,

@@ -842,6 +842,11 @@ ORGANISATIONS = {
             '.field.uuid': {},
             '.flag.nowrite': {}},
             '.flag.orderable': {},
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
         'created_at': {
             '.flag.nowrite': {},
             '.field.datetime': {}},
@@ -1760,6 +1765,18 @@ RESOURCES = {
             'default': 'draft',
             '.flag.filterable': {},
         },
+        'eosc_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {}},
+        'eosc_published_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
+        'eosc_state': {
+            '.field.string': {},
+            'default': 'draft',
+            '.flag.filterable': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -1783,12 +1800,19 @@ RESOURCES = {
                 },
             },
         },
-        'post-eosc': {
+        'publish-eosc': {
             '.action.django.recipe.partial_update': {},
             'method': 'POST',
             'status_code': 200,
-            'url': '/*/post-eosc/',
-            ':custom_update_handler': 'agora.actions.resource_post_eosc',
+            'url': '/*/publish-eosc/',
+            ':custom_update_handler': 'agora.actions.resource_publish_eosc',
+        },
+        'update-eosc': {
+            '.action.django.recipe.partial_update': {},
+            'method': 'POST',
+            'status_code': 200,
+            'url': '/*/update-eosc/',
+            ':custom_update_handler': 'agora.actions.resource_update_eosc',
         },
     },
 }
