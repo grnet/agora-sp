@@ -11,7 +11,25 @@ from agora.utils import create_eosc_api_json
 
 EOSC_API_URL = getattr(settings, 'EOSC_API_URL', '')
 EOSC_TOKEN = getattr(settings, 'EOSC_TOKEN', '')
+OIDC_REFRESH_TOKEN = getattr(settings, 'OIDC_REFRESH_TOKEN', '')
+OIDC_CLIENT_ID =  getattr(settings, 'OIDC_CLIENT_ID', '')
+OIDC_URL = getattr(settings, 'OIDC_URL', '')
 logger = logging.getLogger(__name__)
+
+def get_access_token(oidc_url, refresh_token, client_id ):
+    obj={
+        'grant_type': 'refresh_token',
+        'refresh_token': refresh_token,
+        'client_id': client_id,
+        'scope': 'openid email profile'
+    }
+    try:
+        response = requests.post(oidc_url, data=obj)
+        response.raise_for_status()
+    except requests.exceptions.RequestException as err:
+        logger.info('Response status code: %s, %s, %s' % (oidc_url, err, response.json()))
+        raise ValidationError("AAI: "+response.json()['error'])
+    return response.json()['access_token']
 
 def resource_publish_eosc(backend_input, instance, context):
     eosc_req = create_eosc_api_json(instance)
@@ -20,8 +38,9 @@ def resource_publish_eosc(backend_input, instance, context):
     url = EOSC_API_URL+'resource'
     id  = str(instance.id)
     username = context['auth/user'].username
+    eosc_token = get_access_token(OIDC_URL, OIDC_REFRESH_TOKEN, OIDC_CLIENT_ID)
     headers = {
-        'Authorization': EOSC_TOKEN,
+        'Authorization': eosc_token,
         'Accept': 'application/json',
         'Content-Type': 'application/json',
     }
@@ -51,8 +70,9 @@ def resource_update_eosc(backend_input, instance, context):
     url = EOSC_API_URL+'resource'
     id  = str(instance.id)
     username = context['auth/user'].username
+    eosc_token = get_access_token(OIDC_URL, OIDC_REFRESH_TOKEN, OIDC_CLIENT_ID)
     headers = {
-        'Authorization': EOSC_TOKEN,
+        'Authorization': eosc_token,
         'Accept': 'application/json',
         'Content-Type': 'application/json',
     }
