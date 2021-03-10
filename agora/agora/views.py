@@ -3,6 +3,7 @@ import json
 import re
 import urlparse
 import os
+import datetime
 
 from djoser import views as djoser_views
 from rest_framework.views import exception_handler
@@ -11,10 +12,21 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.contrib.auth import user_logged_in
-from accounts.models import User
+from accounts.models import User, Organisation
+from service.models import Resource
 from agora.emails import send_email_shib_user_created
 from agora.utils import load_resources, load_permissions, get_root_url
 from agora.serializers import UserMeSerializer
+
+PAST = datetime.date(2000, 1, 1)
+FUTURE = datetime.date(2100, 1, 1)
+
+def valid_date(date_text, default):
+    try:
+        date = datetime.datetime.strptime(date_text, '%d-%m-%Y')
+        return date
+    except ValueError:
+        return default
 
 
 logger = logging.getLogger(__name__)
@@ -188,3 +200,34 @@ class CustomMe(djoser_views.UserView):
 
     def get_serializer_class(self):
         return UserMeSerializer
+
+def accounting(request):
+    date_from = valid_date(request.GET.get('from', ''), PAST)
+    date_to = valid_date(request.GET.get('to', ''), FUTURE)
+
+    new_users = User.objects.filter(date_joined__range=(date_from, date_to)).count()
+    new_resources = Resource.objects.filter(created_at__range=(date_from, date_to)).count()
+    new_providers = Organisation.objects.filter(created_at__range=(date_from, date_to)).count()
+
+    updated_resources = Resource.objects.filter(updated_at__range=(date_from, date_to)).count()
+    updated_providers = Organisation.objects.filter(updated_at__range=(date_from, date_to)).count()
+
+    data = {
+        'date_from': date_from,
+        'date_to': date_to,
+        'resources': {
+            'new_resources': new_resources,
+            'updated_resources': updated_resources,
+        },
+        'providers': {
+            'new_providers': new_providers,
+            'updated_providers': updated_providers,
+        },
+        'users': {
+            'new_users': new_users,
+        }
+    }
+
+    return JsonResponse(data)
+
+
