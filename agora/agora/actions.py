@@ -10,7 +10,6 @@ from apimas.errors import ValidationError
 from agora.utils import create_eosc_api_json
 
 EOSC_API_URL = getattr(settings, 'EOSC_API_URL', '')
-EOSC_TOKEN = getattr(settings, 'EOSC_TOKEN', '')
 OIDC_REFRESH_TOKEN = getattr(settings, 'OIDC_REFRESH_TOKEN', '')
 OIDC_CLIENT_ID =  getattr(settings, 'OIDC_CLIENT_ID', '')
 OIDC_URL = getattr(settings, 'OIDC_URL', '')
