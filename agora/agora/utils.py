@@ -323,6 +323,15 @@ def get_list_sci_domains(categories, subcategories):
             categories_list.append({'scientificDomain': category.eosc_id, 'scientificSubdomain': sub})
     return unique_list_domains(categories_list)
 
+# Return fallback value
+def check_eosc_id(eosc_id, fallback_value):
+    if eosc_id == None:
+        return fallback_value
+    elif len(eosc_id.strip())==0:
+        return fallback_value
+    else:
+        return eosc_id
+
 
 def create_eosc_api_json(instance):
     resource_json = {}
@@ -340,9 +349,9 @@ def create_eosc_api_json(instance):
     resource_json['useCases'] = [instance.erp_mri_5_use_cases]
     resource_json['scientificDomains'] = get_list_sci_domains(instance.erp_cli_1_scientific_domain, instance.erp_cli_2_scientific_subdomain)
     resource_json['categories'] = get_list_categories(instance.erp_cli_3_category, instance.erp_cli_4_subcategory)
-    resource_json['targetUsers'] = [o.eosc_id for o in instance.erp_cli_5_target_users.all()]
-    resource_json['accessTypes'] = [o.eosc_id for o in instance.erp_cli_6_access_type.all()]
-    resource_json['accessModes'] = [o.eosc_id for o in instance.erp_cli_7_access_mode.all()]
+    resource_json['targetUsers'] = [check_eosc_id(o.eosc_id, 'target_user-other') for o in instance.erp_cli_5_target_users.all()]
+    resource_json['accessTypes'] = [check_eosc_id(o.eosc_id, 'access_type-other') for o in instance.erp_cli_6_access_type.all()]
+    resource_json['accessModes'] = [check_eosc_id(o.eosc_id, 'access_mode-other') for o in instance.erp_cli_7_access_mode.all()]
     if instance.erp_cli_8_tags != None:
         resource_json['tags'] = instance.erp_cli_8_tags.replace(" ","").split(",")
     resource_json['helpdeskPage'] = instance.erp_mgi_1_helpdesk_webpage
@@ -367,9 +376,9 @@ def create_eosc_api_json(instance):
     resource_json['helpdeskEmail'] = instance.erp_coi_13_helpdesk_email
     resource_json['securityContactEmail'] = instance.erp_coi_14_security_contact_email
     if instance.erp_mti_1_technology_readiness_level != None:
-        resource_json['trl'] = instance.erp_mti_1_technology_readiness_level.eosc_id
+        resource_json['trl'] = check_eosc_id(instance.erp_mti_1_technology_readiness_level.eosc_id, 'trl-1')
     if instance.erp_mti_2_life_cycle_status != None:
-        resource_json['lifeCycleStatus'] = instance.erp_mti_2_life_cycle_status.eosc_id
+        resource_json['lifeCycleStatus'] = check_eosc_id(instance.erp_mti_2_life_cycle_status.eosc_id,'life_cycle_status-other')
     if instance.erp_mti_3_certifications != None:
         resource_json['certifications'] = instance.erp_mti_3_certifications.split('\n')
     if instance.erp_mti_4_standards != None:
@@ -382,11 +391,11 @@ def create_eosc_api_json(instance):
         resource_json['changeLog'] = instance.erp_mti_8_changelog.split('\n')
     if instance.erp_dei_3_related_platforms != None:
         resource_json['relatedPlatforms'] = instance.erp_dei_3_related_platforms.replace(" ","").split(",")
-    resource_json['fundingBody'] = [o.eosc_id for o in instance.erp_ati_1_funding_body.all()]
-    resource_json['fundingPrograms'] = [o.eosc_id for o in instance.erp_ati_2_funding_program.all()]
+    resource_json['fundingBody'] = [check_eosc_id(o.eosc_id,'funding_body-other') for o in instance.erp_ati_1_funding_body.all()]
+    resource_json['fundingPrograms'] = [check_eosc_id(o.eosc_id,'funding_program-other') for o in instance.erp_ati_2_funding_program.all()]
     resource_json['grantProjectNames'] = [instance.erp_ati_3_grant_project_name]
     if instance.erp_aoi_1_order_type != None:
-        resource_json['orderType'] = instance.erp_aoi_1_order_type.eosc_id
+        resource_json['orderType'] = check_eosc_id(instance.erp_aoi_1_order_type.eosc_id, 'order_type-other')
     resource_json['order'] = instance.erp_aoi_2_order
     resource_json['paymentModel'] = instance.erp_fni_1_payment_model
     resource_json['pricing'] = instance.erp_fni_2_pricing
