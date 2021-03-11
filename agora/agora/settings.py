@@ -360,7 +360,9 @@ SETTINGS_FILE = 'settings.conf'
 SETTINGS_PATH = os.path.join(SETTINGS_DIR, SETTINGS_FILE)
 
 EOSC_API_URL = 'https://beta.providers.eosc-portal.eu/api/'
-EOSC_TOKEN = '<my-token>'
+OIDC_URL = 'https://aai.eosc-portal.eu/oidc/token'
+OIDC_REFRESH_TOKEN = '<oidc-refresh-token>'
+OIDC_CLIENT_ID = '<oidc-id>'
 
 if not os.path.isfile(SETTINGS_PATH):
     m = "Cannot find settings file {0!r}. Consider using AGORA_SETTINGS_DIR "
