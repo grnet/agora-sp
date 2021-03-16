@@ -1,4 +1,6 @@
 import { EOSC_HINT } from '../../lib/common';
+const HOW_ADD_NEW = '<br />Hit <strong>ENTER</strong>  to add a new entry.';
+const SEPARATOR = 'New line';
 
 const resource = {
   cards: {
@@ -124,12 +126,12 @@ const resource = {
     public_contact: `${EOSC_HINT}This info will be exposed to public API`,
     erp_mti_1_technology_readiness_level: `${EOSC_HINT}The Technology Readiness Level of the Resource uodated in the context of the EOSC.`,
     erp_mti_2_life_cycle_status: 'Phase of the Resource life-cycle.',
-    erp_mti_3_certifications: 'List of certifications obtained for the Resource (including the certification body).',
-    erp_mti_4_standards: 'List of standards supported by the Resource.',
-    erp_mti_5_open_source_technologies: 'List of open source technologies supported by the Resource.',
+    erp_mti_3_certifications: `<strong>${SEPARATOR}</strong> separated list of certifications obtained for the Resource (including the certification body).${HOW_ADD_NEW}`,
+    erp_mti_4_standards: `<strong>${SEPARATOR}</strong> separated list of standards supported by the Resource.${HOW_ADD_NEW}`,
+    erp_mti_5_open_source_technologies: `<strong>${SEPARATOR}</strong> separated list of open source technologies supported by the Resource.${HOW_ADD_NEW}`,
     erp_mti_6_version: 'Version of the Resource that is in force.',
     erp_mti_7_last_update: 'Date of the latest update of the Resource.',
-    erp_mti_8_changelog: 'Summary of the Resource features updated from the previous version.',
+    erp_mti_8_changelog: `<strong>${SEPARATOR}</strong> separated list of the summary of the Resource features updated from the previous version.${HOW_ADD_NEW}`,
     erp_dei_1_required_resources: 'List of other Resources required to use this Resource.',
     erp_dei_2_related_resources: 'List of other Resources that are commonly used with this Resource.',
     erp_dei_3_related_platforms: 'List of suites or thematic platforms in which the Resource is engaged or Providers (Provider groups) contributing to this Resource.',

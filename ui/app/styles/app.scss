@@ -187,7 +187,6 @@ img.logo {
   max-height: 100px;
 }
 
-
 .eosc-portal-modal {
   img {
     max-width: 200px;
@@ -206,5 +205,6 @@ img.logo {
   padding: 1px 4px;
 }
 
-
-
+md-input-container textarea.md-input {
+  min-height: 78px;
+}
