@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 - Move Privacy Policy to dedicated url
+- Resource's changεlog, open source, standards and certification fields are now 
+textareas in the UI
 
 ## [1.1.3](https://github.com/grnet/agora-sp/compare/v1.1.2...v1.1.3) - 2021-02-03
 
