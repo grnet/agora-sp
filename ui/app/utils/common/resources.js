@@ -150,15 +150,17 @@ const contact = function(field_name) {
 const SORT_FIELDS = [
   'erp_bai_0_id',
   'erp_bai_1_name',
+  'eosc_id',
 ];
 
-const TABLE_FIELDS = [
+const TABLE_FIELDS = fields_eosc([
   field('erp_bai_0_id', {label: 'resource.table.erp_bai_0_id'}),
   field('erp_bai_1_name', {label: 'resource.table.erp_bai_1_name'}),
   field('erp_bai_2_service_organisation.epp_bai_1_name', {label: 'resource.table.erp_bai_2_service_organisation'}),
   field('erp_mti_1_technology_readiness_level.name', {label: 'resource.table.erp_mti_1_technology_readiness_level'}),
   field('state_verbose', { label: 'resource.table.state_verbose'}),
-];
+  'eosc_id',
+]);
 
 
 const DETAILS_BASIC_INFO_FIELDSET = {
