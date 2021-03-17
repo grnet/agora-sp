@@ -208,3 +208,10 @@ img.logo {
 md-input-container textarea.md-input {
   min-height: 78px;
 }
+
+.details-field .field-value {
+  white-space: pre-line;
+   &:first-line {
+      line-height: 0;
+  }
+}
