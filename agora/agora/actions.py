@@ -32,7 +32,7 @@ def get_access_token(oidc_url, refresh_token, client_id ):
 
 def resource_publish_eosc(backend_input, instance, context):
     eosc_req = create_eosc_api_json(instance)
-    if 'resourceOrganisation' not in eosc_req or len(eosc_req['resourceOrganisation'].strip()) == 0:
+    if 'resourceOrganisation' not in eosc_req or eosc_req['resourceOrganisation'] == None or len(eosc_req['resourceOrganisation'].strip()) == 0:
         raise ValidationError('Resource provider has not an eosc_id')
     url = EOSC_API_URL+'resource'
     id  = str(instance.id)
@@ -64,7 +64,7 @@ def resource_publish_eosc(backend_input, instance, context):
 
 def resource_update_eosc(backend_input, instance, context):
     eosc_req = create_eosc_api_json(instance)
-    if 'resourceOrganisation' not in eosc_req or len(eosc_req['resourceOrganisation'].strip()) == 0:
+    if 'resourceOrganisation' not in eosc_req or eosc_req['resourceOrganisation'] == None or len(eosc_req['resourceOrganisation'].strip()) == 0:
         raise ValidationError('Resource provider has not an eosc_id')
     url = EOSC_API_URL+'resource'
     id  = str(instance.id)
