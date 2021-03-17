@@ -7,14 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ##[Unreleased]
 
 ### Added
-- Add Terms of Use page (disabled by default)
-- Add Access Policy page (disabled by default)
-- Publish resource action to EOSC portal 
+- Add Terms of Use page (disabled by default).
+- Add Access Policy page (disabled by default).
+- Publish resource action to EOSC portal.
 
 ### Changed
-- Move Privacy Policy to dedicated url
-- Resource's changεlog, open source, standards and certification fields are now 
-textareas in the UI
+- Move Privacy Policy to dedicated url.
+- Resource's changelog, open source, standards and certification fields are now 
+textareas in the UI.
 
 ## [1.1.3](https://github.com/grnet/agora-sp/compare/v1.1.2...v1.1.3) - 2021-02-03
 
