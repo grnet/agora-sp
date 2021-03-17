@@ -1,6 +1,11 @@
 import { field } from 'ember-gen';
 import { fileField, fields_eosc } from '../../lib/common';
 
+const {
+  get,
+  computed,
+} = Ember;
+
 const MARKETING_FIELDSET = {
   label: 'provider.cards.marketing',
   text: 'provider.cards.marketing_hint',
@@ -297,16 +302,20 @@ const EDIT_FIELDSETS = [{
   layout: {
     flex: [50, 50, 100, 100, 100, 50, 50, 100]
   },
-  fields: fields_eosc([
-    'epp_bai_0_id',
-    field('state', {disabled: true}),
-    'epp_bai_1_name',
-    'epp_bai_2_abbreviation',
-    'epp_bai_3_website',
-    'epp_bai_4_legal_entity',
-    'epp_bai_5_legal_status',
-    'eosc_id',
-  ])
+  fields: computed('role', function() {
+    let role = get(this, 'role');
+    const disabled = role === 'provideradmin';
+    return fields_eosc([
+      'epp_bai_0_id',
+      field('state', {disabled: true}),
+      'epp_bai_1_name',
+      'epp_bai_2_abbreviation',
+      'epp_bai_3_website',
+      'epp_bai_4_legal_entity',
+      'epp_bai_5_legal_status',
+      field('eosc_id', {disabled}),
+    ]);
+  }),
 },
 CLASSIFICATION_FIELDSET,
 {
