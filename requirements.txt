@@ -11,5 +11,5 @@ django-suit==0.2.25
 djangorestframework==3.9.1
 djoser==0.5.2
 future==0.15.2
-Pillow==6.2.0
+Pillow==8.1.1
 beautifulsoup4==4.6.3
