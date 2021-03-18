@@ -2,7 +2,8 @@
     {
         "fields": {
             "description": "System complete and qualified",
-            "name": "TRL8"
+            "name": "TRL8",
+            "eosc_id": "trl-8"
         },
         "model": "service.trl",
         "pk": "2cb99d96-6404-425f-a1c8-2d7a7e87ea4e"
@@ -10,7 +11,8 @@
     {
         "fields": {
             "description": "Technology validated in relevant environment (industrially relevant environment in the case of key enabling technologies)",
-            "name": "TRL5"
+            "name": "TRL5",
+            "eosc_id": "trl-5"
         },
         "model": "service.trl",
         "pk": "50726038-a9b1-4be2-bfb0-c5302ea6230d"
@@ -18,7 +20,8 @@
     {
         "fields": {
             "description": "Basic principles observed",
-            "name": "TRL1"
+            "name": "TRL1",
+            "eosc_id": "trl-1"
         },
         "model": "service.trl",
         "pk": "556c1481-9dc6-4d67-ab78-cf1a0140bb36"
@@ -26,7 +29,8 @@
     {
         "fields": {
             "description": "Actual system proven in operational environment (competitive manufacturing in the case of key enabling technologies; or in space)",
-            "name": "TRL9"
+            "name": "TRL9",
+            "eosc_id": "trl-9"
         },
         "model": "service.trl",
         "pk": "5af323ad-f244-415e-9cd0-9367e7948300"
@@ -34,7 +38,8 @@
     {
         "fields": {
             "description": "System prototype demonstration in operational environment",
-            "name": "TRL7"
+            "name": "TRL7",
+            "eosc_id": "trl-7"
         },
         "model": "service.trl",
         "pk": "8050357e-2d36-40e3-9e77-d7813919659b"
@@ -42,7 +47,8 @@
     {
         "fields": {
             "description": "Technology demonstrated in relevant environment (industrially relevant environment in the case of key enabling technologies)",
-            "name": "TRL6"
+            "name": "TRL6",
+            "eosc_id": "trl-6"
         },
         "model": "service.trl",
         "pk": "99830473-2e10-4563-bad7-9f2b017105e7"
@@ -50,7 +56,8 @@
     {
         "fields": {
             "description": "Technology concept formulated",
-            "name": "TRL2"
+            "name": "TRL2",
+            "eosc_id": "trl-2"
         },
         "model": "service.trl",
         "pk": "b0eb02a5-dcf6-417b-ad22-456e9ee5b4cd"
@@ -58,7 +65,8 @@
     {
         "fields": {
             "description": "Experimental proof of concept",
-            "name": "TRL3"
+            "name": "TRL3",
+            "eosc_id": "trl-3"
         },
         "model": "service.trl",
         "pk": "bd26118c-2e7e-45ff-9113-33820a4af938"
@@ -66,7 +74,8 @@
     {
         "fields": {
             "description": "Technology validated in lab",
-            "name": "TRL4"
+            "name": "TRL4",
+            "eosc_id": "trl-4"
         },
         "model": "service.trl",
         "pk": "faeaadde-926f-4fbf-ac15-3760175e261f"

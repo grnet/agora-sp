@@ -1,4 +1,6 @@
 import { field } from 'ember-gen';
+import { fileField, fields_eosc } from '../../lib/common';
+
 const {
   get,
   computed,
@@ -8,7 +10,7 @@ const domain = field('erp_cli_1_scientific_domain', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
-      fields: ['name'],
+      fields: fields_eosc(['name', 'eosc_id']),
     },
   },
 });
@@ -17,7 +19,7 @@ const subdomain = field('erp_cli_2_scientific_subdomain', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
-      fields: ['domain.name','name'],
+      fields: fields_eosc(['domain.name', 'name', 'eosc_id']),
     },
   },
 });
@@ -26,7 +28,7 @@ const category = field('erp_cli_3_category', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
-      fields: ['supercategory.name', 'name'],
+      fields: fields_eosc(['supercategory.name', 'name', 'eosc_id']),
     },
   },
 });
@@ -35,7 +37,7 @@ const subcategory = field('erp_cli_4_subcategory', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
-      fields: ['category.name', 'name'],
+      fields: fields_eosc(['category.name', 'name', 'eosc_id']),
     },
   },
 });
@@ -49,14 +51,50 @@ const providers = field('erp_bai_3_service_providers', {
   },
 });
 
-const targetUsers = field('erp_cli_5_target_users', {
+const target_users = field('erp_cli_5_target_users', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
-      fields: ['user'],
+      fields: fields_eosc(['user', 'eosc_id']),
     },
   },
 
+});
+
+const access_type = field('erp_cli_6_access_type', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: fields_eosc(['name', 'description', 'eosc_id']),
+    },
+  },
+});
+
+const access_mode = field('erp_cli_7_access_mode', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: fields_eosc(['name', 'description', 'eosc_id']),
+    },
+  },
+});
+
+const funding_body = field('erp_ati_1_funding_body', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: fields_eosc(['name', 'eosc_id']),
+    },
+  },
+});
+
+const funding_program = field('erp_ati_2_funding_program', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: fields_eosc(['name', 'eosc_id']),
+    },
+  },
 });
 
 const required_resources = field('required_resources', {
@@ -112,29 +150,32 @@ const contact = function(field_name) {
 const SORT_FIELDS = [
   'erp_bai_0_id',
   'erp_bai_1_name',
+  'eosc_id',
 ];
 
-const TABLE_FIELDS = [
+const TABLE_FIELDS = fields_eosc([
   field('erp_bai_0_id', {label: 'resource.table.erp_bai_0_id'}),
   field('erp_bai_1_name', {label: 'resource.table.erp_bai_1_name'}),
   field('erp_bai_2_service_organisation.epp_bai_1_name', {label: 'resource.table.erp_bai_2_service_organisation'}),
   field('erp_mti_1_technology_readiness_level.name', {label: 'resource.table.erp_mti_1_technology_readiness_level'}),
   field('state_verbose', { label: 'resource.table.state_verbose'}),
-];
+  'eosc_id',
+]);
 
 
 const DETAILS_BASIC_INFO_FIELDSET = {
   label: 'resource.cards.basic',
-  fields: [
+  fields: fields_eosc([
     'erp_bai_0_id',
     'state',
     'erp_bai_1_name',
     field('erp_bai_2_service_organisation.epp_bai_1_name', {label: 'resource.fields.erp_bai_2_service_organisation'}),
     'erp_bai_3_providers_verbose',
     'erp_bai_4_webpage',
-  ],
+    'eosc_id',
+  ]),
   layout: {
-    flex: [50, 50, 50, 50, 100, 100],
+    flex: [50, 50, 50, 50, 100, 100, 100],
   },
 };
 
@@ -145,9 +186,9 @@ const DETAILS_CLASSIFICATION_FIELDSET = {
     'erp_cli_2_scientific_subdomain_verbose',
     'erp_cli_3_category_verbose',
     'erp_cli_4_subcategory_verbose',
-    'erp_cli_5_target_users',
-    'erp_cli_6_access_type',
-    'erp_cli_7_access_mode',
+    target_users,
+    access_type,
+    access_mode,
     'erp_cli_8_tags',
   ],
   layout: {
@@ -162,9 +203,9 @@ const CLASSIFICATION_FIELDSET = {
     subdomain,
     category,
     subcategory,
-    'erp_cli_5_target_users',
-    'erp_cli_6_access_type',
-    'erp_cli_7_access_mode',
+    target_users,
+    access_type,
+    access_mode,
     'erp_cli_8_tags',
   ],
   layout: {
@@ -225,7 +266,7 @@ const EDIT_BASIC_INFO_FIELDSET = {
     // serviceadmins cannot change resource organsation
     const disabled = role === 'serviceadmin';
 
-    return [
+    return fields_eosc([
       field('erp_bai_0_id'),
       field('state', {
         disabled: true,
@@ -236,11 +277,12 @@ const EDIT_BASIC_INFO_FIELDSET = {
       }),
       providers,
       'erp_bai_4_webpage',
-    ]
+      field('eosc_id', {disabled: true}),
+    ])
 
   }),
   layout: {
-    flex: [50, 50, 50, 50, 100, 100],
+    flex: [50, 50, 50, 50, 100, 100, 100],
   },
 };
 
@@ -252,7 +294,7 @@ const CREATE_BASIC_INFO_FIELDSET = {
     // serviceadmins/provideradmins cannot change resource organsation
     const disabled = role === 'serviceadmin' || role === 'provideradmin';
 
-    return [
+    return fields_eosc([
       field('erp_bai_0_id'),
       'erp_bai_1_name',
       field('erp_bai_2_service_organisation', {
@@ -260,11 +302,12 @@ const CREATE_BASIC_INFO_FIELDSET = {
       }),
       providers,
       'erp_bai_4_webpage',
-    ]
+      field('eosc_id', {disabled: true}),
+    ])
 
   }),
   layout: {
-    flex: [100, 50, 50, 100, 100],
+    flex: [100, 50, 50, 100, 100, 100],
   },
 };
 const GEO_FIELDSET = {
@@ -393,8 +436,8 @@ const DEPENDENCIES_FIELDSET = {
 const ATTRIBUTION_FIELDSET = {
   label: 'resource.cards.attribution',
   fields: [
-    'erp_ati_1_funding_body',
-    'erp_ati_2_funding_program',
+    funding_body,
+    funding_program,
     'erp_ati_3_grant_project_name',
   ],
   layout: {

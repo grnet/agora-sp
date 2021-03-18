@@ -230,22 +230,16 @@ let model = DS.Model.extend({
     label: 'resource.fields.erp_mti_3_certifications',
     hint: 'resource.hints.erp_mti_3_certifications',
     type: 'text',
-    formComponent: 'text-editor',
-    htmlSafe: true
   }),
   erp_mti_4_standards: DS.attr({
     label: 'resource.fields.erp_mti_4_standards',
     hint: 'resource.hints.erp_mti_4_standards',
     type: 'text',
-    formComponent: 'text-editor',
-    htmlSafe: true
   }),
   erp_mti_5_open_source_technologies: DS.attr({
     label: 'resource.fields.erp_mti_5_open_source_technologies',
     hint: 'resource.hints.erp_mti_5_open_source_technologies',
     type: 'text',
-    formComponent: 'text-editor',
-    htmlSafe: true
   }),
   erp_mti_6_version: DS.attr({
     label: 'resource.fields.erp_mti_6_version',
@@ -259,8 +253,6 @@ let model = DS.Model.extend({
     label: 'resource.fields.erp_mti_8_changelog',
     hint: 'resource.hints.erp_mti_8_changelog',
     type: 'text',
-    formComponent: 'text-editor',
-    htmlSafe: true
   }),
 
   // Dependencies Information
@@ -318,6 +310,8 @@ let model = DS.Model.extend({
     label: 'resource.fields.erp_fni_2_pricing',
     hint: 'resource.hints.erp_fni_2_pricing',
   }),
+
+  eosc_id: DS.attr(),
 
   state: DS.attr({
     type: 'select',

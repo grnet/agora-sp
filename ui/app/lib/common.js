@@ -1,7 +1,9 @@
 import { CRUDGen } from 'ember-gen/lib/gen';
 import { field } from 'ember-gen';
 import _ from 'lodash/lodash';
+import ENV from '../config/environment';
 import validate from 'ember-gen/validate';
+const EOSC_DISABLED = !ENV.APP.eosc_portal.enabled;
 
 const {
   get,
@@ -88,12 +90,65 @@ const capitalize = (s) => {
 }
 
 
-
 const httpValidator = validate.format({
   regex: /^(https:\/\/|http:\/\/)/i,
   allowBlank: true,
   message: 'urlStarts.message',
 })
+
+
+function basic_model(desc) {
+  let fields = desc? ['name', 'description', 'eosc_id']: ['name', 'eosc_id'];
+  return basic_model_fields(fields);
+}
+
+function basic_model_fields(fields, required) {
+
+  if (EOSC_DISABLED) {
+    fields.pop();
+  }
+  let flex = new Array(fields.length).fill(100);
+  let validators = {};
+  if (fields.includes('name')) {
+    validators.name = [validate.presence(true)]
+  }
+  if (required) {
+    validators[required] = [validate.presence(true)]
+  }
+  return {
+    common: {
+      fieldsets: [
+        {
+          label: 'common.cards.basic',
+          fields,
+          layout: {
+            flex,
+          },
+        }
+      ],
+      validators,
+    },
+    row: {
+      actions: ['gen:details', 'gen:edit', 'remove'],
+      fields
+    },
+    sort: {
+      serverSide: true,
+      active: true,
+      fields: ['name', 'eosc_id', 'user'],
+    },
+  }
+}
+
+function fields_eosc(fields) {
+  if (EOSC_DISABLED) {
+    fields.pop();
+  }
+  return fields;
+}
+
+const EOSC_HINT = EOSC_DISABLED ? '': '<span class="pill">EOSC required</span>';
+
 
 export {
   AgoraGen,
@@ -101,4 +156,8 @@ export {
   computeI18NChoice,
 	capitalize,
   httpValidator,
+  basic_model,
+  basic_model_fields,
+  fields_eosc,
+  EOSC_HINT,
 };

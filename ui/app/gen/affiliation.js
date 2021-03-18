@@ -1,12 +1,5 @@
-import validate from 'ember-gen/validate';
 import { AgoraGen } from '../lib/common';
-import {
-  CREATE_FIELDSETS,
-  EDIT_FIELDSETS,
-  DETAILS_FIELDSETS,
-  TABLE_FIELDS,
-  SORT_FIELDS,
-} from '../utils/common/affiliation';
+import validate from 'ember-gen/validate';
 
 export default AgoraGen.extend({
   modelName: 'affiliation',
@@ -14,9 +7,17 @@ export default AgoraGen.extend({
   resourceName: 'api/v2/affiliations',
   common: {
     validators: {
-      id: [validate.presence(true)],
-      name: [validate.presence(true)],
+      'name': [validate.presence(true)]
     },
+    fieldsets: [
+      {
+        label: 'common.cards.basic',
+        fields: ['name'],
+        layout: {
+          flex: [100]
+        },
+      }
+    ],
   },
   list: {
     page: {
@@ -35,7 +36,6 @@ export default AgoraGen.extend({
     },
     row: {
       actions: ['gen:details', 'gen:edit', 'remove'],
-      fields: TABLE_FIELDS,
     },
     filter: {
       active: false,
@@ -46,17 +46,7 @@ export default AgoraGen.extend({
     sort: {
       serverSide: true,
       active: true,
-      sortBy: 'name',
       fields: ['name'],
-    },
-  },
-  details: {
-    fieldsets: DETAILS_FIELDSETS,
-  },
-  edit: {
-    fieldsets: EDIT_FIELDSETS,
-  },
-  create: {
-    fieldsets: CREATE_FIELDSETS,
+    }
   },
 });

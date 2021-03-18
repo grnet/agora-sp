@@ -1,10 +1,13 @@
-import { AgoraGen } from '../lib/common';
+import { AgoraGen, basic_model_fields } from '../lib/common';
+
+const {common, row, sort} = basic_model_fields(['user', 'description', 'eosc_id'], 'user');
 
 export default AgoraGen.extend({
   modelName: 'target-user',
   order: 200,
   path: 'target-users',
   resourceName: 'api/v2/target-users',
+  common,
   list: {
     page: {
       title: 'target_user.menu'
@@ -19,20 +22,13 @@ export default AgoraGen.extend({
         order: 900,
       },
     },
-    row: {
-      actions: ['gen:details', 'gen:edit', 'remove'],
-    },
+    row,
     filter: {
       active: false,
       serverSide: true,
       search: true,
       searchPlaceholder: 'common.placeholders.search',
     },
-    sort: {
-      serverSide: true,
-      active: true,
-      sortBy: 'user',
-      fields: ['user'],
-    },
+    sort,
   },
 });

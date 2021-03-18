@@ -179,6 +179,29 @@ APP: {
 They are all optional.
 
 
+
+#### API calls to EOSC PORTAL
+
+Users with role `provideradmin` can publish and unpublish resources to  EOSC Portal via agora. 
+In order to disable this feature, you must alter `ui/config/environment.js` as follows:
+
+```javascript
+APP: {
+  eosc_portal: {
+    enabled: false 
+  }
+}
+```
+
+To be able to publish resources to EOSC-API you should setup the values at `agora/agora/settings.py`
+- `EOSC_API_URL`: 'https://beta.providers.eosc-portal.eu/api/'
+- `OIDC_URL`: 'https://aai.eosc-portal.eu/oidc/token' #Authorization athentication client url
+- `OIDC_CLIENT_ID`: 'Authorization athentication client ID'
+- `OIDC_REFRESH_TOKEN`: 'User refresh token'
+
+Use a user refresh token to connect with eosc-api as a service-to-service integration is not yet implemented.
+To get the client id and the user refresh token go to https://aai.eosc-portal.eu/
+
 #### Text editor configuration
 
 We use [TinyMCE](https://www.tiny.cloud/docs/) editor for rich html  textarea fields.  
@@ -190,10 +213,6 @@ Then, you have to include your API key in UI  configuration in `ui/config/enviro
     apiKey: 'my-api-key',
   },
 ```
-
-
-
-
 
 ### Migrations
 

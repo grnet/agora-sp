@@ -1,20 +1,17 @@
-import validate from 'ember-gen/validate';
-import { AgoraGen } from '../lib/common';
+import { AgoraGen, basic_model } from '../lib/common';
 
 const {
   get,
   computed,
 } = Ember;
 
+const {common, row, sort} = basic_model();
+
 export default AgoraGen.extend({
   modelName: 'funding-body',
   path: 'funding-bodies',
   resourceName: 'api/v2/funding-bodies',
-  common: {
-    validators: {
-      name: [validate.presence(true)],
-    },
-  },
+  common,
   list: {
     page: {
       title: 'funding_body.menu',
@@ -28,20 +25,13 @@ export default AgoraGen.extend({
       icon: 'attach_money',
       group: 'resource_settings',
     },
-    row: {
-      actions: ['gen:details', 'gen:edit', 'remove'],
-    },
+    row,
     filter: {
       active: false,
       serverSide: true,
       search: true,
       searchPlaceholder: 'Search by name',
     },
-    sort: {
-      serverSide: true,
-      active: true,
-      sortBy: 'name',
-      fields: ['name'],
-    },
+    sort,
   },
 });

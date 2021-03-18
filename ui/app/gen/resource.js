@@ -10,6 +10,11 @@ import {
 } from '../utils/common/resources';
 
 import {
+  postResourceEOSC,
+  putResourceEOSC,
+} from '../utils/common/eosc-portal';
+
+import {
   applyResourceAdminship,
   revokeResourceAdminship,
   informAdminshipRejected,
@@ -144,11 +149,15 @@ export default AgoraGen.extend({
       'applyResourceAdminship',
       'revokeResourceAdminship',
       'informAdminshipRejected',
+      'postResourceEOSC',
+      'putResourceEOSC',
     ],
     actionsMap: {
       applyResourceAdminship,
       revokeResourceAdminship,
       informAdminshipRejected,
+      postResourceEOSC,
+      putResourceEOSC,
     },
   },
   edit: {

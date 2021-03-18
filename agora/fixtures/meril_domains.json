@@ -1,63 +1,72 @@
 [
     {
         "fields": {
-            "name": "Information Science & Technology"
+            "name": "Information Science & Technology",
+            "eosc_id": "provider_meril_scientific_domain-information_science_and_technology"
         },
         "model": "accounts.merildomain",
         "pk": "1d0b8db9-88eb-46b9-b276-8c179d776c95"
     },
     {
         "fields": {
-            "name": "Chemistry and Material Sciences"
+            "name": "Chemistry & Material Sciences",
+            "eosc_id": "provider_meril_scientific_domain-chemistry_and_material_sciences"
         },
         "model": "accounts.merildomain",
         "pk": "2afbdcd0-7a0e-4ac0-8ea8-518a6405ce58"
     },
     {
         "fields": {
-            "name": "Physics, Astronomy, Astrophysics and Mathematics"
+            "name": "Physics, Astronomy, Astrophysics and Mathematics",
+            "eosc_id": "provider_meril_scientific_domain-physics_astronomy_astrophysics_and_mathematics"
         },
         "model": "accounts.merildomain",
         "pk": "2d2935e8-112b-43fe-9bed-5300da2760c3"
     },
     {
         "fields": {
-            "name": "Engineering & Energy"
+            "name": "Engineering & Energy",
+            "eosc_id": "provider_meril_scientific_domain-engineering_and_energy"
         },
         "model": "accounts.merildomain",
         "pk": "6d28fbd2-d04c-42d7-99f5-092e722b75a6"
     },
     {
         "fields": {
-            "name": "Social Sciences"
+            "name": "Social Sciences",
+            "eosc_id": "provider_meril_scientific_domain-social_sciences"
         },
         "model": "accounts.merildomain",
         "pk": "70df3625-46f6-4ee9-976d-b9920af578d5"
     },
     {
         "fields": {
-            "name": "Earth and Environmental Sciences"
+            "name": "Earth & Environmental Sciences",
+            "eosc_id": "provider_meril_scientific_domain-earth_and_environmental_sciences"
         },
         "model": "accounts.merildomain",
         "pk": "7d948370-00e3-4ba0-88e5-38211863fa80"
     },
     {
         "fields": {
-            "name": "Biological & Medical Sciences"
+            "name": "Biological & Medical Sciences",
+            "eosc_id": "provider_meril_scientific_domain-biological_and_medical_sciences"
         },
         "model": "accounts.merildomain",
         "pk": "88b2813a-4b54-4350-aeee-da8c6118d5f9"
     },
     {
         "fields": {
-            "name": "Other"
+            "name": "Other",
+            "eosc_id": "provider_meril_scientific_domain-other"
         },
         "model": "accounts.merildomain",
         "pk": "c40ea294-73a0-4606-a05c-9635271fef72"
     },
     {
         "fields": {
-            "name": "Humanities & Arts"
+            "name": "Humanities & Arts",
+            "eosc_id": "provider_meril_scientific_domain-humanities_and_arts"
         },
         "model": "accounts.merildomain",
         "pk": "ea1d4422-f391-46bb-b6e1-3765a4303f78"

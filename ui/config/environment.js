@@ -64,6 +64,10 @@ module.exports = function(environment) {
           alt: 'europe',
         }],
       },
+      eosc_portal: {
+        enabled: true, // set to false to disable api calls to eosc portal
+        api_docs_url: 'https://beta.providers.eosc-portal.eu/openapi',
+      }
     }
   };
 
