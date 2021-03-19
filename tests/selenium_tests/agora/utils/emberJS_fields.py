@@ -26,6 +26,9 @@ def input_field(page, field_name, text, clear=False):
     @return: True if it finds the field and is completed without any problems or False if it cannot be found or
     supplemented.
     """
+    wait = WebDriverWait(page, global_wait_until)
+    wait.until(EC.presence_of_element_located((By.NAME, field_name)))
+
     # assert field_name in page.find_element_by_name(field_name)
     if clear:
         page.find_element_by_name(field_name).find_element_by_xpath("//input").clear()
