@@ -292,17 +292,17 @@ class ResourceCreate(Resources):
         # *.MTI.2 - Life Cycle Status
         suggestion_input_field(self.driver, self.fields_prefix + "mti_2_life_cycle_status", "Design")
         # *.MTI.3 - Certifications
-        textarea_field(self.driver, self.fields_prefix + "mti_3_certifications", "Cert 1.")
+        input_field(self.driver, self.fields_prefix + "mti_3_certifications", "* Cert 1.\n* Cert 2.")
         # *.MTI.4 - Standards
-        textarea_field(self.driver, self.fields_prefix + "mti_4_standards", "Standard 1.")
+        input_field(self.driver, self.fields_prefix + "mti_4_standards", "Standard 1.")
         # *.MTI.5 - Open Source Technologies
-        textarea_field(self.driver, self.fields_prefix + "mti_5_open_source_technologies", "GNU/Linux.")
+        input_field(self.driver, self.fields_prefix + "mti_5_open_source_technologies", "* UNIX\n* GNU/Linux.")
         # *.ERP.MTI.6 - Version
         input_field(self.driver, self.fields_prefix + "mti_6_version", "v0.3")
         # *.ERP.MTI.7 - Last Update
         date_field(self.driver, self.fields_prefix + "mti_7_last_update")
         # *.MTI.8 - Changelog
-        textarea_field(self.driver, self.fields_prefix + "mti_8_changelog", "Selenium 3.141.0 \n"
+        input_field(self.driver, self.fields_prefix + "mti_8_changelog", "Selenium 3.141.0 \n"
                                                          "https://github.com/SeleniumHQ/selenium/releases/tag"
                                                          "/selenium-3.141.0")
 
