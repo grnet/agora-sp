@@ -17,7 +17,6 @@
       "organisation": null,
       "is_staff": false,
       "is_active": true,
-      "avatar": "",
       "groups": [],
       "user_permissions": [],
       "organisations": []
@@ -41,7 +40,6 @@
       "organisation": "f95b8142-5b51-4044-9d9a-e94759c3554c",
       "is_staff": false,
       "is_active": true,
-      "avatar": "",
       "groups": [],
       "user_permissions": [],
       "organisations": []
@@ -65,7 +63,6 @@
       "organisation": null,
       "is_staff": false,
       "is_active": true,
-      "avatar": "",
       "groups": [],
       "user_permissions": [],
       "organisations": []
@@ -89,7 +86,6 @@
       "organisation": null,
       "is_staff": false,
       "is_active": true,
-      "avatar": "",
       "groups": [],
       "user_permissions": [],
       "organisations": []
@@ -113,7 +109,6 @@
       "organisation": null,
       "is_staff": false,
       "is_active": true,
-      "avatar": "",
       "groups": [],
       "user_permissions": [],
       "organisations": []

@@ -34,9 +34,6 @@ CUSTOM_USERS = {
         'date_joined': {
             '.flag.nowrite': {},
             '.field.datetime': {}},
-        'avatar': {
-            '.field.file': {},
-            'default': ''},
         'shibboleth_id': {
             '.field.string': {},
             '.flag.nowrite': {},
