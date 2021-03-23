@@ -368,7 +368,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     # Unused fields
     is_staff = models.BooleanField(('staff status'), default=False)
     is_active = models.BooleanField(('active'), default=True)
-    avatar = models.ImageField(upload_to='avatar', blank=True)
 
     objects = UserManager()
 
