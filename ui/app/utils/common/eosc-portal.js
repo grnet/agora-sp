@@ -8,6 +8,7 @@ const {
 } = Ember;
 
 const DISABLED = !ENV.APP.eosc_portal.enabled;
+const HIDE_ACTIONS = !ENV.APP.eosc_portal.show_actions;
 
 function prompt(self, method) {
   const erp_bai_1_name = get(self, 'model.erp_bai_1_name');
@@ -123,8 +124,8 @@ const postResourceEOSC = {
     'model.eosc_id',
     'model.erp_bai_2_service_organisation',
     function(){
-
       if ( DISABLED ) { return true }
+      if ( HIDE_ACTIONS ) { return true }
       let role = get(this, 'role');
       let user_org = get(this, 'session.session.authenticated.organisation');
       let state = get(this, 'model.state');
@@ -213,6 +214,7 @@ const putResourceEOSC = {
     'model.erp_bai_2_service_organisation',
     function(){
       if ( DISABLED ) { return true }
+      if ( HIDE_ACTIONS ) { return true }
       let resource_org = get(this, 'model.erp_bai_2_service_organisation.id');
       let user_org = get(this, 'session.session.authenticated.organisation');
       let role = get(this, 'role');

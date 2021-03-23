@@ -188,10 +188,14 @@ In order to disable this feature, you must alter `ui/config/environment.js` as f
 ```javascript
 APP: {
   eosc_portal: {
-    enabled: false 
+    enabled: false,
+    show_actions: true
   }
 }
 ```
+
+Publish to EOSC Portal actions are visible in the UI only when `show_actions` is true.
+
 
 To be able to publish resources to EOSC-API you should setup the values at `agora/agora/settings.py`
 - `EOSC_API_URL`: 'https://beta.providers.eosc-portal.eu/api/'
