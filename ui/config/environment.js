@@ -66,6 +66,7 @@ module.exports = function(environment) {
       },
       eosc_portal: {
         enabled: true, // set to false to disable api calls to eosc portal
+        show_actions: true, // set to false to hide publish to eosc portal actions
         api_docs_url: 'https://beta.providers.eosc-portal.eu/openapi',
       }
     }
