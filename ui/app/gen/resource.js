@@ -1,6 +1,6 @@
 import validate from 'ember-gen/validate';
 import { field } from 'ember-gen';
-import { AgoraGen } from '../lib/common';
+import { AgoraGen, httpValidator } from '../lib/common';
 import {
   CREATE_FIELDSETS,
   EDIT_FIELDSETS,
@@ -8,6 +8,11 @@ import {
   TABLE_FIELDS,
   SORT_FIELDS,
 } from '../utils/common/resources';
+
+import {
+  postResourceEOSC,
+  putResourceEOSC,
+} from '../utils/common/eosc-portal';
 
 import {
   applyResourceAdminship,
@@ -62,7 +67,7 @@ export default AgoraGen.extend({
       erp_bai_0_id: [validate.presence(true)],
       erp_bai_1_name: [validate.presence(true)],
       erp_bai_2_service_organisation: [validate.presence(true)],
-      erp_bai_4_webpage: [validate.format({ type: 'url', allowBlank:true })],
+      erp_bai_4_webpage: [validate.format({ type: 'url', allowBlank:true }), httpValidator],
       erp_cli_1_scientific_domain: [validate.presence(true)],
       erp_cli_2_scientific_subdomain: [validate.presence(true)],
       erp_cli_3_category: [validate.presence(true)],
@@ -71,21 +76,21 @@ export default AgoraGen.extend({
       erp_gla_2_language: [validate.presence(true)],
       erp_coi_13_helpdesk_email: [validate.format({type: 'email', allowBlank: true})],
       erp_coi_14_security_contact_email: [validate.format({type: 'email', allowBlank: true})],
-      erp_mgi_1_helpdesk_webpage: [validate.format({ type: 'url', allowBlank: true })],
-      erp_mgi_2_user_manual: [validate.format({type: 'url', allowBlank: true})],
-      erp_mgi_3_terms_of_use: [validate.format({ type: 'url', allowBlank: true })],
-      erp_mgi_4_privacy_policy: [validate.format({ type: 'url', allowBlank: true })],
-      erp_mgi_5_access_policy: [validate.format({ type: 'url', allowBlank: true })],
-      erp_mgi_6_sla_specification: [validate.format({ type: 'url', allowBlank: true })],
-      erp_mgi_7_training_information: [validate.format({ type: 'url', allowBlank: true })],
-      erp_mgi_8_status_monitoring: [validate.format({ type: 'url', allowBlank: true })],
-      erp_mgi_9_maintenance: [validate.format({ type: 'url', allowBlank: true })],
-      erp_mri_3_logo: [validate.format({ type: 'url', allowBlank: true })],
-      erp_mri_4_mulitimedia: [validate.format({ type: 'url', allowBlank: true })],
-      erp_mri_5_use_cases: [validate.format({ type: 'url', allowBlank: true })],
-      erp_fni_1_payment_model: [validate.format({ type: 'url', allowBlank:true })],
-      erp_fni_2_pricing: [validate.format({ type: 'url', allowBlank:true })],
-      erp_aoi_2_order: [validate.format({ type: 'url', allowBlank:true })],
+      erp_mgi_1_helpdesk_webpage: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
+      erp_mgi_2_user_manual: [validate.format({type: 'url', allowBlank: true}), httpValidator],
+      erp_mgi_3_terms_of_use: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
+      erp_mgi_4_privacy_policy: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
+      erp_mgi_5_access_policy: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
+      erp_mgi_6_sla_specification: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
+      erp_mgi_7_training_information: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
+      erp_mgi_8_status_monitoring: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
+      erp_mgi_9_maintenance: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
+      erp_mri_3_logo: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
+      erp_mri_4_mulitimedia: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
+      erp_mri_5_use_cases: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
+      erp_fni_1_payment_model: [validate.format({ type: 'url', allowBlank:true }), httpValidator],
+      erp_fni_2_pricing: [validate.format({ type: 'url', allowBlank:true }), httpValidator],
+      erp_aoi_2_order: [validate.format({ type: 'url', allowBlank:true }), httpValidator],
     },
   },
   list: {
@@ -144,11 +149,15 @@ export default AgoraGen.extend({
       'applyResourceAdminship',
       'revokeResourceAdminship',
       'informAdminshipRejected',
+      'postResourceEOSC',
+      'putResourceEOSC',
     ],
     actionsMap: {
       applyResourceAdminship,
       revokeResourceAdminship,
       informAdminshipRejected,
+      postResourceEOSC,
+      putResourceEOSC,
     },
   },
   edit: {

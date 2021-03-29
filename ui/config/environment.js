@@ -41,7 +41,6 @@ module.exports = function(environment) {
         info: 'Agora is a service developed and maintained by <a href="https://grnet.gr/en/" alt="grnet">GRNET</a> co-funded by <a href="" alt="https://www.eosc-hub.eu/">EOSC-Hub</a> and <a href="https://www.eudat.eu/eudat-collaborative-data-infrastructure-cdi">EUDAT CDI</a>',
         // Privacy Policy settings
         privacy_policy: true,
-        privacy_title: 'Privacy Policy',
         privacy_login_service: 'AGORA AAI',
         privacy_login_url: 'aai.agora.grnet.gr',
         privacy_service_url: 'agora.grnet.gr',
@@ -53,6 +52,10 @@ module.exports = function(environment) {
         cookies: [
           ['Session State', 'agora.grnet.gr', '_shibsession_xyz', 'No', 'Session', 'Preserve user session information'],
         ],
+        // Acccess Policy settings
+        access_policy: false,
+        // Terms of use settings
+        terms: false,
         logos: [{
           url: 'https://grnet.github.io/grnet-media-pack/grnet/logos/grnet_logo_en.svg',
           alt: 'grnet',
@@ -61,6 +64,11 @@ module.exports = function(environment) {
           alt: 'europe',
         }],
       },
+      eosc_portal: {
+        enabled: true, // set to false to disable api calls to eosc portal
+        show_actions: true, // set to false to hide publish to eosc portal actions
+        api_docs_url: 'https://beta.providers.eosc-portal.eu/openapi',
+      }
     }
   };
 

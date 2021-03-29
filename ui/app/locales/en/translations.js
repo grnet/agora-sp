@@ -18,7 +18,9 @@ import { merildomain} from './merildomain';
 import { merilsubdomain} from './merilsubdomain';
 import { network } from './network';
 import { order_type } from './order_type';
-import { policy } from './policy';
+import { privacy_policy } from './privacy_policy';
+import { access_policy } from './access_policy';
+import { terms } from './terms';
 import { profile } from './profile';
 import { provider } from './provider';
 import { resource } from './resource';
@@ -32,6 +34,7 @@ import { target_user } from './target_user';
 import { trl } from './trl';
 import { user_customer } from './user_customer';
 import { user_role } from './user_role';
+import { eosc } from './eosc';
 
 
 export default {
@@ -67,7 +70,9 @@ export default {
   merilsubdomain,
   network,
   order_type,
-  policy,
+  privacy_policy,
+  access_policy,
+  terms,
   profile,
   provider,
   resource,
@@ -86,5 +91,8 @@ export default {
   'Email unique constraint failed': custom_user.errors.unique_email,
   'Username unique constraint failed': custom_user.errors.unique_username,
   'shibboleth_duplicate_email': custom_user.errors.unique_email,
+  'urlStarts.message': 'The url should start with http or https',
+  eosc,
+  'eosc_id.label': 'EOSC ID',
 };
 

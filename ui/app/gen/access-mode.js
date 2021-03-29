@@ -1,32 +1,12 @@
-import validate from 'ember-gen/validate';
-import { AgoraGen } from '../lib/common';
+import { AgoraGen, basic_model } from '../lib/common';
 
-const {
-  get,
-  computed,
-} = Ember;
+const {common, row, sort} = basic_model(true);
 
 export default AgoraGen.extend({
   modelName: 'access-mode',
   path: 'access-modes',
   resourceName: 'api/v2/access-modes',
-  common: {
-    fieldsets: [
-      {
-        label: 'access_mode.cards.basic',
-        fields: [
-          'name',
-          'description'
-        ],
-        layout: {
-          flex: [100, 100],
-        },
-      }
-    ],
-    validators: {
-      name: [validate.presence(true)],
-    },
-  },
+  common,
   list: {
     page: {
       title: 'access_mode.menu',
@@ -37,19 +17,13 @@ export default AgoraGen.extend({
       group: 'resource_settings',
       order: 10,
     },
-    row: {
-      actions: ['gen:details', 'gen:edit', 'remove'],
-    },
+    row,
     filter: {
       active: false,
       serverSide: true,
       search: true,
       searchPlaceholder: 'Search by access mode or description',
     },
-    sort: {
-      serverSide: true,
-      active: true,
-      fields: ['name'],
-    },
+    sort,
   },
 });

@@ -9,4 +9,5 @@ export default DS.Model.extend({
     label: 'esfridomain.fields.description',
     hint: 'esfridomain.hints.description'
   }),
+  eosc_id: DS.attr(),
 });

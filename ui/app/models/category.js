@@ -13,4 +13,5 @@ export default DS.Model.extend({
     label: 'category.fields.name',
     hint: 'category.hints.name'
   }),
+  eosc_id: DS.attr(),
 });

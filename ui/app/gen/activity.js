@@ -1,23 +1,12 @@
-import validate from 'ember-gen/validate';
-import { AgoraGen } from '../lib/common';
-import {
-  CREATE_FIELDSETS,
-  EDIT_FIELDSETS,
-  DETAILS_FIELDSETS,
-  TABLE_FIELDS,
-  SORT_FIELDS,
-} from '../utils/common/activity';
+import { AgoraGen, basic_model } from '../lib/common';
+
+const {common, row, sort} = basic_model();
 
 export default AgoraGen.extend({
   modelName: 'activity',
   path: 'activities',
   resourceName: 'api/v2/activities',
-  common: {
-    validators: {
-      id: [validate.presence(true)],
-      name: [validate.presence(true)],
-    },
-  },
+  common,
   list: {
     page: {
       title: 'activity.menu',
@@ -28,30 +17,13 @@ export default AgoraGen.extend({
       group: 'provider_settings',
       order: 37,
     },
-    row: {
-      actions: ['gen:details', 'gen:edit', 'remove'],
-      fields: TABLE_FIELDS,
-    },
+    row,
     filter: {
       active: false,
       serverSide: true,
       search: true,
       searchPlaceholder: 'common.placeholders.search',
     },
-    sort: {
-      serverSide: true,
-      active: true,
-      sortBy: 'name',
-      fields: ['name'],
-    },
-  },
-  details: {
-    fieldsets: DETAILS_FIELDSETS,
-  },
-  edit: {
-    fieldsets: EDIT_FIELDSETS,
-  },
-  create: {
-    fieldsets: CREATE_FIELDSETS,
+    sort,
   },
 });

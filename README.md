@@ -1,4 +1,6 @@
 # Agora
+[![Build Status](https://jenkins.einfra.grnet.gr/job/AGORA/job/devel/badge/icon)](https://jenkins.einfra.grnet.gr/job/AGORA/job/devel/)
+[![Selenium Tests](https://jenkins.einfra.grnet.gr/job/AGORA/job/devel/badge/icon?config=teststatus)](https://jenkins.einfra.grnet.gr/job/AGORA/job/devel/)
 
 The service portfolio management tool is a tool that allows a company / project to manage the portfolio of services they to maintain (offered to users / customers or internal).
 Agora provides an intuitive user interface which allows users to create/edit/update/delete their services and components. Users can login with credentials provided by the administrator, or use the shibboleth login functionality to login with their academic account.
@@ -146,7 +148,6 @@ APP: {
     info: 'Agora is a service developed and maintained by <a href="https://grnet.gr/en/" alt="grnet">GRNET</a> co-funded by <a href="" alt="https://www.eosc-hub.eu/">EOSC-Hub</a> and <a href="https://www.eudat.eu/eudat-collaborative-data-infrastructure-cdi">EUDAT CDI</a>',
     // Privacy Policy settings
     privacy_policy: true,
-    privacy_title: 'Privacy Policy',
     privacy_login_service: 'AGORA AAI',
     privacy_login_url: 'aai.agora.grnet.gr',
     privacy_service_url: 'agora.grnet.gr',
@@ -158,6 +159,10 @@ APP: {
     cookies: [
       ['Session State', 'agora.grnet.gr', '_shibsession_xyz', 'No', 'Session', 'Preserve user session information'],
     ],
+    // Acccess Policy settings
+    access_policy: false,
+    // Terms of use settings
+    terms: false,
     // If  set, logos will be visible in footer.
     logos: [{
       url: 'http://grnet.github.io/grnet-media-pack/grnet/logos/grnet_logo_en.svg',
@@ -170,9 +175,36 @@ APP: {
 }
 ```
 
+
 They are all optional.
 
-If you wish to use `policy.hbs` template for you policy page, you can alter the title and the content by editing `ui/app/locales/en/policy.js` file.
+
+
+#### API calls to EOSC PORTAL
+
+Users with role `provideradmin` can publish and unpublish resources to  EOSC Portal via agora. 
+In order to disable this feature, you must alter `ui/config/environment.js` as follows:
+
+```javascript
+APP: {
+  eosc_portal: {
+    enabled: false,
+    show_actions: true
+  }
+}
+```
+
+Publish to EOSC Portal actions are visible in the UI only when `show_actions` is true.
+
+
+To be able to publish resources to EOSC-API you should setup the values at `agora/agora/settings.py`
+- `EOSC_API_URL`: 'https://beta.providers.eosc-portal.eu/api/'
+- `OIDC_URL`: 'https://aai.eosc-portal.eu/oidc/token' #Authorization athentication client url
+- `OIDC_CLIENT_ID`: 'Authorization athentication client ID'
+- `OIDC_REFRESH_TOKEN`: 'User refresh token'
+
+Use a user refresh token to connect with eosc-api as a service-to-service integration is not yet implemented.
+To get the client id and the user refresh token go to https://aai.eosc-portal.eu/
 
 #### Text editor configuration
 
@@ -185,10 +217,6 @@ Then, you have to include your API key in UI  configuration in `ui/config/enviro
     apiKey: 'my-api-key',
   },
 ```
-
-
-
-
 
 ### Migrations
 

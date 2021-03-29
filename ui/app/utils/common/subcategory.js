@@ -1,36 +1,51 @@
 import { field } from 'ember-gen';
-
+import ENV from '../../config/environment';
+const eosc_disabled = !ENV.APP.eosc_portal.enabled;
 
 const SORT_FIELDS = [
   'name',
+  'eosc_id',
 ];
 
-const TABLE_FIELDS = [
-  field('name', {label: 'subcategory.table.name'}),
-  field('category.name', {label: 'subcategory.table.category'}),
+let TABLE_FIELDS = [
+  'name',
+  'category.name',
+  'eosc_id',
 ];
+
+let fields_details = [
+  'category.name',
+  'name',
+  'eosc_id',
+];
+
+let fields_ce = [
+  'category',
+  'name',
+  'eosc_id',
+]
+
+if (eosc_disabled) {
+  fields_details.pop();
+  fields_ce.pop();
+  TABLE_FIELDS.pop();
+}
 
 
 const DETAILS_BASIC_INFO_FIELDSET = {
   label: 'subcategory.cards.basic',
-  fields: [
-    'category.name',
-    'name',
-  ],
+  fields: fields_details,
   layout: {
-    flex: [100,100],
+    flex: [100,100,100],
   },
 };
 
 
 const BASIC_INFO_FIELDSET = {
   label: 'subcategory.cards.basic',
-  fields: [
-    'category',
-    'name',
-  ],
+  fields: fields_ce,
   layout: {
-    flex: [100,100],
+    flex: [100,100,100],
   },
 };
 

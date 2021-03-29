@@ -3,6 +3,7 @@
     "model": "accounts.organisation",
     "pk": "f95b8142-5b51-4044-9d9a-e94759c3554c",
     "fields": {
+        "eosc_id": "grnet",
         "epp_bai_0_id": "GRNET",
         "epp_bai_1_name": "National Infrastructures for Research and Technology",
         "epp_bai_2_abbreviation": "grnet",

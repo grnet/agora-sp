@@ -1,28 +1,32 @@
 [
     {
         "fields": {
-            "name": "Other"
+            "name": "Other",
+            "eosc_id": "provider_area_of_activity-other"
         },
         "model": "accounts.activity",
         "pk": "66ce47a9-b155-498c-81f8-057a691fe77a"
     },
     {
         "fields": {
-            "name": "Basic research"
+            "name": "Basic Research",
+            "eosc_id": "provider_area_of_activity-basic_research"
         },
         "model": "accounts.activity",
         "pk": "68ea5423-b2ca-4240-a101-a69b08825cb3"
     },
     {
         "fields": {
-            "name": "Technological development"
+            "name": "Technological Development",
+            "eosc_id": "provider_area_of_activity-technological_development"
         },
         "model": "accounts.activity",
         "pk": "d3f2f403-b6f1-4792-ab3f-fe8448bbb590"
     },
     {
         "fields": {
-            "name": "Applied research"
+            "name": "Applied Research",
+            "eosc_id": "provider_area_of_activity-applied_research"
         },
         "model": "accounts.activity",
         "pk": "d6e0521a-ecfb-4974-afab-17630d57db0f"
