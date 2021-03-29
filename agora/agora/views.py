@@ -17,6 +17,10 @@ from service.models import Resource
 from agora.emails import send_email_shib_user_created
 from agora.utils import load_resources, load_permissions, get_root_url
 from agora.serializers import UserMeSerializer
+from django.db import connection
+from django.db.models.functions import ( ExtractMonth, ExtractYear )
+from django.db.models import Count
+
 
 PAST = datetime.date(2000, 1, 1)
 FUTURE = datetime.date(2100, 1, 1)
@@ -229,5 +233,60 @@ def accounting(request):
     }
 
     return JsonResponse(data)
+
+
+def get_field_date(year,month,data,label):
+    for entry in data:
+        if entry['year'] == year and entry['month'] == month:
+            return entry[label]
+    return 0
+
+def create_response(new_users, new_resources, new_providers, updated_resources, updated_providers,year_base):
+    now = datetime.datetime.now()
+    curr_year = now.year
+    curr_month = now.month
+    data = []
+    for year in range(year_base, curr_year+1):
+        if year-curr_year==0:
+            end_month = curr_month
+        else:
+            end_month=13
+        for month in range(1,end_month):
+            new_users_count = get_field_date(year,month,new_users,'new_users')
+            new_resources_count = get_field_date(year,month,new_resources,'new_resources')
+            new_providers_count = get_field_date(year,month,new_providers,'new_providers')
+            updated_resources_count = get_field_date(year,month,updated_resources,'updated_resources')
+            updated_providers_count = get_field_date(year,month,updated_providers,'updated_providers')
+            data.append({
+                'year':year,
+                'month': month,
+                'new_users': new_users_count,
+                'new_resources': new_resources_count,
+                'new_providers': new_providers_count,
+                'updated_resources': updated_resources_count,
+                'updated_providers': updated_providers_count
+            })
+    return JsonResponse(data, safe=False)
+    
+
+def monthly_stats(request):
+    new_users = User.objects.filter(date_joined__gte=datetime.datetime(2000,1,1)).annotate(month=ExtractMonth('date_joined'),
+                                year=ExtractYear('date_joined'),).order_by().values('month', 'year').annotate(new_users=Count('*')).values('month', 'year', 'new_users')
+    new_resources = Resource.objects.filter(created_at__gte=datetime.datetime(2000,1,1)).annotate(month=ExtractMonth('created_at'),
+                                year=ExtractYear('created_at'),).order_by().values('month', 'year').annotate(new_resources=Count('*')).values('month', 'year', 'new_resources')
+    new_providers = Organisation.objects.filter(created_at__gte=datetime.datetime(2000,1,1)).annotate(month=ExtractMonth('created_at'),
+                                year=ExtractYear('created_at'),).order_by().values('month', 'year').annotate(new_providers=Count('*')).values('month', 'year', 'new_providers')
+
+    updated_resources = Resource.objects.filter(updated_at__gte=datetime.datetime(2000,1,1)).annotate(month=ExtractMonth('updated_at'),
+                                year=ExtractYear('updated_at'),).order_by().values('month', 'year').annotate(updated_resources=Count('*')).values('month', 'year', 'updated_resources')
+    updated_providers = Organisation.objects.filter(updated_at__gte=datetime.datetime(2000,1,1)).annotate(month=ExtractMonth('updated_at'),
+                                year=ExtractYear('updated_at'),).order_by().values('month', 'year').annotate(updated_providers=Count('*')).values('month', 'year', 'updated_providers')
+    new_users=[v for v in new_users]
+    new_resources=[v for v in new_resources]
+    new_providers=[v for v in new_providers]
+    updated_resources=[v for v in updated_resources]
+    updated_providers=[v for v in updated_providers]
+    
+    return create_response(new_users, new_resources, new_providers, updated_resources, updated_providers,2021)
 
 
