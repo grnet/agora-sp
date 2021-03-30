@@ -14,6 +14,8 @@ import useStyles from '../styles/AppStyles';
 import InfoBox from './InfoBox';
 import InfoBoxUsers from './InfoBoxUsers';
 import CONFIG from '../config';
+import { Typography } from '@material-ui/core';
+import { get_month } from '../utils/Month';
 
 const initData = {
   newProviders: 0,
@@ -28,6 +30,9 @@ const TopPage = () => {
   const [accData, setAccData] = React.useState(initData);
   const [currentDate, setCurrentDate] = React.useState(new Date());
   const [monthStart, setMonthStart] = React.useState(new Date().setDate(1));
+  const [titleMonth, setTitleMonth] = React.useState(
+    get_month(new Date().getMonth() + 1) + ' ' + new Date().getFullYear()
+  );
 
   const handleStartDateChange = (date) => {
     setMonthStart(date);
@@ -68,11 +73,17 @@ const TopPage = () => {
       .then((res) => res.json())
       .then((result) => {
         setAccData(getAccountingData(result));
+        setTitleMonth('Custom date range');
       });
   };
 
   return (
     <>
+      <Container maxWidth="sm" component="main" className={classes.title}>
+        <Typography component="h4" variant="h4" color="textPrimary">
+          {titleMonth}
+        </Typography>
+      </Container>
       <Container maxWidth="md" className={classes.heroContent}>
         <Grid container md={9} justify="space-between">
           <MuiPickersUtilsProvider utils={DateFnsUtils}>

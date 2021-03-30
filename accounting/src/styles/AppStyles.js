@@ -39,7 +39,6 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1, 1.5),
   },
   heroContent: {
-    marginTop: theme.spacing(10),
     marginBottom: theme.spacing(5),
     display: 'flex',
     justifyContent: 'center',
@@ -80,7 +79,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   logo: {
-    height: 45,
+    height: 40,
+    marginRight: 15,
   },
   logoPadding: {
     flexGrow: 1,
@@ -111,8 +111,10 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: 'flex-end',
   },
   title: {
-    flexGrow: 1,
-    display: 'none',
+    marginTop: theme.spacing(12),
+    marginBottom: theme.spacing(2),
+    display: 'flex',
+    justifyContent: 'center',
   },
 }));
 
