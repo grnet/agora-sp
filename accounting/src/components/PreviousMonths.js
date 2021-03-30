@@ -12,6 +12,8 @@ import TablePagination from '@material-ui/core/TablePagination';
 import useStyles from '../styles/AppStyles';
 import StyledTableCell from './StyledTableCell';
 import CONFIG from '../config';
+import { get_month } from '../utils/Month';
+import { Typography } from '@material-ui/core';
 
 const columns = [
   { id: 'year', label: 'Year', minWidth: 170 },
@@ -22,24 +24,6 @@ const columns = [
   { id: 'updated_resources', label: 'Updated resources', minWidth: 170 },
   { id: 'new_users', label: 'New users', minWidth: 170 },
 ];
-
-const get_month = (number) => {
-  const monthNames = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
-  return monthNames[number - 1];
-};
 
 const createData = (
   month,
@@ -111,6 +95,12 @@ const PreviousMonths = () => {
 
   return (
     <>
+      <Container maxWidth="sm" component="main" className={classes.title}>
+        <Typography component="h1" variant="h4" color="textPrimary">
+          Previous Months
+        </Typography>
+      </Container>
+
       <Container maxWidth="lg" className={classes.heroContent}>
         <Paper className={classes.root}>
           <TableContainer className={classes.tableBody}>
