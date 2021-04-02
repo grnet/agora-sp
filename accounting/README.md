@@ -1,70 +1,62 @@
-# Getting Started with Create React App
+# Agora accounting ui
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Agora accounting is a single page front-end application built with react (and create-react-app tool) that displays the following data based on a specific time range for an agora instance:
+- new users
+- new/updated providers
+- new/updated resources
 
-## Available Scripts
+## Configuration
 
-In the project directory, you can run:
+In `agora/src/config.js` there are some basic configuration properties to be set before producing the optimized build. The properties that can be set are as follows:
+- `endpoint: "http://localhost:8000`
+  Defines the agora api endpoint
+- `supportMail: agora@grnet.gr`
+  Defines the support mail to show in the accounting page
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Build and deploy
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Steps to build and deploy the app:
 
-### `npm test`
+1. git clone this repo and go to accounting directory `cd agora/accounting`
+2. Issue `npm install` 
+3. Configure parameters in `./src/config.js`
+4. Issue `npm run build`
+5. Deploy contents of the `./build/` folder to the remote webserver
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Deploy on a specific subfolder - for example under https://demo.agora.grnet.gr/accounting
+If the app is meant to be deployed under a subfolder on the remote node make sure that:
+1. endpoint parameter (in `./src/config.js`) is set to the main url
+~ for eg. `endpoint: "https://demo.agora.grnet.gr/"`
+2. Issue `npm run build`
+3. Deploy contents of the `./build/` folder to the correspodning subfolder on the remote webserver
 
-### `npm run build`
+## Configure apache to host agora accounting in subfolder `./accounting`
+Steps to configure apache:
+1. Deploy optimized build to a folder such as `/srv/agora/accounting`
+2. Use an apache Alias such as the following:
+   `Alias /accounting /srv/agora/accounting`
+3. Use an apache Directory configuration directive such as
+``` 
+<Directory "/srv/agora/accounting">
+     Order deny,allow
+     Allow from all
+     Require all granted
+ 
+     RewriteEngine on
+     # Don't rewrite files or directories
+     RewriteCond %{REQUEST_FILENAME} -f [OR]
+     RewriteCond %{REQUEST_FILENAME} -d
+     RewriteRule ^ - [L]
+     # Rewrite everything else to index.html to allow html5 state links
+     RewriteRule ^ /accounting/index.html [L]
+   </Directory>   
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Run locally with docker-compose
+1. Start agora-sp docker with `docker-compose up -d`
+2. Go to accounting `cd accounting`
+3. Set the following setting to config.js (Its the default one)
+   `endpoint: 'http://localhost:8000'`
+4. Run react app
+   `npm start`
