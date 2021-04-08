@@ -23,7 +23,7 @@ const InfoBox = (props) => {
                 {props.new}
               </Typography>
               <Typography variant="h6" color="textSecondary">
-                /new
+                new
               </Typography>
             </div>
           </CardContent>
@@ -37,7 +37,7 @@ const InfoBox = (props) => {
                 {props.updated}
               </Typography>
               <Typography variant="h6" color="textSecondary">
-                /updated
+                updated
               </Typography>
             </div>
           </CardContent>

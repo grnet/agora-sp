@@ -23,7 +23,7 @@ const InfoBoxUsers = (props) => {
                 {props.new}
               </Typography>
               <Typography variant="h6" color="textSecondary">
-                /new
+                 new
               </Typography>
             </div>
           </CardContent>
