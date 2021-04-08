@@ -25,9 +25,11 @@ from django.db.models import Count
 PAST = datetime.date(2000, 1, 1)
 FUTURE = datetime.date(2100, 1, 1)
 
-def valid_date(date_text, default):
+def valid_date(date_text, default, add_day=False):
     try:
         date = datetime.datetime.strptime(date_text, '%d-%m-%Y')
+        if add_day:
+          date = date + datetime.timedelta(days=1)
         return date
     except ValueError:
         return default
@@ -207,7 +209,7 @@ class CustomMe(djoser_views.UserView):
 
 def accounting(request):
     date_from = valid_date(request.GET.get('from', ''), PAST)
-    date_to = valid_date(request.GET.get('to', ''), FUTURE)
+    date_to = valid_date(request.GET.get('to', ''), FUTURE, True)
 
     new_users = User.objects.filter(date_joined__range=(date_from, date_to)).count()
     new_resources = Resource.objects.filter(created_at__range=(date_from, date_to)).count()
