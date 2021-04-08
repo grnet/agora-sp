@@ -1,15 +1,15 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
+import Box from '@material-ui/core/Box';
 import { format } from 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
-import IconButton from '@material-ui/core/IconButton';
+import Button from '@material-ui/core/Button';
 import {
   MuiPickersUtilsProvider,
   KeyboardDatePicker,
 } from '@material-ui/pickers';
 import 'date-fns/format';
-import SearchIcon from '@material-ui/icons/Search';
 import useStyles from '../styles/AppStyles';
 import InfoBox from './InfoBox';
 import InfoBoxUsers from './InfoBoxUsers';
@@ -85,41 +85,48 @@ const TopPage = () => {
         </Typography>
       </Container>
       <Container maxWidth="md" className={classes.heroContent}>
-        <Grid container md={9} justify="space-between">
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <KeyboardDatePicker
-              margin="normal"
-              className={classes.date}
-              disableToolbar
-              variant="inline"
-              format="dd/MM/yyyy"
-              id="date-picker-inline1"
-              label="From"
-              value={monthStart}
-              onChange={handleStartDateChange}
-            />
-            <KeyboardDatePicker
-              margin="normal"
-              className={classes.date}
-              disableToolbar
-              variant="inline"
-              format="dd/MM/yyyy"
-              id="date-picker-inline2"
-              label="To"
-              value={currentDate}
-              onChange={handleEndDateChange}
-            />
-          </MuiPickersUtilsProvider>
-          <IconButton
-            className={classes.search}
-            variant="outlined"
-            color="primary"
-            onClick={searchHandle}
-            aria-label="delete"
-          >
-            <SearchIcon />
-          </IconButton>
-        </Grid>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <Grid container md={9} justify="flex-end" alignItems="center">
+            <Grid item xs={12} sm={4}>
+              <KeyboardDatePicker
+                margin="normal"
+                className={classes.date}
+                disableToolbar
+                variant="inline"
+                format="dd/MM/yyyy"
+                id="date-picker-inline1"
+                label="From"
+                value={monthStart}
+                onChange={handleStartDateChange}
+              />
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <KeyboardDatePicker
+                margin="normal"
+                className={classes.date}
+                disableToolbar
+                variant="inline"
+                format="dd/MM/yyyy"
+                id="date-picker-inline2"
+                label="To"
+                value={currentDate}
+                onChange={handleEndDateChange}
+              />
+            </Grid>
+            <Grid item xs={12} sm={4} align="center">
+              <Box mt={3}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={searchHandle}
+                  aria-label="delete"
+                >
+                  Apply filter
+                </Button>
+              </Box>
+            </Grid>
+          </Grid>
+        </MuiPickersUtilsProvider>
       </Container>
 
       <Container maxWidth="md" component="main">

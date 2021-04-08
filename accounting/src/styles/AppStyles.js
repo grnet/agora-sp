@@ -22,12 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   date: {
     marginLeft: theme.spacing(4),
-  },
-  search: {
-    borderRadius: 62,
-    width: theme.spacing(8),
-    height: theme.spacing(8),
-    marginLeft: theme.spacing(3),
+    width: '90%',
   },
   toolbar: {
     flexWrap: 'wrap',
