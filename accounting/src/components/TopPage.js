@@ -138,7 +138,7 @@ const TopPage = () => {
         <InfoBox
           title="Resources"
           new={accData.newResources}
-          updated={accData.newResources}
+          updated={accData.updatedResources}
         />
         <InfoBoxUsers title="Users" new={accData.newUsers} />
       </Container>

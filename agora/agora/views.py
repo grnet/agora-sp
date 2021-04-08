@@ -42,7 +42,7 @@ AAI_ID_KEY = getattr(settings, 'AAI_ID_KEY', 'id')
 API_ENDPOINT = getattr(settings, 'API_ENDPOINT', 'api/v2')
 MEDIA_URL = getattr(settings, 'MEDIA_URL', 'media/')
 BASE_DIR = getattr(settings, 'BASE_DIR')
-
+ACCOUNTING_BASE_YEAR = getattr(settings, 'ACCOUNTING_BASE_YEAR', 2021)
 
 def config(request):
 
@@ -272,16 +272,17 @@ def create_response(new_users, new_resources, new_providers, updated_resources, 
     
 
 def monthly_stats(request):
-    new_users = User.objects.filter(date_joined__gte=datetime.datetime(2000,1,1)).annotate(month=ExtractMonth('date_joined'),
+    base_year = ACCOUNTING_BASE_YEAR
+    new_users = User.objects.filter(date_joined__gte=datetime.datetime(base_year,1,1)).annotate(month=ExtractMonth('date_joined'),
                                 year=ExtractYear('date_joined'),).order_by().values('month', 'year').annotate(new_users=Count('*')).values('month', 'year', 'new_users')
-    new_resources = Resource.objects.filter(created_at__gte=datetime.datetime(2000,1,1)).annotate(month=ExtractMonth('created_at'),
+    new_resources = Resource.objects.filter(created_at__gte=datetime.datetime(base_year,1,1)).annotate(month=ExtractMonth('created_at'),
                                 year=ExtractYear('created_at'),).order_by().values('month', 'year').annotate(new_resources=Count('*')).values('month', 'year', 'new_resources')
-    new_providers = Organisation.objects.filter(created_at__gte=datetime.datetime(2000,1,1)).annotate(month=ExtractMonth('created_at'),
+    new_providers = Organisation.objects.filter(created_at__gte=datetime.datetime(base_year,1,1)).annotate(month=ExtractMonth('created_at'),
                                 year=ExtractYear('created_at'),).order_by().values('month', 'year').annotate(new_providers=Count('*')).values('month', 'year', 'new_providers')
 
-    updated_resources = Resource.objects.filter(updated_at__gte=datetime.datetime(2000,1,1)).annotate(month=ExtractMonth('updated_at'),
+    updated_resources = Resource.objects.filter(updated_at__gte=datetime.datetime(base_year,1,1)).annotate(month=ExtractMonth('updated_at'),
                                 year=ExtractYear('updated_at'),).order_by().values('month', 'year').annotate(updated_resources=Count('*')).values('month', 'year', 'updated_resources')
-    updated_providers = Organisation.objects.filter(updated_at__gte=datetime.datetime(2000,1,1)).annotate(month=ExtractMonth('updated_at'),
+    updated_providers = Organisation.objects.filter(updated_at__gte=datetime.datetime(base_year,1,1)).annotate(month=ExtractMonth('updated_at'),
                                 year=ExtractYear('updated_at'),).order_by().values('month', 'year').annotate(updated_providers=Count('*')).values('month', 'year', 'updated_providers')
     new_users=[v for v in new_users]
     new_resources=[v for v in new_resources]
@@ -289,6 +290,4 @@ def monthly_stats(request):
     updated_resources=[v for v in updated_resources]
     updated_providers=[v for v in updated_providers]
     
-    return create_response(new_users, new_resources, new_providers, updated_resources, updated_providers,2021)
-
-
+    return create_response(new_users, new_resources, new_providers, updated_resources, updated_providers,base_year)

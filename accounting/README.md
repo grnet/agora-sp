@@ -7,7 +7,7 @@ Agora accounting is a single page front-end application built with react (and cr
 
 ## Configuration
 
-In `agora/src/config.js` there are some basic configuration properties to be set before producing the optimized build. The properties that can be set are as follows:
+In `accounting/src/config.js` there are some basic configuration properties to be set before producing the optimized build. The properties that can be set are as follows:
 - `endpoint: "http://localhost:8000`
   Defines the agora api endpoint
 - `supportMail: agora@grnet.gr`
