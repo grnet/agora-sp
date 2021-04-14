@@ -37,6 +37,8 @@ urlpatterns = [
         djoser_views.LoginView.as_view(), name='login'),
     url(r'^api/v2/auth/', include('djoser.urls.authtoken')),
     url(r'^api/v2/config.json$', agora_views.config, name='config'),
+    url(r'^api/v2/accounting/?', agora_views.accounting, name='accounting'),
+    url(r'^api/v2/monthly_stats', agora_views.monthly_stats, name='monthly_stats'),
 ]
 
 urlpatterns.extend(api_urls)

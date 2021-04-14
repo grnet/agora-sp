@@ -3,6 +3,7 @@ import json
 import re
 import urlparse
 import os
+import datetime
 
 from djoser import views as djoser_views
 from rest_framework.views import exception_handler
@@ -11,10 +12,27 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.contrib.auth import user_logged_in
-from accounts.models import User
+from accounts.models import User, Organisation
+from service.models import Resource
 from agora.emails import send_email_shib_user_created
 from agora.utils import load_resources, load_permissions, get_root_url
 from agora.serializers import UserMeSerializer
+from django.db import connection
+from django.db.models.functions import ( ExtractMonth, ExtractYear )
+from django.db.models import Count
+
+
+PAST = datetime.date(2000, 1, 1)
+FUTURE = datetime.date(2100, 1, 1)
+
+def valid_date(date_text, default, add_day=False):
+    try:
+        date = datetime.datetime.strptime(date_text, '%d-%m-%Y')
+        if add_day:
+          date = date + datetime.timedelta(days=1)
+        return date
+    except ValueError:
+        return default
 
 
 logger = logging.getLogger(__name__)
@@ -24,7 +42,7 @@ AAI_ID_KEY = getattr(settings, 'AAI_ID_KEY', 'id')
 API_ENDPOINT = getattr(settings, 'API_ENDPOINT', 'api/v2')
 MEDIA_URL = getattr(settings, 'MEDIA_URL', 'media/')
 BASE_DIR = getattr(settings, 'BASE_DIR')
-
+ACCOUNTING_BASE_YEAR = getattr(settings, 'ACCOUNTING_BASE_YEAR', 2021)
 
 def config(request):
 
@@ -188,3 +206,88 @@ class CustomMe(djoser_views.UserView):
 
     def get_serializer_class(self):
         return UserMeSerializer
+
+def accounting(request):
+    date_from = valid_date(request.GET.get('from', ''), PAST)
+    date_to = valid_date(request.GET.get('to', ''), FUTURE, True)
+
+    new_users = User.objects.filter(date_joined__range=(date_from, date_to)).count()
+    new_resources = Resource.objects.filter(created_at__range=(date_from, date_to)).count()
+    new_providers = Organisation.objects.filter(created_at__range=(date_from, date_to)).count()
+
+    updated_resources = Resource.objects.filter(updated_at__range=(date_from, date_to)).count()
+    updated_providers = Organisation.objects.filter(updated_at__range=(date_from, date_to)).count()
+
+    data = {
+        'date_from': date_from,
+        'date_to': date_to,
+        'resources': {
+            'new_resources': new_resources,
+            'updated_resources': updated_resources,
+        },
+        'providers': {
+            'new_providers': new_providers,
+            'updated_providers': updated_providers,
+        },
+        'users': {
+            'new_users': new_users,
+        }
+    }
+
+    return JsonResponse(data)
+
+
+def get_field_date(year,month,data,label):
+    for entry in data:
+        if entry['year'] == year and entry['month'] == month:
+            return entry[label]
+    return 0
+
+def create_response(new_users, new_resources, new_providers, updated_resources, updated_providers,year_base):
+    now = datetime.datetime.now()
+    curr_year = now.year
+    curr_month = now.month
+    data = []
+    for year in range(year_base, curr_year+1):
+        if year-curr_year==0:
+            end_month = curr_month
+        else:
+            end_month=13
+        for month in range(1,end_month):
+            new_users_count = get_field_date(year,month,new_users,'new_users')
+            new_resources_count = get_field_date(year,month,new_resources,'new_resources')
+            new_providers_count = get_field_date(year,month,new_providers,'new_providers')
+            updated_resources_count = get_field_date(year,month,updated_resources,'updated_resources')
+            updated_providers_count = get_field_date(year,month,updated_providers,'updated_providers')
+            data.append({
+                'year':year,
+                'month': month,
+                'new_users': new_users_count,
+                'new_resources': new_resources_count,
+                'new_providers': new_providers_count,
+                'updated_resources': updated_resources_count,
+                'updated_providers': updated_providers_count
+            })
+    return JsonResponse(data, safe=False)
+    
+
+def monthly_stats(request):
+    base_year = ACCOUNTING_BASE_YEAR
+    new_users = User.objects.filter(date_joined__gte=datetime.datetime(base_year,1,1)).annotate(month=ExtractMonth('date_joined'),
+                                year=ExtractYear('date_joined'),).order_by().values('month', 'year').annotate(new_users=Count('*')).values('month', 'year', 'new_users')
+    new_resources = Resource.objects.filter(created_at__gte=datetime.datetime(base_year,1,1)).annotate(month=ExtractMonth('created_at'),
+                                year=ExtractYear('created_at'),).order_by().values('month', 'year').annotate(new_resources=Count('*')).values('month', 'year', 'new_resources')
+    new_providers = Organisation.objects.filter(created_at__gte=datetime.datetime(base_year,1,1)).annotate(month=ExtractMonth('created_at'),
+                                year=ExtractYear('created_at'),).order_by().values('month', 'year').annotate(new_providers=Count('*')).values('month', 'year', 'new_providers')
+
+    updated_resources = Resource.objects.filter(updated_at__gte=datetime.datetime(base_year,1,1)).annotate(month=ExtractMonth('updated_at'),
+                                year=ExtractYear('updated_at'),).order_by().values('month', 'year').annotate(updated_resources=Count('*')).values('month', 'year', 'updated_resources')
+    updated_providers = Organisation.objects.filter(updated_at__gte=datetime.datetime(base_year,1,1)).annotate(month=ExtractMonth('updated_at'),
+                                year=ExtractYear('updated_at'),).order_by().values('month', 'year').annotate(updated_providers=Count('*')).values('month', 'year', 'updated_providers')
+    new_users=[v for v in new_users]
+    new_resources=[v for v in new_resources]
+    new_providers=[v for v in new_providers]
+    updated_resources=[v for v in updated_resources]
+    updated_providers=[v for v in updated_providers]
+    
+    return create_response(new_users, new_resources, new_providers, updated_resources, updated_providers,base_year)
