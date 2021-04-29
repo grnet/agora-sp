@@ -25,7 +25,7 @@ const NavBar = (props) => {
           noWrap
           className={classes.toolbarTitle}
         >
-          Agora Accounting
+          Agora Metrics
         </Typography>
         <Link
           variant="button"
