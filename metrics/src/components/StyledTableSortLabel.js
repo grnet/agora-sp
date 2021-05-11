@@ -1,17 +1,18 @@
 import TableSortLabel from '@material-ui/core/TableSortLabel';
 import { withStyles } from '@material-ui/core/styles';
+import config from '../config';
 
 const StyledTableSortLabel = withStyles((theme) => ({
   root: {
-    color: 'white',
+    color: config.colors.previousMonthsHeaderText,
     "&:hover": {
-      color: 'white',
+      color: config.colors.previousMonthsHeaderText,
     },
     '&$active': {
-      color: 'white',
+      color: config.colors.previousMonthsHeaderText,
     },
     '&:visited': {
-      color: 'white',
+      color: config.colors.previousMonthsHeaderText,
     },
   },
   active: {},

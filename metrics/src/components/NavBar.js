@@ -13,6 +13,7 @@ const NavBar = (props) => {
     <AppBar
       position="fixed"
       color="default"
+      style={{background: config.colors.navbar}}
       elevation={0}
       className={classes.appBar}
     >
@@ -35,14 +36,16 @@ const NavBar = (props) => {
         >
           Agora
         </Link>
-        <Link
-          variant="button"
-          color="textPrimary"
-          href={config.endpoint + '/catalogue'}
-          className={classes.link}
-        >
-          Catalogue
-        </Link>
+        {config.catalogueUrl &&
+          <Link
+            variant="button"
+            color="textPrimary"
+            href={config.catalogue}
+            className={classes.link}
+          >
+            Catalogue
+          </Link>
+        }
         <Link
           variant="button"
           color="textPrimary"

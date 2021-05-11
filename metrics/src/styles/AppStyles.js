@@ -1,4 +1,5 @@
 import { makeStyles } from '@material-ui/core/styles';
+import config from '../config';
 
 const useStyles = makeStyles((theme) => ({
   '@global': {
@@ -29,9 +30,11 @@ const useStyles = makeStyles((theme) => ({
   },
   toolbarTitle: {
     flexGrow: 1,
+    color: config.colors.navbarText
   },
   link: {
     margin: theme.spacing(1, 1.5),
+    color: config.colors.navbarText
   },
   heroContent: {
     marginBottom: theme.spacing(5),
