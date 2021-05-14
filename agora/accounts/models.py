@@ -206,7 +206,7 @@ class Organisation(models.Model):
                                                   default=None, blank=True, null=True,
                                                   choices=LIFECYCLE_STATUSES)
 
-    epp_mti_2_certifications = models.CharField(default=None, blank=True, null=True, max_length=250)
+    epp_mti_2_certifications = models.TextField(default=None, blank=True, null=True)
 
    # Other information section
 
