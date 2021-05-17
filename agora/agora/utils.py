@@ -243,6 +243,75 @@ def unique_list(cat_list):
             unique_cat.append(cat)
     return unique_cat
 
+
+def unique_list_domains(cat_list):
+    unique_cat = []
+    for cat in cat_list:
+        is_new = True
+        dir(cat)
+        for uniq in unique_cat:
+            if cat['scientificDomain'] == uniq['scientificDomain'] and cat['scientificSubdomain'] == uniq['scientificSubdomain']:
+                is_new = False
+        if is_new == True:
+            unique_cat.append(cat)
+    return unique_cat
+
+
+def unique_list_meril_domains(cat_list):
+    unique_cat = []
+    for cat in cat_list:
+        is_new = True
+        dir(cat)
+        for uniq in unique_cat:
+            if cat['merilScientificDomain'] == uniq['merilScientificDomain'] and cat['merilScientificSubdomain'] == uniq['merilScientificSubdomain']:
+                is_new = False
+        if is_new == True:
+            unique_cat.append(cat)
+    return unique_cat
+
+
+def get_match_domain(sub_id,categories_ids):
+    sub_cat = sub_id.split('-')[1]
+    for category_id in categories_ids:
+        cat = category_id.split('-')[1]
+        if sub_cat == cat:
+            return category_id
+    return ''
+
+
+def get_match_subdomain(cat_id,subcategories_ids):
+    cat = cat_id.split('-')[1]
+    for subcategory_id in subcategories_ids:
+        sub_cat = subcategory_id.split('-')[1]
+        if sub_cat == cat:
+            return subcategory_id
+    return ''
+
+
+def get_domain(category_id, category_prefix):
+    return category_prefix + category_id.split('-')[1]
+
+
+def get_subdomain(category_id):
+    cat = category_id.split('-')[1]
+    if cat == "medical_and_health_sciences":
+        return 'scientific_subdomain-' + cat + '-other_medical_sciences'
+    elif cat == "other":
+        return 'scientific_subdomain-' + cat + '-other'
+    elif cat == "engineering_and_technology":
+        return 'scientific_subdomain-' + cat + '-other_engineering_and_technology_sciences'
+    elif cat == "generic":
+        return 'scientific_subdomain-' + cat + '-generic'
+    else:
+        return 'scientific_subdomain-' + cat + '-other_' + cat
+
+def get_meril_subdomain(category_id):
+    cat = category_id.split('-')[1]
+    if cat == 'other':
+        return 'provider_meril_scientific_subdomain-' + cat + '-other'
+    return 'provider_meril_scientific_subdomain-' + cat + '-other_'+cat
+
+
 def get_list_categories(categories, subcategories):
     categories_list = []
     for subcategory in subcategories.all():
@@ -261,49 +330,6 @@ def get_list_categories(categories, subcategories):
             categories_list.append({'category': category.eosc_id, 'subcategory': sub})
     return unique_list(categories_list)
 
-def get_match_domain(sub_id,categories_ids):
-    sub_cat = sub_id.split('-')[1]
-    for category_id in categories_ids:
-        cat = category_id.split('-')[1]
-        if sub_cat == cat:
-            return category_id
-    return ''
-
-def get_match_subdomain(cat_id,subcategories_ids):
-    cat = cat_id.split('-')[1]
-    for subcategory_id in subcategories_ids:
-        sub_cat = subcategory_id.split('-')[1]
-        if sub_cat == cat:
-            return subcategory_id
-    return ''
-
-def get_domain(category_id):
-    return 'scientific_domain-'+ category_id.split('-')[1]
-
-def get_subdomain(category_id):
-    cat = category_id.split('-')[1]
-    if cat == "medical_and_health_sciences":
-        return 'scientific_subdomain-' + cat + '-other_medical_sciences'
-    elif cat == "other":
-        return 'scientific_subdomain-' + cat + '-other'
-    elif cat == "engineering_and_technology":
-        return 'scientific_subdomain-' + cat + '-other_engineering_and_technology_sciences'
-    elif cat == "generic":
-        return 'scientific_subdomain-' + cat + '-generic'
-    else:
-        return 'scientific_subdomain-' + cat + '-other_' + cat
-
-def unique_list_domains(cat_list):
-    unique_cat = []
-    for cat in cat_list:
-        is_new = True
-        dir(cat)
-        for uniq in unique_cat:
-            if cat['scientificDomain'] == uniq['scientificDomain'] and cat['scientificSubdomain'] == uniq['scientificSubdomain']:
-                is_new = False
-        if is_new == True:
-            unique_cat.append(cat)
-    return unique_cat
 
 def get_list_sci_domains(categories, subcategories):
     categories_list = []
@@ -312,7 +338,7 @@ def get_list_sci_domains(categories, subcategories):
         if len(cat)>0:
             categories_list.append({'scientificDomain': cat, 'scientificSubdomain': subcategory.eosc_id})
         else:
-            cat = get_domain(subcategory.eosc_id)
+            cat = get_domain(subcategory.eosc_id, 'scientific_domain-')
             categories_list.append({'scientificDomain': cat, 'scientificSubdomain': subcategory.eosc_id})
     for category in categories.all():
         sub = get_match_subdomain(category.eosc_id,[s.eosc_id for s in subcategories.all()])
@@ -322,6 +348,25 @@ def get_list_sci_domains(categories, subcategories):
             sub = get_subdomain(category.eosc_id)
             categories_list.append({'scientificDomain': category.eosc_id, 'scientificSubdomain': sub})
     return unique_list_domains(categories_list)
+
+def get_list_meril_domains(categories, subcategories):
+    categories_list = []
+    for subcategory in subcategories.all():
+        cat = get_match_domain(subcategory.eosc_id,[c.eosc_id for c in categories.all()])
+        if len(cat)>0:
+            categories_list.append({'merilScientificDomain': cat, 'merilScientificSubdomain': subcategory.eosc_id})
+        else:
+            cat = get_domain(subcategory.eosc_id, 'provider_meril_scientific_domain-')
+            categories_list.append({'merilScientificDomain': cat, 'merilScientificSubdomain': subcategory.eosc_id})
+    for category in categories.all():
+        sub = get_match_subdomain(category.eosc_id,[s.eosc_id for s in subcategories.all()])
+        if len(sub)>0:
+            categories_list.append({'merilScientificDomain': category.eosc_id, 'merilScientificSubdomain': sub})
+        else:
+            sub = get_meril_subdomain(category.eosc_id)
+            categories_list.append({'merilScientificDomain': category.eosc_id, 'merilScientificSubdomain': sub})
+    return unique_list_meril_domains(categories_list)
+
 
 # Return fallback value
 def check_eosc_id(eosc_id, fallback_value):
@@ -333,7 +378,17 @@ def check_eosc_id(eosc_id, fallback_value):
         return eosc_id
 
 
-def create_eosc_api_json(instance):
+def get_location(instance):
+    location = {}
+    location['streetNameAndNumber'] = instance.epp_loi_1_street_name_and_number
+    location['postalCode'] = instance.epp_loi_2_postal_code
+    location['city'] = instance.epp_loi_3_city
+    location['region'] = instance.epp_loi_4_region
+    location['country'] = match_geolocation(instance.epp_loi_5_country_or_territory)
+    return location
+
+
+def create_eosc_api_json_resource(instance):
     resource_json = {}
     if instance.eosc_id != None:
         resource_json['id'] = instance.eosc_id
@@ -401,6 +456,88 @@ def create_eosc_api_json(instance):
     resource_json['pricing'] = instance.erp_fni_2_pricing
     resource_json['requiredResources'] = [o.eosc_id for o in instance.required_resources.all()]
     resource_json['relatedResources'] = [o.eosc_id for o in instance.related_resources.all()]
+    return resource_json
+
+
+def get_life_cycle_status(status):
+    if status == 'Retirement':
+        return 'life_cycle_status-retirement'
+    elif status == 'Implementation':
+        return 'life_cycle_status-implementation'
+    elif status == 'Termination':
+        return 'life_cycle_status-termination'
+    elif status == 'Design':
+        return 'life_cycle_status-design'
+    elif status == 'Alpha':
+        return 'life_cycle_status-alpha'
+    elif status == 'Concept':
+        return 'life_cycle_status-concept'
+    elif status == 'Discovery':
+        return 'life_cycle_status-discovery'
+    elif status == 'Preparation':
+        return 'life_cycle_status-preparation'
+    elif status == 'Other':
+        return 'life_cycle_status-other'
+    elif status == 'Planned':
+        return 'life_cycle_status-planned'
+    elif status == 'In containment':
+        return 'life_cycle_status-in_containment'
+    elif status == 'Operation':
+        return 'life_cycle_status-operation'
+    elif status == 'Production':
+        return 'life_cycle_status-production'
+    elif status == 'Beta':
+        return 'life_cycle_status-beta'
+    else:
+        return 'life_cycle_status-other'
+
+
+def create_eosc_api_json_provider(instance):
+    resource_json = {}
+    if instance.eosc_id != None:
+        resource_json['id'] = instance.eosc_id
+    resource_json['name'] = instance.epp_bai_1_name
+    resource_json['abbreviation'] = instance.epp_bai_2_abbreviation
+    resource_json['webpage'] = instance.epp_bai_3_website
+    resource_json['legalEntity'] = instance.epp_bai_4_legal_entity
+    if instance.epp_bai_5_legal_status != None:
+        resource_json['legalStatus'] = check_eosc_id( instance.epp_bai_5_legal_status.eosc_id, 'provider_legal_status-other')
+    resource_json['description'] = instance.epp_mri_1_description
+    resource_json['logo'] = instance.epp_mri_2_logo
+    resource_json['multimedia'] = [ instance.epp_mri_3_multimedia ]
+    resource_json['scientificDomains'] = get_list_sci_domains(instance.epp_cli_1_scientific_domain, instance.epp_cli_2_scientific_subdomain)
+    if instance.epp_cli_3_tags != None:
+        resource_json['tags'] = instance.epp_cli_3_tags.replace(" ","").split(",")
+    resource_json['location'] = get_location(instance)
+    if instance.main_contact != None:
+        resource_json['mainContact'] = get_contact(instance.main_contact)
+    if instance.public_contact != None:
+        resource_json['publicContacts'] = [get_contact(instance.public_contact)]
+    if instance.epp_mti_1_life_cycle_status != None:
+        resource_json['lifeCycleStatus'] = get_life_cycle_status(instance.epp_mti_1_life_cycle_status)
+    if instance.epp_mti_2_certifications != None:
+        resource_json['certifications'] = instance.epp_mti_2_certifications.split('\n')
+    resource_json['hostingLegalEntity'] = instance.epp_oth_1_hosting_legal_entity
+    if instance.epp_oth_2_participating_countries != None:
+        resource_json['participatingCountries'] = [ match_geolocation(o.strip()) for o in instance.epp_oth_2_participating_countries.split(",")]
+    if instance.epp_oth_3_affiliations_verbose != None:
+        resource_json['affiliations'] = [ o for o in instance.epp_oth_3_affiliations_verbose.split(",")]
+    if instance.epp_oth_4_networks != None:
+        resource_json['networks'] = [ check_eosc_id(o.eosc_id, 'provider_network-other') for o in instance.epp_oth_4_networks.all()]
+    if instance.epp_oth_5_structure_type != None:
+       resource_json['structureTypes'] = [ check_eosc_id(o.eosc_id, 'provider_structure_type-other') for o in instance.epp_oth_5_structure_type.all()]
+    if instance.epp_oth_6_esfri_domain != None:
+       resource_json['esfriDomains'] = [ check_eosc_id(o.eosc_id, 'provider_esfri_domain-other') for o in instance.epp_oth_6_esfri_domain.all()]
+    if instance.epp_oth_7_esfri_type != None:
+        resource_json['esfriType'] = check_eosc_id(instance.epp_oth_7_esfri_type.eosc_id, 'provider_esfri_type-other')
+    resource_json['merilScientificDomains'] = get_list_meril_domains(instance.epp_oth_8_meril_scientific_domain, instance.epp_oth_9_meril_scientific_subdomain)
+    if instance.epp_oth_10_areas_of_activity != None:
+       resource_json['areasOfActivity'] = [ check_eosc_id(o.eosc_id, 'provider_area_of_activity-other') for o in instance.epp_oth_10_areas_of_activity.all()]
+    if instance.epp_oth_11_societal_grand_challenges != None:
+       resource_json['societalGrandChallenges'] = [ check_eosc_id(o.eosc_id, 'provider_societal_grand_challenge-other') for o in instance.epp_oth_11_societal_grand_challenges.all()]
+    if instance.epp_oth_12_national_roadmaps != None:
+        resource_json['nationalRoadmaps'] = [ o for o in instance.epp_oth_12_national_roadmaps.split(",")]
+    print(json.dumps(resource_json))
     return resource_json
 
 
