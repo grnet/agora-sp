@@ -122,10 +122,8 @@ def provider_publish_eosc(backend_input, instance, context):
     return instance
 
 def provider_update_eosc(backend_input, instance, context):
-    eosc_req = create_eosc_api_json_resource(instance)
-    if 'resourceOrganisation' not in eosc_req or eosc_req['resourceOrganisation'] == None or len(eosc_req['resourceOrganisation'].strip()) == 0:
-        raise ValidationError('Resource provider has not an eosc_id')
-    url = EOSC_API_URL+'resource'
+    eosc_req = create_eosc_api_json_provider(instance)
+    url = EOSC_API_URL+'provider'
     id  = str(instance.id)
     username = context['auth/user'].username
     eosc_token = get_access_token(OIDC_URL, OIDC_REFRESH_TOKEN, OIDC_CLIENT_ID)

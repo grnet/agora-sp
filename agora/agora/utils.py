@@ -384,7 +384,7 @@ def get_location(instance):
     location['postalCode'] = instance.epp_loi_2_postal_code
     location['city'] = instance.epp_loi_3_city
     location['region'] = instance.epp_loi_4_region
-    location['country'] = match_geolocation(instance.epp_loi_5_country_or_territory)
+    location['country'] = match_geolocation(instance.epp_loi_5_country_or_territory).upper()
     return location
 
 
@@ -460,36 +460,16 @@ def create_eosc_api_json_resource(instance):
 
 
 def get_life_cycle_status(status):
-    if status == 'Retirement':
-        return 'life_cycle_status-retirement'
-    elif status == 'Implementation':
-        return 'life_cycle_status-implementation'
-    elif status == 'Termination':
-        return 'life_cycle_status-termination'
-    elif status == 'Design':
-        return 'life_cycle_status-design'
-    elif status == 'Alpha':
-        return 'life_cycle_status-alpha'
-    elif status == 'Concept':
-        return 'life_cycle_status-concept'
-    elif status == 'Discovery':
-        return 'life_cycle_status-discovery'
-    elif status == 'Preparation':
-        return 'life_cycle_status-preparation'
+    if status == 'Under Construction':
+        return 'provider_life_cycle_status-under_construction'
+    elif status == 'Being Upgraded':
+        return 'provider_life_cycle_status-being_upgraded'
     elif status == 'Other':
-        return 'life_cycle_status-other'
-    elif status == 'Planned':
-        return 'life_cycle_status-planned'
-    elif status == 'In containment':
-        return 'life_cycle_status-in_containment'
-    elif status == 'Operation':
-        return 'life_cycle_status-operation'
-    elif status == 'Production':
-        return 'life_cycle_status-production'
-    elif status == 'Beta':
-        return 'life_cycle_status-beta'
+        return 'provider_life_cycle_status-other'
+    elif status == 'Operational':
+        return 'provider_life_cycle_status-operational'
     else:
-        return 'life_cycle_status-other'
+        return 'provider_life_cycle_status-other'
 
 
 def create_eosc_api_json_provider(instance):
@@ -498,7 +478,7 @@ def create_eosc_api_json_provider(instance):
         resource_json['id'] = instance.eosc_id
     resource_json['name'] = instance.epp_bai_1_name
     resource_json['abbreviation'] = instance.epp_bai_2_abbreviation
-    resource_json['webpage'] = instance.epp_bai_3_website
+    resource_json['website'] = instance.epp_bai_3_website
     resource_json['legalEntity'] = instance.epp_bai_4_legal_entity
     if instance.epp_bai_5_legal_status != None:
         resource_json['legalStatus'] = check_eosc_id( instance.epp_bai_5_legal_status.eosc_id, 'provider_legal_status-other')
