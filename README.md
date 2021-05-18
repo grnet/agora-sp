@@ -189,7 +189,7 @@ In order to disable this feature, you must alter `ui/config/environment.js` as f
 APP: {
   eosc_portal: {
     enabled: false,
-    show_actions: true
+    show_actions_resource: true
   }
 }
 ```
