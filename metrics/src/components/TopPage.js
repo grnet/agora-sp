@@ -14,7 +14,7 @@ import useStyles from '../styles/AppStyles';
 import InfoBox from './InfoBox';
 import InfoBoxUsers from './InfoBoxUsers';
 import CONFIG from '../config';
-import { Typography } from '@material-ui/core';
+import { Typography, withStyles } from '@material-ui/core';
 import { get_month } from '../utils/Month';
 
 const initData = {
@@ -77,6 +77,16 @@ const TopPage = () => {
       });
   };
 
+  const ColorButton = withStyles((theme) => ({
+    root: {
+      color: theme.palette.getContrastText(CONFIG.colors.searchButton),
+      backgroundColor: CONFIG.colors.searchButton,
+      '&:hover': {
+        backgroundColor: CONFIG.colors.searchButton,
+      },
+    },
+  }))(Button);
+
   return (
     <>
       <Container maxWidth="sm" component="main" className={classes.title}>
@@ -115,14 +125,14 @@ const TopPage = () => {
             </Grid>
             <Grid item xs={12} sm={4} align="center">
               <Box mt={3}>
-                <Button
+                <ColorButton
                   variant="contained"
                   color="primary"
                   onClick={searchHandle}
                   aria-label="delete"
                 >
                   Apply filter
-                </Button>
+                </ColorButton>
               </Box>
             </Grid>
           </Grid>
