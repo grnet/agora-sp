@@ -416,7 +416,7 @@ const putProviderEOSC = {
 		let token = get(route, 'user.auth_token');
 		let url = adapter.buildURL('provider', get(model, 'id'), 'findRecord');
 		return fetch(url + 'update-eosc/', {
-			method: 'PUT',
+			method: 'POST',
 			headers: {
 				Accept: 'application/json',
 				Authorization: `Token ${token}`,
