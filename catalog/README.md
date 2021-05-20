@@ -17,6 +17,8 @@ In `./src/config.js` there are some basic configuration properties to be set bef
   Option to specify a secondary color for theme-ing
 - `basePath: "/catalog"`
   Optional parameter to specify a subfolder path where the web app will be hosted. If defined here set also accordingly the homepage parameter at package.json
+- `organisationURL: "https://demo.agora.grnet.gr/api/v2/public/providers/<organisationUUID>/"`
+  Optional parameter to show *ONLY* resources that the specified organisation provides. In the providers section also affiliated providers are presented.
 
 ## Build and deploy
 

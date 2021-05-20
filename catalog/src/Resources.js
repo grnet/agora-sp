@@ -16,12 +16,16 @@ function Resources() {
   useEffect(() => {
     async function getData() {
       const result = await axios(
-        `https://${config.endpoint}/api/v2/public/resources`
+        `https://${config.endpoint}/api/v2/public/resources/`
       );
       let data = [];
       for (let item of result.data) {
         let terms = [];
         let tags = [];
+        if (!!config.organisationURL &&
+            item.erp_bai_2_organisation_public !== config.organisationURL) {
+          continue;
+        }
         if ("erp_bai_1_name" in item && item.erp_bai_1_name != null) {
           terms.push(item.erp_bai_1_name.toLowerCase());
         }
