@@ -5,7 +5,7 @@ var config = {
 	colorA:"#9c6078",
 	colorB:"#112130",
 	basePath:"/catalog",
-	organisationURL: "https://demo.agora.grnet.gr/api/v2/public/providers/678d2afb-d5f1-4a36-9292-8745ebe59035/"
+	organisationURL: "https://demo.agora.grnet.gr/api/v2/public/providers/<organisationUUID>/"
 }
 
 export default config;
