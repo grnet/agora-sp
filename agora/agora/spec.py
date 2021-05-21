@@ -1209,6 +1209,21 @@ ORGANISATIONS = {
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
         '.action-template.django.partial_update': {},
+        'publish-eosc': {
+            '.action.django.recipe.partial_update': {},
+            'method': 'POST',
+            'status_code': 200,
+            'url': '/*/publish-eosc/',
+            ':custom_update_handler': 'agora.actions.provider_publish_eosc',
+        },
+        'update-eosc': {
+            '.action.django.recipe.partial_update': {},
+            'method': 'POST',
+            'status_code': 200,
+            'url': '/*/update-eosc/',
+            ':custom_update_handler': 'agora.actions.provider_update_eosc',
+        },
+
     },
 }
 
