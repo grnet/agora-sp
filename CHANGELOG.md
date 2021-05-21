@@ -6,8 +6,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [1.3.1](https://github.com/grnet/agora-sp/compare/v1.3.0...v1.3.1) - 2021-05-13
 
+### Added
+- Add Publish provider to EOSC portal actions.
+
 ### Changed
 - Rename accounting application to metrics.
+
 
 ## [1.3.0](https://github.com/grnet/agora-sp/compare/v1.2.0...v1.3.0) - 2021-05-11
 
