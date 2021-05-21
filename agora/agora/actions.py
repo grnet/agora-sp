@@ -93,7 +93,8 @@ def resource_update_eosc(backend_input, instance, context):
     return instance
 
 def provider_publish_eosc(backend_input, instance, context):
-    eosc_req = create_eosc_api_json_provider(instance)
+    provider_email = context['auth/user'].email
+    eosc_req = create_eosc_api_json_provider(instance, provider_email)
     url = EOSC_API_URL+'provider'
     id  = str(instance.id)
     username = context['auth/user'].username
@@ -122,7 +123,8 @@ def provider_publish_eosc(backend_input, instance, context):
     return instance
 
 def provider_update_eosc(backend_input, instance, context):
-    eosc_req = create_eosc_api_json_provider(instance)
+    provider_email = context['auth/user'].email
+    eosc_req = create_eosc_api_json_provider(instance, provider_email)
     url = EOSC_API_URL+'provider'
     id  = str(instance.id)
     username = context['auth/user'].username

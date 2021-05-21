@@ -472,7 +472,7 @@ def get_life_cycle_status(status):
         return 'provider_life_cycle_status-other'
 
 
-def create_eosc_api_json_provider(instance):
+def create_eosc_api_json_provider(instance, provider_email):
     resource_json = {}
     if instance.eosc_id != None:
         resource_json['id'] = instance.eosc_id
@@ -517,7 +517,7 @@ def create_eosc_api_json_provider(instance):
        resource_json['societalGrandChallenges'] = [ check_eosc_id(o.eosc_id, 'provider_societal_grand_challenge-other') for o in instance.epp_oth_11_societal_grand_challenges.all()]
     if instance.epp_oth_12_national_roadmaps != None:
         resource_json['nationalRoadmaps'] = [ o for o in instance.epp_oth_12_national_roadmaps.split(",")]
-    print(json.dumps(resource_json))
+    resource_json['users'] = [{"email": provider_email}]
     return resource_json
 
 
