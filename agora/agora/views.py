@@ -12,8 +12,8 @@ from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.contrib.auth import user_logged_in
-from accounts.models import User, Organisation
-from service.models import Resource
+from accounts.models import User, Organisation, ProviderAudit
+from service.models import Resource, ResourceAudit
 from agora.emails import send_email_shib_user_created
 from agora.utils import load_resources, load_permissions, get_root_url
 from agora.serializers import UserMeSerializer
@@ -215,8 +215,8 @@ def accounting(request):
     new_resources = Resource.objects.filter(created_at__range=(date_from, date_to)).count()
     new_providers = Organisation.objects.filter(created_at__range=(date_from, date_to)).count()
 
-    updated_resources = Resource.objects.filter(updated_at__range=(date_from, date_to)).count()
-    updated_providers = Organisation.objects.filter(updated_at__range=(date_from, date_to)).count()
+    updated_resources = ResourceAudit.objects.filter(updated_at__range=(date_from, date_to)).count()
+    updated_providers = ProviderAudit.objects.filter(updated_at__range=(date_from, date_to)).count()
 
     data = {
         'date_from': date_from,
@@ -280,9 +280,9 @@ def monthly_stats(request):
     new_providers = Organisation.objects.filter(created_at__gte=datetime.datetime(base_year,1,1)).annotate(month=ExtractMonth('created_at'),
                                 year=ExtractYear('created_at'),).order_by().values('month', 'year').annotate(new_providers=Count('*')).values('month', 'year', 'new_providers')
 
-    updated_resources = Resource.objects.filter(updated_at__gte=datetime.datetime(base_year,1,1)).annotate(month=ExtractMonth('updated_at'),
+    updated_resources = ResourceAudit.objects.filter(updated_at__gte=datetime.datetime(base_year,1,1)).annotate(month=ExtractMonth('updated_at'),
                                 year=ExtractYear('updated_at'),).order_by().values('month', 'year').annotate(updated_resources=Count('*')).values('month', 'year', 'updated_resources')
-    updated_providers = Organisation.objects.filter(updated_at__gte=datetime.datetime(base_year,1,1)).annotate(month=ExtractMonth('updated_at'),
+    updated_providers = ProviderAudit.objects.filter(updated_at__gte=datetime.datetime(base_year,1,1)).annotate(month=ExtractMonth('updated_at'),
                                 year=ExtractYear('updated_at'),).order_by().values('month', 'year').annotate(updated_providers=Count('*')).values('month', 'year', 'updated_providers')
     new_users=[v for v in new_users]
     new_resources=[v for v in new_resources]

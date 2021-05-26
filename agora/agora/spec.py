@@ -1223,7 +1223,21 @@ ORGANISATIONS = {
             'url': '/*/update-eosc/',
             ':custom_update_handler': 'agora.actions.provider_update_eosc',
         },
-
+        'partial_update': {
+            'processors': {
+                'custom_post_update': {
+                    '.processor': {},
+                    'module_path': 'accounts.models.PostUpdateProvider',
+                    'read_keys': {'=': (
+                        'backend/raw_response',
+                        'auth/user',
+                    )},
+                    'write_keys': {'=': (
+                        'backend/raw_response',
+                    )},
+                },
+            },
+        },
     },
 }
 
@@ -1802,6 +1816,21 @@ RESOURCES = {
                 'custom_post_create': {
                     '.processor': {},
                     'module_path': 'service.models.PostCreateResource',
+                    'read_keys': {'=': (
+                        'backend/raw_response',
+                        'auth/user',
+                    )},
+                    'write_keys': {'=': (
+                        'backend/raw_response',
+                    )},
+                },
+            },
+        },
+        'partial_update': {
+            'processors': {
+                'custom_post_update': {
+                    '.processor': {},
+                    'module_path': 'service.models.PostUpdateResource',
                     'read_keys': {'=': (
                         'backend/raw_response',
                         'auth/user',

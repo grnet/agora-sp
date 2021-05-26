@@ -401,3 +401,24 @@ class PostCreateResource(ProcessorFactory):
                 admin=user,
                 state='approved')
         return {}
+
+class ResourceAudit(models.Model):
+    resource = models.ForeignKey(Resource, related_name="resourceaudittable")
+    updater = models.ForeignKey(User)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = (("resource", "updated_at"),)
+
+    def save(self, *args, **kwargs):
+        clean_html_fields(self)
+        super(ResourceAudit, self).save(*args, **kwargs)
+
+class PostUpdateResource(ProcessorFactory):
+    def process(self, data):
+        user = data['auth/user']
+        resource = data['backend/raw_response']
+        ResourceAudit.objects.create(
+                resource=resource,
+                updater=user)
+        return {}
