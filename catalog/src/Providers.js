@@ -6,8 +6,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import search from "./search";
 import TagItems from "./TagItems";
 
-const getProvidersOfResources = (resources, orgUUid) => {
-  let providers = [orgUUid]
+const getProvidersOfResources = (resources, orgURL) => {
+  let providers = [orgURL]
   for (let resource of resources ) {
     if (!!resource.erp_bai_3_providers_public){
       for( let provider of resource.erp_bai_3_providers_public){
@@ -71,20 +71,20 @@ function Providers() {
     getProviders();
   }, []);
 
-  // Get resources if organisationURL is specified
+  // Get resources if organisationUUID is specified
   useEffect(() => {
     async function getResources() {
+      let AGORA_URL = `https://${config.endpoint}/api/v2/public/resources/`
+      if (!!config.organisationUUID) {
+        AGORA_URL = AGORA_URL + '?erp_bai_2_organisation=' + config.organisationUUID
+      }
       const result = await axios(
-        `https://${config.endpoint}/api/v2/public/resources/`
+        AGORA_URL
       );
       let data = [];
       for (let item of result.data) {
         let terms = [];
         let tags = [];
-        if (!!config.organisationURL &&
-          item.erp_bai_2_organisation_public !== config.organisationURL) {
-          continue;
-        }
         if ("erp_bai_1_name" in item && item.erp_bai_1_name != null) {
           terms.push(item.erp_bai_1_name.toLowerCase());
         }
@@ -99,7 +99,7 @@ function Providers() {
 
       setResourcesGroup(data);
     }
-    if (config.organisationURL) {
+    if (!!config.organisationUUID) {
       getResources();
     }
   }, []);
@@ -113,10 +113,10 @@ function Providers() {
     setShowProviders(filtered)
   }, [searchTerms,data]);
 
-  //Match resource related providers when organisationURL is provided
+  //Match resource related providers when organisationUUID is provided
   useEffect(() => {
-    if (config.organisationURL) {
-      const providers = getProvidersOfResources(resourcesGroup, config.organisationURL)
+    if (!!config.organisationUUID) {
+      const providers = getProvidersOfResources(resourcesGroup, `https://${config.endpoint}/api/v2/public/providers/${config.organisationUUID}`)
       setData(providersGroup.filter( item => checkProvider(item.id,providers)));
       setShowProviders(providersGroup.filter( item => checkProvider(item.id,providers)));
     }

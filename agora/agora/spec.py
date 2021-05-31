@@ -2262,6 +2262,12 @@ PUBLIC_RESOURCES = {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
+        'erp_bai_2_organisation': {
+            '.field.ref': {},
+            'to': '/api/v2/public/providers',
+            '.flag.filterable': {},
+            '.flag.nullable.default': {},
+            '.flag.noread': {}},
         'erp_bai_2_organisation_public': {
             '.field.ref': {},
             'to': '/api/v2/public/providers',

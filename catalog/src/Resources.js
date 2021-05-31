@@ -15,17 +15,17 @@ function Resources() {
 
   useEffect(() => {
     async function getData() {
+      let AGORA_URL = `https://${config.endpoint}/api/v2/public/resources/`
+      if (!!config.organisationUUID) {
+        AGORA_URL = AGORA_URL + '?erp_bai_2_organisation=' + config.organisationUUID
+      }
       const result = await axios(
-        `https://${config.endpoint}/api/v2/public/resources/`
+        AGORA_URL
       );
       let data = [];
       for (let item of result.data) {
         let terms = [];
         let tags = [];
-        if (!!config.organisationURL &&
-            item.erp_bai_2_organisation_public !== config.organisationURL) {
-          continue;
-        }
         if ("erp_bai_1_name" in item && item.erp_bai_1_name != null) {
           terms.push(item.erp_bai_1_name.toLowerCase());
         }
