@@ -215,8 +215,11 @@ def accounting(request):
     new_resources = Resource.objects.filter(created_at__range=(date_from, date_to)).count()
     new_providers = Organisation.objects.filter(created_at__range=(date_from, date_to)).count()
 
-    updated_resources = ResourceAudit.objects.filter(updated_at__range=(date_from, date_to)).count()
-    updated_providers = ProviderAudit.objects.filter(updated_at__range=(date_from, date_to)).count()
+    updated_resources = ResourceAudit.objects.filter(updated_at__range=(date_from, date_to)).order_by('resource').values('resource').distinct().count()
+    updated_providers = ProviderAudit.objects.filter(updated_at__range=(date_from, date_to)).order_by('provider').values('provider').distinct().count()
+
+    updated_resources_total = ResourceAudit.objects.filter(updated_at__range=(date_from, date_to)).count()
+    updated_providers_total = ProviderAudit.objects.filter(updated_at__range=(date_from, date_to)).count()
 
     data = {
         'date_from': date_from,
@@ -224,10 +227,12 @@ def accounting(request):
         'resources': {
             'new_resources': new_resources,
             'updated_resources': updated_resources,
+            'total_updated_resources': updated_resources_total
         },
         'providers': {
             'new_providers': new_providers,
             'updated_providers': updated_providers,
+            'total_updated_providers': updated_providers_total
         },
         'users': {
             'new_users': new_users,
@@ -243,7 +248,7 @@ def get_field_date(year,month,data,label):
             return entry[label]
     return 0
 
-def create_response(new_users, new_resources, new_providers, updated_resources, updated_providers,year_base):
+def create_response(new_users, new_resources, new_providers, updated_resources, updated_providers, updated_resources_total, updated_provider_total, year_base):
     now = datetime.datetime.now()
     curr_year = now.year
     curr_month = now.month
@@ -259,6 +264,8 @@ def create_response(new_users, new_resources, new_providers, updated_resources, 
             new_providers_count = get_field_date(year,month,new_providers,'new_providers')
             updated_resources_count = get_field_date(year,month,updated_resources,'updated_resources')
             updated_providers_count = get_field_date(year,month,updated_providers,'updated_providers')
+            updated_resources_total_count = get_field_date(year,month,updated_resources_total,'updated_resources_total')
+            updated_providers_total_count = get_field_date(year,month,updated_provider_total,'updated_providers_total')
             data.append({
                 'year':year,
                 'month': month,
@@ -266,7 +273,9 @@ def create_response(new_users, new_resources, new_providers, updated_resources, 
                 'new_resources': new_resources_count,
                 'new_providers': new_providers_count,
                 'updated_resources': updated_resources_count,
-                'updated_providers': updated_providers_count
+                'updated_providers': updated_providers_count,
+                'updated_resources_total': updated_resources_total_count,
+                'updated_providers_total': updated_providers_total_count
             })
     return JsonResponse(data, safe=False)
     
@@ -279,15 +288,24 @@ def monthly_stats(request):
                                 year=ExtractYear('created_at'),).order_by().values('month', 'year').annotate(new_resources=Count('*')).values('month', 'year', 'new_resources')
     new_providers = Organisation.objects.filter(created_at__gte=datetime.datetime(base_year,1,1)).annotate(month=ExtractMonth('created_at'),
                                 year=ExtractYear('created_at'),).order_by().values('month', 'year').annotate(new_providers=Count('*')).values('month', 'year', 'new_providers')
-
+    import pdb
+    pdb.set_trace()
     updated_resources = ResourceAudit.objects.filter(updated_at__gte=datetime.datetime(base_year,1,1)).annotate(month=ExtractMonth('updated_at'),
-                                year=ExtractYear('updated_at'),).order_by().values('month', 'year').annotate(updated_resources=Count('*')).values('month', 'year', 'updated_resources')
+                                year=ExtractYear('updated_at'),).values('month','year').annotate(counter=Count('resource',distinct=True))
     updated_providers = ProviderAudit.objects.filter(updated_at__gte=datetime.datetime(base_year,1,1)).annotate(month=ExtractMonth('updated_at'),
-                                year=ExtractYear('updated_at'),).order_by().values('month', 'year').annotate(updated_providers=Count('*')).values('month', 'year', 'updated_providers')
+                                year=ExtractYear('updated_at'),).values('month','year').annotate(counter=Count('provider',distinct=True))
+
+    updated_resources_total = ResourceAudit.objects.filter(updated_at__gte=datetime.datetime(base_year,1,1)).annotate(month=ExtractMonth('updated_at'),
+                                year=ExtractYear('updated_at'),).order_by().values('month', 'year').annotate(updated_resources_total=Count('*')).values('month', 'year', 'updated_resources_total')
+    updated_providers_total = ProviderAudit.objects.filter(updated_at__gte=datetime.datetime(base_year,1,1)).annotate(month=ExtractMonth('updated_at'),
+                                year=ExtractYear('updated_at'),).order_by().values('month', 'year').annotate(updated_providers_total=Count('*')).values('month', 'year', 'updated_providers_total')
+
     new_users=[v for v in new_users]
     new_resources=[v for v in new_resources]
     new_providers=[v for v in new_providers]
     updated_resources=[v for v in updated_resources]
     updated_providers=[v for v in updated_providers]
-    
-    return create_response(new_users, new_resources, new_providers, updated_resources, updated_providers,base_year)
+    updated_resources_total=[v for v in updated_resources_total]
+    updated_providers_total=[v for v in updated_providers_total]
+    print(updated_resources_total)
+    return create_response(new_users, new_resources, new_providers, updated_resources, updated_providers, updated_resources_total, updated_providers_total, base_year)

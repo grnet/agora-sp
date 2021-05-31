@@ -402,10 +402,6 @@ class ProviderAudit(models.Model):
     class Meta:
         unique_together = (("provider", "updated_at"),)
 
-    def save(self, *args, **kwargs):
-        clean_html_fields(self)
-        super(ProviderAudit, self).save(*args, **kwargs)
-
 
 class PostUpdateProvider(ProcessorFactory):
     def process(self, data):

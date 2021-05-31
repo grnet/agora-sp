@@ -410,9 +410,6 @@ class ResourceAudit(models.Model):
     class Meta:
         unique_together = (("resource", "updated_at"),)
 
-    def save(self, *args, **kwargs):
-        clean_html_fields(self)
-        super(ResourceAudit, self).save(*args, **kwargs)
 
 class PostUpdateResource(ProcessorFactory):
     def process(self, data):
