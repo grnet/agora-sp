@@ -288,12 +288,11 @@ def monthly_stats(request):
                                 year=ExtractYear('created_at'),).order_by().values('month', 'year').annotate(new_resources=Count('*')).values('month', 'year', 'new_resources')
     new_providers = Organisation.objects.filter(created_at__gte=datetime.datetime(base_year,1,1)).annotate(month=ExtractMonth('created_at'),
                                 year=ExtractYear('created_at'),).order_by().values('month', 'year').annotate(new_providers=Count('*')).values('month', 'year', 'new_providers')
-    import pdb
-    pdb.set_trace()
+
     updated_resources = ResourceAudit.objects.filter(updated_at__gte=datetime.datetime(base_year,1,1)).annotate(month=ExtractMonth('updated_at'),
-                                year=ExtractYear('updated_at'),).values('month','year').annotate(counter=Count('resource',distinct=True))
+                                year=ExtractYear('updated_at'),).values('month','year').annotate(updated_resources=Count('resource',distinct=True))
     updated_providers = ProviderAudit.objects.filter(updated_at__gte=datetime.datetime(base_year,1,1)).annotate(month=ExtractMonth('updated_at'),
-                                year=ExtractYear('updated_at'),).values('month','year').annotate(counter=Count('provider',distinct=True))
+                                year=ExtractYear('updated_at'),).values('month','year').annotate(updated_providers=Count('provider',distinct=True))
 
     updated_resources_total = ResourceAudit.objects.filter(updated_at__gte=datetime.datetime(base_year,1,1)).annotate(month=ExtractMonth('updated_at'),
                                 year=ExtractYear('updated_at'),).order_by().values('month', 'year').annotate(updated_resources_total=Count('*')).values('month', 'year', 'updated_resources_total')
