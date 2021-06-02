@@ -21,7 +21,7 @@ function Resource(props) {
   useEffect(() => {
     async function getData() {
       const result = await axios(
-        `https://${config.endpoint}/api/v2/public/resources/${id}`
+        `${config.endpoint}/api/v2/public/resources/${id}`
       );
       let tags = [];
       let rloc = [];
