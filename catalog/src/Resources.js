@@ -15,7 +15,7 @@ function Resources() {
 
   useEffect(() => {
     async function getData() {
-      let AGORA_URL = `https://${config.endpoint}/api/v2/public/resources/`
+      let AGORA_URL = `${config.endpoint}/api/v2/public/resources/`
       if (!!config.organisationUUID) {
         AGORA_URL = AGORA_URL + '?erp_bai_2_organisation=' + config.organisationUUID
       }

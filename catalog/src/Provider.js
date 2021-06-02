@@ -18,7 +18,7 @@ function Provider(props) {
   useEffect(() => {
     async function getData() {
       const result = await axios(
-        `https://${config.endpoint}/api/v2/public/providers/${id}`
+        `${config.endpoint}/api/v2/public/providers/${id}`
       );
       let tags = [];
       let countries = [];

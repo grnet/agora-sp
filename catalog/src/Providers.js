@@ -44,7 +44,7 @@ function Providers() {
   useEffect(() => {
     async function getProviders() {
       const result = await axios(
-        `https://${config.endpoint}/api/v2/public/providers/`
+        `${config.endpoint}/api/v2/public/providers/`
       );
       let data = [];
       for (let item of result.data) {
@@ -74,7 +74,7 @@ function Providers() {
   // Get resources if organisationUUID is specified
   useEffect(() => {
     async function getResources() {
-      let AGORA_URL = `https://${config.endpoint}/api/v2/public/resources/`
+      let AGORA_URL = `${config.endpoint}/api/v2/public/resources/`
       if (!!config.organisationUUID) {
         AGORA_URL = AGORA_URL + '?erp_bai_2_organisation=' + config.organisationUUID
       }
@@ -116,7 +116,7 @@ function Providers() {
   //Match resource related providers when organisationUUID is provided
   useEffect(() => {
     if (!!config.organisationUUID) {
-      const providers = getProvidersOfResources(resourcesGroup, `https://${config.endpoint}/api/v2/public/providers/${config.organisationUUID}`)
+      const providers = getProvidersOfResources(resourcesGroup, `${config.endpoint}/api/v2/public/providers/${config.organisationUUID}`)
       setData(providersGroup.filter( item => checkProvider(item.id,providers)));
       setShowProviders(providersGroup.filter( item => checkProvider(item.id,providers)));
     }
