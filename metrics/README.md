@@ -4,6 +4,8 @@ Agora metrics is a single page front-end application built with react (and creat
 - new users
 - new/updated providers
 - new/updated resources
+- total providers updates
+- total resources updates
 
 ## Configuration
 
