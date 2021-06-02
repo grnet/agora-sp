@@ -15,7 +15,7 @@ const InfoBox = (props) => {
           {props.title}
         </Typography>
       </Grid>
-      <Grid item xs={12} sm={12} md={4}>
+      <Grid item xs={12} sm={12} md={3}>
         <Card>
           <CardContent>
             <div className={classes.cardPricing}>
@@ -29,7 +29,7 @@ const InfoBox = (props) => {
           </CardContent>
         </Card>
       </Grid>
-      <Grid item xs={12} sm={12} md={4}>
+      <Grid item xs={12} sm={12} md={3}>
         <Card>
           <CardContent>
             <div className={classes.cardPricing}>
@@ -38,6 +38,20 @@ const InfoBox = (props) => {
               </Typography>
               <Typography variant="h6" color="textSecondary">
                 updated
+              </Typography>
+            </div>
+          </CardContent>
+        </Card>
+      </Grid>
+      <Grid item xs={12} sm={12} md={3}>
+        <Card>
+          <CardContent>
+            <div className={classes.cardPricing}>
+              <Typography component="h2" variant="h3" color="textPrimary">
+                {props.updated_total}
+              </Typography>
+              <Typography variant="h6" color="textSecondary">
+                total updates
               </Typography>
             </div>
           </CardContent>
