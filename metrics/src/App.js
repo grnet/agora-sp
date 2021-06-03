@@ -10,7 +10,7 @@ const App = () => {
   return (
     <React.Fragment>
       <CssBaseline />
-      <NavBar logo={'/logo.png'}/>
+      <NavBar logo={'logo.png'}/>
       <TopPage />
       <PreviousMonths />
       <Footer />
