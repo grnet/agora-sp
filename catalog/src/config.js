@@ -6,7 +6,7 @@ var config = {
 	colorB:"#112130",
 	basePath:"/catalog",
   // Uncomment the following line to fetch resources for an Organisation with UUID <Organisation UUID>
-  organisationUUID: "<Organisation UUID>"
+  //organisationUUID: "<Organisation UUID>"
 }
 
 export default config;
