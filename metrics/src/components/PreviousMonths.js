@@ -19,8 +19,10 @@ const columns = [
   { id: 'month', label: 'Month', minWidth: 170, sortable: false},
   { id: 'new_providers', label: 'New providers', minWidth: 170,sortable: true },
   { id: 'updated_providers', label: 'Updated providers', minWidth: 170, sortable: true },
+  { id: 'updated_providers_total', label: 'Total provider updates', minWidth: 170, sortable: true },
   { id: 'new_resources', label: 'New resources', minWidth: 170,sortable: true },
   { id: 'updated_resources', label: 'Updated resources', minWidth: 170, sortable: true },
+  { id: 'updated_resources_total', label: 'Total resource updates', minWidth: 170, sortable: true },
   { id: 'new_users', label: 'New users', minWidth: 170, sortable: true },
 ];
 
@@ -46,8 +48,10 @@ const createData = (
   year,
   new_providers,
   updated_providers,
+  updated_providers_total,
   new_resources,
   updated_resources,
+  updated_resources_total,
   new_users
 ) => {
   return {
@@ -56,8 +60,10 @@ const createData = (
     year,
     new_providers,
     updated_providers,
+    updated_providers_total,
     new_resources,
     updated_resources,
+    updated_resources_total,
     new_users,
   };
 };
@@ -112,8 +118,10 @@ const PreviousMonths = () => {
                 entry.year,
                 entry.new_providers,
                 entry.updated_providers,
+                entry.updated_providers_total,
                 entry.new_resources,
                 entry.updated_resources,
+                entry.updated_resources_total,
                 entry.new_users
               )
             )

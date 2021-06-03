@@ -4,14 +4,25 @@ Agora metrics is a single page front-end application built with react (and creat
 - new users
 - new/updated providers
 - new/updated resources
+- total providers updates
+- total resources updates
 
 ## Configuration
 
 In `metrics/src/config.js` there are some basic configuration properties to be set before producing the optimized build. The properties that can be set are as follows:
-- `endpoint: "http://localhost:8000`
+- `endpoint: "http://localhost:8000"`
   Defines the agora api endpoint
 - `supportMail: agora@grnet.gr`
   Defines the support mail to show in the metrics page
+- `catalogueUrl: "http://localhost/catalogue"`
+  Agora catalogue link. If catalogueUrl is empty it wont be visible in navbar
+- `colors: {}`
+  Set colors for:
+   - navbar
+   - navbar text
+   - search button color
+   - previous months table header
+   - previous months table header text
 
 
 ## Build and deploy

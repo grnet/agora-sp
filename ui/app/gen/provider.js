@@ -10,6 +10,11 @@ import {
 } from '../utils/common/provider';
 import { publishProvider, unpublishProvider } from '../utils/common/actions';
 
+import {
+  postProviderEOSC,
+  putProviderEOSC,
+} from '../utils/common/eosc-portal';
+
 const {
   computed,
   get,
@@ -102,6 +107,15 @@ export default AgoraGen.extend({
   },
   details: {
     fieldsets: DETAILS_FIELDSETS,
+    actions: [
+      'gen:edit',
+      'postProviderEOSC',
+      'putProviderEOSC',
+    ],
+    actionsMap: {
+      postProviderEOSC,
+      putProviderEOSC,
+    },
   },
   edit: {
     fieldsets: EDIT_FIELDSETS,

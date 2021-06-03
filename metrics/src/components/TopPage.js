@@ -14,14 +14,16 @@ import useStyles from '../styles/AppStyles';
 import InfoBox from './InfoBox';
 import InfoBoxUsers from './InfoBoxUsers';
 import CONFIG from '../config';
-import { Typography } from '@material-ui/core';
+import { Typography, withStyles } from '@material-ui/core';
 import { get_month } from '../utils/Month';
 
 const initData = {
   newProviders: 0,
   updatedProviders: 0,
+  updatedProvidersTotal: 0,
   newResources: 0,
   updatedResources: 0,
+  updatedResourcesTotal: 0,
   newUsers: 0,
 };
 
@@ -50,8 +52,10 @@ const TopPage = () => {
     return {
       newProviders: data.providers.new_providers,
       updatedProviders: data.providers.updated_providers,
+      updatedProvidersTotal: data.providers.total_updated_providers,
       newResources: data.resources.new_resources,
       updatedResources: data.resources.updated_resources,
+      updatedResourcesTotal: data.resources.total_updated_resources,
       newUsers: data.users.new_users,
     };
   };
@@ -76,6 +80,16 @@ const TopPage = () => {
         setTitleMonth('Custom date range');
       });
   };
+
+  const ColorButton = withStyles((theme) => ({
+    root: {
+      color: theme.palette.getContrastText(CONFIG.colors.searchButton),
+      backgroundColor: CONFIG.colors.searchButton,
+      '&:hover': {
+        backgroundColor: CONFIG.colors.searchButton,
+      },
+    },
+  }))(Button);
 
   return (
     <>
@@ -115,14 +129,14 @@ const TopPage = () => {
             </Grid>
             <Grid item xs={12} sm={4} align="center">
               <Box mt={3}>
-                <Button
+                <ColorButton
                   variant="contained"
                   color="primary"
                   onClick={searchHandle}
                   aria-label="delete"
                 >
                   Apply filter
-                </Button>
+                </ColorButton>
               </Box>
             </Grid>
           </Grid>
@@ -134,11 +148,13 @@ const TopPage = () => {
           title="Providers"
           new={accData.newProviders}
           updated={accData.updatedProviders}
+          updated_total={accData.updatedProvidersTotal}
         />
         <InfoBox
           title="Resources"
           new={accData.newResources}
           updated={accData.updatedResources}
+          updated_total={accData.updatedResourcesTotal}
         />
         <InfoBoxUsers title="Users" new={accData.newUsers} />
       </Container>

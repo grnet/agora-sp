@@ -4,6 +4,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 from django.utils import timezone
 from ckeditor_uploader.fields import RichTextUploadingField
 from agora.utils import USER_ROLES, LIFECYCLE_STATUSES ,clean_html_fields, PROVIDER_STATES
+from apimas.base import ProcessorFactory
 from common import helper
 
 class UserManager(BaseUserManager):
@@ -206,7 +207,7 @@ class Organisation(models.Model):
                                                   default=None, blank=True, null=True,
                                                   choices=LIFECYCLE_STATUSES)
 
-    epp_mti_2_certifications = models.CharField(default=None, blank=True, null=True, max_length=250)
+    epp_mti_2_certifications = models.TextField(default=None, blank=True, null=True)
 
    # Other information section
 
@@ -391,3 +392,22 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __unicode__(self):
         return str(self.email)
+
+
+class ProviderAudit(models.Model):
+    provider = models.ForeignKey(Organisation, related_name="provideraudittable")
+    updater = models.ForeignKey(User)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        unique_together = (("provider", "updated_at"),)
+
+
+class PostUpdateProvider(ProcessorFactory):
+    def process(self, data):
+        user = data['auth/user']
+        provider = data['backend/raw_response']
+        ProviderAudit.objects.create(
+                provider=provider,
+                updater=user)
+        return {}

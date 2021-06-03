@@ -67,6 +67,8 @@ def get_rules():
         ('api/v2/providers', 'partial_update', 'provideradmin', '*', 'update_organisation_owned', '*', '*'),
         ('api/v2/providers', 'destroy', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/providers', 'delete', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/providers', 'publish-eosc', 'provideradmin', '*', 'update_organisation_owned', '*', '*'),
+        ('api/v2/providers', 'update-eosc', 'provideradmin', '*', 'update_organisation_owned', '*', '*'),
 
         ('api/v2/resources', 'list', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/resources', 'list', 'provideradmin', '*', '*', '*', '*'),

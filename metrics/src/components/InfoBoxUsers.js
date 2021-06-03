@@ -15,7 +15,7 @@ const InfoBoxUsers = (props) => {
           {props.title}
         </Typography>
       </Grid>
-      <Grid item xs={12} sm={12} md={8}>
+      <Grid item xs={12} sm={12} md={9}>
         <Card>
           <CardContent>
             <div className={classes.cardPricing}>

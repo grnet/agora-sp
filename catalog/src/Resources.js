@@ -15,8 +15,12 @@ function Resources() {
 
   useEffect(() => {
     async function getData() {
+      let AGORA_URL = `${config.endpoint}/api/v2/public/resources/`
+      if (!!config.organisationUUID) {
+        AGORA_URL = AGORA_URL + '?erp_bai_2_organisation=' + config.organisationUUID
+      }
       const result = await axios(
-        `https://${config.endpoint}/api/v2/public/resources`
+        AGORA_URL
       );
       let data = [];
       for (let item of result.data) {

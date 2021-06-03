@@ -1209,6 +1209,35 @@ ORGANISATIONS = {
         '.action-template.django.delete': {},
         '.action-template.django.update': {},
         '.action-template.django.partial_update': {},
+        'publish-eosc': {
+            '.action.django.recipe.partial_update': {},
+            'method': 'POST',
+            'status_code': 200,
+            'url': '/*/publish-eosc/',
+            ':custom_update_handler': 'agora.actions.provider_publish_eosc',
+        },
+        'update-eosc': {
+            '.action.django.recipe.partial_update': {},
+            'method': 'POST',
+            'status_code': 200,
+            'url': '/*/update-eosc/',
+            ':custom_update_handler': 'agora.actions.provider_update_eosc',
+        },
+        'partial_update': {
+            'processors': {
+                'custom_post_update': {
+                    '.processor': {},
+                    'module_path': 'accounts.models.PostUpdateProvider',
+                    'read_keys': {'=': (
+                        'backend/raw_response',
+                        'auth/user',
+                    )},
+                    'write_keys': {'=': (
+                        'backend/raw_response',
+                    )},
+                },
+            },
+        },
     },
 }
 
@@ -1797,6 +1826,21 @@ RESOURCES = {
                 },
             },
         },
+        'partial_update': {
+            'processors': {
+                'custom_post_update': {
+                    '.processor': {},
+                    'module_path': 'service.models.PostUpdateResource',
+                    'read_keys': {'=': (
+                        'backend/raw_response',
+                        'auth/user',
+                    )},
+                    'write_keys': {'=': (
+                        'backend/raw_response',
+                    )},
+                },
+            },
+        },
         'publish-eosc': {
             '.action.django.recipe.partial_update': {},
             'method': 'POST',
@@ -2218,6 +2262,12 @@ PUBLIC_RESOURCES = {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
+        'erp_bai_2_organisation': {
+            '.field.ref': {},
+            'to': '/api/v2/public/providers',
+            '.flag.filterable': {},
+            '.flag.nullable.default': {},
+            '.flag.noread': {}},
         'erp_bai_2_organisation_public': {
             '.field.ref': {},
             'to': '/api/v2/public/providers',
