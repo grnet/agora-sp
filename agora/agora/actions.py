@@ -112,7 +112,7 @@ def provider_publish_eosc(backend_input, instance, context):
         response.raise_for_status()
         logger.info('Response status code: %s' %(response.status_code))
         logger.info('Response json: %s' %(response.json()))
-        instance.eosc_state = "Published"
+        instance.eosc_state = "Pending"
         instance.eosc_id = response.json()['id']
         instance.eosc_published_at = datetime.now(timezone.utc)
     except requests.exceptions.RequestException as err:
@@ -142,7 +142,130 @@ def provider_update_eosc(backend_input, instance, context):
         response.raise_for_status()
         logger.info('Response status code: %s' %(response.status_code))
         logger.info('Response json: %s' %(response.json()))
+        instance.eosc_updated_at = datetime.now(timezone.utc)
+    except requests.exceptions.RequestException as err:
+        logger.info('Response status code: %s, %s, %s' % (url, err, response.json()))
+        raise ValidationError("EOSC API: " + response.json()['error'])
+    instance.save()
+    return instance
+
+
+def resource_approve_eosc(backend_input, instance, context):
+    eosc_req = create_eosc_api_json_resource(instance)
+    if 'resourceOrganisation' not in eosc_req or eosc_req['resourceOrganisation'] == None or len(eosc_req['resourceOrganisation'].strip()) == 0:
+        raise ValidationError('Resource provider has not an eosc_id')
+    url = EOSC_API_URL+'resource'
+    id  = str(instance.id)
+    username = context['auth/user'].username
+    eosc_token = get_access_token(OIDC_URL, OIDC_REFRESH_TOKEN, OIDC_CLIENT_ID)
+    headers = {
+        'Authorization': eosc_token,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+    }
+    logger.info('EOSC PORTAL API call to POST resource \
+        with id %s to %s has been made by %s at %s \
+        ' %(id, url, username, datetime.now()))
+    try:
+        response = requests.post(url, headers=headers,json=eosc_req)
+        response.raise_for_status()
+        logger.info('Response status code: %s' %(response.status_code))
+        logger.info('Response json: %s' %(response.json()))
+        instance.eosc_state = "Published"
+        instance.eosc_id = response.json()['id']
+        instance.eosc_published_at = datetime.now(timezone.utc)
+    except requests.exceptions.RequestException as err:
+        logger.info('Response status code: %s, %s, %s' % (url, err, response.json()))
+        instance.eosc_state = "Error"
+        raise ValidationError("EOSC API: " +response.json()['error'])
+    instance.save()
+    return instance
+
+
+def resource_reject_eosc(backend_input, instance, context):
+    eosc_req = create_eosc_api_json_resource(instance)
+    if 'resourceOrganisation' not in eosc_req or eosc_req['resourceOrganisation'] == None or len(eosc_req['resourceOrganisation'].strip()) == 0:
+        raise ValidationError('Resource provider has not an eosc_id')
+    url = EOSC_API_URL+'resource'
+    id  = str(instance.id)
+    username = context['auth/user'].username
+    eosc_token = get_access_token(OIDC_URL, OIDC_REFRESH_TOKEN, OIDC_CLIENT_ID)
+    headers = {
+        'Authorization': eosc_token,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+    }
+    logger.info('EOSC PORTAL API call to PUT resource \
+        with id %s to %s has been made by %s at %s \
+        ' %(id, url, username, datetime.now()))
+    try:
+        response = requests.put(url, headers=headers,json=eosc_req)
+        response.raise_for_status()
+        logger.info('Response status code: %s' %(response.status_code))
+        logger.info('Response json: %s' %(response.json()))
         instance.eosc_state = "Updated"
+        instance.eosc_updated_at = datetime.now(timezone.utc)
+    except requests.exceptions.RequestException as err:
+        logger.info('Response status code: %s, %s, %s' % (url, err, response.json()))
+        instance.eosc_state = "Error"
+        raise ValidationError("EOSC API: " + response.json()['error'])
+    instance.save()
+    return instance
+
+
+def provider_approve_eosc(backend_input, instance, context):
+    url = EOSC_API_URL+'provider/verifyProvider/' + instance.eosc_id
+    id  = str(instance.id)
+    username = context['auth/user'].username
+    eosc_token = get_access_token(OIDC_URL, OIDC_REFRESH_TOKEN, OIDC_CLIENT_ID)
+    headers = {
+        'Authorization': 'Bearer ' +eosc_token
+    }
+    params = '''active=false&status=pending%20template%20submission'''   
+    logger.info('EOSC PORTAL API call to PATCH provider approval \
+        with id %s to %s has been made by %s at %s \
+        ' %(id, url, username, datetime.now()))
+    try:
+        response = requests.patch(url + '/?'+params, headers=headers)
+        logger.info(response.request.url)
+        logger.info(response.request.body)
+        logger.info(response.request.headers)
+        response.raise_for_status()
+        logger.info('Response status code: %s' %(response.status_code))
+        logger.info('Response json: %s' %(response.json()))
+        instance.eosc_state = "Approved"
+        instance.eosc_id = response.json()['id']
+        instance.eosc_published_at = datetime.now(timezone.utc)
+    except requests.exceptions.RequestException as err:
+        logger.info('Response status code: %s, %s, %s' % (url, err, response.json()))
+        instance.eosc_state = "Pending"
+        raise ValidationError("EOSC API: " +response.json()['error'])
+    instance.save()
+    return instance
+
+def provider_reject_eosc(backend_input, instance, context):
+    url = EOSC_API_URL+'provider'
+    id  = str(instance.id)
+    username = context['auth/user'].username
+    eosc_token = get_access_token(OIDC_URL, OIDC_REFRESH_TOKEN, OIDC_CLIENT_ID)
+    headers = {
+        'Authorization': eosc_token,
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+    }
+    params = {
+        'active': 'true',
+        'status': 'approved'
+    }
+    logger.info('EOSC PORTAL API call to PATCH provider rejection \
+        with id %s to %s has been made by %s at %s \
+        ' %(id, url, username, datetime.now()))
+    try:
+        response = requests.patch(url, headers=headers,data=params)
+        response.raise_for_status()
+        logger.info('Response status code: %s' %(response.status_code))
+        logger.info('Response json: %s' %(response.json()))
+        instance.eosc_state = "Rejected"
         instance.eosc_updated_at = datetime.now(timezone.utc)
     except requests.exceptions.RequestException as err:
         logger.info('Response status code: %s, %s, %s' % (url, err, response.json()))
