@@ -1223,6 +1223,13 @@ ORGANISATIONS = {
             'url': '/*/update-eosc/',
             ':custom_update_handler': 'agora.actions.provider_update_eosc',
         },
+        'approve-temp-eosc': {
+            '.action.django.recipe.partial_update': {},
+            'method': 'POST',
+            'status_code': 200,
+            'url': '/*/approve-eosc/',
+            ':custom_update_handler': 'agora.actions.provider_approve_temp_eosc',
+        },
         'approve-eosc': {
             '.action.django.recipe.partial_update': {},
             'method': 'POST',
@@ -1869,19 +1876,19 @@ RESOURCES = {
             'url': '/*/update-eosc/',
             ':custom_update_handler': 'agora.actions.resource_update_eosc',
         },
-        'approve-eosc': {
+        'activate-eosc': {
             '.action.django.recipe.partial_update': {},
             'method': 'POST',
             'status_code': 200,
-            'url': '/*/approve-eosc/',
-            ':custom_update_handler': 'agora.actions.resource_approve_eosc',
+            'url': '/*/activate-eosc/',
+            ':custom_update_handler': 'agora.actions.resource_activate_eosc',
         },
-        'reject-eosc': {
+        'deactivate-eosc': {
             '.action.django.recipe.partial_update': {},
             'method': 'POST',
             'status_code': 200,
-            'url': '/*/reject-eosc/',
-            ':custom_update_handler': 'agora.actions.resource_reject_eosc',
+            'url': '/*/deactivate-eosc/',
+            ':custom_update_handler': 'agora.actions.resource_deactivate_eosc',
         },
     },
 }

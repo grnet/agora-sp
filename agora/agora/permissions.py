@@ -95,6 +95,7 @@ def get_rules():
         ('api/v2/providers', 'delete', 'eoscadmin', '*', '*', '*', '*'),
         ('api/v2/providers', 'publish-eosc', 'provideradmin', '*', 'update_organisation_owned', '*', '*'),
         ('api/v2/providers', 'update-eosc', 'provideradmin', '*', 'update_organisation_owned', '*', '*'),
+        ('api/v2/providers', 'approve-temp-eosc', 'eoscadmin', '*', '*', '*', '*'),
         ('api/v2/providers', 'approve-eosc', 'eoscadmin', '*', '*', '*', '*'),
         ('api/v2/providers', 'reject-eosc', 'eoscadmin', '*', '*', '*', '*'),
 
@@ -126,8 +127,8 @@ def get_rules():
         ('api/v2/resources', 'delete', 'eoscadmin', '*', '*', '*', '*'),
         ('api/v2/resources', 'publish-eosc', 'provideradmin', '*', 'update_organisation_owned', '*', '*'),
         ('api/v2/resources', 'update-eosc', 'provideradmin', '*', 'update_organisation_owned', '*', '*'),
-        ('api/v2/resources', 'approve-eosc', 'eoscadmin', '*', '*', '*', '*'),
-        ('api/v2/resources', 'reject-eosc', 'eoscadmin', '*', '*', '*', '*'),
+        ('api/v2/resources', 'activate-eosc', 'eoscadmin', '*', '*', '*', '*'),
+        ('api/v2/resources', 'deactivate-eosc', 'eoscadmin', '*', '*', '*', '*'),
 
         ('api/v2/target-users', 'list', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/target-users', 'list', 'eoscadmin', '*', '*', '*', '*'),
