@@ -2787,6 +2787,12 @@ PUBLIC_RESOURCES_LITE = {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
+        'erp_bai_2_organisation': {
+            '.field.ref': {},
+            'to': '/api/v2/public/providers',
+            '.flag.filterable': {},
+            '.flag.nullable.default': {},
+            '.flag.noread': {}},
         'erp_mri_3_logo': {
             '.field.string': {},
             '.flag.nullable.default': {}},
