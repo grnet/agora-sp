@@ -13,6 +13,8 @@ import { publishProvider, unpublishProvider } from '../utils/common/actions';
 import {
   postProviderEOSC,
   putProviderEOSC,
+  approveProviderEOSC,
+
 } from '../utils/common/eosc-portal';
 
 const {
@@ -72,10 +74,11 @@ export default AgoraGen.extend({
       title: 'provider.menu'
     },
     row: {
-      actions: ['gen:details', 'gen:edit', 'publishProvider', 'unpublishProvider', 'remove'],
+      actions: ['gen:details', 'gen:edit', 'publishProvider', 'unpublishProvider', 'approveProviderEOSC', 'remove'],
       actionsMap: {
         publishProvider,
         unpublishProvider,
+        approveProviderEOSC,
       },
       fields: PROVIDER_TABLE_FIELDS,
     },
