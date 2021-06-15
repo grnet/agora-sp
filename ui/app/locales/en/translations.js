@@ -94,5 +94,6 @@ export default {
   'urlStarts.message': 'The url should start with http or https',
   eosc,
   'eosc_id.label': 'EOSC ID',
+  'eosc_state.label': 'EOSC State',
 };
 

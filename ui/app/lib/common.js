@@ -142,7 +142,7 @@ function basic_model_fields(fields, required) {
 
 function fields_eosc(fields) {
   if (EOSC_DISABLED) {
-    fields.pop();
+    fields.splice(-1, 2);
   }
   return fields;
 }

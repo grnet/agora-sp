@@ -388,6 +388,7 @@ const PROVIDER_TABLE_FIELDS = fields_eosc([
   field('epp_bai_2_abbreviation', {label: 'provider.table.epp_bai_2_abbreviation'}),
   field('state_verbose', {label: 'provider.fields.state'}),
   'eosc_id',
+  'eosc_state',
 ]);
 
 export {

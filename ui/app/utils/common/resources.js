@@ -160,6 +160,7 @@ const TABLE_FIELDS = fields_eosc([
   field('erp_mti_1_technology_readiness_level.name', {label: 'resource.table.erp_mti_1_technology_readiness_level'}),
   field('state_verbose', { label: 'resource.table.state_verbose'}),
   'eosc_id',
+  'eosc_state',
 ]);
 
 
