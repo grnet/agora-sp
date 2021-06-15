@@ -24,29 +24,6 @@
   },
   {
     "model": "accounts.user",
-    "pk": 1,
-    "fields": {
-      "password": "pbkdf2_sha256$36000$6xWoG9SVxsj3$uGdliRysThKccTFdeOSP60vcySKcg3AeF/8w/tsa72M=",
-      "last_login": "2020-09-08T12:01:51.727Z",
-      "is_superuser": false,
-      "username": "portfolioadmin",
-      "email": "portfolioadmin@localhost",
-      "first_name": "Stefanos",
-      "last_name": "Tsitsipas",
-      "date_joined": "2020-09-08T12:01:01.962Z",
-      "updated_at": "2020-12-31T00:00:00Z",
-      "shibboleth_id": null,
-      "role": "portfolioadmin",
-      "organisation": null,
-      "is_staff": false,
-      "is_active": true,
-      "groups": [],
-      "user_permissions": [],
-      "organisations": []
-    }
-  },
-  {
-    "model": "accounts.user",
     "pk": 2,
     "fields": {
       "password": "pbkdf2_sha256$36000$6xWoG9SVxsj3$uGdliRysThKccTFdeOSP60vcySKcg3AeF/8w/tsa72M=",
@@ -129,6 +106,29 @@
       "updated_at": "2020-12-31T00:00:00Z",
       "shibboleth_id": null,
       "role": "serviceadmin",
+      "organisation": null,
+      "is_staff": false,
+      "is_active": true,
+      "groups": [],
+      "user_permissions": [],
+      "organisations": []
+    }
+  },
+  {
+    "model": "accounts.user",
+    "pk": 6,
+    "fields": {
+      "password": "pbkdf2_sha256$36000$6xWoG9SVxsj3$uGdliRysThKccTFdeOSP60vcySKcg3AeF/8w/tsa72M=",
+      "last_login": "2020-09-08T12:01:51.727Z",
+      "is_superuser": false,
+      "username": "portfolioadmin",
+      "email": "portfolioadmin@localhost",
+      "first_name": "Stefanos",
+      "last_name": "Tsitsipas",
+      "date_joined": "2020-09-08T12:01:01.962Z",
+      "updated_at": "2020-12-31T00:00:00Z",
+      "shibboleth_id": null,
+      "role": "portfolioadmin",
       "organisation": null,
       "is_staff": false,
       "is_active": true,

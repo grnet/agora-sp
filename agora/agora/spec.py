@@ -1201,6 +1201,17 @@ ORGANISATIONS = {
             'default': 'draft',
             '.flag.filterable': {},
         },
+        'eosc_published_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
+        'eosc_updated_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
+        'eosc_state': {
+            '.field.string': {},
+            'default': 'draft',
+            '.flag.filterable': {}
+        },
     },
     'actions': {
         '.action-template.django.list': {},
@@ -1818,6 +1829,9 @@ RESOURCES = {
             '.flag.searchable': {},
             '.flag.orderable': {}},
         'eosc_published_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
+        'eosc_updated_at': {
             '.flag.nowrite': {},
             '.field.datetime': {}},
         'eosc_state': {
