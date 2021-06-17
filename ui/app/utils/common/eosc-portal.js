@@ -654,7 +654,7 @@ const approveProviderEOSC = {
   }),
   confirm: true,
   prompt: {
-    ok: 'ok',
+    ok: 'eosc.provider.approve.ok',
     cancel: 'cancel',
     message: 'eosc.provider.approve.message',
     title: 'eosc.provider.approve.title',
@@ -720,7 +720,7 @@ const rejectProviderEOSC = {
   }),
   confirm: true,
   prompt: {
-    ok: 'ok',
+    ok: 'eosc.provider.reject.ok',
     cancel: 'cancel',
     message: 'eosc.provider.reject.message',
     title: 'eosc.provider.reject.title',
