@@ -553,6 +553,71 @@ const approveProviderEOSC = {
   },
 };
 
+const rejectProviderEOSC = {
+  label: 'eosc.provider.reject.label',
+  icon: 'cancel',
+  accent: true,
+  i18n: Ember.inject.service(),
+  action: function (route, model) {
+    let messages = get(route, 'messageService');
+    let adapter = get(route, 'store').adapterFor('provider');
+    let token = get(route, 'user.auth_token');
+    let url = adapter.buildURL('provider', get(model, 'id'), 'findRecord');
+    return fetch(url + 'reject-eosc/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Token ${token}`,
+      },
+    })
+      .then(resp => {
+        if (resp.status === 200) {
+          model.reload().then(() => {
+            messages.setSuccess('eosc.provider.reject.success');
+          });
+        } else {
+          resp.json().then(data => {
+            let err_msg =
+              (data && data.details) || 'eosc.provider.reject.error';
+            messages.setError(err_msg);
+          });
+        }
+      })
+      .catch(err => {
+        messages.setError('eosc.provider.reject.error');
+      });
+  },
+  hidden: computed('role', 'model.eosc_state', function () {
+    if (DISABLED) {
+      return true;
+    }
+    if (HIDE_ACTIONS_PROVIDER) {
+      return true;
+    }
+    let role = get(this, 'role');
+    let eosc_state = get(this, 'model.eosc_state');
+
+    let user_is_portfolioadmin = role === 'portfolioadmin';
+    let initial_states = [
+      'pending initial approval',
+      'pending template submission',
+    ];
+    let provider_in_initial_states = initial_states.includes(eosc_state);
+
+    if (user_is_portfolioadmin && provider_in_initial_states) {
+      return false;
+    } else {
+      return true;
+    }
+  }),
+  confirm: true,
+  prompt: {
+    ok: 'ok',
+    cancel: 'cancel',
+    message: 'eosc.provider.reject.message',
+    title: 'eosc.provider.reject.title',
+  },
+};
 
 export {
   postResourceEOSC,
@@ -560,4 +625,5 @@ export {
   postProviderEOSC,
   putProviderEOSC,
   approveProviderEOSC,
-}
+  rejectProviderEOSC,
+};
