@@ -1209,8 +1209,8 @@ ORGANISATIONS = {
             '.field.datetime': {}},
         'eosc_state': {
             '.field.string': {},
-            'default': 'draft',
-            '.flag.filterable': {}
+            '.flag.filterable': {},
+            '.flag.nullable.default': {},
         },
     },
     'actions': {
@@ -1836,8 +1836,8 @@ RESOURCES = {
             '.field.datetime': {}},
         'eosc_state': {
             '.field.string': {},
-            'default': 'draft',
-            '.flag.filterable': {}},
+            '.flag.filterable': {},
+            '.flag.nullable.default': {}},
     },
     'actions': {
         '.action-template.django.list': {},
