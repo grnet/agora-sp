@@ -12,6 +12,8 @@ def get_rules():
         ('api/v2/custom-users', 'retrieve', 'observer', 'me', '*', '*', '*'),
         ('api/v2/custom-users', 'update', 'superadmin', '*', 'check_unique', '*', '*'),
         ('api/v2/custom-users', 'partial_update', 'superadmin', '*', 'check_unique', '*', '*'),
+        ('api/v2/custom-users', 'update', 'portfolioadmin', '*', 'check_unique', '*', '*'),
+        ('api/v2/custom-users', 'partial_update', 'portfolioadmin', '*', 'check_unique', '*', '*'),
         ('api/v2/custom-users', 'destroy', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/custom-users', 'delete', 'superadmin', '*', '*', '*', '*'),
 
