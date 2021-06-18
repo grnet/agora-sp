@@ -213,7 +213,7 @@ def provider_approve_temp_eosc(backend_input, instance, context):
         'Authorization': 'Bearer ' +eosc_token
     }
     params = '''active=false&status=pending%20template%20submission'''
-    logger.info('EOSC PORTAL API call to PATCH provider approval \
+    logger.info('EOSC PORTAL API call to PATCH provider temp approval \
         with id %s to %s has been made by %s at %s \
         ' %(id, url, username, datetime.now()))
     try:

@@ -1238,7 +1238,7 @@ ORGANISATIONS = {
             '.action.django.recipe.partial_update': {},
             'method': 'POST',
             'status_code': 200,
-            'url': '/*/approve-eosc/',
+            'url': '/*/approve-temp-eosc/',
             ':custom_update_handler': 'agora.actions.provider_approve_temp_eosc',
         },
         'approve-eosc': {

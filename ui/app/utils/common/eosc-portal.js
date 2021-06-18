@@ -608,7 +608,7 @@ const approveProviderEOSC = {
     let adapter = get(route, 'store').adapterFor('provider');
     let token = get(route, 'user.auth_token');
     let url = adapter.buildURL('provider', get(model, 'id'), 'findRecord');
-    return fetch(url + 'approve-eosc/', {
+    return fetch(url + 'approve-temp-eosc/', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
