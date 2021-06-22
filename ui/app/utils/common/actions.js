@@ -220,7 +220,7 @@ const publishProvider = {
   hidden: computed('role', 'model.state', function(){
     let role = get(this, 'role');
     let state =  get(this, 'model.state');
-    if (role !== 'superadmin') { return true; }
+    if (role !== 'superadmin' && role!=='portfolioadmin') { return true; }
     if (state === 'published') { return true;}
     return false;
   }),
@@ -253,7 +253,7 @@ const unpublishProvider = {
   hidden: computed('role', 'model.state', function(){
     let role = get(this, 'role');
     let state =  get(this, 'model.state');
-    if (role !== 'superadmin') { return true; }
+    if (role !== 'superadmin' && role!=='portfolioadmin') { return true; }
     if (state === 'published') { return false;}
     return true;
   }),
