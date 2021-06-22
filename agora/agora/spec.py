@@ -2696,6 +2696,160 @@ PUBLIC_RESOURCES = {
     },
 }
 
+PUBLIC_ORGANISATIONS_LITE = {
+    '.collection.django': {},
+    'model': 'accounts.models.Organisation',
+    ':permissions_namespace': 'agora.checks.Organisation',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+            '.flag.orderable': {},
+        'epp_bai_0_id': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {},
+        },
+        'epp_bai_1_name': {
+            '.field.string': {},
+            '.flag.filterable': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {},
+        },
+        'epp_bai_2_abbreviation': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+            '.flag.searchable': {},
+            '.flag.orderable': {},
+        },
+        'epp_bai_3_website': {
+            '.field.string': {},
+            '.flag.nullable.default': {},
+        },
+        'epp_cli_3_tags': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
+        'epp_loi_1_street_name_and_number': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+        'epp_loi_2_postal_code': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+        'epp_loi_3_city': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+        'epp_loi_5_country_or_territory': {
+          'source': 'epp_loi_5_country_or_territory_capitalize',
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+        'epp_mri_2_logo': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+        'epp_oth_1_hosting_legal_entity': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+        'epp_oth_2_participating_countries': {
+          '.field.string': {},
+          '.flag.nullable.default': {},
+        },
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+    },
+}
+
+PUBLIC_RESOURCES_LITE = {
+    '.collection.django': {},
+    'model': 'service.models.Resource',
+    ':permissions_namespace': 'agora.checks.Resource',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'erp_bai_0_id': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'erp_bai_1_name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'erp_mri_2_tagline': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
+        'erp_bai_2_organisation': {
+            '.field.ref': {},
+            'to': '/api/v2/public/providers',
+            '.flag.filterable': {},
+            '.flag.nullable.default': {},
+            '.flag.noread': {}},
+        'erp_mri_3_logo': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+        'erp_cli_1_scientific_domain': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'id_field': 'id',
+            'model': 'service.models.Resource.erp_cli_1_scientific_domain.through',
+            'source': 'erp_cli_1_scientific_domain',
+            'bound': 'resource',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'domain_id',
+                                'to': 'api/v2/public/domains'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'domain_id'},
+                'name': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'domain.name'},
+            }},
+        'erp_cli_3_category': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'id_field': 'id',
+            'model': 'service.models.Resource.erp_cli_3_category.through',
+            'source': 'erp_cli_3_category',
+            'bound': 'resource',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'category_id',
+                                'to': 'api/v2/public/categories'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'category_id'},
+                'name': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'category.name'},
+                'supercategory': {'.field.ref': {},
+                                'source': 'category.supercategory_id',
+                                'to': 'api/v2/public/supercategories'},
+            }
+        }},
+        'erp_cli_8_tags': {
+            '.field.string': {},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+    },
+}
+
 APP_CONFIG = {
     '.apimas_app': {},
     ':permission_rules': 'agora.permissions.get_rules',
@@ -2711,7 +2865,9 @@ APP_CONFIG = {
           'prefix': 'api/v2/public',
           'collections': {
             'resources': PUBLIC_RESOURCES,
+            'resources-lite': PUBLIC_RESOURCES_LITE,
             'providers': PUBLIC_ORGANISATIONS,
+            'providers-lite': PUBLIC_ORGANISATIONS_LITE,
             'legalstatuses': LEGAL_STATUSES,
             'affiliations': AFFILIATIONS,
             'networks': NETWORKS,

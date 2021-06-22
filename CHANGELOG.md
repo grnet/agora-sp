@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Add Publish provider to EOSC portal actions.
 - Enable theme options for metrics application.
+- Expose resources/providers limited information in lite apis.
 
 ## [1.3.1](https://github.com/grnet/agora-sp/compare/v1.3.0...v1.3.1) - 2021-05-13
 
