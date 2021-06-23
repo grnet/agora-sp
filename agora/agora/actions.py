@@ -239,7 +239,7 @@ def provider_approve_eosc(backend_input, instance, context):
     headers = {
         'Authorization': 'Bearer ' +eosc_token
     }
-    params = '''active=true&status=approve'''
+    params = '''active=true&status=approved'''
     logger.info('EOSC PORTAL API call to PATCH provider approval \
         with id %s to %s has been made by %s at %s \
         ' %(id, url, username, datetime.now()))
@@ -254,7 +254,7 @@ def provider_approve_eosc(backend_input, instance, context):
     except requests.exceptions.RequestException as err:
         logger.info('Response status code: %s, %s, %s' % (url, err, response.json()))
         instance.eosc_state = "error"
-        raise ValidationError("EOSC API: " + response.json()['error'])
+        raise ValidationError("EOSC API: Provider needs to publish a resource to be approved")
     instance.save()
     return instance
 
@@ -268,60 +268,6 @@ def provider_reject_eosc(backend_input, instance, context):
     }
     params = '''active=false&status=rejected'''
     logger.info('EOSC PORTAL API call to PATCH provider rejection \
-        with id %s to %s has been made by %s at %s \
-        ' %(id, url, username, datetime.now()))
-    try:
-        response = requests.patch(url + '/?' + params, headers=headers)
-        response.raise_for_status()
-        logger.info('Response status code: %s' %(response.status_code))
-        logger.info('Response json: %s' %(response.json()))
-        instance.eosc_state = response.json()['status']
-        instance.eosc_id = response.json()['id']
-        instance.eosc_published_at = datetime.now(timezone.utc)
-    except requests.exceptions.RequestException as err:
-        logger.info('Response status code: %s, %s, %s' % (url, err, response.json()))
-        instance.eosc_state = "error"
-        raise ValidationError("EOSC API: " + response.json()['error'])
-    instance.save()
-    return instance
-
-def provider_activate_eosc(backend_input, instance, context):
-    url = EOSC_API_URL+'provider/verifyProvider/' + instance.eosc_id
-    id  = str(instance.id)
-    username = context['auth/user'].username
-    eosc_token = get_access_token(OIDC_URL, OIDC_REFRESH_TOKEN, OIDC_CLIENT_ID)
-    headers = {
-        'Authorization': 'Bearer ' +eosc_token
-    }
-    params = '''active=true&status=approved'''
-    logger.info('EOSC PORTAL API call to PATCH provider activate \
-        with id %s to %s has been made by %s at %s \
-        ' %(id, url, username, datetime.now()))
-    try:
-        response = requests.patch(url + '/?' + params, headers=headers)
-        response.raise_for_status()
-        logger.info('Response status code: %s' %(response.status_code))
-        logger.info('Response json: %s' %(response.json()))
-        instance.eosc_state = response.json()['status']
-        instance.eosc_id = response.json()['id']
-        instance.eosc_published_at = datetime.now(timezone.utc)
-    except requests.exceptions.RequestException as err:
-        logger.info('Response status code: %s, %s, %s' % (url, err, response.json()))
-        instance.eosc_state = "error"
-        raise ValidationError("EOSC API: " + response.json()['error'])
-    instance.save()
-    return instance
-
-def provider_deactivate_eosc(backend_input, instance, context):
-    url = EOSC_API_URL+'provider/verifyProvider/' + instance.eosc_id
-    id  = str(instance.id)
-    username = context['auth/user'].username
-    eosc_token = get_access_token(OIDC_URL, OIDC_REFRESH_TOKEN, OIDC_CLIENT_ID)
-    headers = {
-        'Authorization': 'Bearer ' +eosc_token
-    }
-    params = '''active=false&status=approved'''
-    logger.info('EOSC PORTAL API call to PATCH provider deactivate \
         with id %s to %s has been made by %s at %s \
         ' %(id, url, username, datetime.now()))
     try:

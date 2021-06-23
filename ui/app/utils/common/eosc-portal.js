@@ -608,7 +608,12 @@ const approveProviderEOSC = {
     let adapter = get(route, 'store').adapterFor('provider');
     let token = get(route, 'user.auth_token');
     let url = adapter.buildURL('provider', get(model, 'id'), 'findRecord');
-    return fetch(url + 'approve-temp-eosc/', {
+    let eosc_state = get(this, 'model.eosc_state');
+    let APPROVE_PATH = 'approve-temp-eosc/';
+    if (eosc_state === 'pending template submission') {
+      APPROVE_PATH = 'approve-eosc/'
+    }
+    return fetch(url + APPROVE_PATH, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -643,7 +648,7 @@ const approveProviderEOSC = {
     let eosc_state = get(this, 'model.eosc_state');
 
     let user_is_portfolioadmin = role === 'portfolioadmin';
-    let initial_states = ['pending initial approval', 'rejected'];
+    let initial_states = ['pending initial approval', 'rejected', 'pending template submission'];
     let provider_in_initial_states = initial_states.includes(eosc_state);
 
     if (user_is_portfolioadmin && provider_in_initial_states) {
@@ -656,8 +661,13 @@ const approveProviderEOSC = {
   prompt: {
     ok: 'eosc.provider.approve.ok',
     cancel: 'cancel',
-    message: 'eosc.provider.approve.message',
     title: 'eosc.provider.approve.title',
+    message: computed('model.eosc_state', function() {
+      let eosc_state = get(this, 'model.eosc_state');
+      return eosc_state === 'pending template submission'
+        ? 'eosc.provider.approve.message_resource'
+        : 'eosc.provider.approve.message';
+    }),
   },
 };
 
