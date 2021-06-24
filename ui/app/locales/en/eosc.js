@@ -56,7 +56,7 @@ export const eosc = {
       title: 'Reject Provider for EOSC Portal',
       label: 'Reject Provider for EOSC Portal',
       ok: 'Reject',
-      message: `<div class="eosc-portal-modal"><img src="${ROOT_URL}assets/logo-eosc-portal.png" /><p>This action will reject the provider for <strong>${EOSC_PORTAL_API}</strong>.<p>Please not that the approved Provider will be set to state <i>"pending initial approval"</i> until<br /> it is finally approved.</p><p>Are you sure you want to continue?</p></div>`,
+      message: `<div class="eosc-portal-modal"><img src="${ROOT_URL}assets/logo-eosc-portal.png" /><p>This action will reject the provider for <strong>${EOSC_PORTAL_API}</strong>.<p>Please note that the approved Provider will be set to state <i>"pending initial approval"</i> until<br /> it is finally approved.</p><p>Are you sure you want to continue?</p></div>`,
       error: 'The action could not be successfully performed',
       success: 'The provider has been successfully rejected for EOSC Portal',
     },
