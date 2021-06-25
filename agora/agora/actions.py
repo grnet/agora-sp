@@ -227,7 +227,9 @@ def provider_approve_temp_eosc(backend_input, instance, context):
     except requests.exceptions.RequestException as err:
         logger.info('Response status code: %s, %s, %s' % (url, err, response.json()))
         instance.eosc_state = "error"
-        raise ValidationError("EOSC API: " + response.json()['error'])
+        #Hard-coded error response since the Api in this particular call does not return a json object
+        #raise ValidationError("EOSC API: " + response.json()['error'])
+        raise ValidationError("EOSC API: Provider should publish at least one resource to be fully approved")
     instance.save()
     return instance
 
