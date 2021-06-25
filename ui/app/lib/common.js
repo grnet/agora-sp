@@ -142,7 +142,7 @@ function basic_model_fields(fields, required) {
 
 function fields_eosc(fields) {
   if (EOSC_DISABLED) {
-    fields.splice(-1, 2);
+    fields = fields.filter(e => e !== 'eosc_state' && e!== 'eosc_id');
   }
   return fields;
 }
