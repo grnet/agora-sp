@@ -1201,6 +1201,17 @@ ORGANISATIONS = {
             'default': 'draft',
             '.flag.filterable': {},
         },
+        'eosc_published_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
+        'eosc_updated_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
+        'eosc_state': {
+            '.field.string': {},
+            '.flag.filterable': {},
+            '.flag.nullable.default': {},
+        },
     },
     'actions': {
         '.action-template.django.list': {},
@@ -1222,6 +1233,27 @@ ORGANISATIONS = {
             'status_code': 200,
             'url': '/*/update-eosc/',
             ':custom_update_handler': 'agora.actions.provider_update_eosc',
+        },
+        'approve-temp-eosc': {
+            '.action.django.recipe.partial_update': {},
+            'method': 'POST',
+            'status_code': 200,
+            'url': '/*/approve-temp-eosc/',
+            ':custom_update_handler': 'agora.actions.provider_approve_temp_eosc',
+        },
+        'approve-eosc': {
+            '.action.django.recipe.partial_update': {},
+            'method': 'POST',
+            'status_code': 200,
+            'url': '/*/approve-eosc/',
+            ':custom_update_handler': 'agora.actions.provider_approve_eosc',
+        },
+        'reject-eosc': {
+            '.action.django.recipe.partial_update': {},
+            'method': 'POST',
+            'status_code': 200,
+            'url': '/*/reject-eosc/',
+            ':custom_update_handler': 'agora.actions.provider_reject_eosc',
         },
         'partial_update': {
             'processors': {
@@ -1799,10 +1831,13 @@ RESOURCES = {
         'eosc_published_at': {
             '.flag.nowrite': {},
             '.field.datetime': {}},
+        'eosc_updated_at': {
+            '.flag.nowrite': {},
+            '.field.datetime': {}},
         'eosc_state': {
             '.field.string': {},
-            'default': 'draft',
-            '.flag.filterable': {}},
+            '.flag.filterable': {},
+            '.flag.nullable.default': {}},
     },
     'actions': {
         '.action-template.django.list': {},
@@ -1854,6 +1889,20 @@ RESOURCES = {
             'status_code': 200,
             'url': '/*/update-eosc/',
             ':custom_update_handler': 'agora.actions.resource_update_eosc',
+        },
+        'activate-eosc': {
+            '.action.django.recipe.partial_update': {},
+            'method': 'POST',
+            'status_code': 200,
+            'url': '/*/activate-eosc/',
+            ':custom_update_handler': 'agora.actions.resource_activate_eosc',
+        },
+        'deactivate-eosc': {
+            '.action.django.recipe.partial_update': {},
+            'method': 'POST',
+            'status_code': 200,
+            'url': '/*/deactivate-eosc/',
+            ':custom_update_handler': 'agora.actions.resource_deactivate_eosc',
         },
     },
 }
