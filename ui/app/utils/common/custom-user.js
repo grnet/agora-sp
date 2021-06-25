@@ -70,7 +70,7 @@ const CREATE_OR_EDIT_FIELDSETS = [{
       disabled: computed('mode.role', 'model.changeset.role', function(){
         let role = get(this, 'model.role');
         let changed_role = get(this, 'model.changeset.role');
-        let no_org_roles = ['superadmin', 'observer', 'portfolioadmin',]
+        let no_org_roles = ['superadmin', 'observer', 'portfolioadmin'];
         if (no_org_roles.includes(changed_role)) {
           Ember.run.once(this, () => {
             get(this, 'model').set('organisation', null);

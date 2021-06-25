@@ -151,7 +151,6 @@ function promptProvider(self, method) {
   const epp_bai_1_name = get(self, 'model.epp_bai_1_name');
   const epp_bai_2_abbreviation = get(self, 'model.epp_bai_2_abbreviation');
   const epp_bai_3_website = get(self, 'model.epp_bai_3_website');
-  const epp_bai_4_legal_entity = get(self, 'model.epp_bai_4_legal_entity');
   const epp_loi_1_street_name_and_number = get(
     self,
     'model.epp_loi_1_street_name_and_number'
@@ -184,9 +183,6 @@ function promptProvider(self, method) {
   }
   if (!epp_bai_3_website) {
     missing.push('epp_bai_3_website');
-  }
-  if (!epp_bai_4_legal_entity) {
-    missing.push('epp_bai_4_legal_entity');
   }
   if (!epp_loi_1_street_name_and_number) {
     missing.push('epp_loi_1_street_name_and_number');
@@ -495,7 +491,6 @@ const postProviderEOSC = {
     'model.epp_bai_1_name',
     'model.epp_bai_2_abbreviation',
     'model.epp_bai_3_website',
-    'model.epp_bai_4_legal_entity',
     'model.epp_loi_1_street_name_and_number',
     'model.epp_loi_2_postal_code',
     'model.epp_loi_3_city',
@@ -583,7 +578,6 @@ const putProviderEOSC = {
     'model.epp_bai_1_name',
     'model.epp_bai_2_abbreviation',
     'model.epp_bai_3_website',
-    'model.epp_bai_4_legal_entity',
     'model.epp_loi_1_street_name_and_number',
     'model.epp_loi_2_postal_code',
     'model.epp_loi_3_city',
