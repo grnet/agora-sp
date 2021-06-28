@@ -312,6 +312,7 @@ let model = DS.Model.extend({
   }),
 
   eosc_id: DS.attr(),
+  eosc_state: DS.attr(),
 
   state: DS.attr({
     type: 'select',

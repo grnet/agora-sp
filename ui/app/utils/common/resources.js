@@ -160,6 +160,7 @@ const TABLE_FIELDS = fields_eosc([
   field('erp_mti_1_technology_readiness_level.name', {label: 'resource.table.erp_mti_1_technology_readiness_level'}),
   field('state_verbose', { label: 'resource.table.state_verbose'}),
   'eosc_id',
+  'eosc_state',
 ]);
 
 
@@ -264,7 +265,7 @@ const EDIT_BASIC_INFO_FIELDSET = {
   fields: computed('role', function() {
     const role = get(this, 'role');
     // serviceadmins cannot change resource organsation
-    const disabled = role === 'serviceadmin';
+    const disabled = role === 'serviceadmin' || role === 'provideradmin';
 
     return fields_eosc([
       field('erp_bai_0_id'),
@@ -277,7 +278,7 @@ const EDIT_BASIC_INFO_FIELDSET = {
       }),
       providers,
       'erp_bai_4_webpage',
-      field('eosc_id', {disabled: true}),
+      field('eosc_id', {disabled}),
     ])
 
   }),
@@ -302,7 +303,7 @@ const CREATE_BASIC_INFO_FIELDSET = {
       }),
       providers,
       'erp_bai_4_webpage',
-      field('eosc_id', {disabled: true}),
+      field('eosc_id', {disabled}),
     ])
 
   }),

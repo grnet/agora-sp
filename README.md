@@ -246,6 +246,7 @@ python manage.py loaddata fixtures/sample-resources.yaml
 `users.json` will create users with usernames/passwords:
 
 * superadmin/12345
+* portfolioadmin/12345
 * provideradmin/12345
 * service_admin_1/12345
 * service_admin_2/12345
@@ -287,7 +288,8 @@ The database will be created in the backend directory (agora/mydb-docker.sqlite3
 The database will be populated with some initial data. The users with username/password:
 
 * superadmin/12345
-* admin/12345
+* portfolioadmin/12345
+* provideradmin/12345
 * service_admin_1/12345
 * service_admin_2/12345
 * observer/12345

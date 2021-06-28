@@ -13,6 +13,10 @@
       "Provider Admin"
     ],
     [
+      "portfolioadmin",
+      "Portfolio Admin"
+    ],
+    [
       "superadmin",
       "Superadmin"
     ]

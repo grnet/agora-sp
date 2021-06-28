@@ -163,7 +163,11 @@ function ProviderItem(props) {
 
   let logo = null;
   if (props.img) {
-    logo = <img className="mw-75 logo" src={props.img} alt="service logo" />;
+    let logo_style = {
+      maxHeight: !!config.miniLogoMaxHeight? config.miniLogoMaxHeight: 65,
+      maxWidth: !!config.miniLogoMaxWidth? config.miniLogoMaxWidth: 150,
+    }
+    logo = <img style={logo_style} className="mw-75 logo" src={props.img} alt="service logo" />;
   } else {
     logo = <FontAwesomeIcon icon="cloud" size="5x" style={{ color: "grey" }} />;
   }
@@ -182,13 +186,13 @@ function ProviderItem(props) {
         </div>
 
         <div className="card-body d-flex flex-column">
-          <h6>
+          <h5>
             <strong>
               <Link className="title" to={"/providers/" + props.id} style={{color:config.colorA}}>
                 {props.title}
               </Link>
             </strong>
-          </h6>
+          </h5>
           {desc}
 
          
