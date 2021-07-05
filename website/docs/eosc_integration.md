@@ -15,7 +15,7 @@ The EOSC provides a public api to allow regional and thematic catalogues to on-b
 
 ## Vocabulary
 
-To be able to send and receive data with eosc api we had to match our fixtures that we use in agora with the EOSC API Vocabulary.
+To be able to send and receive data with eosc API we had to match our fixtures that we use in agora with the EOSC API Vocabulary.
 As a result the field eosc_id was added in the fixtuers for each entry.
 ```json
 //For example an entry from resource categories you can see the eosc_id in the data model.
@@ -33,13 +33,13 @@ As a result the field eosc_id was added in the fixtuers for each entry.
 
 ## Profiles 3.0
 
-An important aspect of the integration with the EOSC API are the models of the resources and the Profiles. EOSC API had standardized the models of the resources and providers with profiles 3.0 with mandatory or not fields that someone have to provider to describe a resource/porvider.
+An important aspect of the integration with the EOSC API are the models of the resources and the Profiles. EOSC API had standardized the models of the resources and providers with profiles 3.0 with mandatory or not fields that someone have to provider to describe a resource/provider.
 Find the profiles 3.0 description here [Profiles 3.0](https://docs.google.com/spreadsheets/d/1o3vhia3Fl1ULbn0CI0nSusZkZ-PDnfvCW_l76c7X4yo/edit#gid=0) 
 
 
 ## Publishing 
 
-The flow of the publishing to eosc api follows these steps:
+The flow of the publishing to eosc API follows these steps:
 1. The Superadmin creates a new provider
 2. The Superadmin assignes the role of the provider admin to a user
 3. The Provider admin can edit the provider and publish it to eosc
