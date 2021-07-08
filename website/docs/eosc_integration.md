@@ -68,3 +68,5 @@ Tho following flow had the assumption that a provider will need to have a resour
    ![approved](assets/approved.png)
 
 You can then view the deployed providers and resources to eosc marketplace.
+   ![approved](assets/eosc_approved_provider.png)
+   ![approved](assets/eosc_approved_resource.png)
