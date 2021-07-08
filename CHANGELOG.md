@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Expose resources/providers limited information in lite apis.
 - New portfolioadmin role approves/rejects providers for EOSC portal.
+- docs: Add EOSC Integration section
 
 
 ## [1.3.2](https://github.com/grnet/agora-sp/compare/v1.3.1...v1.3.2) - 2021-06-03
