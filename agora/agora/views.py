@@ -172,14 +172,12 @@ def shibboleth_login(request):
     # initialize
     user = None
     token = None
-
-    redirect_url = TOKEN_LOGIN_URL
+    response = HttpResponse()
 
     shibboleth_id = user_data.get('shibboleth_id')
     if not shibboleth_id:
-        e = 'No shibboleth id'
-        return HttpResponseRedirect(TOKEN_LOGIN_URL + "#error=%s" % e)
-
+        response['error'] =  'No shibboleth id'
+        return response
 
     try:
         user = User.objects.get(shibboleth_id=shibboleth_id)
@@ -187,8 +185,8 @@ def shibboleth_login(request):
     except User.DoesNotExist:
         try:
             user = User.objects.get(email=user_data.get('email'))
-            e = 'shibboleth_duplicate_email'
-            return HttpResponseRedirect(TOKEN_LOGIN_URL + "#error=%s" % e)
+            response['error'] = 'shibboleth_duplicate_email'
+            return response
         except  User.DoesNotExist:
             user = User.objects.create(**user_data)
             send_email_shib_user_created(user, headers['HTTP_HOST'])
@@ -196,10 +194,8 @@ def shibboleth_login(request):
     token, _ = Token.objects.get_or_create(user=user)
     user_logged_in.send(sender=user.__class__, request=request, user=user)
 
-    token_fragment = '#token=' + token.key
-    redirect_url = redirect_url + token_fragment
-
-    return HttpResponseRedirect(redirect_url)
+    response['auth_token'] =  token.key
+    return response
 
 
 class CustomMe(djoser_views.UserView):

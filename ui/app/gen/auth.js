@@ -14,34 +14,14 @@ const {
     merge
 } = Ember;
 
-function extractToken(loc) {
-  let token = loc.hash && loc.hash.split("token=")[1];
-  if (token) { resetHash(window) };
-  return token;
-};
-
-function extractError(loc) {
-  let  err = loc.hash && loc.hash.split("error=")[1];
-  if (err) { resetHash(window) };
-  return err;
-};
-
-
-function resetHash(win, replace='') {
-  if (win.history.replaceState) {
-    win.history.replaceState(null, null, '#' + replace);
-  } else {
-    win.location.hash = replace;
-  }
-}
-
-
-
 export default AuthGen.extend({
   routeMixins: {
     actions: {
       shibbolethLogin() {
-        window.location = ENV.APP.shibboleth_login_url + '?login=1'
+        fetch(ENV.APP.shibboleth_login_url + '?login=1').then((resp) => {
+          localStorage.setItem('auth_token',resp.headers.get('auth_token'));
+          window.location = '/ui/auth/login';
+        });
       }
     }
   },
@@ -53,7 +33,7 @@ export default AuthGen.extend({
     routeMixins: [{
       handleTokenLogin(token) {
         if (get(this, 'session.isAuthenticated')) {
-          resetHash(window);
+          localStorage.removeItem('auth_token');
           return;
         }
         let url = ENV.APP.backend_host + '/auth/me/';
@@ -71,20 +51,21 @@ export default AuthGen.extend({
           return resp.json().then((user) => {
             let session = get(this, 'session');
             let authData = { auth_token: token, user: user }
-            resetHash(window);
+            localStorage.removeItem('auth_token');
             this.get('messageService').setSuccess('login.success');
             return session.authenticate('authenticator:agora', authData);
           });
         })
       },
       beforeModel(transition) {
-        let token = extractToken(window.location);
+        const token = localStorage.getItem('auth_token');
         if (token) {
           return this.handleTokenLogin(decodeURI(token));
         }
-        let error = extractError(window.location);
+        let error = localStorage.getItem('error');
         if (error) {
           this.get('messageService').setError(error);
+          localStorage.removeItem('error');
         }
         return this._super(transition);
       },
