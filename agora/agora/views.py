@@ -172,7 +172,11 @@ def shibboleth_login(request):
     # initialize
     user = None
     token = None
+
+    # initialize redirect response
     response = HttpResponse()
+    response['Location'] = TOKEN_LOGIN_URL
+    response.status_code = 302
 
     shibboleth_id = user_data.get('shibboleth_id')
     if not shibboleth_id:

@@ -18,10 +18,7 @@ export default AuthGen.extend({
   routeMixins: {
     actions: {
       shibbolethLogin() {
-        fetch(ENV.APP.shibboleth_login_url + '?login=1').then((resp) => {
-          localStorage.setItem('auth_token',resp.headers.get('auth_token'));
-          window.location = '/ui/auth/login';
-        });
+        window.location = ENV.APP.shibboleth_login_url + '?login=1'
       }
     }
   },
