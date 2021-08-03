@@ -19,8 +19,8 @@ const provider = {
 
   },
   'fields': {
-    'epp_bai_0_id': 'EPP.BAI.0 - ID*',
-    'epp_bai_1_name': 'EPP.BAI.1 - Name*',
+    'epp_bai_0_id': 'EPP.BAI.0 - ID',
+    'epp_bai_1_name': 'EPP.BAI.1 - Name',
     'epp_bai_2_abbreviation': 'EPP.BAI.2 - Abbreviation',
     'epp_bai_3_website': 'EPP.BAI.3 - Website',
     'epp_bai_4_legal_entity': 'EPP.BAI.4 - Legal Entity',
