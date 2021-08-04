@@ -24,10 +24,13 @@ const MARKETING_FIELDSET = {
   label: 'provider.cards.marketing',
   text: 'provider.cards.marketing_hint',
   fields: computed('role', function () {
-    const editor = get(this, 'role') === 'provideradmin';
+    let role = get(this, 'role');
+    let editor = role === 'provideradmin' || role === 'portfolioadmin';
     let label_1 = 'provider.fields.epp_mri_1_description';
+    let label_2 = 'provider.fields.epp_mri_2_logo';
     if (editor) {
       label_1 = 'provider.fields.epp_mri_1_description.required';
+      label_2 = 'provider.fields.epp_mri_2_logo.required';
     }
     return [
       field('epp_mri_1_description', {
@@ -36,7 +39,7 @@ const MARKETING_FIELDSET = {
         htmlSafe: true,
         formComponent: 'text-editor',
       }),
-      'epp_mri_2_logo',
+      field('epp_mri_2_logo', { label: label_2 }),
       'epp_mri_3_multimedia',
     ];
   }),
@@ -76,7 +79,7 @@ const domain = field('epp_cli_1_scientific_domain', {
   displayComponent: 'gen-display-field-table',
   label: computed('role', function () {
     let role = get(this, 'role');
-    let editor = role === 'provideradmin';
+    let editor = role === 'provideradmin' || role === 'portfolioadmin';
     if (editor) {
       return 'provider.fields.epp_cli_1_scientific_domain.required';
     } else {
@@ -94,7 +97,7 @@ const subdomain = field('epp_cli_2_scientific_subdomain', {
   displayComponent: 'gen-display-field-table',
   label: computed('role', function () {
     let role = get(this, 'role');
-    let editor = role === 'provideradmin';
+    let editor = role === 'provideradmin' || role === 'portfolioadmin';
     if (editor) {
       return 'provider.fields.epp_cli_2_scientific_subdomain.required';
     } else {
@@ -332,7 +335,7 @@ const EDIT_FIELDSETS = [
     },
     fields: computed('role', function () {
       let role = get(this, 'role');
-      const editor = role === 'provideradmin';
+      const editor = role === 'provideradmin' || role === 'portfolioadmin';
       const disabled = editor;
       let abbreviation_label = 'provider.fields.epp_bai_2_abbreviation';
       if (editor) {
@@ -365,7 +368,7 @@ const EDIT_FIELDSETS = [
     },
     fields: computed('role', function () {
       let role = get(this, 'role');
-      const editor = role === 'provideradmin';
+      const editor = role === 'provideradmin' || role === 'portfolioadmin';
       let label_1 = 'provider.fields.epp_loi_1_street_name_and_number';
       let label_2 = 'provider.fields.epp_loi_2_postal_code';
       let label_3 = 'provider.fields.epp_loi_3_city';
@@ -402,17 +405,30 @@ const CREATE_FIELDSETS = [
     layout: {
       flex: [100, 100, 100, 100, 50, 50, 100],
     },
-    fields: fields_eosc([
-      field('epp_bai_0_id', { label: 'provider.fields.epp_bai_0_id.required' }),
-      field('epp_bai_1_name', {
-        label: 'provider.fields.epp_bai_1_name.required',
-      }),
-      'epp_bai_2_abbreviation',
-      'epp_bai_3_website',
-      'epp_bai_4_legal_entity',
-      'epp_bai_5_legal_status',
-      'eosc_id',
-    ]),
+    fields: computed('role', function () {
+      let role = get(this, 'role');
+      const editor = role === 'provideradmin' || role === 'portfolioadmin';
+      const disabled = editor;
+      let abbreviation_label = 'provider.fields.epp_bai_2_abbreviation';
+      if (editor) {
+        abbreviation_label = 'provider.fields.epp_bai_2_abbreviation.required';
+      }
+      return fields_eosc([
+        field('epp_bai_0_id', {
+          label: 'provider.fields.epp_bai_0_id.required',
+        }),
+        field('epp_bai_1_name', {
+          label: 'provider.fields.epp_bai_1_name.required',
+        }),
+        field('epp_bai_2_abbreviation', {
+          label: abbreviation_label,
+        }),
+        'epp_bai_3_website',
+        'epp_bai_4_legal_entity',
+        'epp_bai_5_legal_status',
+        'eosc_id',
+      ]);
+    }),
   },
   CLASSIFICATION_FIELDSET,
   {
@@ -423,7 +439,7 @@ const CREATE_FIELDSETS = [
     },
     fields: computed('role', function () {
       let role = get(this, 'role');
-      const editor = role === 'provideradmin';
+      const editor = role === 'provideradmin' || role === 'portfolioadmin';
       let label_1 = 'provider.fields.epp_loi_1_street_name_and_number';
       let label_2 = 'provider.fields.epp_loi_2_postal_code';
       let label_3 = 'provider.fields.epp_loi_3_city';

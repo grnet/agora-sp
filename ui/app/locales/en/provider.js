@@ -45,6 +45,7 @@ const provider = {
     'epp_mri_1_description': 'EPP.MRI.1 - Description',
     'epp_mri_1_description.required': 'EPP.MRI.1 - Description *',
     'epp_mri_2_logo': 'EPP.MRI.2 - Logo',
+    'epp_mri_2_logo.required': 'EPP.MRI.2 - Logo *',
     'epp_mri_3_multimedia': 'EPP.MRI.3 - Multimedia',
     'epp_mti_1_life_cycle_status': 'EPP.MTI.1 - Life Cycle Status',
     'epp_mti_2_certifications': 'EPP.MTI.2 - Certifications',
