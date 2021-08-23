@@ -36,6 +36,7 @@ import {
   faMapMarkedAlt,
   faInfoCircle,
   faUniversity,
+  faLink
 } from "@fortawesome/free-solid-svg-icons";
 
 library.add(
@@ -64,7 +65,7 @@ library.add(
   faMapMarkedAlt,
   faInfoCircle,
   faUniversity,
-
+  faLink
 );
 
 function App() {
