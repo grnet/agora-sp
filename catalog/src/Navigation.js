@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import config from "./config";
 import logo from "./logo.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   Collapse,
   Navbar,
@@ -51,6 +52,15 @@ const Navigation = (props) => {
               <NavLink href={pref + "/providers"}>Providers</NavLink>
             </NavItem>
           </Nav>
+          { (!!config.externalLink && !!config.externalLinkTitle) &&
+            <Nav navbar>
+              <NavItem>
+                <NavLink href={config.externalLink}>
+                  <FontAwesomeIcon className="mr-2" icon="link" />{config.externalLinkTitle}
+                </NavLink>
+              </NavItem>
+            </Nav>
+          }
         </Collapse>
       </Navbar>
     </div>

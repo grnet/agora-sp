@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Add required fields  indication to forms.
+- Catalog: Add optional service url in header.
 
 ## [1.4.0](https://github.com/grnet/agora-sp/compare/v1.3.2...v1.4.0) - 2021-06-28
 
