@@ -342,6 +342,12 @@ yarn run cypress open
 ```
 and follow the instruction in [cypress test runner docs](https://docs.cypress.io/guides/core-concepts/test-runner.html#Overview).
 
+### Jenkins CI/CD
+To run the tests easily and quickly when new changes are made in the source code we use Jenkins with docker.
+In order to make tests run quicker we use a pre populated database using this [docker image](https://github.com/ARGOeu/docker-images/blob/master/agora-backend/Dockerfile). It is very important to notice that when a fixture is updated we have to create a new image version for agora backend
+Follow these steps if you want to make fixture changes:
+- Make changes to fixtures in agora-sp and merge it to devel
+- go to agora-backend docker image and bump the version. (This will trigger the building of an image containing the changes made to devel)
 
 # Copyright and license
 
