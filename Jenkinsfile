@@ -56,7 +56,7 @@ pipeline {
                         echo 'Create docker containers...'
                         sh '''
                             cd $WORKSPACE/$PROJECT_DIR
-                            docker-compose up -d --build
+                            docker-compose -f docker-compose-cicd.yml up -d --build
                             rm requirements*.txt
                             cd tests/selenium_tests
                             pipenv install -r requirements.txt
