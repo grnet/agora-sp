@@ -55,7 +55,7 @@ const Navigation = (props) => {
           { (!!config.externalLink && !!config.externalLinkTitle) &&
             <Nav navbar>
               <NavItem>
-                <NavLink href={config.externalLink}>
+                <NavLink href={config.externalLink} target="_blank" rel="noreferrer noopener">
                   <FontAwesomeIcon className="mr-2" icon="link" />{config.externalLinkTitle}
                 </NavLink>
               </NavItem>
