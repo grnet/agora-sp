@@ -39,7 +39,7 @@ function ValueItem(props) {
             <span>{icon}</span>
             {labelResult}
             {props.breakpoint && <br />}
-            <a className="grey" href={pItem}>
+            <a className="grey" href={pItem} target="_blank" rel="noreferrer noopener">
               <span className={stylize}>{props.url}</span>
             </a>
           </div>
@@ -49,7 +49,7 @@ function ValueItem(props) {
         <div className={display}>
           <span>{icon}</span>
           {props.breakpoint && <br />}
-          <a className="grey" href={pItem}>
+          <a className="grey" href={pItem} target="_blank" rel="noreferrer noopener">
             <span className={stylize}>{props.label}</span>
           </a>
         </div>
