@@ -1,7 +1,7 @@
 version: '3.7'
 services:
   backend:
-    image: agora-backend
+    image: argo.registry:5000/agora-backend
     ports:
       - "127.0.0.1:${RAND_PORT}:80"
     volumes:
