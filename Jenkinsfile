@@ -58,12 +58,13 @@ pipeline {
                             cd $WORKSPACE/$PROJECT_DIR
                             export RAND_PORT=$(( 2000 + $RANDOM%8000 ))
                             sed  "s/8000/${RAND_PORT}/g" agora/docker/deployment.conf
+                            echo "RAND_PORT=$RAND_PORT" > .env
                             docker-compose -p $JOB_NAME -f docker-compose-cicd.yml up -d --build
                             rm requirements*.txt
                             cd tests/selenium_tests
                             pipenv install -r requirements.txt
                             echo "Wait for argo container to initialize"
-                            while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8000/ui/auth/login)" != "200" ]]; do if [[ "$(docker ps | grep agora | wc -l)" != "2" ]]; then exit 1; fi; sleep 5; done
+                            while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:${RAND_PORT}/ui/auth/login)" != "200" ]]; do if [[ "$(docker ps | grep agora | wc -l)" != "2" ]]; then exit 1; fi; sleep 5; done
                             pipenv run pytest agora_unit_tests.py -o junit_family=xunit2 --junitxml=reports/junit.xml
                         '''
 
