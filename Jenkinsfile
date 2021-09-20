@@ -56,7 +56,9 @@ pipeline {
                         echo 'Create docker containers...'
                         sh '''
                             cd $WORKSPACE/$PROJECT_DIR
-                            docker-compose -f docker-compose-cicd.yml up -d --build
+                            export RAND_PORT=$(( 2000 + $RANDOM%8000 ))
+                            sed  "s/8000/${RAND_PORT}/g" agora/docker/deployment.conf
+                            docker-compose -p $JOB_NAME -f docker-compose-cicd.yml up -d --build
                             rm requirements*.txt
                             cd tests/selenium_tests
                             pipenv install -r requirements.txt
@@ -79,7 +81,7 @@ pipeline {
                 always {
                     sh '''
                       cd $WORKSPACE/$PROJECT_DIR
-                      docker-compose down
+                      docker-compose -f docker-compose-cicd.yml down
                     '''
 
                     junit '**/junit.xml'

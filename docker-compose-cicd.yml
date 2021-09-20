@@ -1,23 +1,23 @@
 version: '3.7'
 services:
   backend:
-    image:  argo.registry:5000/agora-backend
+    image: agora-backend
     ports:
-      - "127.0.0.1:8000:80"
+      - "127.0.0.1:${RAND_PORT}:80"
     volumes:
        - ./agora:/srv/agora/agora
        - dist:/srv/agora/ui/dist
+       - ./agora/docker/:/etc/agora/
     stdin_open: true
     tty: true
     command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:80"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/ui/auth/login"]
+      test: ["CMD", "curl", "-f", "http://localhost:${RAND_PORT}/ui/auth/login"]
       interval: 1m30s
       timeout: 20s
       retries: 20
       start_period: 5m
   frontend:
-    container_name: agora-frontend
     build:
       context: ./ui
       dockerfile: ./Dockerfile
