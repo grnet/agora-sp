@@ -22,11 +22,10 @@ from agora.resources.resource_form_validations import ResourceFormValidations
 from agora.resources.resources_operations import ResourcesOperations
 
 class AgoraUI(unittest.TestCase):
-
+  HTTP_PORT = 8000
   def setUp(self):
-    self.HTTP_PORT = os.getenv('RAND_PORT', 8000)
+    self.HTTP_PORT = os.getenv("RAND_PORT", 8000)
     super().setUp()
-
 
   # Field Validations.
   def test_contact_form_validations(self):
