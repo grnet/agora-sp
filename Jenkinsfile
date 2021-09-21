@@ -62,6 +62,8 @@ pipeline {
                             docker-compose -p $JOB_NAME -f docker-compose-cicd.yml up -d --build
                             rm requirements*.txt
                             cd tests/selenium_tests
+                            echo "RAND_PORT=$RAND_PORT" > .env
+                            export RAND_PORT=$RAND_PORT
                             pipenv install -r requirements.txt
                             echo "Wait for argo container to initialize"
                             while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:${RAND_PORT}/ui/auth/login)" != "200" ]]; do if [[ "$(docker ps | grep agora | wc -l)" != "2" ]]; then exit 1; fi; sleep 5; done

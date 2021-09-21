@@ -30,45 +30,45 @@ class AgoraUI(unittest.TestCase):
 
   # Field Validations.
   def test_contact_form_validations(self):
-    ContactFormValidations("Firefox", headless=True, instance="http://localhost:"+str(self.HTTP_PORT)+"/")
+    ContactFormValidations("Firefox", headless=True, instance="http://localhost:"+str(os.getenv('RAND_PORT', 8000))+"/")
     assert True
 
   def test_provider_form_validations(self):
-    ProviderFormValidations("Firefox", headless=True, instance="http://localhost:"+str(self.HTTP_PORT)+"/")
+    ProviderFormValidations("Firefox", headless=True, instance="http://localhost:"+str(os.getenv('RAND_PORT', 8000))+"/")
     assert True
 
   def test_resource_form_validations(self):
-    ResourceFormValidations("Firefox", headless=True, instance="http://localhost:"+str(self.HTTP_PORT)+"/")
+    ResourceFormValidations("Firefox", headless=True, instance="http://localhost:"+str(os.getenv('RAND_PORT', 8000))+"/")
     assert True
 
 
   # ListView operations.
   def test_contacts_operations(self):
-    ContactsOperations("Firefox", headless=True, instance="http://localhost:"+str(self.HTTP_PORT)+"/")
+    ContactsOperations("Firefox", headless=True, instance="http://localhost:"+str(os.getenv('RAND_PORT', 8000))+"/")
     assert True
 
   def test_providers_operations(self):
-    ProvidersOperations("Firefox", headless=True, instance="http://localhost:"+str(self.HTTP_PORT)+"/")
+    ProvidersOperations("Firefox", headless=True, instance="http://localhost:"+str(os.getenv('RAND_PORT', 8000))+"/")
     assert True
 
   def test_resources_operations(self):
-    ResourcesOperations("Firefox", headless=True, instance="http://localhost:"+str(self.HTTP_PORT)+"/")
+    ResourcesOperations("Firefox", headless=True, instance="http://localhost:"+str(os.getenv('RAND_PORT', 8000))+"/")
     assert True
 
 
   # Create new records.
   def test_contact_create(self):
-    contact = ContactCreate("Firefox", headless=True, instance="http://localhost:"+str(self.HTTP_PORT)+"/")
+    contact = ContactCreate("Firefox", headless=True, instance="http://localhost:"+str(os.getenv('RAND_PORT', 8000))+"/")
     contact.create_new_contact()
     assert True
 
   def test_provider_create(self):
-    provider = CreateProvider("Firefox", headless=True, instance="http://localhost:"+str(self.HTTP_PORT)+"/")
+    provider = CreateProvider("Firefox", headless=True, instance="http://localhost:"+str(os.getenv('RAND_PORT', 8000))+"/")
     provider.create_new_provider(required_only=False)
     assert True
 
   def test_resource_create(self):
-    resource = ResourceCreate("Firefox", headless=True, instance="http://localhost:"+str(self.HTTP_PORT)+"/")
+    resource = ResourceCreate("Firefox", headless=True, instance="http://localhost:"+str(os.getenv('RAND_PORT', 8000))+"/")
     resource.create_new_resource(required_only=False)
     assert True
 
