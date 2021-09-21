@@ -9,6 +9,7 @@ pipeline {
         PROJECT_DIR = 'agora-sp'
         GH_USER = 'newgrnetci'
         GH_EMAIL = '<argo@grnet.gr>'
+        RAND_PORT = sh(script: "echo $(( 2000 + $RANDOM%8000 ))",returnStdout: true).trim()
     }
     stages {
         stage ('Deploy Docs') {
@@ -56,7 +57,6 @@ pipeline {
                         echo 'Create docker containers...'
                         sh '''
                             cd $WORKSPACE/$PROJECT_DIR
-                            export RAND_PORT=$(( 2000 + $RANDOM%8000 ))
                             sed  "s/8000/${RAND_PORT}/g" agora/docker/deployment.conf
                             echo "RAND_PORT=$RAND_PORT" > .env
                             docker-compose -p $JOB_NAME -f docker-compose-cicd.yml up -d --build
