@@ -82,7 +82,7 @@ pipeline {
                 always {
                     sh '''
                       cd $WORKSPACE/$PROJECT_DIR
-                      docker-compose -f docker-compose-cicd.yml down
+                      docker-compose -p $JOB_NAME -f docker-compose-cicd.yml down
                     '''
 
                     junit '**/junit.xml'
