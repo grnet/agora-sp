@@ -9,7 +9,7 @@ pipeline {
         PROJECT_DIR = 'agora-sp'
         GH_USER = 'newgrnetci'
         GH_EMAIL = '<argo@grnet.gr>'
-        RAND_PORT = sh(script: "echo \$(( 2000 + \$RANDOM%8000 ))",returnStdout: true).trim()
+        RAND_PORT = sh(script: "echo 3333",returnStdout: true).trim()
     }
     stages {
         stage ('Deploy Docs') {
