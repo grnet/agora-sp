@@ -9,7 +9,7 @@ pipeline {
         PROJECT_DIR = 'agora-sp'
         GH_USER = 'newgrnetci'
         GH_EMAIL = '<argo@grnet.gr>'
-        RAND_PORT = sh(script: "echo 3333",returnStdout: true).trim()
+        RAND_PORT = sh(script: "echo \$(( 2000 + \$RANDOM%8000 ))",returnStdout: true).trim()
     }
     stages {
         stage ('Deploy Docs') {
@@ -57,7 +57,7 @@ pipeline {
                         echo 'Create docker containers...'
                         sh '''
                             cd $WORKSPACE/$PROJECT_DIR
-                            sed  "s/8000/${RAND_PORT}/g" agora/docker/deployment.conf
+                            sed -i "s/8000/${RAND_PORT}/g" agora/docker/deployment.conf
                             echo "RAND_PORT=$RAND_PORT" > .env
                             docker-compose -p $JOB_NAME -f docker-compose-cicd.yml up -d --build
                             rm requirements*.txt
@@ -65,7 +65,7 @@ pipeline {
                             pipenv install -r requirements.txt
                             echo "Wait for argo container to initialize"
                             while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:${RAND_PORT}/ui/auth/login)" != "200" ]]; do if [[ "$(docker ps | grep agora | wc -l)" != "2" ]]; then exit 1; fi; sleep 5; done
-                            pipenv run pytest agora_unit_tests.py --port ${RAND_PORT} -o junit_family=xunit2 --junitxml=reports/junit.xml
+                            pipenv run pytest agora_unit_tests.py -o junit_family=xunit2 --junitxml=reports/junit.xml
                         '''
 
                         testBuildBadge.setStatus('passing')
