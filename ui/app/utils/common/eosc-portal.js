@@ -282,9 +282,7 @@ const postResourceEOSC = {
       let portal_id = get(this, 'model.eosc_id');
 
       if (( role === 'provideradmin' && user_org === resource_org) || (role === 'portfolioadmin')) {
-        if ( state === 'published' && !portal_id ) {
-          return false;
-        }
+        return ( state === 'published' && !!portal_id );
       } else {
         return true;
       }
@@ -367,9 +365,7 @@ const putResourceEOSC = {
       let portal_id = get(this, 'model.eosc_id');
 
       if (( role === 'provideradmin' && user_org === resource_org) || (role === 'portfolioadmin')) {
-        if ( state === 'published' && portal_id ) {
-          return false;
-        }
+        return ( state === 'published' && !portal_id );
       } else {
         return true;
       }
@@ -453,9 +449,7 @@ const postProviderEOSC = {
       let portal_id = get(this, 'model.eosc_id');
 
       if (( role === 'provideradmin' && user_org === org_id) || (role === 'portfolioadmin')) {
-        if ( state === 'published' && !portal_id ) {
-          return false;
-        }
+        return ( state === 'published' && !!portal_id );
       } else {
         return true;
       }
@@ -532,9 +526,7 @@ const putProviderEOSC = {
       let portal_id = get(this, 'model.eosc_id');
 
       if (( role === 'provideradmin' && user_org === org_id) || (role === 'portfolioadmin')) {
-        if ( state === 'published' && portal_id ) {
-          return false;
-        }
+        return ( state === 'published' && !portal_id );
       } else {
         return true;
       }
