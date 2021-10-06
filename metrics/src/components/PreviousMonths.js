@@ -89,6 +89,20 @@ const sortByField = (array, comparator) => {
   return stabilizedThis.map((el) => el[0]);
 }
 
+const NumberContainer = (props) => {
+  const value = props.value;
+  let objValue =  <Typography>{value}</Typography>
+  if (typeof value === 'number'){
+    if ( value === 0 ) {
+      objValue = <Typography style={{color: 'grey'}}>{value}</Typography>
+    }
+  }
+  return (
+    <>
+      {objValue}
+    </>
+  );
+}
 
 const PreviousMonths = () => {
   const classes = useStyles();
@@ -139,14 +153,14 @@ const PreviousMonths = () => {
   return (
     <>
       <Container maxWidth="sm" component="main" className={classes.title}>
-        <Typography component="h1" variant="h4" color="textPrimary">
+        <Typography style={{ fontWeight: 600}} component="h1" variant="h4" color="textPrimary">
           Previous Months
         </Typography>
       </Container>
 
       <Container maxWidth="lg" className={classes.heroContent}>
-        <Paper className={classes.root}>
-          <TableContainer className={classes.tableBody}>
+        <Paper className={classes.root} style={{ borderRadius: '20px'}}>
+          <TableContainer className={classes.tableBody} style={{ borderRadius: '20px'}}>
             <Table stickyHeader aria-label="sticky table">
               <EnhancedTableHead
                 columns={columns}
@@ -168,9 +182,7 @@ const PreviousMonths = () => {
                           const value = row[column.id];
                           return (
                             <TableCell key={column.id} align={column.align}>
-                              {column.format && typeof value === 'number'
-                                ? column.format(value)
-                                : value}
+                                <NumberContainer value={value} />
                             </TableCell>
                           );
                         })}

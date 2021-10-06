@@ -36,11 +36,11 @@ const NavBar = (props) => {
         >
           Agora
         </Link>
-        {config.catalogueUrl &&
+        {!!config.catalogueUrl &&
           <Link
             variant="button"
             color="textPrimary"
-            href={config.catalogue}
+            href={config.catalogueUrl}
             className={classes.link}
           >
             Catalogue

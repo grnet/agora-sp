@@ -11,7 +11,7 @@ const InfoBox = (props) => {
   return (
     <Grid container spacing={2} direction="row" alignItems="center">
       <Grid item key={'10'} xs={12} sm={12} md={2}>
-        <Typography component="h5" variant="h5" color="textPrimary">
+        <Typography style={{ fontWeight: 600 }} variant="h5" color="textPrimary">
           {props.title}
         </Typography>
       </Grid>

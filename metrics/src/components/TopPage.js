@@ -14,8 +14,9 @@ import useStyles from '../styles/AppStyles';
 import InfoBox from './InfoBox';
 import InfoBoxUsers from './InfoBoxUsers';
 import CONFIG from '../config';
-import { Typography, withStyles } from '@material-ui/core';
+import { Card, Typography, withStyles } from '@material-ui/core';
 import { get_month } from '../utils/Month';
+import SearchIcon from '@material-ui/icons/Search';
 
 const initData = {
   newProviders: 0,
@@ -94,14 +95,15 @@ const TopPage = () => {
   return (
     <>
       <Container maxWidth="sm" component="main" className={classes.title}>
-        <Typography component="h4" variant="h4" color="textPrimary">
-          {titleMonth}
+        <Typography component="h4" variant="h4" color="textPrimary" style={{ fontWeight: 600}}>
+          Latest Usage
         </Typography>
       </Container>
-      <Container maxWidth="md" className={classes.heroContent}>
+      <Container maxWidth="md">
+      <Card style={{backgroundColor: 'white', borderRadius: '100px'}} className={classes.heroContent}>
         <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <Grid container md={9} justify="flex-end" alignItems="center">
-            <Grid item xs={12} sm={4}>
+          <Grid container xs={12} style={{justifyContent: 'space-between'}}>
+            <Grid item xs={12} sm={5} style={{marginLeft: '30px', paddingLeft:'30px'}}>
               <KeyboardDatePicker
                 margin="normal"
                 className={classes.date}
@@ -114,7 +116,7 @@ const TopPage = () => {
                 onChange={handleStartDateChange}
               />
             </Grid>
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} sm={5} style={{marginLeft: '30px', paddingLeft:'30px'}}>
               <KeyboardDatePicker
                 margin="normal"
                 className={classes.date}
@@ -127,20 +129,20 @@ const TopPage = () => {
                 onChange={handleEndDateChange}
               />
             </Grid>
-            <Grid item xs={12} sm={4} align="center">
-              <Box mt={3}>
+            <Grid item xs={12} sm={1} style={{padding: '10px 10px 10px 0px'}}>
                 <ColorButton
                   variant="contained"
                   color="primary"
                   onClick={searchHandle}
                   aria-label="delete"
+                  style={{borderRadius: '50px', height: '65px', width: '65px'}}
                 >
-                  Apply filter
+                  <SearchIcon/>
                 </ColorButton>
-              </Box>
             </Grid>
           </Grid>
         </MuiPickersUtilsProvider>
+      </Card>
       </Container>
 
       <Container maxWidth="md" component="main">

@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
   heroContent: {
     marginBottom: theme.spacing(5),
     display: 'flex',
+    alignItems: 'center',
     justifyContent: 'center',
   },
   cardHeader: {
