@@ -13,7 +13,6 @@ const NavBar = (props) => {
     <AppBar
       position="fixed"
       color="default"
-      style={{background: config.colors.navbar}}
       elevation={0}
       className={classes.appBar}
     >
@@ -28,6 +27,14 @@ const NavBar = (props) => {
         >
           Agora Metrics
         </Typography>
+        <Link
+          variant="button"
+          color="textPrimary"
+          href="#previous_months"
+          className={classes.link}
+        >
+          Previous Months
+        </Link>
         <Link
           variant="button"
           color="textPrimary"

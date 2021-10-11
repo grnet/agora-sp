@@ -152,8 +152,8 @@ const PreviousMonths = () => {
 
   return (
     <>
-      <Container maxWidth="sm" component="main" className={classes.title}>
-        <Typography style={{ fontWeight: 600}} component="h1" variant="h4" color="textPrimary">
+      <Container id="previous_months" maxWidth="sm" component="main" className={classes.title}>
+        <Typography className={classes.boldHeader} component="h1" variant="h4">
           Previous Months
         </Typography>
       </Container>
