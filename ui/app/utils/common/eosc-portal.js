@@ -600,12 +600,13 @@ const approveProviderEOSC = {
     }
     let role = get(this, 'role');
     let eosc_state = get(this, 'model.eosc_state');
+    let eosc_id = get(this, 'model.eosc_id');
 
     let user_is_portfolioadmin = role === 'portfolioadmin';
     let initial_states = ['pending initial approval', 'rejected', 'pending template submission'];
     let provider_in_initial_states = initial_states.includes(eosc_state);
 
-    if (user_is_portfolioadmin && provider_in_initial_states) {
+    if (user_is_portfolioadmin && provider_in_initial_states && !!eosc_id) {
       return false;
     } else {
       return true;
@@ -668,6 +669,7 @@ const rejectProviderEOSC = {
     }
     let role = get(this, 'role');
     let eosc_state = get(this, 'model.eosc_state');
+    let eosc_id = get(this, 'model.eosc_id');
 
     let user_is_portfolioadmin = role === 'portfolioadmin';
     let initial_states = [
@@ -676,7 +678,7 @@ const rejectProviderEOSC = {
     ];
     let provider_in_initial_states = initial_states.includes(eosc_state);
 
-    if (user_is_portfolioadmin && provider_in_initial_states) {
+    if (user_is_portfolioadmin && provider_in_initial_states && !!eosc_id) {
       return false;
     } else {
       return true;
