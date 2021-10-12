@@ -40,6 +40,7 @@ const NavBar = (props) => {
           color="textPrimary"
           href={config.endpoint}
           className={classes.link}
+          target="_blank"
         >
           Agora
         </Link>
@@ -49,6 +50,7 @@ const NavBar = (props) => {
             color="textPrimary"
             href={config.catalogueUrl}
             className={classes.link}
+            target="_blank"
           >
             Catalogue
           </Link>
@@ -58,6 +60,7 @@ const NavBar = (props) => {
           color="textPrimary"
           href={'mailto:' + config.supportMail}
           className={classes.link}
+          target="_blank"
         >
           Support
         </Link>
