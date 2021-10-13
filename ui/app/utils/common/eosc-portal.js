@@ -281,8 +281,20 @@ const postResourceEOSC = {
       let resource_org = get(this, 'model.erp_bai_2_service_organisation.id');
       let portal_id = get(this, 'model.eosc_id');
 
-      if (( role === 'provideradmin' && user_org === resource_org) || (role === 'portfolioadmin')) {
-        return !( state === 'published' && !portal_id );
+      let user_is_provideradmin = role === 'provideradmin';
+      let user_is_portfolioadmin = role === 'portfolioadmin';
+      let user_owns_organisation = user_org === resource_org;
+      let resource_is_published = state === 'published';
+      let resource_has_eosc_id = portal_id;
+
+      let permissible_role = ( user_is_provideradmin && user_owns_organisation) || user_is_portfolioadmin;
+
+      if (
+        permissible_role &&
+        resource_is_published &&
+        !resource_has_eosc_id
+      ) {
+        return false;
       } else {
         return true;
       }
@@ -364,8 +376,20 @@ const putResourceEOSC = {
       let state = get(this, 'model.state');
       let portal_id = get(this, 'model.eosc_id');
 
-      if (( role === 'provideradmin' && user_org === resource_org) || (role === 'portfolioadmin')) {
-        return !( state === 'published' && portal_id );
+      let user_is_provideradmin = role === 'provideradmin';
+      let user_is_portfolioadmin = role === 'portfolioadmin';
+      let user_owns_organisation = user_org === resource_org;
+      let resource_is_published = state === 'published';
+      let resource_has_eosc_id = portal_id;
+
+      let permissible_role = ( user_is_provideradmin && user_owns_organisation) || user_is_portfolioadmin;
+
+      if (
+        permissible_role &&
+        resource_is_published &&
+        resource_has_eosc_id
+      ) {
+        return false;
       } else {
         return true;
       }
@@ -448,8 +472,20 @@ const postProviderEOSC = {
       let org_id = get(this, 'model.id');
       let portal_id = get(this, 'model.eosc_id');
 
-      if (( role === 'provideradmin' && user_org === org_id) || (role === 'portfolioadmin')) {
-        return !( state === 'published' && !portal_id );
+      let user_is_provideradmin = role === 'provideradmin';
+      let user_is_portfolioadmin = role === 'portfolioadmin';
+      let user_owns_organisation = user_org === org_id;
+      let resource_is_published = state === 'published';
+      let resource_has_eosc_id = portal_id;
+
+      let permissible_role = ( user_is_provideradmin && user_owns_organisation) || user_is_portfolioadmin;
+
+      if (
+        permissible_role &&
+        resource_is_published &&
+        !resource_has_eosc_id
+      ) {
+        return false;
       } else {
         return true;
       }
@@ -525,8 +561,20 @@ const putProviderEOSC = {
       let org_id = get(this, 'model.id');
       let portal_id = get(this, 'model.eosc_id');
 
-      if (( role === 'provideradmin' && user_org === org_id) || (role === 'portfolioadmin')) {
-        return !( state === 'published' && portal_id );
+      let user_is_provideradmin = role === 'provideradmin';
+      let user_is_portfolioadmin = role === 'portfolioadmin';
+      let user_owns_organisation = user_org === org_id;
+      let resource_is_published = state === 'published';
+      let resource_has_eosc_id = portal_id;
+
+      let permissible_role = ( user_is_provideradmin && user_owns_organisation) || user_is_portfolioadmin;
+
+      if (
+        permissible_role &&
+        resource_is_published &&
+        resource_has_eosc_id
+      ) {
+        return false;
       } else {
         return true;
       }
