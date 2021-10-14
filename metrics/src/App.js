@@ -5,16 +5,18 @@ import Footer from './components/Footer';
 import NavBar from './components/NavBar';
 import TopPage from './components/TopPage';
 import PreviousMonths from './components/PreviousMonths';
+import useStyles from './styles/AppStyles';
 
 const App = () => {
+  const classes = useStyles();
   return (
-    <React.Fragment>
+    <div className={classes.backgroundTheme}>
       <CssBaseline />
       <NavBar logo={'logo.png'}/>
       <TopPage />
       <PreviousMonths />
       <Footer />
-    </React.Fragment>
+    </div>
   );
 };
 

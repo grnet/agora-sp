@@ -1,7 +1,6 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
-import Box from '@material-ui/core/Box';
 import { format } from 'date-fns';
 import DateFnsUtils from '@date-io/date-fns';
 import Button from '@material-ui/core/Button';
@@ -11,11 +10,13 @@ import {
 } from '@material-ui/pickers';
 import 'date-fns/format';
 import useStyles from '../styles/AppStyles';
-import InfoBox from './InfoBox';
-import InfoBoxUsers from './InfoBoxUsers';
+import InfoCard from './InfoCard';
 import CONFIG from '../config';
-import { Typography, withStyles } from '@material-ui/core';
-import { get_month } from '../utils/Month';
+import { Card, Typography, withStyles} from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
+import BusinessIcon from '@material-ui/icons/Business';
+import SettingsIcon from '@material-ui/icons/Settings';
+import PersonIcon from '@material-ui/icons/Person';
 
 const initData = {
   newProviders: 0,
@@ -32,9 +33,6 @@ const TopPage = () => {
   const [accData, setAccData] = React.useState(initData);
   const [currentDate, setCurrentDate] = React.useState(new Date());
   const [monthStart, setMonthStart] = React.useState(new Date().setDate(1));
-  const [titleMonth, setTitleMonth] = React.useState(
-    get_month(new Date().getMonth() + 1) + ' ' + new Date().getFullYear()
-  );
 
   const handleStartDateChange = (date) => {
     setMonthStart(date);
@@ -77,7 +75,6 @@ const TopPage = () => {
       .then((res) => res.json())
       .then((result) => {
         setAccData(getAccountingData(result));
-        setTitleMonth('Custom date range');
       });
   };
 
@@ -94,70 +91,87 @@ const TopPage = () => {
   return (
     <>
       <Container maxWidth="sm" component="main" className={classes.title}>
-        <Typography component="h4" variant="h4" color="textPrimary">
-          {titleMonth}
+        <Typography component="h4" variant="h4" className={classes.boldHeader}>
+          Latest Usage
         </Typography>
       </Container>
-      <Container maxWidth="md" className={classes.heroContent}>
-        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-          <Grid container md={9} justify="flex-end" alignItems="center">
-            <Grid item xs={12} sm={4}>
-              <KeyboardDatePicker
-                margin="normal"
-                className={classes.date}
-                disableToolbar
-                variant="inline"
-                format="dd/MM/yyyy"
-                id="date-picker-inline1"
-                label="From"
-                value={monthStart}
-                onChange={handleStartDateChange}
-              />
+      <Container maxWidth="md">
+        <Card style={{backgroundColor: 'white', borderRadius: '100px'}} className={classes.heroContent}>
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <Grid container xs={12} style={{justifyContent: 'space-between'}}>
+              <Grid item xs={12} sm={5} style={{marginLeft: '30px', paddingLeft:'30px'}}>
+                <KeyboardDatePicker
+                  margin="normal"
+                  className={classes.date}
+                  disableToolbar
+                  variant="inline"
+                  format="dd/MM/yyyy"
+                  id="date-picker-inline1"
+                  label="From"
+                  value={monthStart}
+                  onChange={handleStartDateChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={5} style={{marginLeft: '30px', paddingLeft:'30px'}}>
+                <KeyboardDatePicker
+                  margin="normal"
+                  className={classes.date}
+                  disableToolbar
+                  variant="inline"
+                  format="dd/MM/yyyy"
+                  id="date-picker-inline2"
+                  label="To"
+                  value={currentDate}
+                  onChange={handleEndDateChange}
+                />
+              </Grid>
+              <Grid item xs={12} sm={1} style={{padding: '10px 10px 10px 0px'}}>
+                  <ColorButton
+                    variant="contained"
+                    color="primary"
+                    onClick={searchHandle}
+                    aria-label="delete"
+                    style={{borderRadius: '50px', height: '65px', width: '65px'}}
+                  >
+                    <SearchIcon/>
+                  </ColorButton>
+              </Grid>
             </Grid>
-            <Grid item xs={12} sm={4}>
-              <KeyboardDatePicker
-                margin="normal"
-                className={classes.date}
-                disableToolbar
-                variant="inline"
-                format="dd/MM/yyyy"
-                id="date-picker-inline2"
-                label="To"
-                value={currentDate}
-                onChange={handleEndDateChange}
-              />
-            </Grid>
-            <Grid item xs={12} sm={4} align="center">
-              <Box mt={3}>
-                <ColorButton
-                  variant="contained"
-                  color="primary"
-                  onClick={searchHandle}
-                  aria-label="delete"
-                >
-                  Apply filter
-                </ColorButton>
-              </Box>
-            </Grid>
-          </Grid>
-        </MuiPickersUtilsProvider>
+          </MuiPickersUtilsProvider>
+        </Card>
       </Container>
 
-      <Container maxWidth="md" component="main">
-        <InfoBox
-          title="Providers"
-          new={accData.newProviders}
-          updated={accData.updatedProviders}
-          updated_total={accData.updatedProvidersTotal}
-        />
-        <InfoBox
-          title="Resources"
-          new={accData.newResources}
-          updated={accData.updatedResources}
-          updated_total={accData.updatedResourcesTotal}
-        />
-        <InfoBoxUsers title="Users" new={accData.newUsers} />
-      </Container>
+
+
+        <Grid container  maxWidth="lg" spacing={8} direction="row" alignItems="center"  justify="center" style={{paddingTop: '20px'}}>
+          <Grid item>
+            <InfoCard
+              title="Providers"
+              new={accData.newProviders}
+              updated={accData.updatedProviders}
+              updated_total={accData.updatedProvidersTotal}
+              logo={BusinessIcon}
+            />
+          </Grid>
+          <Grid item>
+            <InfoCard
+              title="Resources"
+              new={accData.newResources}
+              updated={accData.updatedResources}
+              updated_total={accData.updatedResourcesTotal}
+              logo={SettingsIcon}
+            />
+          </Grid>
+          <Grid item>
+            <InfoCard
+              title="Users"
+              new={accData.newUsers}
+              updated={'-'}
+              updated_total={'-'}
+              logo={PersonIcon}
+            />
+          </Grid>
+        </Grid>
     </>
   );
 };

@@ -9,24 +9,25 @@ const useStyles = makeStyles((theme) => ({
       listStyle: 'none',
     },
   },
-  root: {
+  PrevMonthsTable: {
     width: '100%',
+    borderRadius: '10px',
   },
-  container: {
-    maxHeight: 440,
+  backgroundTheme: {
+    backgroundColor: '#f1f1f1',
+    width: '100%',
+    height: '100%',
   },
-  table: {
-    minWidth: 650,
+  boldHeader: {
+    fontWeight: 600,
   },
   appBar: {
     borderBottom: `1px solid ${theme.palette.divider}`,
+    backgroundColor: config.colors.navbar,
   },
   date: {
     marginLeft: theme.spacing(4),
     width: '90%',
-  },
-  toolbar: {
-    flexWrap: 'wrap',
   },
   toolbarTitle: {
     flexGrow: 1,
@@ -39,32 +40,8 @@ const useStyles = makeStyles((theme) => ({
   heroContent: {
     marginBottom: theme.spacing(5),
     display: 'flex',
-    justifyContent: 'center',
-  },
-  cardHeader: {
-    backgroundColor:
-      theme.palette.type === 'light'
-        ? theme.palette.grey[200]
-        : theme.palette.grey[700],
-  },
-  cardPricing: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'baseline',
-  },
-  card: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'baseline',
-    marginBottom: theme.spacing(2),
-  },
-  cardDouble: {
-    display: 'flex',
-    justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: theme.spacing(2),
-    width: 500,
-    height: 100,
+    justifyContent: 'center',
   },
   footer: {
     borderTop: `1px solid ${theme.palette.divider}`,
@@ -76,41 +53,27 @@ const useStyles = makeStyles((theme) => ({
       paddingBottom: theme.spacing(6),
     },
   },
+  infoContent: {
+    borderTop: `1px solid ${theme.palette.divider}`,
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
+  },
+  infoContentTop: {
+    paddingTop: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
+  },
   logo: {
     height: 40,
     marginRight: 15,
   },
-  logoPadding: {
-    flexGrow: 1,
-  },
-  mainBoard: {
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    margin: theme.spacing(5),
-  },
-  row: {
-    flexGrow: 1,
-    flexDirection: 'row',
-  },
   tableBody: {
     overflow: 'auto',
-  },
-  nav: {
-    flexGrow: 1,
-    marginLeft: 0,
-    width: '100%',
-    padding: theme.spacing(0, 2),
-    height: '100%',
-    position: 'absolute',
-    pointerEvents: 'none',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'flex-end',
+    borderRadius: '10px',
   },
   title: {
-    marginTop: theme.spacing(12),
-    marginBottom: theme.spacing(2),
+    paddingTop: theme.spacing(16),
+    paddingBottom: theme.spacing(6),
+    color: '#323232',
     display: 'flex',
     justifyContent: 'center',
   },
