@@ -71,3 +71,7 @@ Steps to configure apache:
    `endpoint: 'http://localhost:8000'`
 4. Run react app
    `npm start`
+
+
+## Changelog
+- Update UI: New UI/UX changes updating the search bar and the provider/resources/user metrics layout
