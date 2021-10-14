@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
   },
   PrevMonthsTable: {
     width: '100%',
-    borderRadius: '20px',
+    borderRadius: '10px',
   },
   backgroundTheme: {
     backgroundColor: '#f1f1f1',
@@ -68,7 +68,7 @@ const useStyles = makeStyles((theme) => ({
   },
   tableBody: {
     overflow: 'auto',
-    borderRadius: '20px',
+    borderRadius: '10px',
   },
   title: {
     paddingTop: theme.spacing(16),

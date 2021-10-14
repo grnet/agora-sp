@@ -159,8 +159,8 @@ const PreviousMonths = () => {
       </Container>
 
       <Container maxWidth="lg" className={classes.heroContent}>
-        <Paper className={classes.root} style={{ borderRadius: '20px'}}>
-          <TableContainer className={classes.tableBody} style={{ borderRadius: '20px'}}>
+        <Paper className={classes.root} style={{ borderRadius: '10px'}}>
+          <TableContainer className={classes.tableBody} style={{ borderRadius: '10px'}}>
             <Table stickyHeader aria-label="sticky table">
               <EnhancedTableHead
                 columns={columns}

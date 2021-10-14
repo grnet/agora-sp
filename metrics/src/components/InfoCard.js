@@ -6,33 +6,15 @@ import Container from '@material-ui/core/Container';
 import 'date-fns/format';
 import useStyles from '../styles/AppStyles';
 import CONFIG from '../config';
-import { Card, Typography, CardHeader, CardContent, Avatar } from '@material-ui/core';
-import BusinessIcon from '@material-ui/icons/Business';
-import SettingsIcon from '@material-ui/icons/Settings';
-import PersonIcon from '@material-ui/icons/Person';
-
-const getLogo = (name) => {
-  if (name === 'Users') {
-    return <PersonIcon style={{color: '#343434'}}/>;
-  } else if ( name === 'Resources' ) {
-    return <SettingsIcon style={{color: '#343434'}}/>;
-  } else if ( name === 'Providers' ) {
-    return <BusinessIcon style={{color: '#343434'}}/>;
-  }
-}
+import { Card, Typography, CardHeader, CardContent } from '@material-ui/core';
 
 const InfoCard = (props) => {
   const classes = useStyles();
   return (
     <Grid container spacing={4} xs={12} sm={12} md={4} direction="row" alignItems="center">
       <Grid item>
-        <Card alignItems="center" style={{ borderRadius: '20px', minHeight: '500px', minWidth: '270px'}}>
-          <CardHeader style={{ backgroundColor: CONFIG.colors.ColorA}} 
-            avatar={
-              <Avatar style={{backgroundColor: '#fafafa'}} aria-label="recipe">
-                {getLogo(props.title)}
-              </Avatar>
-            }
+        <Card alignItems="center" style={{ borderRadius: '10px', minHeight: '500px', minWidth: '270px', textAlign: 'center'}}>
+          <CardHeader style={{ backgroundColor: CONFIG.colors.ColorA}}
             title={
               <Typography component="h5" variant="h5" style={{ fontWeight: 600, color: '#fff'}}>
                 {props.title}
