@@ -1,5 +1,5 @@
 const config = {
-  endpoint: 'https://localhost:8000/',
+  endpoint: 'http://localhost:8000',
   supportMail: 'agora@grnet.gr',
   catalogueUrl: 'http://localhost:8000/catalogue',
   colors: {
