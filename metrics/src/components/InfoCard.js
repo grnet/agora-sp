@@ -8,6 +8,21 @@ import useStyles from '../styles/AppStyles';
 import CONFIG from '../config';
 import { Card, Typography, CardHeader, CardContent } from '@material-ui/core';
 
+const isZero = (number) => {
+  if (number > 0) {
+    return (
+      <Typography component="h2" variant="h3" color="textPrimary">
+      {number}
+    </Typography>)
+  } else {
+    return (
+      <Typography component="h2" variant="h3" style={{color: 'grey'}}>
+        {number}
+      </Typography>
+    )
+  }
+}
+
 const InfoCard = (props) => {
   const classes = useStyles();
   return (
@@ -23,25 +38,19 @@ const InfoCard = (props) => {
           />
           <CardContent align="center">
             <Container maxWidth="xl" component="footer" className={classes.infoContentTop}>
-              <Typography component="h2" variant="h3" color="textPrimary">
-                {props.new}
-              </Typography>
+              {isZero(props.new)}
               <Typography variant="body2" color="text.secondary">
                 NEW
               </Typography>
             </Container>
             <Container maxWidth="xl" component="footer" className={classes.infoContent}>
-              <Typography component="h2" variant="h3" color="textPrimary">
-                {props.updated}
-              </Typography>
+              {isZero(props.updated)}
               <Typography variant="body2" color="text.secondary">
                 UPDATES
               </Typography>
             </Container>
             <Container maxWidth="xl" component="footer" className={classes.infoContent}>
-              <Typography component="h2" variant="h3" color="textPrimary">
-                {props.updated_total}
-              </Typography>
+              {isZero(props.updated_total)}
               <Typography variant="body2" color="text.secondary">
                 TOTAL UPDATES
               </Typography>
