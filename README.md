@@ -182,8 +182,8 @@ They are all optional.
 
 #### API calls to EOSC PORTAL
 
-Users with role `provideradmin` can publish and unpublish resources to  EOSC Portal via agora. 
-They can also publish and unpublish the provider they belong to to EOSC Portal.
+Users with role `provideradmin` and `portfolioadmin` can publish and unpublish resources and providers to EOSC Portal via agora.
+The `portfolioadmin` can also approve or reject onboarding applications for provider/resources from agora list pages.
 In order to disable this features, you must alter `ui/config/environment.js` as follows:
 
 ```javascript
