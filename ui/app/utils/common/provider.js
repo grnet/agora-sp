@@ -335,7 +335,7 @@ const EDIT_FIELDSETS = [
     },
     fields: computed('role', function () {
       let role = get(this, 'role');
-      const editor = role === 'provideradmin' || role === 'portfolioadmin';
+      const editor = role === 'provideradmin';
       const disabled = editor;
       let abbreviation_label = 'provider.fields.epp_bai_2_abbreviation';
       if (editor) {

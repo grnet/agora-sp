@@ -47,6 +47,7 @@ The flow of the publishing to eosc API follows these steps:
 1. The Superadmin creates a new provider
 2. The Superadmin assignes the role of the provider admin to a user
 3. The Provider admin can edit the provider and publish it to eosc
+4. The Portfolio admin can also publish the provider and approve/reject it
 
 | ![published_provider](assets/published_provider.png) |
 |:-------------------------------------:|
@@ -61,7 +62,7 @@ Tho following flow had the assumption that a provider will need to have a resour
 1. The Porfolio admin will review the provider and approve it to a temporary state.
    ![pending_initial_approval](assets/pending_initial_approval.png)
    ![flow_publish_approve](assets/first_approve_flow.png)
-2. The provider admin will have to publish a resource of its provider
+2. The provider admin will have to publish a resource of its provider. The portfolio admin can also publish a rerource/provider.
    ![pending_template_submission](assets/pending_template_submission.png)
    ![flow_publish_approve_final](assets/approve_final_provider_flow.png)
 3. Then the Portfolio admin will do the final approval which will set also the resource's state to approved
