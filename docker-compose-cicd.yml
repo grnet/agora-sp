@@ -5,8 +5,8 @@ services:
     ports:
       - "127.0.0.1:8000:80"
     volumes:
-       - ./agora:/srv/agora/agora
-       - dist:/srv/agora/ui/dist
+      - ./agora:/srv/agora/agora
+      - dist:/srv/agora/ui/dist
     stdin_open: true
     tty: true
     command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:80"
