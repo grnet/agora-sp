@@ -363,6 +363,7 @@ EOSC_API_URL = 'https://beta.providers.eosc-portal.eu/api/'
 OIDC_URL = 'https://aai.eosc-portal.eu/oidc/token'
 OIDC_REFRESH_TOKEN = '<oidc-refresh-token>'
 OIDC_CLIENT_ID = '<oidc-id>'
+CA_BUNDLE = '/etc/ssl/certs/ca-bundle.crt'
 ACCOUNTING_BASE_YEAR = 2021
 
 if not os.path.isfile(SETTINGS_PATH):

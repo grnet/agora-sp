@@ -13,6 +13,7 @@ EOSC_API_URL = getattr(settings, 'EOSC_API_URL', '')
 OIDC_REFRESH_TOKEN = getattr(settings, 'OIDC_REFRESH_TOKEN', '')
 OIDC_CLIENT_ID =  getattr(settings, 'OIDC_CLIENT_ID', '')
 OIDC_URL = getattr(settings, 'OIDC_URL', '')
+CA_BUNDLE = getattr(settings, 'CA_BUNDLE', '/etc/ssl/certs/ca-bundle.crt')
 logger = logging.getLogger(__name__)
 
 def get_access_token(oidc_url, refresh_token, client_id ):
@@ -23,7 +24,7 @@ def get_access_token(oidc_url, refresh_token, client_id ):
         'scope': 'openid email profile'
     }
     try:
-        response = requests.post(oidc_url, data=obj)
+        response = requests.post(oidc_url, data=obj, verify=CA_BUNDLE)
         response.raise_for_status()
     except requests.exceptions.RequestException as err:
         logger.info('Response status code: %s, %s, %s' % (oidc_url, err, response.json()))
@@ -47,7 +48,7 @@ def resource_publish_eosc(backend_input, instance, context):
         with id %s to %s has been made by %s at %s \
         ' %(id, url, username, datetime.now()))
     try:
-        response = requests.post(url, headers=headers,json=eosc_req)
+        response = requests.post(url, headers=headers,json=eosc_req, verify=CA_BUNDLE)
         response.raise_for_status()
         logger.info('Response status code: %s' %(response.status_code))
         logger.info('Response json: %s' %(response.json()))
@@ -79,7 +80,7 @@ def resource_update_eosc(backend_input, instance, context):
         with id %s to %s has been made by %s at %s \
         ' %(id, url, username, datetime.now()))
     try:
-        response = requests.put(url, headers=headers,json=eosc_req)
+        response = requests.put(url, headers=headers,json=eosc_req, verify=CA_BUNDLE)
         response.raise_for_status()
         logger.info('Response status code: %s' %(response.status_code))
         logger.info('Response json: %s' %(response.json()))
@@ -108,7 +109,7 @@ def provider_publish_eosc(backend_input, instance, context):
         with id %s to %s has been made by %s at %s \
         ' %(id, url, username, datetime.now()))
     try:
-        response = requests.post(url, headers=headers,json=eosc_req)
+        response = requests.post(url, headers=headers,json=eosc_req, verify=CA_BUNDLE)
         response.raise_for_status()
         logger.info('Response status code: %s' %(response.status_code))
         logger.info('Response json: %s' %(response.json()))
@@ -138,7 +139,7 @@ def provider_update_eosc(backend_input, instance, context):
         with id %s to %s has been made by %s at %s \
         ' %(id, url, username, datetime.now()))
     try:
-        response = requests.put(url, headers=headers,json=eosc_req)
+        response = requests.put(url, headers=headers,json=eosc_req, verify=CA_BUNDLE)
         response.raise_for_status()
         logger.info('Response status code: %s' %(response.status_code))
         logger.info('Response json: %s' %(response.json()))
@@ -163,7 +164,7 @@ def resource_activate_eosc(backend_input, instance, context):
         with id %s to %s has been made by %s at %s \
         ' %(id, url, username, datetime.now()))
     try:
-        response = requests.patch(url + '/?' + params, headers=headers)
+        response = requests.patch(url + '/?' + params, headers=headers, verify=CA_BUNDLE)
         response.raise_for_status()
         logger.info('Response status code: %s' %(response.status_code))
         logger.info('Response json: %s' %(response.json()))
@@ -190,7 +191,7 @@ def resource_deactivate_eosc(backend_input, instance, context):
         with id %s to %s has been made by %s at %s \
         ' %(id, url, username, datetime.now()))
     try:
-        response = requests.patch(url + '/?' + params, headers=headers)
+        response = requests.patch(url + '/?' + params, headers=headers, verify=CA_BUNDLE)
         response.raise_for_status()
         logger.info('Response status code: %s' %(response.status_code))
         logger.info('Response json: %s' %(response.json()))
@@ -217,7 +218,7 @@ def provider_approve_temp_eosc(backend_input, instance, context):
         with id %s to %s has been made by %s at %s \
         ' %(id, url, username, datetime.now()))
     try:
-        response = requests.patch(url + '/?' + params, headers=headers)
+        response = requests.patch(url + '/?' + params, headers=headers, verify=CA_BUNDLE)
         response.raise_for_status()
         logger.info('Response status code: %s' %(response.status_code))
         logger.info('Response json: %s' %(response.json()))
@@ -246,7 +247,7 @@ def provider_approve_eosc(backend_input, instance, context):
         with id %s to %s has been made by %s at %s \
         ' %(id, url, username, datetime.now()))
     try:
-        response = requests.patch(url + '/?' + params, headers=headers)
+        response = requests.patch(url + '/?' + params, headers=headers, verify=CA_BUNDLE)
         response.raise_for_status()
         logger.info('Response status code: %s' %(response.status_code))
         logger.info('Response json: %s' %(response.json()))
@@ -275,7 +276,7 @@ def provider_reject_eosc(backend_input, instance, context):
         with id %s to %s has been made by %s at %s \
         ' %(id, url, username, datetime.now()))
     try:
-        response = requests.patch(url + '/?' + params, headers=headers)
+        response = requests.patch(url + '/?' + params, headers=headers, verify=CA_BUNDLE)
         response.raise_for_status()
         logger.info('Response status code: %s' %(response.status_code))
         logger.info('Response json: %s' %(response.json()))
