@@ -10,7 +10,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Allow portfolioadmin to edit the eosc_id.
 - Allow portfolioadmin to publish and update resources and providers to eosc portal.
 - Add CA_BUNDLE parameter in each external request django backend does.
-- Add eosc-state field as an editable form entry for resourcers and providers.
+- Add eosc-state field as an editable form entry for resources and providers.
 
 ## [1.4.1](https://github.com/grnet/agora-sp/compare/v1.4.0...v1.4.1) - 2021-09-15
 
