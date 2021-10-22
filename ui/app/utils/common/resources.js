@@ -179,9 +179,10 @@ const DETAILS_BASIC_INFO_FIELDSET = {
     'erp_bai_3_providers_verbose',
     'erp_bai_4_webpage',
     'eosc_id',
+    'eosc_state'
   ]),
   layout: {
-    flex: [50, 50, 50, 50, 100, 100, 100],
+    flex: [50, 50, 50, 50, 100, 100, 50, 50],
   },
 };
 
@@ -287,10 +288,11 @@ const EDIT_BASIC_INFO_FIELDSET = {
       providers,
       'erp_bai_4_webpage',
       field('eosc_id', { disabled }),
+      field('eosc_state', { disabled }),
     ]);
   }),
   layout: {
-    flex: [50, 50, 50, 50, 100, 100, 100],
+    flex: [50, 50, 50, 50, 100, 100, 100, 100],
   },
 };
 
@@ -313,6 +315,7 @@ const CREATE_BASIC_INFO_FIELDSET = {
       providers,
       'erp_bai_4_webpage',
       field('eosc_id', { disabled }),
+      field('eosc_state', { disabled }),
     ]);
   }),
   layout: {

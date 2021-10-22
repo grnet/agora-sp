@@ -287,7 +287,7 @@ const DETAILS_FIELDSETS = [
     label: 'provider.cards.basic_information',
     text: 'provider.cards.basic_hint',
     layout: {
-      flex: [50, 50, 100, 100, 100, 50, 50, 100],
+      flex: [50, 50, 100, 100, 100, 50, 50, 50, 50],
     },
     fields: fields_eosc([
       'epp_bai_0_id',
@@ -298,6 +298,7 @@ const DETAILS_FIELDSETS = [
       'epp_bai_4_legal_entity',
       'epp_bai_5_legal_status',
       'eosc_id',
+      'eosc_state',
     ]),
   },
   DETAILS_CLASSIFICATION_FIELDSET,
@@ -331,7 +332,7 @@ const EDIT_FIELDSETS = [
     label: 'provider.cards.basic_information',
     text: 'provider.cards.basic_hint',
     layout: {
-      flex: [50, 50, 100, 100, 100, 50, 50, 100],
+      flex: [50, 50, 100, 100, 100, 50, 50, 100, 100],
     },
     fields: computed('role', function () {
       let role = get(this, 'role');
@@ -356,6 +357,7 @@ const EDIT_FIELDSETS = [
         'epp_bai_4_legal_entity',
         'epp_bai_5_legal_status',
         field('eosc_id', { disabled }),
+        field('eosc_state', { disabled }),
       ]);
     }),
   },
@@ -403,7 +405,7 @@ const CREATE_FIELDSETS = [
     label: 'provider.cards.basic_information',
     text: 'provider.cards.basic_hint',
     layout: {
-      flex: [100, 100, 100, 100, 50, 50, 100],
+      flex: [100, 100, 100, 100, 50, 50, 100, 100],
     },
     fields: computed('role', function () {
       let role = get(this, 'role');
@@ -427,6 +429,7 @@ const CREATE_FIELDSETS = [
         'epp_bai_4_legal_entity',
         'epp_bai_5_legal_status',
         'eosc_id',
+        'eosc_state',
       ]);
     }),
   },
