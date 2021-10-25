@@ -332,7 +332,7 @@ const EDIT_FIELDSETS = [
     label: 'provider.cards.basic_information',
     text: 'provider.cards.basic_hint',
     layout: {
-      flex: [50, 50, 100, 100, 100, 50, 50, 100, 100],
+      flex: [50, 50, 100, 100, 100, 50, 50, 50, 50],
     },
     fields: computed('role', function () {
       let role = get(this, 'role');
@@ -405,7 +405,7 @@ const CREATE_FIELDSETS = [
     label: 'provider.cards.basic_information',
     text: 'provider.cards.basic_hint',
     layout: {
-      flex: [100, 100, 100, 100, 50, 50, 100, 100],
+      flex: [100, 100, 100, 100, 50, 50, 50, 50],
     },
     fields: computed('role', function () {
       let role = get(this, 'role');

@@ -292,7 +292,7 @@ const EDIT_BASIC_INFO_FIELDSET = {
     ]);
   }),
   layout: {
-    flex: [50, 50, 50, 50, 100, 100, 100, 100],
+    flex: [50, 50, 50, 50, 100, 100, 50, 50],
   },
 };
 
@@ -319,7 +319,7 @@ const CREATE_BASIC_INFO_FIELDSET = {
     ]);
   }),
   layout: {
-    flex: [100, 50, 50, 100, 100, 100],
+    flex: [100, 50, 50, 100, 100, 50, 50],
   },
 };
 const GEO_FIELDSET = {
