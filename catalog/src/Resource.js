@@ -524,7 +524,6 @@ function AccessOrderInfo(props) {
           <ValueItem
               icon="clipboard"
               item={props.order}
-              valueOfKey="name"              
               label="Order"
               link
               
