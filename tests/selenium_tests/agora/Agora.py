@@ -41,7 +41,10 @@ class Agora(ABC, unittest.TestCase):
         # Docker approach
         #web_browser_options = webdriver.FirefoxOptions()
         web_browser_options = webdriver.ChromeOptions()
-        web_browser_options.add_argument("--headless")
+        #web_browser_options.add_argument("--headless")
+        #web_browser_options.add_argument("--no-sandbox")
+        #web_browser_options.add_argument("--no-disable-dev-shm-usage")
+        web_browser_options.add_argument("--start-maximized")
 
 
         self.driver = webdriver.Remote( command_executor='http://selenium:4444', options=web_browser_options )

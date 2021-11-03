@@ -8,7 +8,6 @@ RUN mkdir /etc/agora && \
     cp /home/agora-sp/requirements_dev.txt /srv/agora/requirements_dev.txt && \
     cp /home/agora-sp/requirements.txt /srv/agora/requirements.txt && \
     cp /home/agora-sp/version /srv/agora/version && \
-    sed -i 's/localhost:8000/agora-backend/g' /home/agora-sp/agora/docker/deployment.conf && \
     cp -r /home/agora-sp/agora/docker/* /etc/agora/ && \
     cp -r /home/agora-sp/agora /srv/agora/agora && \
     cd /srv/agora && pip install -r requirements_dev.txt

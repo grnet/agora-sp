@@ -7,7 +7,7 @@ services:
     environment:
       - HUB_PORT_4444_TCP_ADDR=hub
       - HUB_PORT_4444_TCP_PORT=4444
-      - START_XVFB=false
+      - START_XVFB=true
     shm_size: '2gb'
     #expose:
       #- 4444

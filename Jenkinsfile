@@ -56,12 +56,9 @@ pipeline {
                         echo 'Create docker containers...'
                         sh '''
                             cd $WORKSPACE/$PROJECT_DIR
-                            docker -v
-                            docker-compose -v
                             docker-compose -f docker-compose-cicd.yml --profile "$JOB_NAME" up --build --abort-on-container-exit --exit-code-from selenium-python-tests
                             rm requirements*.txt
                             cd tests/selenium_tests
-                            ls -alh
                         '''
 
                         testBuildBadge.setStatus('passing')
@@ -78,19 +75,11 @@ pipeline {
                 always {
                     sh '''
                       cd $WORKSPACE/$PROJECT_DIR
-                      ls -alh
-                      ls -alh tests/selenium_tests
                       docker-compose -f docker-compose-cicd.yml --profile "$JOB_NAME" down
-                      ls -alh
                     '''
 
                     junit '**/junit.xml'
 
-                    sh '''
-                      cd $WORKSPACE/$PROJECT_DIR
-                      cd tests/selenium_tests
-                      pipenv --rm
-                    '''
                     cleanWs()
                 }
             }
