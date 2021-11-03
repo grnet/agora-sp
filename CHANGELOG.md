@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Add CA_BUNDLE parameter in each external request django backend does.
 - Add eosc-state field as an editable form entry for resources and providers.
 
+### Changed
+-  Metrics: UI/UX changes updating the search bar and the provider/resources/user layout.
+
 ## [1.4.1](https://github.com/grnet/agora-sp/compare/v1.4.0...v1.4.1) - 2021-09-15
 
 ### Added
