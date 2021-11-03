@@ -471,8 +471,17 @@ def get_life_cycle_status(status):
     else:
         return 'provider_life_cycle_status-other'
 
+def get_provider_admins(org_id, provider_mail):
+    users = accounts.models.User.objects.filter(organisation_id=org_id).all()
+    provider = accounts.models.User.objects.get(email=provider_mail)
+    provider_users = [{"name": provider.first_name, "surname": provider.last_name, "email": provider.email}]
+    for user in users:
+        if user.email != provider.email:
+            provider_users.append({"name": user.first_name, "surname": user.last_name, "email": user.email})
+    return provider_users
 
 def create_eosc_api_json_provider(instance, provider_email):
+    admins = get_provider_admins(instance.id, provider_email)
     resource_json = {}
     if instance.eosc_id != None:
         resource_json['id'] = instance.eosc_id
@@ -517,7 +526,7 @@ def create_eosc_api_json_provider(instance, provider_email):
        resource_json['societalGrandChallenges'] = [ check_eosc_id(o.eosc_id, 'provider_societal_grand_challenge-other') for o in instance.epp_oth_11_societal_grand_challenges.all()]
     if instance.epp_oth_12_national_roadmaps != None:
         resource_json['nationalRoadmaps'] = [ o for o in instance.epp_oth_12_national_roadmaps.split(",")]
-    resource_json['users'] = [{"email": provider_email}]
+    resource_json['users'] = admins
     return resource_json
 
 
