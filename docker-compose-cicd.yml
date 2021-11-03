@@ -67,6 +67,7 @@ services:
       dockerfile: ./Dockerfile
     volumes:
       - ./tests/selenium_tests:/srv/agora/tests/selenium_tests
+    user: "1000:1000"
     depends_on:
       backend:
         condition: service_healthy

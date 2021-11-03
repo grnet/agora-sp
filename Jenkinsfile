@@ -61,10 +61,6 @@ pipeline {
                             docker-compose -f docker-compose-cicd.yml --profile "$JOB_NAME" up --build --abort-on-container-exit --exit-code-from selenium-python-tests
                             rm requirements*.txt
                             cd tests/selenium_tests
-                            #pipenv install -r requirements.txt
-                            #echo "Wait for argo container to initialize"
-                            #while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' agora-frontend/ui/auth/login)" != "200" ]]; do if [[ "$(docker ps | grep agora | wc -l)" != "2" ]]; then exit 1; fi; sleep 5; done
-                            #pipenv run pytest agora_unit_tests.py -o junit_family=xunit2 --junitxml=reports/junit.xml
                             ls -alh
                         '''
 
