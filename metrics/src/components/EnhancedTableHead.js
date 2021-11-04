@@ -5,6 +5,7 @@ import TableRow from '@material-ui/core/TableRow';
 import StyledTableCell from './StyledTableCell';
 import StyledTableSortLabel from './StyledTableSortLabel';
 import TableHead from '@material-ui/core/TableHead';
+import { Typography } from '@material-ui/core';
 
 const EnhancedTableHead = (props) => {
   const {
@@ -33,12 +34,14 @@ const EnhancedTableHead = (props) => {
                 direction={orderBy === headCell.id ? order : "asc"}
                 onClick={createSortHandler(headCell.id)}
               >
-                {headCell.label}
+                <Typography>
+                  {headCell.label}
+                </Typography>
               </StyledTableSortLabel>
             ):(
-              <div>
-              {headCell.label}
-              </div>
+              <Typography>
+                {headCell.label}
+              </Typography>
               )
             }
           </StyledTableCell>

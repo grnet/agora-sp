@@ -8,7 +8,7 @@ import useStyles from '../styles/AppStyles';
 const Footer = () => {
   const classes = useStyles();
   return (
-    <Container maxWidth="md" component="footer" className={classes.footer}>
+    <Container maxWidth="xl" component="footer" className={classes.footer}>
       <Box mt={5}>
         <Copyright />
       </Box>

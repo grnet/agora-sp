@@ -87,6 +87,8 @@ def get_rules():
         ('api/v2/providers', 'delete', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/providers', 'publish-eosc', 'provideradmin', '*', 'update_organisation_owned', '*', '*'),
         ('api/v2/providers', 'update-eosc', 'provideradmin', '*', 'update_organisation_owned', '*', '*'),
+        ('api/v2/providers', 'publish-eosc', 'portfolioadmin', '*', '*', '*', '*'),
+        ('api/v2/providers', 'update-eosc', 'portfolioadmin', '*', '*', '*', '*'),
         ('api/v2/providers', 'approve-temp-eosc', 'portfolioadmin', '*', '*', '*', '*'),
         ('api/v2/providers', 'approve-eosc', 'portfolioadmin', '*', '*', '*', '*'),
         ('api/v2/providers', 'reject-eosc', 'portfolioadmin', '*', '*', '*', '*'),
@@ -117,6 +119,8 @@ def get_rules():
         ('api/v2/resources', 'delete', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/resources', 'publish-eosc', 'provideradmin', '*', 'update_organisation_owned', '*', '*'),
         ('api/v2/resources', 'update-eosc', 'provideradmin', '*', 'update_organisation_owned', '*', '*'),
+        ('api/v2/resources', 'publish-eosc', 'portfolioadmin', '*', '*', '*', '*'),
+        ('api/v2/resources', 'update-eosc', 'portfolioadmin', '*', '*', '*', '*'),
         ('api/v2/resources', 'activate-eosc', 'portfolioadmin', '*', '*', '*', '*'),
         ('api/v2/resources', 'deactivate-eosc', 'portfolioadmin', '*', '*', '*', '*'),
 

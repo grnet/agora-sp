@@ -524,7 +524,6 @@ function AccessOrderInfo(props) {
           <ValueItem
               icon="clipboard"
               item={props.order}
-              valueOfKey="name"              
               label="Order"
               link
               
@@ -739,7 +738,7 @@ function ContactInfo(props) {
               item={"mailto:" + props.security_email}
               label="Security Contact"
               link
-              url={props.helpdesk_email}
+              url={props.security_email}
               em
             />
 

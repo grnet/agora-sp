@@ -13,7 +13,6 @@ const NavBar = (props) => {
     <AppBar
       position="fixed"
       color="default"
-      style={{background: config.colors.navbar}}
       elevation={0}
       className={classes.appBar}
     >
@@ -31,17 +30,27 @@ const NavBar = (props) => {
         <Link
           variant="button"
           color="textPrimary"
+          href="#previous_months"
+          className={classes.link}
+        >
+          Previous Months
+        </Link>
+        <Link
+          variant="button"
+          color="textPrimary"
           href={config.endpoint}
           className={classes.link}
+          target="_blank"
         >
           Agora
         </Link>
-        {config.catalogueUrl &&
+        {!!config.catalogueUrl &&
           <Link
             variant="button"
             color="textPrimary"
-            href={config.catalogue}
+            href={config.catalogueUrl}
             className={classes.link}
+            target="_blank"
           >
             Catalogue
           </Link>
@@ -51,6 +60,7 @@ const NavBar = (props) => {
           color="textPrimary"
           href={'mailto:' + config.supportMail}
           className={classes.link}
+          target="_blank"
         >
           Support
         </Link>

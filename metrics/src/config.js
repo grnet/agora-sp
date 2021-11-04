@@ -3,11 +3,13 @@ const config = {
   supportMail: 'agora@grnet.gr',
   catalogueUrl: 'http://localhost:8000/catalogue',
   colors: {
-    navbar: '#f5f5f5',
+    navbar: '#fff',
     navbarText: '#000',
     previousMonthsHeader: '#67729c',
+    previousMonthsHeaderText: '#fff',
     searchButton: '#67729c',
-    previousMonthsHeaderText: '#fff'
+    ColorA: '#67729c',
+    ColorB: '#000'
   }
 };
 

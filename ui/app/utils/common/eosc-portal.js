@@ -282,13 +282,15 @@ const postResourceEOSC = {
       let portal_id = get(this, 'model.eosc_id');
 
       let user_is_provideradmin = role === 'provideradmin';
+      let user_is_portfolioadmin = role === 'portfolioadmin';
       let user_owns_organisation = user_org === resource_org;
       let resource_is_published = state === 'published';
       let resource_has_eosc_id = portal_id;
 
+      let permissible_role = ( user_is_provideradmin && user_owns_organisation) || user_is_portfolioadmin;
+
       if (
-        user_is_provideradmin &&
-        user_owns_organisation &&
+        permissible_role &&
         resource_is_published &&
         !resource_has_eosc_id
       ) {
@@ -375,13 +377,15 @@ const putResourceEOSC = {
       let portal_id = get(this, 'model.eosc_id');
 
       let user_is_provideradmin = role === 'provideradmin';
+      let user_is_portfolioadmin = role === 'portfolioadmin';
       let user_owns_organisation = user_org === resource_org;
       let resource_is_published = state === 'published';
       let resource_has_eosc_id = portal_id;
 
+      let permissible_role = ( user_is_provideradmin && user_owns_organisation) || user_is_portfolioadmin;
+
       if (
-        user_is_provideradmin &&
-        user_owns_organisation &&
+        permissible_role &&
         resource_is_published &&
         resource_has_eosc_id
       ) {
@@ -469,13 +473,15 @@ const postProviderEOSC = {
       let portal_id = get(this, 'model.eosc_id');
 
       let user_is_provideradmin = role === 'provideradmin';
+      let user_is_portfolioadmin = role === 'portfolioadmin';
       let user_owns_organisation = user_org === org_id;
       let resource_is_published = state === 'published';
       let resource_has_eosc_id = portal_id;
 
+      let permissible_role = ( user_is_provideradmin && user_owns_organisation) || user_is_portfolioadmin;
+
       if (
-        user_is_provideradmin &&
-        user_owns_organisation &&
+        permissible_role &&
         resource_is_published &&
         !resource_has_eosc_id
       ) {
@@ -556,13 +562,15 @@ const putProviderEOSC = {
       let portal_id = get(this, 'model.eosc_id');
 
       let user_is_provideradmin = role === 'provideradmin';
+      let user_is_portfolioadmin = role === 'portfolioadmin';
       let user_owns_organisation = user_org === org_id;
       let resource_is_published = state === 'published';
       let resource_has_eosc_id = portal_id;
 
+      let permissible_role = ( user_is_provideradmin && user_owns_organisation) || user_is_portfolioadmin;
+
       if (
-        user_is_provideradmin &&
-        user_owns_organisation &&
+        permissible_role &&
         resource_is_published &&
         resource_has_eosc_id
       ) {
@@ -640,12 +648,13 @@ const approveProviderEOSC = {
     }
     let role = get(this, 'role');
     let eosc_state = get(this, 'model.eosc_state');
+    let eosc_id = get(this, 'model.eosc_id');
 
     let user_is_portfolioadmin = role === 'portfolioadmin';
     let initial_states = ['pending initial approval', 'rejected', 'pending template submission'];
     let provider_in_initial_states = initial_states.includes(eosc_state);
 
-    if (user_is_portfolioadmin && provider_in_initial_states) {
+    if (user_is_portfolioadmin && provider_in_initial_states && !!eosc_id) {
       return false;
     } else {
       return true;
@@ -708,6 +717,7 @@ const rejectProviderEOSC = {
     }
     let role = get(this, 'role');
     let eosc_state = get(this, 'model.eosc_state');
+    let eosc_id = get(this, 'model.eosc_id');
 
     let user_is_portfolioadmin = role === 'portfolioadmin';
     let initial_states = [
@@ -716,7 +726,7 @@ const rejectProviderEOSC = {
     ];
     let provider_in_initial_states = initial_states.includes(eosc_state);
 
-    if (user_is_portfolioadmin && provider_in_initial_states) {
+    if (user_is_portfolioadmin && provider_in_initial_states && !!eosc_id) {
       return false;
     } else {
       return true;
