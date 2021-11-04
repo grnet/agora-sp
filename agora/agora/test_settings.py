@@ -1,5 +1,7 @@
 from agora.settings import *
 
+#DEBUG = True
+
 SQLITE = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',

@@ -1,28 +1,56 @@
-version: '3.7'
+version: '3.8'
 services:
+
+  selenium:
+    container_name: selenium
+    image: selenium/standalone-chrome
+    environment:
+      - HUB_PORT_4444_TCP_ADDR=hub
+      - HUB_PORT_4444_TCP_PORT=4444
+      - START_XVFB=true
+    shm_size: '2gb'
+    #expose:
+      #- 4444
+      #- 7900
+      #- 5900
+    #ports:
+    #  - 7900:7900
+      #- 4444:4444
+    networks:
+      - selenium-grid
+    links:
+      - "backend:backend"
+
+
   backend:
+    container_name: agora-backend
     image:  argo.registry:5000/agora-backend
-    ports:
-      - "127.0.0.1:8000:80"
     volumes:
-      - ./agora:/srv/agora/agora
-      - dist:/srv/agora/ui/dist
+       - ./agora:/srv/agora/agora
+       - dist:/srv/agora/ui/dist
     stdin_open: true
     tty: true
     command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:80"
     healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:8000/ui/auth/login"]
+      test: ["CMD", "curl", "-f", "http://localhost/ui/auth/login"]
       interval: 1m30s
       timeout: 20s
       retries: 20
       start_period: 5m
+    networks:
+      - selenium-grid
+
+
   frontend:
     container_name: agora-frontend
     build:
       context: ./ui
       dockerfile: ./Dockerfile
+    links:
+      - "backend:backend"
     depends_on:
-      - "backend"
+      - selenium
+      - backend
     volumes:
       - ./ui:/srv/agora/ui
       - dist:/srv/agora/ui/dist
@@ -32,5 +60,33 @@ services:
     stdin_open: true
     tty: true
 
+
+  selenium-python-tests:
+    build:
+      context: ./tests/selenium_tests
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./tests/selenium_tests:/srv/agora/tests/selenium_tests
+    user: "1000:1000"
+    depends_on:
+      backend:
+        condition: service_healthy
+      selenium:
+        condition: service_started
+      frontend:
+        condition: service_started
+    networks:
+      - selenium-grid
+    links:
+      - "backend:backend"
+      - "selenium:selenium"
+
+
+
+
 volumes:
   dist:
+
+
+networks:
+  selenium-grid:

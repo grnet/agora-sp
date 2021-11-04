@@ -300,7 +300,7 @@ class ResourceCreate(Resources):
         # *.ERP.MTI.6 - Version
         input_field(self.driver, self.fields_prefix + "mti_6_version", "v0.3")
         # *.ERP.MTI.7 - Last Update
-        date_field(self.driver, self.fields_prefix + "mti_7_last_update")
+        #date_field(self.driver, self.fields_prefix + "mti_7_last_update")
         # *.MTI.8 - Changelog
         input_field(self.driver, self.fields_prefix + "mti_8_changelog", "Selenium 3.141.0 \n"
                                                          "https://github.com/SeleniumHQ/selenium/releases/tag"
