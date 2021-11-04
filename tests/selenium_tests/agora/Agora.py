@@ -38,27 +38,17 @@ class Agora(ABC, unittest.TestCase):
         """
         super().__init__()
 
-        if driver == 'Firefox':
-            if headless:
-                from selenium.webdriver.firefox.options import Options
-                options = Options()
-                options.headless = True
-                self.driver = webdriver.Firefox(options=options,
-                                                executable_path='./webDriver_binaries/linux64/geckodriver')
-            else:
-                self.driver = webdriver.Firefox(executable_path='./webDriver_binaries/linux64/geckodriver')
+        # Docker approach
+        #web_browser_options = webdriver.FirefoxOptions()
+        web_browser_options = webdriver.ChromeOptions()
+        #web_browser_options.add_argument("--headless")
+        #web_browser_options.add_argument("--no-sandbox")
+        #web_browser_options.add_argument("--no-disable-dev-shm-usage")
+        web_browser_options.add_argument("--start-maximized")
 
-        elif driver == 'Chrome':
-            if headless:
-                from selenium.webdriver.chrome.options import Options
-                options = Options()
-                options.headless = True
-                self.driver = webdriver.Firefox(options=options,
-                                                executable_path='./webDriver_binaries/linux64/chromedriver_73.0.3683.68')
-            else:
-                self.driver = webdriver.Chrome(executable_path='./webDriver_binaries/linux64/chromedriver_73.0.3683.68')
-        else:
-            sys.exit("I don't know what driver you want!")
+
+        self.driver = webdriver.Remote( command_executor='http://selenium:4444', options=web_browser_options )
+
 
         self.page = instance
         # Wait at most 90 seconds (1.5 minute).

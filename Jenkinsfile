@@ -56,13 +56,9 @@ pipeline {
                         echo 'Create docker containers...'
                         sh '''
                             cd $WORKSPACE/$PROJECT_DIR
-                            docker-compose -f docker-compose-cicd.yml up -d --build
+                            docker-compose -f docker-compose-cicd.yml --profile "$JOB_NAME/$BUILD_NUMBER" up --build --abort-on-container-exit --exit-code-from selenium-python-tests
                             rm requirements*.txt
                             cd tests/selenium_tests
-                            pipenv install -r requirements.txt
-                            echo "Wait for argo container to initialize"
-                            while [[ "$(curl -s -o /dev/null -w ''%{http_code}'' localhost:8000/ui/auth/login)" != "200" ]]; do if [[ "$(docker ps | grep agora | wc -l)" != "2" ]]; then exit 1; fi; sleep 5; done
-                            pipenv run pytest agora_unit_tests.py -o junit_family=xunit2 --junitxml=reports/junit.xml
                         '''
 
                         testBuildBadge.setStatus('passing')
@@ -79,16 +75,11 @@ pipeline {
                 always {
                     sh '''
                       cd $WORKSPACE/$PROJECT_DIR
-                      docker-compose down
+                      docker-compose -f docker-compose-cicd.yml --profile "$JOB_NAME/$BUILD_NUMBER" down
                     '''
 
                     junit '**/junit.xml'
 
-                    sh '''
-                      cd $WORKSPACE/$PROJECT_DIR
-                      cd tests/selenium_tests
-                      pipenv --rm
-                    '''
                     cleanWs()
                 }
             }
