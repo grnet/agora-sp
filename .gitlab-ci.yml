@@ -7,8 +7,11 @@ Test:
       - pip install -r requirements_dev.txt
       - mkdir -p /etc/agora
       - cd ./agora
-      - cp ./docker/settings_ci.conf /etc/agora/settings.conf
-      - cp ./docker/deployment.conf /etc/agora/deployment.conf
+      - cp ./docker/deployment-gitlab-ci.conf /etc/agora/settings.conf
+      - cp ./docker/settings_ci-gitlab-ci.conf /etc/agora/deployment.conf
+      - ls -alh
+      - cat /etc/agora/settings.conf
+      - cat /etc/agora/deployment.conf
       - python manage.py migrate
   script:
       - pytest
