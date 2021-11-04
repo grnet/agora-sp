@@ -56,7 +56,7 @@ pipeline {
                         echo 'Create docker containers...'
                         sh '''
                             cd $WORKSPACE/$PROJECT_DIR
-                            docker-compose -f docker-compose-cicd.yml --profile "$JOB_NAME" up --build --abort-on-container-exit --exit-code-from selenium-python-tests
+                            docker-compose -f docker-compose-cicd.yml --profile "$JOB_NAME/$BUILD_NUMBER" up --build --abort-on-container-exit --exit-code-from selenium-python-tests
                             rm requirements*.txt
                             cd tests/selenium_tests
                         '''
@@ -75,7 +75,7 @@ pipeline {
                 always {
                     sh '''
                       cd $WORKSPACE/$PROJECT_DIR
-                      docker-compose -f docker-compose-cicd.yml --profile "$JOB_NAME" down
+                      docker-compose -f docker-compose-cicd.yml --profile "$JOB_NAME/$BUILD_NUMBER" down
                     '''
 
                     junit '**/junit.xml'
