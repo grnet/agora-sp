@@ -12,13 +12,13 @@ services:
       #- START_XVFB=false
       - START_XVFB=true
     shm_size: '2gb'
-    expose:
-      - 4444
-      - 7900
+    #expose:
+    #  - 4444
+    #  - 7900
       #- 5900
     ports:
       - 7900:7900
-      - 4444:4444
+      #- 4444:4444
     networks:
       - selenium-grid
     links:
@@ -29,8 +29,8 @@ services:
     build:
       context: .
       dockerfile: ./agora/Dockerfile
-    #expose:
-    #  - 80
+    #ports:
+    #  - 8000:80
     volumes:
        - ./agora:/srv/agora/agora
        - dist:/srv/agora/ui/dist
