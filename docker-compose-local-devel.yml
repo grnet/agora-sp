@@ -27,6 +27,8 @@ services:
       dockerfile: ./Dockerfile
     links:
       - "agora-backend:agora-backend"
+    #logging:
+    #  driver: "none"
     depends_on:
       - agora-backend
     volumes:

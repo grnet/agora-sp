@@ -46,7 +46,6 @@ class Agora(ABC, unittest.TestCase):
         #web_browser_options.add_argument("--no-disable-dev-shm-usage")
         web_browser_options.add_argument("--start-maximized")
 
-
         self.driver = webdriver.Remote( command_executor='http://selenium:4444', options=web_browser_options )
 
 
@@ -76,13 +75,26 @@ class Agora(ABC, unittest.TestCase):
         self.driver.find_element_by_xpath('//md-content//button[text()="login"]').click()
 
         # Response check
-        self.wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'toast-level-success')))
-        login_response_message = self.driver.find_element_by_class_name("toast-level-success").text.split("\n")[0]
-        assert "Login Success" in login_response_message
-        if self.driver.find_element_by_class_name("toast-level-success"):
+        self.wait.until(EC.presence_of_element_located((By.CLASS_NAME, 'md-toast-content')))
+        login_response_message = self.driver.find_element_by_class_name("md-toast-content").text.split("\n")[0]
+        print( login_response_message )
+
+        assert "Login" in login_response_message
+
+        if login_response_message == "Login Success" :
             self.driver.find_element_by_xpath('//md-toast//div//button[text()="close"]').click()
-            # print("[Login] {0:>47} \t\t{1}".format(login_response_message, "Success"))
+            print("[Login] {0:>47} \t\t{1}".format(login_response_message, "Success"))
             return True
+        elif login_response_message == "Unable To Login With Provided Credentials" :
+            print("[Login] {0:>47} \t\t{1}".format(login_response_message, "Failed"))
+            self.close()
+            raise SystemExit(1)
+        else:
+            print("[Login] {0:>47} \t\t{1}".format(login_response_message, "Unexpected login error ( apimas ? ) "))
+            self.close()
+            raise SystemExit(1)
+
+
 
     def edit_from_listView(self):
         """
