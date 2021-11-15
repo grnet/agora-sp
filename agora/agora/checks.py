@@ -291,6 +291,15 @@ class User(object):
             except user_m.DoesNotExist:
                 pass
 
+        auth_user = context['auth/user']
+        backend_role = backend_input['role']
+        auth_user_role = auth_user.role
+        try:
+            if auth_user_role == 'portfolioadmin' and backend_role == 'superadmin':
+                raise ValidationError(details={'role': 'Portfolio admin cannot set a user to be superadmin'})
+        except user_m.DoesNotExist:
+                pass
+
         return
 
 
