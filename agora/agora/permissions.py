@@ -491,6 +491,12 @@ def get_rules():
         ('api/v2/merilsubdomains', 'destroy', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/merilsubdomains', 'delete', 'superadmin', '*', '*', '*', '*'),
 
+        ('api/v2/version', 'list', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/version', 'list', 'portfolioadmin', '*', '*', '*', '*'),
+        ('api/v2/version', 'list', 'provideradmin', '*', '*', '*', '*'),
+        ('api/v2/version', 'list', 'serviceadmin', '*', '*', '*', '*'),
+        ('api/v2/version', 'list', 'observer', '*', '*', '*', '*'),
+             
         # PUBLIC API
         ('api/v2/public/providers', 'list', 'anonymous', 'filter_public', '*', '*', '*'),
         ('api/v2/public/providers', 'retrieve', 'anonymous', 'filter_public', '*', '*', '*'),

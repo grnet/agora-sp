@@ -24,6 +24,7 @@ from django.db.models import Count
 
 PAST = datetime.date(2000, 1, 1)
 FUTURE = datetime.date(2100, 1, 1)
+VERSION = getattr(settings, 'VERSION', '')
 
 def valid_date(date_text, default, add_day=False):
     try:
@@ -308,3 +309,9 @@ def monthly_stats(request):
     updated_providers_total=[v for v in updated_providers_total]
     print(updated_resources_total)
     return create_response(new_users, new_resources, new_providers, updated_resources, updated_providers, updated_resources_total, updated_providers_total, base_year)
+
+def get_version(request):
+    data = {
+        'version': VERSION
+    }
+    return JsonResponse(data)
