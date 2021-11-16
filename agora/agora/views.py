@@ -314,4 +314,5 @@ def get_version(request):
     data = {
         'version': VERSION
     }
-    return JsonResponse(data)
+    return HttpResponse(json.dumps(data),
+                    content_type='application/json')
