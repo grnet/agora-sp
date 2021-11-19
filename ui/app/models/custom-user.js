@@ -59,7 +59,16 @@ export default DS.Model.extend({
   }),
   role: DS.attr({
     type: 'select',
-    choices: CHOICES.USER_ROLES,
+    choices: computed('user.role', function(){
+      let role = get(this, 'user.role');
+      if (role == 'superadmin' ) {
+        return CHOICES.USER_ROLES
+      } else if (role == 'portfolioadmin') {
+        return [["observer", "Observer"], ["serviceadmin", "Service Admin"], ['provideradmin', 'Provider Admin'], ['portfolioadmin', 'Portfolio Admin']]
+      } else {
+        return CHOICES.USER_ROLES
+      }
+    }),
     defaultValue: 'observer',
   }),
   role_verbose: computeI18NChoice('role', CHOICES.USER_ROLES),
