@@ -54,6 +54,8 @@ services:
       dockerfile: ./Dockerfile
     links:
       - "agora-backend:agora-backend"
+    #logging:
+    #  driver: "none"
     depends_on:
       - selenium
       - agora-backend
