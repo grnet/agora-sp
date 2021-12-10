@@ -4,10 +4,9 @@ import logging
 from datetime import datetime
 from django.conf import settings
 import json
-from datetime import datetime
 from django.utils import timezone
 from apimas.errors import ValidationError
-from agora.utils import create_eosc_api_json_resource, create_eosc_api_json_provider
+from agora.utils import create_eosc_api_json_resource, create_eosc_api_json_provider, get_resource_eosc_state
 
 EOSC_API_URL = getattr(settings, 'EOSC_API_URL', '')
 OIDC_REFRESH_TOKEN = getattr(settings, 'OIDC_REFRESH_TOKEN', '')
@@ -54,8 +53,8 @@ def resource_publish_eosc(backend_input, instance, context):
         response.raise_for_status()
         logger.info('Response status code: %s' %(response.status_code))
         logger.info('Response json: %s' %(response.json()))
-        instance.eosc_state = "pending resource"
         instance.eosc_id = response.json()['id']
+        instance.eosc_state = get_resource_eosc_state(response.json()['id'],headers)
         instance.eosc_published_at = datetime.now(timezone.utc)
     except requests.exceptions.RequestException as err:
         try:
