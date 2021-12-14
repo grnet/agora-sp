@@ -3,7 +3,6 @@ id:  terms
 title: Terms of Use
 ---
 
-## Terms of Use
 By registering as a user you declare that you have read, understood and will abide by the following conditions of use:
 
 1. You shall only use the resources/services to perform work, or transmit or store data consistent with the stated goals, policies and conditions of use as defined by the body or bodies granting you access.
