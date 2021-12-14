@@ -20,7 +20,7 @@ The EOSC provides a public api to allow regional and thematic catalogues to on-b
 ## Vocabulary
 
 In order to be able to send and receive data with eosc API we had to match our fixtures that we use in agora with the EOSC API Vocabulary.
-As a result the field `eosc_id` was added in the fixtuers for each entry.
+As a result the field `eosc_id` was added in the fixtures for each entry.
 ```json
 //For example an entry from resource categories you can see the eosc_id in the data model.
 {
@@ -37,7 +37,7 @@ As a result the field `eosc_id` was added in the fixtuers for each entry.
 
 ## Profiles 3.0
 
-An important aspect of the integration with the EOSC API are the models of the resources and the Profiles. EOSC API had standardized the models of the resources and providers with profiles 3.0 with mandatory or not fields that someone have to provider to describe a resource/provider.
+An important aspect of the integration with the EOSC API are the models of the resources and the Profiles. EOSC API had standardized the models of the resources and providers with profiles 3.0 with mandatory or not fields that someone has to provide to describe a resource/provider.
 Find the profiles 3.0 description here: [Profiles 3.0](https://docs.google.com/spreadsheets/d/1o3vhia3Fl1ULbn0CI0nSusZkZ-PDnfvCW_l76c7X4yo/edit#gid=0)
 
 
@@ -45,7 +45,7 @@ Find the profiles 3.0 description here: [Profiles 3.0](https://docs.google.com/s
 
 The flow of the publishing to eosc API follows these steps:
 1. The Superadmin creates a new provider
-2. The Superadmin assignes the role of the provider admin to a user
+2. The Superadmin assigned the role of the provider admin to a user
 3. The Provider admin can edit the provider and publish it to eosc
 4. The Portfolio admin can also publish the provider and approve/reject it
 
@@ -56,13 +56,13 @@ The flow of the publishing to eosc API follows these steps:
 
 ## Approve a Provider
 
-The Porfolio admin will review the provider and approve it.
+The Portfolio admin will review the provider and approve it.
 ![pending_initial_approval](assets/provider_status_approve.png)
 
 
 ## Reject a Provider
 
-The Porfolio admin has the option to reject a provider petition.
+The Portfolio admin has the option to reject a provider petition.
 ![pending_initial_approval](assets/provider_status_reject.png)
 
 
@@ -72,7 +72,7 @@ The Porfolio admin has the option to reject a provider petition.
 The flow of the resource publishing to eosc API follows these steps:
 1. The Provider admin creates a new resource
 2. The Provider admin can edit the resource and publish it to eosc.
-4. The Portfolio admin can review the resource and approve/reject it.
+3. The Portfolio admin can review the resource and approve/reject it.
 
 | ![published_provider](assets/resource.png) |
 |:-------------------------------------:|
@@ -81,11 +81,11 @@ The flow of the resource publishing to eosc API follows these steps:
 
 ## Approve a Resource
 
-The Porfolio admin will review the Resource and approve it.
+The Portfolio admin will review the Resource and approve it.
 ![pending_initial_approval](assets/resource_status_approve.png)
 
 
 ## Reject a Resource
 
-The Porfolio admin has the option to reject a Resource petition.
+The Portfolio admin has the option to reject a Resource petition.
 ![pending_initial_approval](assets/resource_status_reject.png)
