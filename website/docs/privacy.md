@@ -3,7 +3,6 @@ id:  privacy-policy
 title: Privacy Statement
 ---
 
-# Agora Privacy Statement
 
 **Privacy Statement regarding the protection of personal data in the context of Agora Service**
 
