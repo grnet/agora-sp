@@ -1,3 +1,8 @@
+---
+id  Privacy-Policy
+title: Privacy Statement
+---
+
 # Agora Privacy Statement
 
 **Privacy Statement regarding the protection of personal data in the context of Agora Service**
@@ -12,7 +17,11 @@ Processor’s Contact Details : [agora@grnet.gr](mailto:agora@grnet.gr)
 
 ## Scope of this Privacy Statement:
 
-**National Infrastructures for Technology and Research S.A.** (hereinafter referred to as **“GRNET SA"**) is bound by European Regulation 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of individuals with regard to the processing of personal data and on the free movement of such data (General Data Protection Regulation – hereinafter referred to as **“the GDPR”**) and Law 4624/2019 (Government Gazette 137/A/2019) on "_Data Protection Authority, measures for the implementation of Regulation(EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of individuals with regard to the processing of personal data and for the incorporation into national law of Directive(EU) 2016/680 of the European Parliament and of the Council of 27 April 2016 and other provisions_”, as in force at any time (hereinafter referred to as “the Law”). This Privacy Statement details all information necessary for the processing of personal data carried out in the context of Agora., as well as the policies and procedures implemented by GRNET SA for the protection of the Agora users' privacy. This Privacy Statement sets out the criteria as well as the terms and conditions under which GRNET SA collects, processes, uses, stores and transmits the personal data of the service users, how it ensures the confidentiality of such information, including any law and/or regulation implemented or enacted in accordance with Union and national laws on personal data protection and electronic privacy, as well as any law and/or regulation amending, replacing, issuing or consolidating any of the latter, including any other applicable Union and national laws on the processing of personal data and privacy, which may exist in accordance with applicable law.
+**National Infrastructures for Technology and Research S.A.** (hereinafter referred to as **“GRNET SA"**) is bound by European Regulation 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of individuals with regard to the processing of personal data and on the free movement of such data (General Data Protection Regulation – hereinafter referred to as **“the GDPR”**) and Law 4624/2019 (Government Gazette 137/A/2019) on "_Data Protection Authority, measures for the implementation of Regulation(EU) 2016/679 of the European Parliament and of the Council of 27 April 2016 on the protection of individuals with regard to the processing of personal data and for the incorporation into national law of Directive(EU) 2016/680 of the European Parliament and of the Council of 27 April 2016 and other provisions_”, as in force at any time (hereinafter referred to as “the Law”). 
+
+This Privacy Statement details all information necessary for the processing of personal data carried out in the context of Agora., as well as the policies and procedures implemented by GRNET SA for the protection of the Agora users' privacy. 
+
+This Privacy Statement sets out the criteria as well as the terms and conditions under which GRNET SA collects, processes, uses, stores and transmits the personal data of the service users, how it ensures the confidentiality of such information, including any law and/or regulation implemented or enacted in accordance with Union and national laws on personal data protection and electronic privacy, as well as any law and/or regulation amending, replacing, issuing or consolidating any of the latter, including any other applicable Union and national laws on the processing of personal data and privacy, which may exist in accordance with applicable law.
 
 GRNET SA reserves the right to amend and update this Privacy Statement whenever necessary, whereas any such updates shall become effective five (5) days after they have been posted on the service website.
 
