@@ -1,5 +1,5 @@
 ---
-id  terms
+id:  terms
 title: Terms of Use
 ---
 
