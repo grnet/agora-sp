@@ -1,6 +1,9 @@
 import os
 import json
 import re
+import requests
+import logging
+from datetime import datetime
 from collections import defaultdict
 from HTMLParser import HTMLParseError
 from bs4 import BeautifulSoup, Comment
@@ -17,7 +20,10 @@ from agora.settings import (
     AMS_PROJECT,
     AMS_TOPIC,
 )
+logger = logging.getLogger(__name__)
 
+EOSC_API_URL = getattr(settings, 'EOSC_API_URL', '')
+CA_BUNDLE = getattr(settings, 'CA_BUNDLE', '/etc/ssl/certs/ca-bundle.crt')
 
 _root_url = None
 
@@ -471,8 +477,17 @@ def get_life_cycle_status(status):
     else:
         return 'provider_life_cycle_status-other'
 
+def get_provider_admins(org_id, provider_mail):
+    users = accounts.models.User.objects.filter(organisation_id=org_id).all()
+    provider = accounts.models.User.objects.get(email=provider_mail)
+    provider_users = [{"name": provider.first_name, "surname": provider.last_name, "email": provider.email}]
+    for user in users:
+        if user.email != provider.email:
+            provider_users.append({"name": user.first_name, "surname": user.last_name, "email": user.email})
+    return provider_users
 
 def create_eosc_api_json_provider(instance, provider_email):
+    admins = get_provider_admins(instance.id, provider_email)
     resource_json = {}
     if instance.eosc_id != None:
         resource_json['id'] = instance.eosc_id
@@ -517,8 +532,26 @@ def create_eosc_api_json_provider(instance, provider_email):
        resource_json['societalGrandChallenges'] = [ check_eosc_id(o.eosc_id, 'provider_societal_grand_challenge-other') for o in instance.epp_oth_11_societal_grand_challenges.all()]
     if instance.epp_oth_12_national_roadmaps != None:
         resource_json['nationalRoadmaps'] = [ o for o in instance.epp_oth_12_national_roadmaps.split(",")]
-    resource_json['users'] = [{"email": provider_email}]
+    resource_json['users'] = admins
     return resource_json
+
+def get_resource_eosc_state( eosc_id, headers):
+    url = EOSC_API_URL + 'infraService/' + eosc_id
+    logger.info('EOSC PORTAL API call to GET resource status \
+        with id %s to %s has been made at %s \
+        ' %(eosc_id, url, datetime.now()))
+    try:
+        response = requests.get(url, headers=headers, verify=CA_BUNDLE)
+        response.raise_for_status()
+        logger.info('Response status code: %s' %(response.status_code))
+        logger.info('Response json: %s' %(response.json()))
+        return response.json()['status']
+    except requests.exceptions.RequestException as err:
+        try:
+            logger.info('Response status code: %s, %s, %s' % (url, err, response.json()))
+        except:
+            logger.info('Response status code: %s, %s, %s' % (url, err, response.text))
+    return "pending resource"
 
 
 RESOURCES = load_resources()
