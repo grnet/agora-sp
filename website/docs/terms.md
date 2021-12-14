@@ -1,6 +1,6 @@
 ---
-id  Privacy-Policy
-title: Privacy Statement
+id  terms
+title: Terms of Use
 ---
 
 ## Terms of Use
