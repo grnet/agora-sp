@@ -1,5 +1,5 @@
 ---
-id  Privacy-Policy
+id:  privacy-policy
 title: Privacy Statement
 ---
 
