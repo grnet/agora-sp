@@ -1,5 +1,5 @@
 ---
-id: Cookie-Policy
+id: cookie-policy
 title: Cookie Policy
 ---
 
