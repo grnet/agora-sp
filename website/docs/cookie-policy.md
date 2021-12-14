@@ -3,7 +3,6 @@ id: cookie-policy
 title: Cookie Policy
 ---
 
-## Cookie Policy
 1. Purpose of this cookie policy
 This Website uses technologies such as "cookies" and "pixel tags". By browsing the webpage, the User agrees to the creation and use of cookies. If User does not wish to consent to the use of cookies, User may either disable them or discontinue browsing this webpage.
 
