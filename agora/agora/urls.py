@@ -39,6 +39,7 @@ urlpatterns = [
     url(r'^api/v2/config.json$', agora_views.config, name='config'),
     url(r'^api/v2/accounting/?', agora_views.accounting, name='accounting'),
     url(r'^api/v2/monthly_stats', agora_views.monthly_stats, name='monthly_stats'),
+    url(r'^api/v2/version', agora_views.get_version, name='get_version'),
 ]
 
 urlpatterns.extend(api_urls)

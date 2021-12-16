@@ -490,7 +490,7 @@ def get_rules():
         ('api/v2/merilsubdomains', 'partial_update', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/merilsubdomains', 'destroy', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/merilsubdomains', 'delete', 'superadmin', '*', '*', '*', '*'),
-
+             
         # PUBLIC API
         ('api/v2/public/providers', 'list', 'anonymous', 'filter_public', '*', '*', '*'),
         ('api/v2/public/providers', 'retrieve', 'anonymous', 'filter_public', '*', '*', '*'),
