@@ -4,9 +4,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [1.4.2] (https://github.com/grnet/agora-sp/compare/v1.4.2...v1.4.3) - 2021-12-20
 
 ### Added
+ - Add version endpoint
+ - Update EOSC integration flow
+ - Add terms of use page
+ - Change Logo
  - Portfolio admin restriction on role assignment to not be able to set the Superadmin role
 
 ## [1.4.2](https://github.com/grnet/agora-sp/compare/v1.4.1...v1.4.2) - 2021-11-04
