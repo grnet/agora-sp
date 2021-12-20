@@ -2,7 +2,6 @@ version: '3.8'
 services:
 
   selenium:
-    container_name: selenium
     image: selenium/standalone-chrome
     environment:
       - HUB_PORT_4444_TCP_ADDR=hub
@@ -19,11 +18,10 @@ services:
     networks:
       - selenium-grid
     links:
-      - "backend:backend"
+      - "agora-backend:agora-backend"
 
 
-  backend:
-    container_name: agora-backend
+  agora-backend:
     image:  argo.registry:5000/agora-backend
     volumes:
        - ./agora:/srv/agora/agora
@@ -41,16 +39,15 @@ services:
       - selenium-grid
 
 
-  frontend:
-    container_name: agora-frontend
+  agora-frontend:
     build:
       context: ./ui
       dockerfile: ./Dockerfile
     links:
-      - "backend:backend"
+      - "agora-backend:agora-backend"
     depends_on:
       - selenium
-      - backend
+      - agora-backend
     volumes:
       - ./ui:/srv/agora/ui
       - dist:/srv/agora/ui/dist
@@ -69,16 +66,16 @@ services:
       - ./tests/selenium_tests:/srv/agora/tests/selenium_tests
     user: "1000:1000"
     depends_on:
-      backend:
+      agora-backend:
         condition: service_healthy
       selenium:
         condition: service_started
-      frontend:
+      agora-frontend:
         condition: service_started
     networks:
       - selenium-grid
     links:
-      - "backend:backend"
+      - "agora-backend:agora-backend"
       - "selenium:selenium"
 
 

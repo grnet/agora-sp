@@ -3,17 +3,17 @@ def get_rules():
     rules = [
 
         ('api/v2/custom-users', 'list', 'superadmin', '*', '*', '*', '*'),
-        ('api/v2/custom-users', 'list', 'portfolioadmin', '*', '*', '*', '*'),
+        ('api/v2/custom-users', 'list', 'portfolioadmin', 'filter_portfolioadmin', '*', '*', '*'),
         ('api/v2/custom-users', 'list', 'provideradmin', 'filter_my_provider', '*', '*', '*'),
         ('api/v2/custom-users', 'retrieve', 'superadmin', '*', '*', '*', '*'),
-        ('api/v2/custom-users', 'retrieve', 'portfolioadmin', '*', '*', '*', '*'),
+        ('api/v2/custom-users', 'retrieve', 'portfolioadmin', 'filter_portfolioadmin', '*', '*', '*'),
         ('api/v2/custom-users', 'retrieve', 'provideradmin', 'filter_my_provider_me', '*', '*', '*'),
         ('api/v2/custom-users', 'retrieve', 'serviceadmin', 'me', '*', '*', '*'),
         ('api/v2/custom-users', 'retrieve', 'observer', 'me', '*', '*', '*'),
         ('api/v2/custom-users', 'update', 'superadmin', '*', 'check_unique', '*', '*'),
         ('api/v2/custom-users', 'partial_update', 'superadmin', '*', 'check_unique', '*', '*'),
-        ('api/v2/custom-users', 'update', 'portfolioadmin', '*', 'check_unique', '*', '*'),
-        ('api/v2/custom-users', 'partial_update', 'portfolioadmin', '*', 'check_unique', '*', '*'),
+        ('api/v2/custom-users', 'update', 'portfolioadmin', 'filter_portfolioadmin', 'check_unique', '*', '*'),
+        ('api/v2/custom-users', 'partial_update', 'portfolioadmin', 'filter_portfolioadmin', 'check_unique', '*', '*'),
         ('api/v2/custom-users', 'destroy', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/custom-users', 'delete', 'superadmin', '*', '*', '*', '*'),
 

@@ -244,6 +244,20 @@ class User(object):
         return (Q(role='serviceadmin') & Q(organisation_id=user_org_id)) | Q(role='observer')
 
     @staticmethod
+    def filter_portfolioadmin(context):
+        """
+        A Portfolio Admin can only list users with the same role and
+        less privileged roles.
+        """
+        auth_user = context['auth/user']
+        return Q(role='portfolioadmin') | \
+                Q(role='provideradmin') | \
+                Q(role='serviceadmin') | \
+                Q(role='observer') | \
+                Q(id=auth_user.id)
+
+
+    @staticmethod
     def filter_my_provider_me(context):
         """
         A Provider Admin can retrieve observers and serviceadmins that
@@ -275,6 +289,15 @@ class User(object):
                 user_m.objects.get(username=backend_username)
                 raise ValidationError(details={'username': 'Username unique constraint failed'})
             except user_m.DoesNotExist:
+                pass
+
+        auth_user = context['auth/user']
+        backend_role = backend_input['role']
+        auth_user_role = auth_user.role
+        try:
+            if auth_user_role == 'portfolioadmin' and backend_role == 'superadmin':
+                raise ValidationError(details={'role': 'Portfolio admin cannot set a user to be superadmin'})
+        except user_m.DoesNotExist:
                 pass
 
         return

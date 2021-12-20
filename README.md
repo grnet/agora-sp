@@ -274,8 +274,21 @@ You will need [docker-compose](https://docs.docker.com/compose/install/).
 
 While on the root directory of the repo use the following command:
 ```
-# docker-compose up --build -d
+# docker-compose -f docker-compose-local-devel.yml up --build
 ```
+
+> If you want to check the Selenium tests locally :
+> ```
+> # docker-compose -f docker-compose.yml --project-name test-env  up --build
+> # or
+> # docker-compose -f docker-compose.yml --project-name test-env  up --build --abort-on-container-exit --exit-code-from selenium-python-tests
+> ```
+>
+> or if you want to set up all the environment without run the selenium tests:
+> ```
+> docker-compose -f docker-compose.yml up --build selenium agora-backend agora-frontend
+> ```
+
 
 This will create a container for the backend (manage.py runserver) and the frontend (ember build --watch). The containers are named `agora-backend` and `agora-frontend` respectively.
 
