@@ -422,6 +422,138 @@ const putResourceEOSC = {
   ),
 };
 
+const approveResourceEOSC = {
+  label: 'eosc.resource.approve.label',
+  icon: 'verified',
+  classNames: 'md-icon-success',
+  i18n: Ember.inject.service(),
+  action: function (route, model) {
+    let messages = get(route, 'messageService');
+    let adapter = get(route, 'store').adapterFor('resource');
+    let token = get(route, 'user.auth_token');
+    let url = adapter.buildURL('resource', get(model, 'id'), 'findRecord');
+    let APPROVE_PATH = 'approve-eosc/';
+    return fetch(url + APPROVE_PATH, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Token ${token}`,
+      },
+    })
+      .then(resp => {
+        if (resp.status === 200) {
+          model.reload().then(() => {
+            messages.setSuccess('eosc.resource.approve.success');
+          });
+        } else {
+          resp.json().then(data => {
+            let err_msg =
+              (data && data.details) || 'eosc.resource.approve.error';
+            messages.setError(err_msg);
+          });
+        }
+      })
+      .catch(err => {
+        messages.setError('eosc.resource.approve.error');
+      });
+  },
+  hidden: computed('role', 'model.eosc_state', function () {
+    if (DISABLED) {
+      return true;
+    }
+    if (HIDE_ACTIONS_PROVIDER) {
+      return true;
+    }
+    let role = get(this, 'role');
+    let eosc_state = get(this, 'model.eosc_state');
+    let eosc_id = get(this, 'model.eosc_id');
+
+    let user_is_portfolioadmin = role === 'portfolioadmin';
+    let initial_states = ['pending resource', 'rejected resource', 'approved resource'];
+    let resource_in_initial_states = initial_states.includes(eosc_state);
+
+    if (user_is_portfolioadmin && resource_in_initial_states && !!eosc_id) {
+      return false;
+    } else {
+      return true;
+    }
+  }),
+  confirm: true,
+  prompt: {
+    ok: 'eosc.resource.approve.ok',
+    cancel: 'cancel',
+    title: 'eosc.resource.approve.title',
+    message: 'eosc.resource.approve.message',
+  },
+};
+
+const rejectResourceEOSC = {
+  label: 'eosc.resource.reject.label',
+  icon: 'cancel',
+  accent: true,
+  i18n: Ember.inject.service(),
+  action: function (route, model) {
+    let messages = get(route, 'messageService');
+    let adapter = get(route, 'store').adapterFor('resource');
+    let token = get(route, 'user.auth_token');
+    let url = adapter.buildURL('resource', get(model, 'id'), 'findRecord');
+    return fetch(url + 'reject-eosc/', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        Authorization: `Token ${token}`,
+      },
+    })
+      .then(resp => {
+        if (resp.status === 200) {
+          model.reload().then(() => {
+            messages.setSuccess('eosc.resource.reject.success');
+          });
+        } else {
+          resp.json().then(data => {
+            let err_msg =
+              (data && data.details) || 'eosc.resource.reject.error';
+            messages.setError(err_msg);
+          });
+        }
+      })
+      .catch(err => {
+        messages.setError('eosc.resource.reject.error');
+      });
+  },
+  hidden: computed('role', 'model.eosc_state', function () {
+    if (DISABLED) {
+      return true;
+    }
+    if (HIDE_ACTIONS_PROVIDER) {
+      return true;
+    }
+    let role = get(this, 'role');
+    let eosc_state = get(this, 'model.eosc_state');
+    let eosc_id = get(this, 'model.eosc_id');
+
+    let user_is_portfolioadmin = role === 'portfolioadmin';
+    let initial_states = [
+      'pending resource',
+      'approved resource',
+    ];
+    let resource_in_initial_states = initial_states.includes(eosc_state);
+
+    if (user_is_portfolioadmin && resource_in_initial_states && !!eosc_id) {
+      return false;
+    } else {
+      return true;
+    }
+  }),
+  confirm: true,
+  prompt: {
+    ok: 'eosc.resource.reject.ok',
+    cancel: 'cancel',
+    message: 'eosc.resource.reject.message',
+    title: 'eosc.resource.reject.title',
+  },
+};
+
 const postProviderEOSC = {
   label: 'eosc.provider.post.label',
   icon: 'backup',
@@ -610,12 +742,7 @@ const approveProviderEOSC = {
     let adapter = get(route, 'store').adapterFor('provider');
     let token = get(route, 'user.auth_token');
     let url = adapter.buildURL('provider', get(model, 'id'), 'findRecord');
-    let eosc_state = get(this, 'model.eosc_state');
-    let APPROVE_PATH = 'approve-temp-eosc/';
-    if (eosc_state === 'pending template submission') {
-      APPROVE_PATH = 'approve-eosc/'
-    }
-    return fetch(url + APPROVE_PATH, {
+    return fetch(url + 'approve-eosc/', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -651,7 +778,7 @@ const approveProviderEOSC = {
     let eosc_id = get(this, 'model.eosc_id');
 
     let user_is_portfolioadmin = role === 'portfolioadmin';
-    let initial_states = ['pending initial approval', 'rejected', 'pending template submission'];
+    let initial_states = ['pending provider', 'rejected provider', 'approved provider'];
     let provider_in_initial_states = initial_states.includes(eosc_state);
 
     if (user_is_portfolioadmin && provider_in_initial_states && !!eosc_id) {
@@ -665,12 +792,7 @@ const approveProviderEOSC = {
     ok: 'eosc.provider.approve.ok',
     cancel: 'cancel',
     title: 'eosc.provider.approve.title',
-    message: computed('model.eosc_state', function() {
-      let eosc_state = get(this, 'model.eosc_state');
-      return eosc_state === 'pending template submission'
-        ? 'eosc.provider.approve.message_resource'
-        : 'eosc.provider.approve.message';
-    }),
+    message: 'eosc.provider.approve.message',
   },
 };
 
@@ -721,8 +843,8 @@ const rejectProviderEOSC = {
 
     let user_is_portfolioadmin = role === 'portfolioadmin';
     let initial_states = [
-      'pending initial approval',
-      'pending template submission',
+      'pending provider',
+      'approved provider',
     ];
     let provider_in_initial_states = initial_states.includes(eosc_state);
 
@@ -744,6 +866,8 @@ const rejectProviderEOSC = {
 export {
   postResourceEOSC,
   putResourceEOSC,
+  approveResourceEOSC,
+  rejectResourceEOSC,
   postProviderEOSC,
   putProviderEOSC,
   approveProviderEOSC,

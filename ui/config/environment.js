@@ -55,7 +55,7 @@ module.exports = function(environment) {
         // Acccess Policy settings
         access_policy: false,
         // Terms of use settings
-        terms: false,
+        terms: true,
         logos: [{
           url: 'https://grnet.github.io/grnet-media-pack/grnet/logos/grnet_logo_en.svg',
           alt: 'grnet',

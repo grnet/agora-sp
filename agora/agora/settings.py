@@ -366,6 +366,12 @@ OIDC_CLIENT_ID = '<oidc-id>'
 CA_BUNDLE = '/etc/ssl/certs/ca-bundle.crt'
 ACCOUNTING_BASE_YEAR = 2021
 
+# Get agora version
+VERSION = ''
+if os.path.exists(BASE_DIR+'/../version'):
+    with open(BASE_DIR+'/../version', 'r') as fd:
+        VERSION = fd.read().strip()
+
 if not os.path.isfile(SETTINGS_PATH):
     m = "Cannot find settings file {0!r}. Consider using AGORA_SETTINGS_DIR "
     m += "environment variable to set a custom path for settings.conf file."

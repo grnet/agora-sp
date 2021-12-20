@@ -29,6 +29,7 @@ The authorization in SPMT/AGORA follows the role-based access control. Role-base
 It supports the following roles:
 
  - **Super Admin**: The one that administers the whole system.
+ - **Portfolio Admin**: The one responsible for the portfolio and validating Resources and Providers for EOSC onboarding.
  - **Provider Admin**: Who administates the users and services belonging to his Provider.
  - **Resource Admin**: Who can read everything; can modify/delete services that he is owner/manager of.
  - **Observer**: Who can read everything.

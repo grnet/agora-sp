@@ -8,8 +8,8 @@
       {{{ info }}}
     </p>
     <div class="footer-links">
-    {{# if cookies_policy}}
-      <a href="#" onclick={{action 'openDialog' 'cookies'}}>{{ cookies_text}}</a>
+    {{#if cookies_policy}}
+      {{#link-to 'cookies-policy'}}{{t 'cookies_policy.page.title' }}{{/link-to}}
     {{/if}}
     {{#if privacy_policy}}
       {{#link-to 'privacy-policy'}}{{t 'privacy_policy.page.title' }}{{/link-to}}
