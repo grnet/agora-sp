@@ -29,12 +29,9 @@ export default Ember.Component.extend({
 
   version_contact: computed("", function () {
     let contact = ENV.APP.footer.contact;
-    let version = ENV.APP.version;
 
     if (contact) {
-      return `<span>v${version} | ${contact}</span>`;
-    } else {
-      return `<span>v${version}</span>`;
+      return `<span>${contact}</span>`;
     }
   }),
 
