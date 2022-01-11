@@ -34,7 +34,7 @@ module.exports = function(environment) {
 
       footer: {
         // If set, "Copyright © <copyright_years>" will appear in footer.
-        copyright_years: '2018-2020',
+        copyright_years: '2018-' + new Date().getFullYear(),
         // If set, contact info  will be visible next to version in footer.
         contact: 'agora@grnet.gr',
         // If set, <info> will be visible in footer.
