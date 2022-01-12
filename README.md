@@ -142,7 +142,7 @@ APP: {
   footer: {
     // If set, "Copyright © <copyright_years>" will appear in footer.
     copyright_years: '2018-2019',
-    // If set, contact info  will be visible next to version in footer.
+    // If set, contact info  will be visible in footer.
     contact: 'contact@example.com',
     // If set, <info> will be visible in footer.
     info: 'Agora is a service developed and maintained by <a href="https://grnet.gr/en/" alt="grnet">GRNET</a> co-funded by <a href="" alt="https://www.eosc-hub.eu/">EOSC-Hub</a> and <a href="https://www.eudat.eu/eudat-collaborative-data-infrastructure-cdi">EUDAT CDI</a>',
@@ -369,7 +369,7 @@ The work represented by this software was partially funded by:
 - EUDAT2020 European Union’s H2020 Program under Contract No. 654065.
 - EUDAT s Framework Programme 7 under Contract No. 283304.
 
-Copyright (C) 2017-2020 GRNET S.A.
+Copyright (C) 2017-2022 GRNET S.A.
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU Affero General Public License as
