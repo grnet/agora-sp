@@ -25,6 +25,8 @@ from django.db.models import Count
 PAST = datetime.date(2000, 1, 1)
 FUTURE = datetime.date(2100, 1, 1)
 VERSION = getattr(settings, 'VERSION', '')
+LINUX_DIST = getattr(settings, 'LINUX_DIST', '')
+HOSTNAME = getattr(settings, 'HOSTNAME', '')
 
 def valid_date(date_text, default, add_day=False):
     try:
@@ -307,7 +309,9 @@ def monthly_stats(request):
 
 def get_version(request):
     data = {
-        'version': VERSION
+        'version': VERSION,
+        'distribution': LINUX_DIST,
+        'hostname': HOSTNAME
     }
     return HttpResponse(json.dumps(data),
                     content_type='application/json')
