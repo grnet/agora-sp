@@ -141,7 +141,7 @@ const resource = {
     erp_mti_8_changelog: `<strong>${SEPARATOR}</strong> separated list of the summary of the Resource features updated from the previous version.${HOW_ADD_NEW}`,
     erp_dei_1_required_resources: 'List of other Resources required to use this Resource.',
     erp_dei_2_related_resources: 'List of other Resources that are commonly used with this Resource.',
-    erp_dei_3_related_platforms: 'List of suites or thematic platforms in which the Resource is engaged or Providers (Provider groups) contributing to this Resource.',
+    erp_dei_3_related_platforms: '<strong>Comma separated</strong> list of suites or thematic platforms in which the Resource is engaged or Providers (Provider groups) contributing to this Resource.',
     erp_ati_1_funding_body: 'Name of the funding body that supported the development and/or operation of the Resource.',
     erp_ati_2_funding_program: 'Name of the funding program that supported the development and/or operation of the Resource.',
     erp_ati_3_grant_project_name: 'Name of the project that supported the development and/or operation of the Resource.',
