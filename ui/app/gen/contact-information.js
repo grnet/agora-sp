@@ -28,11 +28,9 @@ export default AgoraGen.extend({
         validate.format({type: 'email'})
       ],
       phone: [
-        validate.presence(true),
-        validate.number({ integer: true }),
-        validate.length({ min: 10, max: 20 }),
+        validate.number({ integer: true, allowBlank: true }),
+        validate.length({ min: 10, max: 20, allowBlank: true }),
       ],
-      position: [validate.presence(true)],
       organisation: [validate.presence(true)],
     },
     fieldsets: [ {

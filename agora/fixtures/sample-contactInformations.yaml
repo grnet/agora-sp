@@ -4,7 +4,7 @@
         first_name: Django
         last_name: EmberJS
         email: agora@grnet.gr
-        phone: '+302101234'
+        phone: '+302101234567'
         position: Development
         updated_at: '2020-12-31T00:00:00Z'
         created_at: '2020-12-31T00:00:00Z'
