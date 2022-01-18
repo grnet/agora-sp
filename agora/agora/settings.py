@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 """
 
 import os
+import platform
 from os import path
 
 
@@ -371,6 +372,10 @@ VERSION = ''
 if os.path.exists(BASE_DIR+'/../version'):
     with open(BASE_DIR+'/../version', 'r') as fd:
         VERSION = fd.read().strip()
+
+# Get linux distribution
+LINUX_DIST = ' '.join(platform.linux_distribution())
+HOSTNAME = 'localhost'
 
 if not os.path.isfile(SETTINGS_PATH):
     m = "Cannot find settings file {0!r}. Consider using AGORA_SETTINGS_DIR "
