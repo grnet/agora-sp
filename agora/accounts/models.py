@@ -189,7 +189,7 @@ class Organisation(models.Model):
     # Location section
     epp_loi_1_street_name_and_number = models.CharField(max_length=50, default=None, blank=True, null=True)
     epp_loi_2_postal_code = models.CharField(max_length=20, default=None, blank=True, null=True)
-    epp_loi_3_city = models.CharField(max_length=20, default=None, blank=True, null=True)
+    epp_loi_3_city = models.CharField(max_length=50, default=None, blank=True, null=True)
     epp_loi_4_region = models.CharField(max_length=50, default=None, blank=True, null=True)
     epp_loi_5_country_or_territory = models.CharField(max_length=50, default=None, blank=True, null=True)
 

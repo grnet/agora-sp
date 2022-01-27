@@ -28,11 +28,9 @@ export default AgoraGen.extend({
         validate.format({type: 'email'})
       ],
       phone: [
-        validate.presence(true),
-        validate.number({ integer: true }),
-        validate.length({ min: 10, max: 20 }),
+        validate.number({ integer: true, allowBlank: true }),
+        validate.length({ min: 10, max: 20, allowBlank: true }),
       ],
-      position: [validate.presence(true)],
       organisation: [validate.presence(true)],
     },
     fieldsets: [ {
@@ -42,12 +40,12 @@ export default AgoraGen.extend({
         let role = get(this, 'user.role');
         let disabled  = role === 'serviceadmin' || role === 'provideradmin' ;
         return [
-          'first_name',
-          'last_name',
-          'email',
+          field('first_name', { label: 'contact_information.fields.first_name.required' }),
+          field('last_name', { label: 'contact_information.fields.last_name.required' }),
+          field('email', { label: 'contact_information.fields.email.required' }),
           'phone',
           'position',
-          field('organisation', {disabled}),
+          field('organisation', {disabled, label: 'contact_information.fields.organisation.required'}),
         ]
       }),
       layout: {
