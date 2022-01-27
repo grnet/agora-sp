@@ -1328,11 +1328,13 @@ CONTACT_INFORMATION = {
         'phone': {
             '.field.string': {},
             '.flag.orderable': {},
-            '.flag.searchable': {}},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
         'position': {
             '.field.string': {},
             '.flag.orderable': {},
-            '.flag.searchable': {}},
+            '.flag.searchable': {},
+            '.flag.nullable.default': {}},
         'organisation': {
             '.field.ref': {},
             'source': 'organisation_id',
