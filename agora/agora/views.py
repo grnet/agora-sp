@@ -25,6 +25,8 @@ from django.db.models import Count
 PAST = datetime.date(2000, 1, 1)
 FUTURE = datetime.date(2100, 1, 1)
 VERSION = getattr(settings, 'VERSION', '')
+LINUX_DIST = getattr(settings, 'LINUX_DIST', '')
+HOSTNAME = getattr(settings, 'HOSTNAME', '')
 
 def valid_date(date_text, default, add_day=False):
     try:
@@ -51,18 +53,13 @@ def config(request):
     shibboleth_endpoint = reverse('shibboleth_login')
     backend_host = urlparse.urljoin(get_root_url(), API_ENDPOINT)
     backend_media_root = urlparse.urljoin(get_root_url(), MEDIA_URL)
-    version_file = os.path.join(BASE_DIR, '../version')
-
-    with open(version_file) as f:
-        version = f.read().replace('\n', '')
 
     config_data = {
         'permissions': permissions,
         'shibboleth_login_url': shibboleth_endpoint,
         'backend_host': backend_host,
         'backend_media_root': backend_media_root,
-        'resources': load_resources(),
-        'version': version
+        'resources': load_resources()
     }
     return HttpResponse(json.dumps(config_data),
                         content_type='application/json')
@@ -312,7 +309,9 @@ def monthly_stats(request):
 
 def get_version(request):
     data = {
-        'version': VERSION
+        'version': VERSION,
+        'distribution': LINUX_DIST,
+        'hostname': HOSTNAME
     }
     return HttpResponse(json.dumps(data),
                     content_type='application/json')

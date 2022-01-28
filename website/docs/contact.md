@@ -58,8 +58,8 @@ From this page a `Superadmin`, or `Resource Admin` user may create a new Contact
 | First Name (**required**)		|	The user's first name	    |
 | Last Name (**required**)		|	The user'sLast name		    |
 | Email (**required**)				|	The user's email 		     	|
-| Phone (**required**)				|	The user's phone      		|
-| Position (**required**)			|	The position of the user  |
+| Phone (**optional**)				|	The user's phone      		|
+| Position (**optional**)			|	The position of the user  |
 | Provider (**required**)			|	The provider of the user  |
 
 

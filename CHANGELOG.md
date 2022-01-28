@@ -4,7 +4,20 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [1.4.2] (https://github.com/grnet/agora-sp/compare/v1.4.2...v1.4.3) - 2021-12-20
+## [1.4.4] (https://github.com/grnet/agora-sp/compare/v1.4.3...v1.4.4) - 2022-1-28
+
+## Fixed
+ - Country field max length in backend
+ - Make contact fields (phone, position) optional
+ - Fix whitespace erase in the tags and related platform fields for eosc resources
+
+## Added
+ - Distribution and hostname at version endpoint
+
+### Removed
+ - Remove version from UI and configuration API endpoint
+
+## [1.4.3] (https://github.com/grnet/agora-sp/compare/v1.4.2...v1.4.3) - 2021-12-20
 
 ### Added
  - Add version endpoint

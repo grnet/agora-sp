@@ -5,12 +5,16 @@ const contact_information = {
   },
   'fields': {
     'first_name': 'First Name',
+    'first_name.required': 'First Name *',
     'last_name': 'Last Name',
+    'last_name.required': 'Last Name *',
     'full_name': 'Full Name',
     'email': 'Email',
+    'email.required': 'Email *',
     'phone': 'Phone',
     'position': 'Position',
     'organisation': 'Provider',
+    'organisation.required': 'Provider *',
   },
   'hints': {
     'first_name': '',

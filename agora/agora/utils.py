@@ -394,6 +394,11 @@ def get_location(instance):
     return location
 
 
+def string_to_array(str_field):
+    arr_value = str_field.split(",")
+    return [x.strip() for x in arr_value]
+
+
 def create_eosc_api_json_resource(instance):
     resource_json = {}
     if instance.eosc_id != None:
@@ -414,7 +419,7 @@ def create_eosc_api_json_resource(instance):
     resource_json['accessTypes'] = [check_eosc_id(o.eosc_id, 'access_type-other') for o in instance.erp_cli_6_access_type.all()]
     resource_json['accessModes'] = [check_eosc_id(o.eosc_id, 'access_mode-other') for o in instance.erp_cli_7_access_mode.all()]
     if instance.erp_cli_8_tags != None:
-        resource_json['tags'] = instance.erp_cli_8_tags.replace(" ","").split(",")
+        resource_json['tags'] = string_to_array(instance.erp_cli_8_tags)
     resource_json['helpdeskPage'] = instance.erp_mgi_1_helpdesk_webpage
     resource_json['userManual'] = instance.erp_mgi_2_user_manual
     resource_json['termsOfUse'] = instance.erp_mgi_3_terms_of_use
@@ -451,7 +456,7 @@ def create_eosc_api_json_resource(instance):
     if instance.erp_mti_8_changelog != None:
         resource_json['changeLog'] = instance.erp_mti_8_changelog.split('\n')
     if instance.erp_dei_3_related_platforms != None:
-        resource_json['relatedPlatforms'] = instance.erp_dei_3_related_platforms.replace(" ","").split(",")
+        resource_json['relatedPlatforms'] = string_to_array(instance.erp_dei_3_related_platforms)
     resource_json['fundingBody'] = [check_eosc_id(o.eosc_id,'funding_body-other') for o in instance.erp_ati_1_funding_body.all()]
     resource_json['fundingPrograms'] = [check_eosc_id(o.eosc_id,'funding_program-other') for o in instance.erp_ati_2_funding_program.all()]
     resource_json['grantProjectNames'] = [instance.erp_ati_3_grant_project_name]
@@ -502,7 +507,7 @@ def create_eosc_api_json_provider(instance, provider_email):
     resource_json['multimedia'] = [ instance.epp_mri_3_multimedia ]
     resource_json['scientificDomains'] = get_list_sci_domains(instance.epp_cli_1_scientific_domain, instance.epp_cli_2_scientific_subdomain)
     if instance.epp_cli_3_tags != None:
-        resource_json['tags'] = instance.epp_cli_3_tags.replace(" ","").split(",")
+        resource_json['tags'] = string_to_array(instance.epp_cli_3_tags)
     resource_json['location'] = get_location(instance)
     if instance.main_contact != None:
         resource_json['mainContact'] = get_contact(instance.main_contact)
