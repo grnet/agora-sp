@@ -80,5 +80,33 @@
       "published",
       "Published"
     ]
+  ],
+  "EOSC_STATE_RESOURCES": [
+    [
+      "approved resource",
+      "Approved Resource"
+    ],
+    [
+      "pending resource",
+      "Pending Resource"
+    ],
+    [
+      "rejected resource",
+      "Rejected Resource"
+    ]
+  ],
+  "EOSC_STATE_PROVIDERS": [
+    [
+      "approved provider",
+      "Approved Provider"
+    ],
+    [
+      "pending provider",
+      "Pending Provider"
+    ],
+    [
+      "rejected provider",
+      "Rejected Provider"
+    ]
   ]
 }

@@ -312,7 +312,11 @@ let model = DS.Model.extend({
   }),
 
   eosc_id: DS.attr(),
-  eosc_state: DS.attr(),
+  eosc_state: DS.attr({
+    autocomplete: true,
+    type: 'select',
+    choices: CHOICES.EOSC_STATE_RESOURCES,
+  }),
 
   state: DS.attr({
     type: 'select',
