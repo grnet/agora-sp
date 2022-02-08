@@ -246,7 +246,11 @@ export default DS.Model.extend({
   }),
 
   eosc_id: DS.attr(),
-  eosc_state: DS.attr(),
+  eosc_state: DS.attr({
+    autocomplete: true,
+    type: 'select',
+    choices: CHOICES.EOSC_STATE_PROVIDERS,
+  }),
 
   state: DS.attr({
     type: 'select',
