@@ -10,6 +10,8 @@ const {
 } = Ember,
   CHOICES = ENV.APP.resources;
 
+const LEGAL_ENTITIES = ENV.APP.legal_entities;
+
 
 export default DS.Model.extend({
   name: DS.attr({
@@ -162,6 +164,9 @@ export default DS.Model.extend({
   epp_oth_1_hosting_legal_entity: DS.attr({
     label: 'provider.fields.epp_oth_1_hosting_legal_entity',
     hint: 'provider.hints.epp_oth_1_hosting_legal_entity',
+    autocomplete: true,
+    type: 'select',
+    choices: LEGAL_ENTITIES,
   }),
   epp_oth_2_participating_countries: DS.attr({
     defaultValue: 'Europe',
