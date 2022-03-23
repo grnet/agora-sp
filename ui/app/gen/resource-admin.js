@@ -73,7 +73,7 @@ export default AgoraGen.extend({
             'resource', {
               modelName:'resource',
               type: 'model',
-              displayAttr: 'erp_bai_1_name',
+              displayAttr: 'erp_bai_name',
             }
           ),
         ],
@@ -96,7 +96,7 @@ export default AgoraGen.extend({
       if (role === 'provideradmin') {
         resource = field('resource', {
           query: (table, store, field, params) => {
-            return store.query('resource', { erp_bai_2_service_organisation: user_org_id });
+            return store.query('resource', { erp_bai_service_organisation: user_org_id });
           },
        })
       }

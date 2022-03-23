@@ -23,7 +23,7 @@ export default ResourceGen.extend({
       }
 
       if (role === 'provideradmin') {
-        params.erp_bai_2_service_organisation = user_org_id;
+        params.erp_bai_service_organisation = user_org_id;
       }
 
       return this.store.query('resource', params)
