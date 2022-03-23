@@ -403,11 +403,12 @@ def create_eosc_api_json_resource(instance):
     resource_json = {}
     if instance.eosc_id != None:
         resource_json['id'] = instance.eosc_id
-    resource_json['name'] = instance.erp_bai_1_name
-    if instance.erp_bai_2_organisation != None:
-        resource_json['resourceOrganisation'] = instance.erp_bai_2_organisation.eosc_id
-    resource_json['resourceProviders'] = [o.eosc_id for o in instance.erp_bai_3_providers.all()]
-    resource_json['webpage'] = instance.erp_bai_4_webpage
+    resource_json['name'] = instance.erp_bai_name
+    resource_json['abbreviation'] = instance.erp_bai_abbreviation
+    if instance.erp_bai_organisation != None:
+        resource_json['resourceOrganisation'] = instance.erp_bai_organisation.eosc_id
+    resource_json['resourceProviders'] = [o.eosc_id for o in instance.erp_bai_providers.all()]
+    resource_json['webpage'] = instance.erp_bai_webpage
     resource_json['description'] = instance.erp_mri_1_description
     resource_json['tagline'] = instance.erp_mri_2_tagline
     resource_json['logo'] = instance.erp_mri_3_logo

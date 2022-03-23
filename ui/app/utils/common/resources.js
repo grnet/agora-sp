@@ -43,7 +43,7 @@ const subcategory = field('erp_cli_4_subcategory', {
   },
 });
 
-const providers = field('erp_bai_3_service_providers', {
+const providers = field('erp_bai_service_providers', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -102,10 +102,10 @@ const required_resources = field('required_resources', {
   modelMeta: {
     row: {
       fields: [
-        'erp_bai_0_id',
-        'erp_bai_1_name',
-        field('erp_bai_2_service_organisation.epp_bai_1_name', {
-          label: 'resource.fields.erp_bai_2_service_organisation',
+        'erp_bai_id',
+        'erp_bai_name',
+        field('erp_bai_service_organisation.epp_bai_1_name', {
+          label: 'resource.fields.erp_bai_service_organisation',
         }),
       ],
     },
@@ -117,10 +117,10 @@ const related_resources = field('related_resources', {
   modelMeta: {
     row: {
       fields: [
-        'erp_bai_0_id',
-        'erp_bai_1_name',
-        field('erp_bai_2_service_organisation.epp_bai_1_name', {
-          label: 'resource.fields.erp_bai_2_service_organisation',
+        'erp_bai_id',
+        'erp_bai_name',
+        field('erp_bai_service_organisation.epp_bai_1_name', {
+          label: 'resource.fields.erp_bai_service_organisation',
         }),
       ],
     },
@@ -132,14 +132,14 @@ const contact = function (field_name) {
     type: 'model',
     displayAttr: 'displayInfo',
     query: Ember.computed(
-      'model.changeset.erp_bai_2_service_organisation',
-      'model.erp_bai_2_service_organisation',
+      'model.changeset.erp_bai_service_organisation',
+      'model.erp_bai_service_organisation',
       function () {
         let org_id_changed = get(
           this,
-          'model.changeset.erp_bai_2_service_organisation.id'
+          'model.changeset.erp_bai_service_organisation.id'
         );
-        let org_id = get(this, 'model.erp_bai_2_service_organisation.id');
+        let org_id = get(this, 'model.erp_bai_service_organisation.id');
         let organisation = org_id_changed || org_id;
         return function (select, store, field, params) {
           params = params || {};
@@ -151,13 +151,16 @@ const contact = function (field_name) {
   });
 };
 
-const SORT_FIELDS = ['erp_bai_0_id', 'erp_bai_1_name', 'eosc_id'];
+const SORT_FIELDS = ['erp_bai_id', 'erp_bai_name', 'eosc_id'];
 
 const TABLE_FIELDS = fields_eosc([
-  field('erp_bai_0_id', { label: 'resource.table.erp_bai_0_id' }),
-  field('erp_bai_1_name', { label: 'resource.table.erp_bai_1_name' }),
-  field('erp_bai_2_service_organisation.epp_bai_1_name', {
-    label: 'resource.table.erp_bai_2_service_organisation',
+  field('erp_bai_id', { label: 'resource.table.erp_bai_id' }),
+  field('erp_bai_abbreviation', {
+    label: 'resource.fields.erp_bai_abbreviation.required',
+  }),
+  field('erp_bai_name', { label: 'resource.table.erp_bai_name' }),
+  field('erp_bai_service_organisation.epp_bai_1_name', {
+    label: 'resource.table.erp_bai_service_organisation',
   }),
   field('erp_mti_1_technology_readiness_level.name', {
     label: 'resource.table.erp_mti_1_technology_readiness_level',
@@ -170,19 +173,20 @@ const TABLE_FIELDS = fields_eosc([
 const DETAILS_BASIC_INFO_FIELDSET = {
   label: 'resource.cards.basic',
   fields: fields_eosc([
-    'erp_bai_0_id',
+    'erp_bai_id',
     'state',
-    'erp_bai_1_name',
-    field('erp_bai_2_service_organisation.epp_bai_1_name', {
-      label: 'resource.fields.erp_bai_2_service_organisation',
+    'erp_bai_abbreviation',
+    'erp_bai_name',
+    field('erp_bai_service_organisation.epp_bai_1_name', {
+      label: 'resource.fields.erp_bai_service_organisation',
     }),
-    'erp_bai_3_providers_verbose',
-    'erp_bai_4_webpage',
+    'erp_bai_providers_verbose',
+    'erp_bai_webpage',
     'eosc_id',
     'eosc_state'
   ]),
   layout: {
-    flex: [50, 50, 50, 50, 100, 100, 50, 50],
+    flex: [50, 50, 50, 50, 50, 100, 100, 50, 50],
   },
 };
 
@@ -274,25 +278,28 @@ const EDIT_BASIC_INFO_FIELDSET = {
     const disabled = role === 'serviceadmin' || role === 'provideradmin';
 
     return fields_eosc([
-      field('erp_bai_0_id', { label: 'resource.fields.erp_bai_0_id.required' }),
+      field('erp_bai_id', { label: 'resource.fields.erp_bai_id.required' }),
       field('state', {
         disabled: true,
       }),
-      field('erp_bai_1_name', {
-        label: 'resource.fields.erp_bai_1_name.required',
+      field('erp_bai_abbreviation', {
+        label: 'resource.fields.erp_bai_abbreviation.required',
       }),
-      field('erp_bai_2_service_organisation', {
+      field('erp_bai_name', {
+        label: 'resource.fields.erp_bai_name.required',
+      }),
+      field('erp_bai_service_organisation', {
         disabled,
-        label: 'resource.fields.erp_bai_2_service_organisation.required',
+        label: 'resource.fields.erp_bai_service_organisation.required',
       }),
       providers,
-      'erp_bai_4_webpage',
+      'erp_bai_webpage',
       field('eosc_id', { disabled }),
       field('eosc_state', { disabled }),
     ]);
   }),
   layout: {
-    flex: [50, 50, 50, 50, 100, 100, 50, 50],
+    flex: [50, 50, 50, 50, 100, 100, 100, 50, 50],
   },
 };
 
@@ -304,22 +311,25 @@ const CREATE_BASIC_INFO_FIELDSET = {
     const disabled = role === 'serviceadmin' || role === 'provideradmin';
 
     return fields_eosc([
-      field('erp_bai_0_id', { label: 'resource.fields.erp_bai_0_id.required' }),
-      field('erp_bai_1_name', {
-        label: 'resource.fields.erp_bai_1_name.required',
+      field('erp_bai_id', { label: 'resource.fields.erp_bai_id.required' }),
+      field('erp_bai_abbreviation', {
+        label: 'resource.fields.erp_bai_abbreviation.required',
       }),
-      field('erp_bai_2_service_organisation', {
+      field('erp_bai_name', {
+        label: 'resource.fields.erp_bai_name.required',
+      }),
+      field('erp_bai_service_organisation', {
         disabled,
-        label: 'resource.fields.erp_bai_2_service_organisation.required',
+        label: 'resource.fields.erp_bai_service_organisation.required',
       }),
       providers,
-      'erp_bai_4_webpage',
+      'erp_bai_webpage',
       field('eosc_id', { disabled }),
       field('eosc_state', { disabled }),
     ]);
   }),
   layout: {
-    flex: [100, 50, 50, 100, 100, 50, 50],
+    flex: [50, 50, 50, 50, 100, 100, 50, 50],
   },
 };
 const GEO_FIELDSET = {

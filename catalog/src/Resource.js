@@ -67,9 +67,9 @@ function Resource(props) {
     <div className="content mx-auto">
       <div className="text-center">
         {logo}
-        <h2 style={{color:config.colorA}} className="title mt-3">{data.erp_bai_1_name}</h2>
+        <h2 style={{color:config.colorA}} className="title mt-3">{data.erp_bai_name}</h2>
         <h4>{data.erp_mri_2_tagline}</h4>
-        <TagItems items={data.erp_bai_3_providers_public} valueOfKey="epp_bai_1_name" outline color="black"/>
+        <TagItems items={data.erp_bai_providers_public} valueOfKey="epp_bai_1_name" outline color="black"/>
       </div>
       <hr></hr>
       <div className="container-fluid">
@@ -78,7 +78,7 @@ function Resource(props) {
             <div className="mb-2">
               <ValueItem
                 icon="globe-americas"
-                item={data.erp_bai_4_webpage}
+                item={data.erp_bai_webpage}
                 label="Official Website"
                 link
                 strong
@@ -399,13 +399,13 @@ function DependenciesInfo(props) {
           <TagItems
             items={props.required}
             label="Required Resources"
-            valueOfKey="erp_bai_1_name"
+            valueOfKey="erp_bai_name"
             breakpoint
           />
           <TagItems
             items={props.related}
             label="Related Resources"
-            valueOfKey="erp_bai_1_name"
+            valueOfKey="erp_bai_name"
             breakpoint
           />
           <ValueItem

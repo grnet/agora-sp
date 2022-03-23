@@ -108,9 +108,9 @@ RESOURCES_CRUD = {
     'resources': {
         'url': '/api/v2/resources/',
         'create_data': {
-            'erp_bai_0_id': 'aw',
-            'erp_bai_1_name': 'Athens Warriors1',
-            'erp_bai_4_webpage': 'www.test.com',
+            'erp_bai_id': 'aw',
+            'erp_bai_name': 'Athens Warriors1',
+            'erp_bai_webpage': 'www.test.com',
             'erp_gla_1_geographical_availability': 'Europe'
         },
         'edit_data': {

@@ -44,9 +44,9 @@ export default AgoraGen.extend({
     }),
 
     // a provideradmin can update a resource if he belongs to an organisation
-    update_organisation_owned: computed('role', 'user.organisation', 'model.erp_bai_2_service_organisation',  function() {
+    update_organisation_owned: computed('role', 'user.organisation', 'model.erp_bai_service_organisation',  function() {
       let role = get(this, 'role');
-      let resource_org = get(this, 'model.erp_bai_2_service_organisation.id');
+      let resource_org = get(this, 'model.erp_bai_service_organisation.id');
       let user_org = get(this, 'user.organisation');
       if (role === 'provideradmin') {
         return resource_org === user_org;
@@ -66,10 +66,11 @@ export default AgoraGen.extend({
   },
   common: {
     validators: {
-      erp_bai_0_id: [validate.presence(true)],
-      erp_bai_1_name: [validate.presence(true)],
-      erp_bai_2_service_organisation: [validate.presence(true)],
-      erp_bai_4_webpage: [validate.format({ type: 'url', allowBlank:true }), httpValidator],
+      erp_bai_id: [validate.presence(true)],
+      erp_bai_abbreviation: [validate.presence(true)],
+      erp_bai_name: [validate.presence(true)],
+      erp_bai_service_organisation: [validate.presence(true)],
+      erp_bai_webpage: [validate.format({ type: 'url', allowBlank:true }), httpValidator],
       erp_cli_1_scientific_domain: [validate.presence(true)],
       erp_cli_2_scientific_subdomain: [validate.presence(true)],
       erp_cli_3_category: [validate.presence(true)],
@@ -134,9 +135,9 @@ export default AgoraGen.extend({
       serverSide: true,
       meta: {
         fields: [
-          field('erp_bai_2_service_organisation', {
+          field('erp_bai_service_organisation', {
             modelName:'provider',
-            label: 'resource.table.erp_bai_2_service_organisation',
+            label: 'resource.table.erp_bai_service_organisation',
             type: 'model',
             displayAttr: 'epp_bai_1_name',
           }),
@@ -179,7 +180,7 @@ export default AgoraGen.extend({
     fieldsets: CREATE_FIELDSETS,
 
     // If the user creating the Resource is a serviceadmin or
-    // a provideradmin, erp_bai_2_service_organisation should
+    // a provideradmin, erp_bai_service_organisation should
     // be prefilled with user's organisation
     getModel(params) {
       const store = get(this, 'store');
@@ -190,7 +191,7 @@ export default AgoraGen.extend({
         let org = store.findRecord('provider', org_id);
         return org.then(function(organisation) {
           return store.createRecord('resource', {
-            erp_bai_2_service_organisation: organisation
+            erp_bai_service_organisation: organisation
           })
         })
 

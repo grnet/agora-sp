@@ -9,12 +9,12 @@ const HIDE_ACTIONS_RESOURCE = !ENV.APP.eosc_portal.show_actions_resource;
 const HIDE_ACTIONS_PROVIDER = !ENV.APP.eosc_portal.show_actions_provider;
 
 function promptResource(self, method) {
-  const erp_bai_1_name = get(self, 'model.erp_bai_1_name');
-  const erp_bai_2_service_organisation = get(
+  const erp_bai_name = get(self, 'model.erp_bai_name');
+  const erp_bai_service_organisation = get(
     self,
-    'model.erp_bai_2_service_organisation.id'
+    'model.erp_bai_service_organisation.id'
   );
-  const erp_bai_4_webpage = get(self, 'model.erp_bai_4_webpage');
+  const erp_bai_webpage = get(self, 'model.erp_bai_webpage');
   const erp_mri_1_description = get(self, 'model.erp_mri_1_description');
   const erp_mri_2_tagline = get(self, 'model.erp_mri_2_tagline');
   const erp_mri_3_logo = get(self, 'model.erp_mri_3_logo');
@@ -59,14 +59,14 @@ function promptResource(self, method) {
   let noControls = false;
   let message = `eosc.resource.${method}.message`;
 
-  if (!erp_bai_1_name) {
-    missing.push('erp_bai_1_name');
+  if (!erp_bai_name) {
+    missing.push('erp_bai_name');
   }
-  if (!erp_bai_2_service_organisation) {
-    missing.push('erp_bai_2_service_organisation');
+  if (!erp_bai_service_organisation) {
+    missing.push('erp_bai_service_organisation');
   }
-  if (!erp_bai_4_webpage) {
-    missing.push('erp_bai_4_webpage');
+  if (!erp_bai_webpage) {
+    missing.push('erp_bai_webpage');
   }
   if (!erp_mri_1_description) {
     missing.push('erp_mri_1_description');
@@ -267,7 +267,7 @@ const postResourceEOSC = {
     'role',
     'model.state',
     'model.eosc_id',
-    'model.erp_bai_2_service_organisation',
+    'model.erp_bai_service_organisation',
     function () {
       if (DISABLED) {
         return true;
@@ -278,7 +278,7 @@ const postResourceEOSC = {
       let role = get(this, 'role');
       let user_org = get(this, 'session.session.authenticated.organisation');
       let state = get(this, 'model.state');
-      let resource_org = get(this, 'model.erp_bai_2_service_organisation.id');
+      let resource_org = get(this, 'model.erp_bai_service_organisation.id');
       let portal_id = get(this, 'model.eosc_id');
 
       let user_is_provideradmin = role === 'provideradmin';
@@ -302,9 +302,9 @@ const postResourceEOSC = {
   ),
   confirm: true,
   prompt: computed(
-    'model.erp_bai_0_id',
-    'model.erp_bai_2_service_organisation.id',
-    'model.erp_bai_4_webpage',
+    'model.erp_bai_id',
+    'model.erp_bai_service_organisation.id',
+    'model.erp_bai_webpage',
     'model.erp_mri_1_description',
     'model.erp_mri_2_tagline',
     'model.erp_cli_2_scientific_subdomain',
@@ -362,7 +362,7 @@ const putResourceEOSC = {
     'role',
     'model.state',
     'model.eosc_id',
-    'model.erp_bai_2_service_organisation',
+    'model.erp_bai_service_organisation',
     function () {
       if (DISABLED) {
         return true;
@@ -370,7 +370,7 @@ const putResourceEOSC = {
       if (HIDE_ACTIONS_RESOURCE) {
         return true;
       }
-      let resource_org = get(this, 'model.erp_bai_2_service_organisation.id');
+      let resource_org = get(this, 'model.erp_bai_service_organisation.id');
       let user_org = get(this, 'session.session.authenticated.organisation');
       let role = get(this, 'role');
       let state = get(this, 'model.state');
@@ -397,9 +397,9 @@ const putResourceEOSC = {
   ),
   confirm: true,
   prompt: computed(
-    'model.erp_bai_0_id',
-    'model.erp_bai_2_service_organisation.id',
-    'model.erp_bai_4_webpage',
+    'model.erp_bai_id',
+    'model.erp_bai_service_organisation.id',
+    'model.erp_bai_webpage',
     'model.erp_mri_1_description',
     'model.erp_mri_2_tagline',
     'model.erp_cli_2_scientific_subdomain',

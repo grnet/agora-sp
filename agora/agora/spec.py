@@ -103,7 +103,7 @@ RESOURCE_ADMINS = {
             '.field.string': {},
             '.flag.nowrite': {},
             '.flag.orderable': {},
-            'source': 'resource.erp_bai_1_name'},
+            'source': 'resource.erp_bai_name'},
         'admin_email': {
             '.field.string': {},
             '.flag.nowrite': {},
@@ -1372,38 +1372,42 @@ RESOURCES = {
         'published_at': {
             '.flag.nowrite': {},
             '.field.datetime': {}},
-        'erp_bai_0_id': {
+        'erp_bai_id': {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
-        'erp_bai_1_name': {
+        'erp_bai_abbreviation': {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
-        'erp_bai_2_service_organisation': {
+        'erp_bai_name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'erp_bai_service_organisation': {
             '.field.ref': {},
-            'source': 'erp_bai_2_organisation_id',
+            'source': 'erp_bai_organisation_id',
             'to': '/api/v2/providers',
             '.flag.filterable': {},
             '.flag.nullable.default': {}},
-        'erp_bai_4_webpage': {
+        'erp_bai_webpage': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_bai_3_service_providers': {
+        'erp_bai_service_providers': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
             'flat': True,
             'id_field': 'organisation',
-            'model': 'service.models.Resource.erp_bai_3_providers.through',
-            'source': 'erp_bai_3_providers',
+            'model': 'service.models.Resource.erp_bai_providers.through',
+            'source': 'erp_bai_providers',
             'bound': 'resource',
             'fields': {
                 'organisation': {'.field.ref': {},
                                 'source': 'organisation_id',
                                 'to': 'api/v2/providers'},
             }},
-        'erp_bai_3_providers_verbose': {
+        'erp_bai_providers_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
         'erp_mri_1_description': {
@@ -2298,26 +2302,30 @@ PUBLIC_RESOURCES = {
         'published_at': {
             '.flag.nowrite': {},
             '.field.datetime': {}},
-        'erp_bai_0_id': {
+        'erp_bai_id': {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
-        'erp_bai_1_name': {
+        'erp_bai_abbreviation': {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
-        'erp_bai_2_organisation': {
+        'erp_bai_name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'erp_bai_organisation': {
             '.field.ref': {},
             'to': '/api/v2/public/providers',
             '.flag.filterable': {},
             '.flag.nullable.default': {},
             '.flag.noread': {}},
-        'erp_bai_2_organisation_public': {
+        'erp_bai_organisation_public': {
             '.field.ref': {},
             'to': '/api/v2/public/providers',
             '.flag.filterable': {},
             '.flag.nullable.default': {}},
-        'erp_bai_3_providers_public': {
+        'erp_bai_providers_public': {
             '.field.collection.django': {},
             ':filter_compat': True,
             '.flag.nullable.default': {},
@@ -2336,7 +2344,7 @@ PUBLIC_RESOURCES = {
                   '.field.string': {}},
             },
         },
-        'erp_bai_4_webpage': {
+        'erp_bai_webpage': {
             '.field.string': {},
             '.flag.nullable.default': {}},
         'erp_mri_1_description': {
@@ -2658,9 +2666,9 @@ PUBLIC_RESOURCES = {
                 'id': {
                   '.field.uuid': {},
                 },
-                'erp_bai_0_id': {
+                'erp_bai_id': {
                   '.field.string': {}},
-                'erp_bai_1_name': {
+                'erp_bai_name': {
                   '.field.string': {}},
             }
         },
@@ -2678,9 +2686,9 @@ PUBLIC_RESOURCES = {
                 'id': {
                   '.field.uuid': {},
                 },
-                'erp_bai_0_id': {
+                'erp_bai_id': {
                   '.field.string': {}},
-                'erp_bai_1_name': {
+                'erp_bai_name': {
                   '.field.string': {}},
             }
         },
@@ -2819,11 +2827,15 @@ PUBLIC_RESOURCES_LITE = {
         'id': {
             '.field.uuid': {},
             '.flag.nowrite': {}},
-        'erp_bai_0_id': {
+        'erp_bai_id': {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
-        'erp_bai_1_name': {
+        'erp_bai_abbreviation': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'erp_bai_name': {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
@@ -2831,7 +2843,7 @@ PUBLIC_RESOURCES_LITE = {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
-        'erp_bai_2_organisation': {
+        'erp_bai_organisation': {
             '.field.ref': {},
             'to': '/api/v2/public/providers',
             '.flag.filterable': {},
