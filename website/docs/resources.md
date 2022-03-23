@@ -52,10 +52,11 @@ Below is the list of fields with small descriptions of the fields. The required 
 | --------------------------- | --------------------------------------------------------------------------------------------- |
 | **Basic information**       |                                                                                               |
 | ERP.BAI.0 - ID	(**required**)						|	Global unique and persistent identifier of the service/resource.										|
-| ERP.BAI.1 - Name   (**required**)					|	Brief and descriptive name of service/resource as assigned by the service/resource provider.			|
-| ERP.BAI.2 - Resource Organisation (**required**)			|	The organisation that manages and delivers the service/resource, or the organisation which takes lead in coordinating service delivery and communicates with customers in case of a federated scenario	|
-| ERP.BAI.3 - Resource Providers			|	The organisation(s) that participate in service delivery in case of a federated scenario				|
-| ERP.BAI.4 - Webpage						|	Webpage with information about the service/resource usually hosted and maintained by the service/resource provider.	|
+| ERP.BAI.1 - Abbreviation (**required**)						|	Abbreviation or short name of the Resource.	|
+| ERP.BAI.2 - Name   (**required**)					|	Brief and descriptive name of service/resource as assigned by the service/resource provider.			|
+| ERP.BAI.3 - Resource Organisation (**required**)			|	The organisation that manages and delivers the service/resource, or the organisation which takes lead in coordinating service delivery and communicates with customers in case of a federated scenario	|
+| ERP.BAI.4 - Resource Providers			|	The organisation(s) that participate in service delivery in case of a federated scenario				|
+| ERP.BAI.5 - Webpage						|	Webpage with information about the service/resource usually hosted and maintained by the service/resource provider.	|
 | **Marketing Information**       |                                                                                            |
 | ERP.MRI.1 - Description					|	A high-level description in fairly non-technical terms of a) what the service/resource does, functionality it provides and resources it enables to access, b) the benefit to a user/customer delivered by a service; benefits are usually related to alleviating pains (e.g., eliminate undesired outcomes, obstacles or risks) or producing gains (e.g. increased performance, social gains, positive emotions or cost saving), c) list of customers, communities, users, etc. using the service.	|
 | ERP.MRI.2 - Tagline						|	Short catch-phrase for marketing and advertising purposes. It will be usually displayed close the service name and should refer to the main value or purpose of the service.	|
