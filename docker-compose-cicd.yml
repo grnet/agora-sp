@@ -22,7 +22,7 @@ services:
 
 
   agora-backend:
-    image:  argo.registry:5000/agora-backend-test
+    image:  argo.registry:5000/agora-backend
     volumes:
        - ./agora:/srv/agora/agora
        - dist:/srv/agora/ui/dist
