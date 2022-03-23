@@ -9,8 +9,8 @@ import TagItems from "./TagItems";
 const getProvidersOfResources = (resources, orgURL) => {
   let providers = [orgURL]
   for (let resource of resources ) {
-    if (!!resource.erp_bai_3_providers_public){
-      for( let provider of resource.erp_bai_3_providers_public){
+    if (!!resource.erp_bai_providers_public){
+      for( let provider of resource.erp_bai_providers_public){
         if (providers.indexOf(provider.href)<0){
           providers.push(provider.href)
         }
@@ -76,7 +76,7 @@ function Providers() {
     async function getResources() {
       let AGORA_URL = `${config.endpoint}/api/v2/public/resources/`
       if (!!config.organisationUUID) {
-        AGORA_URL = AGORA_URL + '?erp_bai_2_organisation=' + config.organisationUUID
+        AGORA_URL = AGORA_URL + '?erp_bai_organisation=' + config.organisationUUID
       }
       const result = await axios(
         AGORA_URL
@@ -85,8 +85,8 @@ function Providers() {
       for (let item of result.data) {
         let terms = [];
         let tags = [];
-        if ("erp_bai_1_name" in item && item.erp_bai_1_name != null) {
-          terms.push(item.erp_bai_1_name.toLowerCase());
+        if ("erp_bai_name" in item && item.erp_bai_name != null) {
+          terms.push(item.erp_bai_name.toLowerCase());
         }
         if ("erp_cli_8_tags" in item && item.erp_cli_8_tags != null) {
           tags = item.erp_cli_8_tags.split(",").map((item) => item.trim());

@@ -15,10 +15,10 @@ def resource_organisation_owned(backend_input, instance, context):
     auth_user = context['auth/user']
     # create
     if instance:
-        resource_org_id  = str(instance.erp_bai_2_organisation_id)
+        resource_org_id  = str(instance.erp_bai_organisation_id)
     # edit
     else:
-        resource_org_id =  str(backend_input.get('erp_bai_2_organisation_id'))
+        resource_org_id =  str(backend_input.get('erp_bai_organisation_id'))
     user_org_id = str(auth_user.organisation.id)
 
     if not user_org_id == resource_org_id:
@@ -56,7 +56,7 @@ class ResourceAdminship(object):
 
         resource = r_m.objects.get(pk=backend_input['resource_id'])
 
-        resource_org_id = resource.erp_bai_2_organisation.pk
+        resource_org_id = resource.erp_bai_organisation.pk
         if not admin.organisation:
             raise ValidationError(_('No organisation'))
         if resource_org_id != admin.organisation.id:
@@ -90,7 +90,7 @@ class ResourceAdminship(object):
 
         resource = r_m.objects.get(pk=backend_input['resource_id'])
 
-        resource_org_id = resource.erp_bai_2_organisation.pk
+        resource_org_id = resource.erp_bai_organisation.pk
         if not admin.organisation:
             raise ValidationError(_('No organisation'))
         if resource_org_id != admin.organisation.id:
@@ -117,7 +117,7 @@ class ResourceAdminship(object):
         """
         auth_user = context['auth/user']
         resource = r_m.objects.get(pk=backend_input['resource_id'])
-        resource_org_id = resource.erp_bai_2_organisation.pk
+        resource_org_id = resource.erp_bai_organisation.pk
         if not auth_user.organisation:
             raise ValidationError(_('No organisation'))
         if resource_org_id != auth_user.organisation.id:
@@ -220,7 +220,7 @@ class ResourceAdminship(object):
         auth_user = context['auth/user']
         user_org_id = str(auth_user.organisation.id)
 
-        return Q(resource__erp_bai_2_organisation_id=user_org_id)
+        return Q(resource__erp_bai_organisation_id=user_org_id)
 
 
 class User(object):
@@ -341,7 +341,7 @@ class Resource(object):
         auth_user = context['auth/user']
         auth_user_id = str(auth_user.id)
         service_admins_ids = instance.resource_admins_ids.split(",")
-        resource_org_id = str(backend_input.get('erp_bai_2_organisation_id'))
+        resource_org_id = str(backend_input.get('erp_bai_organisation_id'))
         user_org_id = str(auth_user.organisation.id)
 
         if not user_org_id == resource_org_id:
