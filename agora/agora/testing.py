@@ -109,6 +109,7 @@ RESOURCES_CRUD = {
         'url': '/api/v2/resources/',
         'create_data': {
             'erp_bai_id': 'aw',
+            'erp_bai_abbreviation': 'aw',
             'erp_bai_name': 'Athens Warriors1',
             'erp_bai_webpage': 'www.test.com',
             'erp_gla_1_geographical_availability': 'Europe'
