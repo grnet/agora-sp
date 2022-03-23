@@ -2,5 +2,5 @@
 {% block content %}
 The user
 {% include "emails/applicant_details.txt" %}
-has been rejected as administrator of the resource {{ resource.erp_bai_1_name }}.
+has been rejected as administrator of the resource {{ resource.erp_bai_name }}.
 {% endblock content %}

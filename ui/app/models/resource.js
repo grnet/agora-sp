@@ -15,33 +15,37 @@ let model = DS.Model.extend({
   session: Ember.inject.service(),
 
   // Basic Information
-  erp_bai_0_id: DS.attr({
-    label: 'resource.fields.erp_bai_0_id',
-    hint: 'resource.hints.erp_bai_0_id',
+  erp_bai_id: DS.attr({
+    label: 'resource.fields.erp_bai_id',
+    hint: 'resource.hints.erp_bai_id',
   }),
-  erp_bai_1_name: DS.attr({
-    label: 'resource.fields.erp_bai_1_name',
-    hint: 'resource.hints.erp_bai_1_name',
+  erp_bai_abbreviation: DS.attr({
+    label: 'resource.fields.erp_bai_abbreviation',
+    hint: 'resource.hints.erp_bai_abbreviation',
   }),
-  erp_bai_2_service_organisation: DS.belongsTo('provider', {
+  erp_bai_name: DS.attr({
+    label: 'resource.fields.erp_bai_name',
+    hint: 'resource.hints.erp_bai_name',
+  }),
+  erp_bai_service_organisation: DS.belongsTo('provider', {
     autocomplete: true,
     type: 'select',
-    label: 'resource.fields.erp_bai_2_service_organisation',
-    hint: 'resource.hints.erp_bai_2_service_organisation',
+    label: 'resource.fields.erp_bai_service_organisation',
+    hint: 'resource.hints.erp_bai_service_organisation',
     formAttrs: {
       optionLabelAttr: 'epp_bai_name',
     },
   }),
-  erp_bai_3_service_providers: DS.hasMany('provider', {
-    label: 'resource.fields.erp_bai_3_service_providers',
-    hint: 'resource.hints.erp_bai_3_service_providers',
+  erp_bai_service_providers: DS.hasMany('provider', {
+    label: 'resource.fields.erp_bai_service_providers',
+    hint: 'resource.hints.erp_bai_service_providers',
   }),
-  erp_bai_3_providers_verbose: DS.attr({
+  erp_bai_providers_verbose: DS.attr({
     label: 'resource.fields.providers_names',
   }),
-  erp_bai_4_webpage: DS.attr({
-    label: 'resource.fields.erp_bai_4_webpage',
-    hint: 'resource.hints.erp_bai_4_webpage',
+  erp_bai_webpage: DS.attr({
+    label: 'resource.fields.erp_bai_webpage',
+    hint: 'resource.hints.erp_bai_webpage',
   }),
 
   // Marketing fields
@@ -337,10 +341,10 @@ let model = DS.Model.extend({
   pending_resource_admins_ids: DS.attr(),
   rejected_resource_admins_ids: DS.attr(),
 
-  can_apply_adminship: Ember.computed('resource_admins_ids', 'pending_resource_admins_ids', 'rejected_resource_admins_ids', 'erp_bai_2_service_organisation.id', function(){
+  can_apply_adminship: Ember.computed('resource_admins_ids', 'pending_resource_admins_ids', 'rejected_resource_admins_ids', 'erp_bai_service_organisation.id', function(){
     let role = get(this, 'session.session.authenticated.role');
     let user_org_id = get(this, 'session.session.authenticated.organisation');
-    let resource_org_id = get(this, 'erp_bai_2_service_organisation.id');
+    let resource_org_id = get(this, 'erp_bai_service_organisation.id');
 
     if (resource_org_id != user_org_id) {
       return false;
@@ -378,7 +382,7 @@ let model = DS.Model.extend({
   __api__: {
     serialize: function(hash) {
       // do not send readonly keys to backend
-      delete hash['erp_bai_3_providers_verbose'];
+      delete hash['erp_bai_providers_verbose'];
       delete hash['resource_admins_ids'];
       delete hash['pending_resource_admins_ids'];
       delete hash['rejected_resource_admins_ids'];
