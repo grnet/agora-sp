@@ -49,7 +49,7 @@ class ResourceFormValidations(ResourceCreate):
         @return: True if the messages for all fields appear, otherwise False.
         """
         # *.BAI.4 - Webpage
-        url_input_validation(self.driver, self.fields_prefix + "bai_4_webpage")
+        url_input_validation(self.driver, self.fields_prefix + "bai_webpage")
 
         # *.MRI.3 - Logo
         url_input_validation(self.driver, self.fields_prefix + "mri_3_logo")
