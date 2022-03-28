@@ -517,7 +517,10 @@ def create_eosc_api_json_provider(instance, provider_email):
         resource_json['lifeCycleStatus'] = get_life_cycle_status(instance.epp_mti_1_life_cycle_status)
     if instance.epp_mti_2_certifications != None:
         resource_json['certifications'] = instance.epp_mti_2_certifications.split('\n')
-    resource_json['hostingLegalEntity'] = instance.epp_oth_1_hosting_legal_entity
+    if instance.epp_oth_1_hosting_legal_entity == "Other":
+        resource_json['hostingLegalEntity'] = None
+    else:
+        resource_json['hostingLegalEntity'] = instance.epp_oth_1_hosting_legal_entity
     if instance.epp_oth_2_participating_countries != None:
         resource_json['participatingCountries'] = [ match_geolocation(o.strip()) for o in instance.epp_oth_2_participating_countries.split(",")]
     if instance.epp_oth_3_affiliations_verbose != None:
