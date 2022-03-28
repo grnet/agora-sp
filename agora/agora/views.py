@@ -66,8 +66,9 @@ def config(request):
     try:
         response = requests.get(EOSC_API_URL+'/vocabulary/byType/PROVIDER_HOSTING_LEGAL_ENTITY', headers=headers, verify=CA_BUNDLE)
         response.raise_for_status()
+        response_json.append(["Other","Other"])
         for host in  response.json():
-            response_json.append([host['name'],host['name']])
+            response_json.append([host['id'],host['name']])
     except requests.exceptions.RequestException as err:
         print ("Error:", err)
         response_json = json.dumps(response_json)
