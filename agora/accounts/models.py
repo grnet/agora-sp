@@ -160,17 +160,18 @@ class Organisation(models.Model):
     """
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    epp_bai_0_id = models.CharField(unique=True, max_length=100)
-    epp_bai_1_name = models.CharField(unique=True, max_length=100)
-    epp_bai_2_abbreviation = models.CharField(max_length=30, default=None, blank=False, null=True)
-    epp_bai_3_website = models.TextField(default=None, blank=True, null=True)
+    epp_bai_id = models.CharField(unique=True, max_length=100)
+    epp_bai_name = models.CharField(unique=True, max_length=100)
+    epp_bai_abbreviation = models.CharField(max_length=30, default=None, blank=False, null=True)
+    epp_bai_website = models.TextField(default=None, blank=True, null=True)
 
-    epp_bai_4_legal_entity = models.BooleanField(default=False)
-    epp_bai_5_legal_status =  models.ForeignKey(
+    epp_bai_legal_entity = models.BooleanField(default=False)
+    epp_bai_legal_status =  models.ForeignKey(
         'accounts.LegalStatus',
         blank=True,
         null=True,
         related_name='legalstatus_providers')
+    epp_bai_hosting_legal_entity = models.CharField(max_length=80, default=None, blank=True, null=True)
 
     # Classification section
     epp_cli_1_scientific_domain = models.ManyToManyField(
@@ -210,57 +211,55 @@ class Organisation(models.Model):
     epp_mti_2_certifications = models.TextField(default=None, blank=True, null=True)
 
    # Other information section
+    epp_oth_participating_countries = models.TextField(default=None, blank=True, null=True)
 
-    epp_oth_1_hosting_legal_entity = models.CharField(max_length=80, default=None, blank=True, null=True)
-    epp_oth_2_participating_countries = models.TextField(default=None, blank=True, null=True)
-
-    epp_oth_3_affiliations = models.ManyToManyField(
+    epp_oth_affiliations = models.ManyToManyField(
         Affiliation,
         blank=True,
         related_name='affiliated_providers')
 
-    epp_oth_4_networks = models.ManyToManyField(
+    epp_oth_networks = models.ManyToManyField(
         Network,
         blank=True,
         related_name='networked_providers')
 
-    epp_oth_5_structure_type = models.ManyToManyField(
+    epp_oth_structure_type = models.ManyToManyField(
         Structure,
         blank=True,
         related_name='structured_providers')
 
-    epp_oth_6_esfri_domain = models.ManyToManyField(
+    epp_oth_esfri_domain = models.ManyToManyField(
         EsfriDomain,
         blank=True,
         related_name='esfridomain_providers')
 
-    epp_oth_7_esfri_type = models.ForeignKey(
+    epp_oth_esfri_type = models.ForeignKey(
         'accounts.EsfriType',
         blank=True,
         null=True,
         related_name='esfritype_providers')
 
-    epp_oth_8_meril_scientific_domain = models.ManyToManyField(
+    epp_oth_meril_scientific_domain = models.ManyToManyField(
         MerilDomain,
         blank=True,
         related_name='meril_domain_providers')
 
-    epp_oth_9_meril_scientific_subdomain = models.ManyToManyField(
+    epp_oth_meril_scientific_subdomain = models.ManyToManyField(
         MerilSubdomain,
         blank=True,
         related_name='meril_subdomain_providers')
 
-    epp_oth_10_areas_of_activity = models.ManyToManyField(
+    epp_oth_areas_of_activity = models.ManyToManyField(
         Activity,
         blank=True,
         related_name='activity_providers')
 
-    epp_oth_11_societal_grand_challenges = models.ManyToManyField(
+    epp_oth_societal_grand_challenges = models.ManyToManyField(
         Challenge,
         blank=True,
         related_name='challenge_providers')
 
-    epp_oth_12_national_roadmaps = models.CharField(max_length=80, default=None, blank=True, null=True)
+    epp_oth_national_roadmaps = models.CharField(max_length=80, default=None, blank=True, null=True)
 
     state = models.CharField(
             choices=PROVIDER_STATES,
@@ -278,28 +277,28 @@ class Organisation(models.Model):
     eosc_state = models.CharField(max_length=255, blank=True, null=True)
 
     @property
-    def epp_oth_3_affiliations_verbose(self):
-        return ", ".join(o.name for o in self.epp_oth_3_affiliations.all())
+    def epp_oth_affiliations_verbose(self):
+        return ", ".join(o.name for o in self.epp_oth_affiliations.all())
 
     @property
-    def epp_oth_4_networks_verbose(self):
-        return ", ".join(o.name + " (" + o.abbreviation + ")" for o in self.epp_oth_4_networks.all())
+    def epp_oth_networks_verbose(self):
+        return ", ".join(o.name + " (" + o.abbreviation + ")" for o in self.epp_oth_networks.all())
 
     @property
-    def epp_oth_5_structure_type_verbose(self):
-        return ", ".join(o.name for o in self.epp_oth_5_structure_type.all())
+    def epp_oth_structure_type_verbose(self):
+        return ", ".join(o.name for o in self.epp_oth_structure_type.all())
 
     @property
-    def epp_oth_6_esfri_domain_verbose(self):
-        return ", ".join(o.name for o in self.epp_oth_6_esfri_domain.all())
+    def epp_oth_esfri_domain_verbose(self):
+        return ", ".join(o.name for o in self.epp_oth_esfri_domain.all())
 
     @property
-    def epp_oth_10_areas_of_activity_verbose(self):
-        return ", ".join(o.name for o in self.epp_oth_10_areas_of_activity.all())
+    def epp_oth_areas_of_activity_verbose(self):
+        return ", ".join(o.name for o in self.epp_oth_areas_of_activity.all())
 
     @property
-    def epp_oth_11_societal_grand_challenges_verbose(self):
-        return ", ".join(o.name for o in self.epp_oth_11_societal_grand_challenges.all())
+    def epp_oth_societal_grand_challenges_verbose(self):
+        return ", ".join(o.name for o in self.epp_oth_societal_grand_challenges.all())
 
     @property
     def epp_cli_1_scientific_domain_verbose(self):
@@ -310,12 +309,12 @@ class Organisation(models.Model):
         return ", ".join(o.name for o in self.epp_cli_2_scientific_subdomain.all())
 
     @property
-    def epp_oth_8_meril_scientific_domain_verbose(self):
-        return ", ".join(o.name for o in self.epp_oth_8_meril_scientific_domain.all())
+    def epp_oth_meril_scientific_domain_verbose(self):
+        return ", ".join(o.name for o in self.epp_oth_meril_scientific_domain.all())
 
     @property
-    def epp_oth_9_meril_scientific_subdomain_verbose(self):
-        return ", ".join(o.name for o in self.epp_oth_9_meril_scientific_subdomain.all())
+    def epp_oth_meril_scientific_subdomain_verbose(self):
+        return ", ".join(o.name for o in self.epp_oth_meril_scientific_subdomain.all())
 
     @property
     def epp_loi_5_country_or_territory_capitalize(self):
