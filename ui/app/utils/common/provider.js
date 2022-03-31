@@ -57,7 +57,7 @@ const MATURITY_FIELDSET = {
   },
 };
 
-const merildomain = field('epp_oth_8_meril_scientific_domain', {
+const merildomain = field('epp_oth_meril_scientific_domain', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -66,7 +66,7 @@ const merildomain = field('epp_oth_8_meril_scientific_domain', {
   },
 });
 
-const merilsubdomain = field('epp_oth_9_meril_scientific_subdomain', {
+const merilsubdomain = field('epp_oth_meril_scientific_subdomain', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -111,7 +111,7 @@ const subdomain = field('epp_cli_2_scientific_subdomain', {
   },
 });
 
-const affiliations = field('epp_oth_3_affiliations', {
+const affiliations = field('epp_oth_affiliations', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -120,7 +120,7 @@ const affiliations = field('epp_oth_3_affiliations', {
   },
 });
 
-const networks = field('epp_oth_4_networks', {
+const networks = field('epp_oth_networks', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -129,7 +129,7 @@ const networks = field('epp_oth_4_networks', {
   },
 });
 
-const structure = field('epp_oth_5_structure_type', {
+const structure = field('epp_oth_structure_type', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -138,7 +138,7 @@ const structure = field('epp_oth_5_structure_type', {
   },
 });
 
-const esfridomain = field('epp_oth_6_esfri_domain', {
+const esfridomain = field('epp_oth_esfri_domain', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -147,7 +147,7 @@ const esfridomain = field('epp_oth_6_esfri_domain', {
   },
 });
 
-const activity = field('epp_oth_10_areas_of_activity', {
+const activity = field('epp_oth_areas_of_activity', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -156,7 +156,7 @@ const activity = field('epp_oth_10_areas_of_activity', {
   },
 });
 
-const challenge = field('epp_oth_11_societal_grand_challenges', {
+const challenge = field('epp_oth_societal_grand_challenges', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -237,20 +237,19 @@ const CLASSIFICATION_FIELDSET = {
 const DETAILS_OTHER_FIELDSET = {
   label: 'provider.cards.other',
   fields: [
-    'epp_oth_1_hosting_legal_entity',
-    'epp_oth_2_participating_countries',
-    'epp_oth_3_affiliations_verbose',
-    'epp_oth_4_networks_verbose',
-    'epp_oth_5_structure_type_verbose',
-    'epp_oth_6_esfri_domain_verbose',
-    field('epp_oth_7_esfri_type.name', {
-      label: 'provider.fields.epp_oth_7_esfri_type',
+    'epp_oth_participating_countries',
+    'epp_oth_affiliations_verbose',
+    'epp_oth_networks_verbose',
+    'epp_oth_structure_type_verbose',
+    'epp_oth_esfri_domain_verbose',
+    field('epp_oth_esfri_type.name', {
+      label: 'provider.fields.epp_oth_esfri_type',
     }),
-    'epp_oth_8_meril_scientific_domain_verbose',
-    'epp_oth_9_meril_scientific_subdomain_verbose',
-    'epp_oth_10_areas_of_activity_verbose',
-    'epp_oth_11_societal_grand_challenges_verbose',
-    'epp_oth_12_national_roadmaps',
+    'epp_oth_meril_scientific_domain_verbose',
+    'epp_oth_meril_scientific_subdomain_verbose',
+    'epp_oth_areas_of_activity_verbose',
+    'epp_oth_societal_grand_challenges_verbose',
+    'epp_oth_national_roadmaps',
   ],
   layout: {
     flex: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
@@ -260,18 +259,17 @@ const DETAILS_OTHER_FIELDSET = {
 const OTHER_FIELDSET = {
   label: 'provider.cards.other',
   fields: [
-    'epp_oth_1_hosting_legal_entity',
-    'epp_oth_2_participating_countries',
+    'epp_oth_participating_countries',
     affiliations,
     networks,
     structure,
     esfridomain,
-    'epp_oth_7_esfri_type',
+    'epp_oth_esfri_type',
     merildomain,
     merilsubdomain,
     activity,
     challenge,
-    'epp_oth_12_national_roadmaps',
+    'epp_oth_national_roadmaps',
   ],
   layout: {
     flex: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
@@ -287,16 +285,17 @@ const DETAILS_FIELDSETS = [
     label: 'provider.cards.basic_information',
     text: 'provider.cards.basic_hint',
     layout: {
-      flex: [50, 50, 100, 100, 100, 50, 50, 50, 50],
+      flex: [50, 50, 100, 100, 100, 50, 50, 100, 50, 50],
     },
     fields: fields_eosc([
-      'epp_bai_0_id',
+      'epp_bai_id',
       'state',
-      'epp_bai_1_name',
-      'epp_bai_2_abbreviation',
-      'epp_bai_3_website',
-      'epp_bai_4_legal_entity',
-      'epp_bai_5_legal_status',
+      'epp_bai_name',
+      'epp_bai_abbreviation',
+      'epp_bai_website',
+      'epp_bai_legal_entity',
+      'epp_bai_legal_status',
+      'epp_bai_hosting_legal_entity',
       'eosc_id',
       'eosc_state',
     ]),
@@ -332,30 +331,31 @@ const EDIT_FIELDSETS = [
     label: 'provider.cards.basic_information',
     text: 'provider.cards.basic_hint',
     layout: {
-      flex: [50, 50, 100, 100, 100, 50, 50, 50, 50],
+      flex: [50, 50, 100, 100, 100, 50, 50, 100, 50, 50],
     },
     fields: computed('role', function () {
       let role = get(this, 'role');
       const editor = role === 'provideradmin';
       const disabled = editor;
-      let abbreviation_label = 'provider.fields.epp_bai_2_abbreviation';
+      let abbreviation_label = 'provider.fields.epp_bai_abbreviation';
       if (editor) {
-        abbreviation_label = 'provider.fields.epp_bai_2_abbreviation.required';
+        abbreviation_label = 'provider.fields.epp_bai_abbreviation.required';
       }
       return fields_eosc([
-        field('epp_bai_0_id', {
-          label: 'provider.fields.epp_bai_0_id.required',
+        field('epp_bai_id', {
+          label: 'provider.fields.epp_bai_id.required',
         }),
         field('state', { disabled: true }),
-        field('epp_bai_1_name', {
-          label: 'provider.fields.epp_bai_1_name.required',
+        field('epp_bai_name', {
+          label: 'provider.fields.epp_bai_name.required',
         }),
-        field('epp_bai_2_abbreviation', {
+        field('epp_bai_abbreviation', {
           label: abbreviation_label,
         }),
-        'epp_bai_3_website',
-        'epp_bai_4_legal_entity',
-        'epp_bai_5_legal_status',
+        'epp_bai_website',
+        'epp_bai_legal_entity',
+        'epp_bai_legal_status',
+        'epp_bai_hosting_legal_entity',
         field('eosc_id', { disabled }),
         field('eosc_state', { disabled }),
       ]);
@@ -405,29 +405,30 @@ const CREATE_FIELDSETS = [
     label: 'provider.cards.basic_information',
     text: 'provider.cards.basic_hint',
     layout: {
-      flex: [100, 100, 100, 100, 50, 50, 50, 50],
+      flex: [100, 100, 100, 100, 50, 50, 100, 50, 50],
     },
     fields: computed('role', function () {
       let role = get(this, 'role');
       const editor = role === 'provideradmin' || role === 'portfolioadmin';
       const disabled = editor;
-      let abbreviation_label = 'provider.fields.epp_bai_2_abbreviation';
+      let abbreviation_label = 'provider.fields.epp_bai_abbreviation';
       if (editor) {
-        abbreviation_label = 'provider.fields.epp_bai_2_abbreviation.required';
+        abbreviation_label = 'provider.fields.epp_bai_abbreviation.required';
       }
       return fields_eosc([
-        field('epp_bai_0_id', {
-          label: 'provider.fields.epp_bai_0_id.required',
+        field('epp_bai_id', {
+          label: 'provider.fields.epp_bai_id.required',
         }),
-        field('epp_bai_1_name', {
-          label: 'provider.fields.epp_bai_1_name.required',
+        field('epp_bai_name', {
+          label: 'provider.fields.epp_bai_name.required',
         }),
-        field('epp_bai_2_abbreviation', {
+        field('epp_bai_abbreviation', {
           label: abbreviation_label,
         }),
-        'epp_bai_3_website',
-        'epp_bai_4_legal_entity',
-        'epp_bai_5_legal_status',
+        'epp_bai_website',
+        'epp_bai_legal_entity',
+        'epp_bai_legal_status',
+        'epp_bai_hosting_legal_entity',
         'eosc_id',
         'eosc_state',
       ]);
@@ -469,10 +470,10 @@ const CREATE_FIELDSETS = [
 ];
 
 const PROVIDER_TABLE_FIELDS = fields_eosc([
-  field('epp_bai_0_id', { label: 'provider.table.epp_bai_0_id' }),
-  field('epp_bai_1_name', { label: 'provider.table.epp_bai_1_name' }),
-  field('epp_bai_2_abbreviation', {
-    label: 'provider.table.epp_bai_2_abbreviation',
+  field('epp_bai_id', { label: 'provider.table.epp_bai_id' }),
+  field('epp_bai_name', { label: 'provider.table.epp_bai_name' }),
+  field('epp_bai_abbreviation', {
+    label: 'provider.table.epp_bai_abbreviation',
   }),
   field('state_verbose', { label: 'provider.fields.state' }),
   'eosc_id',

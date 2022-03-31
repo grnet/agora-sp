@@ -75,9 +75,9 @@ export default DS.Model.extend({
   providers: DS.hasMany('provider'),
   organisation: DS.belongsTo('provider', {
     label: 'custom_user.fields.organisation',
-    displayAttr: 'epp_bai_1_name',
+    displayAttr: 'epp_bai_name',
     formAttrs: {
-      optionLabelAttr: 'epp_bai_1_name',
+      optionLabelAttr: 'epp_bai_name',
     },
   }),
   __api__: {

@@ -31,38 +31,45 @@ export default DS.Model.extend({
     hint: 'provider.hints.contact',
   }),
 
-  epp_bai_0_id: DS.attr({
-    label: 'provider.fields.epp_bai_0_id',
-    hint: 'provider.hints.epp_bai_0_id',
+  epp_bai_id: DS.attr({
+    label: 'provider.fields.epp_bai_id',
+    hint: 'provider.hints.epp_bai_id',
   }),
-  epp_bai_1_name: DS.attr({
-    label: 'provider.fields.epp_bai_1_name',
-    hint: 'provider.hints.epp_bai_1_name',
+  epp_bai_name: DS.attr({
+    label: 'provider.fields.epp_bai_name',
+    hint: 'provider.hints.epp_bai_name',
   }),
-  epp_bai_2_abbreviation: DS.attr({
-    label: 'provider.fields.epp_bai_2_abbreviation',
-    hint: 'provider.hints.epp_bai_2_abbreviation',
+  epp_bai_abbreviation: DS.attr({
+    label: 'provider.fields.epp_bai_abbreviation',
+    hint: 'provider.hints.epp_bai_abbreviation',
   }),
-  epp_bai_3_website: DS.attr({
-    label: 'provider.fields.epp_bai_3_website',
-    hint: 'provider.hints.epp_bai_3_website',
+  epp_bai_website: DS.attr({
+    label: 'provider.fields.epp_bai_website',
+    hint: 'provider.hints.epp_bai_website',
   }),
-  epp_bai_4_legal_entity: DS.attr({
+  epp_bai_legal_entity: DS.attr({
     type: 'boolean',
     defaultValue: false,
-    label: 'provider.fields.epp_bai_4_legal_entity',
-    hint: 'provider.hints.epp_bai_4_legal_entity',
+    label: 'provider.fields.epp_bai_legal_entity',
+    hint: 'provider.hints.epp_bai_legal_entity',
   }),
-  epp_bai_5_legal_status: DS.belongsTo('legalstatus', {
+  epp_bai_legal_status: DS.belongsTo('legalstatus', {
     autocomplete: true,
     type: 'select',
     displayAttr: 'name',
-    label: 'provider.fields.epp_bai_5_legal_status',
-    hint: 'provider.hints.epp_bai_5_legal_status',
+    label: 'provider.fields.epp_bai_legal_status',
+    hint: 'provider.hints.epp_bai_legal_status',
     inverse: null,
     formAttrs: {
       optionLabelAttr: 'name',
     },
+  }),
+  epp_bai_hosting_legal_entity: DS.attr({
+    label: 'provider.fields.epp_bai_hosting_legal_entity',
+    hint: 'provider.hints.epp_bai_hosting_legal_entity',
+    autocomplete: true,
+    type: 'select',
+    choices: LEGAL_ENTITIES,
   }),
 
   // classification information
@@ -161,93 +168,86 @@ export default DS.Model.extend({
     inverse: null
   }),
   // other information
-  epp_oth_1_hosting_legal_entity: DS.attr({
-    label: 'provider.fields.epp_oth_1_hosting_legal_entity',
-    hint: 'provider.hints.epp_oth_1_hosting_legal_entity',
-    autocomplete: true,
-    type: 'select',
-    choices: LEGAL_ENTITIES,
-  }),
-  epp_oth_2_participating_countries: DS.attr({
+  epp_oth_participating_countries: DS.attr({
     defaultValue: 'Europe',
-    label: 'provider.fields.epp_oth_2_participating_countries',
-    hint: 'provider.hints.epp_oth_2_participating_countries',
+    label: 'provider.fields.epp_oth_participating_countries',
+    hint: 'provider.hints.epp_oth_participating_countries',
     formComponent: 'agora-chips',
     formAttrs: {
       options: countries,
       exactMatch: true,
     }
   }),
-  epp_oth_3_affiliations: DS.hasMany('affiliation', {
-    label: 'provider.fields.epp_oth_3_affiliations',
-    hint: 'provider.hints.epp_oth_3_affiliations',
+  epp_oth_affiliations: DS.hasMany('affiliation', {
+    label: 'provider.fields.epp_oth_affiliations',
+    hint: 'provider.hints.epp_oth_affiliations',
   }),
-  epp_oth_3_affiliations_verbose: DS.attr({
+  epp_oth_affiliations_verbose: DS.attr({
     label: 'provider.fields.affiliation_names',
   }),
-  epp_oth_4_networks: DS.hasMany('network', {
-    label: 'provider.fields.epp_oth_4_networks',
-    hint: 'provider.hints.epp_oth_4_networks',
+  epp_oth_networks: DS.hasMany('network', {
+    label: 'provider.fields.epp_oth_networks',
+    hint: 'provider.hints.epp_oth_networks',
   }),
-  epp_oth_4_networks_verbose: DS.attr({
+  epp_oth_networks_verbose: DS.attr({
     label: 'provider.fields.network_names',
   }),
-  epp_oth_5_structure_type: DS.hasMany('structure', {
-    label: 'provider.fields.epp_oth_5_structure_type',
-    hint: 'provider.hints.epp_oth_5_structure_type',
+  epp_oth_structure_type: DS.hasMany('structure', {
+    label: 'provider.fields.epp_oth_structure_type',
+    hint: 'provider.hints.epp_oth_structure_type',
   }),
-  epp_oth_5_structure_type_verbose: DS.attr({
+  epp_oth_structure_type_verbose: DS.attr({
     label: 'provider.fields.structure_names',
   }),
-  epp_oth_6_esfri_domain: DS.hasMany('esfridomain', {
-    label: 'provider.fields.epp_oth_6_esfri_domain',
-    hint: 'provider.hints.epp_oth_6_esfri_domain',
+  epp_oth_esfri_domain: DS.hasMany('esfridomain', {
+    label: 'provider.fields.epp_oth_esfri_domain',
+    hint: 'provider.hints.epp_oth_esfri_domain',
   }),
-  epp_oth_6_esfri_domain_verbose: DS.attr({
+  epp_oth_esfri_domain_verbose: DS.attr({
     label: 'provider.fields.esfridomain_names',
   }),
-  epp_oth_7_esfri_type: DS.belongsTo('esfritype', {
+  epp_oth_esfri_type: DS.belongsTo('esfritype', {
     autocomplete: true,
     type: 'select',
-    label: 'provider.fields.epp_oth_7_esfri_type',
-    hint: 'provider.hints.epp_oth_7_esfri_type',
+    label: 'provider.fields.epp_oth_esfri_type',
+    hint: 'provider.hints.epp_oth_esfri_type',
     inverse: null,
     formAttrs: {
       optionLabelAttr: 'name',
     },
   }),
-  epp_oth_8_meril_scientific_domain: DS.hasMany('merildomain', {
-    label: 'provider.fields.epp_oth_8_meril_scientific_domain',
-    hint: 'provider.hints.epp_oth_8_meril_scientific_domain',
+  epp_oth_meril_scientific_domain: DS.hasMany('merildomain', {
+    label: 'provider.fields.epp_oth_meril_scientific_domain',
+    hint: 'provider.hints.epp_oth_meril_scientific_domain',
   }),
-  epp_oth_8_meril_scientific_domain_verbose: DS.attr({
+  epp_oth_meril_scientific_domain_verbose: DS.attr({
     label: 'provider.fields.merildomain_names',
   }),
   // TODO: Filter meril subdomain's ManyArray results according to domain selections
-  epp_oth_9_meril_scientific_subdomain: DS.hasMany('merilsubdomain', {
-    label: 'provider.fields.epp_oth_9_meril_scientific_subdomain',
-    hint: 'provider.hints.epp_oth_9_meril_scientific_subdomain',
+  epp_oth_meril_scientific_subdomain: DS.hasMany('merilsubdomain', {
+    label: 'provider.fields.epp_oth_meril_scientific_subdomain',
+    hint: 'provider.hints.epp_oth_meril_scientific_subdomain',
   }),
-  epp_oth_9_meril_scientific_subdomain_verbose: DS.attr({
+  epp_oth_meril_scientific_subdomain_verbose: DS.attr({
     label: 'provider.fields.merilsubdomain_names',
   }),
-  epp_oth_10_areas_of_activity: DS.hasMany('activity', {
-    label: 'provider.fields.epp_oth_10_areas_of_activity',
-    hint: 'provider.hints.epp_oth_10_areas_of_activity',
+  epp_oth_areas_of_activity: DS.hasMany('activity', {
+    label: 'provider.fields.epp_oth_areas_of_activity',
+    hint: 'provider.hints.epp_oth_areas_of_activity',
   }),
-  epp_oth_10_areas_of_activity_verbose: DS.attr({
+  epp_oth_areas_of_activity_verbose: DS.attr({
     label: 'provider.fields.activity_names',
   }),
-  epp_oth_11_societal_grand_challenges: DS.hasMany('challenge', {
-    label: 'provider.fields.epp_oth_11_societal_grand_challenges',
-    hint: 'provider.hints.epp_oth_11_societal_grand_challenges',
+  epp_oth_societal_grand_challenges: DS.hasMany('challenge', {
+    label: 'provider.fields.epp_oth_societal_grand_challenges',
+    hint: 'provider.hints.epp_oth_societal_grand_challenges',
   }),
-  epp_oth_11_societal_grand_challenges_verbose: DS.attr({
+  epp_oth_societal_grand_challenges_verbose: DS.attr({
     label: 'provider.fields.challenge_names',
   }),
-  epp_oth_12_national_roadmaps: DS.attr({
-    label: 'provider.fields.epp_oth_12_national_roadmaps',
-    hint: 'provider.hints.epp_oth_12_national_roadmaps',
+  epp_oth_national_roadmaps: DS.attr({
+    label: 'provider.fields.epp_oth_national_roadmaps',
+    hint: 'provider.hints.epp_oth_national_roadmaps',
   }),
 
   eosc_id: DS.attr(),
@@ -272,16 +272,16 @@ export default DS.Model.extend({
   __api__: {
     serialize: function(hash, _) {
       // do not send readonly keys to backend
-      delete hash['epp_oth_3_affiliations_verbose'];
-      delete hash['epp_oth_4_networks_verbose'];
-      delete hash['epp_oth_5_structure_type_verbose'];
-      delete hash['epp_oth_6_esfri_domain_verbose'];
-      delete hash['epp_oth_10_areas_of_activity_verbose'];
-      delete hash['epp_oth_11_societal_grand_challenges_verbose'];
+      delete hash['epp_oth_affiliations_verbose'];
+      delete hash['epp_oth_networks_verbose'];
+      delete hash['epp_oth_structure_type_verbose'];
+      delete hash['epp_oth_esfri_domain_verbose'];
+      delete hash['epp_oth_areas_of_activity_verbose'];
+      delete hash['epp_oth_societal_grand_challenges_verbose'];
       delete hash['epp_cli_1_scientific_domain_verbose'];
       delete hash['epp_cli_2_scientific_subdomain_verbose'];
-      delete hash['epp_oth_8_meril_scientific_domain_verbose'];
-      delete hash['epp_oth_9_meril_scientific_subdomain_verbose'];
+      delete hash['epp_oth_meril_scientific_domain_verbose'];
+      delete hash['epp_oth_meril_scientific_subdomain_verbose'];
       return hash;
     },
   },

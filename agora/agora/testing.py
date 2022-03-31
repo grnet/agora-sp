@@ -120,11 +120,11 @@ RESOURCES_CRUD = {
     'providers': {
         'url': '/api/v2/providers/',
         'create_data': {
-            'epp_bai_0_id': 'id',
-            'epp_bai_1_name': 'epp_name',
-            'epp_bai_2_abbreviation': 'epp_abb',
-            'epp_bai_3_website': 'epp_website',
-            'epp_bai_4_legal_entity': False,
+            'epp_bai_id': 'id',
+            'epp_bai_name': 'epp_name',
+            'epp_bai_abbreviation': 'epp_abb',
+            'epp_bai_website': 'epp_website',
+            'epp_bai_legal_entity': False,
             'epp_loi_1_street_name_and_number': 'Kings Cross 7',
             'epp_loi_2_postal_code': '938393',
             'epp_loi_3_city': 'London',
@@ -137,11 +137,11 @@ RESOURCES_CRUD = {
             'epp_mti_2_certifications': 'ISO-27001'
         },
         'edit_data': {
-            'epp_bai_0_id': 'id',
-            'epp_bai_1_name': 'epp_name',
-            'epp_bai_2_abbreviation': 'epp_abb',
-            'epp_bai_3_website': 'epp_website',
-            'epp_bai_4_legal_entity': False,
+            'epp_bai_id': 'id',
+            'epp_bai_name': 'epp_name',
+            'epp_bai_abbreviation': 'epp_abb',
+            'epp_bai_website': 'epp_website',
+            'epp_bai_legal_entity': False,
             'epp_loi_1_street_name_and_number': 'Kings Cross 17',
             'epp_loi_2_postal_code': '538393',
             'epp_loi_3_city': 'London',

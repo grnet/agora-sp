@@ -69,7 +69,7 @@ function Resource(props) {
         {logo}
         <h2 style={{color:config.colorA}} className="title mt-3">{data.erp_bai_1_name}</h2>
         <h4>{data.erp_mri_2_tagline}</h4>
-        <TagItems items={data.erp_bai_3_providers_public} valueOfKey="epp_bai_1_name" outline color="black"/>
+        <TagItems items={data.erp_bai_3_providers_public} valueOfKey="epp_bai_name" outline color="black"/>
       </div>
       <hr></hr>
       <div className="container-fluid">

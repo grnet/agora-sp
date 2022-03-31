@@ -29,7 +29,7 @@ export default DS.Model.extend({
     hint: 'contact_information.hints.organisation',
     inverse: null,
     formAttrs: {
-      optionLabelAttr: 'epp_bai_1_name',
+      optionLabelAttr: 'epp_bai_name',
     },
   }),
   organisation_id: DS.attr(),
@@ -40,10 +40,10 @@ export default DS.Model.extend({
     return `${first_name} ${last_name}`;
   }),
 
-  displayInfo: Ember.computed('full_name', 'organisation.epp_bai_1_name', function() {
+  displayInfo: Ember.computed('full_name', 'organisation.epp_bai_name', function() {
 
     const full_name = this.get('full_name');
-    const org = this.get('organisation.epp_bai_1_name');
+    const org = this.get('organisation.epp_bai_name');
 
     return `${full_name} (${org})`;
   }),

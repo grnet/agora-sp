@@ -61,6 +61,7 @@ Below is the list of fields with small descriptions of the fields. The required 
 | EPP.BAI.3 - Website						|	Webpage with information about the Provider.												|
 | EPP.BAI.4 - Legal Entity					|																								|
 | EPP.BAI.5 - Legal Status					|	Legal status of the Provider. The legal status is usually noted in the registration act/statutes. For independent legal entities (1) - legal status of the Provider. For embedded providers (2) - legal status of the hosting legal entity. It is also possible to select Not a legal entity.	|
+| EPP.BAI.6 - Hosting Legal Entity			|	Name of the organisation/institution legally hosting (housing) the provider/research infrastructure or its coordinating centre. A distinction is made between: (1) research infrastructures that are self-standing and have a defined and distinct legal entity, (2) research infrastructures that are embedded into another institution which is a legal entity (such as a university, a research organisation, etc.). If (1) - name of the research infrastructure, If (2) - name of the hosting organisation.	|
 |**Classification Information**											|																								|
 | EPP.CLI.1 - Scientific Domain	(**required**)				|	A named group of providers that offer access to the same type of resource or capabilities.	|
 | EPP.CLI.2 - Scientific Subdomain (**required**)				|	A named group of providers that offer access to the same type of resource or capabilities, within the defined domain.	|
@@ -79,7 +80,6 @@ Below is the list of fields with small descriptions of the fields. The required 
 | EPP.MTI.2 - Certifications				|	List of certifications obtained for the Provider (including the certification body and any certificate number).	|
 | Main Contact/Resource Owner				|																								|
 | Public Contact							|																								|
-| EPP.OTH.1 - Hosting Legal Entity			|	Name of the organisation/institution legally hosting (housing) the provider/research infrastructure or its coordinating centre. A distinction is made between: (1) research infrastructures that are self-standing and have a defined and distinct legal entity, (2) research infrastructures that are embedded into another institution which is a legal entity (such as a university, a research organisation, etc.). If (1) - name of the research infrastructure, If (2) - name of the hosting organisation.	|
 | EPP.OTH.2 - Participating Countries		|	Providers/Research Infrastructures that are funded by several countries should list here all supporting countries (including the Coordinating country).			|
 | EPP.OTH.3 - Affiliations					|																								|
 | EPP.OTH.4 - Networks						|	Select the networks the Provider is participating in.										|
