@@ -246,7 +246,7 @@ class CreateProvider(Providers):
         @return: True if all goes well otherwise False.
         """
         # *.OTH.1 - Hosting Legal Entity
-        input_field(self.driver, self.fields_prefix + "oth_1_hosting_legal_entity", "Something")
+        suggestion_input_field(self.driver, self.fields_prefix + "oth_1_hosting_legal_entity", "Other")
         # *.OTH.2 - Participating Countries
         suggestion_input_field(self.driver, self.fields_prefix + "oth_2_participating_countries", "Greece")
         # *.OTH.3 - Affiliations
