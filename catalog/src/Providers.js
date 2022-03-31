@@ -50,11 +50,11 @@ function Providers() {
       for (let item of result.data) {
         let terms = [];
         let tags = [];
-        if ("epp_bai_1_name" in item && item.epp_bai_1_name != null) {
-          terms.push(item.epp_bai_1_name.toLowerCase());
+        if ("epp_bai_name" in item && item.epp_bai_name != null) {
+          terms.push(item.epp_bai_name.toLowerCase());
         }
-        if ("epp_bai_2_abbreviation" in item && item.epp_bai_2_abbreviation != null) {
-          terms.push(item.epp_bai_2_abbreviation.toLowerCase());
+        if ("epp_bai_abbreviation" in item && item.epp_bai_abbreviation != null) {
+          terms.push(item.epp_bai_abbreviation.toLowerCase());
         }
         if ("epp_cli_3_tags" in item && item.epp_cli_3_tags != null) {
           tags = item.epp_cli_3_tags.split(",").map((item) => item.trim());
@@ -148,9 +148,9 @@ function Providers() {
           <ProviderItem
             key={item.id}
             id={item.id}
-            title={item.epp_bai_2_abbreviation}
+            title={item.epp_bai_abbreviation}
             img={item.epp_mri_2_logo}
-            desc={item.epp_bai_1_name}
+            desc={item.epp_bai_name}
             tags={item.tags}
           />)}
       </div>

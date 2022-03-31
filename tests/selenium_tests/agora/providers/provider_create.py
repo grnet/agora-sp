@@ -29,6 +29,7 @@ class CreateProvider(Providers):
             - *.BAI.3 - Website
             - *.BAI.4 - Legal Entity
             - *.BAI.5 - Legal Status
+            - *.BAI.6 - Hosting Legal Entity
 
             Classification Information
             - *.CLI.1 - Scientific Domain
@@ -56,18 +57,17 @@ class CreateProvider(Providers):
             Public Contact
 
             Other Information
-            - *.OTH.1 - Hosting Legal Entity
-            - *.OTH.2 - Participating Countries
-            - *.OTH.3 - Affiliations
-            - *.OTH.4 - Networks
-            - *.OTH.5 - Structure Type
-            - *.OTH.6 - ESFRI Domain
-            - *.OTH.7 - ESFRI Type
-            - *.OTH.8 - MERIL Scientific Domain
-            - *.OTH.9 - MERIL Scientific Subdomain
-            - *.OTH.10 - Areas of activity
-            - *.OTH.11 - Societal Grand challenges
-            - *.OTH.12 - National Roadmaps
+            - *.OTH.1 - Participating Countries
+            - *.OTH.2 - Affiliations
+            - *.OTH.3 - Networks
+            - *.OTH.4 - Structure Type
+            - *.OTH.5 - ESFRI Domain
+            - *.OTH.6 - ESFRI Type
+            - *.OTH.7 - MERIL Scientific Domain
+            - *.OTH.8 - MERIL Scientific Subdomain
+            - *.OTH.9 - Areas of activity
+            - *.OTH.10 - Societal Grand challenges
+            - *.OTH.11 - National Roadmaps
         * Check submission form with only filling in the required form fields.
         * Check submission form with filling in all the form fields.
         * TODO : If the invalid messages improve, it should be better handled here as well.

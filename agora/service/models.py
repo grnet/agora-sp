@@ -304,7 +304,7 @@ class Resource(models.Model):
 
     @property
     def erp_bai_3_providers_verbose(self):
-        return ", ".join(o.epp_bai_1_name for o in self.erp_bai_3_providers.all())
+        return ", ".join(o.epp_bai_name for o in self.erp_bai_3_providers.all())
 
     @property
     def required_resources_ids(self):

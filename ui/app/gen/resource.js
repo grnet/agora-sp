@@ -138,7 +138,7 @@ export default AgoraGen.extend({
             modelName:'provider',
             label: 'resource.table.erp_bai_2_service_organisation',
             type: 'model',
-            displayAttr: 'epp_bai_1_name',
+            displayAttr: 'epp_bai_name',
           }),
           field('erp_mti_1_technology_readiness_level', {
             modelName:'trl',
