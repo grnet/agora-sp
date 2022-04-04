@@ -174,17 +174,17 @@ class Organisation(models.Model):
     epp_bai_hosting_legal_entity = models.CharField(max_length=80, default=None, blank=True, null=True)
 
     # Classification section
-    epp_cli_1_scientific_domain = models.ManyToManyField(
+    epp_cli_scientific_domain = models.ManyToManyField(
         Domain,
         blank=True,
         related_name='domain_providers')
 
-    epp_cli_2_scientific_subdomain = models.ManyToManyField(
+    epp_cli_scientific_subdomain = models.ManyToManyField(
         Subdomain,
         blank=True,
         related_name='subdomain_providers')
 
-    epp_cli_3_tags = models.TextField(default=None, blank=True, null=True)
+    epp_cli_tags = models.TextField(default=None, blank=True, null=True)
 
 
     # Location section
@@ -301,12 +301,12 @@ class Organisation(models.Model):
         return ", ".join(o.name for o in self.epp_oth_societal_grand_challenges.all())
 
     @property
-    def epp_cli_1_scientific_domain_verbose(self):
-        return ", ".join(o.name for o in self.epp_cli_1_scientific_domain.all())
+    def epp_cli_scientific_domain_verbose(self):
+        return ", ".join(o.name for o in self.epp_cli_scientific_domain.all())
 
     @property
-    def epp_cli_2_scientific_subdomain_verbose(self):
-        return ", ".join(o.name for o in self.epp_cli_2_scientific_subdomain.all())
+    def epp_cli_scientific_subdomain_verbose(self):
+        return ", ".join(o.name for o in self.epp_cli_scientific_subdomain.all())
 
     @property
     def epp_oth_meril_scientific_domain_verbose(self):

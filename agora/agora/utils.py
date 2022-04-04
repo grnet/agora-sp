@@ -505,9 +505,9 @@ def create_eosc_api_json_provider(instance, provider_email):
     resource_json['description'] = instance.epp_mri_1_description
     resource_json['logo'] = instance.epp_mri_2_logo
     resource_json['multimedia'] = [ instance.epp_mri_3_multimedia ]
-    resource_json['scientificDomains'] = get_list_sci_domains(instance.epp_cli_1_scientific_domain, instance.epp_cli_2_scientific_subdomain)
-    if instance.epp_cli_3_tags != None:
-        resource_json['tags'] = string_to_array(instance.epp_cli_3_tags)
+    resource_json['scientificDomains'] = get_list_sci_domains(instance.epp_cli_scientific_domain, instance.epp_cli_scientific_subdomain)
+    if instance.epp_cli_tags != None:
+        resource_json['tags'] = string_to_array(instance.epp_cli_tags)
     resource_json['location'] = get_location(instance)
     if instance.main_contact != None:
         resource_json['mainContact'] = get_contact(instance.main_contact)
