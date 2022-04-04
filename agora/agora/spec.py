@@ -1074,21 +1074,21 @@ ORGANISATIONS = {
             '.field.string': {},
             '.flag.nowrite': {}},
 
-        'epp_oth_structure_type': {
+        'epp_cli_structure_type': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
             'flat': True,
             'id_field': 'structure',
-            'model': 'accounts.models.Organisation.epp_oth_structure_type.through',
-            'source': 'epp_oth_structure_type',
+            'model': 'accounts.models.Organisation.epp_cli_structure_type.through',
+            'source': 'epp_cli_structure_type',
             'bound': 'organisation',
             'fields': {
                 'structure': {'.field.ref': {},
                                 'source': 'structure_id',
                                 'to': 'api/v2/structures'},
             }},
-        'epp_oth_structure_type_verbose': {
+        'epp_cli_structure_type_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
@@ -2125,13 +2125,13 @@ PUBLIC_ORGANISATIONS = {
                   '.flag.nowrite': {},
                   'source': 'network.abbreviation'},
             }},
-        'epp_oth_structure_type': {
+        'epp_cli_structure_type': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
             'id_field': 'id',
-            'model': 'accounts.models.Organisation.epp_oth_structure_type.through',
-            'source': 'epp_oth_structure_type',
+            'model': 'accounts.models.Organisation.epp_cli_structure_type.through',
+            'source': 'epp_cli_structure_type',
             'bound': 'organisation',
             'fields': {
                 'href': {'.field.ref': {},

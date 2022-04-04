@@ -223,7 +223,7 @@ class Organisation(models.Model):
         blank=True,
         related_name='networked_providers')
 
-    epp_oth_structure_type = models.ManyToManyField(
+    epp_cli_structure_type = models.ManyToManyField(
         Structure,
         blank=True,
         related_name='structured_providers')
@@ -285,8 +285,8 @@ class Organisation(models.Model):
         return ", ".join(o.name + " (" + o.abbreviation + ")" for o in self.epp_oth_networks.all())
 
     @property
-    def epp_oth_structure_type_verbose(self):
-        return ", ".join(o.name for o in self.epp_oth_structure_type.all())
+    def epp_cli_structure_type_verbose(self):
+        return ", ".join(o.name for o in self.epp_cli_structure_type.all())
 
     @property
     def epp_oth_esfri_domain_verbose(self):

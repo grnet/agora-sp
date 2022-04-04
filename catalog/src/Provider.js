@@ -126,7 +126,7 @@ function Provider(props) {
                 countries={data.countries}
                 affiliations={data.epp_oth_affiliations}
                 networks={data.pp_oth_4_networks}
-                structure={data.epp_oth_structure_type}
+                structure={data.epp_cli_structure_type}
                 activity={data.epp_oth_areas_of_activity}
                 societal={data.epp_oth_societal_grand_challenges}
                 roadmap={data.epp_loi_5_country_or_territory}

@@ -192,11 +192,11 @@ export default DS.Model.extend({
   epp_oth_networks_verbose: DS.attr({
     label: 'provider.fields.network_names',
   }),
-  epp_oth_structure_type: DS.hasMany('structure', {
-    label: 'provider.fields.epp_oth_structure_type',
-    hint: 'provider.hints.epp_oth_structure_type',
+  epp_cli_structure_type: DS.hasMany('structure', {
+    label: 'provider.fields.epp_cli_structure_type',
+    hint: 'provider.hints.epp_cli_structure_type',
   }),
-  epp_oth_structure_type_verbose: DS.attr({
+  epp_cli_structure_type_verbose: DS.attr({
     label: 'provider.fields.structure_names',
   }),
   epp_oth_esfri_domain: DS.hasMany('esfridomain', {
@@ -274,7 +274,7 @@ export default DS.Model.extend({
       // do not send readonly keys to backend
       delete hash['epp_oth_affiliations_verbose'];
       delete hash['epp_oth_networks_verbose'];
-      delete hash['epp_oth_structure_type_verbose'];
+      delete hash['epp_cli_structure_type_verbose'];
       delete hash['epp_oth_esfri_domain_verbose'];
       delete hash['epp_oth_areas_of_activity_verbose'];
       delete hash['epp_oth_societal_grand_challenges_verbose'];
