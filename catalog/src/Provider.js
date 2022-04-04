@@ -23,8 +23,8 @@ function Provider(props) {
       let tags = [];
       let countries = [];
       let rdata = result.data;
-      if ("epp_cli_3_tags" in rdata && rdata.epp_cli_3_tags != null) {
-        tags = rdata.epp_cli_3_tags.split(",").map((item) => item.trim());
+      if ("epp_cli_tags" in rdata && rdata.epp_cli_tags != null) {
+        tags = rdata.epp_cli_tags.split(",").map((item) => item.trim());
       }
 
       if (
@@ -143,8 +143,8 @@ function Provider(props) {
               title="Scientific"
               domLabel="Domain"
               subLabel="Subdomain"
-              domains={data.epp_cli_1_scientific_domain}
-              subdomains={data.epp_cli_2_scientific_subdomain}
+              domains={data.epp_cli_scientific_domain}
+              subdomains={data.epp_cli_scientific_subdomain}
             />
             <ScientificInfo
               icon="flask"
