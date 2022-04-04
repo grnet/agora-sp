@@ -98,8 +98,8 @@ export default AgoraGen.extend({
             validate.format({ type: 'url', allowBlank: true }),
             httpValidator,
           ],
-          epp_cli_1_scientific_domain: [validate.presence(true)],
-          epp_cli_2_scientific_subdomain: [validate.presence(true)],
+          epp_cli_scientific_domain: [validate.presence(true)],
+          epp_cli_scientific_subdomain: [validate.presence(true)],
         };
       }
     }),

@@ -75,15 +75,15 @@ const merilsubdomain = field('epp_oth_meril_scientific_subdomain', {
   },
 });
 
-const domain = field('epp_cli_1_scientific_domain', {
+const domain = field('epp_cli_scientific_domain', {
   displayComponent: 'gen-display-field-table',
   label: computed('role', function () {
     let role = get(this, 'role');
     let editor = role === 'provideradmin' || role === 'portfolioadmin';
     if (editor) {
-      return 'provider.fields.epp_cli_1_scientific_domain.required';
+      return 'provider.fields.epp_cli_scientific_domain.required';
     } else {
-      return 'provider.fields.epp_cli_1_scientific_domain';
+      return 'provider.fields.epp_cli_scientific_domain';
     }
   }),
   modelMeta: {
@@ -93,15 +93,15 @@ const domain = field('epp_cli_1_scientific_domain', {
   },
 });
 
-const subdomain = field('epp_cli_2_scientific_subdomain', {
+const subdomain = field('epp_cli_scientific_subdomain', {
   displayComponent: 'gen-display-field-table',
   label: computed('role', function () {
     let role = get(this, 'role');
     let editor = role === 'provideradmin' || role === 'portfolioadmin';
     if (editor) {
-      return 'provider.fields.epp_cli_2_scientific_subdomain.required';
+      return 'provider.fields.epp_cli_scientific_subdomain.required';
     } else {
-      return 'provider.fields.epp_cli_2_scientific_subdomain';
+      return 'provider.fields.epp_cli_scientific_subdomain';
     }
   }),
   modelMeta: {
@@ -217,9 +217,9 @@ const DETAILS_CONTACT_PUBLIC_FIELDSET = {
 const DETAILS_CLASSIFICATION_FIELDSET = {
   label: 'provider.cards.classification',
   fields: [
-    'epp_cli_1_scientific_domain_verbose',
-    'epp_cli_2_scientific_subdomain_verbose',
-    'epp_cli_3_tags',
+    'epp_cli_scientific_domain_verbose',
+    'epp_cli_scientific_subdomain_verbose',
+    'epp_cli_tags',
   ],
   layout: {
     flex: [100, 100, 100],
@@ -228,7 +228,7 @@ const DETAILS_CLASSIFICATION_FIELDSET = {
 
 const CLASSIFICATION_FIELDSET = {
   label: 'provider.cards.classification',
-  fields: [domain, subdomain, 'epp_cli_3_tags'],
+  fields: [domain, subdomain, 'epp_cli_tags'],
   layout: {
     flex: [100, 100, 100],
   },
