@@ -92,6 +92,13 @@ export default DS.Model.extend({
     label: 'provider.fields.epp_cli_tags',
     hint: 'provider.hints.epp_cli_tags',
   }),
+  epp_cli_structure_type: DS.hasMany('structure', {
+    label: 'provider.fields.epp_cli_structure_type',
+    hint: 'provider.hints.epp_cli_structure_type',
+  }),
+  epp_cli_structure_type_verbose: DS.attr({
+    label: 'provider.fields.structure_names',
+  }),
   // location information
   epp_loi_1_street_name_and_number: DS.attr({
     label: 'provider.fields.epp_loi_1_street_name_and_number',
@@ -191,13 +198,6 @@ export default DS.Model.extend({
   }),
   epp_oth_networks_verbose: DS.attr({
     label: 'provider.fields.network_names',
-  }),
-  epp_cli_structure_type: DS.hasMany('structure', {
-    label: 'provider.fields.epp_cli_structure_type',
-    hint: 'provider.hints.epp_cli_structure_type',
-  }),
-  epp_cli_structure_type_verbose: DS.attr({
-    label: 'provider.fields.structure_names',
   }),
   epp_oth_esfri_domain: DS.hasMany('esfridomain', {
     label: 'provider.fields.epp_oth_esfri_domain',

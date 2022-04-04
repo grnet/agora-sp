@@ -186,6 +186,11 @@ class Organisation(models.Model):
 
     epp_cli_tags = models.TextField(default=None, blank=True, null=True)
 
+    epp_cli_structure_type = models.ManyToManyField(
+        Structure,
+        blank=True,
+        related_name='structured_providers')
+
 
     # Location section
     epp_loi_1_street_name_and_number = models.CharField(max_length=50, default=None, blank=True, null=True)
@@ -222,11 +227,6 @@ class Organisation(models.Model):
         Network,
         blank=True,
         related_name='networked_providers')
-
-    epp_cli_structure_type = models.ManyToManyField(
-        Structure,
-        blank=True,
-        related_name='structured_providers')
 
     epp_oth_esfri_domain = models.ManyToManyField(
         EsfriDomain,
@@ -277,16 +277,16 @@ class Organisation(models.Model):
     eosc_state = models.CharField(max_length=255, blank=True, null=True)
 
     @property
+    def epp_cli_structure_type_verbose(self):
+        return ", ".join(o.name for o in self.epp_cli_structure_type.all())
+
+    @property
     def epp_oth_affiliations_verbose(self):
         return ", ".join(o.name for o in self.epp_oth_affiliations.all())
 
     @property
     def epp_oth_networks_verbose(self):
         return ", ".join(o.name + " (" + o.abbreviation + ")" for o in self.epp_oth_networks.all())
-
-    @property
-    def epp_cli_structure_type_verbose(self):
-        return ", ".join(o.name for o in self.epp_cli_structure_type.all())
 
     @property
     def epp_oth_esfri_domain_verbose(self):
