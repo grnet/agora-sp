@@ -160,6 +160,7 @@ This is a sample of the results.
 [epp_cli_scientific_domain]            Found and filled   Success
 [epp_cli_scientific_subdomain]         Found and filled   Success
 [epp_cli_tags]                         Found and filled   Success
+[epp_cli_structure_type]               Found and filled   Success
 [epp_loi_1_street_name_and_number]       Found and filled   Success
 [epp_loi_2_postal_code]                  Found and filled   Success
 [epp_loi_3_city]                         Found and filled   Success
@@ -176,7 +177,6 @@ This is a sample of the results.
 [epp_oth_participating_countries]      Found and filled   Success
 [epp_oth_affiliations]                 Found and filled   Success
 [epp_oth_networks]                     Found and filled   Success
-[epp_cli_structure_type]               Found and filled   Success
 [epp_oth_esfri_domain]                 Found and filled   Success
 [epp_oth_esfri_type]                   Found and filled   Success
 [epp_oth_meril_scientific_domain]      Found and filled   Success

@@ -111,6 +111,15 @@ const subdomain = field('epp_cli_scientific_subdomain', {
   },
 });
 
+const structure = field('epp_cli_structure_type', {
+  displayComponent: 'gen-display-field-table',
+  modelMeta: {
+    row: {
+      fields: fields_eosc(['name', 'description', 'eosc_id']),
+    },
+  },
+});
+
 const affiliations = field('epp_oth_affiliations', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
@@ -125,15 +134,6 @@ const networks = field('epp_oth_networks', {
   modelMeta: {
     row: {
       fields: fields_eosc(['abbreviation', 'name', 'eosc_id']),
-    },
-  },
-});
-
-const structure = field('epp_cli_structure_type', {
-  displayComponent: 'gen-display-field-table',
-  modelMeta: {
-    row: {
-      fields: fields_eosc(['name', 'description', 'eosc_id']),
     },
   },
 });
@@ -220,17 +220,18 @@ const DETAILS_CLASSIFICATION_FIELDSET = {
     'epp_cli_scientific_domain_verbose',
     'epp_cli_scientific_subdomain_verbose',
     'epp_cli_tags',
+    'epp_cli_structure_type_verbose',
   ],
   layout: {
-    flex: [100, 100, 100],
+    flex: [100, 100, 100, 100],
   },
 };
 
 const CLASSIFICATION_FIELDSET = {
   label: 'provider.cards.classification',
-  fields: [domain, subdomain, 'epp_cli_tags'],
+  fields: [domain, subdomain, 'epp_cli_tags', 'epp_cli_structure_type'],
   layout: {
-    flex: [100, 100, 100],
+    flex: [100, 100, 100, 100],
   },
 };
 
@@ -240,7 +241,6 @@ const DETAILS_OTHER_FIELDSET = {
     'epp_oth_participating_countries',
     'epp_oth_affiliations_verbose',
     'epp_oth_networks_verbose',
-    'epp_cli_structure_type_verbose',
     'epp_oth_esfri_domain_verbose',
     field('epp_oth_esfri_type.name', {
       label: 'provider.fields.epp_oth_esfri_type',
@@ -252,7 +252,7 @@ const DETAILS_OTHER_FIELDSET = {
     'epp_oth_national_roadmaps',
   ],
   layout: {
-    flex: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
+    flex: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
   },
 };
 
