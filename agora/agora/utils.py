@@ -508,6 +508,8 @@ def create_eosc_api_json_provider(instance, provider_email):
     resource_json['scientificDomains'] = get_list_sci_domains(instance.epp_cli_scientific_domain, instance.epp_cli_scientific_subdomain)
     if instance.epp_cli_tags != None:
         resource_json['tags'] = string_to_array(instance.epp_cli_tags)
+    if instance.epp_cli_structure_type != None:
+       resource_json['structureTypes'] = [ check_eosc_id(o.eosc_id, 'provider_structure_type-other') for o in instance.epp_cli_structure_type.all()]
     resource_json['location'] = get_location(instance)
     if instance.main_contact != None:
         resource_json['mainContact'] = get_contact(instance.main_contact)
@@ -528,8 +530,6 @@ def create_eosc_api_json_provider(instance, provider_email):
         resource_json['affiliations'] = [ o for o in instance.epp_oth_affiliations_verbose.split(",")]
     if instance.epp_oth_networks != None:
         resource_json['networks'] = [ check_eosc_id(o.eosc_id, 'provider_network-other') for o in instance.epp_oth_networks.all()]
-    if instance.epp_cli_structure_type != None:
-       resource_json['structureTypes'] = [ check_eosc_id(o.eosc_id, 'provider_structure_type-other') for o in instance.epp_cli_structure_type.all()]
     if instance.epp_oth_esfri_domain != None:
        resource_json['esfriDomains'] = [ check_eosc_id(o.eosc_id, 'provider_esfri_domain-other') for o in instance.epp_oth_esfri_domain.all()]
     if instance.epp_oth_esfri_type != None:

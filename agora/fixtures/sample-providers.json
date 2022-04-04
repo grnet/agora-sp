@@ -11,6 +11,9 @@
         "epp_bai_legal_entity": true,
         "epp_bai_legal_status": "27cebd5b-0087-43d9-899b-1a6a5b0a341a",
         "epp_cli_tags": "grnet, ",
+        "epp_cli_structure_type": [
+            "323c40f3-350e-479e-92e6-450cd0afe626"
+        ],
         "epp_loi_1_street_name_and_number": "Kifisias Ave 7",
         "epp_loi_2_postal_code": "11523",
         "epp_loi_3_city": "Athens",
@@ -45,9 +48,6 @@
         ],
         "epp_oth_networks": [
             "953eb9ad-d67d-4d7d-9e01-cfa9db1968dd"
-        ],
-        "epp_cli_structure_type": [
-            "323c40f3-350e-479e-92e6-450cd0afe626"
         ],
         "epp_oth_esfri_domain": [],
         "epp_oth_meril_scientific_domain": [],

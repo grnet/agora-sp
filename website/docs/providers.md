@@ -66,6 +66,7 @@ Below is the list of fields with small descriptions of the fields. The required 
 | EPP.CLI.1 - Scientific Domain	(**required**)				|	A named group of providers that offer access to the same type of resource or capabilities.	|
 | EPP.CLI.2 - Scientific Subdomain (**required**)				|	A named group of providers that offer access to the same type of resource or capabilities, within the defined domain.	|
 | EPP.CLI.3 - Tags							|	Keywords associated to the Provider to simplify search by relevant keywords.				|
+| EPP.CLI.4 - Structure Type				|	Defines the Provider structure type (single-sited, distributed, mobile, virtual, etc.)		|
 | **Location information**												|																								|
 | EPP.LOI.1 - Street Name and Number (**required**)			|	Street and Number of incorporation or Physical location of the Provider or its coordinating centre in the case of distributed, virtual, and mobile providers.	|
 | EPP.LOI.2 - Postal Code (**required**)						|	Postal code of incorporation or Physical location of the Provider or its coordinating centre in the case of distributed, virtual, and mobile providers.	|
@@ -80,17 +81,16 @@ Below is the list of fields with small descriptions of the fields. The required 
 | EPP.MTI.2 - Certifications				|	List of certifications obtained for the Provider (including the certification body and any certificate number).	|
 | Main Contact/Resource Owner				|																								|
 | Public Contact							|																								|
-| EPP.OTH.2 - Participating Countries		|	Providers/Research Infrastructures that are funded by several countries should list here all supporting countries (including the Coordinating country).			|
-| EPP.OTH.3 - Affiliations					|																								|
-| EPP.OTH.4 - Networks						|	Select the networks the Provider is participating in.										|
-| EPP.OTH.5 - Structure Type				|	Defines the Provider structure type (single-sited, distributed, mobile, virtual, etc.)		|
-| EPP.OTH.6 - ESFRI Domain					|	ESFRI domain classification.																|
-| EPP.OTH.7 - ESFRI Type					|	If the research infrastructure is (part of) an ESFRI project indicate how the RI participates: a) is a node of an ESFRI project, b) is an ESFRI project, c) is an ESFRI landmark, d) is not an ESFRI project or landmark.	|
-| EPP.OTH.8 - MERIL Scientific Domain		|																								|
-| EPP.OTH.9 - MERIL Scientific Subdomain	|																								|
-| EPP.OTH.10 - Areas of activity			|	Basic research, Applied research or Technological development								|
-| EPP.OTH.11 - Societal Grand challenges	|	Provider’s participation in the grand societal challenges as defined by the European Commission	|
-| EPP.OTH.12 - National Roadmaps			|	Provider being part of a national roadmap for research infrastructures						|
+| EPP.OTH.1 - Participating Countries		|	Providers/Research Infrastructures that are funded by several countries should list here all supporting countries (including the Coordinating country).			|
+| EPP.OTH.2 - Affiliations					|																								|
+| EPP.OTH.3 - Networks						|	Select the networks the Provider is participating in.										|
+| EPP.OTH.4 - ESFRI Domain					|	ESFRI domain classification.																|
+| EPP.OTH.5 - ESFRI Type					|	If the research infrastructure is (part of) an ESFRI project indicate how the RI participates: a) is a node of an ESFRI project, b) is an ESFRI project, c) is an ESFRI landmark, d) is not an ESFRI project or landmark.	|
+| EPP.OTH.6 - MERIL Scientific Domain		|																								|
+| EPP.OTH.7 - MERIL Scientific Subdomain	|																								|
+| EPP.OTH.8 - Areas of activity			|	Basic research, Applied research or Technological development								|
+| EPP.OTH.9 - Societal Grand challenges	|	Provider’s participation in the grand societal challenges as defined by the European Commission	|
+| EPP.OTH.10 - National Roadmaps			|	Provider being part of a national roadmap for research infrastructures						|
 
 
 ## Edit a Provider

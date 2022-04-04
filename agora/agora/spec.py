@@ -924,6 +924,23 @@ ORGANISATIONS = {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
+        'epp_cli_structure_type': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'structure',
+            'model': 'accounts.models.Organisation.epp_cli_structure_type.through',
+            'source': 'epp_cli_structure_type',
+            'bound': 'organisation',
+            'fields': {
+                'structure': {'.field.ref': {},
+                                'source': 'structure_id',
+                                'to': 'api/v2/structures'},
+            }},
+        'epp_cli_structure_type_verbose': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
         'epp_oth_affiliations_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
@@ -1071,24 +1088,6 @@ ORGANISATIONS = {
                                 'to': 'api/v2/networks'},
             }},
         'epp_oth_networks_verbose': {
-            '.field.string': {},
-            '.flag.nowrite': {}},
-
-        'epp_cli_structure_type': {
-            '.field.collection.django': {},
-            '.flag.nullable.default': {},
-            ':filter_compat': True,
-            'flat': True,
-            'id_field': 'structure',
-            'model': 'accounts.models.Organisation.epp_cli_structure_type.through',
-            'source': 'epp_cli_structure_type',
-            'bound': 'organisation',
-            'fields': {
-                'structure': {'.field.ref': {},
-                                'source': 'structure_id',
-                                'to': 'api/v2/structures'},
-            }},
-        'epp_cli_structure_type_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
@@ -2004,6 +2003,30 @@ PUBLIC_ORGANISATIONS = {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
+        'epp_cli_structure_type': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'id_field': 'id',
+            'model': 'accounts.models.Organisation.epp_cli_structure_type.through',
+            'source': 'epp_cli_structure_type',
+            'bound': 'organisation',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'structure_id',
+                                'to': 'api/v2/public/structures'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'structure_id'},
+                'description': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'structure.description'},
+                'name': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'structure.name'},
+            }},
         'epp_loi_1_street_name_and_number': {
           '.field.string': {},
           '.flag.nullable.default': {},
@@ -2124,30 +2147,6 @@ PUBLIC_ORGANISATIONS = {
                   '.field.string': {},
                   '.flag.nowrite': {},
                   'source': 'network.abbreviation'},
-            }},
-        'epp_cli_structure_type': {
-            '.field.collection.django': {},
-            '.flag.nullable.default': {},
-            ':filter_compat': True,
-            'id_field': 'id',
-            'model': 'accounts.models.Organisation.epp_cli_structure_type.through',
-            'source': 'epp_cli_structure_type',
-            'bound': 'organisation',
-            'fields': {
-                'href': {'.field.ref': {},
-                                'source': 'structure_id',
-                                'to': 'api/v2/public/structures'},
-                'id': {
-                  '.field.uuid': {},
-                  'source': 'structure_id'},
-                'description': {
-                  '.field.string': {},
-                  '.flag.nowrite': {},
-                  'source': 'structure.description'},
-                'name': {
-                  '.field.string': {},
-                  '.flag.nowrite': {},
-                  'source': 'structure.name'},
             }},
         'epp_oth_esfri_domain': {
             '.field.collection.django': {},
