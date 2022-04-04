@@ -129,7 +129,7 @@ const networks = field('epp_oth_networks', {
   },
 });
 
-const structure = field('epp_oth_structure_type', {
+const structure = field('epp_cli_structure_type', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -240,7 +240,7 @@ const DETAILS_OTHER_FIELDSET = {
     'epp_oth_participating_countries',
     'epp_oth_affiliations_verbose',
     'epp_oth_networks_verbose',
-    'epp_oth_structure_type_verbose',
+    'epp_cli_structure_type_verbose',
     'epp_oth_esfri_domain_verbose',
     field('epp_oth_esfri_type.name', {
       label: 'provider.fields.epp_oth_esfri_type',

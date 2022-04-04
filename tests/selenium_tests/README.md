@@ -176,7 +176,7 @@ This is a sample of the results.
 [epp_oth_participating_countries]      Found and filled   Success
 [epp_oth_affiliations]                 Found and filled   Success
 [epp_oth_networks]                     Found and filled   Success
-[epp_oth_structure_type]               Found and filled   Success
+[epp_cli_structure_type]               Found and filled   Success
 [epp_oth_esfri_domain]                 Found and filled   Success
 [epp_oth_esfri_type]                   Found and filled   Success
 [epp_oth_meril_scientific_domain]      Found and filled   Success

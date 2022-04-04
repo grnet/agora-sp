@@ -528,8 +528,8 @@ def create_eosc_api_json_provider(instance, provider_email):
         resource_json['affiliations'] = [ o for o in instance.epp_oth_affiliations_verbose.split(",")]
     if instance.epp_oth_networks != None:
         resource_json['networks'] = [ check_eosc_id(o.eosc_id, 'provider_network-other') for o in instance.epp_oth_networks.all()]
-    if instance.epp_oth_structure_type != None:
-       resource_json['structureTypes'] = [ check_eosc_id(o.eosc_id, 'provider_structure_type-other') for o in instance.epp_oth_structure_type.all()]
+    if instance.epp_cli_structure_type != None:
+       resource_json['structureTypes'] = [ check_eosc_id(o.eosc_id, 'provider_structure_type-other') for o in instance.epp_cli_structure_type.all()]
     if instance.epp_oth_esfri_domain != None:
        resource_json['esfriDomains'] = [ check_eosc_id(o.eosc_id, 'provider_esfri_domain-other') for o in instance.epp_oth_esfri_domain.all()]
     if instance.epp_oth_esfri_type != None:
