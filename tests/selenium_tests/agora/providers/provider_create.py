@@ -198,13 +198,13 @@ class CreateProvider(Providers):
         @return: True if all goes well otherwise False.
         """
         # *.MRI.1 - Description
-        textarea_field(self.driver, self.fields_prefix + "mri_1_description", "Selenium - Περιγραφή.")
+        textarea_field(self.driver, self.fields_prefix + "mri_description", "Selenium - Περιγραφή.")
         # *.MRI.2 - Logo
-        input_field(self.driver, self.fields_prefix + "mri_2_logo", "https://www.selenium.dev/images/selenium_logo_large.png")
+        input_field(self.driver, self.fields_prefix + "mri_logo", "https://www.selenium.dev/images/selenium_logo_large.png")
 
         if not required_only:
             # *.MRI.3 - Multimedia
-            input_field(self.driver, self.fields_prefix + "mri_3_multimedia", "https://github.com/SeleniumHQ/selenium")
+            input_field(self.driver, self.fields_prefix + "mri_multimedia", "https://github.com/SeleniumHQ/selenium")
 
     def maturity_information(self, required_only=False):
         """
