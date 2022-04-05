@@ -147,10 +147,10 @@ function promptResource(self, method) {
 }
 
 function promptProvider(self, method) {
-  const epp_bai_0_id = get(self, 'model.epp_bai_0_id');
-  const epp_bai_1_name = get(self, 'model.epp_bai_1_name');
-  const epp_bai_2_abbreviation = get(self, 'model.epp_bai_2_abbreviation');
-  const epp_bai_3_website = get(self, 'model.epp_bai_3_website');
+  const epp_bai_id = get(self, 'model.epp_bai_id');
+  const epp_bai_name = get(self, 'model.epp_bai_name');
+  const epp_bai_abbreviation = get(self, 'model.epp_bai_abbreviation');
+  const epp_bai_website = get(self, 'model.epp_bai_website');
   const epp_loi_1_street_name_and_number = get(
     self,
     'model.epp_loi_1_street_name_and_number'
@@ -172,17 +172,17 @@ function promptProvider(self, method) {
   let noControls = false;
   let message = `eosc.provider.${method}.message`;
 
-  if (!epp_bai_0_id) {
-    missing.push('epp_bai_0_id');
+  if (!epp_bai_id) {
+    missing.push('epp_bai_id');
   }
-  if (!epp_bai_1_name) {
-    missing.push('epp_bai_1_name');
+  if (!epp_bai_name) {
+    missing.push('epp_bai_name');
   }
-  if (!epp_bai_2_abbreviation) {
-    missing.push('epp_bai_2_abbreviation');
+  if (!epp_bai_abbreviation) {
+    missing.push('epp_bai_abbreviation');
   }
-  if (!epp_bai_3_website) {
-    missing.push('epp_bai_3_website');
+  if (!epp_bai_website) {
+    missing.push('epp_bai_website');
   }
   if (!epp_loi_1_street_name_and_number) {
     missing.push('epp_loi_1_street_name_and_number');
@@ -625,10 +625,10 @@ const postProviderEOSC = {
   ),
   confirm: true,
   prompt: computed(
-    'model.epp_bai_0_id',
-    'model.epp_bai_1_name',
-    'model.epp_bai_2_abbreviation',
-    'model.epp_bai_3_website',
+    'model.epp_bai_id',
+    'model.epp_bai_name',
+    'model.epp_bai_abbreviation',
+    'model.epp_bai_website',
     'model.epp_loi_1_street_name_and_number',
     'model.epp_loi_2_postal_code',
     'model.epp_loi_3_city',
@@ -714,10 +714,10 @@ const putProviderEOSC = {
   ),
   confirm: true,
   prompt: computed(
-    'model.epp_bai_0_id',
-    'model.epp_bai_1_name',
-    'model.epp_bai_2_abbreviation',
-    'model.epp_bai_3_website',
+    'model.epp_bai_id',
+    'model.epp_bai_name',
+    'model.epp_bai_abbreviation',
+    'model.epp_bai_website',
     'model.epp_loi_1_street_name_and_number',
     'model.epp_loi_2_postal_code',
     'model.epp_loi_3_city',

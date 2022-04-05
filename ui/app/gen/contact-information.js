@@ -64,7 +64,7 @@ export default AgoraGen.extend({
         'last_name',
         'email',
         'position',
-        field('organisation.epp_bai_1_name', {label: 'contact_information.fields.organisation'}),
+        field('organisation.epp_bai_name', {label: 'contact_information.fields.organisation'}),
       ]
     },
     menu: {
@@ -88,7 +88,7 @@ export default AgoraGen.extend({
             modelName:'provider',
             label: 'contact_information.fields.organisation',
             type: 'model',
-            displayAttr: 'epp_bai_1_name',
+            displayAttr: 'epp_bai_name',
           }),
         ],
       },
@@ -104,7 +104,7 @@ export default AgoraGen.extend({
         'email',
         'phone',
         'position',
-        field('organisation.epp_bai_1_name',{label:'contact_information.fields.organisation'}),
+        field('organisation.epp_bai_name',{label:'contact_information.fields.organisation'}),
       ],
       layout: {
         flex: [50, 50, 50, 50, 50, 50],

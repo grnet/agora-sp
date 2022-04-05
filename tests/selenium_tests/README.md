@@ -151,12 +151,12 @@ This is a sample of the results.
 [Delete form status]                     Form Saved         Success
 
 # Create a new provider.
-[epp_bai_0_id]                           Found and filled   Success
-[epp_bai_1_name]                         Found and filled   Success
-[epp_bai_2_abbreviation]                 Found and filled   Success
-[epp_bai_3_website]                      Found and filled   Success
-[epp_bai_4_legal_entity]                 Found and filled   Success
-[epp_bai_5_legal_status]                 Found and filled   Success
+[epp_bai_id]                           Found and filled   Success
+[epp_bai_name]                         Found and filled   Success
+[epp_bai_abbreviation]                 Found and filled   Success
+[epp_bai_website]                      Found and filled   Success
+[epp_bai_legal_entity]                 Found and filled   Success
+[epp_bai_legal_status]                 Found and filled   Success
 [epp_cli_1_scientific_domain]            Found and filled   Success
 [epp_cli_2_scientific_subdomain]         Found and filled   Success
 [epp_cli_3_tags]                         Found and filled   Success
@@ -172,18 +172,18 @@ This is a sample of the results.
 [epp_mti_2_certifications]               Found and filled   Success
 [main_contact]                           Found and filled   Success
 [public_contact]                         Found and filled   Success
-[epp_oth_1_hosting_legal_entity]         Found and filled   Success
-[epp_oth_2_participating_countries]      Found and filled   Success
-[epp_oth_3_affiliations]                 Found and filled   Success
-[epp_oth_4_networks]                     Found and filled   Success
-[epp_oth_5_structure_type]               Found and filled   Success
-[epp_oth_6_esfri_domain]                 Found and filled   Success
-[epp_oth_7_esfri_type]                   Found and filled   Success
-[epp_oth_8_meril_scientific_domain]      Found and filled   Success
-[epp_oth_9_meril_scientific_subdomain]   Found and filled   Success
-[epp_oth_10_areas_of_activity]           Found and filled   Success
-[epp_oth_11_societal_grand_challenges]   Found and filled   Success
-[epp_oth_12_national_roadmaps]           Found and filled   Success
+[epp_bai_hosting_legal_entity]         Found and filled   Success
+[epp_oth_participating_countries]      Found and filled   Success
+[epp_oth_affiliations]                 Found and filled   Success
+[epp_oth_networks]                     Found and filled   Success
+[epp_oth_structure_type]               Found and filled   Success
+[epp_oth_esfri_domain]                 Found and filled   Success
+[epp_oth_esfri_type]                   Found and filled   Success
+[epp_oth_meril_scientific_domain]      Found and filled   Success
+[epp_oth_meril_scientific_subdomain]   Found and filled   Success
+[epp_oth_areas_of_activity]           Found and filled   Success
+[epp_oth_societal_grand_challenges]   Found and filled   Success
+[epp_oth_national_roadmaps]           Found and filled   Success
 [Saving form status]                     Form Saved         Success
 [Search]                                 Found 1 record     Success
 [Delete form status]                     Form Saved         Success

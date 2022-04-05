@@ -496,12 +496,12 @@ def create_eosc_api_json_provider(instance, provider_email):
     resource_json = {}
     if instance.eosc_id != None:
         resource_json['id'] = instance.eosc_id
-    resource_json['name'] = instance.epp_bai_1_name
-    resource_json['abbreviation'] = instance.epp_bai_2_abbreviation
-    resource_json['website'] = instance.epp_bai_3_website
-    resource_json['legalEntity'] = instance.epp_bai_4_legal_entity
-    if instance.epp_bai_5_legal_status != None:
-        resource_json['legalStatus'] = check_eosc_id( instance.epp_bai_5_legal_status.eosc_id, 'provider_legal_status-other')
+    resource_json['name'] = instance.epp_bai_name
+    resource_json['abbreviation'] = instance.epp_bai_abbreviation
+    resource_json['website'] = instance.epp_bai_website
+    resource_json['legalEntity'] = instance.epp_bai_legal_entity
+    if instance.epp_bai_legal_status != None:
+        resource_json['legalStatus'] = check_eosc_id( instance.epp_bai_legal_status.eosc_id, 'provider_legal_status-other')
     resource_json['description'] = instance.epp_mri_1_description
     resource_json['logo'] = instance.epp_mri_2_logo
     resource_json['multimedia'] = [ instance.epp_mri_3_multimedia ]
@@ -517,30 +517,30 @@ def create_eosc_api_json_provider(instance, provider_email):
         resource_json['lifeCycleStatus'] = get_life_cycle_status(instance.epp_mti_1_life_cycle_status)
     if instance.epp_mti_2_certifications != None:
         resource_json['certifications'] = instance.epp_mti_2_certifications.split('\n')
-    if instance.epp_oth_1_hosting_legal_entity != None:
-        if instance.epp_oth_1_hosting_legal_entity == "Other":
+    if instance.epp_bai_hosting_legal_entity != None:
+        if instance.epp_bai_hosting_legal_entity == "Other":
             resource_json['hostingLegalEntity'] = None
         else:
-            resource_json['hostingLegalEntity'] = instance.epp_oth_1_hosting_legal_entity
-    if instance.epp_oth_2_participating_countries != None:
-        resource_json['participatingCountries'] = [ match_geolocation(o.strip()) for o in instance.epp_oth_2_participating_countries.split(",")]
-    if instance.epp_oth_3_affiliations_verbose != None:
-        resource_json['affiliations'] = [ o for o in instance.epp_oth_3_affiliations_verbose.split(",")]
-    if instance.epp_oth_4_networks != None:
-        resource_json['networks'] = [ check_eosc_id(o.eosc_id, 'provider_network-other') for o in instance.epp_oth_4_networks.all()]
-    if instance.epp_oth_5_structure_type != None:
-       resource_json['structureTypes'] = [ check_eosc_id(o.eosc_id, 'provider_structure_type-other') for o in instance.epp_oth_5_structure_type.all()]
-    if instance.epp_oth_6_esfri_domain != None:
-       resource_json['esfriDomains'] = [ check_eosc_id(o.eosc_id, 'provider_esfri_domain-other') for o in instance.epp_oth_6_esfri_domain.all()]
-    if instance.epp_oth_7_esfri_type != None:
-        resource_json['esfriType'] = check_eosc_id(instance.epp_oth_7_esfri_type.eosc_id, 'provider_esfri_type-other')
-    resource_json['merilScientificDomains'] = get_list_meril_domains(instance.epp_oth_8_meril_scientific_domain, instance.epp_oth_9_meril_scientific_subdomain)
-    if instance.epp_oth_10_areas_of_activity != None:
-       resource_json['areasOfActivity'] = [ check_eosc_id(o.eosc_id, 'provider_area_of_activity-other') for o in instance.epp_oth_10_areas_of_activity.all()]
-    if instance.epp_oth_11_societal_grand_challenges != None:
-       resource_json['societalGrandChallenges'] = [ check_eosc_id(o.eosc_id, 'provider_societal_grand_challenge-other') for o in instance.epp_oth_11_societal_grand_challenges.all()]
-    if instance.epp_oth_12_national_roadmaps != None:
-        resource_json['nationalRoadmaps'] = [ o for o in instance.epp_oth_12_national_roadmaps.split(",")]
+            resource_json['hostingLegalEntity'] = instance.epp_bai_hosting_legal_entity
+    if instance.epp_oth_participating_countries != None:
+        resource_json['participatingCountries'] = [ match_geolocation(o.strip()) for o in instance.epp_oth_participating_countries.split(",")]
+    if instance.epp_oth_affiliations_verbose != None:
+        resource_json['affiliations'] = [ o for o in instance.epp_oth_affiliations_verbose.split(",")]
+    if instance.epp_oth_networks != None:
+        resource_json['networks'] = [ check_eosc_id(o.eosc_id, 'provider_network-other') for o in instance.epp_oth_networks.all()]
+    if instance.epp_oth_structure_type != None:
+       resource_json['structureTypes'] = [ check_eosc_id(o.eosc_id, 'provider_structure_type-other') for o in instance.epp_oth_structure_type.all()]
+    if instance.epp_oth_esfri_domain != None:
+       resource_json['esfriDomains'] = [ check_eosc_id(o.eosc_id, 'provider_esfri_domain-other') for o in instance.epp_oth_esfri_domain.all()]
+    if instance.epp_oth_esfri_type != None:
+        resource_json['esfriType'] = check_eosc_id(instance.epp_oth_esfri_type.eosc_id, 'provider_esfri_type-other')
+    resource_json['merilScientificDomains'] = get_list_meril_domains(instance.epp_oth_meril_scientific_domain, instance.epp_oth_meril_scientific_subdomain)
+    if instance.epp_oth_areas_of_activity != None:
+       resource_json['areasOfActivity'] = [ check_eosc_id(o.eosc_id, 'provider_area_of_activity-other') for o in instance.epp_oth_areas_of_activity.all()]
+    if instance.epp_oth_societal_grand_challenges != None:
+       resource_json['societalGrandChallenges'] = [ check_eosc_id(o.eosc_id, 'provider_societal_grand_challenge-other') for o in instance.epp_oth_societal_grand_challenges.all()]
+    if instance.epp_oth_national_roadmaps != None:
+        resource_json['nationalRoadmaps'] = [ o for o in instance.epp_oth_national_roadmaps.split(",")]
     resource_json['users'] = admins
     return resource_json
 

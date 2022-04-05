@@ -47,7 +47,7 @@ const providers = field('erp_bai_3_service_providers', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
-      fields: ['epp_bai_1_name'],
+      fields: ['epp_bai_name'],
     },
   },
 });
@@ -104,7 +104,7 @@ const required_resources = field('required_resources', {
       fields: [
         'erp_bai_0_id',
         'erp_bai_1_name',
-        field('erp_bai_2_service_organisation.epp_bai_1_name', {
+        field('erp_bai_2_service_organisation.epp_bai_name', {
           label: 'resource.fields.erp_bai_2_service_organisation',
         }),
       ],
@@ -119,7 +119,7 @@ const related_resources = field('related_resources', {
       fields: [
         'erp_bai_0_id',
         'erp_bai_1_name',
-        field('erp_bai_2_service_organisation.epp_bai_1_name', {
+        field('erp_bai_2_service_organisation.epp_bai_name', {
           label: 'resource.fields.erp_bai_2_service_organisation',
         }),
       ],
@@ -156,7 +156,7 @@ const SORT_FIELDS = ['erp_bai_0_id', 'erp_bai_1_name', 'eosc_id'];
 const TABLE_FIELDS = fields_eosc([
   field('erp_bai_0_id', { label: 'resource.table.erp_bai_0_id' }),
   field('erp_bai_1_name', { label: 'resource.table.erp_bai_1_name' }),
-  field('erp_bai_2_service_organisation.epp_bai_1_name', {
+  field('erp_bai_2_service_organisation.epp_bai_name', {
     label: 'resource.table.erp_bai_2_service_organisation',
   }),
   field('erp_mti_1_technology_readiness_level.name', {
@@ -173,7 +173,7 @@ const DETAILS_BASIC_INFO_FIELDSET = {
     'erp_bai_0_id',
     'state',
     'erp_bai_1_name',
-    field('erp_bai_2_service_organisation.epp_bai_1_name', {
+    field('erp_bai_2_service_organisation.epp_bai_name', {
       label: 'resource.fields.erp_bai_2_service_organisation',
     }),
     'erp_bai_3_providers_verbose',
@@ -358,7 +358,7 @@ const DETAILS_CONTACT_MAIN_FIELDSET = {
     field('main_contact.email', { label: 'resource.fields.mc_email' }),
     field('main_contact.phone', { label: 'resource.fields.mc_phone' }),
     field('main_contact.position', { label: 'resource.fields.mc_position' }),
-    field('main_contact.organisation.epp_bai_1_name', {
+    field('main_contact.organisation.epp_bai_name', {
       label: 'resource.fields.mc_organisation',
     }),
   ],
@@ -379,7 +379,7 @@ const DETAILS_CONTACT_PUBLIC_FIELDSET = {
     field('public_contact.email', { label: 'resource.fields.pc_email' }),
     field('public_contact.phone', { label: 'resource.fields.pc_phone' }),
     field('public_contact.position', { label: 'resource.fields.pc_position' }),
-    field('public_contact.organisation.epp_bai_1_name', {
+    field('public_contact.organisation.epp_bai_name', {
       label: 'resource.fields.pc_organisation',
     }),
   ],

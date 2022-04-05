@@ -28,10 +28,10 @@ function Provider(props) {
       }
 
       if (
-        "epp_oth_2_participating_countries" in rdata &&
-        rdata.epp_oth_2_participating_countries != null
+        "epp_oth_participating_countries" in rdata &&
+        rdata.epp_oth_participating_countries != null
       ) {
-        countries = rdata.epp_oth_2_participating_countries
+        countries = rdata.epp_oth_participating_countries
           .split(",")
           .map((item) => item.trim());
       }
@@ -59,10 +59,10 @@ function Provider(props) {
       <div className="text-center">
         {logo}
         <h2 style={{ color: config.colorA }} className="title mt-3">
-          {data.epp_bai_2_abbreviation}
+          {data.epp_bai_abbreviation}
         </h2>
-        <h4>{data.epp_bai_1_name}</h4>
-        <TagItems items={data.epp_bai_5_legal_status ? [data.epp_bai_5_legal_status] : []} valueOfKey="name" outline color="black"/>
+        <h4>{data.epp_bai_name}</h4>
+        <TagItems items={data.epp_bai_legal_status ? [data.epp_bai_legal_status] : []} valueOfKey="name" outline color="black"/>
       </div>
       <hr></hr>
       <div className="container-fluid">
@@ -72,7 +72,7 @@ function Provider(props) {
               <div className="mb-2">
                 <ValueItem
                   icon="globe-americas"
-                  item={data.epp_bai_3_website}
+                  item={data.epp_bai_website}
                   label="Official Website"
                   link
                   strong
@@ -122,13 +122,13 @@ function Provider(props) {
               />
 
             <OtherInfo
-                hosting={data.epp_oth_1_hosting_legal_entity}
+                hosting={data.epp_bai_hosting_legal_entity}
                 countries={data.countries}
-                affiliations={data.epp_oth_3_affiliations}
+                affiliations={data.epp_oth_affiliations}
                 networks={data.pp_oth_4_networks}
-                structure={data.epp_oth_5_structure_type}
-                activity={data.epp_oth_10_areas_of_activity}
-                societal={data.epp_oth_11_societal_grand_challenges}
+                structure={data.epp_oth_structure_type}
+                activity={data.epp_oth_areas_of_activity}
+                societal={data.epp_oth_societal_grand_challenges}
                 roadmap={data.epp_loi_5_country_or_territory}
               />
             </div>
@@ -151,16 +151,16 @@ function Provider(props) {
               title="MERIL"
               domLabel="Domain"
               subLabel="Subdomain"
-              domains={data.epp_oth_8_meril_scientific_domain}
-              subdomains={data.epp_oth_9_meril_scientific_subdomain}
+              domains={data.epp_oth_meril_scientific_domain}
+              subdomains={data.epp_oth_meril_scientific_subdomain}
             />
             <ScientificInfo
               icon="microscope"
               title="ESFRI"
               domLabel="Domain"
               subLabel="Type"
-              domains={data.epp_oth_6_esfri_domain}
-              subdomains={data.epp_oth_7_esfri_type ? [data.epp_oth_7_esfri_type] : []}
+              domains={data.epp_oth_esfri_domain}
+              subdomains={data.epp_oth_esfri_type ? [data.epp_oth_esfri_type] : []}
             />
           </div>
         </div>
