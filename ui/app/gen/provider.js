@@ -65,7 +65,6 @@ export default AgoraGen.extend({
               return [validate.presence(true)]
             } else {
               return []
-
             }
           }),
         };
@@ -78,6 +77,14 @@ export default AgoraGen.extend({
             validate.format({ type: 'url', allowBlank: true }),
             httpValidator,
           ],
+          epp_bai_hosting_legal_entity: computed('model.changeset.epp_bai_legal_entity', function(){
+            let has_legal = get(this, 'model.changeset.epp_bai_legal_entity');
+            if (!has_legal) {
+              return [validate.presence(true)]
+            } else {
+              return []
+            }
+          }),
           epp_loi_1_street_name_and_number: [validate.presence(true)],
           epp_loi_2_postal_code: [validate.presence(true)],
           epp_loi_3_city: [validate.presence(true)],
