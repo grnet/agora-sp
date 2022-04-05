@@ -149,7 +149,7 @@ function Providers() {
             key={item.id}
             id={item.id}
             title={item.epp_bai_abbreviation}
-            img={item.epp_mri_2_logo}
+            img={item.epp_mri_logo}
             desc={item.epp_bai_name}
             tags={item.tags}
           />)}

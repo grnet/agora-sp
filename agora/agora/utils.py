@@ -502,9 +502,9 @@ def create_eosc_api_json_provider(instance, provider_email):
     resource_json['legalEntity'] = instance.epp_bai_legal_entity
     if instance.epp_bai_legal_status != None:
         resource_json['legalStatus'] = check_eosc_id( instance.epp_bai_legal_status.eosc_id, 'provider_legal_status-other')
-    resource_json['description'] = instance.epp_mri_1_description
-    resource_json['logo'] = instance.epp_mri_2_logo
-    resource_json['multimedia'] = [ instance.epp_mri_3_multimedia ]
+    resource_json['description'] = instance.epp_mri_description
+    resource_json['logo'] = instance.epp_mri_logo
+    resource_json['multimedia'] = [ instance.epp_mri_multimedia ]
     resource_json['scientificDomains'] = get_list_sci_domains(instance.epp_cli_1_scientific_domain, instance.epp_cli_2_scientific_subdomain)
     if instance.epp_cli_3_tags != None:
         resource_json['tags'] = string_to_array(instance.epp_cli_3_tags)

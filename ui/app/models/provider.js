@@ -124,17 +124,17 @@ export default DS.Model.extend({
     hint: 'provider.hints.epp_loi_5_country_or_territory',
   }),
   // marketing information
-  epp_mri_1_description: DS.attr({
-    label: 'provider.fields.epp_mri_1_description',
-    hint: 'provider.hints.epp_mri_1_description',
+  epp_mri_description: DS.attr({
+    label: 'provider.fields.epp_mri_description',
+    hint: 'provider.hints.epp_mri_description',
   }),
-  epp_mri_2_logo: DS.attr({
-    label: 'provider.fields.epp_mri_2_logo',
-    hint: 'provider.hints.epp_mri_2_logo',
+  epp_mri_logo: DS.attr({
+    label: 'provider.fields.epp_mri_logo',
+    hint: 'provider.hints.epp_mri_logo',
   }),
-  epp_mri_3_multimedia: DS.attr({
-    label: 'provider.fields.epp_mri_3_multimedia',
-    hint: 'provider.hints.epp_mri_3_multimedia',
+  epp_mri_multimedia: DS.attr({
+    label: 'provider.fields.epp_mri_multimedia',
+    hint: 'provider.hints.epp_mri_multimedia',
   }),
   // computed
   short_desc: computed('description', function() {

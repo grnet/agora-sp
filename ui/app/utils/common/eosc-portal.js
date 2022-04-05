@@ -161,8 +161,8 @@ function promptProvider(self, method) {
     self,
     'model.epp_loi_5_country_or_territory'
   );
-  const epp_mri_1_description = get(self, 'model.epp_mri_1_description');
-  const epp_mri_2_logo = get(self, 'model.epp_mri_2_logo');
+  const epp_mri_description = get(self, 'model.epp_mri_description');
+  const epp_mri_logo = get(self, 'model.epp_mri_logo');
   const main_contact = get(self, 'model.main_contact.id');
   const public_contact = get(self, 'model.public_contact.id');
 
@@ -196,11 +196,11 @@ function promptProvider(self, method) {
   if (!epp_loi_5_country_or_territory) {
     missing.push('epp_loi_5_country_or_territory');
   }
-  if (!epp_mri_1_description) {
-    missing.push('epp_mri_1_description');
+  if (!epp_mri_description) {
+    missing.push('epp_mri_description');
   }
-  if (!epp_mri_2_logo) {
-    missing.push('epp_mri_2_logo');
+  if (!epp_mri_logo) {
+    missing.push('epp_mri_logo');
   }
   if (!main_contact) {
     missing.push('main_contact');
@@ -633,8 +633,8 @@ const postProviderEOSC = {
     'model.epp_loi_2_postal_code',
     'model.epp_loi_3_city',
     'model.epp_loi_5_country_or_territory',
-    'model.epp_mri_1_description',
-    'model.epp_mri_2_logo',
+    'model.epp_mri_description',
+    'model.epp_mri_logo',
     'model.main_contact.id',
     'model.public_contact.id',
     function () {
@@ -722,8 +722,8 @@ const putProviderEOSC = {
     'model.epp_loi_2_postal_code',
     'model.epp_loi_3_city',
     'model.epp_loi_5_country_or_territory',
-    'model.epp_mri_1_description',
-    'model.epp_mri_2_logo',
+    'model.epp_mri_description',
+    'model.epp_mri_logo',
     'model.main_contact.id',
     'model.public_contact.id',
     function () {

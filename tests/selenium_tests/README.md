@@ -165,9 +165,9 @@ This is a sample of the results.
 [epp_loi_3_city]                         Found and filled   Success
 [epp_loi_5_country_or_territory]         Found and filled   Success
 [epp_loi_4_region]                       Found and filled   Success
-[epp_mri_1_description]                  Found and filled   Success
-[epp_mri_2_logo]                         Found and filled   Success
-[epp_mri_3_multimedia]                   Found and filled   Success
+[epp_mri_description]                  Found and filled   Success
+[epp_mri_logo]                         Found and filled   Success
+[epp_mri_multimedia]                   Found and filled   Success
 [epp_mti_1_life_cycle_status]            Found and filled   Success
 [epp_mti_2_certifications]               Found and filled   Success
 [main_contact]                           Found and filled   Success

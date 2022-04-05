@@ -46,9 +46,9 @@ function Provider(props) {
   }, [id]);
 
   let logo = null;
-  if (data.epp_mri_2_logo) {
+  if (data.epp_mri_logo) {
     logo = (
-      <img className="mw-75 biglogo" src={data.epp_mri_2_logo} alt="service logo" />
+      <img className="mw-75 biglogo" src={data.epp_mri_logo} alt="service logo" />
     );
   } else {
     logo = <FontAwesomeIcon icon="cloud" size="5x" style={{ color: "grey" }} />;
@@ -81,14 +81,14 @@ function Provider(props) {
 
                 <ValueItem
                   icon="photo-video"
-                  item={data.epp_mri_3_multimedia}
+                  item={data.epp_mri_multimedia}
                   label="Multimedia"
                   link
                   strong
                   inline
                 />
 
-              {data.epp_mri_1_description && (
+              {data.epp_mri_description && (
                 <button className="down" onClick={toggle}>
                   ▼ {!isOpen && <small>show description</small>}
                 </button>
@@ -96,7 +96,7 @@ function Provider(props) {
               </div>
 
               <Collapse isOpen={isOpen} >
-              <RichItem item={data.epp_mri_1_description} />
+              <RichItem item={data.epp_mri_description} />
               </Collapse>
               <hr />
 

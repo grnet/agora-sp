@@ -7,13 +7,13 @@ const DETAILS_MARKETING_FIELDSET = {
   label: 'provider.cards.marketing',
   text: 'provider.cards.marketing_hint',
   fields: [
-    field('epp_mri_1_description', {
+    field('epp_mri_description', {
       type: 'text',
       htmlSafe: true,
       formComponent: 'text-editor',
     }),
-    'epp_mri_2_logo',
-    'epp_mri_3_multimedia',
+    'epp_mri_logo',
+    'epp_mri_multimedia',
   ],
   layout: {
     flex: [100, 100, 100],
@@ -26,21 +26,21 @@ const MARKETING_FIELDSET = {
   fields: computed('role', function () {
     let role = get(this, 'role');
     let editor = role === 'provideradmin' || role === 'portfolioadmin';
-    let label_1 = 'provider.fields.epp_mri_1_description';
-    let label_2 = 'provider.fields.epp_mri_2_logo';
+    let label_1 = 'provider.fields.epp_mri_description';
+    let label_2 = 'provider.fields.epp_mri_logo';
     if (editor) {
-      label_1 = 'provider.fields.epp_mri_1_description.required';
-      label_2 = 'provider.fields.epp_mri_2_logo.required';
+      label_1 = 'provider.fields.epp_mri_description.required';
+      label_2 = 'provider.fields.epp_mri_logo.required';
     }
     return [
-      field('epp_mri_1_description', {
+      field('epp_mri_description', {
         type: 'text',
         label: label_1,
         htmlSafe: true,
         formComponent: 'text-editor',
       }),
-      field('epp_mri_2_logo', { label: label_2 }),
-      'epp_mri_3_multimedia',
+      field('epp_mri_logo', { label: label_2 }),
+      'epp_mri_multimedia',
     ];
   }),
   layout: {

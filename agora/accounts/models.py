@@ -195,9 +195,10 @@ class Organisation(models.Model):
     epp_loi_5_country_or_territory = models.CharField(max_length=50, default=None, blank=True, null=True)
 
     # Marketing section
-    epp_mri_1_description = RichTextUploadingField(max_length=1000, default=None, blank=True, null=True)
-    epp_mri_2_logo = models.TextField(default=None, blank=True, null=True)
-    epp_mri_3_multimedia = models.TextField(default=None, blank=True, null=True)
+    epp_mri_description = RichTextUploadingField(max_length=1000, default=None, blank=True, null=True)
+    epp_mri_logo = models.TextField(default=None, blank=True, null=True)
+    epp_mri_multimedia = models.TextField(default=None, blank=True, null=True)
+    epp_mri_multimedia_name = models.TextField(default=None, blank=True, null=True)
 
     # Contact Information
     main_contact = models.ForeignKey('owner.ContactInformation', blank=True, null=True, related_name="main_contact_provders")

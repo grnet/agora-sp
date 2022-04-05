@@ -947,15 +947,15 @@ ORGANISATIONS = {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_mri_1_description': {
+        'epp_mri_description': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_mri_2_logo': {
+        'epp_mri_logo': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_mri_3_multimedia': {
+        'epp_mri_multimedia': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
@@ -2025,15 +2025,15 @@ PUBLIC_ORGANISATIONS = {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_mri_1_description': {
+        'epp_mri_description': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_mri_2_logo': {
+        'epp_mri_logo': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_mri_3_multimedia': {
+        'epp_mri_multimedia': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
@@ -2792,7 +2792,7 @@ PUBLIC_ORGANISATIONS_LITE = {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_mri_2_logo': {
+        'epp_mri_logo': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
