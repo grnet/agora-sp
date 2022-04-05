@@ -56,8 +56,8 @@ function Providers() {
         if ("epp_bai_abbreviation" in item && item.epp_bai_abbreviation != null) {
           terms.push(item.epp_bai_abbreviation.toLowerCase());
         }
-        if ("epp_cli_3_tags" in item && item.epp_cli_3_tags != null) {
-          tags = item.epp_cli_3_tags.split(",").map((item) => item.trim());
+        if ("epp_cli_tags" in item && item.epp_cli_tags != null) {
+          tags = item.epp_cli_tags.split(",").map((item) => item.trim());
           terms = terms.concat(tags);
         }
         item["terms"] = terms;

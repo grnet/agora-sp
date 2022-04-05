@@ -174,17 +174,22 @@ class Organisation(models.Model):
     epp_bai_hosting_legal_entity = models.CharField(max_length=80, default=None, blank=True, null=True)
 
     # Classification section
-    epp_cli_1_scientific_domain = models.ManyToManyField(
+    epp_cli_scientific_domain = models.ManyToManyField(
         Domain,
         blank=True,
         related_name='domain_providers')
 
-    epp_cli_2_scientific_subdomain = models.ManyToManyField(
+    epp_cli_scientific_subdomain = models.ManyToManyField(
         Subdomain,
         blank=True,
         related_name='subdomain_providers')
 
-    epp_cli_3_tags = models.TextField(default=None, blank=True, null=True)
+    epp_cli_tags = models.TextField(default=None, blank=True, null=True)
+
+    epp_cli_structure_type = models.ManyToManyField(
+        Structure,
+        blank=True,
+        related_name='structured_providers')
 
 
     # Location section
@@ -222,11 +227,6 @@ class Organisation(models.Model):
         Network,
         blank=True,
         related_name='networked_providers')
-
-    epp_oth_structure_type = models.ManyToManyField(
-        Structure,
-        blank=True,
-        related_name='structured_providers')
 
     epp_oth_esfri_domain = models.ManyToManyField(
         EsfriDomain,
@@ -277,16 +277,16 @@ class Organisation(models.Model):
     eosc_state = models.CharField(max_length=255, blank=True, null=True)
 
     @property
+    def epp_cli_structure_type_verbose(self):
+        return ", ".join(o.name for o in self.epp_cli_structure_type.all())
+
+    @property
     def epp_oth_affiliations_verbose(self):
         return ", ".join(o.name for o in self.epp_oth_affiliations.all())
 
     @property
     def epp_oth_networks_verbose(self):
         return ", ".join(o.name + " (" + o.abbreviation + ")" for o in self.epp_oth_networks.all())
-
-    @property
-    def epp_oth_structure_type_verbose(self):
-        return ", ".join(o.name for o in self.epp_oth_structure_type.all())
 
     @property
     def epp_oth_esfri_domain_verbose(self):
@@ -301,12 +301,12 @@ class Organisation(models.Model):
         return ", ".join(o.name for o in self.epp_oth_societal_grand_challenges.all())
 
     @property
-    def epp_cli_1_scientific_domain_verbose(self):
-        return ", ".join(o.name for o in self.epp_cli_1_scientific_domain.all())
+    def epp_cli_scientific_domain_verbose(self):
+        return ", ".join(o.name for o in self.epp_cli_scientific_domain.all())
 
     @property
-    def epp_cli_2_scientific_subdomain_verbose(self):
-        return ", ".join(o.name for o in self.epp_cli_2_scientific_subdomain.all())
+    def epp_cli_scientific_subdomain_verbose(self):
+        return ", ".join(o.name for o in self.epp_cli_scientific_subdomain.all())
 
     @property
     def epp_oth_meril_scientific_domain_verbose(self):

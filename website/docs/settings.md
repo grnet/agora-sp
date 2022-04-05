@@ -32,7 +32,7 @@ The submenus of this menu host the available options of the following fields whe
 Each submenu corresponds to the following fields :
 * `EPP.OTH.3 - Affiliations`
 * `EPP.OTH.4 - Networks`
-* `EPP.OTH.5 - Structure Type`
+* `EPP.CLI.4 - Structure Type`
 * `EPP.BAI.5 - Legal Status`
 * `EPP.OTH.10 - Areas of activity`
 * `EPP.OTH.11 - Societal Grand challenges`

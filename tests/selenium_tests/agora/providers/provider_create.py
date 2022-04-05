@@ -156,13 +156,15 @@ class CreateProvider(Providers):
         @return: True if all goes well otherwise False.
         """
         # *.CLi.1 - Scientific Domain
-        table_select_field(self.driver, self.fields_prefix + "cli_1_scientific_domain", 3)
+        table_select_field(self.driver, self.fields_prefix + "cli_scientific_domain", 3)
         # *.CLI.2 - Scientific Subdomain
-        table_select_field(self.driver, self.fields_prefix + "cli_2_scientific_subdomain", 5)
+        table_select_field(self.driver, self.fields_prefix + "cli_scientific_subdomain", 5)
 
         if not required_only:
             # *.CLI.3 - Tags
-            input_field(self.driver, self.fields_prefix + "cli_3_tags", "selenium,")
+            input_field(self.driver, self.fields_prefix + "cli_tags", "selenium,")
+            # *.CLI.4 - Structure Type
+            table_select_field(self.driver, self.fields_prefix + "cli_structure_type", 1)
 
     def location_information(self, required_only=False):
         """
@@ -253,20 +255,18 @@ class CreateProvider(Providers):
         table_select_field(self.driver, self.fields_prefix + "oth_affiliations", 5)
         # *.OTH.3 - Networks
         table_select_field(self.driver, self.fields_prefix + "oth_networks", 25)
-        # *.OTH.4 - Structure Type
-        table_select_field(self.driver, self.fields_prefix + "oth_structure_type", 1)
-        # *.OTH.5 - ESFRI Domain
+        # *.OTH.4 - ESFRI Domain
         table_select_field(self.driver, self.fields_prefix + "oth_esfri_domain", 3)
-        # *.OTH.6 - ESFRI Type
+        # *.OTH.5 - ESFRI Type
         suggestion_input_field(self.driver, self.fields_prefix + "oth_esfri_type", "Not an ESFRI project or landmark")
-        # *.OTH.7 - MERIL Scientific Domain
+        # *.OTH.6 - MERIL Scientific Domain
         table_select_field(self.driver, self.fields_prefix + "oth_meril_scientific_domain", 1)
-        # *.OTH.8 - MERIL Scientific Subdomain
+        # *.OTH.7 - MERIL Scientific Subdomain
         table_select_field(self.driver, self.fields_prefix + "oth_meril_scientific_subdomain", 5)
-        # *.OTH.9 - Areas of activity
+        # *.OTH.8 - Areas of activity
         table_select_field(self.driver, self.fields_prefix + "oth_areas_of_activity", 2)
-        # *.OTH.10 - Societal Grand challenges
+        # *.OTH.9 - Societal Grand challenges
         table_select_field(self.driver, self.fields_prefix + "oth_societal_grand_challenges", 5)
-        # *.OTH.11 - National Roadmaps
+        # *.OTH.10 - National Roadmaps
         input_field(self.driver, self.fields_prefix + "oth_national_roadmaps", "SELENIUM")
 

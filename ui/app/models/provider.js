@@ -73,24 +73,31 @@ export default DS.Model.extend({
   }),
 
   // classification information
-  epp_cli_1_scientific_domain: DS.hasMany('domain', {
-    label: 'provider.fields.epp_cli_1_scientific_domain',
-    hint: 'provider.hints.epp_cli_1_scientific_domain',
+  epp_cli_scientific_domain: DS.hasMany('domain', {
+    label: 'provider.fields.epp_cli_scientific_domain',
+    hint: 'provider.hints.epp_cli_scientific_domain',
   }),
-  epp_cli_1_scientific_domain_verbose: DS.attr({
+  epp_cli_scientific_domain_verbose: DS.attr({
     label: 'provider.fields.domain_names',
   }),
   // TODO: Filter subdomain's ManyArray results according to domain selections
-  epp_cli_2_scientific_subdomain: DS.hasMany('subdomain', {
-    label: 'provider.fields.epp_cli_2_scientific_subdomain',
-    hint: 'provider.hints.epp_cli_2_scientific_subdomain',
+  epp_cli_scientific_subdomain: DS.hasMany('subdomain', {
+    label: 'provider.fields.epp_cli_scientific_subdomain',
+    hint: 'provider.hints.epp_cli_scientific_subdomain',
   }),
-  epp_cli_2_scientific_subdomain_verbose: DS.attr({
+  epp_cli_scientific_subdomain_verbose: DS.attr({
     label: 'provider.fields.subdomain_names',
   }),
-  epp_cli_3_tags: DS.attr({
-    label: 'provider.fields.epp_cli_3_tags',
-    hint: 'provider.hints.epp_cli_3_tags',
+  epp_cli_tags: DS.attr({
+    label: 'provider.fields.epp_cli_tags',
+    hint: 'provider.hints.epp_cli_tags',
+  }),
+  epp_cli_structure_type: DS.hasMany('structure', {
+    label: 'provider.fields.epp_cli_structure_type',
+    hint: 'provider.hints.epp_cli_structure_type',
+  }),
+  epp_cli_structure_type_verbose: DS.attr({
+    label: 'provider.fields.structure_names',
   }),
   // location information
   epp_loi_1_street_name_and_number: DS.attr({
@@ -192,13 +199,6 @@ export default DS.Model.extend({
   epp_oth_networks_verbose: DS.attr({
     label: 'provider.fields.network_names',
   }),
-  epp_oth_structure_type: DS.hasMany('structure', {
-    label: 'provider.fields.epp_oth_structure_type',
-    hint: 'provider.hints.epp_oth_structure_type',
-  }),
-  epp_oth_structure_type_verbose: DS.attr({
-    label: 'provider.fields.structure_names',
-  }),
   epp_oth_esfri_domain: DS.hasMany('esfridomain', {
     label: 'provider.fields.epp_oth_esfri_domain',
     hint: 'provider.hints.epp_oth_esfri_domain',
@@ -274,12 +274,12 @@ export default DS.Model.extend({
       // do not send readonly keys to backend
       delete hash['epp_oth_affiliations_verbose'];
       delete hash['epp_oth_networks_verbose'];
-      delete hash['epp_oth_structure_type_verbose'];
+      delete hash['epp_cli_structure_type_verbose'];
       delete hash['epp_oth_esfri_domain_verbose'];
       delete hash['epp_oth_areas_of_activity_verbose'];
       delete hash['epp_oth_societal_grand_challenges_verbose'];
-      delete hash['epp_cli_1_scientific_domain_verbose'];
-      delete hash['epp_cli_2_scientific_subdomain_verbose'];
+      delete hash['epp_cli_scientific_domain_verbose'];
+      delete hash['epp_cli_scientific_subdomain_verbose'];
       delete hash['epp_oth_meril_scientific_domain_verbose'];
       delete hash['epp_oth_meril_scientific_subdomain_verbose'];
       return hash;

@@ -886,44 +886,61 @@ ORGANISATIONS = {
             '.flag.filterable': {},
             '.flag.nullable.default': {}},
 
-        'epp_cli_1_scientific_domain': {
+        'epp_cli_scientific_domain': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
             'flat': True,
             'id_field': 'domain',
-            'model': 'accounts.models.Organisation.epp_cli_1_scientific_domain.through',
-            'source': 'epp_cli_1_scientific_domain',
+            'model': 'accounts.models.Organisation.epp_cli_scientific_domain.through',
+            'source': 'epp_cli_scientific_domain',
             'bound': 'organisation',
             'fields': {
                 'domain': {'.field.ref': {},
                                 'source': 'domain_id',
                                 'to': 'api/v2/domains'},
             }},
-        'epp_cli_1_scientific_domain_verbose': {
+        'epp_cli_scientific_domain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
-        'epp_cli_2_scientific_subdomain': {
+        'epp_cli_scientific_subdomain': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
             'flat': True,
             'id_field': 'subdomain',
-            'model': 'accounts.models.Organisation.epp_cli_2_scientific_subdomain.through',
-            'source': 'epp_cli_2_scientific_subdomain',
+            'model': 'accounts.models.Organisation.epp_cli_scientific_subdomain.through',
+            'source': 'epp_cli_scientific_subdomain',
             'bound': 'organisation',
             'fields': {
                 'subdomain': {'.field.ref': {},
                                 'source': 'subdomain_id',
                                 'to': 'api/v2/subdomains'},
             }},
-        'epp_cli_2_scientific_subdomain_verbose': {
+        'epp_cli_scientific_subdomain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
-        'epp_cli_3_tags': {
+        'epp_cli_tags': {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
+        'epp_cli_structure_type': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'structure',
+            'model': 'accounts.models.Organisation.epp_cli_structure_type.through',
+            'source': 'epp_cli_structure_type',
+            'bound': 'organisation',
+            'fields': {
+                'structure': {'.field.ref': {},
+                                'source': 'structure_id',
+                                'to': 'api/v2/structures'},
+            }},
+        'epp_cli_structure_type_verbose': {
+            '.field.string': {},
+            '.flag.nowrite': {}},
         'epp_oth_affiliations_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
@@ -1071,24 +1088,6 @@ ORGANISATIONS = {
                                 'to': 'api/v2/networks'},
             }},
         'epp_oth_networks_verbose': {
-            '.field.string': {},
-            '.flag.nowrite': {}},
-
-        'epp_oth_structure_type': {
-            '.field.collection.django': {},
-            '.flag.nullable.default': {},
-            ':filter_compat': True,
-            'flat': True,
-            'id_field': 'structure',
-            'model': 'accounts.models.Organisation.epp_oth_structure_type.through',
-            'source': 'epp_oth_structure_type',
-            'bound': 'organisation',
-            'fields': {
-                'structure': {'.field.ref': {},
-                                'source': 'structure_id',
-                                'to': 'api/v2/structures'},
-            }},
-        'epp_oth_structure_type_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
@@ -1957,13 +1956,13 @@ PUBLIC_ORGANISATIONS = {
                 'id': { '.field.uuid': {}},
                 'name': { '.field.string': {}},
             }},
-        'epp_cli_1_scientific_domain': {
+        'epp_cli_scientific_domain': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
             'id_field': 'id',
-            'model': 'accounts.models.Organisation.epp_cli_1_scientific_domain.through',
-            'source': 'epp_cli_1_scientific_domain',
+            'model': 'accounts.models.Organisation.epp_cli_scientific_domain.through',
+            'source': 'epp_cli_scientific_domain',
             'bound': 'organisation',
             'fields': {
                 'href': {'.field.ref': {},
@@ -1977,13 +1976,13 @@ PUBLIC_ORGANISATIONS = {
                   '.flag.nowrite': {},
                   'source': 'domain.name'},
             }},
-        'epp_cli_2_scientific_subdomain': {
+        'epp_cli_scientific_subdomain': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
             'id_field': 'id',
-            'model': 'accounts.models.Organisation.epp_cli_2_scientific_subdomain.through',
-            'source': 'epp_cli_2_scientific_subdomain',
+            'model': 'accounts.models.Organisation.epp_cli_scientific_subdomain.through',
+            'source': 'epp_cli_scientific_subdomain',
             'bound': 'organisation',
             'fields': {
                 'href': {'.field.ref': {},
@@ -2000,10 +1999,34 @@ PUBLIC_ORGANISATIONS = {
                   '.flag.nowrite': {},
                   'source': 'subdomain.name'},
             }},
-        'epp_cli_3_tags': {
+        'epp_cli_tags': {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
+        'epp_cli_structure_type': {
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'id_field': 'id',
+            'model': 'accounts.models.Organisation.epp_cli_structure_type.through',
+            'source': 'epp_cli_structure_type',
+            'bound': 'organisation',
+            'fields': {
+                'href': {'.field.ref': {},
+                                'source': 'structure_id',
+                                'to': 'api/v2/public/structures'},
+                'id': {
+                  '.field.uuid': {},
+                  'source': 'structure_id'},
+                'description': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'structure.description'},
+                'name': {
+                  '.field.string': {},
+                  '.flag.nowrite': {},
+                  'source': 'structure.name'},
+            }},
         'epp_loi_1_street_name_and_number': {
           '.field.string': {},
           '.flag.nullable.default': {},
@@ -2124,30 +2147,6 @@ PUBLIC_ORGANISATIONS = {
                   '.field.string': {},
                   '.flag.nowrite': {},
                   'source': 'network.abbreviation'},
-            }},
-        'epp_oth_structure_type': {
-            '.field.collection.django': {},
-            '.flag.nullable.default': {},
-            ':filter_compat': True,
-            'id_field': 'id',
-            'model': 'accounts.models.Organisation.epp_oth_structure_type.through',
-            'source': 'epp_oth_structure_type',
-            'bound': 'organisation',
-            'fields': {
-                'href': {'.field.ref': {},
-                                'source': 'structure_id',
-                                'to': 'api/v2/public/structures'},
-                'id': {
-                  '.field.uuid': {},
-                  'source': 'structure_id'},
-                'description': {
-                  '.field.string': {},
-                  '.flag.nowrite': {},
-                  'source': 'structure.description'},
-                'name': {
-                  '.field.string': {},
-                  '.flag.nowrite': {},
-                  'source': 'structure.name'},
             }},
         'epp_oth_esfri_domain': {
             '.field.collection.django': {},
@@ -2771,7 +2770,7 @@ PUBLIC_ORGANISATIONS_LITE = {
             '.field.string': {},
             '.flag.nullable.default': {},
         },
-        'epp_cli_3_tags': {
+        'epp_cli_tags': {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
