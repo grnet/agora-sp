@@ -154,6 +154,11 @@ class LegalStatus(models.Model):
         clean_html_fields(self)
         super(LegalStatus, self).save(*args, **kwargs)
 
+class Multimedia(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.TextField(default=None, blank=True, null=True)
+    url = models.TextField(default=None, blank=True, null=True)
+
 class Organisation(models.Model):
     """
     The organisation providing the Service
@@ -197,8 +202,10 @@ class Organisation(models.Model):
     # Marketing section
     epp_mri_description = RichTextUploadingField(max_length=1000, default=None, blank=True, null=True)
     epp_mri_logo = models.TextField(default=None, blank=True, null=True)
-    epp_mri_multimedia = models.TextField(default=None, blank=True, null=True)
-    epp_mri_multimedia_name = models.TextField(default=None, blank=True, null=True)
+    epp_mri_multimedia = models.ManyToManyField(
+        Multimedia,
+        blank=True,
+        related_name='multimedia')
 
     # Contact Information
     main_contact = models.ForeignKey('owner.ContactInformation', blank=True, null=True, related_name="main_contact_provders")

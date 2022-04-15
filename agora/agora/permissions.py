@@ -203,6 +203,14 @@ def get_rules():
         ('api/v2/structures', 'destroy', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/structures', 'delete', 'superadmin', '*', '*', '*', '*'),
 
+        ('api/v2/multimedia', 'list', 'observer', '*', '*', '*', '*'),
+        ('api/v2/multimedia', 'retrieve', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/multimedia', 'create', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/multimedia', 'update', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/multimedia', 'partial_update', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/multimedia', 'destroy', 'superadmin', '*', '*', '*', '*'),
+        ('api/v2/multimedia', 'delete', 'superadmin', '*', '*', '*', '*'),
+
         ('api/v2/esfridomains', 'list', 'superadmin', '*', '*', '*', '*'),
         ('api/v2/esfridomains', 'list', 'portfolioadmin', '*', '*', '*', '*'),
         ('api/v2/esfridomains', 'list', 'provideradmin', '*', '*', '*', '*'),

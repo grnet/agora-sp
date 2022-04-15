@@ -132,7 +132,7 @@ export default DS.Model.extend({
     label: 'provider.fields.epp_mri_logo',
     hint: 'provider.hints.epp_mri_logo',
   }),
-  epp_mri_multimedia: DS.attr({
+  epp_mri_multimedia: DS.hasMany({
     label: 'provider.fields.epp_mri_multimedia',
     hint: 'provider.hints.epp_mri_multimedia',
   }),

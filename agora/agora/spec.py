@@ -677,6 +677,30 @@ ORDER_TYPES= {
         '.action-template.django.partial_update': {},
     },
 }
+MULTIMEDIA= {
+    '.collection.django': {},
+    'model': 'accounts.models.Multimedia',
+    'fields': {
+        'id': {
+            '.field.uuid': {},
+            '.flag.nowrite': {}},
+        'name': {
+            '.field.string': {},
+            '.flag.orderable': {},
+            '.flag.searchable': {}},
+        'url': {
+            '.field.string': {},
+            '.flag.nullable.default': {}},
+    },
+    'actions': {
+        '.action-template.django.list': {},
+        '.action-template.django.retrieve': {},
+        '.action-template.django.create': {},
+        '.action-template.django.delete': {},
+        '.action-template.django.update': {},
+        '.action-template.django.partial_update': {},
+    },
+}
 
 ACCESS_TYPES= {
     '.collection.django': {},
@@ -956,8 +980,19 @@ ORGANISATIONS = {
           '.flag.nullable.default': {},
         },
         'epp_mri_multimedia': {
-          '.field.string': {},
-          '.flag.nullable.default': {},
+            '.field.collection.django': {},
+            '.flag.nullable.default': {},
+            ':filter_compat': True,
+            'flat': True,
+            'id_field': 'id',
+            'model': 'accounts.models.Organisation.epp_oth_multimedia',
+            'source': 'epp_oth_multimedia',
+            'bound': 'organisation',
+            'fields': {
+                'multimedia': {'.field.ref': {},
+                                'source': 'id',
+                                'to': 'api/v2/multimedia'},
+            }
         },
         'main_contact': {
           '.field.ref': {},
@@ -2944,6 +2979,7 @@ APP_CONFIG = {
                 'custom-users': CUSTOM_USERS,
                 'providers': ORGANISATIONS,
                 'resources': RESOURCES,
+                'multimedia': MULTIMEDIA,
                 'target-users': TARGET_USERS,
                 'contact-information': CONTACT_INFORMATION,
                 'legalstatuses': LEGAL_STATUSES,
