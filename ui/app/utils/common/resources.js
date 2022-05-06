@@ -220,13 +220,35 @@ const CLASSIFICATION_FIELDSET = {
   },
 };
 
-const MANAGEMENT_INFORMATION_FIELDSET = {
+const DETAILS_MANAGEMENT_INFORMATION_FIELDSET = {
   label: 'resource.cards.management_information',
   fields: [
     'erp_mgi_1_helpdesk_webpage',
     'erp_mgi_2_user_manual',
     'erp_mgi_3_terms_of_use',
     'erp_mgi_4_privacy_policy',
+    'erp_mgi_5_access_policy',
+    'erp_mgi_6_sla_specification',
+    'erp_mgi_7_training_information',
+    'erp_mgi_8_status_monitoring',
+    'erp_mgi_9_maintenance',
+  ],
+  layout: {
+    flex: [50, 50, 50, 50, 50, 50, 50, 50, 100],
+  },
+};
+
+const EDIT_MANAGEMENT_INFORMATION_FIELDSET = {
+  label: 'resource.cards.management_information',
+  fields: [
+    'erp_mgi_1_helpdesk_webpage',
+    'erp_mgi_2_user_manual',
+    field('erp_mgi_3_terms_of_use', {
+      label: 'resource.fields.erp_mgi_3_terms_of_use.required',
+    }),
+    field('erp_mgi_4_privacy_policy', {
+      label: 'resource.fields.erp_mgi_4_privacy_policy.required',
+    }),
     'erp_mgi_5_access_policy',
     'erp_mgi_6_sla_specification',
     'erp_mgi_7_training_information',
@@ -451,7 +473,7 @@ const DETAILS_FIELDSETS = [
   DETAILS_BASIC_INFO_FIELDSET,
   DETAILS_MARKETING_FIELDSET,
   DETAILS_CLASSIFICATION_FIELDSET,
-  MANAGEMENT_INFORMATION_FIELDSET,
+  DETAILS_MANAGEMENT_INFORMATION_FIELDSET,
   GEO_FIELDSET,
   LOCATION_FIELDSET,
   DETAILS_CONTACT_MAIN_FIELDSET,
@@ -468,7 +490,7 @@ const CREATE_FIELDSETS = [
   CREATE_BASIC_INFO_FIELDSET,
   EDIT_OR_CREATE_MARKETING_FIELDSET,
   CLASSIFICATION_FIELDSET,
-  MANAGEMENT_INFORMATION_FIELDSET,
+  EDIT_MANAGEMENT_INFORMATION_FIELDSET,
   GEO_FIELDSET,
   LOCATION_FIELDSET,
   CONTACT_FIELDSET,
@@ -483,7 +505,7 @@ const EDIT_FIELDSETS = [
   EDIT_BASIC_INFO_FIELDSET,
   EDIT_OR_CREATE_MARKETING_FIELDSET,
   CLASSIFICATION_FIELDSET,
-  MANAGEMENT_INFORMATION_FIELDSET,
+  EDIT_MANAGEMENT_INFORMATION_FIELDSET,
   GEO_FIELDSET,
   LOCATION_FIELDSET,
   CONTACT_FIELDSET,

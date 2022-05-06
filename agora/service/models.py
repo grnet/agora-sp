@@ -180,8 +180,8 @@ class Resource(models.Model):
     # Management Information
     erp_mgi_1_helpdesk_webpage       = models.URLField(max_length=255, default=None, blank=True, null=True)
     erp_mgi_2_user_manual            = models.URLField(max_length=255, default=None, blank=True, null=True)
-    erp_mgi_3_terms_of_use           = models.URLField(max_length=255, default=None, blank=True, null=True)
-    erp_mgi_4_privacy_policy         = models.URLField(max_length=255, default=None, blank=True, null=True)
+    erp_mgi_3_terms_of_use           = models.URLField(max_length=255, default=None, blank=False, null=True)
+    erp_mgi_4_privacy_policy         = models.URLField(max_length=255, default=None, blank=False, null=True)
     erp_mgi_5_access_policy          = models.URLField(max_length=255, default=None, blank=True, null=True)
     erp_mgi_6_sla_specification      = models.URLField(max_length=255, default=None, blank=True, null=True)
     erp_mgi_7_training_information   = models.URLField(max_length=255, default=None, blank=True, null=True)
