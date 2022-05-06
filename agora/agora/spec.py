@@ -979,21 +979,21 @@ ORGANISATIONS = {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_mri_multimedia': {
-            '.field.collection.django': {},
-            '.flag.nullable.default': {},
-            ':filter_compat': True,
-            'flat': True,
-            'id_field': 'id',
-            'model': 'accounts.models.Organisation.epp_oth_multimedia',
-            'source': 'epp_oth_multimedia',
-            'bound': 'organisation',
-            'fields': {
-                'multimedia': {'.field.ref': {},
-                                'source': 'id',
-                                'to': 'api/v2/multimedia'},
-            }
-        },
+        # 'epp_mri_multimedia': {
+        #     '.field.collection.django': {},
+        #     '.flag.nullable.default': {},
+        #     ':filter_compat': True,
+        #     'flat': True,
+        #     'id_field': 'id',
+        #     'model': 'accounts.models.Organisation.epp_oth_multimedia',
+        #     'source': 'epp_oth_multimedia',
+        #     'bound': 'organisation',
+        #     'fields': {
+        #         'multimedia': {'.field.ref': {},
+        #                         'source': 'id',
+        #                         'to': 'api/v2/multimedia'},
+        #     }
+        # },
         'main_contact': {
           '.field.ref': {},
           'source': 'main_contact_id',
