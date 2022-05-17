@@ -68,7 +68,7 @@ class ResourceFormValidations(ResourceCreate):
         url_input_validation(self.driver, self.fields_prefix + "mgi_4_privacy_policy")
         # *.MGI.5 - Access Policy
         url_input_validation(self.driver, self.fields_prefix + "mgi_5_access_policy")
-        # *.MGI.6 - Service Level
+        # *.MGI.6 - Resource Level
         url_input_validation(self.driver, self.fields_prefix + "mgi_6_sla_specification")
         # *.MGI.7 - Training Information
         url_input_validation(self.driver, self.fields_prefix + "mgi_7_training_information")

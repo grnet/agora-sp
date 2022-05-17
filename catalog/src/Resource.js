@@ -872,7 +872,7 @@ function ManagementInfo(props) {
             <li> <ValueItem icon="book" item={props.terms} label="Terms of Service" link /></li>
             <li> <ValueItem icon="book" item={props.privacy} label="Privacy Policy" link /></li>
             <li> <ValueItem icon="book" item={props.access} label="Access Policy" link /></li>
-            <li> <ValueItem icon="book" item={props.service} label="Service Level" link /></li>
+            <li> <ValueItem icon="book" item={props.service} label="Resource Level" link /></li>
             <li> <ValueItem icon="book" item={props.training} label="Training Information" link /></li>
             <li> <ValueItem icon="book" item={props.status} label="Status Monitoring" link /></li>
             <li> <ValueItem icon="book" item={props.maintenance} label="Maintenance" link /></li>

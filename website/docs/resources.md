@@ -77,7 +77,7 @@ Below is the list of fields with small descriptions of the fields. The required 
 | ERP.MGI.3 - Terms of Use					|	Webpage describing the rules, service/resource conditions and usage policy which one must agree to abide by in order to use the service.	|
 | ERP.MGI.4 - Privacy Policy				|	Link to the privacy policy applicable to the service.													|
 | ERP.MGI.5 - Access Policy					|	Information about the access policies that apply.														|
-| ERP.MGI.6 - Service Level					|	Webpage with the information about the levels of performance that a service/resource provider is expected to deliver.	|
+| ERP.MGI.6 - Resource Level					|	Webpage with the information about the levels of performance that a service/resource provider is expected to deliver.	|
 | ERP.MGI.7 - Training Information			|	Webpage to training information on the service.															|
 | ERP.MGI.8 - Status Monitoring				|	Webpage with monitoring information about this service													|
 | ERP.MGI.9 - Maintenance					|	Webpage with information about planned maintenance windows for this service								|
