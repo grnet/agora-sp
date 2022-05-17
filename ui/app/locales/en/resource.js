@@ -120,7 +120,7 @@ const resource = {
     erp_mgi_1_helpdesk_webpage: 'The URL to a webpage to ask more information from the Provider about this Resource.',
     erp_mgi_2_user_manual: `${EOSC_HINT}Link to the Resource user manual and documentation.`,
     erp_mgi_3_terms_of_use: `${EOSC_HINT}Webpage describing the rules, Resource conditions and usage policy which one must agree to abide by in order to use the Resource.`,
-    erp_mgi_4_privacy_policy: 'Link to the privacy policy applicable to the Resource.',
+    erp_mgi_4_privacy_policy: `${EOSC_HINT}Link to the privacy policy applicable to the Resource.`,
     erp_mgi_5_access_policy: 'Information about the access policies that apply.',
     erp_mgi_6_sla_specification: 'Webpage with the information about the levels of performance that a Provider is expected to deliver.',
     erp_mgi_7_training_information: 'Webpage to training information on the Resource.',
