@@ -57,7 +57,7 @@ const resource = {
     erp_mgi_3_terms_of_use: 'ERP.MGI.3 - Terms of Use',
     erp_mgi_4_privacy_policy: 'ERP.MGI.4 - Privacy Policy',
     erp_mgi_5_access_policy: 'ERP.MGI.5 - Access Policy',
-    erp_mgi_6_sla_specification: 'ERP.MGI.6 - Service Level',
+    erp_mgi_6_sla_specification: 'ERP.MGI.6 - Resource Level',
     erp_mgi_7_training_information: 'ERP.MGI.7 - Training Information',
     erp_mgi_8_status_monitoring: 'ERP.MGI.8 - Status Monitoring',
     erp_mgi_9_maintenance: 'ERP.MGI.9 - Maintenance',
