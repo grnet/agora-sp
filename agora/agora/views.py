@@ -71,7 +71,6 @@ def config(request):
             response_json.append([host['id'],host['name']])
     except requests.exceptions.RequestException as err:
         print ("Error:", err)
-        response_json = json.dumps(response_json)
 
     config_data = {
         'permissions': permissions,
