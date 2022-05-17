@@ -51,6 +51,7 @@ function promptResource(self, method) {
   );
   const erp_mgi_2_user_manual = get(self, 'model.erp_mgi_2_user_manual');
   const erp_mgi_3_terms_of_use = get(self, 'model.erp_mgi_3_terms_of_use');
+  const erp_mgi_4_privacy_policy = get(self, 'model.erp_mgi_4_privacy_policy');
   const erp_aoi_1_order_type = get(self, 'model.erp_aoi_1_order_type.id');
 
   let missing = [];
@@ -118,6 +119,9 @@ function promptResource(self, method) {
   }
   if (!erp_mgi_3_terms_of_use) {
     missing.push('erp_mgi_3_terms_of_use');
+  }
+  if (!erp_mgi_4_privacy_policy) {
+    missing.push('erp_mgi_4_privacy_policy');
   }
   if (!erp_aoi_1_order_type) {
     missing.push('erp_aoi_1_order_type');
@@ -320,6 +324,7 @@ const postResourceEOSC = {
     'model.erp_mti_1_technology_readiness_level.id',
     'model.erp_mgi_2_user_manual',
     'model.erp_mgi_3_terms_of_use',
+    'model.erp_mgi_4_privacy_policy',
     'model.erp_aoi_1_order_type.id',
     function () {
       return promptResource(this, 'post');
@@ -415,6 +420,7 @@ const putResourceEOSC = {
     'model.erp_mti_1_technology_readiness_level.id',
     'model.erp_mgi_2_user_manual',
     'model.erp_mgi_3_terms_of_use',
+    'model.erp_mgi_4_privacy_policy',
     'model.erp_aoi_1_order_type.id',
     function () {
       return promptResource(this, 'put');
