@@ -328,68 +328,68 @@ const DETAILS_FIELDSETS = [
 ********************************************/
 
 const EDIT_FIELDSETS = [
-  {
-    label: 'provider.cards.basic_information',
-    text: 'provider.cards.basic_hint',
-    layout: {
-      flex: [50, 50, 100, 100, 100, 50, 50, 50, 50],
-    },
-    fields: computed('role', function () {
-      let role = get(this, 'role');
-      const editor = role === 'provideradmin';
-      const disabled = editor;
-      let abbreviation_label = 'provider.fields.epp_bai_2_abbreviation';
-      if (editor) {
-        abbreviation_label = 'provider.fields.epp_bai_2_abbreviation.required';
-      }
-      return fields_eosc([
-        field('epp_bai_0_id', {
-          label: 'provider.fields.epp_bai_0_id.required',
-        }),
-        field('state', { disabled: true }),
-        field('epp_bai_1_name', {
-          label: 'provider.fields.epp_bai_1_name.required',
-        }),
-        field('epp_bai_2_abbreviation', {
-          label: abbreviation_label,
-        }),
-        'epp_bai_3_website',
-        'epp_bai_4_legal_entity',
-        'epp_bai_5_legal_status',
-        field('eosc_id', { disabled }),
-        field('eosc_state', { disabled }),
-      ]);
-    }),
-  },
-  CLASSIFICATION_FIELDSET,
-  {
-    label: 'provider.cards.location',
-    text: 'provider.cards.location_hint',
-    layout: {
-      flex: [100, 100, 100, 100, 100],
-    },
-    fields: computed('role', function () {
-      let role = get(this, 'role');
-      const editor = role === 'provideradmin' || role === 'portfolioadmin';
-      let label_1 = 'provider.fields.epp_loi_1_street_name_and_number';
-      let label_2 = 'provider.fields.epp_loi_2_postal_code';
-      let label_3 = 'provider.fields.epp_loi_3_city';
-      let label_5 = 'provider.fields.epp_loi_5_country_or_territory';
-      if (editor) {
-        label_1 = 'provider.fields.epp_loi_1_street_name_and_number.required';
-        label_2 = 'provider.fields.epp_loi_2_postal_code.required';
-        label_3 = 'provider.fields.epp_loi_3_city.required';
-        label_5 = 'provider.fields.epp_loi_5_country_or_territory.required';
-      }
-      return [
-        field('epp_loi_1_street_name_and_number', { label: label_1 }),
-        field('epp_loi_2_postal_code', { label: label_2 }),
-        field('epp_loi_3_city', { label: label_3 }),
-        'epp_loi_4_region',
-        field('epp_loi_5_country_or_territory', { label: label_5 }),
-      ];
-    }),
-  },
+  //{
+    //label: 'provider.cards.basic_information',
+    //text: 'provider.cards.basic_hint',
+    //layout: {
+      //flex: [50, 50, 100, 100, 100, 50, 50, 50, 50],
+    //},
+    //fields: computed('role', function () {
+      //let role = get(this, 'role');
+      //const editor = role === 'provideradmin';
+      //const disabled = editor;
+      //let abbreviation_label = 'provider.fields.epp_bai_2_abbreviation';
+      //if (editor) {
+        //abbreviation_label = 'provider.fields.epp_bai_2_abbreviation.required';
+      //}
+      //return fields_eosc([
+        //field('epp_bai_0_id', {
+          //label: 'provider.fields.epp_bai_0_id.required',
+        //}),
+        //field('state', { disabled: true }),
+        //field('epp_bai_1_name', {
+          //label: 'provider.fields.epp_bai_1_name.required',
+        //}),
+        //field('epp_bai_2_abbreviation', {
+          //label: abbreviation_label,
+        //}),
+        //'epp_bai_3_website',
+        //'epp_bai_4_legal_entity',
+        //'epp_bai_5_legal_status',
+        //field('eosc_id', { disabled }),
+        //field('eosc_state', { disabled }),
+      //]);
+    //}),
+  //},
+  //CLASSIFICATION_FIELDSET,
+  //{
+    //label: 'provider.cards.location',
+    //text: 'provider.cards.location_hint',
+    //layout: {
+      //flex: [100, 100, 100, 100, 100],
+    //},
+    //fields: computed('role', function () {
+      //let role = get(this, 'role');
+      //const editor = role === 'provideradmin' || role === 'portfolioadmin';
+      //let label_1 = 'provider.fields.epp_loi_1_street_name_and_number';
+      //let label_2 = 'provider.fields.epp_loi_2_postal_code';
+      //let label_3 = 'provider.fields.epp_loi_3_city';
+      //let label_5 = 'provider.fields.epp_loi_5_country_or_territory';
+      //if (editor) {
+        //label_1 = 'provider.fields.epp_loi_1_street_name_and_number.required';
+        //label_2 = 'provider.fields.epp_loi_2_postal_code.required';
+        //label_3 = 'provider.fields.epp_loi_3_city.required';
+        //label_5 = 'provider.fields.epp_loi_5_country_or_territory.required';
+      //}
+      //return [
+        //field('epp_loi_1_street_name_and_number', { label: label_1 }),
+        //field('epp_loi_2_postal_code', { label: label_2 }),
+        //field('epp_loi_3_city', { label: label_3 }),
+        //'epp_loi_4_region',
+        //field('epp_loi_5_country_or_territory', { label: label_5 }),
+      //];
+    //}),
+  //},
   MARKETING_FIELDSET,
   MATURITY_FIELDSET,
   CONTACT_FIELDSET,
