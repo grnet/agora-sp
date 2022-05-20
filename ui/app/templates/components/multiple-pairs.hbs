@@ -1,0 +1,35 @@
+<label class="label-primary">{{t label}}</label>
+
+<md-content class="input-wrap">
+<md-input-container class="flex flex-25">
+  <label for="multimedia-name" class="label-secondary">Multimedia name</label>
+  <input  class="md-input" id="multimedia-name"/>
+</md-input-container>
+<md-input-container class="flex flex-50">
+  <label for="multimedia-url" class="label-secondary">Multimedia url</label>
+  <input class="md-input" id="multimedia-url"/>
+</md-input-container>
+{{#paper-button
+    class="no-margin"
+    onClick=(action 'addPair')
+    raised=true
+    primary=true}}
+    {{paper-icon "add"}}
+    add multimedia
+{{/paper-button}}
+</md-content>
+
+<ul>
+  {{#each valueArr as |pair| }}
+    <li>
+      {{pair.[0]}} - <a href={{pair.[1]}} target="_blank">{{ pair.[1] }}</a>
+      {{#paper-button
+      class="no-margin"
+      onClick=(action 'removePair' pair.[0] pair.[1])
+      iconButton=true}}
+        {{paper-icon "delete_forever"}}
+      {{/paper-button}}
+    </li>
+  {{/each}}
+</ul>
+
