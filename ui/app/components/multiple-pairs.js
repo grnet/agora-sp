@@ -9,6 +9,7 @@ const {
 export default Ember.Component.extend({
   classNames: ['multiple-pairs'],
   tagName: 'md-input-container',
+  error: false,
 
   clearInput(){
     Ember.$('#multimedia-name').val(null);
@@ -41,6 +42,12 @@ export default Ember.Component.extend({
       let url = Ember.$('#multimedia-url').val();
       let valueObj = get(this, 'valueObj');
       valueObj[name] = url;
+      if (!name || !url) {
+        set(this, 'error', true);
+        return;
+      } else {
+        set(this, 'error', false);
+      }
 
       this.clearInput();
       return this.sendAction('onChange', JSON.stringify(valueObj));
