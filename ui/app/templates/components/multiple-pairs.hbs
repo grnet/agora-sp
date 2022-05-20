@@ -18,6 +18,9 @@
     add multimedia
 {{/paper-button}}
 </md-content>
+{{#if error}}
+<div class="error-hint">Both multimedia name and multimedia url must be filled</div>
+{{/if}}
 
 <ul>
   {{#each valueArr as |pair| }}
