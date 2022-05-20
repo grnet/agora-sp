@@ -141,7 +141,7 @@ export default DS.Model.extend({
   }),
   epp_mri_3_multimedia: DS.attr({
     label: 'provider.fields.epp_mri_3_multimedia',
-    hint: 'provider.hints.epp_mri_3_multimedia',
+    formComponent: 'multiple-pairs',
   }),
   // computed
   short_desc: computed('description', function() {
