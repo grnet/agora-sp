@@ -25,6 +25,7 @@
       {{pair.[0]}} - <a href={{pair.[1]}} target="_blank">{{ pair.[1] }}</a>
       {{#paper-button
       class="no-margin"
+      title="remove multimedia"
       onClick=(action 'removePair' pair.[0] pair.[1])
       iconButton=true}}
         {{paper-icon "delete_forever"}}
