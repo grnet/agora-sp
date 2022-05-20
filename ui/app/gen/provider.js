@@ -55,10 +55,6 @@ export default AgoraGen.extend({
             validate.format({ type: 'url', allowBlank: true }),
             httpValidator,
           ],
-          epp_mri_3_multimedia: [
-            validate.format({ type: 'url', allowBlank: true }),
-            httpValidator,
-          ],
           epp_bai_hosting_legal_entity: computed('model.changeset.epp_bai_legal_entity', function(){
             let has_legal = get(this, 'model.changeset.epp_bai_legal_entity');
             if (!has_legal) {
