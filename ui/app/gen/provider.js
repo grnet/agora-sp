@@ -90,10 +90,6 @@ export default AgoraGen.extend({
             validate.format({ type: 'url', allowBlank: false }),
             httpValidator,
           ],
-          epp_mri_3_multimedia: [
-            validate.format({ type: 'url', allowBlank: true }),
-            httpValidator,
-          ],
           epp_cli_scientific_domain: [validate.presence(true)],
           epp_cli_scientific_subdomain: [validate.presence(true)],
         };
