@@ -7,7 +7,13 @@ const {
 export default Ember.Component.extend({
   valueObj: computed('value', function(){
     let val = get(this, 'value');
-    return JSON.parse(val);
+    let res = {};
+    try {
+      res = JSON.parse(val);
+    } catch(e) {
+      console.log('Value needs to be in JSON format')
+    }
+    return res;
   }),
   valueArr: computed('valueObj', function(){
     let valueObj = get(this, 'valueObj');
