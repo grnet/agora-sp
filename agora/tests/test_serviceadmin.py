@@ -72,7 +72,7 @@ def test_domains(serviceadmin, superadmin):
     # url = RESOURCES_CRUD['resources']['url']
     # data = RESOURCES_CRUD['resources']['create_data']
     # extended_data = data.copy()
-    # extended_data['erp_bai_2_service_organisation_id'] = provider_id
+    # extended_data['erp_bai_service_organisation_id'] = provider_id
     # edit_data = RESOURCES_CRUD['resources']['edit_data']
     # resp = superadmin.patch('/api/v2/custom-users/' + serviceadmin_id + '/',
         # json.dumps({'organisation': provider_id}),

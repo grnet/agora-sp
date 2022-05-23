@@ -80,7 +80,7 @@ def send_email_application_created(sa, http_host):
     with the Resource.
     """
     resource_admins = sa.resource.resource_admins
-    resource_org = sa.resource.erp_bai_2_organisation
+    resource_org = sa.resource.erp_bai_organisation
     provider_admins =  User.objects.filter(organisation=resource_org)
     extra_context = resourceadminship_context(sa)
     extra_context['http_host'] = http_host

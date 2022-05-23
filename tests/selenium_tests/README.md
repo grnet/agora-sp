@@ -189,11 +189,11 @@ This is a sample of the results.
 [Delete form status]                     Form Saved         Success
 
 # Create a new resource.
-[erp_bai_0_id]                           Found and filled   Success
-[erp_bai_1_name]                         Found and filled   Success
-[erp_bai_2_service_organisation]         Found and filled   Success
-[erp_bai_3_service_providers]            Found and filled   Success
-[erp_bai_4_webpage]                      Found and filled   Success
+[erp_bai_id]                             Found and filled   Success
+[erp_bai_name]                           Found and filled   Success
+[erp_bai_service_organisation]           Found and filled   Success
+[erp_bai_service_providers]              Found and filled   Success
+[erp_bai_webpage]                        Found and filled   Success
 [erp_cli_1_scientific_domain]            Found and filled   Success
 [erp_cli_2_scientific_subdomain]         Found and filled   Success
 [erp_cli_3_category]                     Found and filled   Success

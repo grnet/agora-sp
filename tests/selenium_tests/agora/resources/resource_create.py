@@ -24,10 +24,11 @@ class ResourceCreate(Resources):
         * Checks if all the following input fields of the form exist :
             Basic information
             - *.BAI.0 - ID
-            - *.BAI.1 - Name
-            - *.BAI.2 - Resource Organisation
-            - *.BAI.3 - Resource Providers
-            - *.BAI.4 - Webpage
+            - *.BAI.1 - Abbreviation
+            - *.BAI.2 - Name
+            - *.BAI.3 - Resource Organisation
+            - *.BAI.4 - Resource Providers
+            - *.BAI.5 - Webpage
 
             Marketing Information
             - *.MRI.1 - Description
@@ -159,17 +160,19 @@ class ResourceCreate(Resources):
         @return: True if all goes well otherwise False.
         """
         # *.BAI.0 - ID
-        input_field(self.driver, self.fields_prefix + "bai_0_id", "selenium-RESOURCE")
-        # *.BAI.1 - Name
-        input_field(self.driver, self.fields_prefix + "bai_1_name", "SeleniumHQ Browser Automation - RESOURCE")
-        # *.BAI.2 - Service Organisation
-        suggestion_input_field(self.driver, self.fields_prefix + "bai_2_service_organisation", "National Infrastructures for Research and Technology")
+        input_field(self.driver, self.fields_prefix + "bai_id", "selenium-RESOURCE")
+        # *.BAI.1 - Abbreviation
+        input_field(self.driver, self.fields_prefix + "bai_abbreviation", "selenium-RESOURCE")
+        # *.BAI.2 - Name
+        input_field(self.driver, self.fields_prefix + "bai_name", "SeleniumHQ Browser Automation - RESOURCE")
+        # *.BAI.3 - Service Organisation
+        suggestion_input_field(self.driver, self.fields_prefix + "bai_service_organisation", "National Infrastructures for Research and Technology")
 
         if not required_only:
-            # *.BAI.3 - Service Providers
-            table_select_field(self.driver, self.fields_prefix + "bai_3_service_providers", 1)
-            # *.BAI.4 - Webpage
-            input_field(self.driver, self.fields_prefix + "bai_4_webpage", "https://www.selenium.dev")
+            # *.BAI.4 - Service Providers
+            table_select_field(self.driver, self.fields_prefix + "bai_service_providers", 1)
+            # *.BAI.5 - Webpage
+            input_field(self.driver, self.fields_prefix + "bai_webpage", "https://www.selenium.dev")
 
 
     def marketing_information(self, required_only=False):
