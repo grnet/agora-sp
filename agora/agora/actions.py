@@ -37,7 +37,7 @@ def resource_publish_eosc(backend_input, instance, context):
     eosc_req = create_eosc_api_json_resource(instance)
     if 'resourceOrganisation' not in eosc_req or eosc_req['resourceOrganisation'] == None or len(eosc_req['resourceOrganisation'].strip()) == 0:
         raise ValidationError('Resource provider has not an eosc_id')
-    url = EOSC_API_URL_CATALOGUE+'resource'
+    url = EOSC_API_URL_CATALOGUE+'resource/'
     id  = str(instance.id)
     username = context['auth/user'].username
     eosc_token = get_access_token(OIDC_URL, OIDC_REFRESH_TOKEN, OIDC_CLIENT_ID)
@@ -49,6 +49,7 @@ def resource_publish_eosc(backend_input, instance, context):
     logger.info('EOSC PORTAL API call to POST resource \
         with id %s to %s has been made by %s at %s \
         ' %(id, url, username, datetime.now()))
+    logger.info('Request json object: %s' %(json.dumps(eosc_req)))
     try:
         response = requests.post(url, headers=headers,json=eosc_req, verify=CA_BUNDLE)
         response.raise_for_status()
@@ -70,7 +71,7 @@ def resource_update_eosc(backend_input, instance, context):
     eosc_req = create_eosc_api_json_resource(instance)
     if 'resourceOrganisation' not in eosc_req or eosc_req['resourceOrganisation'] == None or len(eosc_req['resourceOrganisation'].strip()) == 0:
         raise ValidationError('Resource provider has not an eosc_id')
-    url = EOSC_API_URL_CATALOGUE+'resource'
+    url = EOSC_API_URL_CATALOGUE+'resource/'
     id  = str(instance.id)
     username = context['auth/user'].username
     eosc_token = get_access_token(OIDC_URL, OIDC_REFRESH_TOKEN, OIDC_CLIENT_ID)
@@ -82,6 +83,7 @@ def resource_update_eosc(backend_input, instance, context):
     logger.info('EOSC PORTAL API call to PUT resource \
         with id %s to %s has been made by %s at %s \
         ' %(id, url, username, datetime.now()))
+    logger.info('Request json object: %s' %(json.dumps(eosc_req)))
     try:
         response = requests.put(url, headers=headers,json=eosc_req, verify=CA_BUNDLE)
         response.raise_for_status()
@@ -159,7 +161,7 @@ def resource_reject_eosc(backend_input, instance, context):
 def provider_publish_eosc(backend_input, instance, context):
     provider_admin = context['auth/user'].email
     eosc_req = create_eosc_api_json_provider(instance, provider_admin)
-    url = EOSC_API_URL_CATALOGUE+'provider'
+    url = EOSC_API_URL_CATALOGUE+'provider/'
     id  = str(instance.id)
     username = context['auth/user'].username
     eosc_token = get_access_token(OIDC_URL, OIDC_REFRESH_TOKEN, OIDC_CLIENT_ID)
@@ -192,7 +194,7 @@ def provider_publish_eosc(backend_input, instance, context):
 def provider_update_eosc(backend_input, instance, context):
     provider_admin = context['auth/user'].email
     eosc_req = create_eosc_api_json_provider(instance, provider_admin)
-    url = EOSC_API_URL_CATALOGUE+'provider'
+    url = EOSC_API_URL_CATALOGUE+'provider/'
     id  = str(instance.id)
     username = context['auth/user'].username
     eosc_token = get_access_token(OIDC_URL, OIDC_REFRESH_TOKEN, OIDC_CLIENT_ID)
@@ -204,6 +206,7 @@ def provider_update_eosc(backend_input, instance, context):
     logger.info('EOSC PORTAL API call to PUT provider \
         with id %s to %s has been made by %s at %s \
         ' %(id, url, username, datetime.now()))
+    logger.info('Request json object: %s' %(json.dumps(eosc_req)))
     try:
         response = requests.put(url, headers=headers,json=eosc_req, verify=CA_BUNDLE)
         response.raise_for_status()

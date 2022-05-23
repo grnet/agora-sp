@@ -405,6 +405,7 @@ def create_eosc_api_json_resource(instance):
     if instance.eosc_id != None:
         resource_json['id'] = instance.eosc_id
     resource_json['name'] = instance.erp_bai_name
+    resource_json['status'] = "approved resource" 
     resource_json['catalogueId'] = EOSC_CATALOGUE_ID
     resource_json['abbreviation'] = instance.erp_bai_abbreviation
     if instance.erp_bai_organisation != None:
@@ -414,8 +415,8 @@ def create_eosc_api_json_resource(instance):
     resource_json['description'] = instance.erp_mri_1_description
     resource_json['tagline'] = instance.erp_mri_2_tagline
     resource_json['logo'] = instance.erp_mri_3_logo
-    resource_json['multimedia'] = [instance.erp_mri_4_mulitimedia]
-    resource_json['useCases'] = [instance.erp_mri_5_use_cases]
+    resource_json['multimedia'] = []
+    resource_json['useCases'] = []
     resource_json['scientificDomains'] = get_list_sci_domains(instance.erp_cli_1_scientific_domain, instance.erp_cli_2_scientific_subdomain)
     resource_json['categories'] = get_list_categories(instance.erp_cli_3_category, instance.erp_cli_4_subcategory)
     resource_json['targetUsers'] = [check_eosc_id(o.eosc_id, 'target_user-other') for o in instance.erp_cli_5_target_users.all()]
@@ -508,7 +509,7 @@ def create_eosc_api_json_provider(instance, provider_email):
         resource_json['legalStatus'] = check_eosc_id( instance.epp_bai_legal_status.eosc_id, 'provider_legal_status-other')
     resource_json['description'] = instance.epp_mri_1_description
     resource_json['logo'] = instance.epp_mri_2_logo
-    resource_json['multimedia'] = [ instance.epp_mri_3_multimedia ]
+    resource_json['multimedia'] = []
     resource_json['scientificDomains'] = get_list_sci_domains(instance.epp_cli_scientific_domain, instance.epp_cli_scientific_subdomain)
     if instance.epp_cli_tags != None:
         resource_json['tags'] = string_to_array(instance.epp_cli_tags)
