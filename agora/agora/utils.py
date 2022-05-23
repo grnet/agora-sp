@@ -23,6 +23,7 @@ from agora.settings import (
 logger = logging.getLogger(__name__)
 
 EOSC_API_URL = getattr(settings, 'EOSC_API_URL', '')
+EOSC_CATALOGUE_ID = getattr(settings, 'EOSC_CATALOGUE_ID', '')
 CA_BUNDLE = getattr(settings, 'CA_BUNDLE', '/etc/ssl/certs/ca-bundle.crt')
 
 _root_url = None
@@ -404,6 +405,7 @@ def create_eosc_api_json_resource(instance):
     if instance.eosc_id != None:
         resource_json['id'] = instance.eosc_id
     resource_json['name'] = instance.erp_bai_name
+    resource_json['catalogueId'] = EOSC_CATALOGUE_ID
     resource_json['abbreviation'] = instance.erp_bai_abbreviation
     if instance.erp_bai_organisation != None:
         resource_json['resourceOrganisation'] = instance.erp_bai_organisation.eosc_id
@@ -498,6 +500,7 @@ def create_eosc_api_json_provider(instance, provider_email):
     if instance.eosc_id != None:
         resource_json['id'] = instance.eosc_id
     resource_json['name'] = instance.epp_bai_name
+    resource_json['catalogueId'] = EOSC_CATALOGUE_ID
     resource_json['abbreviation'] = instance.epp_bai_abbreviation
     resource_json['website'] = instance.epp_bai_website
     resource_json['legalEntity'] = instance.epp_bai_legal_entity
