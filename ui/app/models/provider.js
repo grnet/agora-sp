@@ -143,6 +143,11 @@ export default DS.Model.extend({
     label: 'provider.fields.epp_mri_3_multimedia',
     formComponent: 'multiple-pairs',
     displayComponent: 'multiple-pairs-display',
+    formAttrs: {
+      actionTitle: 'add_multimedia',
+      item1: 'multimedia_name',
+      item2: 'multimedia_url',
+    }
   }),
   // computed
   short_desc: computed('description', function() {

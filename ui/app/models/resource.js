@@ -63,11 +63,23 @@ let model = DS.Model.extend({
     label: 'resource.fields.erp_mri_4_multimedia',
     formComponent: 'multiple-pairs',
     displayComponent: 'multiple-pairs-display',
+    hint: 'resource.hints.erp_mri_4_multimedia',
+    formAttrs: {
+      actionTitle: 'add_multimedia',
+      item1: 'multimedia_name',
+      item2: 'multimedia_url',
+    }
   }),
   erp_mri_5_use_cases: DS.attr({
     label: 'resource.fields.erp_mri_5_use_cases',
     formComponent: 'multiple-pairs',
     displayComponent: 'multiple-pairs-display',
+    hint: 'resource.hints.erp_mri_5_use_cases',
+    formAttrs: {
+      actionTitle: 'add_usecase',
+      item1: 'usecase_name',
+      item2: 'usecase_url',
+    }
   }),
   // classification information
   erp_cli_1_scientific_domain: DS.hasMany('domain', {

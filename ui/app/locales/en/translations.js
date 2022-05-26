@@ -95,5 +95,11 @@ export default {
   eosc,
   'eosc_id.label': 'EOSC ID',
   'eosc_state.label': 'EOSC State',
+  'multimedia_name': 'Multimedia name',
+  'multimedia_url': 'Multimedia URL',
+  'add_multimedia': 'Add multimedia',
+  'usecase_name': 'Use Case name',
+  'usecase_url': 'Use Case URL',
+  'add_usecase': 'Add use case',
 };
 
