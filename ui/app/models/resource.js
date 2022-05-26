@@ -64,9 +64,9 @@ let model = DS.Model.extend({
     label: 'resource.fields.erp_mri_3_logo',
     hint: 'resource.hints.erp_mri_3_logo',
   }),
-  erp_mri_4_mulitimedia: DS.attr({
-    label: 'resource.fields.erp_mri_4_mulitimedia',
-    hint: 'resource.hints.erp_mri_4_mulitimedia',
+  erp_mri_4_multimedia: DS.attr({
+    label: 'resource.fields.erp_mri_4_multimedia',
+    hint: 'resource.hints.erp_mri_4_multimedia',
   }),
   erp_mri_5_use_cases: DS.attr({
     label: 'resource.fields.erp_mri_5_use_cases',

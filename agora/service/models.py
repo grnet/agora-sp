@@ -147,7 +147,7 @@ class Resource(models.Model):
     erp_mri_1_description = RichTextUploadingField(max_length=1000, default=None, blank=True,  null=True)
     erp_mri_2_tagline = models.TextField(max_length=100, default=None, blank=True, null=True)
     erp_mri_3_logo = models.EmailField(default=None, blank=True, null=True)
-    erp_mri_4_mulitimedia = models.EmailField(default=None, blank=True, null=True)
+    erp_mri_4_multimedia = models.TextField(default=None, blank=True, null=True)
     erp_mri_5_use_cases = models.TextField(default=None, blank=True, null=True)
 
     # Classification information

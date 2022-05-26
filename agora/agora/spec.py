@@ -1420,7 +1420,7 @@ RESOURCES = {
         'erp_mri_3_logo': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_mri_4_mulitimedia': {
+        'erp_mri_4_multimedia': {
             '.field.string': {},
             '.flag.nullable.default': {}},
         'erp_cli_5_target_users': {
@@ -2357,7 +2357,7 @@ PUBLIC_RESOURCES = {
         'erp_mri_3_logo': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_mri_4_mulitimedia': {
+        'erp_mri_4_multimedia': {
             '.field.string': {},
             '.flag.nullable.default': {}},
         'erp_cli_5_target_users': {
