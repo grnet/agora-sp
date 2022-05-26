@@ -248,7 +248,7 @@ const DETAILS_MARKETING_FIELDSET = {
     'erp_mri_1_description',
     'erp_mri_2_tagline',
     'erp_mri_3_logo',
-    'erp_mri_4_mulitimedia',
+    'erp_mri_4_multimedia',
     'erp_mri_5_use_cases',
   ],
   layout: {
@@ -262,7 +262,7 @@ const EDIT_OR_CREATE_MARKETING_FIELDSET = {
     'erp_mri_1_description',
     'erp_mri_2_tagline',
     'erp_mri_3_logo',
-    'erp_mri_4_mulitimedia',
+    'erp_mri_4_multimedia',
     'erp_mri_5_use_cases',
   ],
   layout: {
