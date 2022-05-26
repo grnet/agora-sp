@@ -1,10 +1,10 @@
 -   model: service.resource
     pk: 3318e958-3b2c-4e1d-976a-5103a0efc53f
     fields:
-        erp_bai_0_id: okeanos
-        erp_bai_1_name: okeanos IAAS
-        erp_bai_2_organisation: f95b8142-5b51-4044-9d9a-e94759c3554c
-        erp_bai_4_webpage: null
+        erp_bai_id: okeanos
+        erp_bai_name: okeanos IAAS
+        erp_bai_organisation: f95b8142-5b51-4044-9d9a-e94759c3554c
+        erp_bai_webpage: null
         erp_mri_1_description: null
         erp_mri_2_tagline: null
         erp_mri_3_logo: null
@@ -41,7 +41,7 @@
         erp_aoi_2_order: null
         erp_fni_1_payment_model: null
         erp_fni_2_pricing: null
-        erp_bai_3_providers: []
+        erp_bai_providers: []
         erp_cli_1_scientific_domain:
         - 844384cf-e7bf-4166-a233-d5020e483fe7
         erp_cli_2_scientific_subdomain:

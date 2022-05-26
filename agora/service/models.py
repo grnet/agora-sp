@@ -130,17 +130,18 @@ class Resource(models.Model):
 
     # Basic Information fields
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    erp_bai_0_id = models.CharField(max_length=100, unique=True)
-    erp_bai_1_name = models.CharField(max_length=100, unique=True)
-    erp_bai_2_organisation = models.ForeignKey(Organisation,
+    erp_bai_id = models.CharField(max_length=100, unique=True)
+    erp_bai_abbreviation = models.CharField(max_length=100, unique=True)
+    erp_bai_name = models.CharField(max_length=100, unique=True)
+    erp_bai_organisation = models.ForeignKey(Organisation,
             on_delete=models.PROTECT,
             blank=False,
             null=True,
             related_name="organisation_services")
-    erp_bai_3_providers = models.ManyToManyField(Organisation,
+    erp_bai_providers = models.ManyToManyField(Organisation,
             blank=True,
             related_name="provided_services")
-    erp_bai_4_webpage = models.EmailField(default=None, blank=False, null=True)
+    erp_bai_webpage = models.EmailField(default=None, blank=False, null=True)
 
     # Marketing Information fields
     erp_mri_1_description = RichTextUploadingField(max_length=1000, default=None, blank=True,  null=True)
@@ -273,18 +274,18 @@ class Resource(models.Model):
     eosc_state = models.CharField(max_length=255, blank=True, null=True)
 
     def __unicode__(self):
-        return str(self.erp_bai_0_id)
+        return str(self.erp_bai_id)
 
     @property
-    def erp_bai_2_organisation_public(self):
-        if self.erp_bai_2_organisation.state == 'published':
-            return self.erp_bai_2_organisation_id
+    def erp_bai_organisation_public(self):
+        if self.erp_bai_organisation.state == 'published':
+            return self.erp_bai_organisation_id
         else:
             return None
 
     @property
-    def erp_bai_3_providers_public(self):
-        return self.erp_bai_3_providers.filter(state='published')
+    def erp_bai_providers_public(self):
+        return self.erp_bai_providers.filter(state='published')
 
     @property
     def erp_cli_3_category_verbose(self):
@@ -303,16 +304,16 @@ class Resource(models.Model):
         return ", ".join(o.name for o in self.erp_cli_2_scientific_subdomain.all())
 
     @property
-    def erp_bai_3_providers_verbose(self):
-        return ", ".join(o.epp_bai_name for o in self.erp_bai_3_providers.all())
+    def erp_bai_providers_verbose(self):
+        return ", ".join(o.epp_bai_name for o in self.erp_bai_providers.all())
 
     @property
     def required_resources_ids(self):
-        return ", ".join(o.erp_bai_0_id for o in self.required_resources.all())
+        return ", ".join(o.erp_bai_id for o in self.required_resources.all())
 
     @property
     def related_resources_ids(self):
-        return ", ".join(o.erp_bai_0_id for o in self.related_resources.all())
+        return ", ".join(o.erp_bai_id for o in self.related_resources.all())
 
     @property
     def erp_dei_1_required_resources_public(self):
@@ -327,8 +328,8 @@ class Resource(models.Model):
         return ", ".join(o.user for o in self.erp_cli_5_target_users.all())
 
     def save(self, *args, **kwargs):
-        self.erp_bai_0_id = self.erp_bai_0_id.strip()
-        self.erp_bai_1_name = self.erp_bai_1_name.strip()
+        self.erp_bai_id = self.erp_bai_id.strip()
+        self.erp_bai_name = self.erp_bai_name.strip()
         if self.state == 'published' and not self.published_at:
             self.published_at = timezone.now()
         clean_html_fields(self)

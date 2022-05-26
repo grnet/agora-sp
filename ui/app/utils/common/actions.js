@@ -283,10 +283,10 @@ const publishResource = {
       return reason.errors;
     });
   },
-  hidden: computed('role', 'model.state', 'user.organisation', 'model.erp_bai_2_service_organisation', function(){
+  hidden: computed('role', 'model.state', 'user.organisation', 'model.erp_bai_service_organisation', function(){
     let role = get(this, 'role');
     let state =  get(this, 'model.state');
-    let resource_org = get(this, 'model.erp_bai_2_service_organisation.id');
+    let resource_org = get(this, 'model.erp_bai_service_organisation.id');
     let user_org = get(this, 'session.session.authenticated.organisation');
     if (role === 'observer') {
       return true;
@@ -327,10 +327,10 @@ const unpublishResource = {
       return reason.errors;
     });
   },
-  hidden: computed('role', 'model.state', 'model.erp_bai_2_service_organisation', function(){
+  hidden: computed('role', 'model.state', 'model.erp_bai_service_organisation', function(){
     let role = get(this, 'role');
     let state =  get(this, 'model.state');
-    let resource_org = get(this, 'model.erp_bai_2_service_organisation.id');
+    let resource_org = get(this, 'model.erp_bai_service_organisation.id');
     let user_org = get(this, 'session.session.authenticated.organisation');
     if (role === 'observer') {
       return true;

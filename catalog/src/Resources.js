@@ -17,7 +17,7 @@ function Resources() {
     async function getData() {
       let AGORA_URL = `${config.endpoint}/api/v2/public/resources/`
       if (!!config.organisationUUID) {
-        AGORA_URL = AGORA_URL + '?erp_bai_2_organisation=' + config.organisationUUID
+        AGORA_URL = AGORA_URL + '?erp_bai_organisation=' + config.organisationUUID
       }
       const result = await axios(
         AGORA_URL
@@ -26,8 +26,8 @@ function Resources() {
       for (let item of result.data) {
         let terms = [];
         let tags = [];
-        if ("erp_bai_1_name" in item && item.erp_bai_1_name != null) {
-          terms.push(item.erp_bai_1_name.toLowerCase());
+        if ("erp_bai_name" in item && item.erp_bai_name != null) {
+          terms.push(item.erp_bai_name.toLowerCase());
         }
         if ("erp_cli_8_tags" in item && item.erp_cli_8_tags != null) {
           tags = item.erp_cli_8_tags.split(",").map((item) => item.trim());
@@ -59,12 +59,12 @@ function Resources() {
       <ResourceItem
         key={item.id}
         id={item.id}
-        title={item.erp_bai_1_name}
+        title={item.erp_bai_name}
         img={imgURL}
-        abbr={item.erp_bai_1_name}
-        web={item.erp_bai_4_webpage}
+        abbr={item.erp_bai_name}
+        web={item.erp_bai_webpage}
         desc={item.erp_mri_2_tagline}
-        providers={item.erp_bai_3_providers_public}
+        providers={item.erp_bai_providers_public}
         tags={item.tags}
       />
     );
