@@ -53,7 +53,7 @@ class ResourceCreate(Resources):
             - *.MGI.3 - Terms of Use
             - *.MGI.4 - Privacy Policy
             - *.MGI.5 - Access Policy
-            - *.MGI.6 - Service Level
+            - *.MGI.6 - Resource Level
             - *.MGI.7 - Training Information
             - *.MGI.8 - Status Monitoring
             - *.MGI.9 - Maintenance
@@ -238,7 +238,7 @@ class ResourceCreate(Resources):
         input_field(self.driver, self.fields_prefix + "mgi_4_privacy_policy", "https://www.selenium.dev/accessPolicy")
         # *.MGI.5 - Access Policy
         input_field(self.driver, self.fields_prefix + "mgi_5_access_policy", "https://www.selenium.dev/policy")
-        # *.MGI.6 - Service Level Agreement/Specification
+        # *.MGI.6 - Resource Level Agreement/Specification
         input_field(self.driver, self.fields_prefix + "mgi_6_sla_specification", "https://www.selenium.dev/sla")
         # *.MGI.7 - Training Information
         input_field(self.driver, self.fields_prefix + "mgi_7_training_information", "https://www.selenium.dev/training")
