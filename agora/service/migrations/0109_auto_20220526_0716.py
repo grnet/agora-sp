@@ -17,6 +17,9 @@ class Migration(migrations.Migration):
                 if sample.erp_mri_4_multimedia!=None:
                     sample.erp_mri_4_multimedia = '{"multimedia link": "' + sample.erp_mri_4_multimedia + '"}'
                     sample.save()
+                if sample.erp_mri_5_use_cases!=None:
+                    sample.erp_mri_5_use_cases = '{"use case link": "' + sample.erp_mri_5_use_cases + '"}'
+                    sample.save()
             except:
                 print('Cannot convert {} object'.format(sample.pk))
 
