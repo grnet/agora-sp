@@ -53,8 +53,8 @@ class ResourceFormValidations(ResourceCreate):
 
         # *.MRI.3 - Logo
         url_input_validation(self.driver, self.fields_prefix + "mri_3_logo")
-        # *.MRI.4 - Mulitimedia
-        url_input_validation(self.driver, self.fields_prefix + "mri_4_mulitimedia")
+        # *.MRI.4 - Multimedia
+        url_input_validation(self.driver, self.fields_prefix + "mri_4_multimedia")
         # *.MRI.5 - Use Cases
         url_input_validation(self.driver, self.fields_prefix + "mri_5_use_cases")
 

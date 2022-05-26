@@ -88,7 +88,7 @@ export default AgoraGen.extend({
       erp_mgi_8_status_monitoring: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
       erp_mgi_9_maintenance: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
       erp_mri_3_logo: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
-      erp_mri_4_mulitimedia: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
+      erp_mri_4_multimedia: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
       erp_mri_5_use_cases: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
       erp_fni_1_payment_model: [validate.format({ type: 'url', allowBlank:true }), httpValidator],
       erp_fni_2_pricing: [validate.format({ type: 'url', allowBlank:true }), httpValidator],

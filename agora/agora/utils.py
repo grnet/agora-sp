@@ -411,7 +411,7 @@ def create_eosc_api_json_resource(instance):
     resource_json['description'] = instance.erp_mri_1_description
     resource_json['tagline'] = instance.erp_mri_2_tagline
     resource_json['logo'] = instance.erp_mri_3_logo
-    resource_json['multimedia'] = [instance.erp_mri_4_mulitimedia]
+    resource_json['multimedia'] = [instance.erp_mri_4_multimedia]
     resource_json['useCases'] = [instance.erp_mri_5_use_cases]
     resource_json['scientificDomains'] = get_list_sci_domains(instance.erp_cli_1_scientific_domain, instance.erp_cli_2_scientific_subdomain)
     resource_json['categories'] = get_list_categories(instance.erp_cli_3_category, instance.erp_cli_4_subcategory)

@@ -33,7 +33,7 @@ class ResourceCreate(Resources):
             - *.MRI.1 - Description
             - *.MRI.2 - Tagline
             - *.MRI.3 - Logo
-            - *.MRI.4 - Mulitimedia
+            - *.MRI.4 - Multimedia
             - *.MRI.5 - Use Cases
 
             Classification Information
@@ -186,8 +186,8 @@ class ResourceCreate(Resources):
         # *.MRI.3 - Logo
         input_field(self.driver, self.fields_prefix + "mri_3_logo",
                     "https://www.selenium.dev/images/selenium_logo_large.png")
-        # *.MRI.4 - Mulitimedia
-        input_field(self.driver, self.fields_prefix + "mri_4_mulitimedia",
+        # *.MRI.4 - Multimedia
+        input_field(self.driver, self.fields_prefix + "mri_4_multimedia",
                     "https://www.youtube.com/channel/UCbDlgX_613xNMrDqCe3QNEw")
         # *.MRI.5 - Use Cases
         input_field(self.driver, self.fields_prefix + "mri_5_use_cases", "https://gitlab.grnet.gr/devs/agora/agora-sp/")
