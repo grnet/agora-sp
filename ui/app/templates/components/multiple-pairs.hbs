@@ -2,12 +2,12 @@
 
 <md-content class="input-wrap">
 <md-input-container class="flex flex-25">
-  <label for="multimedia-name" class="label-secondary">Multimedia name</label>
-  <input  class="md-input" id="multimedia-name"/>
+  <label for="{{item1}}" class="label-secondary">{{t item1}}</label>
+  <input  class="md-input" id="{{item1}}"/>
 </md-input-container>
 <md-input-container class="flex flex-50">
-  <label for="multimedia-url" class="label-secondary">Multimedia url</label>
-  <input class="md-input" id="multimedia-url"/>
+  <label for="{{item2}}" class="label-secondary">{{t item2}}</label>
+  <input class="md-input" id="{{item2}}"/>
 </md-input-container>
 {{#paper-button
     class="no-margin"
@@ -15,11 +15,11 @@
     raised=true
     primary=true}}
     {{paper-icon "add"}}
-    add multimedia
+    {{t actionTitle}}
 {{/paper-button}}
 </md-content>
 {{#if error}}
-<div class="error-hint">Both multimedia name and multimedia url must be filled</div>
+<div class="error-hint">{{ errorHint }}</div>
 {{/if}}
 
 <ul>
@@ -28,7 +28,7 @@
       {{pair.[0]}} - <a href={{pair.[1]}} target="_blank">{{ pair.[1] }}</a>
       {{#paper-button
       class="no-margin"
-      title="remove multimedia"
+      title="remove pair"
       onClick=(action 'removePair' pair.[0] pair.[1])
       iconButton=true}}
         {{paper-icon "delete_forever"}}
