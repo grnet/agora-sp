@@ -66,7 +66,8 @@ let model = DS.Model.extend({
   }),
   erp_mri_5_use_cases: DS.attr({
     label: 'resource.fields.erp_mri_5_use_cases',
-    hint: 'resource.hints.erp_mri_5_use_cases',
+    formComponent: 'multiple-pairs',
+    displayComponent: 'multiple-pairs-display',
   }),
   // classification information
   erp_cli_1_scientific_domain: DS.hasMany('domain', {
