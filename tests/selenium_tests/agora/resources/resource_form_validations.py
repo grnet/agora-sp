@@ -54,9 +54,9 @@ class ResourceFormValidations(ResourceCreate):
         # *.MRI.3 - Logo
         url_input_validation(self.driver, self.fields_prefix + "mri_3_logo")
         # *.MRI.4 - Multimedia
-        url_input_validation(self.driver, self.fields_prefix + "mri_4_multimedia")
+        #url_input_validation(self.driver, self.fields_prefix + "mri_4_multimedia")
         # *.MRI.5 - Use Cases
-        url_input_validation(self.driver, self.fields_prefix + "mri_5_use_cases")
+        #url_input_validation(self.driver, self.fields_prefix + "mri_5_use_cases")
 
         # *.MGI.1 - Heldesk Page
         url_input_validation(self.driver, self.fields_prefix + "mgi_1_helpdesk_webpage")
