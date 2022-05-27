@@ -52,4 +52,4 @@ class ProviderFormValidations(CreateProvider):
         # *.MRI.2 - Logo
         url_input_validation(self.driver, self.fields_prefix + "mri_2_logo")
         # *.MRI.3 - Multimedia
-        url_input_validation(self.driver, self.fields_prefix + "mri_3_multimedia")
+        #url_input_validation(self.driver, self.fields_prefix + "mri_3_multimedia")

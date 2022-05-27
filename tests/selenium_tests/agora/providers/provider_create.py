@@ -204,9 +204,9 @@ class CreateProvider(Providers):
         # *.MRI.2 - Logo
         input_field(self.driver, self.fields_prefix + "mri_2_logo", "https://www.selenium.dev/images/selenium_logo_large.png")
 
-        if not required_only:
-            # *.MRI.3 - Multimedia
-            input_field(self.driver, self.fields_prefix + "mri_3_multimedia", "https://github.com/SeleniumHQ/selenium")
+        #if not required_only:
+        #    # *.MRI.3 - Multimedia
+        #    input_field(self.driver, self.fields_prefix + "mri_3_multimedia", "https://github.com/SeleniumHQ/selenium")
 
     def maturity_information(self, required_only=False):
         """
