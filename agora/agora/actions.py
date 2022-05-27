@@ -49,6 +49,7 @@ def resource_publish_eosc(backend_input, instance, context):
     logger.info('EOSC PORTAL API call to POST resource \
         with id %s to %s has been made by %s at %s \
         ' %(id, url, username, datetime.now()))
+    logger.info('Request json object: %s' %(json.dumps(eosc_req)))
     try:
         response = requests.post(url, headers=headers,json=eosc_req, verify=CA_BUNDLE)
         response.raise_for_status()
@@ -82,6 +83,7 @@ def resource_update_eosc(backend_input, instance, context):
     logger.info('EOSC PORTAL API call to PUT resource \
         with id %s to %s has been made by %s at %s \
         ' %(id, url, username, datetime.now()))
+    logger.info('Request json object: %s' %(json.dumps(eosc_req)))
     try:
         response = requests.put(url, headers=headers,json=eosc_req, verify=CA_BUNDLE)
         response.raise_for_status()
@@ -204,6 +206,7 @@ def provider_update_eosc(backend_input, instance, context):
     logger.info('EOSC PORTAL API call to PUT provider \
         with id %s to %s has been made by %s at %s \
         ' %(id, url, username, datetime.now()))
+    logger.info('Request json object: %s' %(json.dumps(eosc_req)))
     try:
         response = requests.put(url, headers=headers,json=eosc_req, verify=CA_BUNDLE)
         response.raise_for_status()
