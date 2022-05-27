@@ -17,7 +17,6 @@ export default Ember.Component.extend({
   }),
   valueArr: computed('valueObj', function(){
     let valueObj = get(this, 'valueObj');
-    console.log(valueObj)
     if (!!valueObj) {
       return Object.entries(valueObj);
     }
