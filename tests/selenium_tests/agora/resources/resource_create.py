@@ -190,10 +190,10 @@ class ResourceCreate(Resources):
         input_field(self.driver, self.fields_prefix + "mri_3_logo",
                     "https://www.selenium.dev/images/selenium_logo_large.png")
         # *.MRI.4 - Multimedia
-        input_field(self.driver, self.fields_prefix + "mri_4_multimedia",
-                    "https://www.youtube.com/channel/UCbDlgX_613xNMrDqCe3QNEw")
+        #input_field(self.driver, self.fields_prefix + "mri_4_multimedia",
+        #            "https://www.youtube.com/channel/UCbDlgX_613xNMrDqCe3QNEw")
         # *.MRI.5 - Use Cases
-        input_field(self.driver, self.fields_prefix + "mri_5_use_cases", "https://gitlab.grnet.gr/devs/agora/agora-sp/")
+        #input_field(self.driver, self.fields_prefix + "mri_5_use_cases", "https://gitlab.grnet.gr/devs/agora/agora-sp/")
 
     def classification_information(self, required_only=False):
         """
