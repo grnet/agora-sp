@@ -320,7 +320,7 @@ class ResourceCreate(Resources):
         # *.DEI.2 - Related Resources
         table_select_field(self.driver, "related_resources", 1)
         # *.DEI.3 - Related Platforms
-        input_field(self.driver, self.fields_prefix + "dei_3_related_platforms", "GNU/Linux")
+        suggestion_input_field(self.driver, self.fields_prefix + "dei_3_related_platforms", "Other")
 
     def attribution_information(self):
         """
