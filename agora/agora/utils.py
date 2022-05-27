@@ -399,6 +399,17 @@ def string_to_array(str_field):
     arr_value = str_field.split(",")
     return [x.strip() for x in arr_value]
 
+def create_json_pairs_from_obj(entry,name1,name2):
+    # entry is a string json object with key,pair values
+    # this function creates an array with [{name1:key,name2:value}] format
+    object = json.loads(entry)
+    obj_arr = []
+    for item in object.items():
+        new_obj = {}
+        new_obj[name1] = item[0]
+        new_obj[name2] = item[1]
+        obj_arr.append(new_obj)
+    return obj_arr
 
 def create_eosc_api_json_resource(instance):
     resource_json = {}
@@ -414,8 +425,10 @@ def create_eosc_api_json_resource(instance):
     resource_json['description'] = instance.erp_mri_1_description
     resource_json['tagline'] = instance.erp_mri_2_tagline
     resource_json['logo'] = instance.erp_mri_3_logo
-    resource_json['multimedia'] = [instance.erp_mri_4_multimedia]
-    resource_json['useCases'] = [instance.erp_mri_5_use_cases]
+    if instance.erp_mri_4_multimedia != None:
+        resource_json['multimedia'] = create_json_pairs_from_obj(instance.erp_mri_4_multimedia, 'multimediaName', 'multimediaURL')
+    if instance.erp_mri_5_use_cases != None:
+        resource_json['useCases'] = create_json_pairs_from_obj(instance.erp_mri_4_multimedia, 'useCaseName', 'useCaseURL')
     resource_json['scientificDomains'] = get_list_sci_domains(instance.erp_cli_1_scientific_domain, instance.erp_cli_2_scientific_subdomain)
     resource_json['categories'] = get_list_categories(instance.erp_cli_3_category, instance.erp_cli_4_subcategory)
     resource_json['targetUsers'] = [check_eosc_id(o.eosc_id, 'target_user-other') for o in instance.erp_cli_5_target_users.all()]
@@ -508,7 +521,8 @@ def create_eosc_api_json_provider(instance, provider_email):
         resource_json['legalStatus'] = check_eosc_id( instance.epp_bai_legal_status.eosc_id, 'provider_legal_status-other')
     resource_json['description'] = instance.epp_mri_1_description
     resource_json['logo'] = instance.epp_mri_2_logo
-    resource_json['multimedia'] = [ instance.epp_mri_3_multimedia ]
+    if instance.epp_mri_3_multimedia != None:
+        resource_json['multimedia'] = create_json_pairs_from_obj(instance.epp_mri_3_multimedia, 'multimediaName', 'multimediaURL')
     resource_json['scientificDomains'] = get_list_sci_domains(instance.epp_cli_scientific_domain, instance.epp_cli_scientific_subdomain)
     if instance.epp_cli_tags != None:
         resource_json['tags'] = string_to_array(instance.epp_cli_tags)
