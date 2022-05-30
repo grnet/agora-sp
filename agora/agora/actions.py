@@ -56,7 +56,7 @@ def resource_publish_eosc(backend_input, instance, context):
         logger.info('Response status code: %s' %(response.status_code))
         logger.info('Response json: %s' %(response.json()))
         instance.eosc_id = response.json()['id']
-        instance.eosc_state = get_resource_eosc_state(response.json()['id'],headers)
+        instance.eosc_state = "approved resource"
         instance.eosc_published_at = datetime.now(timezone.utc)
     except requests.exceptions.RequestException as err:
         try:
@@ -179,7 +179,7 @@ def provider_publish_eosc(backend_input, instance, context):
         response.raise_for_status()
         logger.info('Response status code: %s' %(response.status_code))
         logger.info('Response json: %s' %(response.json()))
-        instance.eosc_state = "pending provider"
+        instance.eosc_state = "approved provider"
         instance.eosc_id = response.json()['id']
         instance.eosc_published_at = datetime.now(timezone.utc)
     except requests.exceptions.RequestException as err:
