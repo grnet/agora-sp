@@ -193,27 +193,27 @@ class Organisation(models.Model):
 
 
     # Location section
-    epp_loi_1_street_name_and_number = models.CharField(max_length=50, default=None, blank=True, null=True)
-    epp_loi_2_postal_code = models.CharField(max_length=20, default=None, blank=True, null=True)
-    epp_loi_3_city = models.CharField(max_length=50, default=None, blank=True, null=True)
-    epp_loi_4_region = models.CharField(max_length=50, default=None, blank=True, null=True)
-    epp_loi_5_country_or_territory = models.CharField(max_length=50, default=None, blank=True, null=True)
+    epp_loi_street_name_and_number = models.CharField(max_length=50, default=None, blank=True, null=True)
+    epp_loi_postal_code = models.CharField(max_length=20, default=None, blank=True, null=True)
+    epp_loi_city = models.CharField(max_length=50, default=None, blank=True, null=True)
+    epp_loi_region = models.CharField(max_length=50, default=None, blank=True, null=True)
+    epp_loi_country_or_territory = models.CharField(max_length=50, default=None, blank=True, null=True)
 
     # Marketing section
-    epp_mri_1_description = RichTextUploadingField(max_length=1000, default=None, blank=True, null=True)
-    epp_mri_2_logo = models.TextField(default=None, blank=True, null=True)
-    epp_mri_3_multimedia = models.TextField(default=None, blank=True, null=True)
+    epp_mri_description = RichTextUploadingField(max_length=1000, default=None, blank=True, null=True)
+    epp_mri_logo = models.TextField(default=None, blank=True, null=True)
+    epp_mri_multimedia = models.TextField(default=None, blank=True, null=True)
 
     # Contact Information
     main_contact = models.ForeignKey('owner.ContactInformation', blank=True, null=True, related_name="main_contact_provders")
     public_contact = models.ForeignKey('owner.ContactInformation', blank=True, null=True, related_name="public_contact_providers")
 
     # Maturity Information
-    epp_mti_1_life_cycle_status = models.CharField(max_length=255,
+    epp_mti_life_cycle_status = models.CharField(max_length=255,
                                                   default=None, blank=True, null=True,
                                                   choices=LIFECYCLE_STATUSES)
 
-    epp_mti_2_certifications = models.TextField(default=None, blank=True, null=True)
+    epp_mti_certifications = models.TextField(default=None, blank=True, null=True)
 
    # Other information section
     epp_oth_participating_countries = models.TextField(default=None, blank=True, null=True)
@@ -317,12 +317,12 @@ class Organisation(models.Model):
         return ", ".join(o.name for o in self.epp_oth_meril_scientific_subdomain.all())
 
     @property
-    def epp_loi_5_country_or_territory_capitalize(self):
+    def epp_loi_country_or_territory_capitalize(self):
         """
         This will transform 'bulgaria (bg)' to 'Bulgaria (BG)'
         """
-        if self.epp_loi_5_country_or_territory:
-            el = self.epp_loi_5_country_or_territory.replace(')', '')
+        if self.epp_loi_country_or_territory:
+            el = self.epp_loi_country_or_territory.replace(')', '')
             country_lower, code  = el.split('(')
             country_lower = country_lower.split(' ')
             country = [];

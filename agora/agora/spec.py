@@ -944,35 +944,35 @@ ORGANISATIONS = {
         'epp_oth_affiliations_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
-        'epp_loi_1_street_name_and_number': {
+        'epp_loi_street_name_and_number': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_loi_2_postal_code': {
+        'epp_loi_postal_code': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_loi_3_city': {
+        'epp_loi_city': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_loi_4_region': {
+        'epp_loi_region': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_loi_5_country_or_territory': {
+        'epp_loi_country_or_territory': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_mri_1_description': {
+        'epp_mri_description': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_mri_2_logo': {
+        'epp_mri_logo': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_mri_3_multimedia': {
+        'epp_mri_multimedia': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
@@ -986,61 +986,61 @@ ORGANISATIONS = {
           'source': 'public_contact_id',
           'to': '/api/v2/contact-information',
           '.flag.nullable.default': {}},
-        'epp_coi_1_first_name': {
+        'epp_coi_first_name': {
           '.field.string': {},
           '.flag.nowrite': {},
           'source': 'main_contact.first_name',
           '.flag.nullable.default': {}},
-        'epp_coi_2_last_name': {
+        'epp_coi_last_name': {
           '.field.string': {},
           'source': 'main_contact.last_name',
           '.flag.nowrite': {},
           '.flag.nullable.default': {}},
-        'epp_coi_3_email': {
+        'epp_coi_email': {
           '.field.string': {},
           'source': 'main_contact.email',
           '.flag.nowrite': {},
           '.flag.nullable.default': {}},
-        'epp_coi_4_phone': {
+        'epp_coi_phone': {
           '.field.string': {},
           '.flag.nowrite': {},
           'source': 'main_contact.phone',
           '.flag.nullable.default': {}},
-        'epp_coi_5_position': {
+        'epp_coi_position': {
           '.field.string': {},
           '.flag.nowrite': {},
           'source': 'main_contact.position',
           '.flag.nullable.default': {}},
-        'epp_coi_6_first_name': {
+        'epp_coi_first_name': {
           '.field.string': {},
           '.flag.nowrite': {},
           'source': 'public_contact.first_name',
           '.flag.nullable.default': {}},
-        'epp_coi_7_last_name': {
+        'epp_coi_last_name': {
           '.field.string': {},
           'source': 'public_contact.last_name',
           '.flag.nowrite': {},
           '.flag.nullable.default': {}},
-        'epp_coi_8_email': {
+        'epp_coi_email': {
           '.field.string': {},
           'source': 'public_contact.email',
           '.flag.nowrite': {},
           '.flag.nullable.default': {}},
-        'epp_coi_9_phone': {
+        'epp_coi_phone': {
           '.field.string': {},
           '.flag.nowrite': {},
           'source': 'public_contact.phone',
           '.flag.nullable.default': {}},
-        'epp_coi_10_position': {
+        'epp_coi_position': {
           '.field.string': {},
           '.flag.nowrite': {},
           'source': 'public_contact.position',
           '.flag.nullable.default': {}},
-        'epp_mti_1_life_cycle_status': {
+        'epp_mti_life_cycle_status': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_mti_2_certifications': {
+        'epp_mti_certifications': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
@@ -1409,118 +1409,118 @@ RESOURCES = {
         'erp_bai_providers_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
-        'erp_mri_1_description': {
+        'erp_mri_description': {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
-        'erp_mri_2_tagline': {
+        'erp_mri_tagline': {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
-        'erp_mri_3_logo': {
+        'erp_mri_logo': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_mri_4_multimedia': {
+        'erp_mri_multimedia': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_cli_5_target_users': {
+        'erp_cli_target_users': {
             '.field.collection.django': {},
             ':filter_compat': True,
             '.flag.nullable.default': {},
             'flat': True,
             'id_field': 'target_user',
-            'model': 'service.models.Resource.erp_cli_5_target_users.through',
-            'source': 'erp_cli_5_target_users',
+            'model': 'service.models.Resource.erp_cli_target_users.through',
+            'source': 'erp_cli_target_users',
             'bound': 'resource',
             'fields': {
                 'target_user': {'.field.ref': {},
                                 'source': 'targetuser_id',
                                 'to': 'api/v2/target-users'},
             }},
-        'erp_cli_5_target_users_verbose': {
+        'erp_cli_target_users_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
-        'erp_mri_5_use_cases': {
+        'erp_mri_use_cases': {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
-        'erp_cli_1_scientific_domain': {
+        'erp_cli_scientific_domain': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
             'flat': True,
             'id_field': 'domain',
-            'model': 'service.models.Resource.erp_cli_1_scientific_domain.through',
-            'source': 'erp_cli_1_scientific_domain',
+            'model': 'service.models.Resource.erp_cli_scientific_domain.through',
+            'source': 'erp_cli_scientific_domain',
             'bound': 'resource',
             'fields': {
                 'domain': {'.field.ref': {},
                                 'source': 'domain_id',
                                 'to': 'api/v2/domains'},
             }},
-        'erp_cli_1_scientific_domain_verbose': {
+        'erp_cli_scientific_domain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
-        'erp_cli_2_scientific_subdomain': {
+        'erp_cli_scientific_subdomain': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
             'flat': True,
             'id_field': 'subdomain',
-            'model': 'service.models.Resource.erp_cli_2_scientific_subdomain.through',
-            'source': 'erp_cli_2_scientific_subdomain',
+            'model': 'service.models.Resource.erp_cli_scientific_subdomain.through',
+            'source': 'erp_cli_scientific_subdomain',
             'bound': 'resource',
             'fields': {
                 'subdomain': {'.field.ref': {},
                                 'source': 'subdomain_id',
                                 'to': 'api/v2/subdomains'},
             }},
-        'erp_cli_2_scientific_subdomain_verbose': {
+        'erp_cli_scientific_subdomain_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
-        'erp_cli_3_category': {
+        'erp_cli_category': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
             'flat': True,
             'id_field': 'category',
-            'model': 'service.models.Resource.erp_cli_3_category.through',
-            'source': 'erp_cli_3_category',
+            'model': 'service.models.Resource.erp_cli_category.through',
+            'source': 'erp_cli_category',
             'bound': 'resource',
             'fields': {
                 'category': {'.field.ref': {},
                                 'source': 'category_id',
                                 'to': 'api/v2/categories'},
             }},
-        'erp_cli_3_category_verbose': {
+        'erp_cli_category_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
-        'erp_cli_4_subcategory': {
+        'erp_cli_subcategory': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
             'flat': True,
             'id_field': 'subcategory',
-            'model': 'service.models.Resource.erp_cli_4_subcategory.through',
-            'source': 'erp_cli_4_subcategory',
+            'model': 'service.models.Resource.erp_cli_subcategory.through',
+            'source': 'erp_cli_subcategory',
             'bound': 'resource',
             'fields': {
                 'subcategory': {'.field.ref': {},
                                 'source': 'subcategory_id',
                                 'to': 'api/v2/subcategories'},
             }},
-        'erp_cli_4_subcategory_verbose': {
+        'erp_cli_subcategory_verbose': {
             '.field.string': {},
             '.flag.nowrite': {}},
 
-        'erp_cli_6_access_type': {
+        'erp_cli_access_type': {
             '.field.collection.django': {},
             ':filter_compat': True,
             '.flag.nullable.default': {},
             'flat': True,
             'id_field': 'access_type',
-            'model': 'service.models.Resource.erp_cli_6_access_type.through',
-            'source': 'erp_cli_6_access_type',
+            'model': 'service.models.Resource.erp_cli_access_type.through',
+            'source': 'erp_cli_access_type',
             'bound': 'resource',
             'fields': {
                 'access_type': {'.field.ref': {},
@@ -1528,14 +1528,14 @@ RESOURCES = {
                                 'to': 'api/v2/access-types'},
             }
         },
-        'erp_cli_7_access_mode': {
+        'erp_cli_access_mode': {
             '.field.collection.django': {},
             ':filter_compat': True,
             '.flag.nullable.default': {},
             'flat': True,
             'id_field': 'access_mode',
-            'model': 'service.models.Resource.erp_cli_7_access_mode.through',
-            'source': 'erp_cli_7_access_mode',
+            'model': 'service.models.Resource.erp_cli_access_mode.through',
+            'source': 'erp_cli_access_mode',
             'bound': 'resource',
             'fields': {
                 'access_mode': {'.field.ref': {},
@@ -1543,46 +1543,46 @@ RESOURCES = {
                                 'to': 'api/v2/access-modes'},
             }
         },
-        'erp_cli_8_tags': {
+        'erp_cli_tags': {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
 
-        'erp_mgi_1_helpdesk_webpage': {
+        'erp_mgi_helpdesk_webpage': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_mgi_2_user_manual': {
+        'erp_mgi_user_manual': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_mgi_3_terms_of_use': {
+        'erp_mgi_terms_of_use': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_mgi_4_privacy_policy': {
+        'erp_mgi_privacy_policy': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_mgi_5_access_policy': {
+        'erp_mgi_access_policy': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_mgi_6_sla_specification': {
+        'erp_mgi_sla_specification': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_mgi_7_training_information': {
+        'erp_mgi_training_information': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_mgi_8_status_monitoring': {
+        'erp_mgi_status_monitoring': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_mgi_9_maintenance': {
+        'erp_mgi_maintenance': {
           '.field.string': {},
           '.flag.nullable.default': {}},
 
-        'erp_gla_1_geographical_availability': {
+        'erp_gla_geographical_availability': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_gla_2_language': {
+        'erp_gla_language': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_rli_1_geographic_location': {
+        'erp_rli_geographic_location': {
             '.field.string': {},
             '.flag.nullable.default': {}},
         'main_contact': {
@@ -1595,116 +1595,116 @@ RESOURCES = {
             'source': 'public_contact_id',
             'to': '/api/v2/contact-information',
             '.flag.nullable.default': {}},
-        'erp_coi_1_first_name': {
+        'erp_coi_first_name': {
             '.field.string': {},
             '.flag.nowrite': {},
             'source': 'main_contact.first_name',
             '.flag.nullable.default': {}},
-        'erp_coi_2_last_name': {
+        'erp_coi_last_name': {
             '.field.string': {},
             'source': 'main_contact.last_name',
             '.flag.nowrite': {},
             '.flag.nullable.default': {}},
-        'erp_coi_3_email': {
+        'erp_coi_email': {
             '.field.string': {},
             'source': 'main_contact.email',
             '.flag.nowrite': {},
             '.flag.nullable.default': {}},
-        'erp_coi_4_phone': {
+        'erp_coi_phone': {
             '.field.string': {},
             '.flag.nowrite': {},
             'source': 'main_contact.phone',
             '.flag.nullable.default': {}},
-        'erp_coi_5_position': {
+        'erp_coi_position': {
             '.field.string': {},
             '.flag.nowrite': {},
             'source': 'main_contact.position',
             '.flag.nullable.default': {}},
-        'erp_coi_6_organisation': {
+        'erp_coi_organisation': {
             '.field.string': {},
             '.flag.nowrite': {},
             'source': 'main_contact.organisation.epp_bai_name',
             '.flag.nullable.default': {}},
 
-        'erp_coi_7_first_name': {
+        'erp_coi_first_name': {
             '.field.string': {},
             '.flag.nowrite': {},
             'source': 'public_contact.first_name',
             '.flag.nullable.default': {}},
-        'erp_coi_8_last_name': {
+        'erp_coi_last_name': {
             '.field.string': {},
             'source': 'public_contact.last_name',
             '.flag.nowrite': {},
             '.flag.nullable.default': {}},
-        'erp_coi_9_email': {
+        'erp_coi_email': {
             '.field.string': {},
             'source': 'public_contact.email',
             '.flag.nowrite': {},
             '.flag.nullable.default': {}},
-        'erp_coi_10_phone': {
+        'erp_coi_phone': {
             '.field.string': {},
             '.flag.nowrite': {},
             'source': 'public_contact.phone',
             '.flag.nullable.default': {}},
-        'erp_coi_11_position': {
+        'erp_coi_position': {
             '.field.string': {},
             '.flag.nowrite': {},
             'source': 'public_contact.position',
             '.flag.nullable.default': {}},
-        'erp_coi_12_organisation': {
+        'erp_coi_organisation': {
             '.field.string': {},
             '.flag.nowrite': {},
             'source': 'public_contact.organisation.epp_bai_name',
             '.flag.nullable.default': {}},
-        'erp_coi_13_helpdesk_email': {
+        'erp_coi_helpdesk_email': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_coi_14_security_contact_email': {
+        'erp_coi_security_contact_email': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_mti_1_technology_readiness_level': {
+        'erp_mti_technology_readiness_level': {
             '.field.ref': {},
-            'source': 'erp_mti_1_technology_readiness_level_id',
+            'source': 'erp_mti_technology_readiness_level_id',
             'to': '/api/v2/trls',
             '.flag.filterable': {},
             '.flag.nullable.default': {}},
-        'erp_mti_2_life_cycle_status': {
+        'erp_mti_life_cycle_status': {
             '.field.ref': {},
-            'source': 'erp_mti_2_life_cycle_status_id',
+            'source': 'erp_mti_life_cycle_status_id',
             'to': '/api/v2/resource-lifecycle-statuses',
             '.flag.filterable': {},
             '.flag.nullable.default': {}},
-        'erp_mti_3_certifications': {
+        'erp_mti_certifications': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_mti_4_standards': {
+        'erp_mti_standards': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_mti_5_open_source_technologies': {
+        'erp_mti_open_source_technologies': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_mti_6_version': {
+        'erp_mti_version': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_mti_7_last_update': {
+        'erp_mti_last_update': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_mti_8_changelog': {
+        'erp_mti_changelog': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_aoi_1_order_type': {
+        'erp_aoi_order_type': {
             '.field.ref': {},
-            'source': 'erp_aoi_1_order_type_id',
+            'source': 'erp_aoi_order_type_id',
             'to': '/api/v2/order-types',
             '.flag.filterable': {},
             '.flag.nullable.default': {}},
-        'erp_aoi_2_order': {
+        'erp_aoi_order': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_fni_1_payment_model': {
+        'erp_fni_payment_model': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_fni_2_pricing': {
+        'erp_fni_pricing': {
           '.field.string': {},
           '.flag.nullable.default': {}},
         'resource_admins_ids': {
@@ -1769,27 +1769,27 @@ RESOURCES = {
                             'to': 'api/v2/resources'},
             },
         },
-        'erp_dei_1_required_resources': {
+        'erp_dei_required_resources': {
             '.field.string': {},
             'source': 'required_resources_ids',
             '.flag.nowrite': {},
             '.flag.nullable.default': {}},
-        'erp_dei_2_related_resources': {
+        'erp_dei_related_resources': {
             '.field.string': {},
             'source': 'related_resources_ids',
             '.flag.nowrite': {},
             '.flag.nullable.default': {}},
-        'erp_dei_3_related_platforms': {
+        'erp_dei_related_platforms': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_ati_1_funding_body': {
+        'erp_ati_funding_body': {
             '.field.collection.django': {},
             ':filter_compat': True,
             '.flag.nullable.default': {},
             'flat': True,
             'id_field': 'funding_body',
-            'model': 'service.models.Resource.erp_ati_1_funding_body.through',
-            'source': 'erp_ati_1_funding_body',
+            'model': 'service.models.Resource.erp_ati_funding_body.through',
+            'source': 'erp_ati_funding_body',
             'bound': 'resource',
             'fields': {
                 'funding_body': {'.field.ref': {},
@@ -1797,14 +1797,14 @@ RESOURCES = {
                                 'to': 'api/v2/funding-bodies'},
             }
         },
-        'erp_ati_2_funding_program': {
+        'erp_ati_funding_program': {
             '.field.collection.django': {},
             ':filter_compat': True,
             '.flag.nullable.default': {},
             'flat': True,
             'id_field': 'funding_program',
-            'model': 'service.models.Resource.erp_ati_2_funding_program.through',
-            'source': 'erp_ati_2_funding_program',
+            'model': 'service.models.Resource.erp_ati_funding_program.through',
+            'source': 'erp_ati_funding_program',
             'bound': 'resource',
             'fields': {
                 'funding_program': {'.field.ref': {},
@@ -1812,7 +1812,7 @@ RESOURCES = {
                                 'to': 'api/v2/funding-programs'},
             }
         },
-        'erp_ati_3_grant_project_name': {
+        'erp_ati_grant_project_name': {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
@@ -2031,69 +2031,69 @@ PUBLIC_ORGANISATIONS = {
                   '.flag.nowrite': {},
                   'source': 'structure.name'},
             }},
-        'epp_loi_1_street_name_and_number': {
+        'epp_loi_street_name_and_number': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_loi_2_postal_code': {
+        'epp_loi_postal_code': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_loi_3_city': {
+        'epp_loi_city': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_loi_4_region': {
+        'epp_loi_region': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_loi_5_country_or_territory': {
-          'source': 'epp_loi_5_country_or_territory_capitalize',
+        'epp_loi_country_or_territory': {
+          'source': 'epp_loi_country_or_territory_capitalize',
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_mri_1_description': {
+        'epp_mri_description': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_mri_2_logo': {
+        'epp_mri_logo': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_mri_3_multimedia': {
+        'epp_mri_multimedia': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_coi_6_first_name': {
+        'epp_coi_first_name': {
           '.field.string': {},
           '.flag.nowrite': {},
           'source': 'public_contact.first_name',
           '.flag.nullable.default': {}},
-        'epp_coi_7_last_name': {
+        'epp_coi_last_name': {
           '.field.string': {},
           'source': 'public_contact.last_name',
           '.flag.nowrite': {},
           '.flag.nullable.default': {}},
-        'epp_coi_8_email': {
+        'epp_coi_email': {
           '.field.string': {},
           'source': 'public_contact.email',
           '.flag.nowrite': {},
           '.flag.nullable.default': {}},
-        'epp_coi_9_phone': {
+        'epp_coi_phone': {
           '.field.string': {},
           '.flag.nowrite': {},
           'source': 'public_contact.phone',
           '.flag.nullable.default': {}},
-        'epp_coi_10_position': {
+        'epp_coi_position': {
           '.field.string': {},
           '.flag.nowrite': {},
           'source': 'public_contact.position',
           '.flag.nullable.default': {}},
-        'epp_mti_1_life_cycle_status': {
+        'epp_mti_life_cycle_status': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_mti_2_certifications': {
+        'epp_mti_certifications': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
@@ -2346,27 +2346,27 @@ PUBLIC_RESOURCES = {
         'erp_bai_webpage': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_mri_1_description': {
+        'erp_mri_description': {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
-        'erp_mri_2_tagline': {
+        'erp_mri_tagline': {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
-        'erp_mri_3_logo': {
+        'erp_mri_logo': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_mri_4_multimedia': {
+        'erp_mri_multimedia': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_cli_5_target_users': {
+        'erp_cli_target_users': {
             '.field.collection.django': {},
             ':filter_compat': True,
             '.flag.nullable.default': {},
             'id_field': 'id',
-            'model': 'service.models.Resource.erp_cli_5_target_users.through',
-            'source': 'erp_cli_5_target_users',
+            'model': 'service.models.Resource.erp_cli_target_users.through',
+            'source': 'erp_cli_target_users',
             'bound': 'resource',
             'fields': {
                 'href': {'.field.ref': {},
@@ -2382,17 +2382,17 @@ PUBLIC_RESOURCES = {
                   '.field.string': {},
                   'source': 'targetuser.description'},
             }},
-        'erp_mri_5_use_cases': {
+        'erp_mri_use_cases': {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
-        'erp_cli_1_scientific_domain': {
+        'erp_cli_scientific_domain': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
             'id_field': 'id',
-            'model': 'service.models.Resource.erp_cli_1_scientific_domain.through',
-            'source': 'erp_cli_1_scientific_domain',
+            'model': 'service.models.Resource.erp_cli_scientific_domain.through',
+            'source': 'erp_cli_scientific_domain',
             'bound': 'resource',
             'fields': {
                 'href': {'.field.ref': {},
@@ -2406,13 +2406,13 @@ PUBLIC_RESOURCES = {
                   '.flag.nowrite': {},
                   'source': 'domain.name'},
             }},
-        'erp_cli_2_scientific_subdomain': {
+        'erp_cli_scientific_subdomain': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
             'id_field': 'id',
-            'model': 'service.models.Resource.erp_cli_2_scientific_subdomain.through',
-            'source': 'erp_cli_2_scientific_subdomain',
+            'model': 'service.models.Resource.erp_cli_scientific_subdomain.through',
+            'source': 'erp_cli_scientific_subdomain',
             'bound': 'resource',
             'fields': {
                 'href': {'.field.ref': {},
@@ -2429,13 +2429,13 @@ PUBLIC_RESOURCES = {
                   '.flag.nowrite': {},
                   'source': 'subdomain.name'},
             }},
-        'erp_cli_3_category': {
+        'erp_cli_category': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
             'id_field': 'id',
-            'model': 'service.models.Resource.erp_cli_3_category.through',
-            'source': 'erp_cli_3_category',
+            'model': 'service.models.Resource.erp_cli_category.through',
+            'source': 'erp_cli_category',
             'bound': 'resource',
             'fields': {
                 'href': {'.field.ref': {},
@@ -2452,13 +2452,13 @@ PUBLIC_RESOURCES = {
                                 'source': 'category.supercategory_id',
                                 'to': 'api/v2/public/supercategories'},
             }},
-        'erp_cli_4_subcategory': {
+        'erp_cli_subcategory': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
             'id_field': 'id',
-            'model': 'service.models.Resource.erp_cli_4_subcategory.through',
-            'source': 'erp_cli_4_subcategory',
+            'model': 'service.models.Resource.erp_cli_subcategory.through',
+            'source': 'erp_cli_subcategory',
             'bound': 'resource',
             'fields': {
                 'href': {'.field.ref': {},
@@ -2474,13 +2474,13 @@ PUBLIC_RESOURCES = {
                                 'source': 'subcategory.category_id',
                                 'to': 'api/v2/public/categories'},
             }},
-        'erp_cli_6_access_type': {
+        'erp_cli_access_type': {
             '.field.collection.django': {},
             ':filter_compat': True,
             '.flag.nullable.default': {},
             'id_field': 'id',
-            'model': 'service.models.Resource.erp_cli_6_access_type.through',
-            'source': 'erp_cli_6_access_type',
+            'model': 'service.models.Resource.erp_cli_access_type.through',
+            'source': 'erp_cli_access_type',
             'bound': 'resource',
             'fields': {
                 'href': {'.field.ref': {},
@@ -2497,13 +2497,13 @@ PUBLIC_RESOURCES = {
                   'source': 'accesstype.description'},
             }
         },
-        'erp_cli_7_access_mode': {
+        'erp_cli_access_mode': {
             '.field.collection.django': {},
             ':filter_compat': True,
             '.flag.nullable.default': {},
             'id_field': 'id',
-            'model': 'service.models.Resource.erp_cli_7_access_mode.through',
-            'source': 'erp_cli_7_access_mode',
+            'model': 'service.models.Resource.erp_cli_access_mode.through',
+            'source': 'erp_cli_access_mode',
             'bound': 'resource',
             'fields': {
                 'href': {'.field.ref': {},
@@ -2520,85 +2520,85 @@ PUBLIC_RESOURCES = {
                   'source': 'accessmode.description'},
             }
         },
-        'erp_cli_8_tags': {
+        'erp_cli_tags': {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
 
-        'erp_mgi_1_helpdesk_webpage': {
+        'erp_mgi_helpdesk_webpage': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_mgi_2_user_manual': {
+        'erp_mgi_user_manual': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_mgi_3_terms_of_use': {
+        'erp_mgi_terms_of_use': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_mgi_4_privacy_policy': {
+        'erp_mgi_privacy_policy': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_mgi_5_access_policy': {
+        'erp_mgi_access_policy': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_mgi_6_sla_specification': {
+        'erp_mgi_sla_specification': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_mgi_7_training_information': {
+        'erp_mgi_training_information': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_mgi_8_status_monitoring': {
+        'erp_mgi_status_monitoring': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_mgi_9_maintenance': {
+        'erp_mgi_maintenance': {
           '.field.string': {},
           '.flag.nullable.default': {}},
 
-        'erp_gla_1_geographical_availability': {
+        'erp_gla_geographical_availability': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_gla_2_language': {
+        'erp_gla_language': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_rli_1_geographic_location': {
+        'erp_rli_geographic_location': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_coi_7_first_name': {
+        'erp_coi_first_name': {
             '.field.string': {},
             '.flag.nowrite': {},
             'source': 'public_contact.first_name',
             '.flag.nullable.default': {}},
-        'erp_coi_8_last_name': {
+        'erp_coi_last_name': {
             '.field.string': {},
             'source': 'public_contact.last_name',
             '.flag.nowrite': {},
             '.flag.nullable.default': {}},
-        'erp_coi_9_email': {
+        'erp_coi_email': {
             '.field.string': {},
             'source': 'public_contact.email',
             '.flag.nowrite': {},
             '.flag.nullable.default': {}},
-        'erp_coi_10_phone': {
+        'erp_coi_phone': {
             '.field.string': {},
             '.flag.nowrite': {},
             'source': 'public_contact.phone',
             '.flag.nullable.default': {}},
-        'erp_coi_11_position': {
+        'erp_coi_position': {
             '.field.string': {},
             '.flag.nowrite': {},
             'source': 'public_contact.position',
             '.flag.nullable.default': {}},
-        'erp_coi_12_organisation': {
+        'erp_coi_organisation': {
             '.field.string': {},
             '.flag.nowrite': {},
             'source': 'public_contact.organisation.epp_bai_name',
             '.flag.nullable.default': {}},
-        'erp_coi_13_helpdesk_email': {
+        'erp_coi_helpdesk_email': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_coi_14_security_contact_email': {
+        'erp_coi_security_contact_email': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_mti_1_technology_readiness_level': {
+        'erp_mti_technology_readiness_level': {
             '.field.struct': {},
             'fields': {
                 'href': {'.field.ref': {},
@@ -2608,31 +2608,31 @@ PUBLIC_RESOURCES = {
                 'name': { '.field.string': {}},
                 'description': { '.field.string': {}},
             }},
-        'erp_mti_2_life_cycle_status': {
+        'erp_mti_life_cycle_status': {
             '.field.ref': {},
-            'source': 'erp_mti_2_life_cycle_status_id',
+            'source': 'erp_mti_life_cycle_status_id',
             'to': '/api/v2/resource-lifecycle-statuses',
             '.flag.filterable': {},
             '.flag.nullable.default': {}},
-        'erp_mti_3_certifications': {
+        'erp_mti_certifications': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_mti_4_standards': {
+        'erp_mti_standards': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_mti_5_open_source_technologies': {
+        'erp_mti_open_source_technologies': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_mti_6_version': {
+        'erp_mti_version': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_mti_7_last_update': {
+        'erp_mti_last_update': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_mti_8_changelog': {
+        'erp_mti_changelog': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_aoi_1_order_type': {
+        'erp_aoi_order_type': {
             '.field.struct': {},
             'fields': {
                 'href': {'.field.ref': {},
@@ -2642,16 +2642,16 @@ PUBLIC_RESOURCES = {
                 'name': { '.field.string': {}},
                 'description': { '.field.string': {}},
             }},
-        'erp_aoi_2_order': {
+        'erp_aoi_order': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_fni_1_payment_model': {
+        'erp_fni_payment_model': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_fni_2_pricing': {
+        'erp_fni_pricing': {
           '.field.string': {},
           '.flag.nullable.default': {}},
-        'erp_dei_1_required_resources_public': {
+        'erp_dei_required_resources_public': {
             '.field.collection.django': {},
             ':filter_compat': True,
             '.flag.nullable.default': {},
@@ -2671,7 +2671,7 @@ PUBLIC_RESOURCES = {
                   '.field.string': {}},
             }
         },
-        'erp_dei_2_related_resources_public': {
+        'erp_dei_related_resources_public': {
             '.field.collection.django': {},
             ':filter_compat': True,
             '.flag.nullable.default': {},
@@ -2691,16 +2691,16 @@ PUBLIC_RESOURCES = {
                   '.field.string': {}},
             }
         },
-        'erp_dei_3_related_platforms': {
+        'erp_dei_related_platforms': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_ati_1_funding_body': {
+        'erp_ati_funding_body': {
             '.field.collection.django': {},
             ':filter_compat': True,
             '.flag.nullable.default': {},
             'id_field': 'id',
-            'model': 'service.models.Resource.erp_ati_1_funding_body.through',
-            'source': 'erp_ati_1_funding_body',
+            'model': 'service.models.Resource.erp_ati_funding_body.through',
+            'source': 'erp_ati_funding_body',
             'bound': 'resource',
             'fields': {
                 'href': {'.field.ref': {},
@@ -2715,13 +2715,13 @@ PUBLIC_RESOURCES = {
 
             }
         },
-        'erp_ati_2_funding_program': {
+        'erp_ati_funding_program': {
             '.field.collection.django': {},
             ':filter_compat': True,
             '.flag.nullable.default': {},
             'id_field': 'id',
-            'model': 'service.models.Resource.erp_ati_2_funding_program.through',
-            'source': 'erp_ati_2_funding_program',
+            'model': 'service.models.Resource.erp_ati_funding_program.through',
+            'source': 'erp_ati_funding_program',
             'bound': 'resource',
             'fields': {
                 'href': {'.field.ref': {},
@@ -2736,7 +2736,7 @@ PUBLIC_RESOURCES = {
                   'source': 'fundingprogram.name'},
             }
         },
-        'erp_ati_3_grant_project_name': {
+        'erp_ati_grant_project_name': {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
@@ -2782,24 +2782,24 @@ PUBLIC_ORGANISATIONS_LITE = {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
-        'epp_loi_1_street_name_and_number': {
+        'epp_loi_street_name_and_number': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_loi_2_postal_code': {
+        'epp_loi_postal_code': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_loi_3_city': {
+        'epp_loi_city': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_loi_5_country_or_territory': {
-          'source': 'epp_loi_5_country_or_territory_capitalize',
+        'epp_loi_country_or_territory': {
+          'source': 'epp_loi_country_or_territory_capitalize',
           '.field.string': {},
           '.flag.nullable.default': {},
         },
-        'epp_mri_2_logo': {
+        'epp_mri_logo': {
           '.field.string': {},
           '.flag.nullable.default': {},
         },
@@ -2838,7 +2838,7 @@ PUBLIC_RESOURCES_LITE = {
             '.field.string': {},
             '.flag.orderable': {},
             '.flag.searchable': {}},
-        'erp_mri_2_tagline': {
+        'erp_mri_tagline': {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
@@ -2848,16 +2848,16 @@ PUBLIC_RESOURCES_LITE = {
             '.flag.filterable': {},
             '.flag.nullable.default': {},
             '.flag.noread': {}},
-        'erp_mri_3_logo': {
+        'erp_mri_logo': {
             '.field.string': {},
             '.flag.nullable.default': {}},
-        'erp_cli_1_scientific_domain': {
+        'erp_cli_scientific_domain': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
             'id_field': 'id',
-            'model': 'service.models.Resource.erp_cli_1_scientific_domain.through',
-            'source': 'erp_cli_1_scientific_domain',
+            'model': 'service.models.Resource.erp_cli_scientific_domain.through',
+            'source': 'erp_cli_scientific_domain',
             'bound': 'resource',
             'fields': {
                 'href': {'.field.ref': {},
@@ -2871,13 +2871,13 @@ PUBLIC_RESOURCES_LITE = {
                   '.flag.nowrite': {},
                   'source': 'domain.name'},
             }},
-        'erp_cli_3_category': {
+        'erp_cli_category': {
             '.field.collection.django': {},
             '.flag.nullable.default': {},
             ':filter_compat': True,
             'id_field': 'id',
-            'model': 'service.models.Resource.erp_cli_3_category.through',
-            'source': 'erp_cli_3_category',
+            'model': 'service.models.Resource.erp_cli_category.through',
+            'source': 'erp_cli_category',
             'bound': 'resource',
             'fields': {
                 'href': {'.field.ref': {},
@@ -2895,7 +2895,7 @@ PUBLIC_RESOURCES_LITE = {
                                 'to': 'api/v2/public/supercategories'},
             }
         }},
-        'erp_cli_8_tags': {
+        'erp_cli_tags': {
             '.field.string': {},
             '.flag.searchable': {},
             '.flag.nullable.default': {}},
