@@ -51,7 +51,7 @@ export default AgoraGen.extend({
             validate.format({ type: 'url', allowBlank: true }),
             httpValidator,
           ],
-          epp_mri_2_logo: [
+          epp_mri_logo: [
             validate.format({ type: 'url', allowBlank: true }),
             httpValidator,
           ],
@@ -81,12 +81,12 @@ export default AgoraGen.extend({
               return []
             }
           }),
-          epp_loi_1_street_name_and_number: [validate.presence(true)],
-          epp_loi_2_postal_code: [validate.presence(true)],
-          epp_loi_3_city: [validate.presence(true)],
-          epp_loi_5_country_or_territory: [validate.presence(true)],
-          epp_mri_1_description: [validate.presence(true)],
-          epp_mri_2_logo: [
+          epp_loi_street_name_and_number: [validate.presence(true)],
+          epp_loi_postal_code: [validate.presence(true)],
+          epp_loi_city: [validate.presence(true)],
+          epp_loi_country_or_territory: [validate.presence(true)],
+          epp_mri_description: [validate.presence(true)],
+          epp_mri_logo: [
             validate.format({ type: 'url', allowBlank: false }),
             httpValidator,
           ],

@@ -7,13 +7,13 @@ const DETAILS_MARKETING_FIELDSET = {
   label: 'provider.cards.marketing',
   text: 'provider.cards.marketing_hint',
   fields: [
-    field('epp_mri_1_description', {
+    field('epp_mri_description', {
       type: 'text',
       htmlSafe: true,
       formComponent: 'text-editor',
     }),
-    'epp_mri_2_logo',
-    'epp_mri_3_multimedia',
+    'epp_mri_logo',
+    'epp_mri_multimedia',
   ],
   layout: {
     flex: [100, 100, 100],
@@ -26,21 +26,21 @@ const MARKETING_FIELDSET = {
   fields: computed('role', function () {
     let role = get(this, 'role');
     let editor = role === 'provideradmin' || role === 'portfolioadmin';
-    let label_1 = 'provider.fields.epp_mri_1_description';
-    let label_2 = 'provider.fields.epp_mri_2_logo';
+    let label_1 = 'provider.fields.epp_mri_description';
+    let label_2 = 'provider.fields.epp_mri_logo';
     if (editor) {
-      label_1 = 'provider.fields.epp_mri_1_description.required';
-      label_2 = 'provider.fields.epp_mri_2_logo.required';
+      label_1 = 'provider.fields.epp_mri_description.required';
+      label_2 = 'provider.fields.epp_mri_logo.required';
     }
     return [
-      field('epp_mri_1_description', {
+      field('epp_mri_description', {
         type: 'text',
         label: label_1,
         htmlSafe: true,
         formComponent: 'text-editor',
       }),
-      field('epp_mri_2_logo', { label: label_2 }),
-      'epp_mri_3_multimedia',
+      field('epp_mri_logo', { label: label_2 }),
+      'epp_mri_multimedia',
     ];
   }),
   layout: {
@@ -51,7 +51,7 @@ const MARKETING_FIELDSET = {
 const MATURITY_FIELDSET = {
   label: 'provider.cards.maturity',
   text: 'provider.cards.maturity_hint',
-  fields: ['epp_mti_1_life_cycle_status', 'epp_mti_2_certifications'],
+  fields: ['epp_mti_life_cycle_status', 'epp_mti_certifications'],
   layout: {
     flex: [100, 100],
   },
@@ -308,11 +308,11 @@ const DETAILS_FIELDSETS = [
       flex: [100, 100, 100, 100, 100],
     },
     fields: [
-      'epp_loi_1_street_name_and_number',
-      'epp_loi_2_postal_code',
-      'epp_loi_3_city',
-      'epp_loi_4_region',
-      'epp_loi_5_country_or_territory',
+      'epp_loi_street_name_and_number',
+      'epp_loi_postal_code',
+      'epp_loi_city',
+      'epp_loi_region',
+      'epp_loi_country_or_territory',
     ],
   },
   DETAILS_MARKETING_FIELDSET,
@@ -371,22 +371,22 @@ const EDIT_FIELDSETS = [
     fields: computed('role', function () {
       let role = get(this, 'role');
       const editor = role === 'provideradmin' || role === 'portfolioadmin';
-      let label_1 = 'provider.fields.epp_loi_1_street_name_and_number';
-      let label_2 = 'provider.fields.epp_loi_2_postal_code';
-      let label_3 = 'provider.fields.epp_loi_3_city';
-      let label_5 = 'provider.fields.epp_loi_5_country_or_territory';
+      let label_1 = 'provider.fields.epp_loi_street_name_and_number';
+      let label_2 = 'provider.fields.epp_loi_postal_code';
+      let label_3 = 'provider.fields.epp_loi_city';
+      let label_5 = 'provider.fields.epp_loi_country_or_territory';
       if (editor) {
-        label_1 = 'provider.fields.epp_loi_1_street_name_and_number.required';
-        label_2 = 'provider.fields.epp_loi_2_postal_code.required';
-        label_3 = 'provider.fields.epp_loi_3_city.required';
-        label_5 = 'provider.fields.epp_loi_5_country_or_territory.required';
+        label_1 = 'provider.fields.epp_loi_street_name_and_number.required';
+        label_2 = 'provider.fields.epp_loi_postal_code.required';
+        label_3 = 'provider.fields.epp_loi_city.required';
+        label_5 = 'provider.fields.epp_loi_country_or_territory.required';
       }
       return [
-        field('epp_loi_1_street_name_and_number', { label: label_1 }),
-        field('epp_loi_2_postal_code', { label: label_2 }),
-        field('epp_loi_3_city', { label: label_3 }),
-        'epp_loi_4_region',
-        field('epp_loi_5_country_or_territory', { label: label_5 }),
+        field('epp_loi_street_name_and_number', { label: label_1 }),
+        field('epp_loi_postal_code', { label: label_2 }),
+        field('epp_loi_city', { label: label_3 }),
+        'epp_loi_region',
+        field('epp_loi_country_or_territory', { label: label_5 }),
       ];
     }),
   },
@@ -444,22 +444,22 @@ const CREATE_FIELDSETS = [
     fields: computed('role', function () {
       let role = get(this, 'role');
       const editor = role === 'provideradmin' || role === 'portfolioadmin';
-      let label_1 = 'provider.fields.epp_loi_1_street_name_and_number';
-      let label_2 = 'provider.fields.epp_loi_2_postal_code';
-      let label_3 = 'provider.fields.epp_loi_3_city';
-      let label_5 = 'provider.fields.epp_loi_5_country_or_territory';
+      let label_1 = 'provider.fields.epp_loi_street_name_and_number';
+      let label_2 = 'provider.fields.epp_loi_postal_code';
+      let label_3 = 'provider.fields.epp_loi_city';
+      let label_5 = 'provider.fields.epp_loi_country_or_territory';
       if (editor) {
-        label_1 = 'provider.fields.epp_loi_1_street_name_and_number.required';
-        label_2 = 'provider.fields.epp_loi_2_postal_code.required';
-        label_3 = 'provider.fields.epp_loi_3_city.required';
-        label_5 = 'provider.fields.epp_loi_5_country_or_territory.required';
+        label_1 = 'provider.fields.epp_loi_street_name_and_number.required';
+        label_2 = 'provider.fields.epp_loi_postal_code.required';
+        label_3 = 'provider.fields.epp_loi_city.required';
+        label_5 = 'provider.fields.epp_loi_country_or_territory.required';
       }
       return [
-        field('epp_loi_1_street_name_and_number', { label: label_1 }),
-        field('epp_loi_2_postal_code', { label: label_2 }),
-        field('epp_loi_3_city', { label: label_3 }),
-        'epp_loi_4_region',
-        field('epp_loi_5_country_or_territory', { label: label_5 }),
+        field('epp_loi_street_name_and_number', { label: label_1 }),
+        field('epp_loi_postal_code', { label: label_2 }),
+        field('epp_loi_city', { label: label_3 }),
+        'epp_loi_region',
+        field('epp_loi_country_or_territory', { label: label_5 }),
       ];
     }),
   },

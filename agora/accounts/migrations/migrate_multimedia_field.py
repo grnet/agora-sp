@@ -8,14 +8,14 @@ import json
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('accounts', '0056_auto_20220404_0957'),
+        ('accounts', '0057_auto_20220607_0727'),
     ]
 
     def migrate_string_to_json(apps, schema):
         for sample in Organisation.objects.all():
             try:
-                if sample.epp_mri_3_multimedia!=None:
-                    sample.epp_mri_3_multimedia = '{"multimedia link": "' + sample.epp_mri_3_multimedia + '"}'
+                if sample.epp_mri_multimedia!=None:
+                    sample.epp_mri_multimedia = '{"multimedia link": "' + sample.epp_mri_multimedia + '"}'
                     sample.save()
             except:
                 print('Cannot convert {} object'.format(sample.pk))

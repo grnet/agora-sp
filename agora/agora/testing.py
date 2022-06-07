@@ -112,10 +112,10 @@ RESOURCES_CRUD = {
             'erp_bai_abbreviation': 'aw',
             'erp_bai_name': 'Athens Warriors1',
             'erp_bai_webpage': 'www.test.com',
-            'erp_gla_1_geographical_availability': 'Europe'
+            'erp_gla_geographical_availability': 'Europe'
         },
         'edit_data': {
-            'erp_gla_1_geographical_availability': 'Africa'
+            'erp_gla_geographical_availability': 'Africa'
         },
     },
     'providers': {
@@ -126,16 +126,16 @@ RESOURCES_CRUD = {
             'epp_bai_abbreviation': 'epp_abb',
             'epp_bai_website': 'epp_website',
             'epp_bai_legal_entity': False,
-            'epp_loi_1_street_name_and_number': 'Kings Cross 7',
-            'epp_loi_2_postal_code': '938393',
-            'epp_loi_3_city': 'London',
-            'epp_loi_4_region': 'Greater London',
-            'epp_loi_5_country_or_territory': 'United Kingdom',
-            'epp_mri_1_description': '<p>short provider description</p>',
-            'epp_mri_2_logo': 'https://example.com/provider.png',
-            'epp_mri_3_multimedia': 'https://vimeo.com/1001010938',
-            'epp_mti_1_life_cycle_status': 'Operational',
-            'epp_mti_2_certifications': 'ISO-27001'
+            'epp_loi_street_name_and_number': 'Kings Cross 7',
+            'epp_loi_postal_code': '938393',
+            'epp_loi_city': 'London',
+            'epp_loi_region': 'Greater London',
+            'epp_loi_country_or_territory': 'United Kingdom',
+            'epp_mri_description': '<p>short provider description</p>',
+            'epp_mri_logo': 'https://example.com/provider.png',
+            'epp_mri_multimedia': 'https://vimeo.com/1001010938',
+            'epp_mti_life_cycle_status': 'Operational',
+            'epp_mti_certifications': 'ISO-27001'
         },
         'edit_data': {
             'epp_bai_id': 'id',
@@ -143,16 +143,16 @@ RESOURCES_CRUD = {
             'epp_bai_abbreviation': 'epp_abb',
             'epp_bai_website': 'epp_website',
             'epp_bai_legal_entity': False,
-            'epp_loi_1_street_name_and_number': 'Kings Cross 17',
-            'epp_loi_2_postal_code': '538393',
-            'epp_loi_3_city': 'London',
-            'epp_loi_4_region': 'Major London',
-            'epp_loi_5_country_or_territory': 'Great Britain',
-            'epp_mri_1_description': '<p>short provider description</p>',
-            'epp_mri_2_logo': 'https://example.com/provider.png',
-            'epp_mri_3_multimedia': 'https://vimeo.com/1001010938',
-            'epp_mti_1_life_cycle_status': 'Operational',
-            'epp_mti_2_certifications': 'ISO-27001'
+            'epp_loi_street_name_and_number': 'Kings Cross 17',
+            'epp_loi_postal_code': '538393',
+            'epp_loi_city': 'London',
+            'epp_loi_region': 'Major London',
+            'epp_loi_country_or_territory': 'Great Britain',
+            'epp_mri_description': '<p>short provider description</p>',
+            'epp_mri_logo': 'https://example.com/provider.png',
+            'epp_mri_multimedia': 'https://vimeo.com/1001010938',
+            'epp_mti_life_cycle_status': 'Operational',
+            'epp_mti_certifications': 'ISO-27001'
         },
     },
     'access_modes': {
