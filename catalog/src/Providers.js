@@ -88,8 +88,8 @@ function Providers() {
         if ("erp_bai_name" in item && item.erp_bai_name != null) {
           terms.push(item.erp_bai_name.toLowerCase());
         }
-        if ("erp_cli_8_tags" in item && item.erp_cli_8_tags != null) {
-          tags = item.erp_cli_8_tags.split(",").map((item) => item.trim());
+        if ("erp_cli_tags" in item && item.erp_cli_tags != null) {
+          tags = item.erp_cli_tags.split(",").map((item) => item.trim());
           terms = terms.concat(tags);
         }
         item["terms"] = terms;
@@ -149,7 +149,7 @@ function Providers() {
             key={item.id}
             id={item.id}
             title={item.epp_bai_abbreviation}
-            img={item.epp_mri_2_logo}
+            img={item.epp_mri_logo}
             desc={item.epp_bai_name}
             tags={item.tags}
           />)}

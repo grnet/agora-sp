@@ -46,9 +46,9 @@ function Provider(props) {
   }, [id]);
 
   let logo = null;
-  if (data.epp_mri_2_logo) {
+  if (data.epp_mri_logo) {
     logo = (
-      <img className="mw-75 biglogo" src={data.epp_mri_2_logo} alt="service logo" />
+      <img className="mw-75 biglogo" src={data.epp_mri_logo} alt="service logo" />
     );
   } else {
     logo = <FontAwesomeIcon icon="cloud" size="5x" style={{ color: "grey" }} />;
@@ -81,14 +81,14 @@ function Provider(props) {
 
                 <ValueItem
                   icon="photo-video"
-                  item={data.epp_mri_3_multimedia}
+                  item={data.epp_mri_multimedia}
                   label="Multimedia"
                   link
                   strong
                   inline
                 />
 
-              {data.epp_mri_1_description && (
+              {data.epp_mri_description && (
                 <button className="down" onClick={toggle}>
                   ▼ {!isOpen && <small>show description</small>}
                 </button>
@@ -96,40 +96,40 @@ function Provider(props) {
               </div>
 
               <Collapse isOpen={isOpen} >
-              <RichItem item={data.epp_mri_1_description} />
+              <RichItem item={data.epp_mri_description} />
               </Collapse>
               <hr />
 
               <MaturityInfo
-                lifecycle={data.epp_mti_1_life_cycle_status}
-                certs={data.epp_mti_2_certifications}
+                lifecycle={data.epp_mti_life_cycle_status}
+                certs={data.epp_mti_certifications}
               />
               
               <ContactInfo
-                first_name={data.epp_coi_6_first_name}
-                last_name={data.epp_coi_7_last_name}
-                email={data.epp_coi_8_email}
-                phone={data.epp_coi_9_phone}
-                position={data.epp_coi_10_position}
+                first_name={data.epp_coi_first_name}
+                last_name={data.epp_coi_last_name}
+                email={data.epp_coi_email}
+                phone={data.epp_coi_phone}
+                position={data.epp_coi_position}
               />
 
             <LocationInfo
-                street={data.epp_loi_1_street_name_and_number}
-                postal={data.epp_loi_2_postal_code}
-                city={data.epp_loi_3_city}
-                region={data.epp_loi_4_region}
-                country={data.epp_loi_5_country_or_territory}
+                street={data.epp_loi_street_name_and_number}
+                postal={data.epp_loi_postal_code}
+                city={data.epp_loi_city}
+                region={data.epp_loi_region}
+                country={data.epp_loi_country_or_territory}
               />
 
             <OtherInfo
                 hosting={data.epp_bai_hosting_legal_entity}
                 countries={data.countries}
                 affiliations={data.epp_oth_affiliations}
-                networks={data.pp_oth_4_networks}
+                networks={data.pp_oth_networks}
                 structure={data.epp_cli_structure_type}
                 activity={data.epp_oth_areas_of_activity}
                 societal={data.epp_oth_societal_grand_challenges}
-                roadmap={data.epp_loi_5_country_or_territory}
+                roadmap={data.epp_loi_country_or_territory}
               />
             </div>
 

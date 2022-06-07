@@ -9,7 +9,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('service', '0109_resource_erp_bai_abbreviation'),
-        ('service', '0109_auto_20220526_0716'),
     ]
 
     operations = [

@@ -8,17 +8,17 @@ from service.models import Resource
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('service', '0108_auto_20220526_0715'),
+        ('service', '0111_auto_20220607_0727'),
     ]
     
     def migrate_string_to_json(apps, schema):
         for sample in Resource.objects.all():
             try:
-                if sample.erp_mri_4_multimedia!=None:
-                    sample.erp_mri_4_multimedia = '{"multimedia link": "' + sample.erp_mri_4_multimedia + '"}'
+                if sample.erp_mri_multimedia!=None:
+                    sample.erp_mri_multimedia = '{"multimedia link": "' + sample.erp_mri_multimedia + '"}'
                     sample.save()
-                if sample.erp_mri_5_use_cases!=None:
-                    sample.erp_mri_5_use_cases = '{"use case link": "' + sample.erp_mri_5_use_cases + '"}'
+                if sample.erp_mri_use_cases!=None:
+                    sample.erp_mri_use_cases = '{"use case link": "' + sample.erp_mri_use_cases + '"}'
                     sample.save()
             except:
                 print('Cannot convert {} object'.format(sample.pk))
@@ -27,7 +27,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterField(
             model_name='resource',
-            name='erp_mri_4_multimedia',
+            name='erp_mri_multimedia',
             field=models.TextField(blank=True, default=None, null=True),
         ),
         migrations.RunPython(
