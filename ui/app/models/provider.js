@@ -100,23 +100,23 @@ export default DS.Model.extend({
     label: 'provider.fields.structure_names',
   }),
   // location information
-  epp_loi_1_street_name_and_number: DS.attr({
-    label: 'provider.fields.epp_loi_1_street_name_and_number',
-    hint: 'provider.hints.epp_loi_1_street_name_and_number',
+  epp_loi_street_name_and_number: DS.attr({
+    label: 'provider.fields.epp_loi_street_name_and_number',
+    hint: 'provider.hints.epp_loi_street_name_and_number',
   }),
-  epp_loi_2_postal_code: DS.attr({
-    label: 'provider.fields.epp_loi_2_postal_code',
-    hint: 'provider.hints.epp_loi_2_postal_code',
+  epp_loi_postal_code: DS.attr({
+    label: 'provider.fields.epp_loi_postal_code',
+    hint: 'provider.hints.epp_loi_postal_code',
   }),
-  epp_loi_3_city: DS.attr({
-    label: 'provider.fields.epp_loi_3_city',
-    hint: 'provider.hints.epp_loi_3_city',
+  epp_loi_city: DS.attr({
+    label: 'provider.fields.epp_loi_city',
+    hint: 'provider.hints.epp_loi_city',
   }),
-  epp_loi_4_region: DS.attr({
-    label: 'provider.fields.epp_loi_4_region',
-    hint: 'provider.hints.epp_loi_4_region',
+  epp_loi_region: DS.attr({
+    label: 'provider.fields.epp_loi_region',
+    hint: 'provider.hints.epp_loi_region',
   }),
-  epp_loi_5_country_or_territory: DS.attr({
+  epp_loi_country_or_territory: DS.attr({
     type: 'select',
     autocomplete: true,
     // Quickly bake an appropriate select-friendly array from original countries resource
@@ -127,20 +127,20 @@ export default DS.Model.extend({
       }
       return countrySel;
     }(),
-    label: 'provider.fields.epp_loi_5_country_or_territory',
-    hint: 'provider.hints.epp_loi_5_country_or_territory',
+    label: 'provider.fields.epp_loi_country_or_territory',
+    hint: 'provider.hints.epp_loi_country_or_territory',
   }),
   // marketing information
-  epp_mri_1_description: DS.attr({
-    label: 'provider.fields.epp_mri_1_description',
-    hint: 'provider.hints.epp_mri_1_description',
+  epp_mri_description: DS.attr({
+    label: 'provider.fields.epp_mri_description',
+    hint: 'provider.hints.epp_mri_description',
   }),
-  epp_mri_2_logo: DS.attr({
-    label: 'provider.fields.epp_mri_2_logo',
-    hint: 'provider.hints.epp_mri_2_logo',
+  epp_mri_logo: DS.attr({
+    label: 'provider.fields.epp_mri_logo',
+    hint: 'provider.hints.epp_mri_logo',
   }),
-  epp_mri_3_multimedia: DS.attr({
-    label: 'provider.fields.epp_mri_3_multimedia',
+  epp_mri_multimedia: DS.attr({
+    label: 'provider.fields.epp_mri_multimedia',
     formComponent: 'multiple-pairs',
     displayComponent: 'multiple-pairs-display',
     formAttrs: {
@@ -153,17 +153,17 @@ export default DS.Model.extend({
   short_desc: computed('description', function() {
     return shorten(get(this, 'description'));
   }),
-  epp_mti_1_life_cycle_status: DS.attr({
+  epp_mti_life_cycle_status: DS.attr({
     type: 'select',
     autocomplete: true,
     choices: ENV.APP.resources.PROVIDER_LIFE_CYCLE_STATUSES,
-    label: 'provider.fields.epp_mti_1_life_cycle_status',
-    hint: 'provider.hints.epp_mti_1_life_cycle_status',
+    label: 'provider.fields.epp_mti_life_cycle_status',
+    hint: 'provider.hints.epp_mti_life_cycle_status',
   }),
   // maturity information
-  epp_mti_2_certifications: DS.attr({
-    label: 'provider.fields.epp_mti_2_certifications',
-    hint: 'provider.hints.epp_mti_2_certifications',
+  epp_mti_certifications: DS.attr({
+    label: 'provider.fields.epp_mti_certifications',
+    hint: 'provider.hints.epp_mti_certifications',
   }),
   // contact information
   main_contact: DS.belongsTo('contact-information', {

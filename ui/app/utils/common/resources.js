@@ -3,9 +3,9 @@ import { fileField, fields_eosc } from '../../lib/common';
 
 const { get, computed } = Ember;
 
-const domain = field('erp_cli_1_scientific_domain', {
+const domain = field('erp_cli_scientific_domain', {
   displayComponent: 'gen-display-field-table',
-  label: 'resource.fields.erp_cli_1_scientific_domain.required',
+  label: 'resource.fields.erp_cli_scientific_domain.required',
   modelMeta: {
     row: {
       fields: fields_eosc(['name', 'eosc_id']),
@@ -13,9 +13,9 @@ const domain = field('erp_cli_1_scientific_domain', {
   },
 });
 
-const subdomain = field('erp_cli_2_scientific_subdomain', {
+const subdomain = field('erp_cli_scientific_subdomain', {
   displayComponent: 'gen-display-field-table',
-  label: 'resource.fields.erp_cli_2_scientific_subdomain.required',
+  label: 'resource.fields.erp_cli_scientific_subdomain.required',
   modelMeta: {
     row: {
       fields: fields_eosc(['domain.name', 'name', 'eosc_id']),
@@ -23,9 +23,9 @@ const subdomain = field('erp_cli_2_scientific_subdomain', {
   },
 });
 
-const category = field('erp_cli_3_category', {
+const category = field('erp_cli_category', {
   displayComponent: 'gen-display-field-table',
-  label: 'resource.fields.erp_cli_3_category.required',
+  label: 'resource.fields.erp_cli_category.required',
   modelMeta: {
     row: {
       fields: fields_eosc(['supercategory.name', 'name', 'eosc_id']),
@@ -33,9 +33,9 @@ const category = field('erp_cli_3_category', {
   },
 });
 
-const subcategory = field('erp_cli_4_subcategory', {
+const subcategory = field('erp_cli_subcategory', {
   displayComponent: 'gen-display-field-table',
-  label: 'resource.fields.erp_cli_4_subcategory.required',
+  label: 'resource.fields.erp_cli_subcategory.required',
   modelMeta: {
     row: {
       fields: fields_eosc(['category.name', 'name', 'eosc_id']),
@@ -52,7 +52,7 @@ const providers = field('erp_bai_service_providers', {
   },
 });
 
-const target_users = field('erp_cli_5_target_users', {
+const target_users = field('erp_cli_target_users', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -61,7 +61,7 @@ const target_users = field('erp_cli_5_target_users', {
   },
 });
 
-const access_type = field('erp_cli_6_access_type', {
+const access_type = field('erp_cli_access_type', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -70,7 +70,7 @@ const access_type = field('erp_cli_6_access_type', {
   },
 });
 
-const access_mode = field('erp_cli_7_access_mode', {
+const access_mode = field('erp_cli_access_mode', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -79,7 +79,7 @@ const access_mode = field('erp_cli_7_access_mode', {
   },
 });
 
-const funding_body = field('erp_ati_1_funding_body', {
+const funding_body = field('erp_ati_funding_body', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -88,7 +88,7 @@ const funding_body = field('erp_ati_1_funding_body', {
   },
 });
 
-const funding_program = field('erp_ati_2_funding_program', {
+const funding_program = field('erp_ati_funding_program', {
   displayComponent: 'gen-display-field-table',
   modelMeta: {
     row: {
@@ -162,8 +162,8 @@ const TABLE_FIELDS = fields_eosc([
   field('erp_bai_service_organisation.epp_bai_name', {
     label: 'resource.table.erp_bai_service_organisation',
   }),
-  field('erp_mti_1_technology_readiness_level.name', {
-    label: 'resource.table.erp_mti_1_technology_readiness_level',
+  field('erp_mti_technology_readiness_level.name', {
+    label: 'resource.table.erp_mti_technology_readiness_level',
   }),
   field('state_verbose', { label: 'resource.table.state_verbose' }),
   'eosc_id',
@@ -193,14 +193,14 @@ const DETAILS_BASIC_INFO_FIELDSET = {
 const DETAILS_CLASSIFICATION_FIELDSET = {
   label: 'provider.cards.classification',
   fields: [
-    'erp_cli_1_scientific_domain_verbose',
-    'erp_cli_2_scientific_subdomain_verbose',
-    'erp_cli_3_category_verbose',
-    'erp_cli_4_subcategory_verbose',
+    'erp_cli_scientific_domain_verbose',
+    'erp_cli_scientific_subdomain_verbose',
+    'erp_cli_category_verbose',
+    'erp_cli_subcategory_verbose',
     target_users,
     access_type,
     access_mode,
-    'erp_cli_8_tags',
+    'erp_cli_tags',
   ],
   layout: {
     flex: [100, 100, 100, 100, 100, 100, 100, 100],
@@ -217,7 +217,7 @@ const CLASSIFICATION_FIELDSET = {
     target_users,
     access_type,
     access_mode,
-    'erp_cli_8_tags',
+    'erp_cli_tags',
   ],
   layout: {
     flex: [100, 100, 100, 100, 100, 100, 100, 100],
@@ -227,15 +227,15 @@ const CLASSIFICATION_FIELDSET = {
 const MANAGEMENT_INFORMATION_FIELDSET = {
   label: 'resource.cards.management_information',
   fields: [
-    'erp_mgi_1_helpdesk_webpage',
-    'erp_mgi_2_user_manual',
-    'erp_mgi_3_terms_of_use',
-    'erp_mgi_4_privacy_policy',
-    'erp_mgi_5_access_policy',
-    'erp_mgi_6_sla_specification',
-    'erp_mgi_7_training_information',
-    'erp_mgi_8_status_monitoring',
-    'erp_mgi_9_maintenance',
+    'erp_mgi_helpdesk_webpage',
+    'erp_mgi_user_manual',
+    'erp_mgi_terms_of_use',
+    'erp_mgi_privacy_policy',
+    'erp_mgi_access_policy',
+    'erp_mgi_sla_specification',
+    'erp_mgi_training_information',
+    'erp_mgi_status_monitoring',
+    'erp_mgi_maintenance',
   ],
   layout: {
     flex: [50, 50, 50, 50, 50, 50, 50, 50, 100],
@@ -245,11 +245,11 @@ const MANAGEMENT_INFORMATION_FIELDSET = {
 const DETAILS_MARKETING_FIELDSET = {
   label: 'resource.cards.marketing',
   fields: [
-    'erp_mri_1_description',
-    'erp_mri_2_tagline',
-    'erp_mri_3_logo',
-    'erp_mri_4_multimedia',
-    'erp_mri_5_use_cases',
+    'erp_mri_description',
+    'erp_mri_tagline',
+    'erp_mri_logo',
+    'erp_mri_multimedia',
+    'erp_mri_use_cases',
   ],
   layout: {
     flex: [100, 100, 100, 100, 100],
@@ -259,11 +259,11 @@ const DETAILS_MARKETING_FIELDSET = {
 const EDIT_OR_CREATE_MARKETING_FIELDSET = {
   label: 'resource.cards.marketing',
   fields: [
-    'erp_mri_1_description',
-    'erp_mri_2_tagline',
-    'erp_mri_3_logo',
-    'erp_mri_4_multimedia',
-    'erp_mri_5_use_cases',
+    'erp_mri_description',
+    'erp_mri_tagline',
+    'erp_mri_logo',
+    'erp_mri_multimedia',
+    'erp_mri_use_cases',
   ],
   layout: {
     flex: [100, 100, 100, 100, 100],
@@ -334,7 +334,7 @@ const CREATE_BASIC_INFO_FIELDSET = {
 };
 const GEO_FIELDSET = {
   label: 'resource.cards.geo',
-  fields: ['erp_gla_1_geographical_availability', 'erp_gla_2_language'],
+  fields: ['erp_gla_geographical_availability', 'erp_gla_language'],
   layout: {
     flex: [100, 100],
   },
@@ -342,7 +342,7 @@ const GEO_FIELDSET = {
 
 const LOCATION_FIELDSET = {
   label: 'resource.cards.location',
-  fields: ['erp_rli_1_geographic_location'],
+  fields: ['erp_rli_geographic_location'],
 };
 
 const CONTACT_FIELDSET = {
@@ -350,8 +350,8 @@ const CONTACT_FIELDSET = {
   fields: [
     contact('main_contact'),
     contact('public_contact'),
-    'erp_coi_13_helpdesk_email',
-    'erp_coi_14_security_contact_email',
+    'erp_coi_helpdesk_email',
+    'erp_coi_security_contact_email',
   ],
   layout: {
     flex: [100, 100, 50, 50],
@@ -400,7 +400,7 @@ const DETAILS_CONTACT_PUBLIC_FIELDSET = {
 
 const DETAILS_CONTACT_OTHER_FIELDSET = {
   label: 'resource.cards.other_contact',
-  fields: ['erp_coi_13_helpdesk_email', 'erp_coi_14_security_contact_email'],
+  fields: ['erp_coi_helpdesk_email', 'erp_coi_security_contact_email'],
   layout: {
     flex: [50, 50],
   },
@@ -408,14 +408,14 @@ const DETAILS_CONTACT_OTHER_FIELDSET = {
 
 const ACCESS_ORDER_FIELDSET = {
   label: 'resource.cards.access_order',
-  fields: ['erp_aoi_1_order_type', 'erp_aoi_2_order'],
+  fields: ['erp_aoi_order_type', 'erp_aoi_order'],
   layout: {
     flex: [50, 50],
   },
 };
 const FINANCIAL_FIELDSET = {
   label: 'resource.cards.financial',
-  fields: ['erp_fni_1_payment_model', 'erp_fni_2_pricing'],
+  fields: ['erp_fni_payment_model', 'erp_fni_pricing'],
   layout: {
     flex: [50, 50],
   },
@@ -424,14 +424,14 @@ const FINANCIAL_FIELDSET = {
 const MATURITY_FIELDSET = {
   label: 'resource.cards.maturity',
   fields: [
-    'erp_mti_1_technology_readiness_level',
-    'erp_mti_2_life_cycle_status',
-    'erp_mti_3_certifications',
-    'erp_mti_4_standards',
-    'erp_mti_5_open_source_technologies',
-    'erp_mti_6_version',
-    'erp_mti_7_last_update',
-    'erp_mti_8_changelog',
+    'erp_mti_technology_readiness_level',
+    'erp_mti_life_cycle_status',
+    'erp_mti_certifications',
+    'erp_mti_standards',
+    'erp_mti_open_source_technologies',
+    'erp_mti_version',
+    'erp_mti_last_update',
+    'erp_mti_changelog',
   ],
   layout: {
     flex: [50, 50, 100, 100, 100, 50, 50, 100],
@@ -442,7 +442,7 @@ const DEPENDENCIES_FIELDSET = {
   fields: [
     required_resources,
     related_resources,
-    'erp_dei_3_related_platforms',
+    'erp_dei_related_platforms',
   ],
   layout: {
     flex: [100, 100, 100],
@@ -451,7 +451,7 @@ const DEPENDENCIES_FIELDSET = {
 
 const ATTRIBUTION_FIELDSET = {
   label: 'resource.cards.attribution',
-  fields: [funding_body, funding_program, 'erp_ati_3_grant_project_name'],
+  fields: [funding_body, funding_program, 'erp_ati_grant_project_name'],
   layout: {
     flex: [100, 100, 100],
   },

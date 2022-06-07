@@ -29,8 +29,8 @@ function Resources() {
         if ("erp_bai_name" in item && item.erp_bai_name != null) {
           terms.push(item.erp_bai_name.toLowerCase());
         }
-        if ("erp_cli_8_tags" in item && item.erp_cli_8_tags != null) {
-          tags = item.erp_cli_8_tags.split(",").map((item) => item.trim());
+        if ("erp_cli_tags" in item && item.erp_cli_tags != null) {
+          tags = item.erp_cli_tags.split(",").map((item) => item.trim());
           terms = terms.concat(tags);
         }
         item["terms"] = terms;
@@ -52,8 +52,8 @@ function Resources() {
   let resources = [];
   for (let item of filtered) {
     let imgURL = null;
-    if (item.erp_mri_3_logo !== null) {
-      imgURL = item.erp_mri_3_logo;
+    if (item.erp_mri_logo !== null) {
+      imgURL = item.erp_mri_logo;
     }
     resources.push(
       <ResourceItem
@@ -63,7 +63,7 @@ function Resources() {
         img={imgURL}
         abbr={item.erp_bai_name}
         web={item.erp_bai_webpage}
-        desc={item.erp_mri_2_tagline}
+        desc={item.erp_mri_tagline}
         providers={item.erp_bai_providers_public}
         tags={item.tags}
       />

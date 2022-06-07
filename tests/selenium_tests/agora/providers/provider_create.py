@@ -177,17 +177,17 @@ class CreateProvider(Providers):
         @return: True if all goes well otherwise False.
         """
         # *.LOI.1 - Street Name and Number
-        input_field(self.driver, self.fields_prefix + "loi_1_street_name_and_number", "Λεωφ. Κηφισίας 7")
+        input_field(self.driver, self.fields_prefix + "loi_street_name_and_number", "Λεωφ. Κηφισίας 7")
         # *.LOI.2 - Postal Code
-        input_field(self.driver, self.fields_prefix + "loi_2_postal_code", "115 23")
+        input_field(self.driver, self.fields_prefix + "loi_postal_code", "115 23")
         # *.LOI.3 - City
-        input_field(self.driver, self.fields_prefix + "loi_3_city", "Αθήνα")
+        input_field(self.driver, self.fields_prefix + "loi_city", "Αθήνα")
         # *.LOI.5 - Country or Territory
-        suggestion_input_field(self.driver, self.fields_prefix + "loi_5_country_or_territory", "Greece")
+        suggestion_input_field(self.driver, self.fields_prefix + "loi_country_or_territory", "Greece")
 
         if not required_only:
             # *.LOI.4 - Region
-            input_field(self.driver, self.fields_prefix + "loi_4_region", "Αττική")
+            input_field(self.driver, self.fields_prefix + "loi_region", "Αττική")
 
     def marketing_information(self, required_only=False):
         """
@@ -200,13 +200,13 @@ class CreateProvider(Providers):
         @return: True if all goes well otherwise False.
         """
         # *.MRI.1 - Description
-        textarea_field(self.driver, self.fields_prefix + "mri_1_description", "Selenium - Περιγραφή.")
+        textarea_field(self.driver, self.fields_prefix + "mri_description", "Selenium - Περιγραφή.")
         # *.MRI.2 - Logo
-        input_field(self.driver, self.fields_prefix + "mri_2_logo", "https://www.selenium.dev/images/selenium_logo_large.png")
+        input_field(self.driver, self.fields_prefix + "mri_logo", "https://www.selenium.dev/images/selenium_logo_large.png")
 
         #if not required_only:
         #    # *.MRI.3 - Multimedia
-        #    input_field(self.driver, self.fields_prefix + "mri_3_multimedia", "https://github.com/SeleniumHQ/selenium")
+        #    input_field(self.driver, self.fields_prefix + "mri_multimedia", "https://github.com/SeleniumHQ/selenium")
 
     def maturity_information(self, required_only=False):
         """
@@ -219,10 +219,10 @@ class CreateProvider(Providers):
         @return: True if all goes well otherwise False.
         """
         # *.MTI.1 - Life Cycle Status
-        suggestion_input_field(self.driver, self.fields_prefix + "mti_1_life_cycle_status", "Other")
+        suggestion_input_field(self.driver, self.fields_prefix + "mti_life_cycle_status", "Other")
 
         # *.MTI.2 - Certifications
-        input_field(self.driver, self.fields_prefix + "mti_2_certifications", "ISO-1234")
+        input_field(self.driver, self.fields_prefix + "mti_certifications", "ISO-1234")
 
     def contact_information(self, required_only=False):
         """

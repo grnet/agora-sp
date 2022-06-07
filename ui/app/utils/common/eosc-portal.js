@@ -15,44 +15,44 @@ function promptResource(self, method) {
     'model.erp_bai_service_organisation.id'
   );
   const erp_bai_webpage = get(self, 'model.erp_bai_webpage');
-  const erp_mri_1_description = get(self, 'model.erp_mri_1_description');
-  const erp_mri_2_tagline = get(self, 'model.erp_mri_2_tagline');
-  const erp_mri_3_logo = get(self, 'model.erp_mri_3_logo');
-  const erp_cli_1_scientific_domain = get(
+  const erp_mri_description = get(self, 'model.erp_mri_description');
+  const erp_mri_tagline = get(self, 'model.erp_mri_tagline');
+  const erp_mri_logo = get(self, 'model.erp_mri_logo');
+  const erp_cli_scientific_domain = get(
     self,
-    'model.erp_cli_1_scientific_domain'
+    'model.erp_cli_scientific_domain'
   );
-  const erp_cli_2_scientific_subdomain = get(
+  const erp_cli_scientific_subdomain = get(
     self,
-    'model.erp_cli_2_scientific_subdomain'
+    'model.erp_cli_scientific_subdomain'
   );
-  const erp_cli_3_category = get(self, 'model.erp_cli_3_category');
-  const erp_cli_4_subcategory = get(self, 'model.erp_cli_4_subcategory');
-  const erp_cli_5_target_users =
-    get(self, 'model.erp_cli_5_target_users').content.length > 0;
-  const erp_gla_1_geographical_availability = get(
+  const erp_cli_category = get(self, 'model.erp_cli_category');
+  const erp_cli_subcategory = get(self, 'model.erp_cli_subcategory');
+  const erp_cli_target_users =
+    get(self, 'model.erp_cli_target_users').content.length > 0;
+  const erp_gla_geographical_availability = get(
     self,
-    'model.erp_gla_1_geographical_availability'
+    'model.erp_gla_geographical_availability'
   );
-  const erp_gla_2_language = get(self, 'model.erp_gla_2_language');
+  const erp_gla_language = get(self, 'model.erp_gla_language');
   const main_contact = get(self, 'model.main_contact.id');
   const public_contact = get(self, 'model.public_contact.id');
-  const erp_coi_13_helpdesk_email = get(
+  const erp_coi_helpdesk_email = get(
     self,
-    'model.erp_coi_13_helpdesk_email'
+    'model.erp_coi_helpdesk_email'
   );
-  const erp_coi_14_security_contact_email = get(
+  const erp_coi_security_contact_email = get(
     self,
-    'model.erp_coi_14_security_contact_email'
+    'model.erp_coi_security_contact_email'
   );
-  const erp_mti_1_technology_readiness_level = get(
+  const erp_mti_technology_readiness_level = get(
     self,
-    'model.erp_mti_1_technology_readiness_level.id'
+    'model.erp_mti_technology_readiness_level.id'
   );
-  const erp_mgi_2_user_manual = get(self, 'model.erp_mgi_2_user_manual');
-  const erp_mgi_3_terms_of_use = get(self, 'model.erp_mgi_3_terms_of_use');
-  const erp_mgi_4_privacy_policy = get(self, 'model.erp_mgi_4_privacy_policy');
-  const erp_aoi_1_order_type = get(self, 'model.erp_aoi_1_order_type.id');
+  const erp_mgi_user_manual = get(self, 'model.erp_mgi_user_manual');
+  const erp_mgi_terms_of_use = get(self, 'model.erp_mgi_terms_of_use');
+  const erp_mgi_privacy_policy = get(self, 'model.erp_mgi_privacy_policy');
+  const erp_aoi_order_type = get(self, 'model.erp_aoi_order_type.id');
 
   let missing = [];
   let missing_str = '';
@@ -69,35 +69,35 @@ function promptResource(self, method) {
   if (!erp_bai_webpage) {
     missing.push('erp_bai_webpage');
   }
-  if (!erp_mri_1_description) {
-    missing.push('erp_mri_1_description');
+  if (!erp_mri_description) {
+    missing.push('erp_mri_description');
   }
-  if (!erp_mri_2_tagline) {
-    missing.push('erp_mri_2_tagline');
+  if (!erp_mri_tagline) {
+    missing.push('erp_mri_tagline');
   }
-  if (!erp_mri_3_logo) {
-    missing.push('erp_mri_3_logo');
+  if (!erp_mri_logo) {
+    missing.push('erp_mri_logo');
   }
-  if (!erp_cli_1_scientific_domain) {
-    missing.push('erp_cli_1_scientific_domain');
+  if (!erp_cli_scientific_domain) {
+    missing.push('erp_cli_scientific_domain');
   }
-  if (!erp_cli_2_scientific_subdomain) {
-    missing.push('erp_cli_2_scientific_subdomain');
+  if (!erp_cli_scientific_subdomain) {
+    missing.push('erp_cli_scientific_subdomain');
   }
-  if (!erp_cli_3_category) {
-    missing.push('erp_cli_3_category');
+  if (!erp_cli_category) {
+    missing.push('erp_cli_category');
   }
-  if (!erp_cli_4_subcategory) {
-    missing.push('erp_cli_4_subcategory');
+  if (!erp_cli_subcategory) {
+    missing.push('erp_cli_subcategory');
   }
-  if (!erp_cli_5_target_users) {
-    missing.push('erp_cli_5_target_users');
+  if (!erp_cli_target_users) {
+    missing.push('erp_cli_target_users');
   }
-  if (!erp_gla_1_geographical_availability) {
-    missing.push('erp_gla_1_geographical_availability');
+  if (!erp_gla_geographical_availability) {
+    missing.push('erp_gla_geographical_availability');
   }
-  if (!erp_gla_2_language) {
-    missing.push('erp_gla_2_language');
+  if (!erp_gla_language) {
+    missing.push('erp_gla_language');
   }
   if (!main_contact) {
     missing.push('main_contact');
@@ -105,26 +105,26 @@ function promptResource(self, method) {
   if (!public_contact) {
     missing.push('public_contact');
   }
-  if (!erp_coi_13_helpdesk_email) {
-    missing.push('erp_coi_13_helpdesk_email');
+  if (!erp_coi_helpdesk_email) {
+    missing.push('erp_coi_helpdesk_email');
   }
-  if (!erp_coi_14_security_contact_email) {
-    missing.push('erp_coi_14_security_contact_email');
+  if (!erp_coi_security_contact_email) {
+    missing.push('erp_coi_security_contact_email');
   }
-  if (!erp_mti_1_technology_readiness_level) {
-    missing.push('erp_mti_1_technology_readiness_level');
+  if (!erp_mti_technology_readiness_level) {
+    missing.push('erp_mti_technology_readiness_level');
   }
-  if (!erp_mgi_2_user_manual) {
-    missing.push('erp_mgi_2_user_manual');
+  if (!erp_mgi_user_manual) {
+    missing.push('erp_mgi_user_manual');
   }
-  if (!erp_mgi_3_terms_of_use) {
-    missing.push('erp_mgi_3_terms_of_use');
+  if (!erp_mgi_terms_of_use) {
+    missing.push('erp_mgi_terms_of_use');
   }
-  if (!erp_mgi_4_privacy_policy) {
-    missing.push('erp_mgi_4_privacy_policy');
+  if (!erp_mgi_privacy_policy) {
+    missing.push('erp_mgi_privacy_policy');
   }
-  if (!erp_aoi_1_order_type) {
-    missing.push('erp_aoi_1_order_type');
+  if (!erp_aoi_order_type) {
+    missing.push('erp_aoi_order_type');
   }
 
   const i18n = get(self, 'i18n');
@@ -155,18 +155,18 @@ function promptProvider(self, method) {
   const epp_bai_name = get(self, 'model.epp_bai_name');
   const epp_bai_abbreviation = get(self, 'model.epp_bai_abbreviation');
   const epp_bai_website = get(self, 'model.epp_bai_website');
-  const epp_loi_1_street_name_and_number = get(
+  const epp_loi_street_name_and_number = get(
     self,
-    'model.epp_loi_1_street_name_and_number'
+    'model.epp_loi_street_name_and_number'
   );
-  const epp_loi_2_postal_code = get(self, 'model.epp_loi_2_postal_code');
-  const epp_loi_3_city = get(self, 'model.epp_loi_3_city');
-  const epp_loi_5_country_or_territory = get(
+  const epp_loi_postal_code = get(self, 'model.epp_loi_postal_code');
+  const epp_loi_city = get(self, 'model.epp_loi_city');
+  const epp_loi_country_or_territory = get(
     self,
-    'model.epp_loi_5_country_or_territory'
+    'model.epp_loi_country_or_territory'
   );
-  const epp_mri_1_description = get(self, 'model.epp_mri_1_description');
-  const epp_mri_2_logo = get(self, 'model.epp_mri_2_logo');
+  const epp_mri_description = get(self, 'model.epp_mri_description');
+  const epp_mri_logo = get(self, 'model.epp_mri_logo');
   const main_contact = get(self, 'model.main_contact.id');
   const public_contact = get(self, 'model.public_contact.id');
 
@@ -188,23 +188,23 @@ function promptProvider(self, method) {
   if (!epp_bai_website) {
     missing.push('epp_bai_website');
   }
-  if (!epp_loi_1_street_name_and_number) {
-    missing.push('epp_loi_1_street_name_and_number');
+  if (!epp_loi_street_name_and_number) {
+    missing.push('epp_loi_street_name_and_number');
   }
-  if (!epp_loi_2_postal_code) {
-    missing.push('epp_loi_2_postal_code');
+  if (!epp_loi_postal_code) {
+    missing.push('epp_loi_postal_code');
   }
-  if (!epp_loi_3_city) {
-    missing.push('epp_loi_3_city');
+  if (!epp_loi_city) {
+    missing.push('epp_loi_city');
   }
-  if (!epp_loi_5_country_or_territory) {
-    missing.push('epp_loi_5_country_or_territory');
+  if (!epp_loi_country_or_territory) {
+    missing.push('epp_loi_country_or_territory');
   }
-  if (!epp_mri_1_description) {
-    missing.push('epp_mri_1_description');
+  if (!epp_mri_description) {
+    missing.push('epp_mri_description');
   }
-  if (!epp_mri_2_logo) {
-    missing.push('epp_mri_2_logo');
+  if (!epp_mri_logo) {
+    missing.push('epp_mri_logo');
   }
   if (!main_contact) {
     missing.push('main_contact');
@@ -309,23 +309,23 @@ const postResourceEOSC = {
     'model.erp_bai_id',
     'model.erp_bai_service_organisation.id',
     'model.erp_bai_webpage',
-    'model.erp_mri_1_description',
-    'model.erp_mri_2_tagline',
-    'model.erp_cli_2_scientific_subdomain',
-    'model.erp_cli_3_category',
-    'model.erp_cli_4_subcategory',
-    'model.erp_cli_5_target_users.[]',
-    'model.erp_gla_1_geographical_availability',
-    'model.erp_gla_2_language',
+    'model.erp_mri_description',
+    'model.erp_mri_tagline',
+    'model.erp_cli_scientific_subdomain',
+    'model.erp_cli_category',
+    'model.erp_cli_subcategory',
+    'model.erp_cli_target_users.[]',
+    'model.erp_gla_geographical_availability',
+    'model.erp_gla_language',
     'model.main_contact.id',
     'model.public_contact.id',
-    'model.erp_coi_13_helpdesk_email',
-    'model.erp_coi_14_security_contact_email',
-    'model.erp_mti_1_technology_readiness_level.id',
-    'model.erp_mgi_2_user_manual',
-    'model.erp_mgi_3_terms_of_use',
-    'model.erp_mgi_4_privacy_policy',
-    'model.erp_aoi_1_order_type.id',
+    'model.erp_coi_helpdesk_email',
+    'model.erp_coi_security_contact_email',
+    'model.erp_mti_technology_readiness_level.id',
+    'model.erp_mgi_user_manual',
+    'model.erp_mgi_terms_of_use',
+    'model.erp_mgi_privacy_policy',
+    'model.erp_aoi_order_type.id',
     function () {
       return promptResource(this, 'post');
     }
@@ -405,23 +405,23 @@ const putResourceEOSC = {
     'model.erp_bai_id',
     'model.erp_bai_service_organisation.id',
     'model.erp_bai_webpage',
-    'model.erp_mri_1_description',
-    'model.erp_mri_2_tagline',
-    'model.erp_cli_2_scientific_subdomain',
-    'model.erp_cli_3_category',
-    'model.erp_cli_4_subcategory',
-    'model.erp_cli_5_target_users.[]',
-    'model.erp_gla_1_geographical_availability',
-    'model.erp_gla_2_language',
+    'model.erp_mri_description',
+    'model.erp_mri_tagline',
+    'model.erp_cli_scientific_subdomain',
+    'model.erp_cli_category',
+    'model.erp_cli_subcategory',
+    'model.erp_cli_target_users.[]',
+    'model.erp_gla_geographical_availability',
+    'model.erp_gla_language',
     'model.main_contact.id',
     'model.public_contact.id',
-    'model.erp_coi_13_helpdesk_email',
-    'model.erp_coi_14_security_contact_email',
-    'model.erp_mti_1_technology_readiness_level.id',
-    'model.erp_mgi_2_user_manual',
-    'model.erp_mgi_3_terms_of_use',
-    'model.erp_mgi_4_privacy_policy',
-    'model.erp_aoi_1_order_type.id',
+    'model.erp_coi_helpdesk_email',
+    'model.erp_coi_security_contact_email',
+    'model.erp_mti_technology_readiness_level.id',
+    'model.erp_mgi_user_manual',
+    'model.erp_mgi_terms_of_use',
+    'model.erp_mgi_privacy_policy',
+    'model.erp_aoi_order_type.id',
     function () {
       return promptResource(this, 'put');
     }
@@ -635,12 +635,12 @@ const postProviderEOSC = {
     'model.epp_bai_name',
     'model.epp_bai_abbreviation',
     'model.epp_bai_website',
-    'model.epp_loi_1_street_name_and_number',
-    'model.epp_loi_2_postal_code',
-    'model.epp_loi_3_city',
-    'model.epp_loi_5_country_or_territory',
-    'model.epp_mri_1_description',
-    'model.epp_mri_2_logo',
+    'model.epp_loi_street_name_and_number',
+    'model.epp_loi_postal_code',
+    'model.epp_loi_city',
+    'model.epp_loi_country_or_territory',
+    'model.epp_mri_description',
+    'model.epp_mri_logo',
     'model.main_contact.id',
     'model.public_contact.id',
     function () {
@@ -724,12 +724,12 @@ const putProviderEOSC = {
     'model.epp_bai_name',
     'model.epp_bai_abbreviation',
     'model.epp_bai_website',
-    'model.epp_loi_1_street_name_and_number',
-    'model.epp_loi_2_postal_code',
-    'model.epp_loi_3_city',
-    'model.epp_loi_5_country_or_territory',
-    'model.epp_mri_1_description',
-    'model.epp_mri_2_logo',
+    'model.epp_loi_street_name_and_number',
+    'model.epp_loi_postal_code',
+    'model.epp_loi_city',
+    'model.epp_loi_country_or_territory',
+    'model.epp_mri_description',
+    'model.epp_mri_logo',
     'model.main_contact.id',
     'model.public_contact.id',
     function () {
