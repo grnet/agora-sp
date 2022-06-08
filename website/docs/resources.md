@@ -52,8 +52,8 @@ Below is the list of fields with small descriptions of the fields. The required 
 | --------------------------- | --------------------------------------------------------------------------------------------- |
 | **Basic information**       |                                                                                               |
 | ERP.BAI.0 - ID	(**required**)						|	Global unique and persistent identifier of the service/resource.										|
-| ERP.BAI.1 - Abbreviation (**required**)						|	Abbreviation or short name of the Resource.	|
-| ERP.BAI.2 - Name   (**required**)					|	Brief and descriptive name of service/resource as assigned by the service/resource provider.			|
+| ERP.BAI.1 - Name   (**required**)					|	Brief and descriptive name of service/resource as assigned by the service/resource provider.			|
+| ERP.BAI.2 - Abbreviation (**required**)						|	Abbreviation or short name of the Resource.	|
 | ERP.BAI.3 - Resource Organisation (**required**)			|	The organisation that manages and delivers the service/resource, or the organisation which takes lead in coordinating service delivery and communicates with customers in case of a federated scenario	|
 | ERP.BAI.4 - Resource Providers			|	The organisation(s) that participate in service delivery in case of a federated scenario				|
 | ERP.BAI.5 - Webpage						|	Webpage with information about the service/resource usually hosted and maintained by the service/resource provider.	|
