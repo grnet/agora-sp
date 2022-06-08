@@ -155,10 +155,10 @@ const SORT_FIELDS = ['erp_bai_id', 'erp_bai_name', 'eosc_id'];
 
 const TABLE_FIELDS = fields_eosc([
   field('erp_bai_id', { label: 'resource.table.erp_bai_id' }),
+  field('erp_bai_name', { label: 'resource.table.erp_bai_name' }),
   field('erp_bai_abbreviation', {
     label: 'resource.fields.erp_bai_abbreviation.required',
   }),
-  field('erp_bai_name', { label: 'resource.table.erp_bai_name' }),
   field('erp_bai_service_organisation.epp_bai_name', {
     label: 'resource.table.erp_bai_service_organisation',
   }),
@@ -175,8 +175,8 @@ const DETAILS_BASIC_INFO_FIELDSET = {
   fields: fields_eosc([
     'erp_bai_id',
     'state',
-    'erp_bai_abbreviation',
     'erp_bai_name',
+    'erp_bai_abbreviation',
     field('erp_bai_service_organisation.epp_bai_name', {
       label: 'resource.fields.erp_bai_service_organisation',
     }),
@@ -282,11 +282,11 @@ const EDIT_BASIC_INFO_FIELDSET = {
       field('state', {
         disabled: true,
       }),
-      field('erp_bai_abbreviation', {
-        label: 'resource.fields.erp_bai_abbreviation.required',
-      }),
       field('erp_bai_name', {
         label: 'resource.fields.erp_bai_name.required',
+      }),
+      field('erp_bai_abbreviation', {
+        label: 'resource.fields.erp_bai_abbreviation.required',
       }),
       field('erp_bai_service_organisation', {
         disabled,
@@ -312,11 +312,11 @@ const CREATE_BASIC_INFO_FIELDSET = {
 
     return fields_eosc([
       field('erp_bai_id', { label: 'resource.fields.erp_bai_id.required' }),
-      field('erp_bai_abbreviation', {
-        label: 'resource.fields.erp_bai_abbreviation.required',
-      }),
       field('erp_bai_name', {
         label: 'resource.fields.erp_bai_name.required',
+      }),
+      field('erp_bai_abbreviation', {
+        label: 'resource.fields.erp_bai_abbreviation.required',
       }),
       field('erp_bai_service_organisation', {
         disabled,
