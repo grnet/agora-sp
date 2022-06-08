@@ -235,12 +235,21 @@ const CLASSIFICATION_FIELDSET = {
   },
 };
 
-const DETAILS_OTHER_FIELDSET = {
-  label: 'provider.cards.other',
+const DETAILS_DEPENDENCIES_FIELDSET = {
+  label: 'provider.cards.dependencies',
   fields: [
     'epp_oth_participating_countries',
     'epp_oth_affiliations_verbose',
     'epp_oth_networks_verbose',
+  ],
+  layout: {
+    flex: [100, 100, 100],
+  },
+};
+
+const DETAILS_OTHER_FIELDSET = {
+  label: 'provider.cards.other',
+  fields: [
     'epp_oth_esfri_domain_verbose',
     field('epp_oth_esfri_type.name', {
       label: 'provider.fields.epp_oth_esfri_type',
@@ -256,12 +265,21 @@ const DETAILS_OTHER_FIELDSET = {
   },
 };
 
-const OTHER_FIELDSET = {
-  label: 'provider.cards.other',
+const DEPENDENCIES_FIELDSET = {
+  label: 'provider.cards.dependencies',
   fields: [
     'epp_oth_participating_countries',
     affiliations,
     networks,
+  ],
+  layout: {
+    flex: [100, 100, 100],
+  },
+};
+
+const OTHER_FIELDSET = {
+  label: 'provider.cards.other',
+  fields: [
     structure,
     esfridomain,
     'epp_oth_esfri_type',
@@ -319,6 +337,7 @@ const DETAILS_FIELDSETS = [
   MATURITY_FIELDSET,
   DETAILS_CONTACT_MAIN_FIELDSET,
   DETAILS_CONTACT_PUBLIC_FIELDSET,
+  DETAILS_DEPENDENCIES_FIELDSET,
   DETAILS_OTHER_FIELDSET,
 ];
 
@@ -393,6 +412,7 @@ const EDIT_FIELDSETS = [
   MARKETING_FIELDSET,
   MATURITY_FIELDSET,
   CONTACT_FIELDSET,
+  DEPENDENCIES_FIELDSET,
   OTHER_FIELDSET,
 ];
 
@@ -466,6 +486,7 @@ const CREATE_FIELDSETS = [
   MARKETING_FIELDSET,
   MATURITY_FIELDSET,
   CONTACT_FIELDSET,
+  DEPENDENCIES_FIELDSET,
   OTHER_FIELDSET,
 ];
 
