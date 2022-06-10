@@ -85,24 +85,6 @@ function Resource(props) {
                 inline
               />
 
-              <ValueItem
-                icon="photo-video"
-                item={data.erp_mri_multimedia}
-                label="Multimedia"
-                link
-                strong
-                inline
-              />
-
-              <ValueItem
-                icon="book"
-                item={data.erp_mri_use_cases}
-                label="Use cases"
-                link
-                strong
-                inline
-              />
-
               {data.erp_mri_description && (
                 <button className="down" onClick={toggle}>
                   ▼ {!isOpen && <small>show description</small>}
@@ -136,6 +118,14 @@ function Resource(props) {
               version={data.erp_mti_version}
               update={data.erp_mti_last_update}
               changelog={data.erp_mti_changelog}
+            />
+
+            <MultimediaInfo
+              multimedia={data.erp_mri_multimedia}
+            />
+
+            <UseCasesInfo
+              usecases={data.erp_mri_use_cases}
             />
 
             <ManagementInfo
@@ -361,6 +351,104 @@ function ScientificInfo(props) {
   );
 }
 
+function MultimediaInfo(props) {
+  const [isOpen, setIsOpen] = useState(true);
+
+  const toggle = () => setIsOpen(!isOpen);
+
+  // get props.data
+  let empty = false;
+  let multimedia_json = {};
+  if (
+    !props.multimedia
+  ) {
+    empty = true;
+  } else {
+    multimedia_json = JSON.parse(props.multimedia)
+    console.log(multimedia_json)
+    console.log(Object.keys(multimedia_json))
+  }
+  let head = (
+    <h5 className={empty ? "xlight-grey" : "light-grey"}>
+      <FontAwesomeIcon className="mr-2" icon="photo-video" />
+      <strong>Multimedia</strong>{" "}
+      {!empty && (
+        <button className="down" onClick={toggle}>
+          ▼
+        </button>
+      )}
+    </h5>
+  );
+
+  if (empty) return <div>{head}</div>;
+
+  return (
+    <div>
+      {head}
+      <Collapse isOpen={isOpen}>
+        <div className="ml-4">
+          <ul className="list-unstyled">
+            {Object.keys(multimedia_json).map( item =>
+              <li key={multimedia_json[item]}><ValueItem item={multimedia_json[item]} label={item} strong link inline/><FontAwesomeIcon icon="link" /></li>
+            )}
+          </ul>
+        </div>
+      </Collapse>
+
+      <hr />
+    </div>
+  );
+}
+
+function UseCasesInfo(props) {
+  const [isOpen, setIsOpen] = useState(true);
+
+  const toggle = () => setIsOpen(!isOpen);
+
+  // get props.data
+  let empty = false;
+  let usecases_json = {};
+  if (
+    !props.usecases
+  ) {
+    empty = true;
+  } else {
+    usecases_json = JSON.parse(props.usecases)
+    console.log(usecases_json)
+    console.log(Object.keys(usecases_json))
+  }
+  let head = (
+    <h5 className={empty ? "xlight-grey" : "light-grey"}>
+      <FontAwesomeIcon className="mr-2" icon="photo-video" />
+      <strong>Use Cases</strong>{" "}
+      {!empty && (
+        <button className="down" onClick={toggle}>
+          ▼
+        </button>
+      )}
+    </h5>
+  );
+
+  if (empty) return <div>{head}</div>;
+
+  return (
+    <div>
+      {head}
+      <Collapse isOpen={isOpen}>
+        <div className="ml-4">
+          <ul className="list-unstyled">
+            {Object.keys(usecases_json).map( item =>
+              <li key={usecases_json[item]}><ValueItem item={usecases_json[item]} label={item} strong link inline/><FontAwesomeIcon icon="link" /></li>
+            )}
+          </ul>
+        </div>
+      </Collapse>
+
+      <hr />
+    </div>
+  );
+}
+
 function DependenciesInfo(props) {
   const [isOpen, setIsOpen] = useState(true);
 
@@ -548,6 +636,8 @@ function FinancialInfo(props) {
     (!props.model)  &&
     (!props.pricing)
   ) {
+    console.log(props.model)
+    console.log(props.pricing)
     empty = true;
   }
 
@@ -572,14 +662,14 @@ function FinancialInfo(props) {
         <div className="ml-4">
           <ValueItem
               icon = "book"
-              item={props.orderType}              
+              item={props.model}
               label="Payment Model"
               valueOfKey="name"
               link 
             />
           <ValueItem
               icon = "book"
-              item={props.order}
+              item={props.pricing}
               valueOfKey="name"              
               label="Pricing"
               link
