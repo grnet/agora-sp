@@ -79,15 +79,6 @@ function Provider(props) {
                   inline
                 />
 
-                <ValueItem
-                  icon="photo-video"
-                  item={data.epp_mri_multimedia}
-                  label="Multimedia"
-                  link
-                  strong
-                  inline
-                />
-
               {data.epp_mri_description && (
                 <button className="down" onClick={toggle}>
                   ▼ {!isOpen && <small>show description</small>}
@@ -103,6 +94,10 @@ function Provider(props) {
               <MaturityInfo
                 lifecycle={data.epp_mti_life_cycle_status}
                 certs={data.epp_mti_certifications}
+              />
+
+              <MultimediaInfo
+                multimedia={data.epp_mri_multimedia}
               />
               
               <ContactInfo
@@ -436,14 +431,55 @@ function MaturityInfo(props) {
             <li><ValueItem item={props.lifecycle} label="Lifecycle Status" strong breakpoint /></li>
             <li> <ValueItem item={props.certs} label="Certifications" strong breakpoint /></li>
           </ul>
-           
-            
-           
-           
-            
-            
-            
-          
+        </div>
+      </Collapse>
+
+      <hr />
+    </div>
+  );
+}
+
+function MultimediaInfo(props) {
+  const [isOpen, setIsOpen] = useState(true);
+
+  const toggle = () => setIsOpen(!isOpen);
+
+  // get props.data
+  let empty = false;
+  let multimedia_json = {};
+  if (
+    !props.multimedia
+  ) {
+    empty = true;
+  } else {
+    multimedia_json = JSON.parse(props.multimedia)
+    console.log(multimedia_json)
+    console.log(Object.keys(multimedia_json))
+  }
+  let head = (
+    <h5 className={empty ? "xlight-grey" : "light-grey"}>
+      <FontAwesomeIcon className="mr-2" icon="photo-video" />
+      <strong>Multimedia</strong>{" "}
+      {!empty && (
+        <button className="down" onClick={toggle}>
+          ▼
+        </button>
+      )}
+    </h5>
+  );
+
+  if (empty) return <div>{head}</div>;
+
+  return (
+    <div>
+      {head}
+      <Collapse isOpen={isOpen}>
+        <div className="ml-4">
+          <ul className="list-unstyled">
+            {Object.keys(multimedia_json).map( item =>
+              <li key={multimedia_json[item]}><ValueItem item={multimedia_json[item]} label={item} strong link inline/><FontAwesomeIcon icon="link" /></li>
+            )}
+          </ul>
         </div>
       </Collapse>
 
