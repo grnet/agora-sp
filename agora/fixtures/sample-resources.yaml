@@ -1,61 +1,61 @@
 -   model: service.resource
     pk: 3318e958-3b2c-4e1d-976a-5103a0efc53f
     fields:
-        erp_bai_0_id: okeanos
-        erp_bai_1_name: okeanos IAAS
-        erp_bai_2_organisation: f95b8142-5b51-4044-9d9a-e94759c3554c
-        erp_bai_4_webpage: null
-        erp_mri_1_description: null
-        erp_mri_2_tagline: null
-        erp_mri_3_logo: null
-        erp_mri_4_mulitimedia: null
-        erp_mri_5_use_cases: null
-        erp_cli_8_tags: null
-        erp_mgi_1_helpdesk_webpage: null
-        erp_mgi_2_user_manual: null
-        erp_mgi_3_terms_of_use: null
-        erp_mgi_4_privacy_policy: null
-        erp_mgi_5_access_policy: null
-        erp_mgi_6_sla_specification: null
-        erp_mgi_7_training_information: null
-        erp_mgi_8_status_monitoring: null
-        erp_mgi_9_maintenance: null
-        erp_gla_1_geographical_availability: Europe
-        erp_gla_2_language: en
-        erp_rli_1_geographic_location: Other
+        erp_bai_id: okeanos
+        erp_bai_name: okeanos IAAS
+        erp_bai_organisation: f95b8142-5b51-4044-9d9a-e94759c3554c
+        erp_bai_webpage: null
+        erp_mri_description: null
+        erp_mri_tagline: null
+        erp_mri_logo: null
+        erp_mri_multimedia: null
+        erp_mri_use_cases: null
+        erp_cli_tags: null
+        erp_mgi_helpdesk_webpage: null
+        erp_mgi_user_manual: null
+        erp_mgi_terms_of_use: null
+        erp_mgi_privacy_policy: null
+        erp_mgi_access_policy: null
+        erp_mgi_sla_specification: null
+        erp_mgi_training_information: null
+        erp_mgi_status_monitoring: null
+        erp_mgi_maintenance: null
+        erp_gla_geographical_availability: Europe
+        erp_gla_language: en
+        erp_rli_geographic_location: Other
         main_contact: null
         public_contact: null
-        erp_coi_13_helpdesk_email: null
-        erp_coi_14_security_contact_email: null
-        erp_mti_1_technology_readiness_level: null
-        erp_mti_2_life_cycle_status: null
-        erp_mti_3_certifications: null
-        erp_mti_4_standards: null
-        erp_mti_5_open_source_technologies: null
-        erp_mti_6_version: null
-        erp_mti_7_last_update: null
-        erp_mti_8_changelog: null
-        erp_dei_3_related_platforms: null
-        erp_ati_3_grant_project_name: null
-        erp_aoi_1_order_type: null
-        erp_aoi_2_order: null
-        erp_fni_1_payment_model: null
-        erp_fni_2_pricing: null
-        erp_bai_3_providers: []
-        erp_cli_1_scientific_domain:
+        erp_coi_helpdesk_email: null
+        erp_coi_security_contact_email: null
+        erp_mti_technology_readiness_level: null
+        erp_mti_life_cycle_status: null
+        erp_mti_certifications: null
+        erp_mti_standards: null
+        erp_mti_open_source_technologies: null
+        erp_mti_version: null
+        erp_mti_last_update: null
+        erp_mti_changelog: null
+        erp_dei_related_platforms: null
+        erp_ati_grant_project_name: null
+        erp_aoi_order_type: null
+        erp_aoi_order: null
+        erp_fni_payment_model: null
+        erp_fni_pricing: null
+        erp_bai_providers: []
+        erp_cli_scientific_domain:
         - 844384cf-e7bf-4166-a233-d5020e483fe7
-        erp_cli_2_scientific_subdomain:
+        erp_cli_scientific_subdomain:
         - 003605bd-5252-4258-8d45-6356667b66fa
-        erp_cli_3_category:
+        erp_cli_category:
         - ee0c7cb0-e861-4de3-9319-074015419d4f
-        erp_cli_4_subcategory:
+        erp_cli_subcategory:
         - ad9664ed-fc74-402e-a5e9-aa73ad480800
-        erp_cli_5_target_users: []
-        erp_cli_6_access_type: []
-        erp_cli_7_access_mode: []
+        erp_cli_target_users: []
+        erp_cli_access_type: []
+        erp_cli_access_mode: []
         required_resources: []
         related_resources: []
-        erp_ati_1_funding_body: []
-        erp_ati_2_funding_program: []
+        erp_ati_funding_body: []
+        erp_ati_funding_program: []
         updated_at: '2020-12-31T00:00:00Z'
         created_at: '2020-12-31T00:00:00Z'

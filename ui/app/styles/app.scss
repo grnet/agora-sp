@@ -215,3 +215,29 @@ md-input-container textarea.md-input {
       line-height: 0;
   }
 }
+
+.multiple-pairs {
+  .label-primary {
+    color: rgba(0, 0, 0, 0.54)!important;
+    font-size: 0.8rem;
+    padding-bottom: 2rem;
+  }
+  .label-secondary {
+    transform: translate3d(0, 6px, 0) scale(0.75)!important;
+    color: rgba(0, 0, 0, 0.54)!important;
+  }
+  md-input-container:not(.md-input-has-value) input:not(:focus) {
+    color: inherit;
+  }
+  .input-wrap {
+    display: flex;
+    align-items: center;
+    md-input-container {
+      margin-right: 1rem;
+    }
+  }
+  .error-hint {
+    color: #d50000;
+    font-size: 12px;
+  }
+}

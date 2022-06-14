@@ -44,9 +44,9 @@ export default AgoraGen.extend({
     }),
 
     // a provideradmin can update a resource if he belongs to an organisation
-    update_organisation_owned: computed('role', 'user.organisation', 'model.erp_bai_2_service_organisation',  function() {
+    update_organisation_owned: computed('role', 'user.organisation', 'model.erp_bai_service_organisation',  function() {
       let role = get(this, 'role');
-      let resource_org = get(this, 'model.erp_bai_2_service_organisation.id');
+      let resource_org = get(this, 'model.erp_bai_service_organisation.id');
       let user_org = get(this, 'user.organisation');
       if (role === 'provideradmin') {
         return resource_org === user_org;
@@ -66,33 +66,32 @@ export default AgoraGen.extend({
   },
   common: {
     validators: {
-      erp_bai_0_id: [validate.presence(true)],
-      erp_bai_1_name: [validate.presence(true)],
-      erp_bai_2_service_organisation: [validate.presence(true)],
-      erp_bai_4_webpage: [validate.format({ type: 'url', allowBlank:true }), httpValidator],
-      erp_cli_1_scientific_domain: [validate.presence(true)],
-      erp_cli_2_scientific_subdomain: [validate.presence(true)],
-      erp_cli_3_category: [validate.presence(true)],
-      erp_cli_4_subcategory: [validate.presence(true)],
-      erp_gla_1_geographical_availability: [validate.presence(true)],
-      erp_gla_2_language: [validate.presence(true)],
-      erp_coi_13_helpdesk_email: [validate.format({type: 'email', allowBlank: true})],
-      erp_coi_14_security_contact_email: [validate.format({type: 'email', allowBlank: true})],
-      erp_mgi_1_helpdesk_webpage: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
-      erp_mgi_2_user_manual: [validate.format({type: 'url', allowBlank: true}), httpValidator],
-      erp_mgi_3_terms_of_use: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
-      erp_mgi_4_privacy_policy: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
-      erp_mgi_5_access_policy: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
-      erp_mgi_6_sla_specification: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
-      erp_mgi_7_training_information: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
-      erp_mgi_8_status_monitoring: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
-      erp_mgi_9_maintenance: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
-      erp_mri_3_logo: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
-      erp_mri_4_mulitimedia: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
-      erp_mri_5_use_cases: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
-      erp_fni_1_payment_model: [validate.format({ type: 'url', allowBlank:true }), httpValidator],
-      erp_fni_2_pricing: [validate.format({ type: 'url', allowBlank:true }), httpValidator],
-      erp_aoi_2_order: [validate.format({ type: 'url', allowBlank:true }), httpValidator],
+      erp_bai_id: [validate.presence(true)],
+      erp_bai_abbreviation: [validate.presence(true)],
+      erp_bai_name: [validate.presence(true)],
+      erp_bai_service_organisation: [validate.presence(true)],
+      erp_bai_webpage: [validate.format({ type: 'url', allowBlank:true }), httpValidator],
+      erp_cli_scientific_domain: [validate.presence(true)],
+      erp_cli_scientific_subdomain: [validate.presence(true)],
+      erp_cli_category: [validate.presence(true)],
+      erp_cli_subcategory: [validate.presence(true)],
+      erp_gla_geographical_availability: [validate.presence(true)],
+      erp_gla_language: [validate.presence(true)],
+      erp_coi_helpdesk_email: [validate.format({type: 'email', allowBlank: true})],
+      erp_coi_security_contact_email: [validate.format({type: 'email', allowBlank: true})],
+      erp_mgi_helpdesk_webpage: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
+      erp_mgi_user_manual: [validate.format({type: 'url', allowBlank: true}), httpValidator],
+      erp_mgi_terms_of_use: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
+      erp_mgi_privacy_policy: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
+      erp_mgi_access_policy: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
+      erp_mgi_sla_specification: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
+      erp_mgi_training_information: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
+      erp_mgi_status_monitoring: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
+      erp_mgi_maintenance: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
+      erp_mri_logo: [validate.format({ type: 'url', allowBlank: true }), httpValidator],
+      erp_fni_payment_model: [validate.format({ type: 'url', allowBlank:true }), httpValidator],
+      erp_fni_pricing: [validate.format({ type: 'url', allowBlank:true }), httpValidator],
+      erp_aoi_order: [validate.format({ type: 'url', allowBlank:true }), httpValidator],
     },
   },
   list: {
@@ -110,15 +109,15 @@ export default AgoraGen.extend({
         'gen:edit',
         'publishResource',
         'unpublishResource',
-        'approveResourceEOSC',
-        'rejectResourceEOSC',
+        //'approveResourceEOSC',
+        //'rejectResourceEOSC',
         'remove'
       ],
       actionsMap: {
         unpublishResource,
         publishResource,
-        approveResourceEOSC,
-        rejectResourceEOSC
+        //approveResourceEOSC,
+        //rejectResourceEOSC
       },
       fields: TABLE_FIELDS,
     },
@@ -134,15 +133,15 @@ export default AgoraGen.extend({
       serverSide: true,
       meta: {
         fields: [
-          field('erp_bai_2_service_organisation', {
+          field('erp_bai_service_organisation', {
             modelName:'provider',
-            label: 'resource.table.erp_bai_2_service_organisation',
+            label: 'resource.table.erp_bai_service_organisation',
             type: 'model',
-            displayAttr: 'epp_bai_1_name',
+            displayAttr: 'epp_bai_name',
           }),
-          field('erp_mti_1_technology_readiness_level', {
+          field('erp_mti_technology_readiness_level', {
             modelName:'trl',
-            label: 'resource.table.erp_mti_1_technology_readiness_level',
+            label: 'resource.table.erp_mti_technology_readiness_level',
             type: 'model',
             displayAttr: 'name',
           }),
@@ -179,7 +178,7 @@ export default AgoraGen.extend({
     fieldsets: CREATE_FIELDSETS,
 
     // If the user creating the Resource is a serviceadmin or
-    // a provideradmin, erp_bai_2_service_organisation should
+    // a provideradmin, erp_bai_service_organisation should
     // be prefilled with user's organisation
     getModel(params) {
       const store = get(this, 'store');
@@ -190,7 +189,7 @@ export default AgoraGen.extend({
         let org = store.findRecord('provider', org_id);
         return org.then(function(organisation) {
           return store.createRecord('resource', {
-            erp_bai_2_service_organisation: organisation
+            erp_bai_service_organisation: organisation
           })
         })
 
