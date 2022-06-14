@@ -3,7 +3,7 @@
 from __future__ import unicode_literals
 
 from django.db import migrations, models
-
+import django.utils.timezone
 
 class Migration(migrations.Migration):
 
@@ -16,7 +16,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='resource',
             name='erp_bai_abbreviation',
-            field=models.CharField(default='', max_length=100, unique=True),
+            field=models.CharField(default=django.utils.timezone.now, max_length=100, unique=True),
             preserve_default=False,
         ),
     ]
