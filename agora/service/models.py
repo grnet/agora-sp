@@ -131,7 +131,7 @@ class Resource(models.Model):
     # Basic Information fields
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     erp_bai_id = models.CharField(max_length=100, unique=True)
-    erp_bai_abbreviation = models.CharField(max_length=100, unique=True)
+    erp_bai_abbreviation = models.CharField(max_length=100)
     erp_bai_name = models.CharField(max_length=100, unique=True)
     erp_bai_organisation = models.ForeignKey(Organisation,
             on_delete=models.PROTECT,
