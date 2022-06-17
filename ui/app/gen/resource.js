@@ -110,14 +110,14 @@ export default AgoraGen.extend({
         'publishResource',
         'unpublishResource',
         //'approveResourceEOSC',
-        //'rejectResourceEOSC',
+        'rejectResourceEOSC',
         'remove'
       ],
       actionsMap: {
         unpublishResource,
         publishResource,
         //approveResourceEOSC,
-        //rejectResourceEOSC
+        rejectResourceEOSC
       },
       fields: TABLE_FIELDS,
     },
