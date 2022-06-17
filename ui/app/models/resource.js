@@ -175,12 +175,12 @@ let model = DS.Model.extend({
   }),
   // Geographical and Language availability fields
   erp_gla_geographical_availability: DS.attr({
-    defaultValue: 'Europe',
+    defaultValue: 'Europe (EO)',
     label: 'resource.fields.erp_gla_geographical_availability',
     hint: 'resource.hints.erp_gla_geographical_availability',
     formComponent: 'agora-chips',
     formAttrs: {
-      options: countries,
+      options: locations,
       exactMatch: true,
     }
   }),
@@ -200,7 +200,7 @@ let model = DS.Model.extend({
     hint: 'resource.hints.erp_rli_geographic_location',
     formComponent: 'agora-chips',
     formAttrs: {
-      options: locations,
+      options: countries,
       exactMatch: true,
     }
   }),

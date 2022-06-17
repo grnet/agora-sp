@@ -182,7 +182,7 @@ export default DS.Model.extend({
   }),
   // other information
   epp_oth_participating_countries: DS.attr({
-    defaultValue: 'Europe',
+    defaultValue: 'Europe (EO)',
     label: 'provider.fields.epp_oth_participating_countries',
     hint: 'provider.hints.epp_oth_participating_countries',
     formComponent: 'agora-chips',

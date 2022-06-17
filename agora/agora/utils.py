@@ -207,13 +207,9 @@ def get_contact(contact):
 
 
 def match_geolocation(geolocation):
-    if geolocation != 'Other' and geolocation!='Europe':
+    if geolocation != None and len(geolocation)>0:
         return geolocation.split(" ")[-1].replace("(","").replace(")","")
-    elif geolocation == 'Europe':
-        return "EU"
-    elif geolocation == 'Other':
-        return "WW"
-    return "WW"
+    return ""
 
 def get_match_category(sub_id,categories_ids):
     sub_cat = sub_id.split('-')[1] + '-' + sub_id.split('-')[2]
