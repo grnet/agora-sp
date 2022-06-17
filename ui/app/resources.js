@@ -247,8 +247,7 @@ const countries = [
 'Western Sahara (EH)',
 'Yemen (YE)',
 'Zambia (ZM)',
-'Zimbabwe (ZW)',
-'Other'
+'Zimbabwe (ZW)'
 ];
 
 const disciplines = [
