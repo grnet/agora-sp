@@ -69,7 +69,7 @@ def test_resourceadminship_create(superadmin):
 
     resource_url = RESOURCES_CRUD['resources']['url']
     resource_data = RESOURCES_CRUD['resources']['create_data']
-    resource_data['erp_bai_2_service_organisation'] = provider_id
+    resource_data['erp_bai_service_organisation'] = provider_id
     resp = superadmin.post(resource_url, resource_data)
 
     resource_id = resp.json()['id']
@@ -139,7 +139,7 @@ def test_resourceadminship_update(superadmin):
 
     resource_url = RESOURCES_CRUD['resources']['url']
     resource_data = RESOURCES_CRUD['resources']['create_data']
-    resource_data['erp_bai_2_service_organisation'] = provider_id
+    resource_data['erp_bai_service_organisation'] = provider_id
     resp = superadmin.post(resource_url, resource_data)
 
     resource_id = resp.json()['id']

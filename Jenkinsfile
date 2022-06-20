@@ -20,7 +20,7 @@ pipeline {
             }
             agent {
                 docker {
-                    image 'node:buster'
+                    image 'node:16-buster'
                 }
             }
             steps {

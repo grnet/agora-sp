@@ -29,6 +29,7 @@ class CreateProvider(Providers):
             - *.BAI.3 - Website
             - *.BAI.4 - Legal Entity
             - *.BAI.5 - Legal Status
+            - *.BAI.6 - Hosting Legal Entity
 
             Classification Information
             - *.CLI.1 - Scientific Domain
@@ -56,18 +57,17 @@ class CreateProvider(Providers):
             Public Contact
 
             Other Information
-            - *.OTH.1 - Hosting Legal Entity
-            - *.OTH.2 - Participating Countries
-            - *.OTH.3 - Affiliations
-            - *.OTH.4 - Networks
-            - *.OTH.5 - Structure Type
-            - *.OTH.6 - ESFRI Domain
-            - *.OTH.7 - ESFRI Type
-            - *.OTH.8 - MERIL Scientific Domain
-            - *.OTH.9 - MERIL Scientific Subdomain
-            - *.OTH.10 - Areas of activity
-            - *.OTH.11 - Societal Grand challenges
-            - *.OTH.12 - National Roadmaps
+            - *.OTH.1 - Participating Countries
+            - *.OTH.2 - Affiliations
+            - *.OTH.3 - Networks
+            - *.OTH.4 - Structure Type
+            - *.OTH.5 - ESFRI Domain
+            - *.OTH.6 - ESFRI Type
+            - *.OTH.7 - MERIL Scientific Domain
+            - *.OTH.8 - MERIL Scientific Subdomain
+            - *.OTH.9 - Areas of activity
+            - *.OTH.10 - Societal Grand challenges
+            - *.OTH.11 - National Roadmaps
         * Check submission form with only filling in the required form fields.
         * Check submission form with filling in all the form fields.
         * TODO : If the invalid messages improve, it should be better handled here as well.
@@ -128,19 +128,21 @@ class CreateProvider(Providers):
         @return: True if all goes well otherwise False.
         """
         # *.BAI.0 - ID
-        input_field(self.driver, self.fields_prefix + "bai_0_id", "selenium-PROVIDER")
+        input_field(self.driver, self.fields_prefix + "bai_id", "selenium-PROVIDER")
         # *.BAI.1 - Name
-        input_field(self.driver, self.fields_prefix + "bai_1_name", "SeleniumHQ Browser Automation - PROVIDER")
+        input_field(self.driver, self.fields_prefix + "bai_name", "SeleniumHQ Browser Automation - PROVIDER")
 
         if not required_only:
             # *.BAI.2 - Abbreviation
-            input_field(self.driver, self.fields_prefix + "bai_2_abbreviation", "SeleniumHQ-PROVIDER")
+            input_field(self.driver, self.fields_prefix + "bai_abbreviation", "SeleniumHQ-PROVIDER")
             # *.BAI.3 - Website
-            input_field(self.driver, self.fields_prefix + "bai_3_website", "https://www.selenium.dev")
+            input_field(self.driver, self.fields_prefix + "bai_website", "https://www.selenium.dev")
             # *.BAI.4 - Legal Entity
-            checkbox_field(self.driver, self.fields_prefix + "bai_4_legal_entity")
+            checkbox_field(self.driver, self.fields_prefix + "bai_legal_entity")
             # *.BAI.5 - Legal Status
-            suggestion_input_field(self.driver, self.fields_prefix +  "bai_5_legal_status", "Foundation")
+            suggestion_input_field(self.driver, self.fields_prefix +  "bai_legal_status", "Foundation")
+            # *.BAI.6 - Hosting Legal Entity
+            suggestion_input_field(self.driver, self.fields_prefix + "bai_hosting_legal_entity", "Other")
 
 
     def classification_information(self, required_only=False):
@@ -154,13 +156,15 @@ class CreateProvider(Providers):
         @return: True if all goes well otherwise False.
         """
         # *.CLi.1 - Scientific Domain
-        table_select_field(self.driver, self.fields_prefix + "cli_1_scientific_domain", 3)
+        table_select_field(self.driver, self.fields_prefix + "cli_scientific_domain", 3)
         # *.CLI.2 - Scientific Subdomain
-        table_select_field(self.driver, self.fields_prefix + "cli_2_scientific_subdomain", 5)
+        table_select_field(self.driver, self.fields_prefix + "cli_scientific_subdomain", 5)
 
         if not required_only:
             # *.CLI.3 - Tags
-            input_field(self.driver, self.fields_prefix + "cli_3_tags", "selenium,")
+            input_field(self.driver, self.fields_prefix + "cli_tags", "selenium,")
+            # *.CLI.4 - Structure Type
+            table_select_field(self.driver, self.fields_prefix + "cli_structure_type", 1)
 
     def location_information(self, required_only=False):
         """
@@ -173,17 +177,17 @@ class CreateProvider(Providers):
         @return: True if all goes well otherwise False.
         """
         # *.LOI.1 - Street Name and Number
-        input_field(self.driver, self.fields_prefix + "loi_1_street_name_and_number", "Λεωφ. Κηφισίας 7")
+        input_field(self.driver, self.fields_prefix + "loi_street_name_and_number", "Λεωφ. Κηφισίας 7")
         # *.LOI.2 - Postal Code
-        input_field(self.driver, self.fields_prefix + "loi_2_postal_code", "115 23")
+        input_field(self.driver, self.fields_prefix + "loi_postal_code", "115 23")
         # *.LOI.3 - City
-        input_field(self.driver, self.fields_prefix + "loi_3_city", "Αθήνα")
+        input_field(self.driver, self.fields_prefix + "loi_city", "Αθήνα")
         # *.LOI.5 - Country or Territory
-        suggestion_input_field(self.driver, self.fields_prefix + "loi_5_country_or_territory", "Greece")
+        suggestion_input_field(self.driver, self.fields_prefix + "loi_country_or_territory", "Greece")
 
         if not required_only:
             # *.LOI.4 - Region
-            input_field(self.driver, self.fields_prefix + "loi_4_region", "Αττική")
+            input_field(self.driver, self.fields_prefix + "loi_region", "Αττική")
 
     def marketing_information(self, required_only=False):
         """
@@ -196,13 +200,13 @@ class CreateProvider(Providers):
         @return: True if all goes well otherwise False.
         """
         # *.MRI.1 - Description
-        textarea_field(self.driver, self.fields_prefix + "mri_1_description", "Selenium - Περιγραφή.")
+        textarea_field(self.driver, self.fields_prefix + "mri_description", "Selenium - Περιγραφή.")
         # *.MRI.2 - Logo
-        input_field(self.driver, self.fields_prefix + "mri_2_logo", "https://www.selenium.dev/images/selenium_logo_large.png")
+        input_field(self.driver, self.fields_prefix + "mri_logo", "https://www.selenium.dev/images/selenium_logo_large.png")
 
-        if not required_only:
-            # *.MRI.3 - Multimedia
-            input_field(self.driver, self.fields_prefix + "mri_3_multimedia", "https://github.com/SeleniumHQ/selenium")
+        #if not required_only:
+        #    # *.MRI.3 - Multimedia
+        #    input_field(self.driver, self.fields_prefix + "mri_multimedia", "https://github.com/SeleniumHQ/selenium")
 
     def maturity_information(self, required_only=False):
         """
@@ -215,10 +219,10 @@ class CreateProvider(Providers):
         @return: True if all goes well otherwise False.
         """
         # *.MTI.1 - Life Cycle Status
-        suggestion_input_field(self.driver, self.fields_prefix + "mti_1_life_cycle_status", "Other")
+        suggestion_input_field(self.driver, self.fields_prefix + "mti_life_cycle_status", "Other")
 
         # *.MTI.2 - Certifications
-        input_field(self.driver, self.fields_prefix + "mti_2_certifications", "ISO-1234")
+        input_field(self.driver, self.fields_prefix + "mti_certifications", "ISO-1234")
 
     def contact_information(self, required_only=False):
         """
@@ -245,28 +249,24 @@ class CreateProvider(Providers):
         @param required_only: Fill in only the required fields or not?
         @return: True if all goes well otherwise False.
         """
-        # *.OTH.1 - Hosting Legal Entity
-        input_field(self.driver, self.fields_prefix + "oth_1_hosting_legal_entity", "Something")
-        # *.OTH.2 - Participating Countries
-        suggestion_input_field(self.driver, self.fields_prefix + "oth_2_participating_countries", "Greece")
-        # *.OTH.3 - Affiliations
-        table_select_field(self.driver, self.fields_prefix + "oth_3_affiliations", 5)
-        # *.OTH.4 - Networks
-        table_select_field(self.driver, self.fields_prefix + "oth_4_networks", 25)
-        # *.OTH.5 - Structure Type
-        table_select_field(self.driver, self.fields_prefix + "oth_5_structure_type", 1)
-        # *.OTH.6 - ESFRI Domain
-        table_select_field(self.driver, self.fields_prefix + "oth_6_esfri_domain", 3)
-        # *.OTH.7 - ESFRI Type
-        suggestion_input_field(self.driver, self.fields_prefix + "oth_7_esfri_type", "Not an ESFRI project or landmark")
-        # *.OTH.8 - MERIL Scientific Domain
-        table_select_field(self.driver, self.fields_prefix + "oth_8_meril_scientific_domain", 1)
-        # *.OTH.9 - MERIL Scientific Subdomain
-        table_select_field(self.driver, self.fields_prefix + "oth_9_meril_scientific_subdomain", 5)
-        # *.OTH.10 - Areas of activity
-        table_select_field(self.driver, self.fields_prefix + "oth_10_areas_of_activity", 2)
-        # *.OTH.11 - Societal Grand challenges
-        table_select_field(self.driver, self.fields_prefix + "oth_11_societal_grand_challenges", 5)
-        # *.OTH.12 - National Roadmaps
-        input_field(self.driver, self.fields_prefix + "oth_12_national_roadmaps", "SELENIUM")
+        # *.OTH.1 - Participating Countries
+        suggestion_input_field(self.driver, self.fields_prefix + "oth_participating_countries", "Greece")
+        # *.OTH.2 - Affiliations
+        table_select_field(self.driver, self.fields_prefix + "oth_affiliations", 5)
+        # *.OTH.3 - Networks
+        table_select_field(self.driver, self.fields_prefix + "oth_networks", 25)
+        # *.OTH.4 - ESFRI Domain
+        table_select_field(self.driver, self.fields_prefix + "oth_esfri_domain", 3)
+        # *.OTH.5 - ESFRI Type
+        suggestion_input_field(self.driver, self.fields_prefix + "oth_esfri_type", "Not an ESFRI project or landmark")
+        # *.OTH.6 - MERIL Scientific Domain
+        table_select_field(self.driver, self.fields_prefix + "oth_meril_scientific_domain", 1)
+        # *.OTH.7 - MERIL Scientific Subdomain
+        table_select_field(self.driver, self.fields_prefix + "oth_meril_scientific_subdomain", 5)
+        # *.OTH.8 - Areas of activity
+        table_select_field(self.driver, self.fields_prefix + "oth_areas_of_activity", 2)
+        # *.OTH.9 - Societal Grand challenges
+        table_select_field(self.driver, self.fields_prefix + "oth_societal_grand_challenges", 5)
+        # *.OTH.10 - National Roadmaps
+        input_field(self.driver, self.fields_prefix + "oth_national_roadmaps", "SELENIUM")
 

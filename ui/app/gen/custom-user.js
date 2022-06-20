@@ -39,7 +39,7 @@ export default AgoraGen.extend({
         'username',
         'full_name',
         'email',
-        field('organisation.epp_bai_1_name', {
+        field('organisation.epp_bai_name', {
           label: 'custom_user.fields.organisation',
         }) ,
         field('role_verbose', {
@@ -66,7 +66,7 @@ export default AgoraGen.extend({
                 modelName:'provider',
                 label: 'custom_user.fields.organisation',
                 type: 'model',
-                displayAttr: 'epp_bai_1_name',
+                displayAttr: 'epp_bai_name',
               }),
               field('role', {
                 type: 'select',

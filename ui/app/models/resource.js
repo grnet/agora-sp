@@ -9,179 +9,198 @@ const {
 } = Ember;
 
 const CHOICES = ENV.APP.resources;
+const LEGAL_ENTITIES = ENV.APP.legal_entities;
 
 let model = DS.Model.extend({
   session: Ember.inject.service(),
 
   // Basic Information
-  erp_bai_0_id: DS.attr({
-    label: 'resource.fields.erp_bai_0_id',
-    hint: 'resource.hints.erp_bai_0_id',
+  erp_bai_id: DS.attr({
+    label: 'resource.fields.erp_bai_id',
+    hint: 'resource.hints.erp_bai_id',
   }),
-  erp_bai_1_name: DS.attr({
-    label: 'resource.fields.erp_bai_1_name',
-    hint: 'resource.hints.erp_bai_1_name',
+  erp_bai_abbreviation: DS.attr({
+    label: 'resource.fields.erp_bai_abbreviation',
+    hint: 'resource.hints.erp_bai_abbreviation',
   }),
-  erp_bai_2_service_organisation: DS.belongsTo('provider', {
+  erp_bai_name: DS.attr({
+    label: 'resource.fields.erp_bai_name',
+    hint: 'resource.hints.erp_bai_name',
+  }),
+  erp_bai_service_organisation: DS.belongsTo('provider', {
     autocomplete: true,
     type: 'select',
-    label: 'resource.fields.erp_bai_2_service_organisation',
-    hint: 'resource.hints.erp_bai_2_service_organisation',
+    label: 'resource.fields.erp_bai_service_organisation',
+    hint: 'resource.hints.erp_bai_service_organisation',
     formAttrs: {
-      optionLabelAttr: 'epp_bai_1_name',
+      optionLabelAttr: 'epp_bai_name',
     },
   }),
-  erp_bai_3_service_providers: DS.hasMany('provider', {
-    label: 'resource.fields.erp_bai_3_service_providers',
-    hint: 'resource.hints.erp_bai_3_service_providers',
+  erp_bai_service_providers: DS.hasMany('provider', {
+    label: 'resource.fields.erp_bai_service_providers',
+    hint: 'resource.hints.erp_bai_service_providers',
   }),
-  erp_bai_3_providers_verbose: DS.attr({
+  erp_bai_providers_verbose: DS.attr({
     label: 'resource.fields.providers_names',
   }),
-  erp_bai_4_webpage: DS.attr({
-    label: 'resource.fields.erp_bai_4_webpage',
-    hint: 'resource.hints.erp_bai_4_webpage',
+  erp_bai_webpage: DS.attr({
+    label: 'resource.fields.erp_bai_webpage',
+    hint: 'resource.hints.erp_bai_webpage',
   }),
 
   // Marketing fields
-  erp_mri_1_description: DS.attr({
-    label: 'resource.fields.erp_mri_1_description',
-    hint: 'resource.hints.erp_mri_1_description',
+  erp_mri_description: DS.attr({
+    label: 'resource.fields.erp_mri_description',
+    hint: 'resource.hints.erp_mri_description',
     type: 'text',
     formComponent: 'text-editor',
     htmlSafe: true
   }),
-  erp_mri_2_tagline: DS.attr({
-    label: 'resource.fields.erp_mri_2_tagline',
-    hint: 'resource.hints.erp_mri_2_tagline',
+  erp_mri_tagline: DS.attr({
+    label: 'resource.fields.erp_mri_tagline',
+    hint: 'resource.hints.erp_mri_tagline',
   }),
-  erp_mri_3_logo: DS.attr({
-    label: 'resource.fields.erp_mri_3_logo',
-    hint: 'resource.hints.erp_mri_3_logo',
+  erp_mri_logo: DS.attr({
+    label: 'resource.fields.erp_mri_logo',
+    hint: 'resource.hints.erp_mri_logo',
   }),
-  erp_mri_4_mulitimedia: DS.attr({
-    label: 'resource.fields.erp_mri_4_mulitimedia',
-    hint: 'resource.hints.erp_mri_4_mulitimedia',
+  erp_mri_multimedia: DS.attr({
+    label: 'resource.fields.erp_mri_multimedia',
+    formComponent: 'multiple-pairs',
+    displayComponent: 'multiple-pairs-display',
+    hint: 'resource.hints.erp_mri_multimedia',
+    formAttrs: {
+      actionTitle: 'add_multimedia',
+      item1: 'multimedia_name',
+      item2: 'multimedia_url',
+    }
   }),
-  erp_mri_5_use_cases: DS.attr({
-    label: 'resource.fields.erp_mri_5_use_cases',
-    hint: 'resource.hints.erp_mri_5_use_cases',
+  erp_mri_use_cases: DS.attr({
+    label: 'resource.fields.erp_mri_use_cases',
+    formComponent: 'multiple-pairs',
+    displayComponent: 'multiple-pairs-display',
+    hint: 'resource.hints.erp_mri_use_cases',
+    formAttrs: {
+      actionTitle: 'add_usecase',
+      item1: 'usecase_name',
+      item2: 'usecase_url',
+    }
   }),
   // classification information
-  erp_cli_1_scientific_domain: DS.hasMany('domain', {
-    label: 'resource.fields.erp_cli_1_scientific_domain',
-    hint: 'resource.hints.erp_cli_1_scientific_domain',
+  erp_cli_scientific_domain: DS.hasMany('domain', {
+    label: 'resource.fields.erp_cli_scientific_domain',
+    hint: 'resource.hints.erp_cli_scientific_domain',
   }),
-  erp_cli_1_scientific_domain_verbose: DS.attr({
-    label: 'resource.fields.erp_cli_1_scientific_domain',
+  erp_cli_scientific_domain_verbose: DS.attr({
+    label: 'resource.fields.erp_cli_scientific_domain',
   }),
   // TODO: Filter subdomain's ManyArray results according to domain selections
-  erp_cli_2_scientific_subdomain: DS.hasMany('subdomain', {
-    label: 'resource.fields.erp_cli_2_scientific_subdomain',
-    hint: 'resource.hints.erp_cli_2_scientific_subdomain',
+  erp_cli_scientific_subdomain: DS.hasMany('subdomain', {
+    label: 'resource.fields.erp_cli_scientific_subdomain',
+    hint: 'resource.hints.erp_cli_scientific_subdomain',
   }),
-  erp_cli_2_scientific_subdomain_verbose: DS.attr({
-    label: 'resource.fields.erp_cli_2_scientific_subdomain',
+  erp_cli_scientific_subdomain_verbose: DS.attr({
+    label: 'resource.fields.erp_cli_scientific_subdomain',
   }),
-  erp_cli_3_category: DS.hasMany('category', {
-    label: 'resource.fields.erp_cli_3_category',
-    hint: 'resource.hints.erp_cli_3_category',
+  erp_cli_category: DS.hasMany('category', {
+    label: 'resource.fields.erp_cli_category',
+    hint: 'resource.hints.erp_cli_category',
   }),
-  erp_cli_3_category_verbose: DS.attr({
-    label: 'resource.fields.erp_cli_3_category',
+  erp_cli_category_verbose: DS.attr({
+    label: 'resource.fields.erp_cli_category',
   }),
   // TODO: Filter subcategory's ManyArray results according to category selections
-  erp_cli_4_subcategory: DS.hasMany('subcategory', {
-      label: 'resource.fields.erp_cli_4_subcategory',
-      hint: 'resource.hints.erp_cli_4_subcategory',
+  erp_cli_subcategory: DS.hasMany('subcategory', {
+      label: 'resource.fields.erp_cli_subcategory',
+      hint: 'resource.hints.erp_cli_subcategory',
     }),
-  erp_cli_4_subcategory_verbose: DS.attr({
-      label: 'resource.fields.erp_cli_4_subcategory',
+  erp_cli_subcategory_verbose: DS.attr({
+      label: 'resource.fields.erp_cli_subcategory',
     }),
-  erp_cli_5_target_users: DS.hasMany('target-user', {
-    label: 'resource.fields.erp_cli_5_target_users',
-    hint: 'resource.hints.erp_cli_5_target_users',
+  erp_cli_target_users: DS.hasMany('target-user', {
+    label: 'resource.fields.erp_cli_target_users',
+    hint: 'resource.hints.erp_cli_target_users',
   }),
-  erp_cli_5_target_users_verbose: DS.attr({
-    label: 'resource.fields.erp_cli_5_target_users'
+  erp_cli_target_users_verbose: DS.attr({
+    label: 'resource.fields.erp_cli_target_users'
   }),
-  erp_cli_6_access_type: DS.hasMany('access_type', {
-    label: 'resource.fields.erp_cli_6_access_type',
-    hint: 'resource.hints.erp_cli_6_access_type',
+  erp_cli_access_type: DS.hasMany('access_type', {
+    label: 'resource.fields.erp_cli_access_type',
+    hint: 'resource.hints.erp_cli_access_type',
   }),
-  erp_cli_7_access_mode: DS.hasMany('access_mode', {
-    label: 'resource.fields.erp_cli_7_access_mode',
-    hint: 'resource.hints.erp_cli_7_access_mode',
+  erp_cli_access_mode: DS.hasMany('access_mode', {
+    label: 'resource.fields.erp_cli_access_mode',
+    hint: 'resource.hints.erp_cli_access_mode',
   }),
-  erp_cli_8_tags: DS.attr({
-    label: 'resource.fields.erp_cli_8_tags',
-    hint: 'resource.hints.erp_cli_8_tags',
+  erp_cli_tags: DS.attr({
+    label: 'resource.fields.erp_cli_tags',
+    hint: 'resource.hints.erp_cli_tags',
   }),
   // Management Information
-  erp_mgi_1_helpdesk_webpage: DS.attr({
-    label: 'resource.fields.erp_mgi_1_helpdesk_webpage',
-    hint: 'resource.hints.erp_mgi_1_helpdesk_webpage',
+  erp_mgi_helpdesk_webpage: DS.attr({
+    label: 'resource.fields.erp_mgi_helpdesk_webpage',
+    hint: 'resource.hints.erp_mgi_helpdesk_webpage',
   }),
-  erp_mgi_2_user_manual: DS.attr({
-    label: 'resource.fields.erp_mgi_2_user_manual',
-    hint: 'resource.hints.erp_mgi_2_user_manual',
+  erp_mgi_user_manual: DS.attr({
+    label: 'resource.fields.erp_mgi_user_manual',
+    hint: 'resource.hints.erp_mgi_user_manual',
   }),
-  erp_mgi_3_terms_of_use: DS.attr({
-    label: 'resource.fields.erp_mgi_3_terms_of_use',
-    hint: 'resource.hints.erp_mgi_3_terms_of_use',
+  erp_mgi_terms_of_use: DS.attr({
+    label: 'resource.fields.erp_mgi_terms_of_use',
+    hint: 'resource.hints.erp_mgi_terms_of_use',
   }),
-  erp_mgi_4_privacy_policy: DS.attr({
-    label: 'resource.fields.erp_mgi_4_privacy_policy',
-    hint: 'resource.hints.erp_mgi_4_privacy_policy',
+  erp_mgi_privacy_policy: DS.attr({
+    label: 'resource.fields.erp_mgi_privacy_policy',
+    hint: 'resource.hints.erp_mgi_privacy_policy',
   }),
-  erp_mgi_5_access_policy: DS.attr({
-    label: 'resource.fields.erp_mgi_5_access_policy',
-    hint: 'resource.hints.erp_mgi_5_access_policy',
+  erp_mgi_access_policy: DS.attr({
+    label: 'resource.fields.erp_mgi_access_policy',
+    hint: 'resource.hints.erp_mgi_access_policy',
   }),
-  erp_mgi_6_sla_specification: DS.attr({
-    label: 'resource.fields.erp_mgi_6_sla_specification',
-    hint: 'resource.hints.erp_mgi_6_sla_specification',
+  erp_mgi_sla_specification: DS.attr({
+    label: 'resource.fields.erp_mgi_sla_specification',
+    hint: 'resource.hints.erp_mgi_sla_specification',
   }),
-  erp_mgi_7_training_information: DS.attr({
-    label: 'resource.fields.erp_mgi_7_training_information',
-    hint: 'resource.hints.erp_mgi_7_training_information',
+  erp_mgi_training_information: DS.attr({
+    label: 'resource.fields.erp_mgi_training_information',
+    hint: 'resource.hints.erp_mgi_training_information',
   }),
-  erp_mgi_8_status_monitoring: DS.attr({
-    label: 'resource.fields.erp_mgi_8_status_monitoring',
-    hint: 'resource.hints.erp_mgi_8_status_monitoring',
+  erp_mgi_status_monitoring: DS.attr({
+    label: 'resource.fields.erp_mgi_status_monitoring',
+    hint: 'resource.hints.erp_mgi_status_monitoring',
   }),
-  erp_mgi_9_maintenance: DS.attr({
-    label: 'resource.fields.erp_mgi_9_maintenance',
-    hint: 'resource.hints.erp_mgi_9_maintenance',
+  erp_mgi_maintenance: DS.attr({
+    label: 'resource.fields.erp_mgi_maintenance',
+    hint: 'resource.hints.erp_mgi_maintenance',
   }),
   // Geographical and Language availability fields
-  erp_gla_1_geographical_availability: DS.attr({
-    defaultValue: 'Europe',
-    label: 'resource.fields.erp_gla_1_geographical_availability',
-    hint: 'resource.hints.erp_gla_1_geographical_availability',
+  erp_gla_geographical_availability: DS.attr({
+    defaultValue: 'Europe (EO)',
+    label: 'resource.fields.erp_gla_geographical_availability',
+    hint: 'resource.hints.erp_gla_geographical_availability',
     formComponent: 'agora-chips',
     formAttrs: {
-      options: countries,
+      options: locations,
       exactMatch: true,
     }
   }),
-  erp_gla_2_language: DS.attr({
+  erp_gla_language: DS.attr({
     defaultValue: 'en',
     formComponent: 'agora-chips',
-    label: 'resource.fields.erp_gla_2_language',
-    hint: 'resource.hints.erp_gla_2_language',
+    label: 'resource.fields.erp_gla_language',
+    hint: 'resource.hints.erp_gla_language',
     formAttrs: {
       options: language_codes,
       exactMatch: true,
     },
   }),
-  erp_rli_1_geographic_location: DS.attr({
+  erp_rli_geographic_location: DS.attr({
     defaultValue: 'Other',
-    label: 'resource.fields.erp_rli_1_geographic_location',
-    hint: 'resource.hints.erp_rli_1_geographic_location',
+    label: 'resource.fields.erp_rli_geographic_location',
+    hint: 'resource.hints.erp_rli_geographic_location',
     formComponent: 'agora-chips',
     formAttrs: {
-      options: locations,
+      options: countries,
       exactMatch: true,
     }
   }),
@@ -198,121 +217,128 @@ let model = DS.Model.extend({
     label: 'resource.fields.public_contact',
     hint: 'resource.hints.public_contact',
   }),
-  erp_coi_13_helpdesk_email: DS.attr({
-    label: 'resource.fields.erp_coi_13_helpdesk_email',
-    hint: 'resource.hints.erp_coi_13_helpdesk_email',
+  erp_coi_helpdesk_email: DS.attr({
+    label: 'resource.fields.erp_coi_helpdesk_email',
+    hint: 'resource.hints.erp_coi_helpdesk_email',
   }),
-  erp_coi_14_security_contact_email: DS.attr({
-    label: 'resource.fields.erp_coi_14_security_contact_email',
-    hint: 'resource.hints.erp_coi_14_security_contact_email',
+  erp_coi_security_contact_email: DS.attr({
+    label: 'resource.fields.erp_coi_security_contact_email',
+    hint: 'resource.hints.erp_coi_security_contact_email',
   }),
-  erp_mti_1_technology_readiness_level: DS.belongsTo('trl', {
+  erp_mti_technology_readiness_level: DS.belongsTo('trl', {
     autocomplete: true,
     type: 'select',
     displayAttr: 'name',
-    label: 'resource.fields.erp_mti_1_technology_readiness_level',
-    hint: 'resource.hints.erp_mti_1_technology_readiness_level',
+    label: 'resource.fields.erp_mti_technology_readiness_level',
+    hint: 'resource.hints.erp_mti_technology_readiness_level',
     formAttrs: {
       optionLabelAttr: 'name',
     },
   }),
-  erp_mti_2_life_cycle_status: DS.belongsTo('resource-lifecycle-status', {
+  erp_mti_life_cycle_status: DS.belongsTo('resource-lifecycle-status', {
     autocomplete: true,
     type: 'select',
     displayAttr: 'name',
-    label: 'resource.fields.erp_mti_2_life_cycle_status',
-    hint: 'resource.hints.erp_mti_2_life_cycle_status',
+    label: 'resource.fields.erp_mti_life_cycle_status',
+    hint: 'resource.hints.erp_mti_life_cycle_status',
     formAttrs: {
       optionLabelAttr: 'name',
     },
   }),
-  erp_mti_3_certifications: DS.attr({
-    label: 'resource.fields.erp_mti_3_certifications',
-    hint: 'resource.hints.erp_mti_3_certifications',
+  erp_mti_certifications: DS.attr({
+    label: 'resource.fields.erp_mti_certifications',
+    hint: 'resource.hints.erp_mti_certifications',
     type: 'text',
   }),
-  erp_mti_4_standards: DS.attr({
-    label: 'resource.fields.erp_mti_4_standards',
-    hint: 'resource.hints.erp_mti_4_standards',
+  erp_mti_standards: DS.attr({
+    label: 'resource.fields.erp_mti_standards',
+    hint: 'resource.hints.erp_mti_standards',
     type: 'text',
   }),
-  erp_mti_5_open_source_technologies: DS.attr({
-    label: 'resource.fields.erp_mti_5_open_source_technologies',
-    hint: 'resource.hints.erp_mti_5_open_source_technologies',
+  erp_mti_open_source_technologies: DS.attr({
+    label: 'resource.fields.erp_mti_open_source_technologies',
+    hint: 'resource.hints.erp_mti_open_source_technologies',
     type: 'text',
   }),
-  erp_mti_6_version: DS.attr({
-    label: 'resource.fields.erp_mti_6_version',
-    hint: 'resource.hints.erp_mti_6_version',
+  erp_mti_version: DS.attr({
+    label: 'resource.fields.erp_mti_version',
+    hint: 'resource.hints.erp_mti_version',
   }),
-  erp_mti_7_last_update: DS.attr('date', {
-    label: 'resource.fields.erp_mti_7_last_update',
-    hint: 'resource.hints.erp_mti_7_last_update',
+  erp_mti_last_update: DS.attr('date', {
+    label: 'resource.fields.erp_mti_last_update',
+    hint: 'resource.hints.erp_mti_last_update',
   }),
-  erp_mti_8_changelog: DS.attr({
-    label: 'resource.fields.erp_mti_8_changelog',
-    hint: 'resource.hints.erp_mti_8_changelog',
+  erp_mti_changelog: DS.attr({
+    label: 'resource.fields.erp_mti_changelog',
+    hint: 'resource.hints.erp_mti_changelog',
     type: 'text',
   }),
 
   // Dependencies Information
   required_resources: DS.hasMany('resource', {
-    label: 'resource.fields.erp_dei_1_required_resources',
-    hint: 'resource.hints.erp_dei_1_required_resources',
+    label: 'resource.fields.erp_dei_required_resources',
+    hint: 'resource.hints.erp_dei_required_resources',
     inverse: null,
   }),
   related_resources: DS.hasMany('resource', {
-    label: 'resource.fields.erp_dei_2_related_resources',
-    hint: 'resource.hints.erp_dei_2_related_resources',
+    label: 'resource.fields.erp_dei_related_resources',
+    hint: 'resource.hints.erp_dei_related_resources',
     inverse: null,
   }),
-  erp_dei_3_related_platforms: DS.attr({
-    label: 'resource.fields.erp_dei_3_related_platforms',
-    hint: 'resource.hints.erp_dei_3_related_platforms',
+  erp_dei_related_platforms: DS.attr({
+    label: 'resource.fields.erp_dei_related_platforms',
+    hint: 'resource.hints.erp_dei_related_platforms',
+    autocomplete: true,
+    type: 'select',
+    choices: LEGAL_ENTITIES,
   }),
 
   // Attribution Information
-  erp_ati_1_funding_body: DS.hasMany('funding_body', {
-    label: 'resource.fields.erp_ati_1_funding_body',
-    hint: 'resource.hints.erp_ati_1_funding_body',
+  erp_ati_funding_body: DS.hasMany('funding_body', {
+    label: 'resource.fields.erp_ati_funding_body',
+    hint: 'resource.hints.erp_ati_funding_body',
   }),
-  erp_ati_2_funding_program: DS.hasMany('funding_program', {
-    label: 'resource.fields.erp_ati_2_funding_program',
-    hint: 'resource.hints.erp_ati_2_funding_program',
+  erp_ati_funding_program: DS.hasMany('funding_program', {
+    label: 'resource.fields.erp_ati_funding_program',
+    hint: 'resource.hints.erp_ati_funding_program',
   }),
-  erp_ati_3_grant_project_name: DS.attr({
-    label: 'resource.fields.erp_ati_3_grant_project_name',
-    hint: 'resource.hints.erp_ati_3_grant_project_name',
+  erp_ati_grant_project_name: DS.attr({
+    label: 'resource.fields.erp_ati_grant_project_name',
+    hint: 'resource.hints.erp_ati_grant_project_name',
   }),
 
   // Access and Order Information
-  erp_aoi_1_order_type: DS.belongsTo('order-type', {
+  erp_aoi_order_type: DS.belongsTo('order-type', {
     autocomplete: true,
     type: 'select',
-    label: 'resource.fields.erp_aoi_1_order_type',
-    hint: 'resource.hints.erp_aoi_1_order_type',
+    label: 'resource.fields.erp_aoi_order_type',
+    hint: 'resource.hints.erp_aoi_order_type',
     displayAttr: 'name',
     formAttrs: {
       optionLabelAttr: 'name',
     },
   }),
-  erp_aoi_2_order: DS.attr({
-    label: 'resource.fields.erp_aoi_2_order',
-    hint: 'resource.hints.erp_aoi_2_order',
+  erp_aoi_order: DS.attr({
+    label: 'resource.fields.erp_aoi_order',
+    hint: 'resource.hints.erp_aoi_order',
   }),
 
   // Financial information
-  erp_fni_1_payment_model: DS.attr({
-    label: 'resource.fields.erp_fni_1_payment_model',
-    hint: 'resource.hints.erp_fni_1_payment_model',
+  erp_fni_payment_model: DS.attr({
+    label: 'resource.fields.erp_fni_payment_model',
+    hint: 'resource.hints.erp_fni_payment_model',
   }),
-  erp_fni_2_pricing: DS.attr({
-    label: 'resource.fields.erp_fni_2_pricing',
-    hint: 'resource.hints.erp_fni_2_pricing',
+  erp_fni_pricing: DS.attr({
+    label: 'resource.fields.erp_fni_pricing',
+    hint: 'resource.hints.erp_fni_pricing',
   }),
 
   eosc_id: DS.attr(),
-  eosc_state: DS.attr(),
+  eosc_state: DS.attr({
+    autocomplete: true,
+    type: 'select',
+    choices: CHOICES.EOSC_STATE_RESOURCES,
+  }),
 
   state: DS.attr({
     type: 'select',
@@ -329,10 +355,10 @@ let model = DS.Model.extend({
   pending_resource_admins_ids: DS.attr(),
   rejected_resource_admins_ids: DS.attr(),
 
-  can_apply_adminship: Ember.computed('resource_admins_ids', 'pending_resource_admins_ids', 'rejected_resource_admins_ids', 'erp_bai_2_service_organisation.id', function(){
+  can_apply_adminship: Ember.computed('resource_admins_ids', 'pending_resource_admins_ids', 'rejected_resource_admins_ids', 'erp_bai_service_organisation.id', function(){
     let role = get(this, 'session.session.authenticated.role');
     let user_org_id = get(this, 'session.session.authenticated.organisation');
-    let resource_org_id = get(this, 'erp_bai_2_service_organisation.id');
+    let resource_org_id = get(this, 'erp_bai_service_organisation.id');
 
     if (resource_org_id != user_org_id) {
       return false;
@@ -370,15 +396,15 @@ let model = DS.Model.extend({
   __api__: {
     serialize: function(hash) {
       // do not send readonly keys to backend
-      delete hash['erp_bai_3_providers_verbose'];
+      delete hash['erp_bai_providers_verbose'];
       delete hash['resource_admins_ids'];
       delete hash['pending_resource_admins_ids'];
       delete hash['rejected_resource_admins_ids'];
-      delete hash['erp_cli_5_target_users_verbose'];
-      delete hash['erp_cli_1_scientific_domain_verbose'];
-      delete hash['erp_cli_2_scientific_subdomain_verbose'];
-      delete hash['erp_cli_3_category_verbose'];
-      delete hash['erp_cli_4_subcategory_verbose'];
+      delete hash['erp_cli_target_users_verbose'];
+      delete hash['erp_cli_scientific_domain_verbose'];
+      delete hash['erp_cli_scientific_subdomain_verbose'];
+      delete hash['erp_cli_category_verbose'];
+      delete hash['erp_cli_subcategory_verbose'];
       return hash;
     },
   },

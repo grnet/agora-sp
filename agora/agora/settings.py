@@ -360,11 +360,14 @@ SETTINGS_DIR = os.environ.get('AGORA_SETTINGS_DIR', '/etc/agora')
 SETTINGS_FILE = 'settings.conf'
 SETTINGS_PATH = os.path.join(SETTINGS_DIR, SETTINGS_FILE)
 
+EOSC_CATALOGUE_ID = '<catalogue-id>'
+EOSC_API_URL_CATALOGUE = 'https://beta.providers.eosc-portal.eu/api/catalogue/' + EOSC_CATALOGUE_ID + '/'
+
 EOSC_API_URL = 'https://beta.providers.eosc-portal.eu/api/'
 OIDC_URL = 'https://aai.eosc-portal.eu/oidc/token'
 OIDC_REFRESH_TOKEN = '<oidc-refresh-token>'
 OIDC_CLIENT_ID = '<oidc-id>'
-CA_BUNDLE = '/etc/ssl/certs/ca-bundle.crt'
+CA_BUNDLE = '/etc/ssl/certs/ca-certificates.crt'
 ACCOUNTING_BASE_YEAR = 2021
 
 # Get agora version

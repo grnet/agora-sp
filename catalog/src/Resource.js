@@ -28,20 +28,20 @@ function Resource(props) {
       let loc = [];
       let lang = [];
       let rdata = result.data;
-      if ("erp_cli_8_tags" in rdata && rdata.erp_cli_8_tags != null) {
-        tags = rdata.erp_cli_8_tags.split(",").map((item) => item.trim());
+      if ("erp_cli_tags" in rdata && rdata.erp_cli_tags != null) {
+        tags = rdata.erp_cli_tags.split(",").map((item) => item.trim());
       }
     
-      if ("erp_rli_1_geographic_location" in rdata && rdata.erp_rli_1_geographic_location != null) {
-        rloc = rdata.erp_rli_1_geographic_location.split(",").map((item) => item.trim());
+      if ("erp_rli_geographic_location" in rdata && rdata.erp_rli_geographic_location != null) {
+        rloc = rdata.erp_rli_geographic_location.split(",").map((item) => item.trim());
       }
 
-      if ("erp_gla_1_geographical_availability" in rdata && rdata.erp_gla_1_geographical_availability != null) {
-        loc = rdata.erp_gla_1_geographical_availability.split(",").map((item) => item.trim());
+      if ("erp_gla_geographical_availability" in rdata && rdata.erp_gla_geographical_availability != null) {
+        loc = rdata.erp_gla_geographical_availability.split(",").map((item) => item.trim());
       }
 
-      if ("erp_gla_2_language" in rdata && rdata.erp_gla_2_language != null) {
-        lang = rdata.erp_gla_2_language.split(",").map((item) => item.trim());
+      if ("erp_gla_language" in rdata && rdata.erp_gla_language != null) {
+        lang = rdata.erp_gla_language.split(",").map((item) => item.trim());
       }
 
       rdata["tags"] = tags;
@@ -55,9 +55,9 @@ function Resource(props) {
   }, [id]);
 
   let logo = null;
-  if (data.erp_mri_3_logo) {
+  if (data.erp_mri_logo) {
     logo = (
-      <img className="mw-75 biglogo" src={data.erp_mri_3_logo} alt="service logo" />
+      <img className="mw-75 biglogo" src={data.erp_mri_logo} alt="service logo" />
     );
   } else {
     logo = <FontAwesomeIcon icon="cloud" size="5x" style={{ color: "grey" }} />;
@@ -67,9 +67,9 @@ function Resource(props) {
     <div className="content mx-auto">
       <div className="text-center">
         {logo}
-        <h2 style={{color:config.colorA}} className="title mt-3">{data.erp_bai_1_name}</h2>
-        <h4>{data.erp_mri_2_tagline}</h4>
-        <TagItems items={data.erp_bai_3_providers_public} valueOfKey="epp_bai_1_name" outline color="black"/>
+        <h2 style={{color:config.colorA}} className="title mt-3">{data.erp_bai_name}</h2>
+        <h4>{data.erp_mri_tagline}</h4>
+        <TagItems items={data.erp_bai_providers_public} valueOfKey="epp_bai_name" outline color="black"/>
       </div>
       <hr></hr>
       <div className="container-fluid">
@@ -78,32 +78,14 @@ function Resource(props) {
             <div className="mb-2">
               <ValueItem
                 icon="globe-americas"
-                item={data.erp_bai_4_webpage}
+                item={data.erp_bai_webpage}
                 label="Official Website"
                 link
                 strong
                 inline
               />
 
-              <ValueItem
-                icon="photo-video"
-                item={data.erp_mri_4_multimedia}
-                label="Multimedia"
-                link
-                strong
-                inline
-              />
-
-              <ValueItem
-                icon="book"
-                item={data.erp_mri_5_use_cases}
-                label="Use cases"
-                link
-                strong
-                inline
-              />
-
-              {data.erp_mri_1_description && (
+              {data.erp_mri_description && (
                 <button className="down" onClick={toggle}>
                   ▼ {!isOpen && <small>show description</small>}
                 </button>
@@ -112,65 +94,73 @@ function Resource(props) {
 
             
             <Collapse isOpen={isOpen}>
-            <RichItem item={data.erp_mri_1_description} />
+            <RichItem item={data.erp_mri_description} />
             </Collapse>
             <hr />
 
             <ContactInfo
-              first_name={data.erp_coi_7_first_name}
-              last_name={data.erp_coi_8_last_name}
-              email={data.erp_coi_9_email}
-              phone={data.erp_coi_10_phone}
-              position={data.erp_coi_11_position}
-              org={data.erp_coi_12_organization}
-              helpdesk_email={data.erp_coi_13_helpdesk_email}
-              security_email={data.erp_coi_14_security_contact_email}
+              first_name={data.erp_coi_first_name}
+              last_name={data.erp_coi_last_name}
+              email={data.erp_coi_email}
+              phone={data.erp_coi_phone}
+              position={data.erp_coi_position}
+              org={data.erp_coi_organization}
+              helpdesk_email={data.erp_coi_helpdesk_email}
+              security_email={data.erp_coi_security_contact_email}
             />
 
             <MaturityInfo
-              tech={data.erp_mti_1_technology_readiness_level}
-              lifecycle={data.erp_mti_2_lifecycle_status}
-              certs={data.erp_mti_3_certifications}
-              standards={data.erp_mti_4_standards}
-              opensource={data.erp_mti_5_open_source_technologies}
-              version={data.erp_mti_6_version}
-              update={data.erp_mti_7_last_update}
-              changelog={data.erp_mti_8_changelog}
+              tech={data.erp_mti_technology_readiness_level}
+              lifecycle={data.erp_mti_lifecycle_status}
+              certs={data.erp_mti_certifications}
+              standards={data.erp_mti_standards}
+              opensource={data.erp_mti_open_source_technologies}
+              version={data.erp_mti_version}
+              update={data.erp_mti_last_update}
+              changelog={data.erp_mti_changelog}
+            />
+
+            <MultimediaInfo
+              multimedia={data.erp_mri_multimedia}
+            />
+
+            <UseCasesInfo
+              usecases={data.erp_mri_use_cases}
             />
 
             <ManagementInfo
-              helpdesk={data.erp_mgi_1_helpdesk_information}
-              manual={data.erp_mgi_2_user_manual}
-              terms={data.erp_mgi_3_terms_of_use}
-              privacy={data.erp_mgi_4_privacy_policy}
-              access={data.erp_mgi_5_access_policy}
-              service={data.erp_mgi_6_service_level}
-              training={data.erp_mgi_7_training_information}
-              status={data.erp_mgi_8_status_monitoring}
-              maintenance={data.erp_mgi_9_maintenance}
+              helpdesk={data.erp_mgi_helpdesk_information}
+              manual={data.erp_mgi_user_manual}
+              terms={data.erp_mgi_terms_of_use}
+              privacy={data.erp_mgi_privacy_policy}
+              access={data.erp_mgi_access_policy}
+              service={data.erp_mgi_service_level}
+              training={data.erp_mgi_training_information}
+              status={data.erp_mgi_status_monitoring}
+              maintenance={data.erp_mgi_maintenance}
             />
 
             <DependenciesInfo
-              required={data.erp_dei_1_required_resources_public}
-              related={data.erp_dei_2_related_resources_public}
-              platforms={data.erp_dei_3_related_platforms}
+              required={data.erp_dei_required_resources_public}
+              related={data.erp_dei_related_resources_public}
+              platforms={data.erp_dei_related_platforms}
             />
 
             <AttributionsInfo
-             program={data.erp_ati_1_funding_program}
-             fund={data.erp_ati_2_funding_body}
-             grant={data.erp_ati_3_grant_project_name}
+             program={data.erp_ati_funding_program}
+             fund={data.erp_ati_funding_body}
+             grant={data.erp_ati_grant_project_name}
             />
 
             <AccessOrderInfo
-             orderType={data.erp_aoi_1_order_type}
-             order={data.erp_aoi_2_order}
+             orderType={data.erp_aoi_order_type}
+             order={data.erp_aoi_order}
             />
 
 
             <FinancialInfo
-             model={data.erp_fni_1_payment_model}
-             pricing={data.erp_fni_1_pricing}
+             model={data.erp_fni_payment_model}
+             pricing={data.erp_fni_pricing}
             />
 
            
@@ -181,17 +171,17 @@ function Resource(props) {
           <div className="col-lg-3 col-md-3">
             <TagsInfo tags={data.tags} />
             <ScientificInfo
-              domains={data.erp_cli_1_scientific_domain}
-              subdomains={data.erp_cli_2_scientific_subdomain}
+              domains={data.erp_cli_scientific_domain}
+              subdomains={data.erp_cli_scientific_subdomain}
             />
             <ResourceInfo
-              categories={data.erp_cli_3_category}
-              subcategories={data.erp_cli_4_subcategory}
+              categories={data.erp_cli_category}
+              subcategories={data.erp_cli_subcategory}
             />
             <AccessInfo
-              users={data.erp_cli_5_target_users}
-              accessMode={data.erp_cli_6_access_mode}
-              accessType={data.erp_cli_7_access_type}
+              users={data.erp_cli_target_users}
+              accessMode={data.erp_cli_access_mode}
+              accessType={data.erp_cli_access_type}
             />
             <LocationInfo
               loc={data.loc}
@@ -361,6 +351,104 @@ function ScientificInfo(props) {
   );
 }
 
+function MultimediaInfo(props) {
+  const [isOpen, setIsOpen] = useState(true);
+
+  const toggle = () => setIsOpen(!isOpen);
+
+  // get props.data
+  let empty = false;
+  let multimedia_json = {};
+  if (
+    !props.multimedia
+  ) {
+    empty = true;
+  } else {
+    multimedia_json = JSON.parse(props.multimedia)
+    console.log(multimedia_json)
+    console.log(Object.keys(multimedia_json))
+  }
+  let head = (
+    <h5 className={empty ? "xlight-grey" : "light-grey"}>
+      <FontAwesomeIcon className="mr-2" icon="photo-video" />
+      <strong>Multimedia</strong>{" "}
+      {!empty && (
+        <button className="down" onClick={toggle}>
+          ▼
+        </button>
+      )}
+    </h5>
+  );
+
+  if (empty) return <div>{head}</div>;
+
+  return (
+    <div>
+      {head}
+      <Collapse isOpen={isOpen}>
+        <div className="ml-4">
+          <ul className="list-unstyled">
+            {Object.keys(multimedia_json).map( item =>
+              <li key={multimedia_json[item]}><ValueItem item={multimedia_json[item]} label={item} strong link inline/><FontAwesomeIcon icon="link" /></li>
+            )}
+          </ul>
+        </div>
+      </Collapse>
+
+      <hr />
+    </div>
+  );
+}
+
+function UseCasesInfo(props) {
+  const [isOpen, setIsOpen] = useState(true);
+
+  const toggle = () => setIsOpen(!isOpen);
+
+  // get props.data
+  let empty = false;
+  let usecases_json = {};
+  if (
+    !props.usecases
+  ) {
+    empty = true;
+  } else {
+    usecases_json = JSON.parse(props.usecases)
+    console.log(usecases_json)
+    console.log(Object.keys(usecases_json))
+  }
+  let head = (
+    <h5 className={empty ? "xlight-grey" : "light-grey"}>
+      <FontAwesomeIcon className="mr-2" icon="photo-video" />
+      <strong>Use Cases</strong>{" "}
+      {!empty && (
+        <button className="down" onClick={toggle}>
+          ▼
+        </button>
+      )}
+    </h5>
+  );
+
+  if (empty) return <div>{head}</div>;
+
+  return (
+    <div>
+      {head}
+      <Collapse isOpen={isOpen}>
+        <div className="ml-4">
+          <ul className="list-unstyled">
+            {Object.keys(usecases_json).map( item =>
+              <li key={usecases_json[item]}><ValueItem item={usecases_json[item]} label={item} strong link inline/><FontAwesomeIcon icon="link" /></li>
+            )}
+          </ul>
+        </div>
+      </Collapse>
+
+      <hr />
+    </div>
+  );
+}
+
 function DependenciesInfo(props) {
   const [isOpen, setIsOpen] = useState(true);
 
@@ -399,13 +487,13 @@ function DependenciesInfo(props) {
           <TagItems
             items={props.required}
             label="Required Resources"
-            valueOfKey="erp_bai_1_name"
+            valueOfKey="erp_bai_name"
             breakpoint
           />
           <TagItems
             items={props.related}
             label="Related Resources"
-            valueOfKey="erp_bai_1_name"
+            valueOfKey="erp_bai_name"
             breakpoint
           />
           <ValueItem
@@ -548,6 +636,8 @@ function FinancialInfo(props) {
     (!props.model)  &&
     (!props.pricing)
   ) {
+    console.log(props.model)
+    console.log(props.pricing)
     empty = true;
   }
 
@@ -572,14 +662,14 @@ function FinancialInfo(props) {
         <div className="ml-4">
           <ValueItem
               icon = "book"
-              item={props.orderType}              
+              item={props.model}
               label="Payment Model"
               valueOfKey="name"
               link 
             />
           <ValueItem
               icon = "book"
-              item={props.order}
+              item={props.pricing}
               valueOfKey="name"              
               label="Pricing"
               link
@@ -872,7 +962,7 @@ function ManagementInfo(props) {
             <li> <ValueItem icon="book" item={props.terms} label="Terms of Service" link /></li>
             <li> <ValueItem icon="book" item={props.privacy} label="Privacy Policy" link /></li>
             <li> <ValueItem icon="book" item={props.access} label="Access Policy" link /></li>
-            <li> <ValueItem icon="book" item={props.service} label="Service Level" link /></li>
+            <li> <ValueItem icon="book" item={props.service} label="Resource Level" link /></li>
             <li> <ValueItem icon="book" item={props.training} label="Training Information" link /></li>
             <li> <ValueItem icon="book" item={props.status} label="Status Monitoring" link /></li>
             <li> <ValueItem icon="book" item={props.maintenance} label="Maintenance" link /></li>

@@ -17,7 +17,7 @@ let model = DS.Model.extend({
   resource: DS.belongsTo('resource', {
     formComponent: 'select-onchange',
     formAttrs: {
-      optionLabelAttr: 'erp_bai_1_name',
+      optionLabelAttr: 'erp_bai_name',
 
       lookupField: 'admin',
       changedChoices: function(store, model) {
@@ -26,7 +26,7 @@ let model = DS.Model.extend({
           return [];
         }
         const params = {
-          erp_bai_2_service_organisation: organisation_id
+          erp_bai_service_organisation: organisation_id
         };
 
         return store.query('resource', params);

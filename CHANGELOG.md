@@ -4,6 +4,25 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.4.5] (https://github.com/grnet/agora-sp/compare/v1.4.4...v1.4.5) - 2022-6-20
+
+### Updated
+ - Profiles v4
+ - hosting legal entity to basic info section
+ - structure type to classifications section
+ - Hosting legal entity to show a dropdown list
+ - Related platforms to show a dropdown list
+ - multimedia fields to accept multiple entries
+ - Terms of Use and privacy policy to be mandatory fields
+ - Service level field name to Resource level
+ - SSL certs to agora virtual machines
+
+### Add
+ - new field abbreviation to resource profile
+ - new field multimedia name to Providers/Resources
+ - catalogue id field
+ - Use cases name new field
+
 ## [1.4.4] (https://github.com/grnet/agora-sp/compare/v1.4.3...v1.4.4) - 2022-1-28
 
 ## Fixed

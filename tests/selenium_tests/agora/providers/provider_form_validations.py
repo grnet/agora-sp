@@ -48,8 +48,8 @@ class ProviderFormValidations(CreateProvider):
         @return: True if the messages for all fields appear, otherwise False.
         """
         # *.BAI.3 - Website
-        url_input_validation(self.driver, self.fields_prefix + "bai_3_website")
+        url_input_validation(self.driver, self.fields_prefix + "bai_website")
         # *.MRI.2 - Logo
-        url_input_validation(self.driver, self.fields_prefix + "mri_2_logo")
+        url_input_validation(self.driver, self.fields_prefix + "mri_logo")
         # *.MRI.3 - Multimedia
-        url_input_validation(self.driver, self.fields_prefix + "mri_3_multimedia")
+        #url_input_validation(self.driver, self.fields_prefix + "mri_multimedia")

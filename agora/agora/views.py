@@ -1,6 +1,7 @@
 import logging
 import json
 import re
+import requests
 import urlparse
 import os
 import datetime
@@ -27,6 +28,12 @@ FUTURE = datetime.date(2100, 1, 1)
 VERSION = getattr(settings, 'VERSION', '')
 LINUX_DIST = getattr(settings, 'LINUX_DIST', '')
 HOSTNAME = getattr(settings, 'HOSTNAME', '')
+CA_BUNDLE = getattr(settings, 'CA_BUNDLE', '/etc/ssl/certs/ca-bundle.crt')
+
+headers = {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json',
+}
 
 def valid_date(date_text, default, add_day=False):
     try:
@@ -46,6 +53,7 @@ API_ENDPOINT = getattr(settings, 'API_ENDPOINT', 'api/v2')
 MEDIA_URL = getattr(settings, 'MEDIA_URL', 'media/')
 BASE_DIR = getattr(settings, 'BASE_DIR')
 ACCOUNTING_BASE_YEAR = getattr(settings, 'ACCOUNTING_BASE_YEAR', 2021)
+EOSC_API_URL = getattr(settings, 'EOSC_API_URL')
 
 def config(request):
 
@@ -54,12 +62,23 @@ def config(request):
     backend_host = urlparse.urljoin(get_root_url(), API_ENDPOINT)
     backend_media_root = urlparse.urljoin(get_root_url(), MEDIA_URL)
 
+    response_json = []
+    try:
+        response = requests.get(EOSC_API_URL+'/vocabulary/byType/PROVIDER_HOSTING_LEGAL_ENTITY', headers=headers, verify=CA_BUNDLE)
+        response.raise_for_status()
+        response_json.append(["Other","Other"])
+        for host in  response.json():
+            response_json.append([host['id'],host['name']])
+    except requests.exceptions.RequestException as err:
+        print ("Error:", err)
+
     config_data = {
         'permissions': permissions,
         'shibboleth_login_url': shibboleth_endpoint,
         'backend_host': backend_host,
         'backend_media_root': backend_media_root,
-        'resources': load_resources()
+        'resources': load_resources(),
+        'legal_entities': response_json
     }
     return HttpResponse(json.dumps(config_data),
                         content_type='application/json')

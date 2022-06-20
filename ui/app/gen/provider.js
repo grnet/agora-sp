@@ -45,45 +45,53 @@ export default AgoraGen.extend({
       let role = get(this, 'role');
       if (role === 'superadmin') {
         return {
-          epp_bai_0_id: [validate.presence(true)],
-          epp_bai_1_name: [validate.presence(true)],
-          epp_bai_3_website: [
+          epp_bai_id: [validate.presence(true)],
+          epp_bai_name: [validate.presence(true)],
+          epp_bai_website: [
             validate.format({ type: 'url', allowBlank: true }),
             httpValidator,
           ],
-          epp_mri_2_logo: [
+          epp_mri_logo: [
             validate.format({ type: 'url', allowBlank: true }),
             httpValidator,
           ],
-          epp_mri_3_multimedia: [
-            validate.format({ type: 'url', allowBlank: true }),
-            httpValidator,
-          ],
+          epp_bai_hosting_legal_entity: computed('model.changeset.epp_bai_legal_entity', function(){
+            let has_legal = get(this, 'model.changeset.epp_bai_legal_entity');
+            if (!has_legal) {
+              return [validate.presence(true)]
+            } else {
+              return []
+            }
+          }),
         };
       } else {
         return {
-          epp_bai_0_id: [validate.presence(true)],
-          epp_bai_1_name: [validate.presence(true)],
-          epp_bai_2_abbreviation: [validate.presence(true)],
-          epp_bai_3_website: [
+          epp_bai_id: [validate.presence(true)],
+          epp_bai_name: [validate.presence(true)],
+          epp_bai_abbreviation: [validate.presence(true)],
+          epp_bai_website: [
             validate.format({ type: 'url', allowBlank: true }),
             httpValidator,
           ],
-          epp_loi_1_street_name_and_number: [validate.presence(true)],
-          epp_loi_2_postal_code: [validate.presence(true)],
-          epp_loi_3_city: [validate.presence(true)],
-          epp_loi_5_country_or_territory: [validate.presence(true)],
-          epp_mri_1_description: [validate.presence(true)],
-          epp_mri_2_logo: [
+          epp_bai_hosting_legal_entity: computed('model.changeset.epp_bai_legal_entity', function(){
+            let has_legal = get(this, 'model.changeset.epp_bai_legal_entity');
+            if (!has_legal) {
+              return [validate.presence(true)]
+            } else {
+              return []
+            }
+          }),
+          epp_loi_street_name_and_number: [validate.presence(true)],
+          epp_loi_postal_code: [validate.presence(true)],
+          epp_loi_city: [validate.presence(true)],
+          epp_loi_country_or_territory: [validate.presence(true)],
+          epp_mri_description: [validate.presence(true)],
+          epp_mri_logo: [
             validate.format({ type: 'url', allowBlank: false }),
             httpValidator,
           ],
-          epp_mri_3_multimedia: [
-            validate.format({ type: 'url', allowBlank: true }),
-            httpValidator,
-          ],
-          epp_cli_1_scientific_domain: [validate.presence(true)],
-          epp_cli_2_scientific_subdomain: [validate.presence(true)],
+          epp_cli_scientific_domain: [validate.presence(true)],
+          epp_cli_scientific_subdomain: [validate.presence(true)],
         };
       }
     }),
@@ -98,14 +106,14 @@ export default AgoraGen.extend({
         'gen:edit',
         'publishProvider',
         'unpublishProvider',
-        'approveProviderEOSC',
+        //'approveProviderEOSC',
         'rejectProviderEOSC',
         'remove',
       ],
       actionsMap: {
         publishProvider,
         unpublishProvider,
-        approveProviderEOSC,
+        //approveProviderEOSC,
         rejectProviderEOSC,
       },
       fields: PROVIDER_TABLE_FIELDS,
@@ -132,7 +140,7 @@ export default AgoraGen.extend({
     sort: {
       serverSide: true,
       active: true,
-      fields: ['epp_bai_1_name', 'epp_bai_0_id', 'epp_bai_2_abbreviation'],
+      fields: ['epp_bai_name', 'epp_bai_id', 'epp_bai_abbreviation'],
     },
   },
   details: {

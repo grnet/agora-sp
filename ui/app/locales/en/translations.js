@@ -95,5 +95,11 @@ export default {
   eosc,
   'eosc_id.label': 'EOSC ID',
   'eosc_state.label': 'EOSC State',
+  'multimedia_name': 'ERP.MRI.5 - Multimedia name',
+  'multimedia_url': 'ERP.MRI.4 - Multimedia URL',
+  'add_multimedia': 'Add multimedia',
+  'usecase_name': 'ERP.MRI.7 - Use Case name',
+  'usecase_url': 'ERP.MRI.6 - Use Case URL',
+  'add_usecase': 'Add use case',
 };
 

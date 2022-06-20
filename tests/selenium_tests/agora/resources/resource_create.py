@@ -24,16 +24,17 @@ class ResourceCreate(Resources):
         * Checks if all the following input fields of the form exist :
             Basic information
             - *.BAI.0 - ID
-            - *.BAI.1 - Name
-            - *.BAI.2 - Resource Organisation
-            - *.BAI.3 - Resource Providers
-            - *.BAI.4 - Webpage
+            - *.BAI.1 - Abbreviation
+            - *.BAI.2 - Name
+            - *.BAI.3 - Resource Organisation
+            - *.BAI.4 - Resource Providers
+            - *.BAI.5 - Webpage
 
             Marketing Information
             - *.MRI.1 - Description
             - *.MRI.2 - Tagline
             - *.MRI.3 - Logo
-            - *.MRI.4 - Mulitimedia
+            - *.MRI.4 - Multimedia
             - *.MRI.5 - Use Cases
 
             Classification Information
@@ -52,7 +53,7 @@ class ResourceCreate(Resources):
             - *.MGI.3 - Terms of Use
             - *.MGI.4 - Privacy Policy
             - *.MGI.5 - Access Policy
-            - *.MGI.6 - Service Level
+            - *.MGI.6 - Resource Level
             - *.MGI.7 - Training Information
             - *.MGI.8 - Status Monitoring
             - *.MGI.9 - Maintenance
@@ -159,17 +160,19 @@ class ResourceCreate(Resources):
         @return: True if all goes well otherwise False.
         """
         # *.BAI.0 - ID
-        input_field(self.driver, self.fields_prefix + "bai_0_id", "selenium-RESOURCE")
-        # *.BAI.1 - Name
-        input_field(self.driver, self.fields_prefix + "bai_1_name", "SeleniumHQ Browser Automation - RESOURCE")
-        # *.BAI.2 - Service Organisation
-        suggestion_input_field(self.driver, self.fields_prefix + "bai_2_service_organisation", "National Infrastructures for Research and Technology")
+        input_field(self.driver, self.fields_prefix + "bai_id", "selenium-RESOURCE")
+        # *.BAI.1 - Abbreviation
+        input_field(self.driver, self.fields_prefix + "bai_abbreviation", "selenium-RESOURCE")
+        # *.BAI.2 - Name
+        input_field(self.driver, self.fields_prefix + "bai_name", "SeleniumHQ Browser Automation - RESOURCE")
+        # *.BAI.3 - Service Organisation
+        suggestion_input_field(self.driver, self.fields_prefix + "bai_service_organisation", "National Infrastructures for Research and Technology")
 
         if not required_only:
-            # *.BAI.3 - Service Providers
-            table_select_field(self.driver, self.fields_prefix + "bai_3_service_providers", 1)
-            # *.BAI.4 - Webpage
-            input_field(self.driver, self.fields_prefix + "bai_4_webpage", "https://www.selenium.dev")
+            # *.BAI.4 - Service Providers
+            table_select_field(self.driver, self.fields_prefix + "bai_service_providers", 1)
+            # *.BAI.5 - Webpage
+            input_field(self.driver, self.fields_prefix + "bai_webpage", "https://www.selenium.dev")
 
 
     def marketing_information(self, required_only=False):
@@ -180,17 +183,17 @@ class ResourceCreate(Resources):
         @return: True if all goes well otherwise False.
         """
         # *.MRI.1 - Description
-        textarea_field(self.driver, self.fields_prefix + "mri_1_description", "Selenium - Περιγραφή.")
+        textarea_field(self.driver, self.fields_prefix + "mri_description", "Selenium - Περιγραφή.")
         # *.MRI.2 - Tagline
-        input_field(self.driver, self.fields_prefix + "mri_2_tagline", "selenium - tagline")
+        input_field(self.driver, self.fields_prefix + "mri_tagline", "selenium - tagline")
         # *.MRI.3 - Logo
-        input_field(self.driver, self.fields_prefix + "mri_3_logo",
+        input_field(self.driver, self.fields_prefix + "mri_logo",
                     "https://www.selenium.dev/images/selenium_logo_large.png")
-        # *.MRI.4 - Mulitimedia
-        input_field(self.driver, self.fields_prefix + "mri_4_mulitimedia",
-                    "https://www.youtube.com/channel/UCbDlgX_613xNMrDqCe3QNEw")
+        # *.MRI.4 - Multimedia
+        #input_field(self.driver, self.fields_prefix + "mri_multimedia",
+        #            "https://www.youtube.com/channel/UCbDlgX_613xNMrDqCe3QNEw")
         # *.MRI.5 - Use Cases
-        input_field(self.driver, self.fields_prefix + "mri_5_use_cases", "https://gitlab.grnet.gr/devs/agora/agora-sp/")
+        #input_field(self.driver, self.fields_prefix + "mri_use_cases", "https://gitlab.grnet.gr/devs/agora/agora-sp/")
 
     def classification_information(self, required_only=False):
         """
@@ -200,23 +203,23 @@ class ResourceCreate(Resources):
         @return: True if all goes well otherwise False.
         """
         # *.CLI.1 - Scientific Domain
-        table_select_field(self.driver, self.fields_prefix + "cli_1_scientific_domain", 4)
+        table_select_field(self.driver, self.fields_prefix + "cli_scientific_domain", 4)
         # *.CLI.2 - Scientific Subdomain
-        table_select_field(self.driver, self.fields_prefix + "cli_2_scientific_subdomain", 15)
+        table_select_field(self.driver, self.fields_prefix + "cli_scientific_subdomain", 15)
         # *.CLI.3 - Category
-        table_select_field(self.driver, self.fields_prefix + "cli_3_category", 10)
+        table_select_field(self.driver, self.fields_prefix + "cli_category", 10)
         # *.CLI.4 - Subcategory
-        table_select_field(self.driver, self.fields_prefix + "cli_4_subcategory", 22)
+        table_select_field(self.driver, self.fields_prefix + "cli_subcategory", 22)
 
         if not required_only:
             # *.CLI.5 - Target Users
-            table_select_field(self.driver, self.fields_prefix + "cli_5_target_users", 7)
+            table_select_field(self.driver, self.fields_prefix + "cli_target_users", 7)
             # *.CLI.6 - Access Types
-            table_select_field(self.driver, self.fields_prefix + "cli_6_access_type", 1)
+            table_select_field(self.driver, self.fields_prefix + "cli_access_type", 1)
             # *.CLI.7 - Access Mode
-            table_select_field(self.driver, self.fields_prefix + "cli_7_access_mode", 1)
+            table_select_field(self.driver, self.fields_prefix + "cli_access_mode", 1)
             # *.CLI.8 - Tags
-            input_field(self.driver, self.fields_prefix + "cli_8_tags", "selenium CLI,")
+            input_field(self.driver, self.fields_prefix + "cli_tags", "selenium CLI,")
 
     def management_information(self, required_only=False):
         """
@@ -226,23 +229,23 @@ class ResourceCreate(Resources):
         @return: True if all goes well otherwise False.
         """
         # *.MGI.1 - Heldesk Webpage
-        input_field(self.driver, self.fields_prefix + "mgi_1_helpdesk_webpage", "https://www.selenium.dev/helpdesk")
+        input_field(self.driver, self.fields_prefix + "mgi_helpdesk_webpage", "https://www.selenium.dev/helpdesk")
         # *.MGI.2 - User Manual
-        input_field(self.driver, self.fields_prefix + "mgi_2_user_manual", "https://www.selenium.dev/userManual")
+        input_field(self.driver, self.fields_prefix + "mgi_user_manual", "https://www.selenium.dev/userManual")
         # *.MGI.3 - Terms of Use
-        input_field(self.driver, self.fields_prefix + "mgi_3_terms_of_use", "https://www.selenium.dev/terms-of-use")
+        input_field(self.driver, self.fields_prefix + "mgi_terms_of_use", "https://www.selenium.dev/terms-of-use")
         # *.MGI.4 - Privacy Policy
-        input_field(self.driver, self.fields_prefix + "mgi_4_privacy_policy", "https://www.selenium.dev/accessPolicy")
+        input_field(self.driver, self.fields_prefix + "mgi_privacy_policy", "https://www.selenium.dev/accessPolicy")
         # *.MGI.5 - Access Policy
-        input_field(self.driver, self.fields_prefix + "mgi_5_access_policy", "https://www.selenium.dev/policy")
-        # *.MGI.6 - Service Level Agreement/Specification
-        input_field(self.driver, self.fields_prefix + "mgi_6_sla_specification", "https://www.selenium.dev/sla")
+        input_field(self.driver, self.fields_prefix + "mgi_access_policy", "https://www.selenium.dev/policy")
+        # *.MGI.6 - Resource Level Agreement/Specification
+        input_field(self.driver, self.fields_prefix + "mgi_sla_specification", "https://www.selenium.dev/sla")
         # *.MGI.7 - Training Information
-        input_field(self.driver, self.fields_prefix + "mgi_7_training_information", "https://www.selenium.dev/training")
+        input_field(self.driver, self.fields_prefix + "mgi_training_information", "https://www.selenium.dev/training")
         # *.MGI.8 - Status Monitoring
-        input_field(self.driver, self.fields_prefix + "mgi_8_status_monitoring", "https://www.selenium.dev/status")
+        input_field(self.driver, self.fields_prefix + "mgi_status_monitoring", "https://www.selenium.dev/status")
         # *.MGI.9 - Maintenance
-        input_field(self.driver, self.fields_prefix + "mgi_9_maintenance", "https://www.selenium.dev/maintenance")
+        input_field(self.driver, self.fields_prefix + "mgi_maintenance", "https://www.selenium.dev/maintenance")
 
     def geographical_and_language_availability_information(self, required_only=False):
         """
@@ -252,9 +255,9 @@ class ResourceCreate(Resources):
         @return: True if all goes well otherwise False.
         """
         # *.GLA.1 - Geographical Availability
-        suggestion_input_field(self.driver, self.fields_prefix + "gla_1_geographical_availability", "Greece")
+        suggestion_input_field(self.driver, self.fields_prefix + "gla_geographical_availability", "Greece")
         # *.GLA.2 - Language
-        suggestion_input_field(self.driver, self.fields_prefix + "gla_2_language", "el")
+        suggestion_input_field(self.driver, self.fields_prefix + "gla_language", "el")
 
     def resource_location_information(self):
         """
@@ -263,7 +266,7 @@ class ResourceCreate(Resources):
         @return: True if all goes well otherwise False.
         """
         # *.RLI.1 - Resource Geographic Location
-        suggestion_input_field(self.driver, self.fields_prefix + "rli_1_geographic_location", "Greece")
+        suggestion_input_field(self.driver, self.fields_prefix + "rli_geographic_location", "Greece")
 
     def contact_information(self, required_only=False):
         """
@@ -277,9 +280,9 @@ class ResourceCreate(Resources):
         # Public Contact
         suggestion_input_field(self.driver, "public_contact", "Django EmberJS")
         # *.COI.13 - Helpdesk Email
-        input_field(self.driver, self.fields_prefix + "coi_13_helpdesk_email", "helpdesk@selenium.dev")
+        input_field(self.driver, self.fields_prefix + "coi_helpdesk_email", "helpdesk@selenium.dev")
         # *.COI.14 - Security Contact Email
-        input_field(self.driver, self.fields_prefix + "coi_14_security_contact_email", "security@selenium.dev")
+        input_field(self.driver, self.fields_prefix + "coi_security_contact_email", "security@selenium.dev")
 
     def maturity_information(self):
         """
@@ -288,21 +291,21 @@ class ResourceCreate(Resources):
         @return: True if all goes well otherwise False.
         """
         # *.ERP.MTI.1 - Technology Readinness Level
-        suggestion_input_field(self.driver, self.fields_prefix + "mti_1_technology_readiness_level", "TRL1")
+        suggestion_input_field(self.driver, self.fields_prefix + "mti_technology_readiness_level", "TRL1")
         # *.MTI.2 - Life Cycle Status
-        suggestion_input_field(self.driver, self.fields_prefix + "mti_2_life_cycle_status", "Design")
+        suggestion_input_field(self.driver, self.fields_prefix + "mti_life_cycle_status", "Design")
         # *.MTI.3 - Certifications
-        input_field(self.driver, self.fields_prefix + "mti_3_certifications", "* Cert 1.\n* Cert 2.")
+        input_field(self.driver, self.fields_prefix + "mti_certifications", "* Cert 1.\n* Cert 2.")
         # *.MTI.4 - Standards
-        input_field(self.driver, self.fields_prefix + "mti_4_standards", "Standard 1.")
+        input_field(self.driver, self.fields_prefix + "mti_standards", "Standard 1.")
         # *.MTI.5 - Open Source Technologies
-        input_field(self.driver, self.fields_prefix + "mti_5_open_source_technologies", "* UNIX\n* GNU/Linux.")
+        input_field(self.driver, self.fields_prefix + "mti_open_source_technologies", "* UNIX\n* GNU/Linux.")
         # *.ERP.MTI.6 - Version
-        input_field(self.driver, self.fields_prefix + "mti_6_version", "v0.3")
+        input_field(self.driver, self.fields_prefix + "mti_version", "v0.3")
         # *.ERP.MTI.7 - Last Update
-        #date_field(self.driver, self.fields_prefix + "mti_7_last_update")
+        #date_field(self.driver, self.fields_prefix + "mti_last_update")
         # *.MTI.8 - Changelog
-        input_field(self.driver, self.fields_prefix + "mti_8_changelog", "Selenium 3.141.0 \n"
+        input_field(self.driver, self.fields_prefix + "mti_changelog", "Selenium 3.141.0 \n"
                                                          "https://github.com/SeleniumHQ/selenium/releases/tag"
                                                          "/selenium-3.141.0")
 
@@ -317,7 +320,7 @@ class ResourceCreate(Resources):
         # *.DEI.2 - Related Resources
         table_select_field(self.driver, "related_resources", 1)
         # *.DEI.3 - Related Platforms
-        input_field(self.driver, self.fields_prefix + "dei_3_related_platforms", "GNU/Linux")
+        suggestion_input_field(self.driver, self.fields_prefix + "dei_related_platforms", "Other")
 
     def attribution_information(self):
         """
@@ -326,11 +329,11 @@ class ResourceCreate(Resources):
         @return: True if all goes well otherwise False.
         """
         # *.ATI.1 - Funding Body
-        table_select_field(self.driver, self.fields_prefix + "ati_1_funding_body", 45)
+        table_select_field(self.driver, self.fields_prefix + "ati_funding_body", 45)
         # *.ATI.2 - Funding Program
-        table_select_field(self.driver, self.fields_prefix + "ati_2_funding_program", 29)
+        table_select_field(self.driver, self.fields_prefix + "ati_funding_program", 29)
         # *.ATI.3 - Grant/Project Name
-        input_field(self.driver, self.fields_prefix + "ati_3_grant_project_name", "SELENIUM")
+        input_field(self.driver, self.fields_prefix + "ati_grant_project_name", "SELENIUM")
 
     def access_and_order_information(self):
         """
@@ -339,9 +342,9 @@ class ResourceCreate(Resources):
         @return: True if all goes well otherwise False.
         """
         # *.AOI.1 - Order Type
-        suggestion_input_field(self.driver, self.fields_prefix + "aoi_1_order_type", "Fully open access")
+        suggestion_input_field(self.driver, self.fields_prefix + "aoi_order_type", "Fully open access")
         # *.AOI.2 - Order
-        input_field(self.driver, self.fields_prefix + "aoi_2_order", "https://www.selenium.dev/order")
+        input_field(self.driver, self.fields_prefix + "aoi_order", "https://www.selenium.dev/order")
 
     def financial_information(self):
         """
@@ -350,6 +353,6 @@ class ResourceCreate(Resources):
         @return: True if all goes well otherwise False.
         """
         # *.FNI.1 - Payment Model
-        input_field(self.driver, self.fields_prefix + "fni_1_payment_model", "https://www.selenium.dev/payments_model")
+        input_field(self.driver, self.fields_prefix + "fni_payment_model", "https://www.selenium.dev/payments_model")
         # *.FNI.2 - Pricing
-        input_field(self.driver, self.fields_prefix + "fni_2_pricing", "https://www.selenium.dev/pricing")
+        input_field(self.driver, self.fields_prefix + "fni_pricing", "https://www.selenium.dev/pricing")

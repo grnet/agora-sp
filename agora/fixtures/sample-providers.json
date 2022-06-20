@@ -4,38 +4,41 @@
     "pk": "f95b8142-5b51-4044-9d9a-e94759c3554c",
     "fields": {
         "eosc_id": "grnet",
-        "epp_bai_0_id": "GRNET",
-        "epp_bai_1_name": "National Infrastructures for Research and Technology",
-        "epp_bai_2_abbreviation": "grnet",
-        "epp_bai_3_website": "www.grnet.gr",
-        "epp_bai_4_legal_entity": true,
-        "epp_bai_5_legal_status": "27cebd5b-0087-43d9-899b-1a6a5b0a341a",
-        "epp_cli_3_tags": "grnet, ",
-        "epp_loi_1_street_name_and_number": "Kifisias Ave 7",
-        "epp_loi_2_postal_code": "11523",
-        "epp_loi_3_city": "Athens",
-        "epp_loi_4_region": null,
-        "epp_loi_5_country_or_territory": "greece (el)",
-        "epp_mri_1_description": "<p>Okeanos Marketing</p>",
-        "epp_mri_2_logo": "https://cyclades.okeanos-knossos.grnet.gr/static/okeanos-knossos-branding/images/compute_logo.png",
-        "epp_mri_3_multimedia": "okeanos.demos.org",
+        "epp_bai_id": "GRNET",
+        "epp_bai_name": "National Infrastructures for Research and Technology",
+        "epp_bai_abbreviation": "grnet",
+        "epp_bai_website": "www.grnet.gr",
+        "epp_bai_legal_entity": true,
+        "epp_bai_legal_status": "27cebd5b-0087-43d9-899b-1a6a5b0a341a",
+        "epp_cli_tags": "grnet, ",
+        "epp_cli_structure_type": [
+            "323c40f3-350e-479e-92e6-450cd0afe626"
+        ],
+        "epp_loi_street_name_and_number": "Kifisias Ave 7",
+        "epp_loi_postal_code": "11523",
+        "epp_loi_city": "Athens",
+        "epp_loi_region": null,
+        "epp_loi_country_or_territory": "greece (el)",
+        "epp_mri_description": "<p>Okeanos Marketing</p>",
+        "epp_mri_logo": "https://cyclades.okeanos-knossos.grnet.gr/static/okeanos-knossos-branding/images/compute_logo.png",
+        "epp_mri_multimedia": "okeanos.demos.org",
         "created_at": "2020-12-31T00:00:00Z",
         "updated_at": "2020-12-31T00:00:00Z",
         "main_contact": null,
         "public_contact": null,
-        "epp_mti_1_life_cycle_status": "Operational",
-        "epp_mti_2_certifications": "ISO-2000",
-        "epp_oth_1_hosting_legal_entity": null,
-        "epp_oth_2_participating_countries": "Europe",
-        "epp_oth_7_esfri_type": null,
-        "epp_oth_12_national_roadmaps": null,
-        "epp_cli_1_scientific_domain": [
+        "epp_mti_life_cycle_status": "Operational",
+        "epp_mti_certifications": "ISO-2000",
+        "epp_bai_hosting_legal_entity": null,
+        "epp_oth_participating_countries": "Europe",
+        "epp_oth_esfri_type": null,
+        "epp_oth_national_roadmaps": null,
+        "epp_cli_scientific_domain": [
             "5df3124a-b8af-44d3-9dbf-64f18022d8cd"
         ],
-        "epp_cli_2_scientific_subdomain": [
+        "epp_cli_scientific_subdomain": [
             "003605bd-5252-4258-8d45-6356667b66fa"
         ],
-        "epp_oth_3_affiliations": [
+        "epp_oth_affiliations": [
             "0f881793-419e-42b5-91e1-3c968023f9b6",
             "49db5031-8989-408a-bc20-8a02b562d1ea",
             "59ce355a-af3c-49a7-adea-cc4294788001",
@@ -43,17 +46,14 @@
             "97897106-cea6-447e-b4b7-d920c3a369ff",
             "d7622bd1-4829-4f4d-8d77-96da12302a72"
         ],
-        "epp_oth_4_networks": [
+        "epp_oth_networks": [
             "953eb9ad-d67d-4d7d-9e01-cfa9db1968dd"
         ],
-        "epp_oth_5_structure_type": [
-            "323c40f3-350e-479e-92e6-450cd0afe626"
-        ],
-        "epp_oth_6_esfri_domain": [],
-        "epp_oth_8_meril_scientific_domain": [],
-        "epp_oth_9_meril_scientific_subdomain": [],
-        "epp_oth_10_areas_of_activity": [],
-        "epp_oth_11_societal_grand_challenges": []
+        "epp_oth_esfri_domain": [],
+        "epp_oth_meril_scientific_domain": [],
+        "epp_oth_meril_scientific_subdomain": [],
+        "epp_oth_areas_of_activity": [],
+        "epp_oth_societal_grand_challenges": []
     }
 }
 ]

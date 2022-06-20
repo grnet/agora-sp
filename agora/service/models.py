@@ -130,73 +130,74 @@ class Resource(models.Model):
 
     # Basic Information fields
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    erp_bai_0_id = models.CharField(max_length=100, unique=True)
-    erp_bai_1_name = models.CharField(max_length=100, unique=True)
-    erp_bai_2_organisation = models.ForeignKey(Organisation,
+    erp_bai_id = models.CharField(max_length=100, unique=True)
+    erp_bai_abbreviation = models.CharField(max_length=100)
+    erp_bai_name = models.CharField(max_length=100, unique=True)
+    erp_bai_organisation = models.ForeignKey(Organisation,
             on_delete=models.PROTECT,
             blank=False,
             null=True,
             related_name="organisation_services")
-    erp_bai_3_providers = models.ManyToManyField(Organisation,
+    erp_bai_providers = models.ManyToManyField(Organisation,
             blank=True,
             related_name="provided_services")
-    erp_bai_4_webpage = models.EmailField(default=None, blank=False, null=True)
+    erp_bai_webpage = models.EmailField(default=None, blank=False, null=True)
 
     # Marketing Information fields
-    erp_mri_1_description = RichTextUploadingField(max_length=1000, default=None, blank=True,  null=True)
-    erp_mri_2_tagline = models.TextField(max_length=100, default=None, blank=True, null=True)
-    erp_mri_3_logo = models.EmailField(default=None, blank=True, null=True)
-    erp_mri_4_mulitimedia = models.EmailField(default=None, blank=True, null=True)
-    erp_mri_5_use_cases = models.TextField(default=None, blank=True, null=True)
+    erp_mri_description = RichTextUploadingField(max_length=1000, default=None, blank=True,  null=True)
+    erp_mri_tagline = models.TextField(max_length=100, default=None, blank=True, null=True)
+    erp_mri_logo = models.EmailField(default=None, blank=True, null=True)
+    erp_mri_multimedia = models.TextField(default=None, blank=True, null=True)
+    erp_mri_use_cases = models.TextField(default=None, blank=True, null=True)
 
     # Classification information
-    erp_cli_1_scientific_domain = models.ManyToManyField(
+    erp_cli_scientific_domain = models.ManyToManyField(
         Domain,
         blank=True,
         related_name='domain_resources')
 
-    erp_cli_2_scientific_subdomain = models.ManyToManyField(
+    erp_cli_scientific_subdomain = models.ManyToManyField(
         Subdomain,
         blank=True,
         related_name='subdomain_resources')
 
-    erp_cli_3_category = models.ManyToManyField(
+    erp_cli_category = models.ManyToManyField(
         Category,
         blank=True,
         related_name='categorized_resources')
 
-    erp_cli_4_subcategory = models.ManyToManyField(
+    erp_cli_subcategory = models.ManyToManyField(
         Subcategory,
         blank=True,
         related_name='subcategorized_resources')
-    erp_cli_5_target_users = models.ManyToManyField(TargetUser, blank=True)
+    erp_cli_target_users = models.ManyToManyField(TargetUser, blank=True)
 
-    erp_cli_6_access_type = models.ManyToManyField(AccessType, blank=True)
-    erp_cli_7_access_mode = models.ManyToManyField(AccessMode, blank=True)
+    erp_cli_access_type = models.ManyToManyField(AccessType, blank=True)
+    erp_cli_access_mode = models.ManyToManyField(AccessMode, blank=True)
 
-    erp_cli_8_tags = models.TextField(max_length=255, default=None, blank=True, null=True)
+    erp_cli_tags = models.TextField(max_length=255, default=None, blank=True, null=True)
 
 
     # Management Information
-    erp_mgi_1_helpdesk_webpage       = models.URLField(max_length=255, default=None, blank=True, null=True)
-    erp_mgi_2_user_manual            = models.URLField(max_length=255, default=None, blank=True, null=True)
-    erp_mgi_3_terms_of_use           = models.URLField(max_length=255, default=None, blank=True, null=True)
-    erp_mgi_4_privacy_policy         = models.URLField(max_length=255, default=None, blank=True, null=True)
-    erp_mgi_5_access_policy          = models.URLField(max_length=255, default=None, blank=True, null=True)
-    erp_mgi_6_sla_specification      = models.URLField(max_length=255, default=None, blank=True, null=True)
-    erp_mgi_7_training_information   = models.URLField(max_length=255, default=None, blank=True, null=True)
-    erp_mgi_8_status_monitoring      = models.URLField(max_length=255, default=None, blank=True, null=True)
-    erp_mgi_9_maintenance            = models.URLField(max_length=255, default=None, blank=True, null=True)
+    erp_mgi_helpdesk_webpage       = models.URLField(max_length=255, default=None, blank=True, null=True)
+    erp_mgi_user_manual            = models.URLField(max_length=255, default=None, blank=True, null=True)
+    erp_mgi_terms_of_use           = models.URLField(max_length=255, default=None, blank=True, null=True)
+    erp_mgi_privacy_policy         = models.URLField(max_length=255, default=None, blank=True, null=True)
+    erp_mgi_access_policy          = models.URLField(max_length=255, default=None, blank=True, null=True)
+    erp_mgi_sla_specification      = models.URLField(max_length=255, default=None, blank=True, null=True)
+    erp_mgi_training_information   = models.URLField(max_length=255, default=None, blank=True, null=True)
+    erp_mgi_status_monitoring      = models.URLField(max_length=255, default=None, blank=True, null=True)
+    erp_mgi_maintenance            = models.URLField(max_length=255, default=None, blank=True, null=True)
 
     # Geographical and Language Availability fields
-    erp_gla_1_geographical_availability = models.CharField(max_length=255,
+    erp_gla_geographical_availability = models.CharField(max_length=255,
         default=None,
         blank=True,
         null=True)
-    erp_gla_2_language = models.TextField(default=None, blank=True, null=True)
+    erp_gla_language = models.TextField(default=None, blank=True, null=True)
 
     # Resource Location Information
-    erp_rli_1_geographic_location = models.TextField(default='Other', blank=True, null=True)
+    erp_rli_geographic_location = models.TextField(default='Other', blank=True, null=True)
 
     # Contact Information
     main_contact = models.ForeignKey(ContactInformation,
@@ -209,18 +210,18 @@ class Resource(models.Model):
         null=True,
         on_delete=models.SET_NULL,
         related_name="public_contact_services")
-    erp_coi_13_helpdesk_email = models.EmailField(default=None, blank=True, null=True)
-    erp_coi_14_security_contact_email = models.EmailField(default=None, blank=True, null=True)
+    erp_coi_helpdesk_email = models.EmailField(default=None, blank=True, null=True)
+    erp_coi_security_contact_email = models.EmailField(default=None, blank=True, null=True)
 
     # Maturity Information
-    erp_mti_1_technology_readiness_level = models.ForeignKey(TRL, blank=False, null=True)
-    erp_mti_2_life_cycle_status = models.ForeignKey(LifeCycleStatus, blank=False, null=True)
-    erp_mti_3_certifications = RichTextUploadingField(default=None, blank=True, null=True)
-    erp_mti_4_standards = RichTextUploadingField(default=None, blank=True, null=True)
-    erp_mti_5_open_source_technologies = RichTextUploadingField(default=None, blank=True, null=True)
-    erp_mti_6_version = models.CharField(max_length=255, default=None, blank=True, null=True)
-    erp_mti_7_last_update = models.CharField(max_length=255, blank=True, null=True)
-    erp_mti_8_changelog = RichTextUploadingField(default=None, blank=True, null=True)
+    erp_mti_technology_readiness_level = models.ForeignKey(TRL, blank=False, null=True)
+    erp_mti_life_cycle_status = models.ForeignKey(LifeCycleStatus, blank=False, null=True)
+    erp_mti_certifications = RichTextUploadingField(default=None, blank=True, null=True)
+    erp_mti_standards = RichTextUploadingField(default=None, blank=True, null=True)
+    erp_mti_open_source_technologies = RichTextUploadingField(default=None, blank=True, null=True)
+    erp_mti_version = models.CharField(max_length=255, default=None, blank=True, null=True)
+    erp_mti_last_update = models.CharField(max_length=255, blank=True, null=True)
+    erp_mti_changelog = RichTextUploadingField(default=None, blank=True, null=True)
 
     # Dependencies Information fields
     required_resources = models.ManyToManyField('self', blank=True,
@@ -229,33 +230,33 @@ class Resource(models.Model):
     related_resources = models.ManyToManyField('self', blank=True,
                                               symmetrical=False,
                                               related_name='set_as_related_by')
-    erp_dei_3_related_platforms = models.TextField(default=None, blank=True, null=True)
+    erp_dei_related_platforms = models.TextField(default=None, blank=True, null=True)
 
     # Attribution Information
-    erp_ati_1_funding_body = models.ManyToManyField(
+    erp_ati_funding_body = models.ManyToManyField(
         FundingBody,
         blank=True,
         related_name='funded_body_resources')
 
-    erp_ati_2_funding_program = models.ManyToManyField(
+    erp_ati_funding_program = models.ManyToManyField(
         FundingProgram,
         blank=True,
         related_name='funded_program_resources')
-    erp_ati_3_grant_project_name = models.CharField(max_length=255,
+    erp_ati_grant_project_name = models.CharField(max_length=255,
         default=None,
         blank=True,
         null=True)
 
     # Access and Order Information
-    erp_aoi_1_order_type = models.ForeignKey(OrderType,
+    erp_aoi_order_type = models.ForeignKey(OrderType,
                                               blank=True,
                                               null=True,
                                               related_name='resources')
-    erp_aoi_2_order = models.URLField(default=None, blank=True, null=True)
+    erp_aoi_order = models.URLField(default=None, blank=True, null=True)
 
     # Financial Information
-    erp_fni_1_payment_model = models.URLField(default=None, blank=True, null=True)
-    erp_fni_2_pricing = models.URLField(default=None, blank=True, null=True)
+    erp_fni_payment_model = models.URLField(default=None, blank=True, null=True)
+    erp_fni_pricing = models.URLField(default=None, blank=True, null=True)
 
     state = models.CharField(
             choices=RESOURCE_STATES,
@@ -273,62 +274,62 @@ class Resource(models.Model):
     eosc_state = models.CharField(max_length=255, blank=True, null=True)
 
     def __unicode__(self):
-        return str(self.erp_bai_0_id)
+        return str(self.erp_bai_id)
 
     @property
-    def erp_bai_2_organisation_public(self):
-        if self.erp_bai_2_organisation.state == 'published':
-            return self.erp_bai_2_organisation_id
+    def erp_bai_organisation_public(self):
+        if self.erp_bai_organisation.state == 'published':
+            return self.erp_bai_organisation_id
         else:
             return None
 
     @property
-    def erp_bai_3_providers_public(self):
-        return self.erp_bai_3_providers.filter(state='published')
+    def erp_bai_providers_public(self):
+        return self.erp_bai_providers.filter(state='published')
 
     @property
-    def erp_cli_3_category_verbose(self):
-        return ", ".join(o.name for o in self.erp_cli_3_category.all())
+    def erp_cli_category_verbose(self):
+        return ", ".join(o.name for o in self.erp_cli_category.all())
 
     @property
-    def erp_cli_4_subcategory_verbose(self):
-        return ", ".join(o.name for o in self.erp_cli_4_subcategory.all())
+    def erp_cli_subcategory_verbose(self):
+        return ", ".join(o.name for o in self.erp_cli_subcategory.all())
 
     @property
-    def erp_cli_1_scientific_domain_verbose(self):
-        return ", ".join(o.name for o in self.erp_cli_1_scientific_domain.all())
+    def erp_cli_scientific_domain_verbose(self):
+        return ", ".join(o.name for o in self.erp_cli_scientific_domain.all())
 
     @property
-    def erp_cli_2_scientific_subdomain_verbose(self):
-        return ", ".join(o.name for o in self.erp_cli_2_scientific_subdomain.all())
+    def erp_cli_scientific_subdomain_verbose(self):
+        return ", ".join(o.name for o in self.erp_cli_scientific_subdomain.all())
 
     @property
-    def erp_bai_3_providers_verbose(self):
-        return ", ".join(o.epp_bai_1_name for o in self.erp_bai_3_providers.all())
+    def erp_bai_providers_verbose(self):
+        return ", ".join(o.epp_bai_name for o in self.erp_bai_providers.all())
 
     @property
     def required_resources_ids(self):
-        return ", ".join(o.erp_bai_0_id for o in self.required_resources.all())
+        return ", ".join(o.erp_bai_id for o in self.required_resources.all())
 
     @property
     def related_resources_ids(self):
-        return ", ".join(o.erp_bai_0_id for o in self.related_resources.all())
+        return ", ".join(o.erp_bai_id for o in self.related_resources.all())
 
     @property
-    def erp_dei_1_required_resources_public(self):
+    def erp_dei_required_resources_public(self):
         return self.required_resources.filter(state='published')
 
     @property
-    def erp_dei_2_related_resources_public(self):
+    def erp_dei_related_resources_public(self):
         return self.related_resources.filter(state='published')
 
     @property
-    def erp_cli_5_target_users_verbose(self):
-        return ", ".join(o.user for o in self.erp_cli_5_target_users.all())
+    def erp_cli_target_users_verbose(self):
+        return ", ".join(o.user for o in self.erp_cli_target_users.all())
 
     def save(self, *args, **kwargs):
-        self.erp_bai_0_id = self.erp_bai_0_id.strip()
-        self.erp_bai_1_name = self.erp_bai_1_name.strip()
+        self.erp_bai_id = self.erp_bai_id.strip()
+        self.erp_bai_name = self.erp_bai_name.strip()
         if self.state == 'published' and not self.published_at:
             self.published_at = timezone.now()
         clean_html_fields(self)

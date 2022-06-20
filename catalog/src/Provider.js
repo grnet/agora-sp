@@ -23,15 +23,15 @@ function Provider(props) {
       let tags = [];
       let countries = [];
       let rdata = result.data;
-      if ("epp_cli_3_tags" in rdata && rdata.epp_cli_3_tags != null) {
-        tags = rdata.epp_cli_3_tags.split(",").map((item) => item.trim());
+      if ("epp_cli_tags" in rdata && rdata.epp_cli_tags != null) {
+        tags = rdata.epp_cli_tags.split(",").map((item) => item.trim());
       }
 
       if (
-        "epp_oth_2_participating_countries" in rdata &&
-        rdata.epp_oth_2_participating_countries != null
+        "epp_oth_participating_countries" in rdata &&
+        rdata.epp_oth_participating_countries != null
       ) {
-        countries = rdata.epp_oth_2_participating_countries
+        countries = rdata.epp_oth_participating_countries
           .split(",")
           .map((item) => item.trim());
       }
@@ -46,9 +46,9 @@ function Provider(props) {
   }, [id]);
 
   let logo = null;
-  if (data.epp_mri_2_logo) {
+  if (data.epp_mri_logo) {
     logo = (
-      <img className="mw-75 biglogo" src={data.epp_mri_2_logo} alt="service logo" />
+      <img className="mw-75 biglogo" src={data.epp_mri_logo} alt="service logo" />
     );
   } else {
     logo = <FontAwesomeIcon icon="cloud" size="5x" style={{ color: "grey" }} />;
@@ -59,10 +59,10 @@ function Provider(props) {
       <div className="text-center">
         {logo}
         <h2 style={{ color: config.colorA }} className="title mt-3">
-          {data.epp_bai_2_abbreviation}
+          {data.epp_bai_abbreviation}
         </h2>
-        <h4>{data.epp_bai_1_name}</h4>
-        <TagItems items={data.epp_bai_5_legal_status ? [data.epp_bai_5_legal_status] : []} valueOfKey="name" outline color="black"/>
+        <h4>{data.epp_bai_name}</h4>
+        <TagItems items={data.epp_bai_legal_status ? [data.epp_bai_legal_status] : []} valueOfKey="name" outline color="black"/>
       </div>
       <hr></hr>
       <div className="container-fluid">
@@ -72,23 +72,14 @@ function Provider(props) {
               <div className="mb-2">
                 <ValueItem
                   icon="globe-americas"
-                  item={data.epp_bai_3_website}
+                  item={data.epp_bai_website}
                   label="Official Website"
                   link
                   strong
                   inline
                 />
 
-                <ValueItem
-                  icon="photo-video"
-                  item={data.epp_mri_3_multimedia}
-                  label="Multimedia"
-                  link
-                  strong
-                  inline
-                />
-
-              {data.epp_mri_1_description && (
+              {data.epp_mri_description && (
                 <button className="down" onClick={toggle}>
                   ▼ {!isOpen && <small>show description</small>}
                 </button>
@@ -96,40 +87,44 @@ function Provider(props) {
               </div>
 
               <Collapse isOpen={isOpen} >
-              <RichItem item={data.epp_mri_1_description} />
+              <RichItem item={data.epp_mri_description} />
               </Collapse>
               <hr />
 
               <MaturityInfo
-                lifecycle={data.epp_mti_1_life_cycle_status}
-                certs={data.epp_mti_2_certifications}
+                lifecycle={data.epp_mti_life_cycle_status}
+                certs={data.epp_mti_certifications}
+              />
+
+              <MultimediaInfo
+                multimedia={data.epp_mri_multimedia}
               />
               
               <ContactInfo
-                first_name={data.epp_coi_6_first_name}
-                last_name={data.epp_coi_7_last_name}
-                email={data.epp_coi_8_email}
-                phone={data.epp_coi_9_phone}
-                position={data.epp_coi_10_position}
+                first_name={data.epp_coi_first_name}
+                last_name={data.epp_coi_last_name}
+                email={data.epp_coi_email}
+                phone={data.epp_coi_phone}
+                position={data.epp_coi_position}
               />
 
             <LocationInfo
-                street={data.epp_loi_1_street_name_and_number}
-                postal={data.epp_loi_2_postal_code}
-                city={data.epp_loi_3_city}
-                region={data.epp_loi_4_region}
-                country={data.epp_loi_5_country_or_territory}
+                street={data.epp_loi_street_name_and_number}
+                postal={data.epp_loi_postal_code}
+                city={data.epp_loi_city}
+                region={data.epp_loi_region}
+                country={data.epp_loi_country_or_territory}
               />
 
             <OtherInfo
-                hosting={data.epp_oth_1_hosting_legal_entity}
+                hosting={data.epp_bai_hosting_legal_entity}
                 countries={data.countries}
-                affiliations={data.epp_oth_3_affiliations}
-                networks={data.pp_oth_4_networks}
-                structure={data.epp_oth_5_structure_type}
-                activity={data.epp_oth_10_areas_of_activity}
-                societal={data.epp_oth_11_societal_grand_challenges}
-                roadmap={data.epp_loi_5_country_or_territory}
+                affiliations={data.epp_oth_affiliations}
+                networks={data.pp_oth_networks}
+                structure={data.epp_cli_structure_type}
+                activity={data.epp_oth_areas_of_activity}
+                societal={data.epp_oth_societal_grand_challenges}
+                roadmap={data.epp_loi_country_or_territory}
               />
             </div>
 
@@ -143,24 +138,24 @@ function Provider(props) {
               title="Scientific"
               domLabel="Domain"
               subLabel="Subdomain"
-              domains={data.epp_cli_1_scientific_domain}
-              subdomains={data.epp_cli_2_scientific_subdomain}
+              domains={data.epp_cli_scientific_domain}
+              subdomains={data.epp_cli_scientific_subdomain}
             />
             <ScientificInfo
               icon="flask"
               title="MERIL"
               domLabel="Domain"
               subLabel="Subdomain"
-              domains={data.epp_oth_8_meril_scientific_domain}
-              subdomains={data.epp_oth_9_meril_scientific_subdomain}
+              domains={data.epp_oth_meril_scientific_domain}
+              subdomains={data.epp_oth_meril_scientific_subdomain}
             />
             <ScientificInfo
               icon="microscope"
               title="ESFRI"
               domLabel="Domain"
               subLabel="Type"
-              domains={data.epp_oth_6_esfri_domain}
-              subdomains={data.epp_oth_7_esfri_type ? [data.epp_oth_7_esfri_type] : []}
+              domains={data.epp_oth_esfri_domain}
+              subdomains={data.epp_oth_esfri_type ? [data.epp_oth_esfri_type] : []}
             />
           </div>
         </div>
@@ -436,14 +431,55 @@ function MaturityInfo(props) {
             <li><ValueItem item={props.lifecycle} label="Lifecycle Status" strong breakpoint /></li>
             <li> <ValueItem item={props.certs} label="Certifications" strong breakpoint /></li>
           </ul>
-           
-            
-           
-           
-            
-            
-            
-          
+        </div>
+      </Collapse>
+
+      <hr />
+    </div>
+  );
+}
+
+function MultimediaInfo(props) {
+  const [isOpen, setIsOpen] = useState(true);
+
+  const toggle = () => setIsOpen(!isOpen);
+
+  // get props.data
+  let empty = false;
+  let multimedia_json = {};
+  if (
+    !props.multimedia
+  ) {
+    empty = true;
+  } else {
+    multimedia_json = JSON.parse(props.multimedia)
+    console.log(multimedia_json)
+    console.log(Object.keys(multimedia_json))
+  }
+  let head = (
+    <h5 className={empty ? "xlight-grey" : "light-grey"}>
+      <FontAwesomeIcon className="mr-2" icon="photo-video" />
+      <strong>Multimedia</strong>{" "}
+      {!empty && (
+        <button className="down" onClick={toggle}>
+          ▼
+        </button>
+      )}
+    </h5>
+  );
+
+  if (empty) return <div>{head}</div>;
+
+  return (
+    <div>
+      {head}
+      <Collapse isOpen={isOpen}>
+        <div className="ml-4">
+          <ul className="list-unstyled">
+            {Object.keys(multimedia_json).map( item =>
+              <li key={multimedia_json[item]}><ValueItem item={multimedia_json[item]} label={item} strong link inline/><FontAwesomeIcon icon="link" /></li>
+            )}
+          </ul>
         </div>
       </Collapse>
 
