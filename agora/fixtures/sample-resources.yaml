@@ -20,9 +20,9 @@
         erp_mgi_training_information: null
         erp_mgi_status_monitoring: null
         erp_mgi_maintenance: null
-        erp_gla_geographical_availability: Europe
+        erp_gla_geographical_availability: "Europe (EO)"
         erp_gla_language: en
-        erp_rli_geographic_location: Other
+        erp_rli_geographic_location: "Greece (EL)"
         main_contact: null
         public_contact: null
         erp_coi_helpdesk_email: null
