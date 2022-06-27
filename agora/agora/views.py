@@ -72,13 +72,24 @@ def config(request):
     except requests.exceptions.RequestException as err:
         print ("Error:", err)
 
+    related_platforms = []
+    try:
+        response = requests.get(EOSC_API_URL+'/vocabulary/byType/RELATED_PLATFORM', headers=headers, verify=CA_BUNDLE)
+        response.raise_for_status()
+        related_platforms.append(["Other","Other"])
+        for host in  response.json():
+            related_platforms.append([host['id'],host['name']])
+    except requests.exceptions.RequestException as err:
+        print ("Error:", err)
+
     config_data = {
         'permissions': permissions,
         'shibboleth_login_url': shibboleth_endpoint,
         'backend_host': backend_host,
         'backend_media_root': backend_media_root,
         'resources': load_resources(),
-        'legal_entities': response_json
+        'legal_entities': response_json,
+        'related_platforms': related_platforms
     }
     return HttpResponse(json.dumps(config_data),
                         content_type='application/json')

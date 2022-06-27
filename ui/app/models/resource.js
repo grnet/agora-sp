@@ -9,7 +9,7 @@ const {
 } = Ember;
 
 const CHOICES = ENV.APP.resources;
-const LEGAL_ENTITIES = ENV.APP.legal_entities;
+const RELATED_PLATFORMS = ENV.APP.related_platforms;
 
 let model = DS.Model.extend({
   session: Ember.inject.service(),
@@ -290,7 +290,7 @@ let model = DS.Model.extend({
     hint: 'resource.hints.erp_dei_related_platforms',
     autocomplete: true,
     type: 'select',
-    choices: LEGAL_ENTITIES,
+    choices: RELATED_PLATFORMS,
   }),
 
   // Attribution Information
