@@ -1,6 +1,7 @@
 ---
 id: users
 title: Users Information
+sidebar_position: 6
 ---
 
 **Users**: Users are the users of the service.

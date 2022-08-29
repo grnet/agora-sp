@@ -1,6 +1,7 @@
 ---
 id: profile
 title: Profile Information
+sidebar_position: 1
 ---
 
 The first page a users visit when he/she logs in to the service is the Profile Information page (see image below).

@@ -1,6 +1,7 @@
 ---
 id: eosc_integration
 title: EOSC Integration
+sidebar_position: 2
 ---
 
 ## EOSC Portal

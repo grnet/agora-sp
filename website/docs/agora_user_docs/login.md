@@ -1,6 +1,7 @@
 ---
 id: login
 title: Login Information
+sidebar_position: 8
 ---
 
 Agora there are two ways to login:
