@@ -47,7 +47,7 @@ The fields that the user can change :
 | **Basic information**       |                       |
 | Username (**required**)			|	A username						|
 | First Name (**required**)		|	The user's first name	|
-| Last Name (**required**)		|	The user'sLast name		|
+| Last Name (**required**)		|	The user's Last name		|
 | Email (**required**)				|	The user's email 			|
 | Role (**required**)					|	The role of the user  |
 

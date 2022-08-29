@@ -8,7 +8,7 @@ A *Contact Information* is actually a provider representative or an resource own
 
 :::tip
 
-Before adding a Provider, or a Resource dont forget to add all the necessary contact information.
+Before adding a Provider, or a Resource don't forget to add all the necessary contact information.
 
 :::
 
@@ -56,7 +56,7 @@ From this page a `Superadmin`, or `Resource Admin` user may create a new Contact
 | --------------------------- | ------------------------- |
 | **Basic information**       |                           |
 | First Name (**required**)		|	The user's first name	    |
-| Last Name (**required**)		|	The user'sLast name		    |
+| Last Name (**required**)		|	The user's Last name		    |
 | Email (**required**)				|	The user's email 		     	|
 | Phone (**optional**)				|	The user's phone      		|
 | Position (**optional**)			|	The position of the user  |

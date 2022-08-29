@@ -3,7 +3,7 @@ id: providers
 title: Providers Information
 ---
 
-**Provider**: Providers are organisations, a part of an organisation or a federation that manages and delivers Resources to End-Users.  A Provider admin is  System User responsible for the provisioning of one or more Resources to usersProviders can be:
+**Provider**: Providers are organisations, a part of an organisation or a federation that manages and delivers Resources to End-Users.  A Provider admin is  System User responsible for the provisioning of one or more Resources to users Providers can be:
 
 1.  Resource Providers,
 2.  Service Providers,
@@ -77,7 +77,7 @@ Below is the list of fields with small descriptions of the fields. The required 
 | EPP.MRI.1 - Description	(**required**)					|	The description of the Provider.															|
 | EPP.MRI.2 - Logo		(**required**)						|	Link to the logo/visual identity of the Provider.											|
 | EPP.MRI.3 - Multimedia					|	Link to video, slideshow, photos, screenshots with details of the Provider.					|
-| EPP.MTI.1 - Life Cycle Status				|	Current status of the Provider/Research infrastucture life-cycle.							|
+| EPP.MTI.1 - Life Cycle Status				|	Current status of the Provider/Research infrastructure life-cycle.							|
 | EPP.MTI.2 - Certifications				|	List of certifications obtained for the Provider (including the certification body and any certificate number).	|
 | Main Contact/Resource Owner				|																								|
 | Public Contact							|																								|

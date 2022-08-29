@@ -47,7 +47,7 @@ From this page a user may create a new resource admin just by clicking the **Cre
 | Field Name                | Description           |
 | ------------------------- | ----------------------|
 | Admin (**required**)			|	The user to whom you want to assign the resource.						|
-| Resource (**required**)		|	The reesource	|
+| Resource (**required**)		|	The resource	|
 
 
 A `Resource Admin` can only see the Resource Admins of the provider to which he belongs.

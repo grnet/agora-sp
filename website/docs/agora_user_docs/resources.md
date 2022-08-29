@@ -61,11 +61,11 @@ Below is the list of fields with small descriptions of the fields. The required 
 | ERP.MRI.1 - Description					|	A high-level description in fairly non-technical terms of a) what the service/resource does, functionality it provides and resources it enables to access, b) the benefit to a user/customer delivered by a service; benefits are usually related to alleviating pains (e.g., eliminate undesired outcomes, obstacles or risks) or producing gains (e.g. increased performance, social gains, positive emotions or cost saving), c) list of customers, communities, users, etc. using the service.	|
 | ERP.MRI.2 - Tagline						|	Short catch-phrase for marketing and advertising purposes. It will be usually displayed close the service name and should refer to the main value or purpose of the service.	|
 | ERP.MRI.3 - Logo							|	Link to the logo/visual identity of the service. The logo will be visible at the Portal.				|
-| ERP.MRI.4 - Mulitimedia					|	Link to video, screenshots or slides showing details of the service/resource.							|
+| ERP.MRI.4 - Multimedia					|	Link to video, screenshots or slides showing details of the service/resource.							|
 | ERP.MRI.5 - Use Cases						|	List of use cases supported by this service/resource.													|
 | **Classification Information**  |                                                                                      |
 | ERP.CLI.1 - Scientific Domain (**required**)				|	The branch of science, scientific discipline that is related to the service/resource.					|
-| ERP.CLI.2 - Scientific Subdomain  (**required**)			|	The subbranch of science, scientific subdicipline that is related to the service/resource.				|
+| ERP.CLI.2 - Scientific Subdomain  (**required**)			|	The sub-branch of science, scientific sub-discipline that is related to the service/resource.				|
 | ERP.CLI.3 - Category  (**required**)						|	A named group of services/resources that offer access to the same type of resource or capabilities.		|
 | ERP.CLI.4 - Subcategory (**required**)					|	A named group of services/resources that offer access to the same type of resource or capabilities, within the defined service category	|
 | ERP.CLI.5 - Target Users					|	Type of users/customers that commissions a service/resource provider to deliver a service.				|
@@ -73,7 +73,7 @@ Below is the list of fields with small descriptions of the fields. The required 
 | ERP.CLI.7 - Access Mode					|	Eligibility/criteria for granting access to users (excellence-based, free-conditionally, free etc.)		|
 | ERP.CLI.8 - Tags							|	Keywords associated to the service/resource to simplify search by relevant keywords.					|
 | **Management Information**    |                                                                                      |
-| ERP.MGI.1 - Heldesk Page					|																											|
+| ERP.MGI.1 - Help desk Page					|																											|
 | ERP.MGI.2 - User Manual					|	Link to the service/resource user manual and documentation.												|
 | ERP.MGI.3 - Terms of Use					|	Webpage describing the rules, service/resource conditions and usage policy which one must agree to abide by in order to use the service.	|
 | ERP.MGI.4 - Privacy Policy				|	Link to the privacy policy applicable to the service.													|
@@ -90,10 +90,10 @@ Below is the list of fields with small descriptions of the fields. The required 
 | **Contact Information**    |                                                                 |
 | Main Contact/Resource Owner				|																											|
 | Public Contact							|																											|
-| ERP.COI.13 - Helpdesk Email				|	Email of the heldpesk department.																		|
+| ERP.COI.13 - Help desk Email				|	Email of the heldpesk department.																		|
 | ERP.COI.14 - Security Contact Email		|																											|
 | **Maturity Information**    |                                                                 |
-| ERP.MTI.1 - Technology Readinness Level	|	The Technology Readiness Level of the Tag of the service/resource.	|
+| ERP.MTI.1 - Technology Readiness Level	|	The Technology Readiness Level of the Tag of the service/resource.	|
 | ERP.MTI.2 - Life Cycle Status				|																											|
 | ERP.MTI.3 - Certifications				|	List of certifications obtained for the service (including the certification body).	|
 | ERP.MTI.4 - Standards						|	List of standards supported by the service.	|
