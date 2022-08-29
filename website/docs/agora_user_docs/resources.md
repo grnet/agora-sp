@@ -1,6 +1,7 @@
 ---
 id: resources
 title: Resources Information
+sidebar_position: 2
 ---
 
 **Resource**: Any asset made available (by means of the EOSC system and according to the EOSC Rules of Participation) to  System Users to perform a process useful to deliver value in the context of the EOSC.

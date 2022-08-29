@@ -1,6 +1,7 @@
 ---
 id: contact
 title: Contact Information
+sidebar_position: 4
 ---
 
 A *Contact Information* is actually a provider representative or an resource owner. The *Contact Information* is actually used by the  "Provider" or/and "Resources" as an owner or a Point of Contact.

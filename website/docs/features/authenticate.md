@@ -2,6 +2,7 @@
 id: authenticate
 title: Authentication / Authorization
 slug: /
+sidebar_position: 1
 ---
 
 ## SPMT/AGORA

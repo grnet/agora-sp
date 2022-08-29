@@ -1,6 +1,7 @@
 ---
 id: settings
 title: Settings menu
+sidebar_position: 7
 ---
 
 

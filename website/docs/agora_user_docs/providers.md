@@ -1,6 +1,7 @@
 ---
 id: providers
 title: Providers Information
+sidebar_position: 3
 ---
 
 **Provider**: Providers are organisations, a part of an organisation or a federation that manages and delivers Resources to End-Users.  A Provider admin is  System User responsible for the provisioning of one or more Resources to users Providers can be:
