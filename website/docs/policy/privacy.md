@@ -30,7 +30,7 @@ In addition, for the purposes of the present, the following definitions shall al
 
 _"Website"_ – the website accessible via domain name including the entirety of the web pages thereof.
 
-_" Agora Service"_ - {{service_url}}
+_" Agora Service"_ - `{{service_url}}`
 
 _“User”_- the Agora online service user, whom the data refer to, whose identity is known or may be verified, namely it may be directly or indirectly determined.
 
@@ -39,7 +39,7 @@ _“User”_- the Agora online service user, whom the data refer to, whose ident
 i. GRNET SA – as processor – processes its “users" personal data as referred to in the following section, for the following purposes:
 
 *   **Authentication of “Agora” service users**
-    *   “Users” authentication is carried out through the {{ login_service }} service ({{ login_url}}).
+    *   “Users” authentication is carried out through the `{{ login_service }}` service (`{{ login_url}}`).
 
     *   And through a local authentication process.
 
@@ -67,7 +67,7 @@ Ii. GRNET S.A. – as the processor – collects and processes personal data of 
 
 ### i. For the Authentication of Agora “users”
 
-The authentication of the Agora service "users" is carried out through the {{ login_service }} service ({{ login_url }}) and the local login process. For the sole purpose of the authentication of the Agora service "users", GRNET SA collects through the aforementioned authentication procedures, and processes – as processor- the following personal data:
+The authentication of the Agora service "users" is carried out through the `{{ login_service }}` service (`{{ login_url }}`) and the local login process. For the sole purpose of the authentication of the Agora service "users", GRNET SA collects through the aforementioned authentication procedures, and processes – as processor- the following personal data:
 
 *   Name
 
@@ -206,7 +206,7 @@ In particular:
 
 *   We use encryption (HTTPS) to keep data private while in transit. Data sent using HTTPS is secured via Transport Layer Security protocol (TLS), which provides a) Encryption—encrypting the exchanged data to keep it secure from droppers. b) Data integrity—data cannot be modified or corrupted during transfer, intentionally or otherwise, without being detected. c) Authentication—proves that your users communicate with the intended website.
 
-*   The implementation of the Agora service ensures that no unauthorized user can log into the service. An authorised user means a service user, who has an active account with the {{ login_service }} service, having passed the authentication process mentioned above.
+*   The implementation of the Agora service ensures that no unauthorized user can log into the service. An authorised user means a service user, who has an active account with the `{{ login_service }}` service, having passed the authentication process mentioned above.
 
 *   We review our information collection, storage, and processing practices, including physical security measures, to prevent unauthorized access to our systems
 
