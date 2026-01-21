@@ -2,6 +2,9 @@
 [![Build Status](https://jenkins.einfra.grnet.gr/job/AGORA/job/devel/badge/icon)](https://jenkins.einfra.grnet.gr/job/AGORA/job/devel/)
 [![Selenium Tests](https://jenkins.einfra.grnet.gr/job/AGORA/job/devel/badge/icon?config=teststatus)](https://jenkins.einfra.grnet.gr/job/AGORA/job/devel/)
 
+[![check custom](https://jenkins.einfra.grnet.gr/job/AGORA/?job=path%2Fto%2Fjob%2Fbranch%252Fpath/badge/icon?subject=Custom%20Text&status=My%20passing%20text)] test1
+[![check dynamic](https://jenkins.einfra.grnet.gr/job/AGORA/?job=path%2Fto%2Fjob%2Fbranch%252Fpath/badge/icon?config=teststatus)] test2
+
 The service portfolio management tool is a tool that allows a company / project to manage the portfolio of services they to maintain (offered to users / customers or internal).
 Agora provides an intuitive user interface which allows users to create/edit/update/delete their services and components. Users can login with credentials provided by the administrator, or use the shibboleth login functionality to login with their academic account.
 
